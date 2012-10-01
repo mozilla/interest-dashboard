@@ -149,73 +149,46 @@ function displayCats( cats , rootNodeID , topColors ) {
 
 function displayDemogs(demog, category, buketNames) {
   let parentNode = $("#demog_" + category);
-  let min = 10000000000000;
-  let max = -10000000000000;
+
+  let largest = 0; 
+  let largestBuket;
   for (x in buketNames) {
     let bucket = buketNames[x];
-    let bData = demog[bucket];
-    if (min > bData.vtotal) min = bData.vtotal;
-    if (max < bData.vtotal) max = bData.vtotal;
+    if( largest < demog[bucket].vtotal ) {
+      largestBuket = bucket;
+      largest = demog[bucket].vtotal;
+    }
   }
-
-  let dif = max - min;
-
-  for (x in buketNames) {
+  for(x in buketNames) {
     let bucket = buketNames[x];
-    let lMargin = 0;
-    let width = 100;
-    let rMargin = 0;
-    let color;
-    let vtotal = demog[bucket].vtotal;
-
-    let value = Math.floor((200.0 * vtotal) / dif);
-    if (value < 0) {
-      width = - value;
-      if (width > 100) {
-        width = 100;
-      }
-      lMargin = 100 - width;
-      rMargin = 100;
-      color = NEG_COLOR;
-    }
-    else {
-      if (value > 100) {
-        value = 100;
-      }
-      width = value;
-      rMargin = 100 - width;
-      lMargin = 100;
-      color = POS_COLOR;
-    }
+    let value = ( demog[bucket].vtotal * 100 ).toFixed(2);
 
     let theNode = $("<cpan/>").addClass("demog").append(
       $("<span/>").addClass("dmog_label").text(DEMOG_NAMES[bucket]),
-      $("<span/>").addClass("demog_bar").text("_").css({
-        "width": width + "px",
-        "margin-left": 50 + lMargin + "px",
-        "margin-right": 50 + rMargin + "px",
-        "background-color": color,
-      }));
+      $("<span/>").addClass("demog_bar").text( value + "%"));
+
+    if( bucket == largestBuket ) {
+      theNode.css({ "color" : "olive" });
+    }
+
     parentNode.append(theNode)
 
     let explaneNode = $("<div/>").hide();
-    let negNode = $("<ul/>").addClass("inliner");
-    let champs = demog[bucket].neg.items;
+
+    let posNode = $("<ul/>").addClass("inliner");
+    champs = demog[bucket].most.items;
     for (x in champs) {
-      negNode.append($("<li/>").css({
-        "color": NEG_COLOR,
-      }).text(champs[x].item.domain + " " + Math.round(champs[x].item.vcount) + " " + champs[x].item.drop));
+      posNode.append($("<li/>").css({ "color" : "olive" }).text(champs[x].item.domain + " " + Math.round(champs[x].item.vcount)));
+    }
+    explaneNode.append(posNode);
+
+    let negNode = $("<ul/>").addClass("inliner");
+    champs = demog[bucket].least.items.reverse();
+    for (x in champs) {
+      negNode.append($("<li/>").css({ "color" : "blue" }).text(champs[x].item.domain + " " + Math.round(champs[x].item.vcount)));
     }
     explaneNode.append(negNode);
 
-    let posNode = $("<ul/>").addClass("inliner");
-    champs = demog[bucket].pos.items;
-    for (x in champs) {
-      negNode.append($("<li/>").css({
-        "color": POS_COLOR,
-      }).text(champs[x].item.domain + " " + Math.round(champs[x].item.vcount) + " " + champs[x].item.drop));
-    }
-    explaneNode.append(posNode);
     parentNode.append(explaneNode);
 
     theNode.click(function() {
@@ -238,5 +211,4 @@ self.port.on("show_demog", function(demog) {
   displayDemogs(demog, "age", ["age_18", "age_25", "age_35", "age_45", "age_55", "age_65"]);
   displayDemogs(demog, "education", ["no_college", "some_college", "college", "graduate"]);
   displayDemogs(demog, "children", ["children", "no_children"]);
-  displayDemogs(demog, "location", ["home", "school", "work"]);
 });
