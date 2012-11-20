@@ -1,0 +1,118 @@
+/*   NEW STYLES     /////*/
+
+#topbar {
+	height:4px;
+	background:#fff;
+	width:100%;
+}
+
+#moz-logo {
+	position:absolute;
+	top:40px;
+}
+
+#top-bg {
+	background:#3b4651;
+	background: -moz-linear-gradient(top, #3b4651, #1a222b); 
+	width:100%;
+	height:500px;
+	position:absolute;
+	z-index:-2;
+}
+
+#bottom-bg {
+	background:#ebebeb;
+	width:100%;
+	height:500px;
+	position:absolute;
+	z-index:-3;
+}
+
+#big-container {
+	width:990px;
+	height:1600px;
+	background:#fff;
+	background: -moz-linear-gradient(top, #f5f5f5, #ffffff); 
+	margin: 200px auto;
+	border:1px solid #fff;
+	box-shadow: 0px 1px 2px rgba(0,0,0,.1);
+	border-radius:4px;
+}
+
+@font-face {
+	font-family: 'OpenSans-Regular';
+	src: url('fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'OpenSans-Light';
+	src: url('fonts/OpenSans-Light.ttf');
+}
+
+@font-face {
+	font-family: 'OpenSans-Bold';
+	src: url('fonts/OpenSans-Bold.ttf');
+}
+
+/*/////*/
+
+
+
+body {
+  background: #ebebeb;
+  color: #333;
+  font-size: 11px;
+  height: auto;
+  padding-bottom: 20px;
+
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-family: OpenSans-Regular;
+  font-weight: normal;
+  padding-top: 20px;
+  text-align: center;
+}
+
+h2 {
+  padding-top: 0px;
+  font-family: OpenSans-Light;
+}
+
+p {
+  border: 0px solid #666;
+  overflow: hidden;
+  padding: 10px 0;
+  text-align: left;
+  font-family: OpenSans-Regular;
+  font-size: 12px;
+}
+
+.container_12,
+.container_16,
+.container_24 {
+  /*background-color: #fff;*/
+  background-repeat: repeat-y;
+  margin-bottom: 20px;
+}
+
+.container_12 {
+  /*background-image: url(../img/12_col.gif);*/
+}
+
+.container_16 {
+  background-image: url(../img/16_col.gif);
+}
+
+.container_24 {
+  background-image: url(../img/24_col.gif);
+}
