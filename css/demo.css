@@ -40,22 +40,151 @@
 }
 
 
-#control {
-	background:#fff;
-	border-radius:4px;
-	height:90px;
-	border:1px solid #e8e8e8;
-	box-shadow: 0px 1px 1px rgba(0,0,0,.05);
-}
-
 #visualization {
 	margin-top:20px;
 	background:#fff;
 	border-radius:4px;
-	height:300px;
+	height:410px;
 	border:1px solid #e8e8e8;
 	box-shadow: 0px 1px 1px rgba(0,0,0,.05);
 }
+
+#control {
+	background:#ccc;
+	width:260px;
+	height:60px;
+	margin:0 auto;
+}
+
+#slider-titles li
+{
+	display: inline;
+	list-style-type: none;
+	padding-right: 0px;
+}
+
+#control #slider-eye{
+	float:left;
+}
+
+#control #slider
+{
+	margin-left:64px;
+}
+
+#interests-bars {
+	background:#eee;
+	width:260px;
+	height:100%;
+	margin:0 auto;
+}
+
+#interests-bars #interest-1 {
+	width:100%;
+	height:36px;
+	margin:10px 0px 10px 0px;
+}
+
+#interests-bars #interest-2 {
+	width:100%;
+	height:36px;
+	margin:10px 0px 10px 0px;
+}
+
+#interests-bars #interest-3 {
+	width:100%;
+	height:36px;
+	margin:10px 0px 10px 0px;
+}
+
+#interests-bars #interest-4 {
+	width:100%;
+	height:36px;
+	margin:10px 0px 10px 0px;
+}
+
+.icon {
+	float:left;
+	width:25%;
+}
+
+#interests-bars #interest-1 .level1 {
+	background-color:#d23f3f;
+}
+
+#interests-bars #interest-1 .level2 {
+	opacity:.1;
+	background-color:#d23f3f;
+}
+
+#interests-bars #interest-1 .level3 {
+	opacity:.1;
+	background-color:#d23f3f;
+}
+
+#interests-bars #interest-2 .level1 {
+	background-color:#064c6a;
+}
+
+#interests-bars #interest-2 .level2 {
+	opacity:.1;
+	background-color:#064c6a;
+}
+
+#interests-bars #interest-2 .level3 {
+	opacity:.1;
+	background-color:#064c6a;
+}
+
+#interests-bars #interest-3 .level1 {
+	background-color:#7c5a0a;
+}
+
+#interests-bars #interest-4 .level1 {
+	background-color:#2f4e11;
+}
+
+#interests-bars #interest-4 .level2 {
+	opacity:.1;
+	background-color:#2f4e11;
+}
+
+#interests-bars #interest-4 .level3 {
+	opacity:.1;
+	background-color:#2f4e11;
+}
+
+
+.level1 {
+	float:left;
+	width:25%;
+	height:36px;
+	background:#999;
+	margin:5px 0px 5px 0px;
+}
+
+.level2 {
+	float:left;
+	width:25%;
+	height:36px;
+	background:#ccc;
+	margin:5px 0px 5px 0px;
+}
+
+.level3 {
+	float:left;
+	width:25%;
+	height:36px;
+	background:#fff;
+	margin:5px 0px 5px 0px;
+}
+
+
+/*END LEFT SIDE*/
+
+/*RIGHT SIDE*/
+
+
 
 #browser {
 	margin-top:20px;
