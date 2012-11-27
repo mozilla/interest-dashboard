@@ -3,15 +3,18 @@
 <head>
 <meta charset="utf-8" />
 <title>User Profile</title>
-<link rel="stylesheet" href="css/reset.css" />
-<link rel="stylesheet" href="css/text.css" />
-<link rel="stylesheet" href="css/960.css" />
-<link rel="stylesheet" href="css/demo.css" />
-<link rel="stylesheet" href="css/jquery-ui.css" />
-    
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/text.css" />
+	<link rel="stylesheet" href="css/960.css" />
+	<link rel="stylesheet" href="css/demo.css" />
+	<link rel="stylesheet" href="css/jquery-ui.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="/resources/demos/style.css" />
+
 	<script src="js/jquery-1.8.2.js"></script>
     <script src="js/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css" />
+	<script src="js/jquery.isotope.min.js"></script>
+
     <script>
     $(function() {
         $( "#slider" ).slider({
@@ -21,20 +24,30 @@
             step: 1,
             slide: function( event, ui ) {
                 $( "#amount" ).val( "$" + ui.value );
+				// set to OFF
 				if (ui.value == 0) {
+					$('#slider-eye').fadeTo("slow", 0.1);
+					$('.icon').fadeTo("slow", 0.1);
 					$('.level1').fadeTo("slow", 0.1);
 					$('.level2').fadeTo("slow", 0.1);
 					$('.level3').fadeTo("slow", 0.1);
 				}
+				// set to COARSE
 				else if (ui.value == 1) {
+					$('#slider-eye').fadeTo("slow", 1);
+					$('.icon').fadeTo("slow", 1);
 					$('.level1').fadeTo("slow", 1);
 					$('.level2').fadeTo("slow", 0.1);
 					$('.level3').fadeTo("slow", 0.1);
+					value = $('.medium');
 				}
+				// set to Medium
 				else if (ui.value == 2) {
 					$('.level2').fadeTo("slow", 1);
 					$('.level3').fadeTo("slow", 0.1);
+					$('.box.medium').css( "width","+=200" ).effect("scale", { percent: 120 }, 1000);
 				}
+				// set to Fine
 				else if (ui.value == 3) {
 					$('.level3').fadeTo("slow", 1);
 				}
@@ -44,10 +57,52 @@
 			
         });
 
-
-
-        $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
     });
+
+
+
+	$(function(){
+
+	      var $container = $('#browser');
+
+	      $container.isotope({
+	        itemSelector : '.coarse'
+	      });
+
+
+	      var $optionSets = $('#options .option-set'),
+	          $optionLinks = $optionSets.find('a');
+
+	      $optionLinks.click(function(){
+	        var $this = $(this);
+	        // don't proceed if already selected
+	        if ( $this.hasClass('selected') ) {
+	          return false;
+	        }
+	        var $optionSet = $this.parents('.option-set');
+	        $optionSet.find('.selected').removeClass('selected');
+	        $this.addClass('selected');
+
+	        // make option object dynamically, i.e. { filter: '.my-filter-class' }
+	        var options = {},
+	            key = $optionSet.attr('data-option-key'),
+	            value = $this.attr('data-option-value');
+	        // parse 'false' as false boolean
+	        value = value === 'false' ? false : value;
+	        options[ key ] = value;
+	        if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
+	          // changes in layout modes need extra logic
+	          changeLayoutMode( $this, options )
+	        } else {
+	          // otherwise, apply new options
+	          $container.isotope( options );
+	        }
+
+	        return false;
+	      });
+
+    });
+
     </script>
 
 </head>
@@ -92,30 +147,34 @@
 								<li>Medium</li>
 								<li>Fine</li>
 						</div>
-						<div id="slider-eye">eye</div>
+						<div id="slider-eye"><img src="img/icn-eye.png" style="border:1px solid #000"></div>
 						<div id="slider"></div>
 						<div id="slider-hashmarks"></div>
 					</div>
 					
 					<div id="interests-bars">
+						<div id="demographic">
+							<div class="icon"><img src="img/icn-person.png" style="border:1px solid #000"></div>
+							<div class="level1"></div>
+						</div>
 						<div id="interest-1">
-							<div class="icon">auto</div>
+							<div class="icon"><img src="img/icn-car.png" style="border:1px solid #000"></div>
 							<div class="level1"></div>
 							<div class="level2"></div>
 							<div class="level3"></div>
 						</div>
 						<div id="interest-2">
-							<div class="icon">camping</div>
+							<div class="icon"><img src="img/icn-tree.png" style="border:1px solid #000"></div>
 							<div class="level1"></div>
 							<div class="level2"></div>
 							<div class="level3"></div>
 						</div>
 						<div id="interest-3">
-							<div class="icon">sports</div>
+							<div class="icon"><img src="img/icn-sports.png" style="border:1px solid #000"></div>
 							<div class="level1"></div>
 						</div>
 						<div id="interest-4">
-							<div class="icon">travel</div>
+							<div class="icon"><img src="img/icn-plane.png" style="border:1px solid #000"></div>
 							<div class="level1"></div>
 							<div class="level2"></div>
 							<div class="level3"></div>
@@ -127,20 +186,57 @@
 			  </div>
 			  <!-- end .grid_4 -->
 			  <div id="content" class="grid_8">
-			      
 				  <h3>Sample content</h3>
 				  <p>This site’s content is personalized based on your settings in Demographics & Interests.</p>
 				
+				
+			  	<section id="options" class="clearfix">
+
+				      <ul id="filters" class="option-set clearfix" data-option-key="filter">
+				        <li><a href="#filter" data-option-value="*" class="selected" style="color:black">coarse</a></li>
+				        <li><a href="#filter" data-option-value=".medium" style="color:black">medium</a></li>
+				        <li><a href="#filter" data-option-value=".fine" style="color:black">fine</a></li>
+				      </ul>
+
+
+				  </section> <!-- #options -->
+				
 			    <div id="browser">
-			      
-			    </div>
+
+					    <div class="coarse">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Car IMAGE</h2>
+					    </div>
+
+					    <div class="coarse medium fine">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">BMW IMAGE</h2>
+					    </div>
+
+					    <div class="coarse medium">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Luxury car IMAGE</h2>
+					    </div>
+
+						<div class="coarse medium fine">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Audi IMAGE</h2>
+					    </div>
+
+					    <div class="coarse medium">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Mid-sized car IMAGE</h2>
+					    </div>
+
+						<div class="coarse">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Mid-sized car IMAGE</h2>
+					    </div>
+
+			    </div> <!-- end browser -->
+			
 			  </div>
 			  <!-- end .grid_8 -->
-			  <div class="clear"></div>
-  			  <div class="grid_12">
-			    <p>Footer goes here</p>
-			  </div>
-			  <!-- end .grid_12 -->
 			  <div class="clear"></div>
 			</div>
 			<!-- end .container_12 -->

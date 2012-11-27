@@ -79,6 +79,12 @@
 	margin:0 auto;
 }
 
+#interests-bars #demographic {
+	width:100%;
+	height:36px;
+	margin:10px 0px 10px 0px;
+}
+
 #interests-bars #interest-1 {
 	width:100%;
 	height:36px;
@@ -106,6 +112,15 @@
 .icon {
 	float:left;
 	width:25%;
+	padding:0 auto;
+}
+
+.icon img{
+	margin:2px;
+}
+
+#interests-bars #demographic .level1 {
+	background-color:#504058;
 }
 
 #interests-bars #interest-1 .level1 {
@@ -160,7 +175,7 @@
 	width:25%;
 	height:36px;
 	background:#999;
-	margin:5px 0px 5px 0px;
+	margin:0px 0px 5px 0px;
 }
 
 .level2 {
@@ -168,7 +183,7 @@
 	width:25%;
 	height:36px;
 	background:#ccc;
-	margin:5px 0px 5px 0px;
+	margin:0px 0px 5px 0px;
 }
 
 .level3 {
@@ -176,7 +191,7 @@
 	width:25%;
 	height:36px;
 	background:#fff;
-	margin:5px 0px 5px 0px;
+	margin:0px 0px 5px 0px;
 }
 
 
@@ -184,6 +199,26 @@
 
 /*RIGHT SIDE*/
 
+
+#browser #contain {
+  border: 1px solid #666;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+#browser .coarse {
+  width: 110px;
+  height: 110px;
+  margin: 5px;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  background: #888;
+  color: #222;
+  -webkit-border-top-right-radius: 1.2em;
+      -moz-border-radius-topright: 1.2em;
+          border-top-right-radius: 1.2em;
+}
 
 
 #browser {
@@ -194,6 +229,24 @@
 	border:1px solid #e8e8e8;
 	box-shadow: 0px 1px 1px rgba(0,0,0,.05);
 }
+
+#boxes {
+	background:#ccc;
+	width:100%;
+	height:100%;
+}
+
+#boxes .box {
+	background:#fff;
+	width:40px;
+	height:40px;
+	margin:10px;
+	float:left;
+}
+
+
+/*END RIGHT SIDE*/
+
 
 #moz-logo h1 {
 	color:#24303c;
