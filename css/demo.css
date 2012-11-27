@@ -41,7 +41,8 @@
 
 
 #visualization {
-	margin-top:20px;
+	margin-top:-10px;
+	padding-top:10px;
 	background:#fff;
 	border-radius:4px;
 	height:410px;
@@ -50,10 +51,16 @@
 }
 
 #control {
-	background:#ccc;
+	/*background:#ccc;*/
 	width:260px;
-	height:60px;
-	margin:0 auto;
+	height:55px;
+	margin:10px 15px;
+}
+
+#slider-titles ul {
+	margin-bottom:10px;
+	padding-left:4px;
+	width:270px;
 }
 
 #slider-titles li
@@ -61,62 +68,114 @@
 	display: inline;
 	list-style-type: none;
 	padding-right: 0px;
+	text-transform:uppercase;
+	font-size:10px;
+	color:#67a7d0;
+}
+
+#slider-titles .off {
+	padding-left:6px;
+}
+
+#slider-titles .coarse {
+	padding-left:2px;
+}
+
+#slider-titles .fine {
+	margin-left:27px;
 }
 
 #control #slider-eye{
 	float:left;
+	margin-top:-3px;
+	margin-left:3px;
+}
+
+#control #slider-eye img{
+	width:20px;
+	height:14px;
+	opacity:.5;
 }
 
 #control #slider
 {
-	margin-left:64px;
+	width:220px;
+	z-index:9;
+	margin-left:40px;
+}
+
+#slider-hashmarks {
+
+}
+
+#slider-hashmarks #hash-1{
+	border-right:1px solid #7bb4e4;
+	height:21px;
+	float:left;
+	position:relative;
+	left:91px;
+	top:-15px;
+	z-index:8;
+}
+
+#slider-hashmarks #hash-2{
+	border-right:1px solid #7bb4e4;
+	height:21px;
+	float:right;
+	position:relative;
+	left:-71px;
+	top:-15px;
+	z-index:8;
 }
 
 #interests-bars {
-	background:#eee;
+	/*background:#eee;*/
 	width:260px;
 	height:100%;
-	margin:0 auto;
+	margin:0 15px 0px;
 }
 
 #interests-bars #demographic {
 	width:100%;
-	height:36px;
+	height:31px;
 	margin:10px 0px 10px 0px;
 }
 
 #interests-bars #interest-1 {
 	width:100%;
-	height:36px;
+	height:31px;
 	margin:10px 0px 10px 0px;
 }
 
 #interests-bars #interest-2 {
 	width:100%;
-	height:36px;
+	height:31px;
 	margin:10px 0px 10px 0px;
 }
 
 #interests-bars #interest-3 {
 	width:100%;
-	height:36px;
+	height:31px;
 	margin:10px 0px 10px 0px;
 }
 
 #interests-bars #interest-4 {
 	width:100%;
-	height:36px;
+	height:31px;
 	margin:10px 0px 10px 0px;
 }
 
 .icon {
 	float:left;
-	width:25%;
+	width:16%;
 	padding:0 auto;
 }
 
 .icon img{
-	margin:2px;
+	margin-left:2px;
+	margin-top:8px;
+	width:22px;
+	height:22px;
 }
 
 #interests-bars #demographic .level1 {
@@ -172,15 +231,15 @@
 
 .level1 {
 	float:left;
-	width:25%;
+	width:28%;
 	height:36px;
 	background:#999;
-	margin:0px 0px 5px 0px;
+	margin:0px 0px 0px 0px;
 }
 
 .level2 {
 	float:left;
-	width:25%;
+	width:28%;
 	height:36px;
 	background:#ccc;
 	margin:0px 0px 5px 0px;
@@ -188,7 +247,7 @@
 
 .level3 {
 	float:left;
-	width:25%;
+	width:28%;
 	height:36px;
 	background:#fff;
 	margin:0px 0px 5px 0px;
@@ -252,20 +311,44 @@
 	color:#24303c;
 	font-weight:100;
 	font-family:MetaPro-Bold;
+	margin-top:25px;
+	margin-bottom:0px;
 }
 
 #moz-logo h2 {
 	color:#fff;
 	font-weight:100;
 	text-shadow: 0px -1px 1px rgba(0,0,0,1);
+	margin-top:-10px;
 }
 
 #nav a {
 	position:absolute;
 	color:#67a7d0;
-	top:180px;
+	top:175px;
 	text-transform:uppercase;
 	font-family: OpenSans-Light;
+}
+
+#nav img {
+	width:22px;
+	height:22px;
+	padding-right:5px;
+	margin-bottom:2px;
+}
+
+.shape-triangle {
+	margin-top:-6px;
+	margin-left:50px;
+	width: 0; 
+	height: 0; 
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #67a7d0;
+}
+
+.intro-txt {
+	padding-top:20px;
 }
 
 #interestsdemo h3 {
