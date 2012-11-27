@@ -33,6 +33,7 @@
 					$('.level1').fadeTo("slow", 0.1);
 					$('.level2').fadeTo("slow", 0.1);
 					$('.level3').fadeTo("slow", 0.1);
+					filter = ".off";
 				}
 				// set to COARSE
 				else if (ui.value == 1) {
@@ -41,22 +42,22 @@
 					$('.level1').fadeTo("slow", 1);
 					$('.level2').fadeTo("slow", 0.1);
 					$('.level3').fadeTo("slow", 0.1);
+					filter = ".coarse";
 				}
 				// set to Medium
 				else if (ui.value == 2) {
 					$('.level2').fadeTo("slow", 1);
 					$('.level3').fadeTo("slow", 0.1);
-					$('.box.medium').css( "width","+=200" ).effect("scale", { percent: 120 }, 1000);
-                                        filter = ".medium";
+                    filter = ".medium";
 				}
 				// set to Fine
 				else if (ui.value == 3) {
 					$('.level3').fadeTo("slow", 1);
-                                        filter = ".fine";
+                    filter = ".fine";
 				}
 
               // Update the sample browser content
-              $("#browser").isotope({
+              $("#boxes").isotope({
                 filter: filter
               });
             }
@@ -154,40 +155,167 @@
 			  <!-- end .grid_4 -->
 			  <div id="content" class="grid_8">
 				  <h3>Sample content</h3>
-				  <p>This site’s content is personalized based on your settings in Demographics & Interests.</p>
+				  <p>View more personalized content based on your settings in Demographics & Interests.</p>
 				
 			    <div id="browser">
-
-					    <div class="coarse">
+					<div id="boxes">
+						<!-- Automobiles -->
+					    <div class="off coarse">
 					      <h3 class="symbol">Auto</h3>
 					      <h2 class="name">Car IMAGE</h2>
 					    </div>
 
-					    <div class="coarse medium fine">
+					    <div class="off coarse medium fine">
 					      <h3 class="symbol">Auto</h3>
 					      <h2 class="name">BMW IMAGE</h2>
 					    </div>
 
-					    <div class="coarse medium">
+					    <div class="off coarse medium">
 					      <h3 class="symbol">Auto</h3>
 					      <h2 class="name">Luxury car IMAGE</h2>
 					    </div>
 
-						<div class="coarse medium fine">
+						<div class="off coarse medium fine">
 					      <h3 class="symbol">Auto</h3>
 					      <h2 class="name">Audi IMAGE</h2>
 					    </div>
 
-					    <div class="coarse medium">
+					    <div class="off coarse medium">
 					      <h3 class="symbol">Auto</h3>
 					      <h2 class="name">Mid-sized car IMAGE</h2>
 					    </div>
 
-						<div class="coarse">
+						<div class="off coarse">
 					      <h3 class="symbol">Auto</h3>
 					      <h2 class="name">Mid-sized car IMAGE</h2>
 					    </div>
+					
+						<!-- Camping -->
+					    <div class="off coarse">
+					      <h3 class="symbol">Camping</h3>
+					      <h2 class="name">Car IMAGE</h2>
+					    </div>
 
+					    <div class="off coarse medium fine">
+					      <h3 class="symbol">Camping</h3>
+					      <h2 class="name">BMW IMAGE</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Camping</h3>
+					      <h2 class="name">Luxury car IMAGE</h2>
+					    </div>
+
+						<div class="off coarse medium fine">
+					      <h3 class="symbol">Camping</h3>
+					      <h2 class="name">Audi IMAGE</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Camping</h3>
+					      <h2 class="name">Mid-sized car IMAGE</h2>
+					    </div>
+
+						<div class="off coarse">
+					      <h3 class="symbol">Camping</h3>
+					      <h2 class="name">Mid-sized car IMAGE</h2>
+					    </div>
+					
+						<!-- Fashion -->
+					    <div class="off coarse">
+					      <h3 class="symbol">Fashion</h3>
+					      <h2 class="name">Car IMAGE</h2>
+					    </div>
+
+					    <div class="off coarse medium fine">
+					      <h3 class="symbol">Fashion</h3>
+					      <h2 class="name">BMW IMAGE</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Fashion</h3>
+					      <h2 class="name">Luxury car IMAGE</h2>
+					    </div>
+
+						<div class="off coarse medium fine">
+					      <h3 class="symbol">Fashion</h3>
+					      <h2 class="name">Audi IMAGE</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Fashion</h3>
+					      <h2 class="name">Mid-sized car IMAGE</h2>
+					    </div>
+
+						<div class="off coarse">
+					      <h3 class="symbol">Fashion</h3>
+					      <h2 class="name">Mid-sized car IMAGE</h2>
+					    </div>
+					
+						<!-- Travel -->
+					    <div class="off coarse">
+					      <h3 class="symbol">Travel</h3>
+					      <h2 class="name">Car IMAGE</h2>
+					    </div>
+
+					    <div class="off coarse medium fine">
+					      <h3 class="symbol">Travel</h3>
+					      <h2 class="name">BMW IMAGE</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Travel</h3>
+					      <h2 class="name">Luxury car IMAGE</h2>
+					    </div>
+
+						<div class="off coarse medium fine">
+					      <h3 class="symbol">Travel</h3>
+					      <h2 class="name">Audi IMAGE</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Travel</h3>
+					      <h2 class="name">Mid-sized car IMAGE</h2>
+					    </div>
+
+						<div class="off coarse">
+					      <h3 class="symbol">Travel</h3>
+					      <h2 class="name">Mid-sized car IMAGE</h2>
+					    </div>
+					
+						<!-- Miscellaneous -->
+					    <div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Car IMAGE</h2>
+					    </div>
+
+					    <div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">BMW IMAGE</h2>
+					    </div>
+
+					    <div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Luxury car IMAGE</h2>
+					    </div>
+
+						<div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Audi IMAGE</h2>
+					    </div>
+
+					    <div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Mid-sized car IMAGE</h2>
+					    </div>
+
+						<div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Mid-sized car IMAGE</h2>
+					    </div>
+					
+					
+					</div>
 			    </div> <!-- end browser -->
 			
 			  </div>
