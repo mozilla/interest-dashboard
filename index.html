@@ -25,6 +25,7 @@
             step: 1,
             slide: function( event, ui ) {
                 $( "#amount" ).val( "$" + ui.value );
+                var filter = "*";
 				// set to OFF
 				if (ui.value == 0) {
 					$('#slider-eye').fadeTo("slow", 0.1);
@@ -40,18 +41,24 @@
 					$('.level1').fadeTo("slow", 1);
 					$('.level2').fadeTo("slow", 0.1);
 					$('.level3').fadeTo("slow", 0.1);
-					value = $('.medium');
 				}
 				// set to Medium
 				else if (ui.value == 2) {
 					$('.level2').fadeTo("slow", 1);
 					$('.level3').fadeTo("slow", 0.1);
 					$('.box.medium').css( "width","+=200" ).effect("scale", { percent: 120 }, 1000);
+                                        filter = ".medium";
 				}
 				// set to Fine
 				else if (ui.value == 3) {
 					$('.level3').fadeTo("slow", 1);
+                                        filter = ".fine";
 				}
+
+              // Update the sample browser content
+              $("#browser").isotope({
+                filter: filter
+              });
             }
 
 
@@ -59,51 +66,6 @@
         });
 
     });
-
-
-
-	$(function(){
-
-	      var $container = $('#browser');
-
-	      $container.isotope({
-	        itemSelector : '.coarse'
-	      });
-
-
-	      var $optionSets = $('#options .option-set'),
-	          $optionLinks = $optionSets.find('a');
-
-	      $optionLinks.click(function(){
-	        var $this = $(this);
-	        // don't proceed if already selected
-	        if ( $this.hasClass('selected') ) {
-	          return false;
-	        }
-	        var $optionSet = $this.parents('.option-set');
-	        $optionSet.find('.selected').removeClass('selected');
-	        $this.addClass('selected');
-
-	        // make option object dynamically, i.e. { filter: '.my-filter-class' }
-	        var options = {},
-	            key = $optionSet.attr('data-option-key'),
-	            value = $this.attr('data-option-value');
-	        // parse 'false' as false boolean
-	        value = value === 'false' ? false : value;
-	        options[ key ] = value;
-	        if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
-	          // changes in layout modes need extra logic
-	          changeLayoutMode( $this, options )
-	        } else {
-	          // otherwise, apply new options
-	          $container.isotope( options );
-	        }
-
-	        return false;
-	      });
-
-    });
-
     </script>
 
 </head>
@@ -193,18 +155,6 @@
 			  <div id="content" class="grid_8">
 				  <h3>Sample content</h3>
 				  <p>This site’s content is personalized based on your settings in Demographics & Interests.</p>
-				
-				
-			  	<section id="options" class="clearfix">
-
-				      <ul id="filters" class="option-set clearfix" data-option-key="filter">
-				        <li><a href="#filter" data-option-value="*" class="selected" style="color:black">coarse</a></li>
-				        <li><a href="#filter" data-option-value=".medium" style="color:black">medium</a></li>
-				        <li><a href="#filter" data-option-value=".fine" style="color:black">fine</a></li>
-				      </ul>
-
-
-				  </section> <!-- #options -->
 				
 			    <div id="browser">
 
