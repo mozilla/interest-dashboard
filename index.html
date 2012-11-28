@@ -41,26 +41,27 @@
             max: 3,
             step: 1,
             slide: function( event, ui ) {
-                $( "#amount" ).val( "$" + ui.value );
-                var filter = "*";
+				const filters = ["off", "coarse", "medium", "fine"];
+				updateUI(filters[ui.value] || "off");
+			}
+		});
+		
+		function updateUI(filter) {
 				// set to OFF
-				if (ui.value == 0) {
+				if (filter == "off") {
 					$('#slider-eye').fadeTo("slow", 0.1);
 					$('.icon').fadeTo("slow", 0.1);
 					$('.level1').fadeTo("slow", 0.1);
 					$('.level2').fadeTo("slow", 0.1);
 					$('.level3').fadeTo("slow", 0.1);
-					filter = ".off";
 				}
 				// set to COARSE
-				else if (ui.value == 1) {
+				else if (filter == "coarse") {
 					$('#slider-eye').fadeTo("slow", 1);
 					$('.icon').fadeTo("slow", 1);
 					$('.level1').fadeTo("slow", 1);
 					$('.level2').fadeTo("slow", 0.1);
 					$('.level3').fadeTo("slow", 0.1);
-					filter = ".coarse";
-					
 					
 					$("#demographic .icon").simpletip({
 						fixed: true, 
@@ -100,10 +101,9 @@
 					
 				}
 				// set to Medium
-				else if (ui.value == 2) {
+				else if (filter == "medium") {
 					$('.level2').fadeTo("slow", 1);
 					$('.level3').fadeTo("slow", 0.1);
-                    filter = ".medium";
 
 					$("#demographic .icon").simpletip({
 						fixed: true, 
@@ -142,22 +142,49 @@
 
 				}
 				// set to Fine
-				else if (ui.value == 3) {
+				else if (filter == "fine") {
 					$('.level3').fadeTo("slow", 1);
-                    filter = ".fine";
 				}
 
               // Update the sample browser content
-              $("#boxes").isotope({
-                filter: filter
-              });
-            }
+			var count = 0;
+              $("#boxes .off").each(function() {
+				if (this.classList.contains(filter)) {
+					this.style.opacity = 1;
+					switch (filter) {
+						case "off":							
+						case "coarse":
+							this.style.width = "80px";
+							this.style.height = "50px";
+							this.style.left = (count % 5) * 90 + "px";
+							this.style.top = Math.floor(count / 5) * 60 + "px";
+							break;
+							
+						case "medium":
+							this.style.width = "170px";
+							this.style.height = "100px";
+							this.style.left = (count % 3) * 180 + "px";
+							this.style.top = Math.floor(count / 3) * 110 + "px";
+							break;
+							
+						case "fine":
+							this.style.width = "320px";
+							this.style.height = "200px";
+							this.style.left = (count % 2) * 330 + "px";
+							this.style.top = Math.floor(count / 2) * 210 + "px";
+							break;
+					}
+					count++;
+				}
+				else {
+					this.style.opacity = 0;
+				}
+			  });
+       }
+
+		updateUI("coarse");
 
         });
-
-    });
-
-
 
     </script>
 
