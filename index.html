@@ -14,9 +14,11 @@
 	<script src="js/jquery-1.8.2.js"></script>
     <script src="js/jquery-ui.js"></script>
 	<script src="js/jquery.isotope.min.js"></script>
+	<script src="js/jquery.simpletip-1.3.1.min.js"></script>
 
     <script>
     $(function() {
+
         $( "#slider" ).slider({
 			range: "min",
             value:1,
@@ -43,12 +45,86 @@
 					$('.level2').fadeTo("slow", 0.1);
 					$('.level3').fadeTo("slow", 0.1);
 					filter = ".coarse";
+					
+					
+					$("#demographic .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "DEMOGRAPHIC<br/>You are a 39 year old female."
+					});
+
+					$("#interest-1 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in <b>Automobiles</b>."
+					});
+
+					$("#interest-2 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in <b>Camping</b>."
+					});
+
+					$("#interest-3 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in <b>Fashion</b>."
+					});
+
+					$("#interest-4 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in <b>Traveling</b>."
+					});
+					
+					
 				}
 				// set to Medium
 				else if (ui.value == 2) {
 					$('.level2').fadeTo("slow", 1);
 					$('.level3').fadeTo("slow", 0.1);
                     filter = ".medium";
+
+					$("#demographic .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "DEMOGRAPHIC<br/>You are a 39 year old female."
+					});
+
+					$("#interest-1 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in <b>Small cars</b>."
+					});
+
+					$("#interest-2 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in <b>Tents</b>."
+					});
+
+					$("#interest-3 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in <b>T-shirts</b>."
+					});
+
+					$("#interest-4 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in the <b>Caribbean</b>."
+					});
+
 				}
 				// set to Fine
 				else if (ui.value == 3) {
@@ -62,11 +138,23 @@
               });
             }
 
-
-			
         });
 
     });
+
+
+
+    </script>
+
+    <script>
+    $(function() {
+	
+		
+	
+	});
+
+
+
     </script>
 
 </head>
@@ -99,7 +187,7 @@
 			  <div class="clear"></div>
 			  <div id="interestsdemo" class="grid_4">
 
-			      <h3>Interests and Demographics</h3>
+			      <h3>Demographics & Interests</h3>
 				  <p>Hide or reveal your information to websites.</p>
 
 			    <div id="visualization">
@@ -122,27 +210,27 @@
 					
 					<div id="interests-bars">
 						<div id="demographic">
-							<div class="icon"><img src="img/icn-person.png"></div>
+							<div class="icon wiggler"><img src="img/icn-person.png"></div>
 							<div class="level1"></div>
 						</div>
 						<div id="interest-1">
-							<div class="icon"><img src="img/icn-car.png"></div>
+							<div class="icon wiggler"><img src="img/icn-car.png"></div>
 							<div class="level1"></div>
 							<div class="level2"></div>
 							<div class="level3"></div>
 						</div>
 						<div id="interest-2">
-							<div class="icon"><img src="img/icn-tree.png"></div>
+							<div class="icon wiggler"><img src="img/icn-tree.png"></div>
 							<div class="level1"></div>
 							<div class="level2"></div>
 							<div class="level3"></div>
 						</div>
 						<div id="interest-3">
-							<div class="icon"><img src="img/icn-sports.png"></div>
+							<div class="icon wiggler"><img src="img/icn-sports.png"></div>
 							<div class="level1"></div>
 						</div>
 						<div id="interest-4">
-							<div class="icon"><img src="img/icn-plane.png"></div>
+							<div class="icon wiggler"><img src="img/icn-plane.png"></div>
 							<div class="level1"></div>
 							<div class="level2"></div>
 							<div class="level3"></div>
@@ -154,6 +242,7 @@
 			  </div>
 			  <!-- end .grid_4 -->
 			  <div id="content" class="grid_8">
+				
 				  <h3>Sample content</h3>
 				  <p>View more personalized content based on your settings in Demographics & Interests.</p>
 				

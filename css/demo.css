@@ -472,3 +472,64 @@ p {
 .container_24 {
   background-image: url(../img/24_col.gif);
 }
+
+
+
+/*FADE*/
+
+/* safari and chrome */
+@-webkit-keyframes wiggle {
+	0% {-webkit-transform:rotate(4deg);}
+	50% {-webkit-transform:rotate(-4deg);}
+	100% {-webkit-transform:rotate(4deg);}
+}
+ 
+/* firefox */
+@-moz-keyframes wiggle {
+	0% {-moz-transform:rotate(4deg);}
+	50% {-moz-transform:rotate(-4deg);}
+	100% {-moz-transform:rotate(4deg);}
+}
+ 
+/* anyone brave enough to implement the ideal method */
+@keyframes wiggle {
+	0% {transform:rotate(4deg);}
+	50% {transform:rotate(-4deg);}
+	100% {transform:rotate(4deg);}
+}
+ 
+.wiggler:hover {
+	-webkit-animation: wiggle 0.1s;
+	-moz-animation: wiggle 0.1s;
+	animation: wiggle 0.1s;
+}
+
+
+/*TOOLTIP*/
+.tooltip {
+	background:rgba(0,0,0,0.8);
+	color:#fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	display: none;
+	width:100px;
+	padding:10px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	font-size:10px;
+}
+
+.tooltip:before {
+	content:"";
+	position: absolute;
+	right: 100%;
+	bottom: 22px;
+	left:-10px;
+	width: 0;
+	height: 0;
+	border-top: 6px solid transparent;
+	border-right: 10px solid rgba(0,0,0,0.8);
+	border-bottom: 6px solid transparent;
+	}
