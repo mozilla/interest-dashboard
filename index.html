@@ -18,7 +18,17 @@
 
     <script>
     $(function() {
+
+		// hover on the icon, the bar should highlight
+		$("#demographic .icon").mouseover(function(){
+		      $("#demographic .level1").animate({opacity: 0.6});
+		    }).mouseout(function(){
+		      $("#demographic .level1").animate({opacity: 1});
+		    });
+		
+		
 	
+		// fade in bars onLOAD
 	    $("#demographic .level1").css({ opacity: 0.1 }).animate({ opacity:1 }, 1000);
 		$("#interest-1 .level1").css({ opacity: 0.1 }).animate({ opacity:1 }, 1200);
 		$("#interest-2 .level1").css({ opacity: 0.1 }).animate({ opacity:1 }, 1400);
@@ -63,40 +73,40 @@
 					$('.level2').fadeTo("slow", 0.1);
 					$('.level3').fadeTo("slow", 0.1);
 					
-					$("#demographic .icon").simpletip({
-						fixed: true, 
-						position: "right",
-						offset: [-5,0],
-						content: "DEMOGRAPHIC<br/>You are a 39 year old female."
-					});
-
-					$("#interest-1 .icon").simpletip({
-						fixed: true, 
-						position: "right",
-						offset: [-5,0],
-						content: "INTEREST<br/>You are interested in <b>Automobiles</b>."
-					});
-
-					$("#interest-2 .icon").simpletip({
-						fixed: true, 
-						position: "right",
-						offset: [-5,0],
-						content: "INTEREST<br/>You are interested in <b>Camping</b>."
-					});
-
-					$("#interest-3 .icon").simpletip({
-						fixed: true, 
-						position: "right",
-						offset: [-5,0],
-						content: "INTEREST<br/>You are interested in <b>Fashion</b>."
-					});
-
-					$("#interest-4 .icon").simpletip({
-						fixed: true, 
-						position: "right",
-						offset: [-5,0],
-						content: "INTEREST<br/>You are interested in <b>Traveling</b>."
-					});
+					// $("#demographic .icon").simpletip({
+					// 						fixed: true, 
+					// 						position: "right",
+					// 						offset: [-5,0],
+					// 						content: "DEMOGRAPHIC<br/>You are a 39 year old female."
+					// 					});
+					// 
+					// 					$("#interest-1 .icon").simpletip({
+					// 						fixed: true, 
+					// 						position: "right",
+					// 						offset: [-5,0],
+					// 						content: "INTEREST<br/>You are interested in <b>Automobiles</b>."
+					// 					});
+					// 
+					// 					$("#interest-2 .icon").simpletip({
+					// 						fixed: true, 
+					// 						position: "right",
+					// 						offset: [-5,0],
+					// 						content: "INTEREST<br/>You are interested in <b>Camping</b>."
+					// 					});
+					// 
+					// 					$("#interest-3 .icon").simpletip({
+					// 						fixed: true, 
+					// 						position: "right",
+					// 						offset: [-5,0],
+					// 						content: "INTEREST<br/>You are interested in <b>Fashion</b>."
+					// 					});
+					// 
+					// 					$("#interest-4 .icon").simpletip({
+					// 						fixed: true, 
+					// 						position: "right",
+					// 						offset: [-5,0],
+					// 						content: "INTEREST<br/>You are interested in <b>Traveling</b>."
+					// 					});
 					
 					
 				}
@@ -154,23 +164,23 @@
 					switch (filter) {
 						case "off":							
 						case "coarse":
-							this.style.width = "80px";
-							this.style.height = "50px";
-							this.style.left = (count % 5) * 90 + "px";
-							this.style.top = Math.floor(count / 5) * 60 + "px";
+							this.style.width = "110px";
+							this.style.height = "70px";
+							this.style.left = (count % 5) * 120 + "px";
+							this.style.top = Math.floor(count / 5) * 80 + "px";
 							break;
 							
 						case "medium":
-							this.style.width = "170px";
+							this.style.width = "190px";
 							this.style.height = "100px";
-							this.style.left = (count % 3) * 180 + "px";
+							this.style.left = (count % 3) * 200 + "px";
 							this.style.top = Math.floor(count / 3) * 110 + "px";
 							break;
 							
 						case "fine":
-							this.style.width = "320px";
+							this.style.width = "290px";
 							this.style.height = "200px";
-							this.style.left = (count % 2) * 330 + "px";
+							this.style.left = (count % 2) * 300 + "px";
 							this.style.top = Math.floor(count / 2) * 210 + "px";
 							break;
 					}
@@ -229,7 +239,7 @@
 			  <div class="clear"></div>
 			  <div id="interestsdemo" class="grid_4">
 
-			      <h3>Demographics & Interests</h3>
+			      <h3>Demographics &amp; Interests</h3>
 				  <p>Hide or reveal your information to websites.</p>
 
 			    <div id="visualization">
@@ -242,7 +252,7 @@
 								<li class="medium">Medium</li>
 								<li class="fine">Fine</li>
 						</div>
-						<div id="slider-eye"><img src="img/icn-eye.png"></div>
+						<div id="slider-eye" class="tooltip wiggler"><img src="img/icn-eye.png"><span><div class="title">The slider</div><div class="txt">Move the slider right to reveal more details about your interests.</div></span></div>
 						<div id="slider"></div>
 						<div id="slider-hashmarks">
 							<div id="hash-1"></div>
@@ -251,28 +261,29 @@
 					</div>
 					
 					<div id="interests-bars">
+						
 						<div id="demographic">
-							<div class="icon wiggler"><img src="img/icn-person.png"></div>
+							<div class="icon tooltip wiggler"><img src="img/icn-person.png"><span><div class="title">Demographics</div><div class="txt">You are a 35 year old female.</div></span></div>
 							<div class="level1"></div>
 						</div>
 						<div id="interest-1">
-							<div class="icon wiggler"><img src="img/icn-car.png"></div>
+							<div class="icon tooltip wiggler"><img src="img/icn-car.png"><span><div class="title">Interest</div><div class="txt">You are interested in automobiles.</div></span></div>
 							<div class="level1"></div>
 							<div class="level2"></div>
 							<div class="level3"></div>
 						</div>
 						<div id="interest-2">
-							<div class="icon wiggler"><img src="img/icn-tree.png"></div>
+							<div class="icon tooltip wiggler"><img src="img/icn-tree.png"><span><div class="title">Interest</div><div class="txt">You are interested in camping.</div></span></div>
 							<div class="level1"></div>
 							<div class="level2"></div>
 							<div class="level3"></div>
 						</div>
 						<div id="interest-3">
-							<div class="icon wiggler"><img src="img/icn-sports.png"></div>
+							<div class="icon tooltip wiggler"><img src="img/icn-sports.png"><span><div class="title">Interest</div><div class="txt">You are interested in fashion.</div></span></div>
 							<div class="level1"></div>
 						</div>
 						<div id="interest-4">
-							<div class="icon wiggler"><img src="img/icn-plane.png"></div>
+							<div class="icon tooltip wiggler"><img src="img/icn-plane.png"><span><div class="title">Interest</div><div class="txt">You are interested in traveling.</div></span></div>
 							<div class="level1"></div>
 							<div class="level2"></div>
 							<div class="level3"></div>
@@ -286,7 +297,7 @@
 			  <div id="content" class="grid_8">
 				
 				  <h3>Sample content</h3>
-				  <p>View more personalized content based on your settings in Demographics & Interests.</p>
+				  <p>View more personalized content based on your settings in Demographics &amp; Interests.</p>
 				
 			    <div id="browser">
 					<div id="boxes">
