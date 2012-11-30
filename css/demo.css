@@ -336,15 +336,29 @@
 	margin-top:-10px;
 }
 
-#nav a {
+nav {
 	position:absolute;
-	color:#67a7d0;
 	top:175px;
+}
+
+nav #navlist ul {
+	padding-right: -100px;
+}
+
+nav #navlist li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 50px;
+	margin-left:0px;
+}
+
+nav a {
+	color:#67a7d0;
 	text-transform:uppercase;
 	font-family: OpenSans-Light;
 }
 
-#nav img {
+nav img {
 	width:22px;
 	height:22px;
 	padding-right:5px;

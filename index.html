@@ -19,7 +19,7 @@
     <script>
     $(function() {
 
-		// hover on the icon, the bar should highlight
+		// hover on the icon, the bar should highlight.  It should only blink once
 		$("#demographic .icon").mouseover(function(){
 		      $("#demographic .level1").animate({opacity: 0.6});
 		    }).mouseout(function(){
@@ -224,10 +224,12 @@
 					<h2>User Profile</h2>
 			  </div>	
 			  <div class="clear"></div>	
-			  <div id="nav" class="grid_12">
-					<a href="#"><img src="img/icn-dashboard.png" alt="dashboard-icon">Dashboard</a>
-					<div class="shape-triangle"></div>
-			  </div>	
+			  <nav class="grid_12">
+					<ul id="navlist">
+						<li><a href="#"><img src="img/icn-dashboard.png" alt="dashboard-icon">Dashboard</a></li>
+						<li><a href="#">More</a></li>
+					</ul>
+			  </nav>	
 			  <div class="clear"></div>
 			  <div class="grid_12">
 			    <p class="intro-txt">The Dashboard personalizes your web experience. You can control how much of your Demographics & Interests you reveal online.
@@ -463,6 +465,39 @@
 			  </div>
 			  <!-- end .grid_8 -->
 			  <div class="clear"></div>
+			
+			<!-- CAN REMOVE EVERYTHING IN HERE ONCE DONE. THESE ARE JUST TEMPORARY BUTTONS TO FIRE OFF EVENTS -->
+			<p>
+				<button type="button" onclick="sliderHandleAnimate()">Slider handle animation onLoad from Off to Coarse</button>
+				<button type="button" onclick="barTransitionAnimate()">Bar animation when hovering on right side image</button>
+			</p>
+			
+			<script>
+			function sliderHandleAnimate() {
+				// alert("sliderHandleAnimate");
+				$("a.ui-slider-handle.ui-state-default.ui-corner-all").animate({
+					left: '+=50'
+				}, "swing");
+				
+				$(".ui-slider-range.ui-widget-header.ui-slider-range-min").animate({
+					width: "130px"
+				}, "swing");
+			
+			}
+			
+			function barTransitionAnimate() {
+				// alert("barTransitionAnimate");
+				$("#interest-1 .level1").fadeTo('fast', 0.5, function() {
+
+				    });
+				$("#interest-1 .icon").fadeTo('fast', 0.5, function() {
+				      // Animation complete.
+				    });
+			}
+			</script>
+			
+			<!-- REMOVE ABOVE HERE -->
+			
 			</div>
 			<!-- end .container_12 -->
 			
