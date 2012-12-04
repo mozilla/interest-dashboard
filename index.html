@@ -17,15 +17,48 @@
 	<script src="js/jquery.simpletip-1.3.1.min.js"></script>
 
     <script>
+
+
     $(function() {
 
-		// hover on the icon, the bar should highlight.  It should only blink once
-		$("#demographic .icon").mouseover(function(){
-		      $("#demographic .level1").animate({opacity: 0.6});
+		// hover on the interest/demographic icon, the associted bars should highlight
+		$("#demographic .icon img").mouseover(function(){
+		      $("#demographic .level1").animate({opacity: 0.5});
 		    }).mouseout(function(){
 		      $("#demographic .level1").animate({opacity: 1});
 		    });
 		
+		$("#interest-1 .icon img").mouseover(function(){
+		      $("#interest-1 .level1").animate({opacity: 0.5});
+		    }).mouseout(function(){
+		      $("#interest-1 .level1").animate({opacity: 1});
+		    });
+		
+		$("#interest-2 .icon img").mouseover(function(){
+		      $("#interest-2 .level1").animate({opacity: 0.5});
+		    }).mouseout(function(){
+		      $("#interest-2 .level1").animate({opacity: 1});
+		    });
+		
+		
+		$("#interest-3 .icon img").mouseover(function(){
+		      $("#interest-3 .level1").animate({opacity: 0.5});
+		    }).mouseout(function(){
+		      $("#interest-3 .level1").animate({opacity: 1});
+		    });
+		
+		$("#interest-4 .icon img").mouseover(function(){
+		      $("#interest-4 .level1").animate({opacity: 0.5});
+		    }).mouseout(function(){
+		      $("#interest-4 .level1").animate({opacity: 1});
+		    });
+	
+		// hover over a box, and the associated interest bars and icon will fade
+		$("#boxes .off.coarse").mouseover(function(){
+		      $("#interest-1 .level1").animate({opacity: 0.5});
+		    }).mouseout(function(){
+		      $("#interest-1 .level1").animate({opacity: 1});
+		    });
 		
 	
 		// fade in bars onLOAD
@@ -46,7 +79,7 @@
 
         $( "#slider" ).slider({
 			range: "min",
-            value:1,
+            value:0,
             min: 0,
             max: 3,
             step: 1,
@@ -196,15 +229,19 @@
 
         });
 
-    </script>
 
-    <script>
-    $(function() {
-	
-		
-	
-	});
 
+		$(document).ready(function() {
+
+			$("a.ui-slider-handle.ui-state-default.ui-corner-all").animate({
+				left: '+=73'
+			}, "swing");
+
+			$(".ui-slider-range.ui-widget-header.ui-slider-range-min").animate({
+				width: "80px"
+			}, "swing");
+
+		});
 
 
     </script>
@@ -468,22 +505,11 @@
 			
 			<!-- CAN REMOVE EVERYTHING IN HERE ONCE DONE. THESE ARE JUST TEMPORARY BUTTONS TO FIRE OFF EVENTS -->
 			<p>
-				<button type="button" onclick="sliderHandleAnimate()">Slider handle animation onLoad from Off to Coarse</button>
 				<button type="button" onclick="barTransitionAnimate()">Bar animation when hovering on right side image</button>
 			</p>
 			
 			<script>
-			function sliderHandleAnimate() {
-				// alert("sliderHandleAnimate");
-				$("a.ui-slider-handle.ui-state-default.ui-corner-all").animate({
-					left: '+=50'
-				}, "swing");
-				
-				$(".ui-slider-range.ui-widget-header.ui-slider-range-min").animate({
-					width: "130px"
-				}, "swing");
-			
-			}
+
 			
 			function barTransitionAnimate() {
 				// alert("barTransitionAnimate");
