@@ -78,11 +78,11 @@
 }
 
 #slider-titles .coarse {
-	padding-left:2px;
+	padding-left:40px;
 }
 
 #slider-titles .fine {
-	margin-left:27px;
+	margin-left:54px;
 }
 
 #control #slider-eye{
@@ -113,12 +113,12 @@
 	height:21px;
 	float:left;
 	position:relative;
-	left:91px;
+	left:128px;
 	top:-15px;
 	z-index:8;
 }
 
-#slider-hashmarks #hash-2{
+/*#slider-hashmarks #hash-2{
 	border-right:1px solid #7bb4e4;
 	height:21px;
 	float:right;
@@ -126,7 +126,7 @@
 	left:-71px;
 	top:-15px;
 	z-index:8;
-}
+}*/
 
 #interests-bars {
 	/*background:#eee;*/
@@ -231,7 +231,7 @@
 
 .level1 {
 	float:left;
-	width:28%;
+	width:42%;
 	height:36px;
 	background:#999;
 	margin:0px 0px 0px 0px;
@@ -239,19 +239,19 @@
 
 .level2 {
 	float:left;
-	width:28%;
+	width:42%;
 	height:36px;
 	background:#ccc;
 	margin:0px 0px 5px 0px;
 }
 
-.level3 {
+/*.level3 {
 	float:left;
 	width:28%;
 	height:36px;
 	background:#fff;
 	margin:0px 0px 5px 0px;
-}
+}*/
 
 
 /*END LEFT SIDE*/
