@@ -46,10 +46,14 @@ self.port.on("show_cats", function(cats, totalAcross, intentCats) {
 
   // Figure out the count for each top level category
   let topLevel = {};
+  let largest = 0; 
   Object.keys(cats).forEach(function(cat) {
     let top = cat.replace(/\/.*/, "");
     let {vcount} = cats[cat];
     topLevel[top] = (topLevel[top] || 0) + vcount;
+    if (largest < vcount) {
+       largest = vcount;
+    }
   });
 
   let seriesColors = ["#aae", "#eaa", "#eea", "#aea", "#eae", "#aee", "#acf",
@@ -60,7 +64,7 @@ self.port.on("show_cats", function(cats, totalAcross, intentCats) {
   let topColors = {};
   Object.keys(topLevel).sort(function(a, b) {
     return topLevel[b] - topLevel[a];
-  }).forEach(function(top, pos) {
+  }).slice(0, 15).forEach(function(top, pos) {
     sortedTops.push([top, topLevel[top]]);
     topColors[top] = seriesColors[pos];
   });
@@ -91,14 +95,14 @@ self.port.on("show_cats", function(cats, totalAcross, intentCats) {
     },
   });
   displayCats( cats , "cats" , topColors );
-  displayCats( intentCats , "intent" , topColors );
+  //displayCats( intentCats , "intent" , topColors );
 });
 
 function displayCats( cats , rootNodeID , topColors ) {
   // Pick out the top (any-level) categories
   let catNames = Object.keys(cats).sort(function(a, b) {
     return cats[b].vcount - cats[a].vcount;
-  }).slice(0, 15);
+  }).slice(0, 20);
 
   let largest = null;
   let lastTop = "";
@@ -122,7 +126,7 @@ function displayCats( cats , rootNodeID , topColors ) {
 
     // Display a bar colored based on the category
     let catNode = $("<cpan/>").addClass("cat").append(
-      $("<span/>").addClass("label").text(name),
+      $("<span/>").addClass("label").text(name + " " + Math.round(catData.vcount)),
       $("<div/>").addClass("bar").text("_").css({
         "background-color": topColors[top],
         "width": barWidth + "px"
@@ -161,11 +165,11 @@ function displayDemogs(demog, category, buketNames) {
   }
   for(x in buketNames) {
     let bucket = buketNames[x];
-    let value = ( demog[bucket].vtotal * 100 ).toFixed(2);
+    let value = demog[bucket].vtotal;
 
     let theNode = $("<cpan/>").addClass("demog").append(
       $("<span/>").addClass("dmog_label").text(DEMOG_NAMES[bucket]),
-      $("<span/>").addClass("demog_bar").text( value + "%"));
+      $("<span/>").addClass("demog_bar").text(value));
 
     if( bucket == largestBuket ) {
       theNode.css({ "color" : "olive" });
@@ -176,16 +180,16 @@ function displayDemogs(demog, category, buketNames) {
     let explaneNode = $("<div/>").hide();
 
     let posNode = $("<ul/>").addClass("inliner");
-    champs = demog[bucket].most.items;
+    champs = demog[bucket].positive;
     for (x in champs) {
-      posNode.append($("<li/>").css({ "color" : "olive" }).text(champs[x].item.domain + " " + Math.round(champs[x].item.vcount)));
+      posNode.append($("<li/>").css({ "color" : "olive" }).text(champs[x]));
     }
     explaneNode.append(posNode);
 
     let negNode = $("<ul/>").addClass("inliner");
-    champs = demog[bucket].least.items.reverse();
+    champs = demog[bucket].negative;
     for (x in champs) {
-      negNode.append($("<li/>").css({ "color" : "blue" }).text(champs[x].item.domain + " " + Math.round(champs[x].item.vcount)));
+      negNode.append($("<li/>").css({ "color" : "blue" }).text(champs[x]));
     }
     explaneNode.append(negNode);
 
