@@ -26,8 +26,6 @@ const DEMOG_NAMES = {
 };
 
 $(document).ready(function() {
-  console.log("READY");
-
   self.port.emit("donedoc");
 });
 
@@ -40,7 +38,7 @@ self.port.on("style", function(file) {
 });
 
 self.port.on("show_cats", function(cats, totalAcross, intentCats) {
-  console.log("GOT CATS " + cats);
+  //console.log("GOT CATS " + cats);
   let catBukets = {};
   let aliases = [];
 
@@ -209,7 +207,7 @@ function displayDemogs(demog, category, buketNames) {
 }
 
 self.port.on("show_demog", function(demog) {
-  console.log("GOT DEMOG " + demog);
+  //console.log("GOT DEMOG " + demog);
 
   displayDemogs(demog, "gender", ["male", "female"]);
   displayDemogs(demog, "age", ["age_18", "age_25", "age_35", "age_45", "age_55", "age_65"]);
