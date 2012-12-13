@@ -37,6 +37,10 @@ self.port.on("style", function(file) {
   }));
 });
 
+self.port.on("show_rules", function(rules) {
+  console.log("got rules", JSON.stringify(rules));
+});
+
 self.port.on("show_cats", function(cats, totalAcross, intentCats) {
   //console.log("GOT CATS " + cats);
   let catBukets = {};
