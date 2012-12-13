@@ -1,1 +1,0 @@
-User Profile project, with blue bg
