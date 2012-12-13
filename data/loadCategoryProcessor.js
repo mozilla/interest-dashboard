@@ -7,7 +7,7 @@ importScripts("WorkerUtils.js");
 importScripts("hostsToCats.js");
 importScripts("../lib/CategoryProcessor.js");
 
-// now create blekko instance
+// now create category instance
 var gCategoryProcessor = new CategoryProcessor(hostsToCats);
 console.log("CategoryProcessor loaded");
 
@@ -16,7 +16,7 @@ self.onmessage = function (event) {
   var data = event.data;
   if( data.command == "consume" ) {
     gCategoryProcessor.consumeHistoryPlace(data.placeData);
-  } 
+  }
   else if( data.command == "getData" ) {
     var cats = gCategoryProcessor.getBlekkoCats();
     self.postMessage(cats);

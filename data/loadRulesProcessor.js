@@ -6,7 +6,7 @@
 importScripts("WorkerUtils.js");
 importScripts("../lib/RulesProcessor.js");
 
-// now create blekko instance
+// now create rules instance
 var gRulesProcessor = new RulesProcessor();
 console.log("RulesProcessor loaded");
 
@@ -15,7 +15,7 @@ self.onmessage = function (event) {
   var data = event.data;
   if( data.command == "consume" ) {
     gRulesProcessor.consumeHistoryPlace(data.placeData);
-  } 
+  }
   else if( data.command == "getData" ) {
     var results = gRulesProcessor.getThresholdedResults();
     self.postMessage(results);
