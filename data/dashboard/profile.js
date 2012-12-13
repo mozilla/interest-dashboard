@@ -423,4 +423,29 @@ $(document).ready(function() {
         width: "110px"
       }, "swing");
 
+  // Allow clicking of page tabs to switch
+  $("#navlist a").click(function() {
+    showPage(this.textContent);
+  });
+  showPage("dashboard");
 });
+
+// Show a page and hide the others
+let pages = ["dashboard", "demographics", "categories", "rules"];
+function showPage(target) {
+  pages.forEach(function(page) {
+    let node = $("#page_" + page);
+    if (page == target) {
+      node.css({
+        "position": ""
+      });
+    }
+    // Hide by moving content off screen so canvas renderers still work
+    else {
+      node.css({
+        "position": "absolute",
+        "left": "-5000px"
+      });
+    }
+  });
+}

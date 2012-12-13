@@ -16,20 +16,25 @@ body {
   <div id="bottom-bg"></div>
   <div id="big-container">
 
-      <div class="container_12">
-
           <div id="moz-logo" class="grid_12">
           <h1>mozilla</h1>
           <h2>User Profile</h2>
         </div>
         <div class="clear"></div>
+
         <nav class="grid_12">
           <ul id="navlist">
-            <li><a href="#"><img src="img/icn-dashboard.png" alt="dashboard-icon">Dashboard</a></li>
-            <li><a href="#">More</a></li>
+            <li><a href="#"><img src="img/icn-dashboard.png" alt="dashboard-icon">dashboard</a></li>
+            <li><a href="#">demographics</a></li>
+            <li><a href="#">categories</a></li>
+            <li><a href="#">rules</a></li>
+            <li><a href="#">more</a></li>
           </ul>
         </nav>
         <div class="clear"></div>
+
+      <div id="page_dashboard" class="container_12">
+
         <div class="grid_12">
           <p class="intro-txt">The Dashboard personalizes your web experience. You can control how much of your Demographics & Interests you reveal online.
         If you reveal your information, the more personalized the website content will be.  Firefox estimates this information based on your browsing behavior.
@@ -287,34 +292,18 @@ body {
       <!-- REMOVE ABOVE HERE -->
 
       </div>
-      <!-- end .container_12 -->
+      <!-- end #page_dashboard .container_12 -->
 
-  </div>
+      <div id="page_categories" class="container_12">
+<h3>Overall Interest Categorization</h3>
+<div id="catsPie"></div>
+<h3>Detailed Interest Ranking</h3>
+<div id="cats"></div>
+      </div>
+      <!-- end #page_categories .container_12 -->
 
-<h1>Local History Analysis Tool</h1>
-<p>This tool analyzes your browsing history and locally summarizes it into categories and demographics.</p>
-
-<table id="catsTable">
-<tr>
-<th colspan="2">Overall Interest Categorization</th>
-</tr>
-<tr>
-<td colspan="2"><div id="catsPie"></div></td>
-</tr>
-<tr>
-<th>Detailed Interest Ranking</th>
-<!--
-<th>Recent Intent Ranking</th>
--->
-</tr>
-<tr>
-<td colspan="2"><div id="cats"></div></td>
-<!--
-<td><div id="intent"></div></td>
--->
-</tr>
-</table>
-<h2>Demographics</h2>
+      <div id="page_demographics" class="container_12">
+<h3>Demographics</h3>
 <table id="demogsTable">
 <tr>
 <td>
@@ -328,13 +317,21 @@ body {
 </td>
 <td>
 <div id="demog_education"><h3>Education</h3></div>
-<!-- <div id="demog_location"><h3>Browser Location</h3></div> -->
 </td>
 </tr>
 </table>
+      </div>
+      <!-- end #page_demographics .container_12 -->
 
-<h2>Rules</h2>
+      <div id="page_rules" class="container_12">
+<h3>Rules</h3>
 <p id="rules">
 </p>
+      </div>
+      <!-- end #page_rules .container_12 -->
+
+  </div>
+  <!-- end #big-container -->
+
 </body>
 </html>
