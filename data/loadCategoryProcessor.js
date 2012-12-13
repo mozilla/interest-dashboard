@@ -23,7 +23,7 @@ self.onmessage = function (event) {
       }
       json = hostsToCats;
       // undefine hostsToCats to garbage clean it if CategoryProcessor reloads
-      hostsToCats = null;   
+      hostsToCats = null;
     }
     gCategoryProcessor = new CategoryProcessor(json);
     console.log("CategoryProcessor loaded");
