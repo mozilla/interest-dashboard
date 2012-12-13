@@ -38,7 +38,12 @@ self.port.on("style", function(file) {
 });
 
 self.port.on("show_rules", function(rules) {
-  console.log("got rules", JSON.stringify(rules));
+  let parentNode = $("#rules");
+  Object.keys(rules).forEach(function(ruleName) {
+    parentNode.append(
+      $("<div/>").text(ruleName + ":" + rules[ruleName])
+    );
+  });
 });
 
 self.port.on("show_cats", function(cats, totalAcross, intentCats) {
