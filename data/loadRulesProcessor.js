@@ -7,16 +7,28 @@ importScripts("WorkerUtils.js");
 importScripts("../lib/RulesProcessor.js");
 
 // now create rules instance
-var gRulesProcessor = new RulesProcessor();
-console.log("RulesProcessor loaded");
+var gRulesProcessor = null;
 
 self.onmessage = function (event) {
 
   var data = event.data;
-  if( data.command == "consume" ) {
+  if (data.command == "consume") {
     gRulesProcessor.consumeHistoryPlace(data.placeData);
   }
-  else if( data.command == "getData" ) {
+  else if (data.command == "load") {
+    let json = data.json;
+    if (json == null) {
+      if (typeof defaultRules == "undefined") {
+        importScripts("defaultRules.js");
+      }
+      json = defaultRules;
+      // undefine defaultRules to garbage clean it if RulesProcessor reloads
+      defaultRules = null;
+    }
+    gRulesProcessor = new RulesProcessor(json);
+    console.log("RulesProcessor loaded");
+  }
+  else if (data.command == "getData") {
     var results = gRulesProcessor.getThresholdedResults();
     self.postMessage(results);
   }
