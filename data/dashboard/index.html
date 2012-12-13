@@ -1,105 +1,295 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta charset="utf-8" />
+<title>User Profile</title>
 <style>
 body {
-  font-family: Helvetica;
-  font-size: .9em;
-}
-
-h1 {
-  font-size: 1.2em;
-}
-
-h2, th {
-  font-size: 1.1em;
-}
-
-#catsTable {
-  margin-bottom: 3em;
-}
-
-#catsTable td, #demogsTable td {
-  vertical-align: top;
-}
-
-#catsPie {
- height: 375px;
- margin: auto;
- width: 500px;
-}
-
-#cats, #intent {
-  margin-top: 25px;
-}
-
-.cat {
-  display: block;
-  margin-top: 5px;
-}
-
-.explain > li {
-  display: block;
-  margin-left: 30px;
-}
-
-.inliner  {
-  display: inline-block;
-  margin: 20px;
-  padding: 0;
-}
-
-.inliner li  {
-  list-style-type: none;
-}
-
-.label {
-  display: inline-block;
-  font-size: .9em;
-  margin-right: 10px;
-  text-align: right;
-  width: 150px;
-}
-
-.bar {
-  display: inline-block;
-  color: transparent;
-}
-
-#demogsTable td > div {
-  border: 1px solid #333;
-  margin: 0 10px 5px;
-  padding: 10px 5px;
-}
-
-#demogsTable h3 {
-  font-size: 1em;
-  margin: 0 0 5px;
-}
-
-.demog {
-  display: block;
-}
-
-.dmog_label {
-  display: inline-block;
-  font-size: 1em;
-  text-align: left;
-  width: 100px;
-}
-
-.demog_bar {
-  display: inline-block;
-  font-size: 1em;
-  margin-bottom: 1px;
-  width: 100px;
-  text-align: right;
+  opacity: 0;
 }
 </style>
 </head>
 <body>
+	
+	<div id="topbar"></div>
+	<div id="top-bg"></div>
+	<div id="bottom-bg"></div>
+	<div id="big-container">
+	
+			<div class="container_12">
+			  
+		      <div id="moz-logo" class="grid_12">
+					<h1>mozilla</h1>
+					<h2>User Profile</h2>
+			  </div>	
+			  <div class="clear"></div>	
+			  <nav class="grid_12">
+					<ul id="navlist">
+						<li><a href="#"><img src="img/icn-dashboard.png" alt="dashboard-icon">Dashboard</a></li>
+						<li><a href="#">More</a></li>
+					</ul>
+			  </nav>	
+			  <div class="clear"></div>
+			  <div class="grid_12">
+			    <p class="intro-txt">The Dashboard personalizes your web experience. You can control how much of your Demographics & Interests you reveal online.
+				If you reveal your information, the more personalized the website content will be.  Firefox estimates this information based on your browsing behavior.
+
+				You are always in control of this information you reveal, and you can change your personalization preferences at any time because Mozilla requires websites not to track this information with you.</p>
+			  </div>
+			  <!-- end .grid_12 -->
+			  <div class="clear"></div>
+			  <div id="interestsdemo" class="grid_4">
+
+			      <h3>Demographics &amp; Interests</h3>
+				  <p>Hide or share your information to websites.</p>
+
+			    <div id="visualization">
+			      	
+					<div id="control">
+						<div id="slider-titles">
+							<ul>
+								<li class="off">Share<br>nothing</li>
+								<li class="fine">Share<br>more</li>
+							</ul>
+						</div>
+						<div id="slider-eye" class="tooltip wiggler"><img src="img/icn-eye.png"><span><div class="title">The slider</div><div class="txt">Move the slider right to reveal more details about your interests.</div></span></div>
+						<div id="slider"></div>
+						<div id="slider-hashmarks">
+							<div id="hash-1"></div>
+							<div id="hash-2"></div>
+						</div>
+					</div>
+					
+					<div id="interests-bars">
+						<div class="demotitle">Demographics</div>
+						<div id="demographic">
+
+							<div class="icon tooltip wiggler"><img src="img/icn-person.png"><span><div class="title">Demographics</div><div class="txt">You are a 35 year old female.</div></span></div>
+							<div class="level1"></div>
+							<div class="level2"></div>
+						</div>
+						<div class="interesttitle">Interests</div>
+						<div id="interest-1">
+
+							<div class="icon tooltip wiggler"><img src="img/icn-car.png"><span><div class="title">Interest</div><div class="txt">You are interested in automobiles.</div></span></div>
+							<div class="level1"></div>
+							<div class="level2"></div>
+						</div>
+						<div id="interest-2">
+							<div class="icon tooltip wiggler"><img src="img/icn-tree.png"><span><div class="title">Interest</div><div class="txt">You are interested in camping.</div></span></div>
+							<div class="level1"></div>
+							<div class="level2"></div>
+						</div>
+						<div id="interest-3">
+							<div class="icon tooltip wiggler"><img src="img/icn-sports.png"><span><div class="title">Interest</div><div class="txt">You are interested in fashion.</div></span></div>
+							<div class="level1"></div>
+						</div>
+						<div id="interest-4">
+							<div class="icon tooltip wiggler"><img src="img/icn-plane.png"><span><div class="title">Interest</div><div class="txt">You are interested in traveling.</div></span></div>
+							<div class="level1"></div>
+							<div class="level2"></div>
+						</div>
+					</div>
+			
+			
+			    </div>
+			  </div>
+			  <!-- end .grid_4 -->
+			  <div id="content" class="grid_8">
+				
+				  <h3>Sample content &amp; ads</h3>
+				  <p>View personalized content and ads based on your settings in Demographics &amp; Interests.</p>
+				
+			    <div id="browser">
+					<div id="boxes">
+						<!-- Automobiles -->
+					    <div class="off coarse">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Random car</h2>
+					    </div>
+
+					    <div class="off coarse medium fine">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Lexus</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Luxury car</h2>
+					    </div>
+
+						<div class="off coarse medium fine">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Audi</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Mid-sized car</h2>
+					    </div>
+
+						<div class="off coarse">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Mid-sized car</h2>
+					    </div>
+					
+						<!-- Camping -->
+					    <div class="off coarse">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Random car</h2>
+					    </div>
+
+					    <div class="off coarse medium fine">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">BMW</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Luxury car</h2>
+					    </div>
+
+						<div class="off coarse medium fine">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Mercedes</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Mid-sized car</h2>
+					    </div>
+
+						<div class="off coarse">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Mid-sized car</h2>
+					    </div>
+					
+						<!-- Fashion -->
+					    <div class="off coarse">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Random car</h2>
+					    </div>
+
+					    <div class="off coarse medium fine">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Mid-sized car</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Luxury car</h2>
+					    </div>
+
+						<div class="off coarse medium fine">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Audi</h2>
+					    </div>
+
+					    <div class="off coarse medium">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Mid-sized car</h2>
+					    </div>
+
+						<div class="off coarse">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Mid-sized car</h2>
+					    </div>
+					
+						<!-- Travel -->
+					    <div class="off coarse">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Random car</h2>
+					    </div>
+
+					    <div class="off coarse medium fine">
+					      <h3 class="symbol">Auto</h3>
+					      <h2 class="name">Random car</h2>
+					    </div>
+
+					    <div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Random car</h2>
+					    </div>
+
+						<div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Random car</h2>
+					    </div>
+
+					    <div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Random car</h2>
+					    </div>
+
+						<div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Random car</h2>
+					    </div>
+					
+						<!-- Miscellaneous -->
+					    <div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Random Car</h2>
+					    </div>
+
+					    <div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">BMW</h2>
+					    </div>
+
+					    <div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Luxury car</h2>
+					    </div>
+
+						<div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Audi</h2>
+					    </div>
+
+					    <div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Mid-sized car</h2>
+					    </div>
+
+						<div class="off">
+					      <h3 class="symbol">Misc</h3>
+					      <h2 class="name">Mid-sized car</h2>
+					    </div>
+					
+					
+					</div>
+			    </div> <!-- end browser -->
+			
+			  </div>
+			  <!-- end .grid_8 -->
+			  <div class="clear"></div>
+			
+			<!-- CAN REMOVE EVERYTHING IN HERE ONCE DONE. THESE ARE JUST TEMPORARY BUTTONS TO FIRE OFF EVENTS -->
+			<p>
+				<button type="button" onclick="barTransitionAnimate()">Bar animation when hovering on right side image</button>
+			</p>
+			
+			<script>
+
+			
+			function barTransitionAnimate() {
+				// alert("barTransitionAnimate");
+				$("#interest-1 .level1").fadeTo('fast', 0.5, function() {
+
+				    });
+				$("#interest-1 .icon").fadeTo('fast', 0.5, function() {
+				      // Animation complete.
+				    });
+			}
+			</script>
+			
+			<!-- REMOVE ABOVE HERE -->
+			
+			</div>
+			<!-- end .container_12 -->
+			
+	</div>
 
 <h1>Local History Analysis Tool</h1>
 <p>This tool analyzes your browsing history and locally summarizes it into categories and demographics.</p>
@@ -146,6 +336,5 @@ h2, th {
 <h2>Rules</h2>
 <p id="rules">
 </p>
-
 </body>
 </html>

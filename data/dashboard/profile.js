@@ -29,6 +29,12 @@ $(document).ready(function() {
   self.port.emit("donedoc");
 });
 
+self.port.on("unhide", function() {
+  setTimeout(function() {
+    document.body.style.opacity = 1;
+  }, 50);
+});
+
 self.port.on("style", function(file) {
   $("head").append($("<link>").attr({
     href: file,
@@ -223,3 +229,228 @@ self.port.on("show_demog", function(demog) {
   displayDemogs(demog, "education", ["no_college", "some_college", "college", "graduate"]);
   displayDemogs(demog, "children", ["children", "no_children"]);
 });
+
+    $(function() {
+
+		// hover on the interest/demographic icon, the associted bars should highlight
+		$("#demographic .icon img").mouseover(function(){
+		      $("#demographic .level1").animate({opacity: 0.5});
+		    }).mouseout(function(){
+		      $("#demographic .level1").animate({opacity: 1});
+		    });
+		
+		$("#interest-1 .icon img").mouseover(function(){
+		      $("#interest-1 .level1").animate({opacity: 0.5});
+		    }).mouseout(function(){
+		      $("#interest-1 .level1").animate({opacity: 1});
+		    });
+		
+		$("#interest-2 .icon img").mouseover(function(){
+		      $("#interest-2 .level1").animate({opacity: 0.5});
+		    }).mouseout(function(){
+		      $("#interest-2 .level1").animate({opacity: 1});
+		    });
+		
+		
+		$("#interest-3 .icon img").mouseover(function(){
+		      $("#interest-3 .level1").animate({opacity: 0.5});
+		    }).mouseout(function(){
+		      $("#interest-3 .level1").animate({opacity: 1});
+		    });
+		
+		$("#interest-4 .icon img").mouseover(function(){
+		      $("#interest-4 .level1").animate({opacity: 0.5});
+		    }).mouseout(function(){
+		      $("#interest-4 .level1").animate({opacity: 1});
+		    });
+	
+		// hover over a box, and the associated interest bars and icon will fade
+		$("#boxes .off.coarse").mouseover(function(){
+		      $("#interest-1 .level1").animate({opacity: 0.5});
+		    }).mouseout(function(){
+		      $("#interest-1 .level1").animate({opacity: 1});
+		    });
+		
+	
+		// fade in bars onLOAD
+	    $("#demographic .level1").css({ opacity: 0.1 }).animate({ opacity:1 }, 1000);
+		$("#interest-1 .level1").css({ opacity: 0.1 }).animate({ opacity:1 }, 1200);
+		$("#interest-2 .level1").css({ opacity: 0.1 }).animate({ opacity:1 }, 1400);
+		$("#interest-3 .level1").css({ opacity: 0.1 }).animate({ opacity:1 }, 1600);
+		$("#interest-4 .level1").css({ opacity: 0.1 }).animate({ opacity:1 }, 1800);
+	
+		// TO DO LIST
+		 
+		// 1) onLOAD I would like to have the slider move to COARSE, and the COARSE bars fadeIN
+		// 2) also I would like to have all the images on the right shuffle into place onLOAD
+		// 3) fix slider on COARSE, so images on the right side dont show MISC images, this is only for onLOAD
+		// 4) make the icons on the DEMO/INTEREST side look actionable, so you can hover over them.  Maybe make them look like buttons.
+		// 5) fix hover animation on the icons so theyre not so jerky and smoother
+	
+
+        $( "#slider" ).slider({
+			range: "min",
+            value:0,
+            min: 0,
+            max: 2,
+            step: 1,
+            slide: function( event, ui ) {
+				const filters = ["off", "coarse", "medium", "fine"];
+				updateUI(filters[ui.value] || "off");
+			}
+		});
+		
+		function updateUI(filter) {
+				// set to OFF
+				if (filter == "off") {
+					$('#slider-eye').fadeTo("slow", 0.1);
+					$('.icon').fadeTo("slow", 0.1);
+					$('.level1').fadeTo("slow", 0.1);
+					$('.level2').fadeTo("slow", 0.1);
+					$('.level3').fadeTo("slow", 0.1);
+				}
+				// set to COARSE
+				else if (filter == "coarse") {
+					$('#slider-eye').fadeTo("slow", 1);
+					$('.icon').fadeTo("slow", 1);
+					$('.level1').fadeTo("slow", 1);
+					$('.level2').fadeTo("slow", 0.1);
+					$('.level3').fadeTo("slow", 0.1);
+					
+					// $("#demographic .icon").simpletip({
+					// 						fixed: true, 
+					// 						position: "right",
+					// 						offset: [-5,0],
+					// 						content: "DEMOGRAPHIC<br/>You are a 39 year old female."
+					// 					});
+					// 
+					// 					$("#interest-1 .icon").simpletip({
+					// 						fixed: true, 
+					// 						position: "right",
+					// 						offset: [-5,0],
+					// 						content: "INTEREST<br/>You are interested in <b>Automobiles</b>."
+					// 					});
+					// 
+					// 					$("#interest-2 .icon").simpletip({
+					// 						fixed: true, 
+					// 						position: "right",
+					// 						offset: [-5,0],
+					// 						content: "INTEREST<br/>You are interested in <b>Camping</b>."
+					// 					});
+					// 
+					// 					$("#interest-3 .icon").simpletip({
+					// 						fixed: true, 
+					// 						position: "right",
+					// 						offset: [-5,0],
+					// 						content: "INTEREST<br/>You are interested in <b>Fashion</b>."
+					// 					});
+					// 
+					// 					$("#interest-4 .icon").simpletip({
+					// 						fixed: true, 
+					// 						position: "right",
+					// 						offset: [-5,0],
+					// 						content: "INTEREST<br/>You are interested in <b>Traveling</b>."
+					// 					});
+					
+					
+				}
+				// set to Medium
+				else if (filter == "medium") {
+					$('.level2').fadeTo("slow", 1);
+					$('.level3').fadeTo("slow", 0.1);
+
+					$("#demographic .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "DEMOGRAPHIC<br/>You are a 39 year old female."
+					});
+
+					$("#interest-1 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in <b>Small cars</b>."
+					});
+
+					$("#interest-2 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in <b>Tents</b>."
+					});
+
+					$("#interest-3 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in <b>T-shirts</b>."
+					});
+
+					$("#interest-4 .icon").simpletip({
+						fixed: true, 
+						position: "right",
+						offset: [-5,0],
+						content: "INTEREST<br/>You are interested in the <b>Caribbean</b>."
+					});
+
+				}
+				// set to Fine
+				else if (filter == "fine") {
+					$('.level3').fadeTo("slow", 1);
+				}
+
+              // Update the sample browser content
+			var count = 0;
+              $("#boxes .off").each(function() {
+				if (this.classList.contains(filter)) {
+					this.style.opacity = 1;
+					switch (filter) {
+						case "off":							
+						case "coarse":
+							this.style.width = "110px";
+							this.style.height = "70px";
+							this.style.left = (count % 5) * 120 + "px";
+							this.style.top = Math.floor(count / 5) * 80 + "px";
+							break;
+							
+						case "medium":
+							this.style.width = "190px";
+							this.style.height = "100px";
+							this.style.left = (count % 3) * 200 + "px";
+							this.style.top = Math.floor(count / 3) * 110 + "px";
+							break;
+							
+						case "fine":
+							this.style.width = "290px";
+							this.style.height = "200px";
+							this.style.left = (count % 2) * 300 + "px";
+							this.style.top = Math.floor(count / 2) * 210 + "px";
+							break;
+					}
+					count++;
+				}
+				else {
+					this.style.opacity = 0;
+				}
+			  });
+       }
+
+		updateUI("coarse");
+
+        });
+
+
+
+		$(document).ready(function() {
+
+			$("a.ui-slider-handle.ui-state-default.ui-corner-all").animate({
+				left: '+=110'
+			}, "swing");
+
+			$(".ui-slider-range.ui-widget-header.ui-slider-range-min").animate({
+				width: "110px"
+			}, "swing");
+
+		});
+

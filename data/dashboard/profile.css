@@ -1,0 +1,93 @@
+body {
+  font-family: Helvetica;
+  font-size: .9em;
+}
+
+h1 {
+  font-size: 1.2em;
+}
+
+h2, th {
+  font-size: 1.1em;
+}
+
+#catsTable {
+  margin-bottom: 3em;
+}
+
+#catsTable td, #demogsTable td {
+  vertical-align: top;
+}
+
+#catsPie {
+ height: 375px;
+ margin: auto;
+ width: 500px;
+}
+
+#cats, #intent {
+  margin-top: 25px;
+}
+
+.cat {
+  display: block;
+  margin-top: 5px;
+}
+
+.explain > li {
+  display: block;
+  margin-left: 30px;
+}
+
+.inliner  {
+  display: inline-block;
+  margin: 20px;
+  padding: 0;
+}
+
+.inliner li  {
+  list-style-type: none;
+}
+
+.label {
+  display: inline-block;
+  font-size: .9em;
+  margin-right: 10px;
+  text-align: right;
+  width: 150px;
+}
+
+.bar {
+  display: inline-block;
+  color: transparent;
+}
+
+#demogsTable td > div {
+  border: 1px solid #333;
+  margin: 0 10px 5px;
+  padding: 10px 5px;
+}
+
+#demogsTable h3 {
+  font-size: 1em;
+  margin: 0 0 5px;
+}
+
+.demog {
+  display: block;
+}
+
+.dmog_label {
+  display: inline-block;
+  font-size: 1em;
+  text-align: left;
+  width: 100px;
+}
+
+.demog_bar {
+  display: inline-block;
+  font-size: 1em;
+  margin-bottom: 1px;
+  width: 100px;
+  text-align: right;
+}
