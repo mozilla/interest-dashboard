@@ -35,6 +35,12 @@ self.port.on("unhide", function() {
   }, 50);
 });
 
+self.port.on("img_path", function(path) {
+  Array.forEach(document.getElementsByTagName("img"), function(img) {
+    img.src = path + img.src;
+  });
+});
+
 self.port.on("style", function(file) {
   $("head").append($("<link>").attr({
     href: file,
