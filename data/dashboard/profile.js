@@ -99,7 +99,14 @@ self.port.on("set_rules", function(rules) {
 });
 
 const levels = ["no", "new", "recent", "ongoing", "previous", "repeat", "completed", "general"];
+let lastTags;
 self.port.on("show_rules", function(tags) {
+  // Skip updating if the results are the same
+  if (JSON.stringify(tags) == JSON.stringify(lastTags)) {
+    return;
+  }
+  lastTags = tags;
+
   let node = document.getElementById("rulesOut");
   let html = "";
 
@@ -125,7 +132,14 @@ self.port.on("show_rules", function(tags) {
   node.innerHTML = html;
 });
 
+let lastCats;
 self.port.on("show_cats", function(cats, totalAcross, intentCats) {
+  // Skip updating if the results are the same
+  if (JSON.stringify(cats) == JSON.stringify(lastCats)) {
+    return;
+  }
+  lastCats = cats;
+
   //console.log("GOT CATS " + cats);
   let catBukets = {};
   let aliases = [];
@@ -297,7 +311,14 @@ function displayDemogs(demog, category, buketNames) {
   }
 }
 
+let lastDemog;
 self.port.on("show_demog", function(demog) {
+  // Skip updating if the results are the same
+  if (JSON.stringify(demog) == JSON.stringify(lastDemog)) {
+    return;
+  }
+  lastDemog = demog;
+
   //console.log("GOT DEMOG " + demog);
 
   displayDemogs(demog, "gender", ["male", "female"]);
