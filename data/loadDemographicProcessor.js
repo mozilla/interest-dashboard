@@ -4,19 +4,30 @@
 
 
 importScripts("WorkerUtils.js");
-importScripts("sitesDemographicsGenerated.js");
 importScripts("../lib/DemographicProcessor.js");
 
-var gDemographicProcessor = new DemographicProcessor(sitesDemographics);
-console.log("DemographicProcessor loaded");
+var gDemographicProcessor = null;
 
 self.onmessage = function (event) {
 
   var data = event.data;
-  if( data.command == "consume" ) {
+  if (data.command == "consume") {
     gDemographicProcessor.consumeHistoryPlace(data.placeData);
   }
-  else if( data.command == "getData" ) {
+  else if (data.command == "load") {
+    let json = data.json;
+    if (json == null) {
+      if (typeof sitesDemographics == "undefined") {
+        importScripts("sitesDemographicsGenerated.js");
+      }
+      json = sitesDemographics;
+      // undefine sitesDemographics to garbage clean it if DemographicProcessor reloads
+      sitesDemographics = null;
+    }
+    gDemographicProcessor = new DemographicProcessor(json);
+    console.log("DemographicProcessor loaded");
+  }
+  else if (data.command == "getData") {
     var stuff = gDemographicProcessor.getDemographicBukets();
     self.postMessage(stuff);
   }

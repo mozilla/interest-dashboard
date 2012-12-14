@@ -4,21 +4,33 @@
 
 
 importScripts("WorkerUtils.js");
-importScripts("hostsToCats.js");
 importScripts("../lib/CategoryProcessor.js");
 
 // now create category instance
-var gCategoryProcessor = new CategoryProcessor(hostsToCats);
-console.log("CategoryProcessor loaded");
+var gCategoryProcessor = null;
 
 self.onmessage = function (event) {
 
   var data = event.data;
-  if( data.command == "consume" ) {
+  if (data.command == "consume") {
     gCategoryProcessor.consumeHistoryPlace(data.placeData);
   }
-  else if( data.command == "getData" ) {
-    var cats = gCategoryProcessor.getBlekkoCats();
+  else if (data.command == "load") {
+    let json = data.json;
+    if (json == null) {
+      if (typeof hostsToCats == "undefined") {
+        importScripts("hostsToCats.js");
+      }
+      json = hostsToCats;
+      // undefine hostsToCats to garbage clean it if CategoryProcessor reloads
+      hostsToCats = null;
+    }
+    gCategoryProcessor = new CategoryProcessor(json);
+    console.log("CategoryProcessor loaded");
+
+  }
+  else if (data.command == "getData") {
+    var cats = gCategoryProcessor.getCategories();
     self.postMessage(cats);
   }
 };
