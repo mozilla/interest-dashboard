@@ -91,3 +91,7 @@ h2, th {
   width: 100px;
   text-align: right;
 }
+
+#page_rules a {
+  color: blue;
+}

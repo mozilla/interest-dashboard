@@ -36,6 +36,33 @@ function getData() {
 $(document).ready(function() {
   self.port.emit("donedoc");
   getData();
+
+  // Add controls for the rules input
+  $("#viewRules").click(function() {
+    self.port.emit("view_rules", document.getElementById("etherpadRules").value);
+  });
+
+  $("#importRules").click(function() {
+    self.port.emit("import_rules", document.getElementById("etherpadRules").value);
+  });
+
+  $("#rulesData").bind("input", function() {
+    try {
+      JSON.parse(this.value);
+      document.getElementById("processRules").disabled = false;
+    }
+    catch(ex) {
+      document.getElementById("processRules").disabled = true;
+    }
+  });
+
+  $("#processRules").click(function() {
+    self.port.emit("process_rules", JSON.parse(document.getElementById("rulesData").value));
+  });
+
+  $("#revertRules").click(function() {
+    self.port.emit("revert_rules");
+  });
 });
 
 self.port.on("unhide", function() {
@@ -58,14 +85,44 @@ self.port.on("style", function(file) {
   }));
 });
 
-self.port.on("show_rules", function(rules) {
-  let parentNode = $("#rules");
-  parentNode.empty();
-  Object.keys(rules).forEach(function(ruleName) {
-    parentNode.append(
-      $("<div/>").text(ruleName + ":" + rules[ruleName])
-    );
+self.port.on("set_rulesetherpad", function(pad) {
+  document.getElementById("etherpadRules").value = pad;
+});
+
+self.port.on("set_rules", function(rules) {
+  document.getElementById("rulesData").value = JSON.stringify(rules, null, 2);
+  document.getElementById("rulesOut").innerHTML = "";
+
+  if (Object.keys(rules).length > 0) {
+    self.port.emit("process_rules", rules);
+  }
+});
+
+const levels = ["no", "new", "recent", "ongoing", "previous", "repeat", "completed", "general"];
+self.port.on("show_rules", function(tags) {
+  let node = document.getElementById("rulesOut");
+  let html = "";
+
+  function str(cond, text) {
+    if (cond) {
+      return text;
+    }
+    return "<span style='opacity: .3; text-decoration: line-through;'>" + text + "</span>";
+  }
+
+  Object.keys(tags).forEach(function(tag) {
+    let level = tags[tag];
+    html += tag + ": " + levels[level];
+    html += " interest ("
+    html += str(level&1, "1st");
+    html += " ";
+    html += str(level&2, "2nd");
+    html += " ";
+    html += str(level&4, "rest");
+    html += ") [" + level + "]<br/>";
   });
+
+  node.innerHTML = html;
 });
 
 self.port.on("show_cats", function(cats, totalAcross, intentCats) {
