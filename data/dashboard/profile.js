@@ -25,8 +25,17 @@ const DEMOG_NAMES = {
   work: "Work",
 };
 
+// Keep fetching more data from time to time
+let dataTimer;
+function getData() {
+  clearTimeout(dataTimer);
+  self.port.emit("get_data");
+  dataTimer = setTimeout(getData, 5000);
+}
+
 $(document).ready(function() {
   self.port.emit("donedoc");
+  getData();
 });
 
 self.port.on("unhide", function() {
@@ -51,6 +60,7 @@ self.port.on("style", function(file) {
 
 self.port.on("show_rules", function(rules) {
   let parentNode = $("#rules");
+  parentNode.empty();
   Object.keys(rules).forEach(function(ruleName) {
     parentNode.append(
       $("<div/>").text(ruleName + ":" + rules[ruleName])
@@ -89,6 +99,7 @@ self.port.on("show_cats", function(cats, totalAcross, intentCats) {
   });
 
   // Plot the pie graph for the categories
+  $("#catsPie").empty();
   let catsPie = $.jqplot("catsPie", [sortedTops], {
     grid: {
       background: "transparent",
@@ -126,6 +137,7 @@ function displayCats( cats , rootNodeID , topColors ) {
   let largest = null;
   let lastTop = "";
   let rootNode = $("#" + rootNodeID);
+  rootNode.empty();
   for (x in catNames) {
     let name = catNames[x];
     let top = name.replace(/\/.*/, "");
@@ -172,6 +184,7 @@ function displayCats( cats , rootNodeID , topColors ) {
 
 function displayDemogs(demog, category, buketNames) {
   let parentNode = $("#demog_" + category);
+  parentNode.empty();
 
   let largest = 0;
   let largestBuket;
