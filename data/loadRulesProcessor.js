@@ -18,9 +18,7 @@ self.onmessage = function (event) {
   else if (data.command == "load") {
     let json = data.json;
     if (json == null) {
-      if (typeof defaultRules == "undefined") {
-        importScripts("defaultRules.js");
-      }
+      importScripts("defaultRules.js");
       json = defaultRules;
       // undefine defaultRules to garbage clean it if RulesProcessor reloads
       defaultRules = null;
