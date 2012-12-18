@@ -18,9 +18,7 @@ self.onmessage = function (event) {
   else if (data.command == "load") {
     let json = data.json;
     if (json == null) {
-      if (typeof hostsToCats == "undefined") {
-        importScripts("hostsToCats.js");
-      }
+      importScripts("hostsToCats.js");
       json = hostsToCats;
       // undefine hostsToCats to garbage clean it if CategoryProcessor reloads
       hostsToCats = null;

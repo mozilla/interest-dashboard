@@ -17,9 +17,7 @@ self.onmessage = function (event) {
   else if (data.command == "load") {
     let json = data.json;
     if (json == null) {
-      if (typeof sitesDemographics == "undefined") {
-        importScripts("sitesDemographicsGenerated.js");
-      }
+      importScripts("sitesDemographicsGenerated.js");
       json = sitesDemographics;
       // undefine sitesDemographics to garbage clean it if DemographicProcessor reloads
       sitesDemographics = null;
