@@ -12,8 +12,8 @@ var gRulesProcessor = null;
 self.onmessage = function (event) {
 
   var data = event.data;
-  if (data.command == "consume") {
-    gRulesProcessor.consumeHistoryPlace(data.placeData);
+  if (data.command == "consume_place") {
+    gRulesProcessor.consumeHistoryPlace(data.data);
   }
   else if (data.command == "load") {
     let json = data.json;
