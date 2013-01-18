@@ -12,8 +12,8 @@ var gCategoryProcessor = null;
 self.onmessage = function (event) {
 
   var data = event.data;
-  if (data.command == "consume") {
-    gCategoryProcessor.consumeHistoryPlace(data.placeData);
+  if (data.command == "consume_place") {
+    gCategoryProcessor.consumeHistoryPlace(data.data);
   }
   else if (data.command == "load") {
     let json = data.json;

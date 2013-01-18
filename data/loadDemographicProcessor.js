@@ -11,8 +11,11 @@ var gDemographicProcessor = null;
 self.onmessage = function (event) {
 
   var data = event.data;
-  if (data.command == "consume") {
-    gDemographicProcessor.consumeHistoryPlace(data.placeData);
+  if (data.command == "consume_place") {
+    gDemographicProcessor.consumeHistoryPlace(data.data);
+  }
+  else if (data.command == "consume_form") {
+    gDemographicProcessor.consumeHistoryForm(data.data);
   }
   else if (data.command == "load") {
     let json = data.json;
