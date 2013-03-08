@@ -1,9 +1,9 @@
 {
   "author": "Mozilla",
   "description": "See the interest data analyzed in Firefox.",
-  "fullName": "about:profile - Interest Viewer",
+  "fullName": "User Profile",
   "id": "jid1-zCDvOBNW7IAgCA",
   "license": "MPL 2.0",
-  "name": "about-profile",
+  "name": "user-profile",
   "version": "1"
 }
