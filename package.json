@@ -1,16 +1,9 @@
 {
   "author": "Mozilla",
-  "description": "Analyze your local browser data and summarize it into a visual profile.",
-  "fullName": "about:profile",
-  "id": "jid1-ISK94hGUF3FsrA",
-  "name": "about-profile",
+  "description": "See the interest data analyzed in Firefox.",
+  "fullName": "about:profile - Interest Viewer",
+  "id": "jid1-zCDvOBNW7IAgCA",
   "license": "MPL 2.0",
-  "preferences": [{
-    "description": "Comma separated list of domains",
-    "name": "allowedAPIDomains",
-    "title": "Grant these domains profile API access",
-    "type": "string",
-    "value": ""
-  }],
+  "name": "about-profile",
   "version": "1"
 }
