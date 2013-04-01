@@ -1,0 +1,8 @@
+div.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+div#recompute button {
+  margin-left: 5px;
+}
