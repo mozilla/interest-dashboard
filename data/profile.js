@@ -4,7 +4,14 @@
 
 // Call the service to get the buckets and display results
 self.port.emit("call_service", "_getTopInterests", [100]);
+
+// Dispatch service responses to the appropriate function
 self.port.on("called_service", function(method, args, result) {
+  this["on" + method](args, result);
+});
+
+// Update the table with top interests
+function on_getTopInterests(args, result) {
   let table = document.getElementById("interestTable");
   result.forEach(({name, score, diversity, recency}) => {
     let {immediate, recent, past} = recency;
@@ -17,7 +24,7 @@ self.port.on("called_service", function(method, args, result) {
       "<td>" + diversity + "</td>";
     table.appendChild(tr);
   });
-});
+}
 
 self.port.on("style", function(file) {
   let link = document.createElement("link");
