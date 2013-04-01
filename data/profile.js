@@ -2,19 +2,19 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-// Make an explicit list of interests to ask for
-const interests = ["arts", "banking", "blogging", "business", "career", "cars", "clothes", "computers", "consumer-electronics", "cuisine", "dance", "discounts", "drinks", "education", "email", "entertainment", "family", "fashion", "finance", "food", "games", "government", "health", "history", "hobby", "home", "image-sharing", "law", "maps", "marketing", "men", "motorcycles", "movies", "music", "news", "outdoors", "pets", "photography", "politics", "radio", "reading", "real-estate", "reference", "relationship", "religion", "reviews", "science", "shoes", "shopping", "society", "sports", "technology", "travel", "tv", "video-games", "weather", "women", "writing"];
-
 // Call the service to get the buckets and display results
-self.port.emit("call_service", "_getBucketsForInterests", [interests]);
+self.port.emit("call_service", "_getTopInterests", [100]);
 self.port.on("called_service", function(method, args, result) {
   let table = document.getElementById("interestTable");
-  Object.keys(result).forEach(function(interest) {
+  result.forEach(({name, score, diversity, recency}) => {
+    let {immediate, recent, past} = recency;
     let tr = document.createElement("tr");
-    tr.innerHTML = "<td>" + interest + "</td>" +
-      "<td>" + result[interest].immediate + "</td>" +
-      "<td>" + result[interest].recent + "</td>" +
-      "<td>" + result[interest].past + "</td>";
+    tr.innerHTML = "<td>" + name + "</td>" +
+      "<td>" + immediate + "</td>" +
+      "<td>" + recent + "</td>" +
+      "<td>" + past + "</td>" +
+      "<td>" + score + "</td>" +
+      "<td>" + diversity + "</td>";
     table.appendChild(tr);
   });
 });
