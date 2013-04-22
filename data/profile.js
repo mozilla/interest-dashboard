@@ -33,7 +33,8 @@ function onresubmitRecentHistoryVisits(args, result) {
 // Update the table with top interests
 function ongetInterestsByNamespace(args, result) {
   let table = document.getElementById("interestTable");
-  result.forEach(({name, score, diversity, recency}) => {
+  result.forEach(({diversity, meta, name, recency, score}) => {
+    let {duration, sharable, threshold} = meta;
     let {immediate, recent, past} = recency;
     let tr = document.createElement("tr");
     tr.innerHTML = "<td>" + name + "</td>" +
@@ -41,8 +42,17 @@ function ongetInterestsByNamespace(args, result) {
       "<td>" + recent + "</td>" +
       "<td>" + past + "</td>" +
       "<td>" + score + "</td>" +
-      "<td>" + diversity + "</td>";
+      "<td>" + diversity + "</td>" +
+      "<td><input type=\"checkbox\"/></td>";
     table.appendChild(tr);
+
+    // Set the share status and allow toggling
+    let checkbox = tr.lastChild.firstChild;
+    checkbox.checked = sharable;
+    checkbox.addEventListener("click", event => {
+      let action = checkbox.checked ? "_unsetIgnoredForInterest" : "_setIgnoredForInterest";
+      self.port.emit("call_service", action, [name]);
+    });
   });
 }
 
