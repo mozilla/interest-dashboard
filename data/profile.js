@@ -18,7 +18,7 @@ recomputeDays.forEach(days => {
 });
 
 // Call the service to get the buckets and display results
-self.port.emit("call_service", "_getTopInterests", [100]);
+self.port.emit("call_service", "getInterestsByNamespace", ["", {interestLimit: 100}]);
 
 // Dispatch service responses to the appropriate function
 self.port.on("called_service", function(method, args, result) {
@@ -31,7 +31,7 @@ function onresubmitRecentHistoryVisits(args, result) {
 }
 
 // Update the table with top interests
-function on_getTopInterests(args, result) {
+function ongetInterestsByNamespace(args, result) {
   let table = document.getElementById("interestTable");
   result.forEach(({name, score, diversity, recency}) => {
     let {immediate, recent, past} = recency;
