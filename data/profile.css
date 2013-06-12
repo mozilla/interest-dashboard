@@ -1,8 +1,16 @@
-div.disabled {
-  opacity: 0.5;
-  pointer-events: none;
+#categories, #output {
+  height: 275px;
+  font-family: -moz-fixed;
+  font-size: medium;
+  left: 300px;
+  position: fixed;
+  width: 600px;
 }
 
-div#recompute button {
-  margin-left: 5px;
+#categories {
+  top: 75px;
+}
+
+#output {
+  top: 375px;
 }

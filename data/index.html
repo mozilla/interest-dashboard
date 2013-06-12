@@ -2,31 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>User Profile Debug</title>
+<title>User Profile Domains</title>
 </head>
 <body>
 
-<h1>Welcome to a prototype of your User Profile</h1>
+<h3>The left side shows the number of days the domain appears in your browsing history. Top box is input with label and domains on each line. Bottom box is output with sum of days of each listed domain.</h3>
 
-<h3>Below you'll see a list of interests and whether Firefox thinks you've
-matched that interest in the past 14, 28, or more days. If you turn on
-personalization, you can turn off sharing of select interests. To stop interest
-calculations, disable this "User Profile" add-on.</h3>
+<div id="domains"></div>
 
-<table id="interestTable" cellspacing="3" cellpadding="3" border="1">
-  <tr>
-    <th>Interest</th>
-    <th>Immediate</th>
-    <th>Recent</th>
-    <th>Past</th>
-    <th>Score</th>
-    <th>Diversity</th>
-    <th>Share</th>
-  </tr>
-</table>
+<textarea id="categories">
+Technology                 engadget.com               gizmodo.com                wired.com                  slashdot.org               techcrunch.com             arstechnica.com            allthingsd.com             lifehacker.com             anandtech.com              gigaom.com
+Programming                stackoverflow.com          codinghorror.com           serverfault.com            sourceforge.net            mysql.com                  php.net                    apache.org                 sqlite.org                 github.com                 jquery.com
+Humor                      cracked.com                collegehumor.com           theonion.com               i-am-bored.com             fark.com                   thechive.com               funnyordie.com             break.com                  somethingawful.com         ebaumsworld.com
+Politics                   huffingtonpost.com         dailykos.com               politico.com               realclearpolitics.com      foxnews.com                drudgereport.com           thedailybeast.com          salon.com                  thehill.com                c-span.org
+Gossip                     tmz.com                    perezhilton.com            eonline.com                people.com                 usmagazine.com             thehollywoodgossip.com     ew.com                     etonline.com               celebuzz.com               okmagazine.com
+Financial                  forbes.com                 businessweek.com           bloomberg.com              economist.com              marketwatch.com            seekingalpha.com           fool.com                   cnbc.com                   reuters.com                thestreet.com
+Video-games                ign.com                    gamespot.com               joystiq.com                kotaku.com                 1up.com                    gametrailers.com           gamerankings.com           destructoid.com            computerandvideogames.com  gamesradar.com
+TV                         zap2it.com                 tvguide.com                televisionwithoutpity.com  tv.com                     sidereel.com               tvduck.com                 hulu.com                   tvgasm.com                 thefutoncritic.com         tvweek.com
+Sports                     cbssports.com              nfl.com                    bleacherreport.com         sportingnews.com           nba.com                    yardbarker.com             rivals.com                 scout.com                  deadspin.com               foxsports.com
+Photography                dpreview.com               bhphotovideo.com           adorama.com                dcresource.com             dcviews.com                digitalcamerareview.com    cameralabs.com             popphoto.com               dpmag.com                  shutterbug.com
+Science                    nasa.gov                   nationalgeographic.com     discovery.com              sciencedaily.com           nature.com                 sciencemag.org             newscientist.com           scientificamerican.com     sciencenews.org            popsci.com
+Cars                       popularmechanics.com       motortrend.com             caranddriver.com           roadandtrack.com           automobilemag.com          autoweek.com               europeancarweb.com         autonews.com               autoblog.com               topgear.com
+Music                      rollingstone.com           spin.com                   nme.com                    pitchfork.com              billboard.com              allmusic.com               pastemagazine.com          hiphopdx.com               allhiphop.com              rapgenius.com
+Parenting                  babycenter.com             babyzone.com               parenting.com              babiesonline.com           parents.com                whattoexpect.com           thebabycorner.com          todaysparent.com           parenting.org              education.com
+Fashion                    polyvore.com               style.com                  elle.com                   glamour.com                vogue.com                  cosmopolitan.com           instyle.com                peoplestylewatch.com       thefashionspot.com         models.com
+Movies                     rottentomatoes.com         imdb.com                   moviefone.com              movies.com                 fandango.com               allmovie.com               comingsoon.net             movietickets.com           movieweb.com               hollywood.com
+</textarea>
 
-<h4>Reprocess existing history (this can take a while)</h4>
-<div id="recompute">Number of past days to recompute: </div>
+<textarea id="output">
+</textarea>
 
 </body>
 </html>
