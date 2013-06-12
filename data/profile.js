@@ -3,11 +3,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 let daysVisited;
-self.port.on("daysVisited", data => {
+self.port.on("daysVisited", function(data) {
   daysVisited = data;
 
-  let sortedKeys = Object.keys(data).sort((a, b) => data[b] - data[a]);
-  let domainText = sortedKeys.map(key => key + " " + data[key]).join("<br>");
+  let sortedKeys = Object.keys(data).sort(function(a, b) data[b] - data[a]);
+  let domainText = sortedKeys.map(function(key) key + " " + data[key]).join("<br>");
   document.getElementById("domains").innerHTML = domainText;
 
   updateOutput();
@@ -25,12 +25,12 @@ function updateOutput() {
   let output = [];
 
   let categoryData = document.getElementById("categories").value.trim().split("\n");
-  categoryData.forEach(line => {
+  categoryData.forEach(function(line) {
     let domains = line.split(/\s+/);
     let name = domains.shift();
 
-    let itemDays = domains.map(key => daysVisited[key] || 0);
-    let totalDays = itemDays.reduce((item, sum) => sum + item, 0);
+    let itemDays = domains.map(function(key) daysVisited[key] || 0);
+    let totalDays = itemDays.reduce(function(item, sum) sum + item, 0);
     output.push(name + ": " + totalDays + " = " + itemDays.join(" + "));
   });
 
