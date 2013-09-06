@@ -119,14 +119,17 @@ function textClassify({url, title}) {
 
 // Figure out which interests are associated to the document
 function getInterestsForDocument(aMessageData) {
-  let interests = [];
-  try {
-    interests = ruleClassify(aMessageData);
-    if (interests.length == 0) {
-      // fallback to text classification
-      interests = textClassify(aMessageData);
-    }
+  let message = {
+    host: aMessageData.host,
+    message: "InterestsForDocument",
+    url: aMessageData.url,
+    visitDate: aMessageData.visitDate,
+    visitCount: aMessageData.visitCount,
+    messageId: aMessageData.messageId,
+    namespace: gNamespace,
+  };
 
+  function dedupeInterests(interests) {
     // remove duplicates
     if (interests.length > 1) {
       // insert interests into hash and reget the keys
@@ -138,6 +141,36 @@ function getInterestsForDocument(aMessageData) {
       });
       interests = Object.keys(theHash);
     }
+    return interests;
+  };
+
+  // we need to submit 3 messages
+  // - for rule classification
+  // - for keyword classification
+  // - for combined classification
+  let interests = [];
+  try {
+    interests = ruleClassify(aMessageData);
+    message.interests = dedupeInterests(interests);
+    message.type = "rules";
+    self.postMessage(message);
+
+    let rulesWorked = interests.length > 0;
+    if (rulesWorked) {
+      message.type = "combined";
+      self.postMessage(message);
+    }
+
+    interests = textClassify(aMessageData);
+    message.interests = dedupeInterests(interests);
+    message.type = "keywords";
+    self.postMessage(message);
+
+    if (!rulesWorked) {
+      message.type = "combined";
+      self.postMessage(message);
+    }
+
   }
   catch (ex) {
     Components.utils.reportError(ex);
