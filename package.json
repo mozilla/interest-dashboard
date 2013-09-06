@@ -1,9 +1,9 @@
 {
   "author": "Mozilla",
-  "description": "See the domain data analyzed in Firefox.",
-  "fullName": "User Profile Domains",
-  "id": "jid1-dCDvOBNW7IAgCA",
+  "description": "A user study of interest profiling in Firefox.",
+  "fullName": "User Profile Research Add-on",
+  "id": "jid1-b6xdDZ3ld1nExQ",
   "license": "MPL 2.0",
-  "name": "user-profile-domains",
+  "name": "user-profile-research",
   "version": "1"
 }
