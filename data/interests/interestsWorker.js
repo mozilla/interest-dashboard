@@ -175,18 +175,6 @@ function getInterestsForDocument(aMessageData) {
   catch (ex) {
     Components.utils.reportError(ex);
   }
-
-  // Respond with the interests for the document
-  self.postMessage({
-    host: aMessageData.host,
-    interests: interests,
-    message: "InterestsForDocument",
-    url: aMessageData.url,
-    visitDate: aMessageData.visitDate,
-    visitCount: aMessageData.visitCount,
-    messageId: aMessageData.messageId,
-    namespace: gNamespace,
-  });
 }
 
 // Classify document via text only
@@ -220,7 +208,3 @@ self.onmessage = function({data}) {
   self[data.message](data);
 };
 
-function shake(data) {
-  dump(JSON.stringify(data) + "   -----\n");
-  self.postMessage(data);
-}
