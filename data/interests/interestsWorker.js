@@ -142,58 +142,27 @@ function getInterestsForDocument(aMessageData) {
   // - for keyword classification
   // - for combined classification
   let interests = [];
+  let results = [];
   try {
     interests = ruleClassify(aMessageData);
-    message.interests = dedupeInterests(interests);
-    message.type = "rules";
-    self.postMessage(message);
+    results.push({type: "rules", interests: dedupeInterests(interests)});
 
     let rulesWorked = interests.length > 0;
     if (rulesWorked) {
-      message.type = "combined";
-      self.postMessage(message);
+      results.push({type: "combined", interests: dedupeInterests(interests)});
     }
 
     interests = textClassify(aMessageData);
-    message.interests = dedupeInterests(interests);
-    message.type = "keywords";
-    self.postMessage(message);
-
+    results.push({type: "keywords", interests: dedupeInterests(interests)});
     if (!rulesWorked) {
-      message.type = "combined";
-      self.postMessage(message);
+      results.push({type: "combined", interests: dedupeInterests(interests)});
     }
-
+    message.results = results;
+    self.postMessage(message);
   }
   catch (ex) {
     Components.utils.reportError(ex);
   }
-}
-
-// Classify document via text only
-function getInterestsForDocumentText(aMessageData) {
-  let interests = textClassify(aMessageData);
-
-  // Respond with the interests for the document
-  self.postMessage({
-    host: aMessageData.host,
-    interests: interests,
-    message: "InterestsForDocumentText",
-    url: aMessageData.url
-  });
-}
-
-// Classify document via rules only
-function getInterestsForDocumentRules(aMessageData) {
-  let interests = ruleClassify(aMessageData);
-
-  // Respond with the interests for the document
-  self.postMessage({
-    host: aMessageData.host,
-    interests: interests,
-    message: "InterestsForDocumentRules",
-    url: aMessageData.url
-  });
 }
 
 // Dispatch the message to the appropriate function
