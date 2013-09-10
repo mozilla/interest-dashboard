@@ -31,7 +31,7 @@ function bootstrap(aMessageData) {
 
   gNamespace = aMessageData.workerNamespace;
 
-  swapRules(aMessageData, true);
+  swapRules(aMessageData);
 
   self.postMessage({
     message: "bootstrapComplete"
@@ -39,23 +39,16 @@ function bootstrap(aMessageData) {
 }
 
 // swap out rules
-function swapRules({interestsData, interestsDataType}, noPostMessage) {
+function swapRules({interestsData, interestsDataType}) {
   if (interestsDataType == "dfr") {
     gInterestsData = interestsData;
-  }
-
-  if(!noPostMessage) {
-    // only post message if value is true, i.e. it was intentionally passed
-    self.postMessage({
-      message: "swapRulesComplete"
-    });
   }
 }
 
 // classify a page using rules
 function ruleClassify({host, language, tld, metaData, path, title, url}) {
   if (gInterestsData == null) {
-    throw new InterestsWorkerError("interestData not loaded");
+    return [];
   }
   let interests = [];
   let hostKeys = (gInterestsData[host]) ? Object.keys(gInterestsData[host]).length : 0;
@@ -105,7 +98,7 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
 // classify a page using text
 function textClassify({url, title}) {
   if (gTokenizer == null || gClassifier == null) {
-    throw new InterestsWorkerError("interest classifier not loaded");
+    return [];
   }
 
   let tokens = gTokenizer.tokenize(url, title);
