@@ -3,11 +3,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-const {Cc, Ci, Cu, ChromeWorker} = require("chrome");
+const {Cc, Ci, Cu, ChromeWorker,components} = require("chrome");
 const {data} = require("self");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
 Cu.import("resource://gre/modules/NetUtil.jsm");
+Cu.import("resource://gre/modules/PlacesUtils.jsm");
 let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
 
 function MockWorkerListener() {};
@@ -83,4 +84,46 @@ exports.testUtils = {
     "InterestsForDocumentText": true,
     "InterestsForDocument": true
   },
+
+  promiseAddVisits: function (aPlaceInfo)
+  {
+    let deferred = Promise.defer();
+    let places = [];
+    if (aPlaceInfo instanceof Ci.nsIURI) {
+      places.push({ uri: aPlaceInfo });
+    }
+    else if (Array.isArray(aPlaceInfo)) {
+      places = places.concat(aPlaceInfo);
+    } else {
+      places.push(aPlaceInfo)
+    }
+
+    // Create mozIVisitInfo for each entry.
+    let now = Date.now();
+    for (let i = 0; i < places.length; i++) {
+      if (!places[i].title) {
+        places[i].title = "test visit for " + places[i].uri.spec;
+      }
+      places[i].visits = [{
+        transitionType: Ci.nsINavHistoryService.TRANSITION_LINK,
+        visitDate: places[i].visitDate || (now++) * 1000,
+        referrerURI: places[i].referrer
+      }];
+    }
+
+    PlacesUtils.asyncHistory.updatePlaces(
+      places,
+      {
+        handleError: function AAV_handleError(aResultCode, aPlaceInfo) {
+          deferred.reject("Unexpected error in adding visits.");
+        },
+        handleResult: function () {},
+        handleCompletion: function UP_handleCompletion() {
+          deferred.resolve();
+        }
+      }
+    );
+
+    return deferred.promise;
+  }
 };
