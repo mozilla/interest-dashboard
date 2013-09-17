@@ -34,19 +34,19 @@ let matchTests = [
   info: "Match Test 1 (Rules): mozilla.org",
   url:  "http://www.mozilla.org",
   title: "Hello World",
-  expectedInterests:  {computers: 1}
+  expectedInterests:  [{"type":"rules","interests":["computers"]},{"type":"combined","interests":["computers"]},{"type":"keywords","interests":[]}],
 },
 {
   info: "Match Test 2 (Rules): weather gov",
   url:  "http://nws.noaa.gov",
   title: "Hello World",
-  expectedInterests:  {government: 1, weather: 1, science: 1}
+  expectedInterests:  [{"type":"rules","interests":["government","weather","science"]},{"type":"combined","interests":["government","weather","science"]},{"type":"keywords","interests":[]}],
 },
 {
   info: "Match Test 3 (Rules): mail.google.com example",
   url:  "https://mail.google.com/mail/u/0/?ui=2&shva=1#inbox?compose=13e0005db4a0d0d4",
   title: "",
-  expectedInterests: {}
+  expectedInterests: [{"type":"rules","interests":[]},{"type":"keywords","interests":[]},{"type":"combined","interests":[]}],
 },
 ];
 
@@ -58,16 +58,10 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
     handleEvent: function(aEvent) {
       if (aEvent.type == "message") {
         let msgData = aEvent.data;
-        if (msgData.message == "InterestsForDocumentRules") {
+        if (msgData.message == "InterestsForDocument") {
           // make sure that categorization is correct 
           let host = msgData.host;
-          let interests = msgData.interests;
-          let interestCount = 0;
-          for (let interest of interests) {
-            assert.ok(expectedInterests[interest] == 1, "interest should exists: " + interest);
-            interestCount++;
-          } 
-          assert.equal(Object.keys(expectedInterests).length, interestCount, "interest number should match");
+          testUtils.isIdentical(assert, msgData.results, expectedInterests);
           deferred.resolve();
         }
         else if (!(msgData.message in testUtils.kValidMessages)) {
@@ -103,7 +97,7 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
 
       expectedInterests = test.expectedInterests;
       worker.postMessage({
-        message: "getInterestsForDocumentRules",
+        message: "getInterestsForDocument",
         host: host,
         path: path,
         title: title,

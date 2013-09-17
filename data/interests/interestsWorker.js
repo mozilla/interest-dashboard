@@ -112,16 +112,6 @@ function textClassify({url, title}) {
 
 // Figure out which interests are associated to the document
 function getInterestsForDocument(aMessageData) {
-  let message = {
-    host: aMessageData.host,
-    message: "InterestsForDocument",
-    url: aMessageData.url,
-    visitDate: aMessageData.visitDate,
-    visitCount: aMessageData.visitCount,
-    messageId: aMessageData.messageId,
-    namespace: gNamespace,
-  };
-
   function dedupeInterests(interests) {
     // remove duplicates
     if (interests.length > 1) {
@@ -135,6 +125,16 @@ function getInterestsForDocument(aMessageData) {
       interests = Object.keys(theHash);
     }
     return interests;
+  };
+
+  let message = {
+    host: aMessageData.host,
+    message: "InterestsForDocument",
+    url: aMessageData.url,
+    visitDate: aMessageData.visitDate,
+    visitCount: aMessageData.visitCount,
+    messageId: aMessageData.messageId,
+    namespace: gNamespace,
   };
 
   // we need to submit 3 messages

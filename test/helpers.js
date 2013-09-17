@@ -5,33 +5,18 @@
 
 const {Cc, Ci, Cu, ChromeWorker,components} = require("chrome");
 const {data} = require("self");
+const assert = require("test/assert");
+
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/PlacesUtils.jsm");
 let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
 
-function MockWorkerListener() {};
-
-MockWorkerListener.prototype = {
-  handleEvent: function(aEvent) {
-    let eventType = aEvent.type;
-    if (eventType == "message") {
-      let msgData = aEvent.data;
-      if (msgData.message == "InterestsForDocument") {
-        this._handleInterestsResults(msgData);
-      }
-    }
-    else if (eventType == "error") {
-      //TODO:handle error
-      Cu.reportError(aEvent.message);
-    }
-  },
-}
 
 exports.testUtils = {
-  do_check_eq : function do_check_eq(expected, actual) {
-    assert.deepEqual(expected, actual);
+  do_check_eq : function do_check_eq(assert, expected, actual) {
+    assert.equal(expected, actual);
   },
 
   itemsHave : function itemsHave(items, data) {
@@ -41,26 +26,22 @@ exports.testUtils = {
     return false;
   },
 
-  isIdentical : function isIdentical(expected, actual) {
+  isIdentical : function isIdentical(assert, expected, actual) {
     if (expected == null) {
-      this.do_check_eq(expected, actual);
+      this.do_check_eq(assert, expected, actual);
     }
     else if (typeof expected == "object") {
       // Make sure all the keys match up
-      this.do_check_eq(Object.keys(expected).sort() + "", Object.keys(actual).sort());
+      this.do_check_eq(assert, Object.keys(expected).sort() + "", Object.keys(actual).sort());
 
       // Recursively check each value individually
       Object.keys(expected).forEach(key => {
-        this.isIdentical(actual[key], expected[key]);
+        this.isIdentical(assert, actual[key], expected[key]);
       });
     }
     else {
-      this.do_check_eq(expected, actual);
+      this.do_check_eq(assert, expected, actual);
     }
-  },
-
-  getWorkerListener : function getWorkerListener() {
-    return MockWorkerListener();
   },
 
   getWorker : function getWorker({namespace, domainRules, textModel, urlStopWords, listener}) {

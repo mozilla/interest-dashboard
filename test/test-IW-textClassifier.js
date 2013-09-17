@@ -23,7 +23,7 @@ let defaultMatchTests = [
     info: "DefaultTextClassifier Test 1: polygon",
     url:  "http://www.polygon.com/2013/3/5/4066808/thief-screenshots-leak-next-gen",
     title: "Rumored images for new Thief game leak, reportedly in the works on next-gen platforms",
-    expectedInterests:  {"Video-Games": 1}
+    expectedInterests:  [{"type":"rules","interests":[]},{"type":"keywords","interests":["Video-Games"]},{"type":"combined","interests":["Video-Games"]}],
   }
 ];
 
@@ -35,16 +35,10 @@ exports["test edrules text"] = function test_edrules_text(assert, done) {
     handleEvent: function(aEvent) {
       if (aEvent.type == "message") {
         let msgData = aEvent.data;
-        if (msgData.message == "InterestsForDocumentText") {
+        if (msgData.message == "InterestsForDocument") {
           // make sure that categorization is correct
           let host = msgData.host;
-          let interests = msgData.interests;
-          let interestCount = 0;
-          for (let interest of interests) {
-            assert.ok(expectedInterests[interest] == 1, "interest should exists: " + interest);
-            interestCount ++;
-          }
-          assert.equal(Object.keys(expectedInterests).length, interestCount, "interest number should match");
+          testUtils.isIdentical(assert, msgData.results, expectedInterests);
           deferred.resolve();
         }
         else if (!(msgData.message in testUtils.kValidMessages)) {
@@ -53,7 +47,7 @@ exports["test edrules text"] = function test_edrules_text(assert, done) {
         }
       }
       else {
-        throw "ERROR_UNEXPECTED_MSG_TYPE" + aEvent.type;
+        throw "ERROR_UNEXPECTED_MSG_TYPE " + aEvent.type;
       }
     } // end of handleEvent
   };
@@ -80,7 +74,7 @@ exports["test edrules text"] = function test_edrules_text(assert, done) {
 
       expectedInterests = test.expectedInterests;
       worker.postMessage({
-        message: "getInterestsForDocumentText",
+        message: "getInterestsForDocument",
         host: host,
         path: path,
         title: title,
@@ -91,7 +85,6 @@ exports["test edrules text"] = function test_edrules_text(assert, done) {
     }
   }).then(done);
 }
-
 
 let riggedMatchTests = {
   interestsClassifierModel: {
@@ -116,31 +109,31 @@ let riggedMatchTests = {
     info: "RiggedTextClassifier Test 1: foo",
     url:  "http://example.com/testing/foo/qux",
     title: "biz baz quux",
-    expectedInterests:  {"foo": 1}
+    expectedInterests:  [{"type":"rules","interests":[]},{"type":"keywords","interests":["foo"]},{"type":"combined","interests":["foo"]}]
   },
   {
     info: "RiggedTextClassifier Test 2: bar",
     url:  "http://example.com/testing/bar/baz",
     title: "qux biz xyzzy",
-    expectedInterests:  {"bar": 1}
+    expectedInterests:  [{"type":"rules","interests":[]},{"type":"keywords","interests":["bar"]},{"type":"combined","interests":["bar"]}]
   },
   {
     info: "RiggedTextClassifier Test 3: both equally likely",
     url:  "http://example.com/testing/foo/qux",
     title: "bar baz",
-    expectedInterests:  {"foo": 1, "bar": 1}
+    expectedInterests:  [{"type":"rules","interests":[]},{"type":"keywords","interests":["bar","foo"]},{"type":"combined","interests":["bar","foo"]}]
   },
   {
     info: "RiggedTextClassifier Test 4: no tokens",
     url:  "http://example.com/testing/",
     title: "no significant keyword",
-    expectedInterests:  {}
+    expectedInterests: [{"type":"rules","interests":[]},{"type":"keywords","interests":[]},{"type":"combined","interests":[]}]
   },
   {
     info: "RiggedTextClassifier Test 5: not enough tokens",
     url:  "http://example.com/testing/foo/bar",
     title: "not enough tokens",
-    expectedInterests:  {}
+    expectedInterests:  [{"type":"rules","interests":[]},{"type":"keywords","interests":[]},{"type":"combined","interests":[]}]
   }
   ]
 }
@@ -153,16 +146,9 @@ exports["test text classifier"] = function test_text_classification(assert, done
     handleEvent: function(aEvent) {
       if (aEvent.type == "message") {
         let msgData = aEvent.data;
-        if (msgData.message == "InterestsForDocumentText") {
+        if (msgData.message == "InterestsForDocument") {
           // make sure that categorization is correct 
-          let host = msgData.host;
-          let interests = msgData.interests;
-          let interestCount = 0;
-          for (let interest of interests) {
-            assert.ok(expectedInterests[interest] == 1, "interest should exists: " + interest);
-            interestCount ++;
-          } 
-          assert.equal(Object.keys(expectedInterests).length, interestCount, "interest number should match");
+          testUtils.isIdentical(assert, msgData.results, expectedInterests);
           deferred.resolve();
         }
         else if (!(msgData.message in testUtils.kValidMessages)) {
@@ -198,7 +184,7 @@ exports["test text classifier"] = function test_text_classification(assert, done
 
       expectedInterests = test.expectedInterests;
       worker.postMessage({
-        message: "getInterestsForDocumentText",
+        message: "getInterestsForDocument",
         host: host,
         path: path,
         title: title,
