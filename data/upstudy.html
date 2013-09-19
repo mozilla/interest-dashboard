@@ -1,24 +1,48 @@
 <!doctype html>
-<html>
-<head>
-<title></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<style>
-</style>
-<script type="text/javascript;version=1.8">
-</script>
-</head>
-<body>
+<html ng-app="studyDebugMenu">
+    <head>
+        <meta charset="utf-8">
+        <title>UP Study Debug UI</title>
+    </head>
+    <body ng-cloak>
+        <div class="container">
+            <div class="navbar">
+                <span class="brand">UP Study Debug Menu</span>
+            </div>
+        </div>
 
-<h3> UP STUDY </h3>
+        <div class="container content" ng-controller="studyCtrl">
+            <div class="btn-group">
+                <button class="btn" ng-click="processHistory()">Process Full History</button>
+                <button class="btn" ng-disabled="dispatchBatchNotSendable" ng-click="dispatchRun()">Dispatch to server</button>
+            </div>
 
-<dev>
-<strong><button id="history_run">CLICK To RUN THE STUDY</button></strong>
-</div>
-<p id="time_warning" >The study is analyzing your history - this may take some time</p>
-<p id="history_done" >The study has completed your history analysis - data below will be sent to Mozilla servers</p>
-<per id="data_show">
-</per>
+            <div class="alerts">
+                <div ng-show="historyComputeInProgress" ng-hide="historyComputeComplete" class="alert alert-info">Ranking data is being computed</div>
 
-</body>
+                <div ng-show="dispatchInProgress" ng-hide="dispatchSuccess || dispatchError" class="alert alert-info">Ranking data is being computed</div>
+                <div ng-show="dispatchSuccess" ng-hide="dispatchInProgress || dispatchError" class="alert alert-success">Success sending {{dispatchSuccess}} day(s) of data</div>
+                <div ng-show="dispatchError" ng-hide="dispatchInProgress || dispatchSuccess" class="alert alert-danger">{{dispatchError}}</div>
+            </div>
+
+            <div class="rankingSection">
+                <h2>Computed Ranking</h2>
+                <div class="rankingData">
+                    <pre ng-show="rankingData">{{rankingData}}</pre>
+                    <p ng-hide="rankingData || historyComputeInProgress">Ranking data not available yet. Please run a study</p>
+                    <p ng-show="historyComputeInProgress" ng-hide="rankingData">processing...</p>
+                </div>
+            </div>
+
+            <div class="dispatchSection">
+                <h2>Data Dispatch Current Batch</h2>
+                <div class="dispatchData">
+                    <pre ng-show="dispatchBatch">{{dispatchBatch}}</pre>
+                    <p ng-hide="dispatchBatch || historyComputeInProgress">Ranking data not available yet. Please run a study</p>
+                    <p ng-show="historyComputeInProgress" ng-hide="dispatchBatch">processing...</p>
+                    <small ng-show="dispatchBatchNotSendable"><strong>Note:</strong> Data will not be dispatched because there is no data to be sent.</small>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

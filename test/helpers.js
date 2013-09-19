@@ -13,7 +13,6 @@ Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/PlacesUtils.jsm");
 let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
 
-
 exports.testUtils = {
   do_check_eq : function do_check_eq(assert, expected, actual) {
     assert.equal(expected, actual);

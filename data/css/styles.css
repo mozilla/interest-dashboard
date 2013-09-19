@@ -1,0 +1,5 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none;
+}
+.content { margin-top: 20px; }
+.alerts { height: 30px; margin-top: 10px; }
