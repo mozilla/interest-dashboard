@@ -15,10 +15,11 @@
             <div class="btn-group">
                 <button class="btn" ng-click="processHistory()">Process Full History</button>
                 <button class="btn" ng-disabled="dispatchBatchNotSendable" ng-click="dispatchRun()">Dispatch to server</button>
+                <button class="btn" ng-show="rankingData" ng-click="runSurvey()">Fill Survey</button>
             </div>
 
             <div class="alerts">
-                <div ng-show="historyComputeInProgress" ng-hide="historyComputeComplete" class="alert alert-info">Ranking data is being computed</div>
+                <div ng-show="historyComputeInProgress" ng-hide="historyComputeComplete" class="alert alert-info">Ranking data is being computed. This may take few minutes</div>
 
                 <div ng-show="dispatchInProgress" ng-hide="dispatchSuccess || dispatchError" class="alert alert-info">Ranking data is being computed</div>
                 <div ng-show="dispatchSuccess" ng-hide="dispatchInProgress || dispatchError" class="alert alert-success">Success sending {{dispatchSuccess}} day(s) of data</div>
