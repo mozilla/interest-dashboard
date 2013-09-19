@@ -29,6 +29,19 @@ exports.testUtils = {
     if (expected == null) {
       this.do_check_eq(assert, expected, actual);
     }
+    else if (Array.isArray(expected)) {
+      if (expected.length == actual.length) {
+        for (let i = 0; i < expected.length; i++) {
+          if (!this.isIdentical(assert,expected[i],actual[i])) {
+            return false;
+          }
+        }
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
     else if (typeof expected == "object") {
       // Make sure all the keys match up
       this.do_check_eq(assert, Object.keys(expected).sort() + "", Object.keys(actual).sort());
