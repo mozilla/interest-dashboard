@@ -5,5 +5,13 @@
   "id": "jid1-b6xdDZ3ld1nExQ",
   "license": "MPL 2.0",
   "name": "user-profile-research",
-  "version": "1"
+  "version": "1",
+  "preferences": [
+      {
+          "name": "server_url",
+          "title": "back end server url",
+          "type": "string",
+          "value": "http://localhost:8080/post"
+      }
+  ]
 }
