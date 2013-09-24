@@ -22,16 +22,48 @@ let studyDbgMenu = angular.module("studyDebugMenu", []);
 studyDbgMenu.service("dataService", DataService);
 
 studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
-  $scope.historyComputeInProgress = false;
-  $scope.historyComputeComplete = false;
-  $scope.rankingData = null;
-  $scope.dispatchBatch = null;
-  $scope.dispatchBatchNotSendable = true;
-  $scope.dispatchInProgress = false;
-  $scope.dispatchSuccess = null;
-  $scope.dispatchError = null;
+  /** controller helpers **/
+  $scope._setPrettified = function(value) {
+    let storedValue = sessionStorage.getItem("prettifiedOutput");
+    if (storedValue != value) {
+      sessionStorage.setItem("prettifiedOutput", value);
+    }
+    $scope.prettifiedOutput = value;
+  }
+
+  $scope._getPrettifiedFlag = function() {
+    let storedValue = sessionStorage.getItem("prettifiedOutput");
+    if (storedValue) {
+      return true;
+    }
+    return false;
+  }
+
+  $scope.prettifyText = function(json) {
+    return JSON.stringify(JSON.parse(json), null, "  ");
+  }
+
+  $scope.uglifyText = function(json) {
+    return JSON.stringify(JSON.parse(json));
+  }
+
+  $scope._initialize = function () {
+    $scope.historyComputeInProgress = false;
+    $scope.historyComputeComplete = false;
+    $scope.rankingData = null;
+    $scope.dispatchBatch = null;
+    $scope.dispatchBatchNotSendable = true;
+    $scope.dispatchInProgress = false;
+    $scope.dispatchSuccess = null;
+    $scope.dispatchError = null;
+    $scope._setPrettified($scope._getPrettifiedFlag());
+  }
+  $scope._initialize();
+
+  /** UI functionality **/
 
   $scope.processHistory = function() {
+    $scope._initialize();
     dataService.send("history_process");
     $scope.historyComputeInProgress = true;
     $scope.dispatchBatchNotSendable = true;
@@ -66,19 +98,59 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
   });
 
   $scope.$on("ranking_data", function(event, data) {
-    $scope.rankingData = data;
-    $scope.historyComputeComplete = true;
+    if (data != null) {
+      let textdata;
+      if ($scope.prettifiedOutput) {
+        textdata = JSON.stringify(data, null, "  ");
+      }
+      else {
+        textdata = JSON.stringify(data);
+      }
+      $scope.rankingData = textdata;
+      $scope.historyComputeComplete = true;
+    }
   });
 
   $scope.$on("dispatch_batch", function(event, data) {
-    $scope.historyComputeComplete = true;
-    $scope.rankingComputeInProgress = false;
-    $scope.dispatchBatch = data;
-    let payload = JSON.parse(data);
-    if (Object.keys(payload.interests).length > 0) {
-      $scope.dispatchBatchNotSendable = false;
+    if (data != null) {
+      let textdata;
+      if ($scope.prettifiedOutput) {
+        textdata = JSON.stringify(data, null, "  ");
+      }
+      else {
+        textdata = JSON.stringify(data);
+      }
+      $scope.historyComputeComplete = true;
+      $scope.rankingComputeInProgress = false;
+      $scope.dispatchBatch = textdata;
+      if (Object.keys(data.interests).length > 0) {
+        $scope.dispatchBatchNotSendable = false;
+      }
     }
   });
+
+  $scope.selectText = function(selector) {
+    let elem = document.querySelector(selector);
+    if (elem) {
+      let range = document.createRange();
+      let sel = window.getSelection();
+      range.selectNodeContents(elem);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+  }
+
+  $scope.togglePrettify = function() {
+    if ($scope.prettifiedOutput) {
+      $scope.rankingData = $scope.uglifyText($scope.rankingData);
+      $scope.dispatchBatch = $scope.uglifyText($scope.dispatchBatch);
+    }
+    else {
+      $scope.rankingData = $scope.prettifyText($scope.rankingData);
+      $scope.dispatchBatch = $scope.prettifyText($scope.dispatchBatch);
+    }
+    $scope._setPrettified(!$scope.prettifiedOutput);
+  }
 });
 
 angular.bootstrap(document, ['studyDebugMenu']);

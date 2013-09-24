@@ -16,6 +16,9 @@
                 <button class="btn" ng-click="processHistory()">Process Full History</button>
                 <button class="btn" ng-disabled="dispatchBatchNotSendable" ng-click="dispatchRun()">Dispatch to server</button>
                 <button class="btn" ng-show="rankingData" ng-click="runSurvey()">Fill Survey</button>
+                <button class="btn" ng-show="(rankingData || dispatchBatch)" ng-click="togglePrettify()">
+                    {{ prettifiedOutput && "Uglify" || "Prettify" }} Output
+                </button>
             </div>
 
             <div class="alerts">
@@ -27,7 +30,12 @@
             </div>
 
             <div class="rankingSection">
-                <h2>Computed Ranking</h2>
+                <h2>
+                    Computed Ranking
+                    <div class="btn-group" ng-show="rankingData">
+                        <button class="btn btn-link" ng-click="selectText('.rankingData pre')">select</button>
+                    </div>
+                </h2>
                 <div class="rankingData">
                     <pre ng-show="rankingData">{{rankingData}}</pre>
                     <p ng-hide="rankingData || historyComputeInProgress">Ranking data not available yet. Please run a study</p>
@@ -36,7 +44,12 @@
             </div>
 
             <div class="dispatchSection">
-                <h2>Data Dispatch Current Batch</h2>
+                <h2>
+                    Data Dispatch Current Batch
+                    <div class="btn-group" ng-show="dispatchBatch">
+                        <button class="btn btn-link" ng-click="selectText('.dispatchData pre')">select</button>
+                    </div>
+                </h2>
                 <div class="dispatchData">
                     <pre ng-show="dispatchBatch">{{dispatchBatch}}</pre>
                     <p ng-hide="dispatchBatch || historyComputeInProgress">Ranking data not available yet. Please run a study</p>
