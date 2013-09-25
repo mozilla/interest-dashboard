@@ -13,7 +13,7 @@
 
         <div class="container content" ng-controller="studyCtrl">
             <div class="btn-group">
-                <button class="btn" ng-click="processHistory()">Analyse Full History</button>
+                <button class="btn" ng-disabled='historyComputeInProgress' ng-click="processHistory()">Analyse Full History</button>
                 <button class="btn" ng-disabled="dispatchBatchNotSendable" ng-click="dispatchRun()">Dispatch to server</button>
                 <button class="btn" ng-disabled="!rankingData" ng-click="runSurvey()">Fill Survey</button>
                 <button class="btn" ng-show="(rankingData || dispatchBatch)" ng-click="togglePrettify()">
