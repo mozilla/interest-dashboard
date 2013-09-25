@@ -13,9 +13,9 @@
 
         <div class="container content" ng-controller="studyCtrl">
             <div class="btn-group">
-                <button class="btn" ng-click="processHistory()">Process Full History</button>
+                <button class="btn" ng-click="processHistory()">Analyse Full History</button>
                 <button class="btn" ng-disabled="dispatchBatchNotSendable" ng-click="dispatchRun()">Dispatch to server</button>
-                <button class="btn" ng-show="rankingData" ng-click="runSurvey()">Fill Survey</button>
+                <button class="btn" ng-disabled="!rankingData" ng-click="runSurvey()">Fill Survey</button>
                 <button class="btn" ng-show="(rankingData || dispatchBatch)" ng-click="togglePrettify()">
                     {{ prettifiedOutput && "Uglify" || "Prettify" }} Output
                 </button>
@@ -23,6 +23,7 @@
 
             <div class="alerts">
                 <div ng-show="historyComputeInProgress" ng-hide="historyComputeComplete" class="alert alert-info">Ranking data is being computed. This may take few minutes</div>
+                <div ng-show="historyComputeComplete && !rankingData" class="alert alert-info">{{emptyMessage}}</div>
 
                 <div ng-show="dispatchInProgress" ng-hide="dispatchSuccess || dispatchError" class="alert alert-info">Ranking data is being computed</div>
                 <div ng-show="dispatchSuccess" ng-hide="dispatchInProgress || dispatchError" class="alert alert-success">Success sending {{dispatchSuccess}} day(s) of data</div>
@@ -31,28 +32,28 @@
 
             <div class="rankingSection">
                 <h2>
-                    Computed Ranking
+                    Computed Interests Ranking
                     <div class="btn-group" ng-show="rankingData">
-                        <button class="btn btn-link" ng-click="selectText('.rankingData pre')">select</button>
+                        <button class="btn btn-link" ng-show="rankingData" ng-click="selectText('.rankingData pre')">select</button>
                     </div>
                 </h2>
                 <div class="rankingData">
                     <pre ng-show="rankingData">{{rankingData}}</pre>
-                    <p ng-hide="rankingData || historyComputeInProgress">Ranking data not available yet. Please run a study</p>
-                    <p ng-show="historyComputeInProgress" ng-hide="rankingData">processing...</p>
+                    <p ng-hide="rankingData || historyComputeInProgress">Ranking data is not available.</p>
+                    <p ng-show="historyComputeInProgress" ng-hide="rankingData">processing <span>{{daysLeft}}</span> day of your history</p>
                 </div>
             </div>
 
             <div class="dispatchSection">
                 <h2>
-                    Data Dispatch Current Batch
+                    Interests Data Dispatch - Current Batch
                     <div class="btn-group" ng-show="dispatchBatch">
                         <button class="btn btn-link" ng-click="selectText('.dispatchData pre')">select</button>
                     </div>
                 </h2>
                 <div class="dispatchData">
                     <pre ng-show="dispatchBatch">{{dispatchBatch}}</pre>
-                    <p ng-hide="dispatchBatch || historyComputeInProgress">Ranking data not available yet. Please run a study</p>
+                    <p ng-hide="dispatchBatch || historyComputeInProgress">Dispatch data is not available.</p>
                     <p ng-show="historyComputeInProgress" ng-hide="dispatchBatch">processing...</p>
                     <small ng-show="dispatchBatchNotSendable"><strong>Note:</strong> Data will not be dispatched because there is no data to be sent.</small>
                 </div>

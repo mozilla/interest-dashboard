@@ -50,12 +50,15 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
   $scope._initialize = function () {
     $scope.historyComputeInProgress = false;
     $scope.historyComputeComplete = false;
+    $scope.emptyMessage = "Your History was not analysed, please run the Full History Analysis.";
     $scope.rankingData = null;
+    $scope.hasHistoryData = false;
     $scope.dispatchBatch = null;
     $scope.dispatchBatchNotSendable = true;
     $scope.dispatchInProgress = false;
     $scope.dispatchSuccess = null;
     $scope.dispatchError = null;
+    $scope.daysLeft = null;
     $scope._setPrettified($scope._getPrettifiedFlag());
   }
   $scope._initialize();
@@ -97,6 +100,10 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
     $scope.dispatchInProgress = false;
   });
 
+  $scope.$on("days_left", function(event, data) {
+    $scope.daysLeft = data;
+  });
+
   $scope.$on("ranking_data", function(event, data) {
     if (data != null) {
       let textdata;
@@ -107,8 +114,12 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
         textdata = JSON.stringify(data);
       }
       $scope.rankingData = textdata;
-      $scope.historyComputeComplete = true;
     }
+    else {
+      $scope.emptyMessage = "Unable to detect interests in your history. Please run the History Analysis after few days of browsing.";
+    }
+    $scope.historyComputeComplete = true;
+    $scope.historyComputeInProgress = false;
   });
 
   $scope.$on("dispatch_batch", function(event, data) {
