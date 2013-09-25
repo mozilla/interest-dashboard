@@ -23,7 +23,6 @@ const MICROS_PER_DAY = 86400000000;
 exports["test contoller"] = function test_Controller(assert, done) {
   Task.spawn(function() {
     let microNow = Date.now() * 1000;
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 4*MICROS_PER_DAY});
@@ -42,6 +41,7 @@ exports["test contoller"] = function test_Controller(assert, done) {
     testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2)]);
 
     // add one more visit, reset storage and send idle-daily event
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 1*MICROS_PER_DAY});
     storage.historyCurrentStartDay = today - 1;
 
@@ -52,11 +52,11 @@ exports["test contoller"] = function test_Controller(assert, done) {
           throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
         }
         // we should see the 4 days now
-        testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4});
+        testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":5});
         // and we must see one extra day in the keys
         payload = testController.getNextDispatchBatch();
         days = Object.keys(payload.interests);
-        testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + (today-1)]);
+        testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + (today-1), "" + today]);
         done();
       },
     };
