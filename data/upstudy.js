@@ -33,7 +33,7 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
 
   $scope._getPrettifiedFlag = function() {
     let storedValue = sessionStorage.getItem("prettifiedOutput");
-    if (storedValue) {
+    if (storedValue == "true") {
       return true;
     }
     return false;
