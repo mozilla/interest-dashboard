@@ -35,7 +35,7 @@ exports["test contoller"] = function test_Controller(assert, done) {
     // we should only see 3 urls being processed, hten Autos should nly contain 3 days
     testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":3});
 
-    let payload = JSON.parse(testController.getNextDispatchBatch());
+    let payload = testController.getNextDispatchBatch();
     let days = Object.keys(payload.interests);
     // make sure that the history data is keyed on 4,5, and 6 th day
     let today = DateUtils.today();
@@ -45,6 +45,7 @@ exports["test contoller"] = function test_Controller(assert, done) {
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 1*MICROS_PER_DAY});
     storage.historyCurrentStartDay = today - 1;
 
+
     let observer = {
       observe: function(aSubject, aTopic, aData) {
         if  (aTopic != "controller-history-submission-complete") {
@@ -53,7 +54,7 @@ exports["test contoller"] = function test_Controller(assert, done) {
         // we should see the 4 days now
         testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4});
         // and we must see one extra day in the keys
-        payload = JSON.parse(testController.getNextDispatchBatch());
+        payload = testController.getNextDispatchBatch();
         days = Object.keys(payload.interests);
         testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + (today-1)]);
         done();
