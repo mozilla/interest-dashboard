@@ -23,28 +23,18 @@ studyDbgMenu.service("dataService", DataService);
 
 studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
   /** controller helpers **/
-  $scope._setPrettified = function(value) {
-    let storedValue = sessionStorage.getItem("prettifiedOutput");
-    if (storedValue != value) {
-      sessionStorage.setItem("prettifiedOutput", value);
-    }
-    $scope.prettifiedOutput = value;
-  }
-
-  $scope._getPrettifiedFlag = function() {
-    let storedValue = sessionStorage.getItem("prettifiedOutput");
-    if (storedValue == "true") {
-      return true;
-    }
-    return false;
-  }
-
   $scope.prettifyText = function(json) {
-    return JSON.stringify(JSON.parse(json), null, "  ");
+    if (json) {
+      return JSON.stringify(JSON.parse(json), null, "  ");
+    }
+    return json;
   }
 
   $scope.uglifyText = function(json) {
-    return JSON.stringify(JSON.parse(json));
+    if (json) {
+      return JSON.stringify(JSON.parse(json));
+    }
+    return json;
   }
 
   $scope._initialize = function () {
@@ -59,7 +49,7 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
     $scope.dispatchSuccess = null;
     $scope.dispatchError = null;
     $scope.daysLeft = null;
-    $scope._setPrettified($scope._getPrettifiedFlag());
+    $scope.prettifiedOutput = false;
   }
   $scope._initialize();
 
@@ -160,7 +150,7 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
       $scope.rankingData = $scope.prettifyText($scope.rankingData);
       $scope.dispatchBatch = $scope.prettifyText($scope.dispatchBatch);
     }
-    $scope._setPrettified(!$scope.prettifiedOutput);
+    $scope.prettifiedOutput = !$scope.prettifiedOutput;
   }
 });
 
