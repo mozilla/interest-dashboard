@@ -49,6 +49,7 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
     $scope.dispatchSuccess = null;
     $scope.dispatchError = null;
     $scope.daysLeft = null;
+    $scope.daysLeftStart = null;
     $scope.prettifiedOutput = false;
   }
   $scope._initialize();
@@ -91,7 +92,11 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
   });
 
   $scope.$on("days_left", function(event, data) {
+    if (!$scope.daysLeftStart) {
+      $scope.daysLeftStart = data;
+    }
     $scope.daysLeft = data;
+    $scope.updateProgressBar();
   });
 
   $scope.$on("ranking_data", function(event, data) {
@@ -151,6 +156,11 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
       $scope.dispatchBatch = $scope.prettifyText($scope.dispatchBatch);
     }
     $scope.prettifiedOutput = !$scope.prettifiedOutput;
+  }
+
+  $scope.updateProgressBar = function() {
+    let elem = document.querySelector("#progressBar");
+    elem.style.width = (100 - Math.round($scope.daysLeft/$scope.daysLeftStart*100)) + "%";
   }
 });
 
