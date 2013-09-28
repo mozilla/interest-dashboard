@@ -13,15 +13,15 @@ Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
 const {Controller} = require("Controller");
-const {DateUtils} = require("DateUtils");
+const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
 const {storage} = require("sdk/simple-storage");
 const test = require("sdk/test");
 
-const MICROS_PER_DAY = 86400000000;
-
 exports["test contoller"] = function test_Controller(assert, done) {
   Task.spawn(function() {
+    yield testUtils.promiseClearHistory();
+
     let microNow = Date.now() * 1000;
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
@@ -30,16 +30,17 @@ exports["test contoller"] = function test_Controller(assert, done) {
 
 
     let testController = new Controller();
+    testController.clear();
     yield testController.submitHistory(6);
 
     // we should only see 3 urls being processed, hten Autos should nly contain 3 days
-    testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4});
+    testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "4 Autos");
 
     let payload = testController.getNextDispatchBatch();
     let days = Object.keys(payload.interests);
     // make sure that the history data is keyed on 4,5, and 6 th day
     let today = DateUtils.today();
-    testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today]);
+    testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today], "4 days upto today");
 
     // add one more visits for today and make sure we pick them up
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.thehill.com/"), visitDate: microNow });
@@ -51,11 +52,11 @@ exports["test contoller"] = function test_Controller(assert, done) {
           throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
         }
         // we should see the 3 intersts now
-        testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4,"Politics":1,"Sports":1});
-        // and we must see one extra day in the keys
+        testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4,"Politics":1,"Sports":1}, "should see 3 intresests");
+        // and we must see 4 day in the keys
         payload = testController.getNextDispatchBatch();
         days = Object.keys(payload.interests);
-        testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today]);
+        testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today],"still 4 days");
         done();
       },
     };

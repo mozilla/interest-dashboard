@@ -11,11 +11,16 @@ Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/PlacesUtils.jsm");
+Cu.import("resource://gre/modules/Task.jsm");
+
+const {MICROS_PER_DAY} = require("DateUtils");
+
 let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
 
+
 exports.testUtils = {
-  do_check_eq : function do_check_eq(assert, expected, actual) {
-    assert.equal(expected, actual);
+  do_check_eq : function do_check_eq(assert, expected, actual, text) {
+    assert.equal(expected, actual, text);
   },
 
   itemsHave : function itemsHave(items, data) {
@@ -25,14 +30,14 @@ exports.testUtils = {
     return false;
   },
 
-  isIdentical : function isIdentical(assert, expected, actual) {
+  isIdentical : function isIdentical(assert, expected, actual, text) {
     if (expected == null) {
-      this.do_check_eq(assert, expected, actual);
+      this.do_check_eq(assert, expected, actual, text);
     }
     else if (Array.isArray(expected)) {
       if (expected.length == actual.length) {
         for (let i = 0; i < expected.length; i++) {
-          if (!this.isIdentical(assert,expected[i],actual[i])) {
+          if (!this.isIdentical(assert,expected[i],actual[i],text)) {
             return false;
           }
         }
@@ -44,15 +49,15 @@ exports.testUtils = {
     }
     else if (typeof expected == "object") {
       // Make sure all the keys match up
-      this.do_check_eq(assert, Object.keys(expected).sort() + "", Object.keys(actual).sort());
+      this.do_check_eq(assert, Object.keys(expected).sort() + "", Object.keys(actual).sort(), text);
 
       // Recursively check each value individually
       Object.keys(expected).forEach(key => {
-        this.isIdentical(assert, actual[key], expected[key]);
+        this.isIdentical(assert, actual[key], expected[key], text);
       });
     }
     else {
-      this.do_check_eq(assert, expected, actual);
+      this.do_check_eq(assert, expected, actual, text);
     }
   },
 
@@ -118,5 +123,32 @@ exports.testUtils = {
     );
 
     return deferred.promise;
-  }
+  },
+
+  addVisits: function(host, daysBack) {
+    let microNow = Date.now() * 1000;
+    let promises = [];
+    for( let i = 0; i < daysBack; i++) {
+      promises.push(this.promiseAddVisits({uri: NetUtil.newURI("http://"+host), visitDate: microNow - i*MICROS_PER_DAY}));
+    }
+    return Promise.promised(Array)(promises).then();
+  },
+
+  promiseTopicObserved: function(aTopic) {
+    let deferred = Promise.defer();
+    Services.obs.addObserver(
+      function PTO_observe(aSubject, aTopic, aData) {
+        Services.obs.removeObserver(PTO_observe, aTopic);
+        deferred.resolve([aSubject, aData]);
+      }, aTopic, false);
+
+    return deferred.promise;
+  },
+
+  promiseClearHistory: function() {
+    let promise = this.promiseTopicObserved(PlacesUtils.TOPIC_EXPIRATION_FINISHED);
+    Task.spawn(function () {PlacesUtils.bhistory.removeAllPages();});
+    return promise;
+  },
+
 };
