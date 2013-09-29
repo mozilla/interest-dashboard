@@ -57,6 +57,7 @@ exports["test contoller"] = function test_Controller(assert, done) {
         payload = testController.getNextDispatchBatch();
         days = Object.keys(payload.interests);
         testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today],"still 4 days");
+        Services.obs.removeObserver(observer, "controller-history-submission-complete");
         done();
       },
     };
