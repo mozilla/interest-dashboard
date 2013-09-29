@@ -41,8 +41,11 @@ exports["test ranking"] = function test_Controller(assert, done) {
     let sranked = testController.getRankedInterestsForSurvey();
     testUtils.isIdentical(assert, sranked[0] , {"interest":"Autos","score":4}, "first is Autos");
     // make sure the rest of scores is zero
+    let duplicateCatcher = {};
     for( let i = 1; i < 10; i++) {
       assert.ok(sranked[i].score == 0,"Score is 0");
+      assert.ok(duplicateCatcher[sranked[i].interest] == null, "no dups");
+      duplicateCatcher[sranked[i].interest] = 1;
     }
 
     let newranks = testController.getRankedInterestsForSurvey();
@@ -50,7 +53,10 @@ exports["test ranking"] = function test_Controller(assert, done) {
 
     // make sure that interetsts are different
     let diffCount = 0;
+    duplicateCatcher = {};
     for( let i = 1; i < 10; i++) {
+      assert.ok(duplicateCatcher[newranks[i].interest] == null, "no dups");
+      duplicateCatcher[newranks[i].interest] = 1;
       if (sranked[i].interest != newranks[i].interest) {
         diffCount ++;
       }
