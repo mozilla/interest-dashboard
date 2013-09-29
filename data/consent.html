@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="consentMenu">
+    <head>
+        <meta charset="utf-8">
+        <title>UP Sturdy Consent</title>
+    </head>
+    <body ng-cloak>
+        <div class="container">
+            <div class="navbar">
+                <span class="brand">UP Study Consent</span>
+            </div>
+        </div>
+
+        <div class="container content" ng-controller="consentCtrl">
+          <p>Firefox is conducting a study of personalized content on the Web, and as a Test Pilot user, we’d really appreciate your help in completing this quick study.
+
+          <p>The Study:
+          <p>Mozilla is researching the potential for Firefox to help users experience a more personalized Web.
+
+          <p>Part 1: Topic Matching (automatically completed in background)
+          <p>Part 2: User Survey (14 questions, 3 minutes to complete)
+
+          <p>How it works:
+          <p>Firefox will choose a set of interest topics that best match the websites in your browsing history. You will then be asked to answer some questions about those topics and your browsing preferences.
+
+          <p>After completion or 2 months (whichever comes first), the study add-on will remove itself.
+
+
+          <p>What data will be collected:
+          <p>Your survey responses
+          <p>The interest topics and match strengths
+
+          <p>No specific websites or browsing history will be sent, and no personally identifying information is collected or sent to Mozilla.
+
+          <p>Please review our Study Privacy Policy here.
+
+          <div class="btn-group">
+             <button class="btn" ng-click="rejectStudy()">No, I don’t want to participate</button>
+             <button class="btn" ng-click="acceptStudy()">Yes, I’m willing to participate`</button>
+          </div>
+        </div>
+    </body>
+</html>
