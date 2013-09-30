@@ -19,7 +19,7 @@ const {storage} = require("sdk/simple-storage");
 const test = require("sdk/test");
 
 
-exports["test ranking"] = function test_Controller(assert, done) {
+exports["test ranking"] = function test_Ranking(assert, done) {
   Task.spawn(function() {
    try {
     yield testUtils.promiseClearHistory();
