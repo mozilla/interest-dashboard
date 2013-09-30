@@ -5,7 +5,6 @@
 
 const {Cc, Ci, Cu, ChromeWorker,components} = require("chrome");
 const {data} = require("self");
-const assert = require("test/assert");
 
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
@@ -16,7 +15,6 @@ Cu.import("resource://gre/modules/Task.jsm");
 const {MICROS_PER_DAY} = require("DateUtils");
 
 let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
-
 
 exports.testUtils = {
   do_check_eq : function do_check_eq(assert, expected, actual, text) {
