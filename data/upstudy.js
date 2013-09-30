@@ -67,6 +67,10 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
     dataService.send("survey_run");
   }
 
+  $scope.showConsent = function() {
+    dataService.send("show_consent");
+  }
+
   $scope.dispatchRun = function() {
     dataService.send("dispatch_run");
     $scope.dispatchBatchNotSendable = true;
