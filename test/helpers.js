@@ -17,8 +17,8 @@ const {MICROS_PER_DAY} = require("DateUtils");
 let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
 
 exports.testUtils = {
-  do_check_eq : function do_check_eq(assert, expected, actual, text) {
-    assert.equal(expected, actual, text);
+  do_check_eq : function do_check_eq(assert, actual, expected, text) {
+    assert.equal(actual, expected, text);
   },
 
   itemsHave : function itemsHave(items, data) {
@@ -28,9 +28,9 @@ exports.testUtils = {
     return false;
   },
 
-  isIdentical : function isIdentical(assert, expected, actual, text) {
+  isIdentical : function isIdentical(assert, actual, expected, text) {
     if (expected == null) {
-      this.do_check_eq(assert, expected, actual, text);
+      this.do_check_eq(assert, actual, expected, text);
     }
     else if (Array.isArray(expected)) {
       if (expected.length == actual.length) {
@@ -55,7 +55,7 @@ exports.testUtils = {
       });
     }
     else {
-      this.do_check_eq(assert, expected, actual, text);
+      this.do_check_eq(assert, actual, expected, text);
     }
   },
 
