@@ -1,0 +1,190 @@
+/* -*- Mode: Java; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim:set ts=2 sw=2 sts=2 et: */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+"use strict";
+
+const {Cc, Ci, Cu} = require("chrome");
+Cu.import("resource://gre/modules/Task.jsm");
+Cu.import("resource://gre/modules/Services.jsm");
+Cu.import("resource://gre/modules/XPCOMUtils.jsm");
+Cu.import("resource://gre/modules/NetUtil.jsm");
+Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
+XPCOMUtils.defineLazyServiceGetter(this, "uuid",
+                                   "@mozilla.org/uuid-generator;1",
+                                   "nsIUUIDGenerator");
+
+const {storage} = require("sdk/simple-storage");
+const {nsHttpServer, startServerAsync} = require("sdk/test/httpd");
+const simplePrefs = require("simple-prefs")
+const test = require("sdk/test");
+simplePrefs.prefs.dispatchIdleDelay = 1;
+
+const {Dispatcher} = require("Dispatcher");
+const {testUtils} = require("./helpers");
+const sampleData = require("./sampleData");
+
+
+// create uuid, which is assumed to be created in the Controller
+storage.uuid = uuid.generateUUID().toString().slice(1, -1).replace(/-/g, "");
+
+exports["test init"] = function test_init(assert) {
+  let dispatcher = new Dispatcher("http://example.com");
+
+  testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't initialized");
+}
+
+exports["test consume"] = function test_consume(assert) {
+  let dispatcher = new Dispatcher("http://example.com");
+
+  dispatcher.consume(sampleData.dayAnnotatedOne);
+  testUtils.isIdentical(assert, storage.interests, sampleData.dayAnnotatedOne, "unexpected interest data in storage");
+  dispatcher.consume(sampleData.dayAnnotatedTwo);
+  testUtils.isIdentical(assert, Object.keys(storage.interests).length, 2, "new data isn't consumed");
+
+  dispatcher.clear();
+  testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't cleared");
+}
+
+exports["test _makePayload"] = function test__makePayload(assert) {
+  let dispatcher = new Dispatcher("http://example.com");
+
+  dispatcher.consume(sampleData.dayAnnotatedOne);
+  dispatcher.consume(sampleData.dayAnnotatedTwo);
+
+  let payload = null;
+
+  // size limit is big enough to include both days
+  payload = dispatcher._makePayload(1024*256);
+  testUtils.isIdentical(assert, payload, {uuid: storage.uuid, interests: storage.interests}, "unexpected payload data");
+
+  // size limit is big enough to only include one day. earlier day will be picked due to sorting
+  payload = dispatcher._makePayload(0);
+  testUtils.isIdentical(assert, payload, {uuid: storage.uuid, interests: sampleData.dayAnnotatedOne}, "unexpected payload data");
+
+  dispatcher.clear();
+  testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't cleared");
+}
+
+exports["test _deletedays"] = function test__DeleteDays(assert) {
+  let dispatcher = new Dispatcher("http://example.com");
+
+  dispatcher.consume(sampleData.dayAnnotatedOne);
+  dispatcher.consume(sampleData.dayAnnotatedTwo);
+
+  let days = Object.keys(storage.interests);
+
+  testUtils.isIdentical(assert, Object.keys(storage.interests).length, 2);
+  dispatcher._deleteDays([days[0]]);
+  testUtils.isIdentical(assert, Object.keys(storage.interests).length, 1);
+  dispatcher._deleteDays([days[0]]);
+  testUtils.isIdentical(assert, Object.keys(storage.interests).length, 1);
+  dispatcher._deleteDays([days[1]]);
+  testUtils.isIdentical(assert, Object.keys(storage.interests).length, 0);
+}
+
+exports["test _dispatch"] = function test__Dispatch(assert, done) {
+  Task.spawn(function() {
+    let server = new nsHttpServer();
+    server.start(-1);
+    let serverPort = server.identity.primaryPort
+    let serverUrl = "http://localhost:" + serverPort + "/post";
+
+    let dispatcher = new Dispatcher(serverUrl);
+    dispatcher.consume(sampleData.dayAnnotatedOne);
+    dispatcher.consume(sampleData.dayAnnotatedTwo);
+    let payload = dispatcher._makePayload(1024*256);
+
+    let responseDeferred = Promise.defer();
+
+    let testPayload = (request, response) => {
+      let bodySize = request._bodyInputStream.available();
+      let body = NetUtil.readInputStreamToString(request._bodyInputStream, bodySize, {charset: "UTF-8"});
+      assert.ok(body);
+
+      let deserialized = JSON.parse(body);
+      testUtils.isIdentical(assert, payload, {uuid: storage.uuid, interests: storage.interests}, "unexpected payload data");
+
+      response.setHeader("Content-Type", "text/plain", false);
+      response.setStatusLine(request.httpVersion, 200, "OK");
+      responseDeferred.resolve();
+    }
+
+    // test registration
+    server.registerPathHandler("/post", (request, response) => {
+      testPayload(request, response);
+    });
+
+    yield dispatcher._dispatch(serverUrl, payload);
+    yield responseDeferred;
+
+    server.stop(function(){});
+    dispatcher.clear();
+    testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't cleared");
+  }).then(done);
+}
+
+exports["test _sendPing"] = function test__sendPing(assert, done) {
+  Task.spawn(function() {
+    let server = new nsHttpServer();
+    server.start(-1);
+    let serverPort = server.identity.primaryPort
+    let serverUrl = "http://localhost:" + serverPort + "/post";
+
+    let dispatcher = new Dispatcher(serverUrl);
+    dispatcher.consume(sampleData.dayAnnotatedOne);
+    dispatcher.consume(sampleData.dayAnnotatedTwo);
+    let payload = dispatcher._makePayload(1024*256);
+
+    let responseDeferred = Promise.defer();
+
+    let testPayload = (request, response) => {
+      let bodySize = request._bodyInputStream.available();
+      let body = NetUtil.readInputStreamToString(request._bodyInputStream, bodySize, {charset: "UTF-8"});
+      assert.ok(body);
+
+      let deserialized = JSON.parse(body);
+      testUtils.isIdentical(assert, payload, {uuid: storage.uuid, interests: storage.interests}, "unexpected payload data");
+
+      response.setHeader("Content-Type", "text/plain", false);
+      response.setStatusLine(request.httpVersion, 200, "OK");
+      responseDeferred.resolve();
+    }
+
+    // test registration
+    server.registerPathHandler("/post", (request, response) => {
+      testPayload(request, response);
+    });
+    let daysInStorage = Object.keys(storage.interests);
+
+    // observe notification
+    let transmitNotifDeferred = Promise.defer();
+    let observeTransmission =  {
+      observe: (aSubject, aTopic, aData) => {
+        if  (aTopic != "dispatcher-payload-transmission-complete") {
+          throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
+        }
+        testUtils.isIdentical(assert, aData, daysInStorage);
+        transmitNotifDeferred.resolve();
+      },
+    }
+    Services.obs.addObserver(observeTransmission, "dispatcher-payload-transmission-complete", false);
+
+    // launch work
+    Services.obs.notifyObservers(null, "idle-daily", null);
+
+    // server should have responded
+    yield responseDeferred;
+
+    // notification should be sent
+    yield transmitNotifDeferred.promise.then(_ => {
+      Services.obs.removeObserver(observeTransmission, "dispatcher-payload-transmission-complete");
+    });
+
+    testUtils.isIdentical(assert, {}, storage.interests, "storage should have been cleared");
+    server.stop(function(){});
+  }).then(done);
+}
+
+test.run(exports);
