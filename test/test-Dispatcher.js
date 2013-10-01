@@ -29,6 +29,21 @@ const sampleData = require("./sampleData");
 // create uuid, which is assumed to be created in the Controller
 storage.uuid = uuid.generateUUID().toString().slice(1, -1).replace(/-/g, "");
 
+const notifTopics = ["dispatcher-payload-transmission-complete", "idle-daily", "idle"];
+function removeObservers() {
+  try {
+    for (let topic of notifTopics) {
+      let observers = Services.obs.enumerateObservers(topic);
+      while(observers.hasMoreElements()) {
+        let obs = observers.getNext();
+        Services.obs.removeObserver(obs, topic);
+      }
+    }
+  } catch(e) {
+    dump("error: " + e + "\n");
+  }
+}
+
 exports["test init"] = function test_init(assert) {
   let dispatcher = new Dispatcher("http://example.com");
 
@@ -117,11 +132,14 @@ exports["test _dispatch"] = function test__Dispatch(assert, done) {
     });
 
     yield dispatcher._dispatch(serverUrl, payload);
-    yield responseDeferred;
+    yield responseDeferred.promise;
 
+    removeObservers();
     server.stop(function(){});
     dispatcher.clear();
     testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't cleared");
+  }).then(_ => {
+    removeObservers();
   }).then(done);
 }
 
@@ -165,7 +183,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
         if  (aTopic != "dispatcher-payload-transmission-complete") {
           throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
         }
-        testUtils.isIdentical(assert, aData, daysInStorage);
+        testUtils.isIdentical(assert, aData, daysInStorage, "transmission contains unexpected items");
         transmitNotifDeferred.resolve();
       },
     }
@@ -175,15 +193,15 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
     Services.obs.notifyObservers(null, "idle-daily", null);
 
     // server should have responded
-    yield responseDeferred;
+    yield responseDeferred.promise;
 
     // notification should be sent
-    yield transmitNotifDeferred.promise.then(_ => {
-      Services.obs.removeObserver(observeTransmission, "dispatcher-payload-transmission-complete");
-    });
+    yield transmitNotifDeferred.promise;
 
     testUtils.isIdentical(assert, {}, storage.interests, "storage should have been cleared");
     server.stop(function(){});
+  }).then(_ => {
+    removeObservers();
   }).then(done);
 }
 
