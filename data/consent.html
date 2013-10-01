@@ -2,16 +2,12 @@
 <html ng-app="consentMenu">
     <head>
         <meta charset="utf-8">
-        <title>Mozilla Personalization Study Consent Form</title>
+        <title>Mozilla Study Consent Form</title>
     </head>
     <body ng-cloak>
-        <div class="container">
-            <div class="navbar">
-                <span class="brand">Mozilla Personalization Study Consent</span>
-            </div>
-        </div>
-
         <div class="container content" ng-controller="consentCtrl">
+            <h1>Mozilla Personalization Study</h1>
+            <div class="content">
             <p>Firefox is conducting a study of personalized content on the Web, and as a Test Pilot user, we’d really appreciate your help in completing this quick study.</p>
 
             <h2>Contents of the study</h2>
@@ -46,9 +42,10 @@
             <p>Please review our Study Privacy Policy <a href="#">here</a>.</p>
 
           <div>
-             <button class="btn" ng-click="rejectStudy()">No, I don’t want to participate</button>
-             <button class="btn" ng-click="acceptStudy()">Yes, I’m willing to participate</button>
+              <button class="btn" ng-click="rejectStudy()"><strong>No</strong>, I don’t want to participate</button>
+              <button class="btn" ng-click="acceptStudy()"><strong>Yes</strong>, I’m willing to participate</button>
           </div>
+        </div>
         </div>
     </body>
 </html>
