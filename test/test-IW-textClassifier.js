@@ -70,7 +70,7 @@ exports["test edrules text"] = function test_edrules_text(assert, done) {
       let path = uri.path;
       let tld = Services.eTLD.getBaseDomainFromHost(host);
 
-      console.log(test.info);
+      //console.log(test.info);
 
       expectedInterests = test.expectedInterests;
       worker.postMessage({
@@ -180,7 +180,7 @@ exports["test text classifier"] = function test_text_classification(assert, done
       let path = uri.path;
       let tld = Services.eTLD.getBaseDomainFromHost(host)
 
-      console.log(test.info);
+      //console.log(test.info);
 
       expectedInterests = test.expectedInterests;
       worker.postMessage({
