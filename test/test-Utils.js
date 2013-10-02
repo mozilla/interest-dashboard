@@ -1,0 +1,29 @@
+/* -*- Mode: Java; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim:set ts=2 sw=2 sts=2 et: */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+"use strict";
+
+const {Cc, Ci, Cu} = require("chrome");
+const Promise = require("sdk/core/promise");
+Cu.import("resource://gre/modules/Services.jsm");
+Cu.import("resource://gre/modules/NetUtil.jsm");
+Cu.import("resource://gre/modules/Task.jsm");
+
+const {promiseTimeout} = require("Utils");
+const {testUtils} = require("./helpers");
+const test = require("sdk/test");
+
+exports["test promiseTimeout"] = function test_promiseTimeout(assert, done) {
+  Task.spawn(function() {
+    let then = Date.now();
+    yield promiseTimeout(3000);
+    let passedTime = Date.now() - then;
+    assert.ok( passedTime >= 3000);
+    done();
+  });
+}
+
+test.run(exports);
