@@ -14,12 +14,10 @@
         <div class="container content" ng-controller="studyCtrl">
             <div class="btn-group">
                 <button class="btn" ng-disabled='historyComputeInProgress' ng-click="processHistory()">Analyse Full History</button>
+                <button class="btn" ng-disabled="!(rankingData || dispatchBatch)" ng-click="togglePrettify()">{{ prettifiedOutput && "Uglify" || "Prettify" }} Output</button>
                 <button class="btn" ng-disabled="dispatchBatchNotSendable" ng-click="dispatchRun()">Dispatch to server</button>
-                <button class="btn" ng-disabled="!rankingData" ng-click="runSurvey()">Fill Survey</button>
-                <button class="btn" ng-show="(rankingData || dispatchBatch)" ng-click="togglePrettify()">
-                    {{ prettifiedOutput && "Uglify" || "Prettify" }} Output
-                </button>
-                <button class="btn" ng-click="showConsent()">Show Consent Page</button>
+                <button class="btn" ng-disabled="!dispatchBatch" ng-click="showConsent()">Open Consent Page</button>
+                <button class="btn" ng-disabled="!rankingData" ng-click="runSurvey()">Open Survey page</button>
             </div>
 
             <div class="alerts">
