@@ -1,7 +1,6 @@
 "use strict";
 
-let DataService = function($window, $rootScope, $http) {
-  this.window = $window;
+let DataService = function($rootScope) {
   this.rootScope = $rootScope;
 
   // relay messages from the addon to the page
