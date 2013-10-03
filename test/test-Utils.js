@@ -21,7 +21,7 @@ exports["test promiseTimeout"] = function test_promiseTimeout(assert, done) {
     let then = Date.now();
     yield promiseTimeout(3000);
     let passedTime = Date.now() - then;
-    assert.ok( passedTime >= 3000);
+    assert.ok( passedTime >= (3000 * 0.99), "passed time should be close to delay");
     done();
   });
 }
