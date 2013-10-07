@@ -127,15 +127,8 @@ function getInterestsForDocument(aMessageData) {
     return interests;
   };
 
-  let message = {
-    host: aMessageData.host,
-    message: "InterestsForDocument",
-    url: aMessageData.url,
-    visitDate: aMessageData.visitDate,
-    visitCount: aMessageData.visitCount,
-    messageId: aMessageData.messageId,
-    namespace: gNamespace,
-  };
+  aMessageData.message = "InterestsForDocument";
+  aMessageData.namespace = gNamespace;
 
   // we need to submit 3 messages
   // - for rule classification
@@ -157,8 +150,8 @@ function getInterestsForDocument(aMessageData) {
     if (!rulesWorked) {
       results.push({type: "combined", interests: dedupeInterests(interests)});
     }
-    message.results = results;
-    self.postMessage(message);
+    aMessageData.results = results;
+    self.postMessage(aMessageData);
   }
   catch (ex) {
     Components.utils.reportError(ex);
