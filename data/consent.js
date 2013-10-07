@@ -12,7 +12,7 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
 
   /** UI functionality **/
   $scope.acceptStudy = function() {
-    self.port.emit("survey_run");
+    self.port.emit("consented");
   }
 
   $scope.rejectStudy = function() {

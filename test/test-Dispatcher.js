@@ -134,7 +134,6 @@ exports["test _dispatch"] = function test__Dispatch(assert, done) {
     yield dispatcher._dispatch(serverUrl, payload);
     yield responseDeferred.promise;
 
-    removeObservers();
     server.stop(function(){});
     dispatcher.clear();
     testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't cleared");
@@ -190,6 +189,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
     Services.obs.addObserver(observeTransmission, "dispatcher-payload-transmission-complete", false);
 
     // launch work
+    simplePrefs.prefs.consented = true;
     Services.obs.notifyObservers(null, "idle-daily", null);
 
     // server should have responded
@@ -200,6 +200,29 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
 
     testUtils.isIdentical(assert, {}, storage.interests, "storage should have been cleared");
     server.stop(function(){});
+  }).then(_ => {
+    removeObservers();
+  }).then(done);
+}
+
+exports["test consent verification"] = function test__consent_verification(assert, done) {
+  Task.spawn(function() {
+    let dispatcher = new Dispatcher("http://example.com");
+
+    simplePrefs.prefs.consented = false;
+    dispatcher._sendPing = function(aUrl) {
+      assert.ok(false, "_sendPing should not run without consent");
+    }
+    Services.obs.notifyObservers(null, "idle-daily", null);
+
+    let sendPingDeferred = Promise.defer();
+    simplePrefs.prefs.consented = true;
+    dispatcher._sendPing = function(aUrl) {
+      assert.ok(true, "_sendPing should run with consent");
+      sendPingDeferred.resolve();
+    }
+    Services.obs.notifyObservers(null, "idle-daily", null);
+    yield sendPingDeferred.promise;
   }).then(_ => {
     removeObservers();
   }).then(done);
