@@ -17,12 +17,12 @@ const {testUtils} = require("./helpers");
 const {PlacesInterestsUtils} = require("PlacesInterestsUtils");
 const test = require("sdk/test");
 
-exports["test PlacesInterestsUtils"] = function test_PlacesInterestsUtils(assert, done) {
+let today = DateUtils.today();
+exports["test 10 last days"] = function test_Getting10LastDays(assert, done) {
   Task.spawn(function() {
     try {
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits("www.autoblog.com",20);
-      let today = DateUtils.today();
 
       // test going 10 days back
       let results = yield PlacesInterestsUtils.getRecentHistory(today - 10);
@@ -39,9 +39,20 @@ exports["test PlacesInterestsUtils"] = function test_PlacesInterestsUtils(assert
         results[10],
         {"id":21,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today}
       );
+    } catch (ex) {
+      dump( ex + " ERROR\n");
+    }
+  }).then(done);
+}
+
+exports["test ID and ChunkSize"] = function test_IdAndChunkSize(assert, done) {
+  Task.spawn(function() {
+    try {
+      yield testUtils.promiseClearHistory();
+      yield testUtils.addVisits("www.autoblog.com",20);
 
       // test limiting by visitId & chunk
-      results = yield PlacesInterestsUtils.getRecentHistory(today - 20, null, {lastVisitId: 0,chunkSize: 10});
+      let results = yield PlacesInterestsUtils.getRecentHistory(today - 20, null, {lastVisitId: 0,chunkSize: 10});
       assert.ok(results.length == 10);
       testUtils.isIdentical(
         assert,
@@ -66,7 +77,19 @@ exports["test PlacesInterestsUtils"] = function test_PlacesInterestsUtils(assert
         results[9],
         {"id":17,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today-4}
       );
+    } catch (ex) {
+      dump( ex + " ERROR\n");
+    }
+  }).then(done);
+}
 
+exports["test onRow"] = function test_OnRow(assert, done) {
+  Task.spawn(function() {
+    try {
+      yield testUtils.promiseClearHistory();
+      yield testUtils.addVisits("www.autoblog.com",20);
+
+      let results = yield PlacesInterestsUtils.getRecentHistory(today - 20, null, {lastVisitId: 7,chunkSize: 10});
       // test onRow function
       let newResults = [];
       yield PlacesInterestsUtils.getRecentHistory(today - 20,
@@ -78,7 +101,6 @@ exports["test PlacesInterestsUtils"] = function test_PlacesInterestsUtils(assert
           chunkSize: 10,
         }
       );
-
       testUtils.isIdentical(assert, newResults, results);
     } catch (ex) {
       dump( ex + " ERROR\n");
