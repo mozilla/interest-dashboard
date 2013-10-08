@@ -25,14 +25,14 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     yield testUtils.promiseClearHistory();
     let microNow = Date.now() * 1000;
 
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - MICROS_PER_DAY});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - MICROS_PER_DAY});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
 
     let testController = new Controller();
     testController.clear()
-    yield testController.submitHistory(6);
+    yield testController.resubmitFullHistory({flush: true});
 
     // we should only see 3 urls being processed, hten Autos should nly contain 3 days
     testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "Only Autos");
@@ -65,6 +65,7 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     // we should see at least 3 diffs
     assert.ok(diffCount >= 3, "Differences exists and = " + diffCount);
 
+    yield testUtils.promiseClearHistory();
     let cats = [
      {
       host: "roughguides.com",
@@ -120,11 +121,11 @@ exports["test ranking"] = function test_Ranking(assert, done) {
 
     for (let i = 0; i < cats.length; i++) {
       let item = cats[i];
-      yield testUtils.addVisits(item.host,item.score);
+      yield testUtils.addVisits(item.host,item.score,true);
     }
 
     // make sure that counts stay the same
-    yield testController.resubmitFullHistory();
+    yield testController.resubmitFullHistory({flush: true});
     sranked = testController.getRankedInterestsForSurvey();
     for (let i = 0; i < cats.length; i++) {
       assert.equal(cats[9-i].interest, sranked[i].interest, "Interest match");
@@ -133,8 +134,8 @@ exports["test ranking"] = function test_Ranking(assert, done) {
 
     // now add a few extra interests and see if top/medium/low works
     // add Gossip
-    yield testUtils.addVisits("tmz.com",11);
-    yield testController.resubmitFullHistory();
+    yield testUtils.addVisits("tmz.com",11,true);
+    yield testController.resubmitFullHistory({flush: true});
 
     // Gossip should be first and then shifteed by 1 cats
     sranked = testController.getRankedInterestsForSurvey();
@@ -147,10 +148,10 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     }
 
     // now add baseball
-    yield testUtils.addVisits("hardballtimes.com",12);
-    yield testUtils.addVisits("dezeen.com",13);
-    yield testUtils.addVisits("ilounge.com",14);
-    yield testController.resubmitFullHistory();
+    yield testUtils.addVisits("hardballtimes.com",12,true);
+    yield testUtils.addVisits("dezeen.com",13,true);
+    yield testUtils.addVisits("ilounge.com",14,true);
+    yield testController.resubmitFullHistory({flush: true});
     sranked = testController.getRankedInterestsForSurvey();
     testUtils.isIdentical(assert, sranked,
       [{"interest":"Apple","score":14},{"interest":"Home-Design","score":13},

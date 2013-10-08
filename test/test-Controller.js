@@ -21,50 +21,60 @@ const simplePrefs = require("simple-prefs");
 
 exports["test controller"] = function test_Controller(assert, done) {
   Task.spawn(function() {
-    yield testUtils.promiseClearHistory();
+    try {
+      yield testUtils.promiseClearHistory();
+      let today = DateUtils.today();
 
-    let microNow = Date.now() * 1000;
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 4*MICROS_PER_DAY});
+      let microNow = Date.now() * 1000;
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 4*MICROS_PER_DAY});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
 
+      // step one day into future to flush the DayBuffer
+      DateUtils.sendIntoFuture(1);
 
-    let testController = new Controller();
-    testController.clear();
-    yield testController.submitHistory(6);
+      let testController = new Controller();
+      testController.clear();
+      yield testController.resubmitFullHistory();
 
-    // we should only see 3 urls being processed, hten Autos should nly contain 3 days
-    testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "4 Autos");
+      // we should only see 3 urls being processed, hten Autos should nly contain 3 days
+      testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "4 Autos");
 
-    let payload = testController.getNextDispatchBatch();
-    let days = Object.keys(payload.interests);
-    // make sure that the history data is keyed on 4,5, and 6 th day
-    let today = DateUtils.today();
-    testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today], "4 days upto today");
+      let payload = testController.getNextDispatchBatch();
+      let days = Object.keys(payload.interests);
+      // make sure that the history data is keyed on 4,5, and 6 th day
+      testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today], "4 days upto today");
 
-    // add one more visits for today and make sure we pick them up
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.thehill.com/"), visitDate: microNow });
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.rivals.com/"), visitDate: microNow });
+      // add one more visits for today and make sure we pick them up
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.thehill.com/"), visitDate: microNow });
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.rivals.com/"), visitDate: microNow });
 
-    let observer = {
-      observe: function(aSubject, aTopic, aData) {
-        if  (aTopic != "controller-history-submission-complete") {
-          throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
-        }
-        // we should see the 3 intersts now
-        testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4,"Politics":1,"Sports":1}, "should see 3 intresests");
-        // and we must see 4 day in the keys
-        payload = testController.getNextDispatchBatch();
-        days = Object.keys(payload.interests);
-        testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today],"still 4 days");
-        Services.obs.removeObserver(observer, "controller-history-submission-complete");
-        done();
-      },
-    };
+      let observer = {
+        observe: function(aSubject, aTopic, aData) {
+          try {
+            if  (aTopic != "controller-history-submission-complete") {
+              throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
+            }
+            // we should see the 3 intersts now
+            testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4,"Politics":1,"Sports":1}, "should see 3 intresests");
+            // and we must see 4 day in the keys
+            payload = testController.getNextDispatchBatch();
+            days = Object.keys(payload.interests);
+            testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today],"still 4 days");
+            Services.obs.removeObserver(observer, "controller-history-submission-complete");
+            done();
+          } catch (ex) {
+            dump( ex + " ERROR\n");
+          }
+        },
+      };
 
-    Services.obs.addObserver(observer, "controller-history-submission-complete" , false);
-    Services.obs.notifyObservers(null, "idle-daily", null);
+      Services.obs.addObserver(observer, "controller-history-submission-complete" , false);
+      Services.obs.notifyObservers(null, "idle-daily", null);
+    } catch(ex) {
+      dump( ex + " ERROR\n");
+    }
   });
 }
 
