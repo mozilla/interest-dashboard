@@ -17,9 +17,7 @@ XPCOMUtils.defineLazyServiceGetter(this, "uuid",
 
 const {storage} = require("sdk/simple-storage");
 const {nsHttpServer, startServerAsync} = require("sdk/test/httpd");
-const simplePrefs = require("simple-prefs")
 const test = require("sdk/test");
-simplePrefs.prefs.dispatchIdleDelay = 1;
 
 const {Dispatcher} = require("Dispatcher");
 const {testUtils} = require("./helpers");
@@ -45,13 +43,13 @@ function removeObservers() {
 }
 
 exports["test init"] = function test_init(assert) {
-  let dispatcher = new Dispatcher("http://example.com");
+  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
 
   testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't initialized");
 }
 
 exports["test consume"] = function test_consume(assert) {
-  let dispatcher = new Dispatcher("http://example.com");
+  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
 
   dispatcher.consume(sampleData.dayAnnotatedOne);
   testUtils.isIdentical(assert, storage.interests, sampleData.dayAnnotatedOne, "unexpected interest data in storage");
@@ -63,7 +61,7 @@ exports["test consume"] = function test_consume(assert) {
 }
 
 exports["test _makePayload"] = function test__makePayload(assert) {
-  let dispatcher = new Dispatcher("http://example.com");
+  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
 
   dispatcher.consume(sampleData.dayAnnotatedOne);
   dispatcher.consume(sampleData.dayAnnotatedTwo);
@@ -83,7 +81,7 @@ exports["test _makePayload"] = function test__makePayload(assert) {
 }
 
 exports["test _deletedays"] = function test__DeleteDays(assert) {
-  let dispatcher = new Dispatcher("http://example.com");
+  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
 
   dispatcher.consume(sampleData.dayAnnotatedOne);
   dispatcher.consume(sampleData.dayAnnotatedTwo);
@@ -106,7 +104,7 @@ exports["test _dispatch"] = function test__Dispatch(assert, done) {
     let serverPort = server.identity.primaryPort
     let serverUrl = "http://localhost:" + serverPort + "/post";
 
-    let dispatcher = new Dispatcher(serverUrl);
+    let dispatcher = new Dispatcher(serverUrl, {enabled: true, dispatchIdleDelay: 1});
     dispatcher.consume(sampleData.dayAnnotatedOne);
     dispatcher.consume(sampleData.dayAnnotatedTwo);
     let payload = dispatcher._makePayload(1024*256);
@@ -149,7 +147,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
     let serverPort = server.identity.primaryPort
     let serverUrl = "http://localhost:" + serverPort + "/post";
 
-    let dispatcher = new Dispatcher(serverUrl);
+    let dispatcher = new Dispatcher(serverUrl, {enabled: true, dispatchIdleDelay: 1});
     dispatcher.consume(sampleData.dayAnnotatedOne);
     dispatcher.consume(sampleData.dayAnnotatedTwo);
     let payload = dispatcher._makePayload(1024*256);
@@ -189,7 +187,6 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
     Services.obs.addObserver(observeTransmission, "dispatcher-payload-transmission-complete", false);
 
     // launch work
-    simplePrefs.prefs.consented = true;
     Services.obs.notifyObservers(null, "idle-daily", null);
 
     // server should have responded
@@ -207,16 +204,15 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
 
 exports["test consent verification"] = function test__consent_verification(assert, done) {
   Task.spawn(function() {
-    let dispatcher = new Dispatcher("http://example.com");
+    let dispatcher = new Dispatcher("http://example.com", {enabled: false, dispatchIdleDelay: 1});
 
-    simplePrefs.prefs.consented = false;
     dispatcher._sendPing = function(aUrl) {
       assert.ok(false, "_sendPing should not run without consent");
     }
     Services.obs.notifyObservers(null, "idle-daily", null);
 
     let sendPingDeferred = Promise.defer();
-    simplePrefs.prefs.consented = true;
+    dispatcher._enabled = true;
     dispatcher._sendPing = function(aUrl) {
       assert.ok(true, "_sendPing should run with consent");
       sendPingDeferred.resolve();

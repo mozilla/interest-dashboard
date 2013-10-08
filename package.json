@@ -8,10 +8,22 @@
   "version": "1",
   "preferences": [
       {
-          "name": "server_url",
-          "title": "back end server url",
-          "type": "string",
-          "value": "http://localhost:8080/post"
+        "name": "consented",
+        "title": "User consented to study",
+        "type": "bool",
+        "value": false
+      },
+      {
+        "name": "server_url",
+        "title": "Data collection server endpoint",
+        "type": "string",
+        "value": "http://localhost:8080/post"
+      },
+      {
+        "name": "dispatchIdleDelay",
+        "title": "Seconds to wait when idle until data is sent",
+        "type": "integer",
+        "value": 300
       }
   ]
 }
