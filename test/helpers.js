@@ -123,10 +123,10 @@ exports.testUtils = {
     return deferred.promise;
   },
 
-  addVisits: function(host, daysBack, strictDayCount) {
+  addVisits: function(host, daysBack, skipToday) {
     let microNow = Date.now() * 1000;
     let promises = [];
-    let last = (strictDayCount) ? 1 : 0;
+    let last = (skipToday) ? 1 : 0;
     for( let i = daysBack; i >= last; i--) {
       promises.push(this.promiseAddVisits({uri: NetUtil.newURI("http://"+host), visitDate: microNow - i*MICROS_PER_DAY}));
     }
