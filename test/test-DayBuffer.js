@@ -21,21 +21,19 @@ const {Pipeline} = require("Pipeline");
 const test = require("sdk/test");
 
 let gWorkerFactory = new WorkerFactory();
+let today = DateUtils.today();
+let pushedData;
+let testConsumer = {
+  consume: function _consume(bucketData) {
+    pushedData = bucketData;
+  },
+};
+let dayBuffer = new DayBuffer(new Pipeline(testConsumer));
+let microNow = Date.now() * 1000;
 
-exports["test DayBuffer sanity"] = function test_DayBufferSanity(assert, done) {
+exports["test past visits"] = function test_PastVisits(assert, done) {
   Task.spawn(function() {
     try {
-      yield testUtils.promiseClearHistory();
-      let today = DateUtils.today();
-      let pushedData;
-      let testConsumer = {
-        consume: function _consume(bucketData) {
-          pushedData = bucketData;
-        },
-      };
-      let dayBuffer = new DayBuffer(new Pipeline(testConsumer));
-
-      let microNow = Date.now() * 1000;
       yield testUtils.promiseClearHistory();
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - MICROS_PER_DAY});
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
@@ -46,11 +44,21 @@ exports["test DayBuffer sanity"] = function test_DayBufferSanity(assert, done) {
       // check that the we pushed the full bucket
       testUtils.isIdentical(assert, bucket.getInterests(), pushedData);
       assert.ok(dayBuffer.getLastDrop() == null);
+    } catch (ex) {
+      dump( ex + " ERROR\n");
+    }
+  }).then(done);
+}
 
-      // now add one visit for today
+exports["test today visits"] = function test_TodayVisits(assert, done) {
+  Task.spawn(function() {
+    try {
+      yield testUtils.promiseClearHistory();
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - MICROS_PER_DAY});
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
-      historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),0);
-      bucket = yield historyReader.resubmitHistory({startDay: today-20},1);
+      let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),0);
+      let bucket = yield historyReader.resubmitHistory({startDay: today-20},1);
       dayBuffer.consume(bucket);
       // make sure that today's data is not in the pushedData
       assert.ok(pushedData[today+""] == null);
