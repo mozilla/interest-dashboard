@@ -17,6 +17,7 @@ const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
 const {storage} = require("sdk/simple-storage");
 const test = require("sdk/test");
+const simplePrefs = require("simple-prefs");
 
 exports["test controller"] = function test_Controller(assert, done) {
   Task.spawn(function() {
@@ -64,6 +65,23 @@ exports["test controller"] = function test_Controller(assert, done) {
 
     Services.obs.addObserver(observer, "controller-history-submission-complete" , false);
     Services.obs.notifyObservers(null, "idle-daily", null);
+  });
+}
+
+exports["test controller prefs"] = function test_ControllerPrefs(assert) {
+  let testController = new Controller();
+  let dispatcher = testController._dispatcher;
+
+  let dispatcherProperties = [
+                              {pref: "consented", obj: "_enabled", value: true},
+                              {pref: "server_url", obj: "_serverUrl", value: "http://example.com/userprofile"},
+                              {pref: "dispatchIdleDelay", obj: "_dispatchIdleDelay", value: 5}
+  ];
+
+  dispatcherProperties.forEach(prop => {
+    testUtils.isIdentical(assert, simplePrefs.prefs[prop.pref], dispatcher[prop.obj]);
+    simplePrefs.prefs[prop.pref] = prop.value;
+    testUtils.isIdentical(assert, simplePrefs.prefs[prop.pref], dispatcher[prop.obj]);
   });
 }
 
