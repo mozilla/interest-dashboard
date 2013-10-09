@@ -58,6 +58,8 @@ let ModalPreviewCtrl = function($scope, $modalInstance, dispatchBatch) {
   }
 }
 
+angular.bootstrap(document, ['consentMenu']);
+
 self.port.on("style", function(file) {
   let link = document.createElement("link");
   link.setAttribute("href", file);
