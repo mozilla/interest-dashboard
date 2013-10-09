@@ -16,19 +16,21 @@ const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
 const {WorkerFactory} = require("WorkerFactory");
 const {HistoryReader} = require("HistoryReader");
+const {DayBuffer} = require("DayBuffer");
 const test = require("sdk/test");
 
 let gWorkerFactory = new WorkerFactory();
 let today = DateUtils.today();
+let dayBuffer = new DayBuffer();
 
 exports["test read all"] = function test_readAll(assert, done) {
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits("www.autoblog.com",20);
+    dayBuffer.clear();
 
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), 0);
-    let bucket = yield historyReader.resubmitHistory({startDay: today-20});
-    let datum = bucket.getInterests();
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), dayBuffer, 0);
+    let datum = yield historyReader.resubmitHistory({startDay: today-20});
     let dates = Object.keys(datum);
     assert.equal(dates.length,21);
     testUtils.isIdentical(assert, datum[today + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
@@ -41,11 +43,11 @@ exports["test read from give id"] = function test_readFromGiveId(assert, done) {
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits("www.autoblog.com",20);
+    dayBuffer.clear();
 
     // only read starting from id == 10
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),10);
-    let bucket = yield historyReader.resubmitHistory({startDay: today-20});
-    let datum = bucket.getInterests();
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,10);
+    let datum = yield historyReader.resubmitHistory({startDay: today-20});
     let dates = Object.keys(datum);
     assert.equal(dates.length,11);
     testUtils.isIdentical(assert, datum[today + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
@@ -59,16 +61,17 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits("www.autoblog.com",20);
+    dayBuffer.clear();
 
     // only read starting from id == 10
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),10);
-    let bucket = yield historyReader.resubmitHistory({startDay: today-20});
-    let datum = bucket.getInterests();
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,10);
+    let datum = yield historyReader.resubmitHistory({startDay: today-20});
     assert.equal(historyReader.getLastVisitId(), 21);
+
     // now set chunksize to 1 and read from same id
-    historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),10);
-    bucket = yield historyReader.resubmitHistory({startDay: today-20},1);
-    let newDatum = bucket.getInterests();
+    dayBuffer.clear();
+    historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,10);
+    let newDatum = yield historyReader.resubmitHistory({startDay: today-20},1);
     testUtils.isIdentical(assert, datum, newDatum);
     assert.equal(historyReader.getLastVisitId(), 21);
   }).then(done);
@@ -78,6 +81,7 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits("www.autoblog.com",20);
+    dayBuffer.clear();
 
     // finally test aggregation
     let microNow = Date.now() * 1000;
@@ -89,9 +93,8 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
 
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),0);
-    let bucket = yield historyReader.resubmitHistory({startDay: today-20},1);
-    let datum = bucket.getInterests();
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,0);
+    let datum = yield historyReader.resubmitHistory({startDay: today-20},1);
     let dates = Object.keys(datum);
     assert.equal(dates.length,3);
     testUtils.isIdentical(assert, datum[(today-4) + ""].rules.edrules, {"Autos":{"autoblog.com":1}});

@@ -32,11 +32,9 @@ exports["test controller"] = function test_Controller(assert, done) {
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
 
       // step one day into future to flush the DayBuffer
-      DateUtils.sendIntoFuture(1);
-
       let testController = new Controller();
       testController.clear();
-      yield testController.resubmitFullHistory();
+      yield testController.resubmitFullHistory({flush: true});
 
       // we should only see 3 urls being processed, hten Autos should nly contain 3 days
       testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "4 Autos");
@@ -49,6 +47,7 @@ exports["test controller"] = function test_Controller(assert, done) {
       // add one more visits for today and make sure we pick them up
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.thehill.com/"), visitDate: microNow });
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.rivals.com/"), visitDate: microNow });
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.rivals.com/"), visitDate: microNow + MICROS_PER_DAY});
 
       let observer = {
         observe: function(aSubject, aTopic, aData) {
