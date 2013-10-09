@@ -207,7 +207,7 @@ exports["test consent verification"] = function test__consent_verification(asser
     let dispatcher = new Dispatcher("http://example.com", {enabled: false, dispatchIdleDelay: 1});
 
     dispatcher._sendPing = function(aUrl) {
-      assert.ok(false, "_sendPing should not run without consent");
+      assert.fail("_sendPing should not run without consent");
     }
     Services.obs.notifyObservers(null, "idle-daily", null);
 
