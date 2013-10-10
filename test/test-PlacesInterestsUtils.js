@@ -108,4 +108,51 @@ exports["test onRow"] = function test_OnRow(assert, done) {
   }).then(done);
 }
 
+exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
+  Task.spawn(function() {
+    try {
+      yield testUtils.promiseClearHistory();
+      yield testUtils.addVisits("www.autoblog.com",20);
+      assert.ok(PlacesInterestsUtils.isStopped() == false);
+
+      let newResults = [];
+      let deadPromise = PlacesInterestsUtils.getRecentHistory(today - 20,
+        function(result) {
+          newResults.push(result);
+        },
+        {
+          lastVisitId: 0,
+          chunkSize: 100,
+        }
+      );
+      PlacesInterestsUtils.stop();
+      let deadPromiseResult = yield deadPromise;
+      assert.ok(deadPromiseResult == null);
+      assert.ok(PlacesInterestsUtils.isStopped() == true);
+
+      // attempt to run a query again
+      let nullResult = PlacesInterestsUtils.getRecentHistory(today - 10);
+      assert.ok(nullResult == null);
+
+      // restart
+      PlacesInterestsUtils.restart();
+      assert.ok(PlacesInterestsUtils.isStopped() == false);
+      let results = yield PlacesInterestsUtils.getRecentHistory(today - 10);
+      // check the first and the last items
+      testUtils.isIdentical(
+        assert,
+        results[0],
+        {"id":11,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today-10}
+      );
+      testUtils.isIdentical(
+        assert,
+        results[10],
+        {"id":21,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today}
+      );
+    } catch (ex) {
+      dump( ex + " ERROR\n");
+    }
+  }).then(done);
+}
+
 test.run(exports);
