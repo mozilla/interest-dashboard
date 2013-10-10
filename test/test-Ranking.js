@@ -30,7 +30,7 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - MICROS_PER_DAY});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
 
-    let testController = new Controller();
+    let testController = new Controller({rankType: "combined"});
     testController.clear()
     yield testController.resubmitFullHistory({flush: true});
 
