@@ -123,12 +123,20 @@ exports.testUtils = {
     return deferred.promise;
   },
 
-  addVisits: function(host, daysBack, skipToday) {
+  addVisits: function(hosts, daysBack, skipToday) {
     let microNow = Date.now() * 1000;
     let promises = [];
     let last = (skipToday) ? 1 : 0;
+    let hostArray = [];
+    if (Array.isArray(hosts)) {
+      hostArray = hosts;
+    } else {
+      hostArray.push(hosts);
+    }
     for( let i = daysBack; i >= last; i--) {
-      promises.push(this.promiseAddVisits({uri: NetUtil.newURI("http://"+host), visitDate: microNow - i*MICROS_PER_DAY}));
+      hostArray.forEach(host => {
+        promises.push(this.promiseAddVisits({uri: NetUtil.newURI("http://"+host), visitDate: microNow - i*MICROS_PER_DAY}));
+      });
     }
     return Promise.promised(Array)(promises).then();
   },
