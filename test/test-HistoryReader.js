@@ -17,6 +17,7 @@ const {testUtils} = require("./helpers");
 const {WorkerFactory} = require("WorkerFactory");
 const {HistoryReader} = require("HistoryReader");
 const {DayBuffer} = require("DayBuffer");
+const {promiseTimeout} = require("Utils");
 const test = require("sdk/test");
 
 let gWorkerFactory = new WorkerFactory();
@@ -100,6 +101,50 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
     testUtils.isIdentical(assert, datum[(today-4) + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
     testUtils.isIdentical(assert, datum[(today-3) + ""].rules.edrules, {"Autos":{"autoblog.com":2}});
     testUtils.isIdentical(assert, datum[(today-2) + ""].rules.edrules, {"Autos":{"autoblog.com":3}});
+  }).then(done);
+}
+
+exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
+  Task.spawn(function() {
+    try {
+      let hostArray = ["www.autoblog.com",
+                       "www.thehill.com",
+                       "www.rivals.com",
+                       "www.mysql.com",
+                       "www.cracked.com",
+                       "www.androidpolice.com"];
+      yield testUtils.promiseClearHistory();
+      yield testUtils.addVisits(hostArray,60);
+
+      dayBuffer.clear();
+      let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,0);
+      let allTheData = yield historyReader.resubmitHistory({startDay: today-61},1);
+      testUtils.isIdentical(assert, allTheData[today + ""].rules.edrules["Autos"], {"autoblog.com":1});
+      testUtils.isIdentical(assert, allTheData[(today-60) + ""].rules.edrules["Autos"], {"autoblog.com":1});
+      let theVeryLastId = historyReader.getLastVisitId();
+
+      // now start the torture test
+      dayBuffer.clear();
+      historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,0);
+      let promise = historyReader.resubmitHistory({startDay: today-61},1);
+      while (true) {
+        yield promiseTimeout(1);
+        historyReader.stop();
+        yield promise;
+        let lastVisitId = historyReader.getLastVisitId();
+        if (lastVisitId == theVeryLastId) {
+          break;
+        }
+        historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,lastVisitId);
+        promise = historyReader.resubmitHistory({startDay: today-61},1);
+      }
+      // we should use isIdentical, but it takes too much time, so use string length compare instead
+      // if your quality zeal is hurt, uncoment the line bellow
+      // testUtils.isIdentical(assert, dayBuffer.getInterests(), allTheData);
+      assert.equal(JSON.stringify(dayBuffer.getInterests()).length, JSON.stringify(allTheData).length);
+    } catch(ex) {
+      dump(ex + " ERROR\n");
+    }
   }).then(done);
 }
 
