@@ -16,6 +16,7 @@ const {Controller} = require("Controller");
 const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
 const {storage} = require("sdk/simple-storage");
+const {promiseTimeout} = require("Utils");
 const test = require("sdk/test");
 
 exports["test controller"] = function test_Controller(assert, done) {
@@ -74,6 +75,89 @@ exports["test controller"] = function test_Controller(assert, done) {
       dump( ex + " ERROR\n");
     }
   });
+}
+
+exports["test enable  and disable"] = function test_EnableAndDisable(assert, done) {
+  Task.spawn(function() {
+    try {
+      let hostArray = ["www.autoblog.com",
+                       "www.thehill.com",
+                       "www.rivals.com",
+                       "www.mysql.com",
+                       "www.cracked.com",
+                       "www.androidpolice.com"];
+      yield testUtils.promiseClearHistory();
+      yield testUtils.addVisits(hostArray,59);
+
+      let testController = new Controller();
+      testController.clear();
+
+      let testScores = function() {
+        let interests = testController.getRankedInterests();
+        assert.equal(interests.Autos, 60);
+        assert.equal(interests.Politics, 60);
+        assert.equal(interests.Sports, 60);
+        assert.equal(interests.Programming, 60);
+        assert.equal(interests.Humor, 60);
+        assert.equal(interests.Android, 60);
+      };
+
+      yield testController.resubmitHistory({flush: true});
+      let theVeryLastId = storage.lastVisitId;
+      // verify reanks
+      testScores();
+
+      // a toture test to make sure we can disable and re-enable
+      // controller without loss of data
+      testController.clear();
+      let promise = testController.resubmitHistory({flush: true});
+      let cycles = 0;
+      while (true) {
+        yield promiseTimeout(1);
+        testController.onDisabling();
+        yield promise;
+        let lastVisitId = storage.lastVisitId;
+        if (lastVisitId == theVeryLastId) {
+          break;
+        }
+        promise = testController.onEnabled({flush: true});
+        cycles++;
+      }
+      testScores();
+      assert.ok(cycles > 1);
+    } catch(ex) {
+      dump(ex + " ERROR\n");
+    }
+  }).then(done);
+}
+
+exports["test uninstall"] = function test_Uninstall(assert, done) {
+  Task.spawn(function() {
+    try {
+      let hostArray = ["www.autoblog.com",
+                       "www.thehill.com",
+                       "www.rivals.com",
+                       "www.mysql.com",
+                       "www.cracked.com",
+                       "www.androidpolice.com"];
+      yield testUtils.promiseClearHistory();
+      yield testUtils.addVisits(hostArray,59);
+
+      let testController = new Controller();
+      testController.clear();
+
+      testController.resubmitHistory({flush: true});
+      yield testController.onUninstalling();
+
+      // make sure we are all clean
+      assert.equal(storage.lastVisitId, 0);
+      assert.ok(storage.downloadSource == null);
+      assert.ok(testController.getRankedInterests() == null);
+      assert.ok(testController.getNextDispatchBatch() == null);
+    } catch(ex) {
+      dump(ex + " ERROR\n");
+    }
+  }).then(done);
 }
 
 test.run(exports);
