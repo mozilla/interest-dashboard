@@ -32,7 +32,7 @@ exports["test ranking"] = function test_Ranking(assert, done) {
 
     let testController = new Controller({rankType: "combined"});
     testController.clear()
-    yield testController.resubmitFullHistory({flush: true});
+    yield testController.resubmitHistory({flush: true});
 
     // we should only see 3 urls being processed, hten Autos should nly contain 3 days
     testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "Only Autos");
@@ -125,7 +125,7 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     }
 
     // make sure that counts stay the same
-    yield testController.resubmitFullHistory({flush: true});
+    yield testController.resubmitHistory({flush: true});
     sranked = testController.getRankedInterestsForSurvey();
     for (let i = 0; i < cats.length; i++) {
       assert.equal(cats[9-i].interest, sranked[i].interest, "Interest match");
@@ -135,7 +135,7 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     // now add a few extra interests and see if top/medium/low works
     // add Gossip
     yield testUtils.addVisits("tmz.com",11,true);
-    yield testController.resubmitFullHistory({flush: true});
+    yield testController.resubmitHistory({flush: true});
 
     // Gossip should be first and then shifteed by 1 cats
     sranked = testController.getRankedInterestsForSurvey();
@@ -151,7 +151,7 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     yield testUtils.addVisits("hardballtimes.com",12,true);
     yield testUtils.addVisits("dezeen.com",13,true);
     yield testUtils.addVisits("ilounge.com",14,true);
-    yield testController.resubmitFullHistory({flush: true});
+    yield testController.resubmitHistory({flush: true});
     sranked = testController.getRankedInterestsForSurvey();
     testUtils.isIdentical(assert, sranked,
       [{"interest":"Apple","score":14},{"interest":"Home-Design","score":13},

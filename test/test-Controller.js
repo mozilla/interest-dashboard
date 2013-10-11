@@ -33,7 +33,7 @@ exports["test controller"] = function test_Controller(assert, done) {
       // step one day into future to flush the DayBuffer
       let testController = new Controller();
       testController.clear();
-      yield testController.resubmitFullHistory({flush: true});
+      yield testController.resubmitHistory({flush: true});
 
       // we should only see 3 urls being processed, hten Autos should nly contain 3 days
       testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "4 Autos");
