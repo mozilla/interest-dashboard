@@ -29,54 +29,33 @@ exports["test 10 last days"] = function test_Getting10LastDays(assert, done) {
       assert.ok(results.length == 11);
 
       // check the first and the last items
-      testUtils.isIdentical(
-        assert,
-        results[0],
-        {"id":11,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today-10}
-      );
-      testUtils.isIdentical(
-        assert,
-        results[10],
-        {"id":21,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today}
-      );
+      assert.equal(results[0].visitDate, today-10);
+      assert.equal(results[10].visitDate, today);
     } catch (ex) {
       dump( ex + " ERROR\n");
     }
   }).then(done);
 }
 
-exports["test ID and ChunkSize"] = function test_IdAndChunkSize(assert, done) {
+exports["test TimeStamp and ChunkSize"] = function test_TimeStampAndChunkSize(assert, done) {
   Task.spawn(function() {
     try {
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits("www.autoblog.com",20);
 
-      // test limiting by visitId & chunk
-      let results = yield PlacesInterestsUtils.getRecentHistory(today - 20, null, {lastVisitId: 0,chunkSize: 10});
+      // test limiting by timestamp & chunk
+      let results = yield PlacesInterestsUtils.getRecentHistory(today - 20, null, {lastTimeStamp: 0,chunkSize: 10});
       assert.ok(results.length == 10);
-      testUtils.isIdentical(
-        assert,
-        results[0],
-        {"id":1,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today-20}
-      );
-      testUtils.isIdentical(
-        assert,
-        results[9],
-        {"id":10,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today-11}
-      );
+      assert.equal(results[0].visitDate, today-20);
+      assert.equal(results[9].visitDate, today-11);
 
-      results = yield PlacesInterestsUtils.getRecentHistory(today - 20, null, {lastVisitId: 7,chunkSize: 10});
-      assert.ok(results.length == 10);
-      testUtils.isIdentical(
-        assert,
-        results[0],
-        {"id":8,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today-13}
-      );
-      testUtils.isIdentical(
-        assert,
-        results[9],
-        {"id":17,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today-4}
-      );
+      let lastTimeStamp = results[9].timeStamp;
+
+      results = yield PlacesInterestsUtils.getRecentHistory(today - 20, null, {lastTimeStamp: lastTimeStamp,chunkSize: 20});
+      assert.ok(results.length == 11);
+      assert.equal(results[0].visitDate, today-10);
+      assert.equal(results[10].visitDate, today);
+
     } catch (ex) {
       dump( ex + " ERROR\n");
     }
@@ -89,7 +68,7 @@ exports["test onRow"] = function test_OnRow(assert, done) {
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits("www.autoblog.com",20);
 
-      let results = yield PlacesInterestsUtils.getRecentHistory(today - 20, null, {lastVisitId: 7,chunkSize: 10});
+      let results = yield PlacesInterestsUtils.getRecentHistory(today - 20, null, {lastTimeStamp: 0,chunkSize: 10});
       // test onRow function
       let newResults = [];
       yield PlacesInterestsUtils.getRecentHistory(today - 20,
@@ -97,7 +76,7 @@ exports["test onRow"] = function test_OnRow(assert, done) {
           newResults.push(result);
         },
         {
-          lastVisitId: 7,
+          lastTimeStamp: 0,
           chunkSize: 10,
         }
       );
@@ -121,7 +100,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
           newResults.push(result);
         },
         {
-          lastVisitId: 0,
+          lastTimeStamp: 0,
           chunkSize: 100,
         }
       );
@@ -139,16 +118,8 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       assert.ok(PlacesInterestsUtils.isStopped() == false);
       let results = yield PlacesInterestsUtils.getRecentHistory(today - 10);
       // check the first and the last items
-      testUtils.isIdentical(
-        assert,
-        results[0],
-        {"id":11,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today-10}
-      );
-      testUtils.isIdentical(
-        assert,
-        results[10],
-        {"id":21,"title":"test visit for http://www.autoblog.com/","url":"http://www.autoblog.com/","visitDate":today}
-      );
+      assert.equal(results[0].visitDate, today-10);
+      assert.equal(results[10].visitDate, today);
     } catch (ex) {
       dump( ex + " ERROR\n");
     }
