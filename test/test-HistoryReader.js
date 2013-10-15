@@ -36,25 +36,25 @@ exports["test read all"] = function test_readAll(assert, done) {
     assert.equal(dates.length,21);
     testUtils.isIdentical(assert, datum[today + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
     testUtils.isIdentical(assert, datum[(today-20) + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
-    assert.equal(historyReader.getLastVisitId(), 21);
+    assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
   }).then(done);
 }
 
-exports["test read from give id"] = function test_readFromGiveId(assert, done) {
+exports["test read from given timestamp"] = function test_readFromGivenTimestamp(assert, done) {
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits("www.autoblog.com",20);
     dayBuffer.clear();
 
     // only read starting from id == 10
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,10);
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,(today-10)*MICROS_PER_DAY);
     let datum = yield historyReader.resubmitHistory({startDay: today-20});
     let dates = Object.keys(datum);
     assert.equal(dates.length,11);
     testUtils.isIdentical(assert, datum[today + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
     testUtils.isIdentical(assert, datum[(today-10) + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
     assert.ok(datum[(today-11) + ""] == null);
-    assert.equal(historyReader.getLastVisitId(), 21);
+    assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
   }).then(done);
 }
 
@@ -67,14 +67,14 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
     // only read starting from id == 10
     let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,10);
     let datum = yield historyReader.resubmitHistory({startDay: today-20});
-    assert.equal(historyReader.getLastVisitId(), 21);
+    assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
 
     // now set chunksize to 1 and read from same id
     dayBuffer.clear();
     historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,10);
     let newDatum = yield historyReader.resubmitHistory({startDay: today-20},1);
     testUtils.isIdentical(assert, datum, newDatum);
-    assert.equal(historyReader.getLastVisitId(), 21);
+    assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
   }).then(done);
 }
 
@@ -121,7 +121,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       let allTheData = yield historyReader.resubmitHistory({startDay: today-61},1);
       testUtils.isIdentical(assert, allTheData[today + ""].rules.edrules["Autos"], {"autoblog.com":1});
       testUtils.isIdentical(assert, allTheData[(today-60) + ""].rules.edrules["Autos"], {"autoblog.com":1});
-      let theVeryLastId = historyReader.getLastVisitId();
+      let theVeryLastTimeStamp = historyReader.getLastTimeStamp();
 
       // now start the torture test
       dayBuffer.clear();
@@ -131,11 +131,11 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
         yield promiseTimeout(1);
         historyReader.stop();
         yield promise;
-        let lastVisitId = historyReader.getLastVisitId();
-        if (lastVisitId == theVeryLastId) {
+        let lastTimeStamp = historyReader.getLastTimeStamp();
+        if (lastTimeStamp == theVeryLastTimeStamp) {
           break;
         }
-        historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,lastVisitId);
+        historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,lastTimeStamp);
         promise = historyReader.resubmitHistory({startDay: today-61},1);
       }
       // we should use isIdentical, but it takes too much time, so use string length compare instead

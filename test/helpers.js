@@ -158,4 +158,7 @@ exports.testUtils = {
     return promise;
   },
 
+  tsToDay: function(ts) {
+    return Math.floor(ts / MICROS_PER_DAY);
+  },
 };
