@@ -45,8 +45,8 @@ exports["test controller"] = function test_Controller(assert, done) {
       testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today], "4 days upto today");
 
       // add one more visits for today and make sure we pick them up
-      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.thehill.com/"), visitDate: microNow });
-      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.rivals.com/"), visitDate: microNow });
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.thehill.com/"), visitDate: microNow + 1});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.rivals.com/"), visitDate: microNow + 2});
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.rivals.com/"), visitDate: microNow + MICROS_PER_DAY});
 
       let observer = {
@@ -103,7 +103,7 @@ exports["test enable  and disable"] = function test_EnableAndDisable(assert, don
       };
 
       yield testController.resubmitHistory({flush: true});
-      let theVeryLastId = storage.lastVisitId;
+      let theVeryLastTimeStamp = storage.lastTimeStamp;
       // verify reanks
       testScores();
 
@@ -116,8 +116,8 @@ exports["test enable  and disable"] = function test_EnableAndDisable(assert, don
         yield promiseTimeout(1);
         testController.onDisabling();
         yield promise;
-        let lastVisitId = storage.lastVisitId;
-        if (lastVisitId == theVeryLastId) {
+        let lastTimeStamp = storage.lastTimeStamp;
+        if (lastTimeStamp == theVeryLastTimeStamp) {
           break;
         }
         promise = testController.onEnabled({flush: true});
@@ -150,7 +150,7 @@ exports["test uninstall"] = function test_Uninstall(assert, done) {
       yield testController.onUninstalling();
 
       // make sure we are all clean
-      assert.equal(storage.lastVisitId, 0);
+      assert.equal(storage.lastTimeStamp, 0);
       assert.ok(storage.downloadSource == null);
       assert.ok(testController.getRankedInterests() == null);
       assert.ok(testController.getNextDispatchBatch() == null);

@@ -72,12 +72,12 @@ exports["test today visits"] = function test_TodayVisits(assert, done) {
       assert.ok(pushedData["" + (today-1)] != null);
       assert.ok(pushedData["" + (today-2)] != null);
       // keep adding to todays visits
-      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
-      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow + 1});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow + 2});
       pushedData = null;
 
-      let lastVisitId = historyReader.getLastVisitId();
-      historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,lastVisitId);
+      let lastTimeStamp = historyReader.getLastTimeStamp();
+      historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,lastTimeStamp);
       datum = yield historyReader.resubmitHistory({startDay: today-20},1);
 
       // push data should be NULL as we did not see the future yet
@@ -86,11 +86,11 @@ exports["test today visits"] = function test_TodayVisits(assert, done) {
       testUtils.isIdentical(assert,datum[today+""]["rules"]["edrules"], {"Autos":{"autoblog.com":3}});
 
       // time to move to the future
-      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow + 4});
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow + MICROS_PER_DAY});
-      lastVisitId = historyReader.getLastVisitId();
+      lastTimeStamp = historyReader.getLastTimeStamp();
 
-      historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,lastVisitId);
+      historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,lastTimeStamp);
       datum = yield historyReader.resubmitHistory({startDay: today-20},10);
 
       // we now should see the the accumulated last day in the pushData
