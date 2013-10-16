@@ -150,10 +150,18 @@ exports["test uninstall"] = function test_Uninstall(assert, done) {
       yield testController.onUninstalling();
 
       // make sure we are all clean
-      assert.equal(storage.lastTimeStamp, 0);
-      assert.ok(storage.downloadSource == null);
-      assert.ok(testController.getRankedInterests() == null);
-      assert.ok(testController.getNextDispatchBatch() == null);
+      assert.equal(storage.lastTimeStamp, undefined);
+      assert.equal(storage.downloadSource, undefined);
+      assert.equal(storage.dayBufferInterests, undefined);
+      assert.equal(storage.interests, undefined);
+      assert.equal(storage.ranking, undefined);
+      assert.equal(storage.hasOwnProperty("interests"), false);
+
+      // avoid intermittent unit-test failures caused by storage cleanup
+      // simply re-create a controller, and clean it.  This will remake
+      // all objects and repopulate storage.
+      testController = new Controller();
+      testController.clear();
     } catch(ex) {
       dump(ex + " ERROR\n");
     }
