@@ -120,7 +120,7 @@ exports["test enable  and disable"] = function test_EnableAndDisable(assert, don
         if (lastTimeStamp == theVeryLastTimeStamp) {
           break;
         }
-        promise = testController.onEnabled({flush: true});
+        promise = testController.restart({flush: true});
         cycles++;
       }
       testScores();
