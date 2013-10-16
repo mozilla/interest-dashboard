@@ -18,6 +18,7 @@ XPCOMUtils.defineLazyServiceGetter(this, "uuid",
 const {storage} = require("sdk/simple-storage");
 const {nsHttpServer, startServerAsync} = require("sdk/test/httpd");
 const test = require("sdk/test");
+const simplePrefs = require("simple-prefs")
 
 const {Dispatcher} = require("Dispatcher");
 const {testUtils} = require("./helpers");
@@ -25,7 +26,7 @@ const sampleData = require("./sampleData");
 
 
 // create uuid, which is assumed to be created in the Controller
-storage.uuid = uuid.generateUUID().toString().slice(1, -1).replace(/-/g, "");
+simplePrefs.prefs.uuid = uuid.generateUUID().toString().slice(1, -1).replace(/-/g, "");
 
 const notifTopics = ["dispatcher-payload-transmission-complete", "idle-daily", "idle"];
 function removeObservers() {
@@ -70,11 +71,11 @@ exports["test _makePayload"] = function test__makePayload(assert) {
 
   // size limit is big enough to include both days
   payload = dispatcher._makePayload(1024*256);
-  testUtils.isIdentical(assert, payload, {uuid: storage.uuid, interests: storage.interests}, "unexpected payload data");
+  testUtils.isIdentical(assert, payload, {uuid: simplePrefs.prefs.uuid, interests: storage.interests}, "unexpected payload data");
 
   // size limit is big enough to only include one day. earlier day will be picked due to sorting
   payload = dispatcher._makePayload(0);
-  testUtils.isIdentical(assert, payload, {uuid: storage.uuid, interests: sampleData.dayAnnotatedOne}, "unexpected payload data");
+  testUtils.isIdentical(assert, payload, {uuid: simplePrefs.prefs.uuid, interests: sampleData.dayAnnotatedOne}, "unexpected payload data");
 
   dispatcher.clear();
   testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't cleared");
@@ -117,7 +118,7 @@ exports["test _dispatch"] = function test__Dispatch(assert, done) {
       assert.ok(body);
 
       let deserialized = JSON.parse(body);
-      testUtils.isIdentical(assert, payload, {uuid: storage.uuid, interests: storage.interests}, "unexpected payload data");
+      testUtils.isIdentical(assert, payload, {uuid: simplePrefs.prefs.uuid, interests: storage.interests}, "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
       response.setStatusLine(request.httpVersion, 200, "OK");
@@ -160,7 +161,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
       assert.ok(body);
 
       let deserialized = JSON.parse(body);
-      testUtils.isIdentical(assert, payload, {uuid: storage.uuid, interests: storage.interests}, "unexpected payload data");
+      testUtils.isIdentical(assert, payload, {uuid: simplePrefs.prefs.uuid, interests: storage.interests}, "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
       response.setStatusLine(request.httpVersion, 200, "OK");
