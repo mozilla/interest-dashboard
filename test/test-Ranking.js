@@ -166,4 +166,29 @@ exports["test ranking"] = function test_Ranking(assert, done) {
   }).then(done);
 }
 
+exports["test day counting"] = function test_DayCounting(assert, done) {
+  Task.spawn(function() {
+   try {
+    yield testUtils.promiseClearHistory();
+    let microNow = Date.now() * 1000;
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY + 10});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY + 20});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY + 30});
+    let testController = new Controller({rankType: "combined"});
+    testController.clear()
+    yield testController.resubmitHistory({flush: true});
+    testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":1}, "we should only see score 1 for 1 day");
+
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY + 10});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY + 20});
+    testController.clear()
+    yield testController.resubmitHistory({flush: true});
+    testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":2}, "we should see score 2 for 2 days");
+   } catch(ex) {
+     dump(ex + " ERROROR \n");
+   }
+  }).then(done);
+}
+
 test.run(exports);
