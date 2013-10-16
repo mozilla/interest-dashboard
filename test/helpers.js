@@ -125,6 +125,7 @@ exports.testUtils = {
 
   addVisits: function(hosts, daysBack, skipToday) {
     let microNow = Date.now() * 1000;
+    let microToday = Math.floor(microNow / MICROS_PER_DAY) * MICROS_PER_DAY;
     let promises = [];
     let last = (skipToday) ? 1 : 0;
     let hostArray = [];
@@ -135,7 +136,8 @@ exports.testUtils = {
     }
     for( let i = daysBack; i >= last; i--) {
       hostArray.forEach(host => {
-        promises.push(this.promiseAddVisits({uri: NetUtil.newURI("http://"+host), visitDate: microNow - i*MICROS_PER_DAY}));
+        let rand = Math.floor(Math.random()*(MICROS_PER_DAY-10)) + 1;
+        promises.push(this.promiseAddVisits({uri: NetUtil.newURI("http://"+host), visitDate: microToday - i*MICROS_PER_DAY + rand}));
       });
     }
     return Promise.promised(Array)(promises).then();
