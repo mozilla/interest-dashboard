@@ -126,9 +126,10 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       // now start the torture test
       dayBuffer.clear();
       historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,0);
-      let promise = historyReader.resubmitHistory({startDay: today-61},1);
+      let promise = historyReader.resubmitHistory({startDay: today-61},10);
+      let cycles = 0;
       while (true) {
-        yield promiseTimeout(1);
+        yield promiseTimeout(100);
         historyReader.stop();
         yield promise;
         let lastTimeStamp = historyReader.getLastTimeStamp();
@@ -137,7 +138,9 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
         }
         historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,lastTimeStamp);
         promise = historyReader.resubmitHistory({startDay: today-61},1);
+        cycles ++;
       }
+      assert.ok(cycles > 1);
       // we should use isIdentical, but it takes too much time, so use string length compare instead
       // if your quality zeal is hurt, uncoment the line bellow
       // testUtils.isIdentical(assert, dayBuffer.getInterests(), allTheData);

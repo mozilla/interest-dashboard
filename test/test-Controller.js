@@ -113,7 +113,7 @@ exports["test enable and disable"] = function test_EnableAndDisable(assert, done
       let promise = testController.resubmitHistory({flush: true});
       let cycles = 0;
       while (true) {
-        yield promiseTimeout(1);
+        yield promiseTimeout(100);
         testController.onDisabling();
         yield promise;
         let lastTimeStamp = storage.lastTimeStamp;
