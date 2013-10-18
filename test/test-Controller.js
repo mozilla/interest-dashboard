@@ -34,7 +34,7 @@ exports["test controller"] = function test_Controller(assert, done) {
       // step one day into future to flush the DayBuffer
       let testController = new Controller();
       testController.clear();
-      yield testController.resubmitHistory({flush: true});
+      yield testController.submitHistory({flush: true});
 
       // we should only see 3 urls being processed, hten Autos should nly contain 3 days
       testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "4 Autos");
@@ -77,7 +77,7 @@ exports["test controller"] = function test_Controller(assert, done) {
   });
 }
 
-exports["test enable  and disable"] = function test_EnableAndDisable(assert, done) {
+exports["test enable and disable"] = function test_EnableAndDisable(assert, done) {
   Task.spawn(function() {
     try {
       let hostArray = ["www.autoblog.com",
@@ -102,7 +102,7 @@ exports["test enable  and disable"] = function test_EnableAndDisable(assert, don
         assert.equal(interests.Android, 60);
       };
 
-      yield testController.resubmitHistory({flush: true});
+      yield testController.submitHistory({flush: true});
       let theVeryLastTimeStamp = storage.lastTimeStamp;
       // verify reanks
       testScores();
@@ -146,7 +146,7 @@ exports["test uninstall"] = function test_Uninstall(assert, done) {
       let testController = new Controller();
       testController.clear();
 
-      testController.resubmitHistory({flush: true});
+      testController.submitHistory({flush: true});
       yield testController.onUninstalling();
 
       // make sure we are all clean

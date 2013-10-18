@@ -30,7 +30,7 @@ exports["test matching workers"] = function test_MatchingWorkers(assert, done) {
 
     let testController = new Controller();
     testController.clear();
-    yield testController.resubmitHistory({flush: true});
+    yield testController.submitHistory({flush: true});
 
     let today = DateUtils.today();
     let payload = testController.getNextDispatchBatch();

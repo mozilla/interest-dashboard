@@ -32,7 +32,7 @@ exports["test ranking"] = function test_Ranking(assert, done) {
 
     let testController = new Controller({rankType: "combined"});
     testController.clear()
-    yield testController.resubmitHistory({flush: true});
+    yield testController.submitHistory({flush: true});
 
     // we should only see 3 urls being processed, hten Autos should nly contain 3 days
     testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "Only Autos");
