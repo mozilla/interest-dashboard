@@ -77,7 +77,7 @@ exports["test controller"] = function test_Controller(assert, done) {
   });
 }
 
-exports["test enable and disable"] = function test_EnableAndDisable(assert, done) {
+exports["test stop and start"] = function test_StopAndStart(assert, done) {
   Task.spawn(function() {
     try {
       let hostArray = ["www.autoblog.com",
@@ -114,7 +114,7 @@ exports["test enable and disable"] = function test_EnableAndDisable(assert, done
       let cycles = 0;
       while (true) {
         yield promiseTimeout(100);
-        testController.onDisabling();
+        testController.stop();
         yield promise;
         let lastTimeStamp = storage.lastTimeStamp;
         if (lastTimeStamp == theVeryLastTimeStamp) {
