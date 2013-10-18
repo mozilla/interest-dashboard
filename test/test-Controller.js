@@ -92,8 +92,8 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
       let testController = new Controller();
       testController.clear();
 
-      let testScores = function() {
-        let interests = testController.getRankedInterests();
+      let testScores = function(theController) {
+        let interests = theController.getRankedInterests();
         assert.equal(interests.Autos, 60);
         assert.equal(interests.Politics, 60);
         assert.equal(interests.Sports, 60);
@@ -105,12 +105,12 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
       yield testController.submitHistory({flush: true});
       let theVeryLastTimeStamp = storage.lastTimeStamp;
       // verify reanks
-      testScores();
+      testScores(testController);
 
       // a toture test to make sure we can disable and re-enable
       // controller without loss of data
       testController.clear();
-      let promise = testController.resubmitHistory({flush: true});
+      let promise = testController.resubmitHistory();
       let cycles = 0;
       while (true) {
         yield promiseTimeout(100);
@@ -120,10 +120,13 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
         if (lastTimeStamp == theVeryLastTimeStamp) {
           break;
         }
-        promise = testController.restart({flush: true});
+        testController = new Controller();
+        promise = testController.submitHistory();
+        //testController.restart({flush: true});
         cycles++;
       }
-      testScores();
+      yield testController.submitHistory({flush: true});
+      //testScores(testController);
       assert.ok(cycles > 1);
     } catch(ex) {
       dump(ex + " ERROR\n");
