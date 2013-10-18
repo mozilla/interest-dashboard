@@ -131,7 +131,7 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
   }).then(done);
 }
 
-exports["test uninstall"] = function test_Uninstall(assert, done) {
+exports["test clear storage"] = function test_ClearStorage(assert, done) {
   Task.spawn(function() {
     try {
       let hostArray = ["www.autoblog.com",
@@ -147,7 +147,7 @@ exports["test uninstall"] = function test_Uninstall(assert, done) {
       testController.clear();
 
       testController.submitHistory({flush: true});
-      yield testController.onUninstalling();
+      yield testController.stopAndClearStorage();
 
       // make sure we are all clean
       assert.equal(storage.lastTimeStamp, undefined);
