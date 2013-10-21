@@ -12,7 +12,7 @@ Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
-const {promiseTimeout} = require("Utils");
+const {promiseTimeout, getRelevantPrefs} = require("Utils");
 const {testUtils} = require("./helpers");
 const test = require("sdk/test");
 
@@ -25,5 +25,20 @@ exports["test promiseTimeout"] = function test_promiseTimeout(assert, done) {
     done();
   });
 }
+
+exports["test getRelevantPrefs"] = function test_GetRelevantPrefs(assert, done) {
+  let prefs = getRelevantPrefs();
+  let expected = {
+    "privacy.donottrackheader.value":1,
+    "privacy.donottrackheader.enabled":false,
+    "browser.privatebrowsing.autostart":false,
+    "privacy.sanitize.sanitizeOnShutdown":false,
+    "places.history.enabled":true,
+    "browser.formfill.enable":true
+  };
+  testUtils.isIdentical(assert,prefs,expected);
+  done();
+}
+
 
 test.run(exports);
