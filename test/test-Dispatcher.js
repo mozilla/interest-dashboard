@@ -33,6 +33,7 @@ function makeTestPayload(interests) {
   return {
     uuid: simplePrefs.prefs.uuid,
     prefs: getRelevantPrefs(),
+    source: storage.downloadSource,
     interests: interests || storage.interests
   };
 }
