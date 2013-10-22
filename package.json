@@ -24,7 +24,7 @@
         "name": "server_url",
         "title": "Data collection server endpoint",
         "type": "string",
-        "value": "http://localhost:8080/post"
+        "value": "https://data.mozilla.com/submit/userprofile"
       },
       {
         "name": "dispatchIdleDelay",
