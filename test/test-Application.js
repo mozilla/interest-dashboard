@@ -12,6 +12,10 @@ const {testUtils} = require("./helpers");
 const test = require("sdk/test");
 const simplePrefs = require("simple-prefs");
 
+const {Cc, Ci, Cu} = require("chrome");
+const {storage} = require("sdk/simple-storage");
+Cu.import("resource://gre/modules/NetUtil.jsm");
+
 exports["test PrefsManager prefs"] = function test_PrefsManagerPrefs(assert) {
   let testController = new Controller();
   StudyApp.controller = testController;
@@ -30,6 +34,22 @@ exports["test PrefsManager prefs"] = function test_PrefsManagerPrefs(assert) {
     simplePrefs.prefs[prop.pref] = prop.value;
     testUtils.isIdentical(assert, simplePrefs.prefs[prop.pref], dispatcher[prop.obj]);
   });
+}
+
+exports["test AMO source attribution"] = function test_AMOSourceAttribution(assert) {
+  let urls = [
+    {url: "https://example.com/foo/bar.xpi", src: "unknown"},
+    {url: "https://example.com/foo/bar.xpi?src=bar", src: "bar"},
+    {url: "https://example.com/foo/bar.xpi?src=test-pilot", src: "test-pilot"},
+    {url: "https://example.com/foo/bar.xpi?src=partner", src: "partner"},
+    {url: "https://example.com/foo/bar.xpi?src=mechanical-turk", src: "mechanical-turk"},
+  ];
+
+  for (let data of urls) {
+    let uri = NetUtil.newURI(data.url);
+    StudyApp.setSourceUri(uri);
+    testUtils.isIdentical(assert, storage.downloadSource, data.src);
+  }
 }
 
 test.run(exports);
