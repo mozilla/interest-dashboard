@@ -42,7 +42,6 @@ exports["test persistency"] = function test_Persistency(assert, done) {
         "3": testBucket,
         "4": testBucket,
       });
-      dump(JSON.stringify(ranker.getRanking()) + " <<<<\n");
     } catch (ex) {
       dump( ex + " ERROR\n");
     }
