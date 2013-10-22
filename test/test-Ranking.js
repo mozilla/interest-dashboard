@@ -18,6 +18,28 @@ const {testUtils} = require("./helpers");
 const {storage} = require("sdk/simple-storage");
 const test = require("sdk/test");
 
+exports["test empty profile ranking"] = function test_EmptyProfileRanking(assert, done) {
+  Task.spawn(function() {
+    try {
+      yield testUtils.promiseClearHistory();
+      let testController = new Controller({rankType: "combined"});
+      testController.clear()
+      yield testController.submitHistory({flush: true});
+      // we should only see 3 urls being processed, hten Autos should nly contain 3 days
+      assert.ok(testController.getRankedInterests() == null);
+      // now test how we generate random zero-score interests
+      let sranked = testController.getRankedInterestsForSurvey();
+      assert.equal(sranked.length, 10);
+      sranked.forEach(pair => {
+        assert.equal(pair.score,0);
+      });
+    } catch(ex) {
+      dump(ex + " ERROROR \n");
+      assert.ok(false);
+    }
+  }).then(done);
+}
+
 
 exports["test ranking"] = function test_Ranking(assert, done) {
   Task.spawn(function() {
