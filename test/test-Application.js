@@ -39,10 +39,14 @@ exports["test PrefsManager prefs"] = function test_PrefsManagerPrefs(assert) {
 exports["test AMO source attribution"] = function test_AMOSourceAttribution(assert) {
   let urls = [
     {url: "https://example.com/foo/bar.xpi", src: "unknown"},
+    {url: "https://example.com/foo/bar.xpi?", src: "unknown"},
+    {url: "https://example.com/foo/bar.xpi?foo=bar", src: "unknown"},
     {url: "https://example.com/foo/bar.xpi?src=bar", src: "bar"},
     {url: "https://example.com/foo/bar.xpi?src=test-pilot", src: "test-pilot"},
-    {url: "https://example.com/foo/bar.xpi?src=partner", src: "partner"},
-    {url: "https://example.com/foo/bar.xpi?src=mechanical-turk", src: "mechanical-turk"},
+    {url: "https://example.com/foo/bar.xpi?src=partner-2", src: "partner-2"},
+    {url: "https://example.com/foo/bar.xpi?src=0", src: "0"},
+    {url: "https://example.com/foo/bar.xpi?src=0#abc", src: "0"},
+    {url: "https://example.com/foo/bar.xpi?foo=bar&src=0", src: "0"},
   ];
 
   for (let data of urls) {
