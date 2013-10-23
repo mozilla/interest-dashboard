@@ -11,6 +11,7 @@ Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
+Cu.import("resource://gre/modules/NetUtil.jsm");
 XPCOMUtils.defineLazyServiceGetter(this, "uuid",
                                    "@mozilla.org/uuid-generator;1",
                                    "nsIUUIDGenerator");
@@ -23,8 +24,10 @@ const simplePrefs = require("simple-prefs")
 const {Dispatcher} = require("Dispatcher");
 const {testUtils} = require("./helpers");
 const {getRelevantPrefs} = require("Utils");
+const {StudyApp} = require("Application");
 const sampleData = require("./sampleData");
 
+StudyApp.setSourceUri(NetUtil.newURI("http://localhost"));
 
 // create uuid, which is assumed to be created in the Controller
 simplePrefs.prefs.uuid = uuid.generateUUID().toString().slice(1, -1).replace(/-/g, "");
@@ -128,7 +131,7 @@ exports["test _dispatch"] = function test__Dispatch(assert, done) {
       assert.ok(body);
 
       let deserialized = JSON.parse(body);
-      testUtils.isIdentical(assert, payload, makeTestPayload(), "unexpected payload data");
+      testUtils.isIdentical(assert, deserialized, makeTestPayload(), "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
       response.setStatusLine(request.httpVersion, 200, "OK");
@@ -171,7 +174,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
       assert.ok(body);
 
       let deserialized = JSON.parse(body);
-      testUtils.isIdentical(assert, payload, makeTestPayload(), "unexpected payload data");
+      testUtils.isIdentical(assert, deserialized, makeTestPayload(), "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
       response.setStatusLine(request.httpVersion, 200, "OK");
