@@ -45,7 +45,7 @@ exports.testUtils = {
         return false;
       }
     }
-    else if (typeof expected == "object") {
+    else if (typeof expected == "object" && typeof actual == "object") {
       // Make sure all the keys match up
       this.do_check_eq(assert, Object.keys(expected).sort() + "", Object.keys(actual).sort(), text);
 
