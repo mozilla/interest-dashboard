@@ -40,6 +40,7 @@ function makeTestPayload(interests) {
     installDate: storage.installDate,
     updateDate: storage.updateDate,
     version: storage.version,
+    locale: Services.prefs.getCharPref("general.useragent.locale"),
     interests: interests || storage.interests
   };
 }
@@ -241,6 +242,12 @@ exports["test consent verification"] = function test__consent_verification(asser
   }).then(_ => {
     removeObservers();
   }).then(done);
+}
+
+exports["test locale"] = function test_locale(assert) {
+  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
+  let payloadObject = dispatcher._makePayloadObject();
+  assert.equal(payloadObject.locale, "en-US");
 }
 
 test.run(exports);
