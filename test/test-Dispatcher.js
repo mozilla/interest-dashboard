@@ -37,6 +37,9 @@ function makeTestPayload(interests) {
     uuid: simplePrefs.prefs.uuid,
     prefs: getRelevantPrefs(),
     source: storage.downloadSource,
+    installDate: storage.installDate,
+    updateDate: storage.updateDate,
+    version: storage.version,
     interests: interests || storage.interests
   };
 }
@@ -118,6 +121,7 @@ exports["test _dispatch"] = function test__Dispatch(assert, done) {
     let serverPort = server.identity.primaryPort
     let serverUrl = "http://localhost:" + serverPort + "/post";
 
+    yield StudyApp.saveAddonInfo();
     let dispatcher = new Dispatcher(serverUrl, {enabled: true, dispatchIdleDelay: 1});
     dispatcher.consume(sampleData.dayAnnotatedOne);
     dispatcher.consume(sampleData.dayAnnotatedTwo);
@@ -161,6 +165,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
     let serverPort = server.identity.primaryPort
     let serverUrl = "http://localhost:" + serverPort + "/post";
 
+    yield StudyApp.saveAddonInfo();
     let dispatcher = new Dispatcher(serverUrl, {enabled: true, dispatchIdleDelay: 1});
     dispatcher.consume(sampleData.dayAnnotatedOne);
     dispatcher.consume(sampleData.dayAnnotatedTwo);
