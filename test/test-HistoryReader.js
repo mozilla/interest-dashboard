@@ -18,6 +18,7 @@ const {WorkerFactory} = require("WorkerFactory");
 const {HistoryReader} = require("HistoryReader");
 const {DayBuffer} = require("DayBuffer");
 const {promiseTimeout} = require("Utils");
+const {storage} = require("sdk/simple-storage");
 const test = require("sdk/test");
 
 let gWorkerFactory = new WorkerFactory();
@@ -148,6 +149,25 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
     } catch(ex) {
       dump(ex + " ERROR\n");
     }
+  }).then(done);
+}
+
+exports["test tldCounter"] = function test_TldCounter(assert, done) {
+  Task.spawn(function() {
+    let hostArray = ["www.autoblog.ru",
+                     "www.thehill.com",
+                     "www.rivals.net",
+                     "www.mysql.au",
+                     "1.1.1.1",
+                     "www.androidpolice.org"];
+    yield testUtils.promiseClearHistory();
+    yield testUtils.addVisits(hostArray,10);
+    dayBuffer.clear();
+    delete storage.tldCounter;
+
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,0);
+    yield historyReader.resubmitHistory({startDay: today-20},1);
+    testUtils.isIdentical(assert, storage.tldCounter , {"NAN": 11,"au":11,"org":11,"ru":11,"net":11,"com":11});
   }).then(done);
 }
 
