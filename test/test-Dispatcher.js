@@ -41,6 +41,7 @@ function makeTestPayload(interests) {
     updateDate: storage.updateDate,
     version: storage.version,
     locale: Services.prefs.getCharPref("general.useragent.locale"),
+    tldCounter: storage.tldCounter || {},
     interests: interests || storage.interests
   };
 }
