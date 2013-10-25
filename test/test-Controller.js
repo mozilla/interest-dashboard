@@ -171,4 +171,16 @@ exports["test clear storage"] = function test_ClearStorage(assert, done) {
   }).then(done);
 }
 
+exports["test get uuid"] = function test_GetUUID(assert, done) {
+  Task.spawn(function() {
+    try {
+      let testController = new Controller();
+      assert.ok(testController.getUserID() != null);
+      assert.ok(testController.getUserID() != "");
+    } catch(ex) {
+      dump(ex + " ERROR\n");
+    }
+  }).then(done);
+}
+
 test.run(exports);
