@@ -15,7 +15,7 @@ Cu.import("resource://gre/modules/Task.jsm");
 const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
 const {WorkerFactory} = require("WorkerFactory");
-const {HistoryReader} = require("HistoryReader");
+const {HistoryReader, getTLDCounts} = require("HistoryReader");
 const {DayBuffer} = require("DayBuffer");
 const {promiseTimeout} = require("Utils");
 const {storage} = require("sdk/simple-storage");
@@ -156,9 +156,14 @@ exports["test tldCounter"] = function test_TldCounter(assert, done) {
   Task.spawn(function() {
     let hostArray = ["www.autoblog.ru",
                      "www.thehill.com",
+                     "www.foo.com",
                      "www.rivals.net",
                      "www.mysql.au",
+                     "www.facebook.au",
                      "1.1.1.1",
+                     "1.2.3.4",
+                     "localhost",
+                     "oneword",
                      "www.androidpolice.org"];
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits(hostArray,10);
@@ -167,7 +172,17 @@ exports["test tldCounter"] = function test_TldCounter(assert, done) {
 
     let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,0);
     yield historyReader.resubmitHistory({startDay: today-20},1);
-    testUtils.isIdentical(assert, storage.tldCounter , {"NAN": 11,"au":11,"org":11,"ru":11,"net":11,"com":11});
+    testUtils.isIdentical(assert, storage.tldCounter,
+      {"au":{"mysql.au":1,"facebook.au":1},
+       "com":{"thehill.com":1,"foo.com":1},
+       "net":{"rivals.net":1},
+       "ru":{"autoblog.ru":1},
+       "no-suffix":{"oneword":1,"localhost":1},
+       "is-ip":{"1.1.1.1":1,"1.2.3.4":1},
+       "org":{"androidpolice.org":1}});
+
+    let pureCounts = getTLDCounts();
+    testUtils.isIdentical(assert, pureCounts, {"au":2,"com":2,"ru":1,"net":1,"org":1,"is-ip":2,"no-suffix":2});
   }).then(done);
 }
 
