@@ -42,6 +42,7 @@ exports["test persistency"] = function test_Persistency(assert, done) {
         "3": testBucket,
         "4": testBucket,
       });
+      assert.equal(ranker.getRanking().Autos, 4);
     } catch (ex) {
       dump( ex + " ERROR\n");
     }
