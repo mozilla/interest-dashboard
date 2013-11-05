@@ -25,6 +25,13 @@ let testBucket = {
       },
     },
   },
+  "type1": {
+    "namespace1": {
+      "Autos": {
+        "autos.com": 1,
+      },
+    },
+  },
 };
 
 exports["test persistency"] = function test_Persistency(assert, done) {
@@ -43,6 +50,32 @@ exports["test persistency"] = function test_Persistency(assert, done) {
         "4": testBucket,
       });
       assert.equal(ranker.getRanking().Autos, 4);
+    } catch (ex) {
+      dump( ex + " ERROR\n");
+    }
+  }).then(done);
+}
+
+exports["test storage keys"] = function test_StorageKeys(assert, done) {
+  Task.spawn(function() {
+    try {
+      let ranker = new DayCountRanker("namespace","type");
+      let ranker1 = new DayCountRanker("namespace1","type1");
+      ranker.clear();
+      ranker1.clear();
+
+      ranker.consume({
+        "1": testBucket,
+        "2": testBucket,
+        "3": testBucket,
+      });
+
+      ranker1.consume({
+        "1": testBucket,
+      });
+
+      assert.equal(ranker.getRanking().Autos, 3);
+      assert.equal(ranker1.getRanking().Autos, 1);
     } catch (ex) {
       dump( ex + " ERROR\n");
     }
