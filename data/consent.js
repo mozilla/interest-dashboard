@@ -9,6 +9,7 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
   });
 
   $scope.dispatchBatch = null;
+  $scope.origin_testpilot = false;
 
   /** UI functionality **/
   $scope.acceptStudy = function() {
@@ -31,9 +32,29 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
     });
   }
 
+  $scope.openModalFAQ = function() {
+    let modal = $modal.open({
+      templateUrl: "faq.html",
+      controller: ModalNoticeCtrl,
+    });
+  }
+
+  $scope.openModalPrivacyPolicy = function() {
+    let modal = $modal.open({
+      templateUrl: "privacy-policy.html",
+      controller: ModalNoticeCtrl,
+    });
+  }
+
   $scope.$on("dispatch_batch", function(evt, data) {
     if(data) {
       $scope.dispatchBatch = data;
+    }
+  });
+
+  $scope.$on("download_source", function(evt, data) {
+    if(data.indexOf("testpilot") != -1) {
+      $scope.origin_testpilot = true;
     }
   });
 });
@@ -55,6 +76,12 @@ let ModalPreviewCtrl = function($scope, $modalInstance, dispatchBatch) {
       sel.removeAllRanges();
       sel.addRange(range);
     }
+  }
+}
+
+let ModalNoticeCtrl = function($scope, $modalInstance) {
+  $scope.done = function() {
+    $modalInstance.close();
   }
 }
 

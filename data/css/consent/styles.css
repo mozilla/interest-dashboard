@@ -7,6 +7,14 @@
     cursor: pointer;
 }
 
+.text-underline {
+    text-decoration: underline;
+}
+
+.list-latin {
+    list-style-type: lower-latin;
+}
+
 /*!
  * Bootstrap v2.3.2
  *
