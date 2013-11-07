@@ -22,14 +22,19 @@ exports["test empty profile ranking"] = function test_EmptyProfileRanking(assert
   Task.spawn(function() {
     try {
       yield testUtils.promiseClearHistory();
-      let testController = new Controller({rankType: "combined"});
+      let testController = new Controller();
       testController.clear()
       yield testController.submitHistory({flush: true});
       // we should only see 3 urls being processed, hten Autos should nly contain 3 days
       assert.ok(testController.getRankedInterests() == null);
       // now test how we generate random zero-score interests
       let sranked = testController.getRankedInterestsForSurvey();
-      assert.equal(sranked.length, 10);
+      assert.equal(sranked.length, 30);
+      sranked.forEach(pair => {
+        assert.equal(pair.score,0);
+      });
+
+      sranked = testController.getRankedInterestsForSurvey(50);
       sranked.forEach(pair => {
         assert.equal(pair.score,0);
       });
@@ -39,7 +44,6 @@ exports["test empty profile ranking"] = function test_EmptyProfileRanking(assert
     }
   }).then(done);
 }
-
 
 exports["test ranking"] = function test_Ranking(assert, done) {
   Task.spawn(function() {
@@ -60,8 +64,9 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "Only Autos");
 
     // now test how we generate random zero-score interests
-    let sranked = testController.getRankedInterestsForSurvey();
+    let sranked = testController.getRankedInterestsForSurvey(10);
     testUtils.isIdentical(assert, sranked[0] , {"interest":"Autos","score":4}, "first is Autos");
+
     // make sure the rest of scores is zero
     let duplicateCatcher = {};
     for( let i = 1; i < 10; i++) {
@@ -70,7 +75,7 @@ exports["test ranking"] = function test_Ranking(assert, done) {
       duplicateCatcher[sranked[i].interest] = 1;
     }
 
-    let newranks = testController.getRankedInterestsForSurvey();
+    let newranks = testController.getRankedInterestsForSurvey(10);
     testUtils.isIdentical(assert, newranks[0] , {"interest":"Autos","score":4}, "still Autos is first");
 
     // make sure that interetsts are different
@@ -90,12 +95,12 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     yield testUtils.promiseClearHistory();
     let cats = [
      {
-      host: "roughguides.com",
+      host: "traveler.xyz",
       interest: "Travel",
       score: 1
      },
      {
-      host: "tennisnews.com",
+      host: "tennis.gr",
       interest: "Tennis",
       score: 2
      },
@@ -105,12 +110,12 @@ exports["test ranking"] = function test_Ranking(assert, done) {
       score: 3
      },
      {
-      host: "autoblog.com",
+      host: "cars.ru",
       interest: "Autos",
       score: 4
      },
      {
-      host: "cracked.com",
+      host: "funnyjunk.com",
       interest: "Humor",
       score: 5
      },
@@ -125,7 +130,7 @@ exports["test ranking"] = function test_Ranking(assert, done) {
       score: 7
      },
      {
-      host: "sciencenews.com",
+      host: "sciencenews.org",
       interest: "Science",
       score: 8
      },
@@ -148,7 +153,9 @@ exports["test ranking"] = function test_Ranking(assert, done) {
 
     // make sure that counts stay the same
     yield testController.resubmitHistory({flush: true});
-    sranked = testController.getRankedInterestsForSurvey();
+    sranked = testController.getRankedInterestsForSurvey(10).sort((a,b) => {
+      return b.score - a.score;
+    });
     for (let i = 0; i < cats.length; i++) {
       assert.equal(cats[9-i].interest, sranked[i].interest, "Interest match");
       assert.equal(cats[9-i].score, sranked[i].score, "Score match");
@@ -164,23 +171,17 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     assert.equal("Gossip", sranked[0].interest);
     assert.equal(11, sranked[0].score);
 
-    for (let i = 1; i < 6; i++) {
-      assert.equal(cats[10-i].interest, sranked[i].interest, "Interest match");
-      assert.equal(cats[10-i].score, sranked[i].score, "Score match");
-    }
-
     // now add baseball
     yield testUtils.addVisits("hardballtimes.com",12,true);
     yield testUtils.addVisits("dezeen.com",13,true);
     yield testUtils.addVisits("ilounge.com",14,true);
     yield testController.resubmitHistory({flush: true});
     sranked = testController.getRankedInterestsForSurvey();
-    testUtils.isIdentical(assert, sranked,
-      [{"interest":"Apple","score":14},{"interest":"Home-Design","score":13},
-       {"interest":"Baseball","score":12},{"interest":"Gossip","score":11},
-       {"interest":"Music","score":9},{"interest":"Science","score":8},{"interest":"Television","score":7},
-       {"interest":"Autos","score":4},{"interest":"Politics","score":3},{"interest":"Tennis","score":2}],
-     "Top/Med/Low");
+    testUtils.isIdentical(assert, sranked[0], {"interest":"Apple","score":14});
+    testUtils.isIdentical(assert, sranked[1], {"interest":"Home-Design","score":13});
+    testUtils.isIdentical(assert, sranked[2], {"interest":"Baseball","score":12});
+    assert.ok(sranked[29] != null);
+    assert.equal(sranked[29].score, 0);
 
    } catch(ex) {
      dump(ex + " ERROROR \n");
