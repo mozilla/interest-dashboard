@@ -1,7 +1,7 @@
 {
   "author": "Mozilla",
-  "description": "A user study of interest profiling in Firefox.",
-  "fullName": "User Profile Research Add-on",
+  "description": "Firefox study of personalized content on the Web. This will be removed automatically when the study finishes.",
+  "fullName": "Firefox Personalization Study",
   "id": "jid1-b6xdDZ3ld1nExQ",
   "license": "MPL 2.0",
   "name": "user-profile-research",
