@@ -32,6 +32,10 @@ exports["test getRelevantPrefs"] = function test_GetRelevantPrefs(assert, done) 
     "privacy.donottrackheader.value":1,
     "privacy.donottrackheader.enabled":false,
     "browser.privatebrowsing.autostart":false,
+    "browser.urlbar.autocomplete.enabled": true,
+    "browser.urlbar.default.behavior": 0,
+    "network.cookie.cookieBehavior": 0,
+    "network.cookie.lifetimePolicy": 0,
     "privacy.sanitize.sanitizeOnShutdown":false,
     "places.history.enabled":true,
     "browser.formfill.enable":true
