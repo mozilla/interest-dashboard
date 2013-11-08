@@ -41,6 +41,8 @@ exports["test matching workers"] = function test_MatchingWorkers(assert, done) {
     testUtils.isIdentical(assert, payload["interests"]["" + (today-4)]["rules"]["edrules"], {"Autos":[1]}, "edrules model test");
     testUtils.isIdentical(assert, payload["interests"]["" + (today-4)]["rules"]["edrules_extended"], {"Autos":[1]}, "edrules_extended model test");
     testUtils.isIdentical(assert, payload["interests"]["" + (today-4)]["rules"]["58-cat"], {"cars":[1]}, "58-cat model test");
+    testUtils.isIdentical(assert, payload["interests"]["" + (today-4)]["keywords"]["edrules_extended"], {"Autos":[1]}, "edrules_extended model test");
+
     done();
   });
 }
