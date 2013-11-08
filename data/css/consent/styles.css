@@ -3,18 +3,25 @@
 }
 
 #content {
-  width: auto;
-  margin: 0 20px;
+    width: auto;
+    margin: 0 20px;
 }
-
 #outer-wrapper {
-  min-width: 0;
+    min-width: 0;
+}
+#masthead {
+    width: auto;
+    margin-left: 0;
+    padding-left: 0;
 }
 
-#masthead {
-   width: auto;
-   margin-left: 0;
-   padding-left: 0;
+.button {
+    padding: 10px 20px;
+    margin-right: 20px;
+}
+
+p {
+    font-size: 15px;
 }
 
 .button-link {
