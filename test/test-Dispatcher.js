@@ -141,7 +141,7 @@ exports["test _dispatch"] = function test__Dispatch(assert, done) {
       testUtils.isIdentical(assert, deserialized, makeTestPayload(), "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
-      response.setStatusLine(request.httpVersion, 200, "OK");
+      response.setStatusLine(request.httpVersion, 201, "OK");
       responseDeferred.resolve();
     }
 
@@ -185,7 +185,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
       testUtils.isIdentical(assert, deserialized, makeTestPayload(), "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
-      response.setStatusLine(request.httpVersion, 200, "OK");
+      response.setStatusLine(request.httpVersion, 201, "OK");
       responseDeferred.resolve();
     }
 
@@ -219,6 +219,72 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
 
     testUtils.isIdentical(assert, {}, storage.interests, "storage should have been cleared");
     server.stop(function(){});
+  }).then(_ => {
+    removeObservers();
+  }).then(done);
+}
+
+exports["test _sendPing fail"] = function test__sendPingFail(assert, done) {
+  Task.spawn(function() {
+    let server = new nsHttpServer();
+    server.start(-1);
+    let serverPort = server.identity.primaryPort
+    let serverUrl = "http://localhost:" + serverPort + "/post";
+
+    yield StudyApp.saveAddonInfo();
+    let dispatcher = new Dispatcher(serverUrl, {enabled: true, dispatchIdleDelay: 1});
+    dispatcher.consume(sampleData.dayAnnotatedOne);
+    dispatcher.consume(sampleData.dayAnnotatedTwo);
+    let payload = dispatcher._makePayload(1024*256);
+
+    let responseDeferred = Promise.defer();
+
+    let testPayload = (request, response) => {
+      let bodySize = request._bodyInputStream.available();
+      let body = NetUtil.readInputStreamToString(request._bodyInputStream, bodySize, {charset: "UTF-8"});
+      assert.ok(body);
+
+      let deserialized = JSON.parse(body);
+      testUtils.isIdentical(assert, deserialized, makeTestPayload(), "unexpected payload data");
+
+      response.setHeader("Content-Type", "text/plain", false);
+      response.setStatusLine(request.httpVersion, 500, "Server Error");
+      responseDeferred.resolve();
+    }
+
+    // test registration
+    server.registerPathHandler("/post", (request, response) => {
+      testPayload(request, response);
+    });
+    let daysInStorage = Object.keys(storage.interests);
+
+    // observe notification
+    let transmitNotifDeferred = Promise.defer();
+    let observeTransmission =  {
+      observe: (aSubject, aTopic, aData) => {
+        if  (aTopic != "dispatcher-payload-transmission-failure") {
+          throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
+        }
+        testUtils.isIdentical(assert, "HTTP Error 500 Server Error", daysInStorage, "transmission contains unexpected items");
+        transmitNotifDeferred.resolve();
+      },
+    }
+    Services.obs.addObserver(observeTransmission, "dispatcher-payload-transmission-failure", false);
+
+    // launch work
+    Services.obs.notifyObservers(null, "idle-daily", null);
+
+    // server should have responded
+    yield responseDeferred.promise;
+
+    // notification should be sent
+    yield transmitNotifDeferred.promise;
+
+    testUtils.isIdentical(assert, true, Object.keys(storage.interests).length > 0, "storage should not have been cleared");
+
+    server.stop(function(){});
+    // clean up
+    storage.interests = {};
   }).then(_ => {
     removeObservers();
   }).then(done);
