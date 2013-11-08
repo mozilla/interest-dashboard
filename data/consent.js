@@ -37,6 +37,18 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
       templateUrl: "faq.html",
       controller: ModalNoticeCtrl,
     });
+
+    modal.result.then(function(result) {
+      // the FAQ may open other modals
+      if (result && result.message == "openModal") {
+        if (result.type == "preview") {
+          $scope.openModalPreview();
+        }
+        else if (result.type == "privacy") {
+          $scope.openModalPrivacyPolicy();
+        }
+      }
+    });
   }
 
   $scope.openModalPrivacyPolicy = function() {
@@ -82,6 +94,14 @@ let ModalPreviewCtrl = function($scope, $modalInstance, dispatchBatch) {
 let ModalNoticeCtrl = function($scope, $modalInstance) {
   $scope.done = function() {
     $modalInstance.close();
+  }
+
+  $scope.switchToPreview = function() {
+    $modalInstance.close({message: "openModal", type: "preview"});
+  }
+
+  $scope.switchToPrivacyPolicy = function() {
+    $modalInstance.close({message: "openModal", type: "privacy"});
   }
 }
 
