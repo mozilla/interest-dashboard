@@ -2,6 +2,15 @@
     display: none;
 }
 
+.button {
+    padding: 10px 20px;
+    margin-right: 20px;
+}
+
+p {
+    font-size: 15px;
+}
+
 .button-link {
     margin: 5px 10px;
     cursor: pointer;
