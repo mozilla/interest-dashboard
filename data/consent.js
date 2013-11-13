@@ -6,6 +6,7 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
   $scope.daysLeftStart = null;
   $scope.daysLeft = null;
   $scope.daysCompletion = 0;
+  $scope.previewModal = null;
 
   self.port.on("message", message => {
     $scope.$apply(_ => {
@@ -26,7 +27,7 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
   }
 
   $scope.openModalPreview = function() {
-    let modal = $modal.open({
+    $scope.previewModal = $modal.open({
       templateUrl: "dataPreview.html",
       controller: ModalPreviewCtrl,
       resolve: {
@@ -34,6 +35,9 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
           return $scope.dispatchBatch;
         }
       }
+    });
+    $scope.previewModal.result.then(function() {
+      $scope.previewModal = null;
     });
   }
 
@@ -66,6 +70,10 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
   $scope.$on("dispatch_batch", function(evt, data) {
     if(data) {
       $scope.dispatchBatch = data;
+    }
+    if ($scope.previewModal) {
+      $scope.previewModal.close();
+      $scope.openModalPreview();
     }
   });
 

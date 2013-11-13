@@ -124,10 +124,11 @@
 
                 <script type="text/ng-template" id="dataPreview.html">
                     <div class="modal-header">
-                        <h3>Study Data Preview<a class="small button-link" ng-click="selectText()">select text</a></h3>
+                        <h3>Study Data Preview<a class="small button-link" ng-show="dispatchBatch" ng-click="selectText()">select text</a></h3>
                     </div>
                     <div class="modal-body">
-                        <pre id="previewText">{{dispatchBatch}}</pre>
+                        <pre ng-show="dispatchBatch" id="previewText">{{dispatchBatch}}</pre>
+                        <p ng-hide="dispatchBatch">No data is available yet.</br>Please try again in a few moments or wait until this window updates.</p>
                     </div>
                     <div class="modal-footer">
                         <a class="button button-next" ng-click="done()">Done</a>
