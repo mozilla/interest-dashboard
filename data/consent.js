@@ -85,10 +85,6 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
 
   $scope.$on("days_left", function(event, data) {
     if (!$scope.daysLeftStart) {
-      let modal = $modal.open({
-        templateUrl: "compute_progress.html",
-        controller: ModalNoticeCtrl,
-      });
       $scope.daysLeftStart = data;
     }
     $scope.daysLeft = data;
