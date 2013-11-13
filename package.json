@@ -2,9 +2,9 @@
   "author": "Mozilla",
   "description": "Firefox study of personalized content on the Web. This will be removed automatically when the study finishes.",
   "fullName": "Firefox Personalization Study",
-  "id": "jid1-b6xdDZ3ld1nExQ",
+  "id": "firefox.personalization.study@up.mozilla",
   "license": "MPL 2.0",
-  "name": "user-profile-research",
+  "name": "firefox-personalization-study",
   "version": "1",
   "preferences": [
       {
