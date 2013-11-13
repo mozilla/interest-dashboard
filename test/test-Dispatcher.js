@@ -33,8 +33,9 @@ StudyApp.setSourceUri(NetUtil.newURI("http://localhost"));
 // create uuid, which is assumed to be created in the Controller
 simplePrefs.prefs.uuid = uuid.generateUUID().toString().slice(1, -1).replace(/-/g, "");
 
-function makeTestPayload(interests) {
+function makeTestPayload(referencePayload, interests) {
   return {
+    payloadDate: referencePayload.payloadDate,
     uuid: simplePrefs.prefs.uuid,
     prefs: getRelevantPrefs(),
     source: storage.downloadSource,
@@ -90,11 +91,11 @@ exports["test _makePayload"] = function test__makePayload(assert) {
 
   // size limit is big enough to include both days
   payload = dispatcher._makePayload(1024*256);
-  testUtils.isIdentical(assert, payload, makeTestPayload(), "unexpected payload data");
+  testUtils.isIdentical(assert, payload, makeTestPayload(payload), "unexpected payload data");
 
   // size limit is big enough to only include one day. earlier day will be picked due to sorting
   payload = dispatcher._makePayload(0);
-  testUtils.isIdentical(assert, payload, makeTestPayload(sampleData.dayAnnotatedOne), "unexpected payload data");
+  testUtils.isIdentical(assert, payload, makeTestPayload(payload, sampleData.dayAnnotatedOne), "unexpected payload data");
 
   dispatcher.clear();
   testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't cleared");
@@ -138,7 +139,7 @@ exports["test _dispatch"] = function test__Dispatch(assert, done) {
       assert.ok(body);
 
       let deserialized = JSON.parse(body);
-      testUtils.isIdentical(assert, deserialized, makeTestPayload(), "unexpected payload data");
+      testUtils.isIdentical(assert, deserialized, makeTestPayload(deserialized), "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
       response.setStatusLine(request.httpVersion, 201, "OK");
@@ -182,7 +183,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
       assert.ok(body);
 
       let deserialized = JSON.parse(body);
-      testUtils.isIdentical(assert, deserialized, makeTestPayload(), "unexpected payload data");
+      testUtils.isIdentical(assert, deserialized, makeTestPayload(deserialized), "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
       response.setStatusLine(request.httpVersion, 201, "OK");
@@ -245,7 +246,7 @@ exports["test _sendPing fail"] = function test__sendPingFail(assert, done) {
       assert.ok(body);
 
       let deserialized = JSON.parse(body);
-      testUtils.isIdentical(assert, deserialized, makeTestPayload(), "unexpected payload data");
+      testUtils.isIdentical(assert, deserialized, makeTestPayload(deserialized), "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
       response.setStatusLine(request.httpVersion, 500, "Server Error");
