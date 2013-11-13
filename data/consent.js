@@ -2,6 +2,11 @@
 
 let consentMenu = angular.module("consentMenu", ["ui.bootstrap"]);
 consentMenu.controller("consentCtrl", function($scope, $modal) {
+
+  $scope.daysLeftStart = null;
+  $scope.daysLeft = null;
+  $scope.daysCompletion = 0;
+
   self.port.on("message", message => {
     $scope.$apply(_ => {
       $scope.$broadcast(message.content.topic, message.content.data);
@@ -69,6 +74,25 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
       $scope.origin_testpilot = true;
     }
   });
+
+  $scope.$on("days_left", function(event, data) {
+    if (!$scope.daysLeftStart) {
+      let modal = $modal.open({
+        templateUrl: "compute_progress.html",
+        controller: ModalNoticeCtrl,
+      });
+      $scope.daysLeftStart = data;
+    }
+    $scope.daysLeft = data;
+    $scope.updateProgressBar();
+  });
+
+  $scope.updateProgressBar = function() {
+    let elem = document.querySelector("#progressBar");
+    let daysCompletion = (100 - Math.round($scope.daysLeft/$scope.daysLeftStart*100));
+    elem.style.width = daysCompletion + "%";
+    $scope.daysCompletion = daysCompletion;
+  }
 });
 
 let ModalPreviewCtrl = function($scope, $modalInstance, dispatchBatch) {

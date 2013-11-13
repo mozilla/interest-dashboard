@@ -133,6 +133,19 @@
                         <a class="button button-next" ng-click="done()">Done</a>
                     </div>
                 </script>
+                <div ng-show="daysLeftStart">
+                    <div class="modal-backdrop fade in" style="z-index: 1400;"></div>
+                    <div class="modal fade in" style="z-index: 1500;">
+                        <div class="modal-body">
+                            <p>We are processing your data.<br/>When this computation is finished, you will be redirected to a survey page.</p>
+                            <p>Thank you for waiting!</p>
+                            <div class="progress progress-striped active">
+                                <div id="progressBar" class="bar" style="width: 0%;"></div>
+                            </div>
+                            <p>{{daysCompletion}}% complete</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <footer id="colophon">
                 <div class="row">
