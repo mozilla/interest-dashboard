@@ -43,6 +43,24 @@ exports["test matching workers"] = function test_MatchingWorkers(assert, done) {
     testUtils.isIdentical(assert, payload["interests"]["" + (today-4)]["rules"]["58-cat"], {"cars":[1]}, "58-cat model test");
     testUtils.isIdentical(assert, payload["interests"]["" + (today-4)]["keywords"]["edrules_extended"], {"Autos":[1]}, "edrules_extended model test");
 
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.nytimes.com/"), visitDate: microNow});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.nytimes.com/thepage"), visitDate: microNow});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.foxnews.com/"), visitDate: microNow});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.foxnews.com/thepage"), visitDate: microNow});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.cnn.com/"), visitDate: microNow});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.cnn.com/thepage"), visitDate: microNow});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.washingtonpost.com/"), visitDate: microNow});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.washingtonpost.com/thepage"), visitDate: microNow});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.mitbbs.com/"), visitDate: microNow});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.mitbbs.com/thepage"), visitDate: microNow});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.mitbbs.com/thepage1"), visitDate: microNow});
+    testController.clear();
+    yield testController.submitHistory({flush: true});
+    payload = testController.getNextDispatchBatch();
+
+    testUtils.isIdentical(assert, payload["interests"]["" + today]["rules"]["58-cat"],
+      {"cars":[1],"news":[2,2,2,2,3],"__news_counter":[2,2,2,2],"__news_home_counter":[1,1,1,1],"politics":[2],"tv":[2]});
+
     done();
   });
 }

@@ -3209,7 +3209,11 @@ var interestsData =
    "nytimes.com" : {
       "lollapalooza" : "music",
       "__ANY" : [
-         "news"
+         "news",
+         "__news_counter",
+      ],
+      "__HOME" : [
+         "__news_home_counter"
       ],
       "pages sports olympics" : "sports",
       "science" : "science",
@@ -28595,7 +28599,11 @@ var interestsData =
    "foxnews.com" : {
       "__ANY" : [
          "politics",
-         "news"
+         "news",
+         "__news_counter"
+      ],
+      "__HOME" : [
+         "__news_home_counter"
       ],
       "sports" : "sports"
    },
@@ -34577,7 +34585,11 @@ var interestsData =
       "entertainment books" : "reading",
       "blogs nationals journal" : "sports",
       "__ANY" : [
-         "news"
+         "news",
+         "__news_counter"
+      ],
+      "__HOME" : [
+         "__news_home_counter"
       ],
       "blogs wizards insider" : "sports",
       "blogs the fix" : "politics",
@@ -34840,7 +34852,11 @@ var interestsData =
    "cnn.com" : {
       "__ANY" : [
          "tv",
-         "news"
+         "news",
+         "__news_counter"
+      ],
+      "__HOME" : [
+         "__news_home_counter"
       ],
       "travel" : "travel",
       "studentnews" : "education",
