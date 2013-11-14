@@ -26,6 +26,14 @@ let testDomainRules = {
       "science",
     ]
   },
+  "www.news.com" : {
+    "__HOME" : [
+      "news_home"
+    ],
+    "__ANY" : [
+      "news"
+    ]
+  },
 }
 
 // the test array 
@@ -47,6 +55,24 @@ let matchTests = [
   url:  "https://mail.google.com/mail/u/0/?ui=2&shva=1#inbox?compose=13e0005db4a0d0d4",
   title: "",
   expectedInterests: [{"type":"rules","interests":[]},{"type":"keywords","interests":[]},{"type":"combined","interests":[]}],
+},
+{
+  info: "Match Test 4 (Rules): www.news.com home url",
+  url:  "https://www.news.com",
+  title: "",
+  expectedInterests: [{"type":"rules","interests":["news","news_home"]},{"type":"combined","interests":["news","news_home"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 5 (Rules): www.news.com page url",
+  url:  "https://www.news.com/page_url",
+  title: "",
+  expectedInterests: [{"type":"rules","interests":["news"]},{"type":"combined","interests":["news"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 6 (Rules): www.news.com query url",
+  url:  "https://www.news.com?page=1",
+  title: "",
+  expectedInterests: [{"type":"rules","interests":["news","news_home"]},{"type":"combined","interests":["news","news_home"]},{"type":"keywords","interests":[]}],
 },
 ];
 

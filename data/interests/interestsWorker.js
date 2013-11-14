@@ -78,7 +78,10 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
 
       let processDFRKeys = function(hostObject) {
         Object.keys(hostObject).forEach(function(key) {
-          if (key != "__ANY" && matchedAllTokens(key.split(kSplitter))) {
+          if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
+            interests = interests.concat(hostObject[key]);
+          }
+          else if (key != "__ANY" && matchedAllTokens(key.split(kSplitter))) {
             interests = interests.concat(hostObject[key]);
           }
         });
