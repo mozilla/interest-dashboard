@@ -29,20 +29,13 @@ exports.testUtils = {
   },
 
   isIdentical : function isIdentical(assert, actual, expected, text) {
-    if (expected == null) {
+    if (expected == null || actual == null) {
       this.do_check_eq(assert, actual, expected, text);
     }
     else if (Array.isArray(expected)) {
-      if (expected.length == actual.length) {
-        for (let i = 0; i < expected.length; i++) {
-          if (!this.isIdentical(assert,expected[i],actual[i],text)) {
-            return false;
-          }
-        }
-        return true;
-      }
-      else {
-        return false;
+      assert.equal(expected.length, actual.length, text);
+      for (let i = 0; i < expected.length; i++) {
+        this.isIdentical(assert,expected[i],actual[i],text);
       }
     }
     else if (typeof expected == "object" && typeof actual == "object") {

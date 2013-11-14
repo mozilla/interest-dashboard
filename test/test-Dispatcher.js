@@ -203,7 +203,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
         if  (aTopic != "dispatcher-payload-transmission-complete") {
           throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
         }
-        testUtils.isIdentical(assert, aData, daysInStorage, "transmission contains unexpected items");
+        testUtils.isIdentical(assert, aData, daysInStorage.join(","), "transmission contains unexpected items");
         transmitNotifDeferred.resolve();
       },
     }
@@ -266,7 +266,7 @@ exports["test _sendPing fail"] = function test__sendPingFail(assert, done) {
         if  (aTopic != "dispatcher-payload-transmission-failure") {
           throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
         }
-        testUtils.isIdentical(assert, "HTTP Error 500 Server Error", daysInStorage, "transmission contains unexpected items");
+        assert.equal(aData, "HTTP Error 500 Server Error", "transmission contains unexpected items");
         transmitNotifDeferred.resolve();
       },
     }
