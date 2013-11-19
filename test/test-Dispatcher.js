@@ -21,6 +21,7 @@ const {nsHttpServer, startServerAsync} = require("sdk/test/httpd");
 const test = require("sdk/test");
 const simplePrefs = require("simple-prefs")
 
+const {Controller} = require("Controller");
 const {Dispatcher} = require("Dispatcher");
 const {testUtils} = require("./helpers");
 const {getRelevantPrefs} = require("Utils");
@@ -321,6 +322,27 @@ exports["test locale"] = function test_locale(assert) {
   let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
   let payloadObject = dispatcher._makePayloadObject();
   assert.equal(payloadObject.locale, "en-US");
+}
+
+exports["test idle-daily dispatch"] = function test_IdleDailyDispatch(assert, done) {
+  Task.spawn(function() {
+    let testController = new Controller();
+    testController.clear();
+
+    let dispatcher = new Dispatcher("http://example.com", {enabled: false, dispatchIdleDelay: 1});
+    testController._dispatcher = dispatcher;
+
+    let sendPingDeferred = Promise.defer();
+    dispatcher._enabled = true;
+    dispatcher._sendPing = function(aUrl) {
+      assert.ok(true, "_sendPing should run at idle-daily");
+      sendPingDeferred.resolve();
+    }
+    Services.obs.notifyObservers(null, "idle-daily", null);
+    yield sendPingDeferred.promise;
+  }).then(_ => {
+    removeObservers();
+  }).then(done);
 }
 
 test.run(exports);
