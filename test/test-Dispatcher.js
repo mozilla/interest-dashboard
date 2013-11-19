@@ -210,7 +210,8 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
     Services.obs.addObserver(observeTransmission, "dispatcher-payload-transmission-complete", false);
 
     // launch work
-    Services.obs.notifyObservers(null, "idle-daily", null);
+    dispatcher.setObserveIdle();
+    Services.obs.notifyObservers(null, "idle", null);
 
     // server should have responded
     yield responseDeferred.promise;
@@ -273,7 +274,8 @@ exports["test _sendPing fail"] = function test__sendPingFail(assert, done) {
     Services.obs.addObserver(observeTransmission, "dispatcher-payload-transmission-failure", false);
 
     // launch work
-    Services.obs.notifyObservers(null, "idle-daily", null);
+    dispatcher.setObserveIdle();
+    Services.obs.notifyObservers(null, "idle", null);
 
     // server should have responded
     yield responseDeferred.promise;
@@ -298,7 +300,8 @@ exports["test consent verification"] = function test__consent_verification(asser
     dispatcher._sendPing = function(aUrl) {
       assert.fail("_sendPing should not run without consent");
     }
-    Services.obs.notifyObservers(null, "idle-daily", null);
+    dispatcher.setObserveIdle();
+    Services.obs.notifyObservers(null, "idle", null);
 
     let sendPingDeferred = Promise.defer();
     dispatcher._enabled = true;
@@ -306,7 +309,8 @@ exports["test consent verification"] = function test__consent_verification(asser
       assert.ok(true, "_sendPing should run with consent");
       sendPingDeferred.resolve();
     }
-    Services.obs.notifyObservers(null, "idle-daily", null);
+    dispatcher.setObserveIdle();
+    Services.obs.notifyObservers(null, "idle", null);
     yield sendPingDeferred.promise;
   }).then(_ => {
     removeObservers();
