@@ -30,7 +30,7 @@
         "name": "dispatchIdleDelay",
         "title": "Seconds to wait when idle until data is sent",
         "type": "integer",
-        "value": 300
+        "value": 120
       }
   ]
 }
