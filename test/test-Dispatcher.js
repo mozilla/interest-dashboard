@@ -340,6 +340,7 @@ exports["test idle-daily dispatch"] = function test_IdleDailyDispatch(assert, do
     }
     Services.obs.notifyObservers(null, "idle-daily", null);
     yield sendPingDeferred.promise;
+    testController.clear();
   }).then(_ => {
     removeObservers();
   }).then(done);
