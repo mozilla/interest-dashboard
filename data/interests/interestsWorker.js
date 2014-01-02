@@ -70,10 +70,11 @@ function getMatchedHostRule(host) {
   if (gInterestsData[host])
     return gInterestsData[host];
 
-  for (let exp in gInterestsDataInRegExp) {
-    let re = new RegExp("^" + exp.replace("*", ".+") + "$", "i");
+  for (let idx = 0; idx < gInterestsDataInRegExp.length; idx++) {
+    let exp = gInterestsDataInRegExp[idx];
+    let re = new RegExp("^" + exp.replace(/\./g, "\\.").replace("*", ".+") + "$", "i");
     if (re.test(host))
-      return gInterestsDataInRegExp(exp);
+      return gInterestsData[exp];
   }
 
   return null;

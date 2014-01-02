@@ -52,13 +52,14 @@ exports.testUtils = {
     }
   },
 
-  getWorker : function getWorker({namespace, domainRules, textModel, urlStopWords, listener}) {
+  getWorker : function getWorker({namespace, domainRules, textModel, urlStopWords, listener, regionCode}) {
     let worker = new ChromeWorker(data.url("interests/interestsWorker.js"));
     worker.addEventListener("message", listener, false);
     worker.addEventListener("error", listener, false);
     worker.postMessage({
       message: "bootstrap",
       workerNamespace: namespace,
+      workerRegionCode: regionCode || 'en-US',
       interestsDataType: "dfr",
       interestsData: domainRules,
       interestsClassifierModel: textModel,
