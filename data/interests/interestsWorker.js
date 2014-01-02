@@ -10,6 +10,11 @@ function InterestsWorkerError(message) {
     this.name = "InterestsWorkerError";
     this.message = message || "InterestsWorker has errored";
 }
+
+function log(msg) {
+  dump("-*- interestsWorker -*- " + msg + '\n')
+}
+
 InterestsWorkerError.prototype = new Error();
 InterestsWorkerError.prototype.constructor = InterestsWorkerError;
 
@@ -18,6 +23,8 @@ let gRegionCode = null;
 let gTokenizer = null;
 let gClassifier = null;
 let gInterestsData = null;
+let gInterestsDataInRegExp = null;
+
 const kSplitter = /[^-\w\xco-\u017f\u0380-\u03ff\u0400-\u04ff]+/;
 
 // bootstrap the worker with data and models
@@ -47,10 +54,36 @@ function bootstrap(aMessageData) {
   });
 }
 
+// Only support regexp with wildcard
+function buildMappingWithWildcard() {
+  gInterestsDataInRegExp = [];
+
+  Object.keys(gInterestsData).forEach(function(domain) {
+    if (domain.indexOf("*") < 0)
+      return;
+
+    gInterestsDataInRegExp.push(domain);
+  });
+}
+
+function getMatchedHostRule(host) {
+  if (gInterestsData[host])
+    return gInterestsData[host];
+
+  for (let exp in gInterestsDataInRegExp) {
+    let re = new RegExp("^" + exp.replace("*", ".+") + "$", "i");
+    if (re.test(host))
+      return gInterestsDataInRegExp(exp);
+  }
+
+  return null;
+}
+
 // swap out rules
 function swapRules({interestsData, interestsDataType}) {
   if (interestsDataType == "dfr") {
     gInterestsData = interestsData;
+    buildMappingWithWildcard();
   }
 }
 
@@ -60,17 +93,21 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
     return [];
   }
   let interests = [];
-  let hostKeys = (gInterestsData[host]) ? Object.keys(gInterestsData[host]).length : 0;
-  let tldKeys = (host != tld && gInterestsData[tld]) ? Object.keys(gInterestsData[tld]).length : 0;
+
+  let matchedHost = getMatchedHostRule(host);
+  let hostKeys = matchedHost ? Object.keys(matchedHost).length : 0;
+
+  let matchedTLD = host != tld ? getMatchedHostRule(tld) : matchedHost;
+  let tldKeys = (host != tld && matchedTLD) ? Object.keys(matchedTLD).length : 0;
 
   if (hostKeys || tldKeys) {
     // process __ANY first
-    if (hostKeys && gInterestsData[host]["__ANY"]) {
-      interests = interests.concat(gInterestsData[host]["__ANY"]);
+    if (hostKeys && matchedHost["__ANY"]) {
+      interests = interests.concat(matchedHost["__ANY"]);
       hostKeys--;
     }
-    if (tldKeys && gInterestsData[tld]["__ANY"]) {
-      interests = interests.concat(gInterestsData[tld]["__ANY"]);
+    if (tldKeys && matchedTLD["__ANY"]) {
+      interests = interests.concat(matchedTLD["__ANY"]);
       tldKeys--;
     }
 
@@ -97,10 +134,10 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
       }
 
       if (hostKeys) {
-        processDFRKeys(gInterestsData[host]);
+        processDFRKeys(matchedHost);
       }
       if (tldKeys) {
-        processDFRKeys(gInterestsData[tld]);
+        processDFRKeys(matchedTLD);
       }
     }
   }
@@ -166,10 +203,7 @@ function getInterestsForDocument(aMessageData) {
     self.postMessage(aMessageData);
   }
   catch (ex) {
-    dump('!!!!!!!!!! ');
-    dump(ex);
-    dump('\n')
-    Components.utils.reportError(ex);
+    log("getInterestsForDocument: " + ex)
   }
 }
 
