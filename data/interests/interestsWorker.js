@@ -66,15 +66,51 @@ function buildMappingWithWildcard() {
   });
 }
 
-function getMatchedHostRule(host) {
-  if (gInterestsData[host])
-    return gInterestsData[host];
+function _getValidRule(hostRule, path) {
+  if (!hostRule)
+    return null;
 
+  if (hostRule["__ANY"])
+    return hostRule;
+
+  if (!path)
+    return null;
+
+  // check path
+  let pathRules = hostRule["__PATH"];
+  if (pathRules) {
+    for (let p in pathRules) {
+      /**
+       * For path:
+       *   '/path'
+       * there are cases to be matched:
+       *   '/path'
+       *   '/path/'
+       *   '/path?kw='
+       *   '/path#hash'
+       */
+      if (p == path || path.indexOf(path) == 0 &&
+          /[#?\/]/i.test(path.substring(p.length, p.length + 1))) {
+        return pathRules[p];
+      }
+    }
+  }
+
+  return null;
+}
+
+function getMatchedHostRule(host, path) {
+  let result = _getValidRule(gInterestsData[host], path);
+  if (result)
+    return result;
+
+  // Check domains in regexp.
   for (let idx = 0; idx < gInterestsDataInRegExp.length; idx++) {
     let exp = gInterestsDataInRegExp[idx];
     let re = new RegExp("^" + exp.replace(/\./g, "\\.").replace("*", ".+") + "$", "i");
-    if (re.test(host))
-      return gInterestsData[exp];
+    if (re.test(host)) {
+      return _getValidRule(gInterestsData[exp], path);
+    }
   }
 
   return null;
@@ -95,7 +131,7 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
   }
   let interests = [];
 
-  let matchedHost = getMatchedHostRule(host);
+  let matchedHost = getMatchedHostRule(host, path);
   let hostKeys = matchedHost ? Object.keys(matchedHost).length : 0;
 
   let matchedTLD = host != tld ? getMatchedHostRule(tld) : matchedHost;
