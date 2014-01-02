@@ -160,118 +160,118 @@ var interestsdata = {
         ]
     },
     "www.amazon.cn": {
-        "手机": [
+        "\u624b\u673a": [
             "mobile"
         ],
-        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
+        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
             "digital"
         ],
-        "相机": [
+        "\u76f8\u673a": [
             "photography-dc"
         ],
-        "电视-洗衣机-冰箱-空调-热水器-风扇-吸尘器-净化器-烟机-电磁炉-榨汁机-豆浆机-微波炉-电压力锅-电饭煲": [
+        "\u7535\u89c6-\u6d17\u8863\u673a-\u51b0\u7bb1-\u7a7a\u8c03-\u70ed\u6c34\u5668-\u98ce\u6247-\u5438\u5c18\u5668-\u51c0\u5316\u5668-\u70df\u673a-\u7535\u78c1\u7089-\u69a8\u6c41\u673a-\u8c46\u6d46\u673a-\u5fae\u6ce2\u7089-\u7535\u538b\u529b\u9505-\u7535\u996d\u7172": [
             "home-applicance"
         ],
-        "图书": [
+        "\u56fe\u4e66": [
             "book"
         ]
     },
     "item.taobao.com": {
-        "手机": [
+        "\u624b\u673a": [
             "mobile"
         ],
-        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
+        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
             "digital"
         ],
-        "相机": [
+        "\u76f8\u673a": [
             "photography-dc"
         ],
-        "电视-洗衣机-冰箱-空调-热水器-风扇-吸尘器-净化器-烟机-电磁炉-榨汁机-豆浆机-微波炉-电压力锅-电饭煲": [
+        "\u7535\u89c6-\u6d17\u8863\u673a-\u51b0\u7bb1-\u7a7a\u8c03-\u70ed\u6c34\u5668-\u98ce\u6247-\u5438\u5c18\u5668-\u51c0\u5316\u5668-\u70df\u673a-\u7535\u78c1\u7089-\u69a8\u6c41\u673a-\u8c46\u6d46\u673a-\u5fae\u6ce2\u7089-\u7535\u538b\u529b\u9505-\u7535\u996d\u7172": [
             "home-applicance"
         ],
-        "女装-女鞋-连衣裙-打底衫-半身裙-雪纺-蕾丝-高跟-防水台-妈妈装-打底衫-娃娃领-民族风女装-毛衣裙-裙-女": [
+        "\u5973\u88c5-\u5973\u978b-\u8fde\u8863\u88d9-\u6253\u5e95\u886b-\u534a\u8eab\u88d9-\u96ea\u7eba-\u857e\u4e1d-\u9ad8\u8ddf-\u9632\u6c34\u53f0-\u5988\u5988\u88c5-\u6253\u5e95\u886b-\u5a03\u5a03\u9886-\u6c11\u65cf\u98ce\u5973\u88c5-\u6bdb\u8863\u88d9-\u88d9-\u5973": [
             "fashion-women"
         ],
-        "男士-潮男-男": [
+        "\u7537\u58eb-\u6f6e\u7537-\u7537": [
             "fashion-men"
         ]
     },
     "detail.tmall.com": {
-        "手机": [
+        "\u624b\u673a": [
             "mobile"
         ],
-        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
+        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
             "digital"
         ],
-        "相机": [
+        "\u76f8\u673a": [
             "photography-dc"
         ],
-        "电视-洗衣机-冰箱-空调-热水器-风扇-吸尘器-净化器-烟机-电磁炉-榨汁机-豆浆机-微波炉-电压力锅-电饭煲": [
+        "\u7535\u89c6-\u6d17\u8863\u673a-\u51b0\u7bb1-\u7a7a\u8c03-\u70ed\u6c34\u5668-\u98ce\u6247-\u5438\u5c18\u5668-\u51c0\u5316\u5668-\u70df\u673a-\u7535\u78c1\u7089-\u69a8\u6c41\u673a-\u8c46\u6d46\u673a-\u5fae\u6ce2\u7089-\u7535\u538b\u529b\u9505-\u7535\u996d\u7172": [
             "home-applicance"
         ],
-        "女装-女鞋-连衣裙-打底衫-半身裙-雪纺-蕾丝-高跟-防水台-妈妈装-打底衫-娃娃领-民族风女装-毛衣裙-裙-女": [
+        "\u5973\u88c5-\u5973\u978b-\u8fde\u8863\u88d9-\u6253\u5e95\u886b-\u534a\u8eab\u88d9-\u96ea\u7eba-\u857e\u4e1d-\u9ad8\u8ddf-\u9632\u6c34\u53f0-\u5988\u5988\u88c5-\u6253\u5e95\u886b-\u5a03\u5a03\u9886-\u6c11\u65cf\u98ce\u5973\u88c5-\u6bdb\u8863\u88d9-\u88d9-\u5973": [
             "fashion-women"
         ],
-        "男士-潮男-男": [
+        "\u7537\u58eb-\u6f6e\u7537-\u7537": [
             "fashion-men"
         ]
     },
     "item.jd.com": {
-        "手机": [
+        "\u624b\u673a": [
             "mobile"
         ],
-        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
+        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
             "digital"
         ],
-        "相机": [
+        "\u76f8\u673a": [
             "photography-dc"
         ],
-        "电视-洗衣机-冰箱-空调-热水器-风扇-吸尘器-净化器-烟机-电磁炉-榨汁机-豆浆机-微波炉-电压力锅-电饭煲": [
+        "\u7535\u89c6-\u6d17\u8863\u673a-\u51b0\u7bb1-\u7a7a\u8c03-\u70ed\u6c34\u5668-\u98ce\u6247-\u5438\u5c18\u5668-\u51c0\u5316\u5668-\u70df\u673a-\u7535\u78c1\u7089-\u69a8\u6c41\u673a-\u8c46\u6d46\u673a-\u5fae\u6ce2\u7089-\u7535\u538b\u529b\u9505-\u7535\u996d\u7172": [
             "home-applicance"
         ],
-        "女装-女鞋-连衣裙-打底衫-半身裙-雪纺-蕾丝-高跟-防水台-妈妈装-打底衫-娃娃领-民族风女装-毛衣裙-裙-女": [
+        "\u5973\u88c5-\u5973\u978b-\u8fde\u8863\u88d9-\u6253\u5e95\u886b-\u534a\u8eab\u88d9-\u96ea\u7eba-\u857e\u4e1d-\u9ad8\u8ddf-\u9632\u6c34\u53f0-\u5988\u5988\u88c5-\u6253\u5e95\u886b-\u5a03\u5a03\u9886-\u6c11\u65cf\u98ce\u5973\u88c5-\u6bdb\u8863\u88d9-\u88d9-\u5973": [
             "fashion-women"
         ],
-        "男士-潮男-男": [
+        "\u7537\u58eb-\u6f6e\u7537-\u7537": [
             "fashion-men"
         ],
-        "图书": [
+        "\u56fe\u4e66": [
             "book"
         ]
     },
     "item.yhd.com": {
-        "手机": [
+        "\u624b\u673a": [
             "mobile"
         ],
-        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
+        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
             "digital"
         ],
-        "相机": [
+        "\u76f8\u673a": [
             "photography-dc"
         ]
     },
     "product.suning.com": {
-        "手机": [
+        "\u624b\u673a": [
             "mobile"
         ],
-        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
+        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
             "digital"
         ],
-        "相机": [
+        "\u76f8\u673a": [
             "photography-dc"
         ],
-        "图书": [
+        "\u56fe\u4e66": [
             "book"
         ]
     },
     "www.newegg.cn": {
-        "手机": [
+        "\u624b\u673a": [
             "mobile"
         ],
-        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
+        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
             "digital"
         ],
-        "相机": [
+        "\u76f8\u673a": [
             "photography-dc"
         ]
     },
@@ -1256,10 +1256,10 @@ var interestsdata = {
         ]
     },
     "www.vip.com": {
-        "女": [
+        "\u5973": [
             "fashion-women"
         ],
-        "男": [
+        "\u7537": [
             "fashion-men"
         ],
         "__PATH": {
@@ -1271,63 +1271,63 @@ var interestsdata = {
         }
     },
     "*.moonbasa.com": {
-        "女": [
+        "\u5973": [
             "fashion-women"
         ]
     },
     "item.vancl.com": {
-        "女": [
+        "\u5973": [
             "fashion-women"
         ],
-        "男": [
+        "\u7537": [
             "fashion-men"
         ]
     },
     "item.yintai.com": {
-        "女": [
+        "\u5973": [
             "fashion-women"
         ],
-        "男": [
+        "\u7537": [
             "fashion-men"
         ]
     },
     "www.shopin.net": {
-        "女": [
+        "\u5973": [
             "fashion-women"
         ],
-        "男": [
+        "\u7537": [
             "fashion-men"
         ]
     },
     "item.xiu.com": {
-        "女": [
+        "\u5973": [
             "fashion-women"
         ],
-        "男": [
+        "\u7537": [
             "fashion-men"
         ]
     },
     "www.fclub.cn": {
-        "女": [
+        "\u5973": [
             "fashion-women"
         ],
-        "男": [
+        "\u7537": [
             "fashion-men"
         ]
     },
     "www.mbaobao.com": {
-        "女": [
+        "\u5973": [
             "fashion-women"
         ],
-        "男": [
+        "\u7537": [
             "fashion-men"
         ]
     },
     "www.okbuy.com": {
-        "女": [
+        "\u5973": [
             "fashion-women"
         ],
-        "男": [
+        "\u7537": [
             "fashion-men"
         ]
     },
@@ -1399,7 +1399,7 @@ var interestsdata = {
         }
     },
     "www.moonbasa.com": {
-        "男": [
+        "\u7537": [
             "fashion-men"
         ]
     },
@@ -1864,7 +1864,7 @@ var interestsdata = {
         ]
     },
     "product.dangdang.com": {
-        "图书": [
+        "\u56fe\u4e66": [
             "book"
         ]
     },
@@ -2304,7 +2304,7 @@ var interestsdata = {
                 ]
             }
         },
-        "综艺": [
+        "\u7efc\u827a": [
             "entertainment-gossip"
         ],
         "__ANY": [
@@ -2725,17 +2725,17 @@ var interestsdata = {
                 ]
             }
         },
-        "影城-电影": [
+        "\u5f71\u57ce-\u7535\u5f71": [
             "show"
         ]
     },
     "www.gaopeng.com": {
-        "影城-电影": [
+        "\u5f71\u57ce-\u7535\u5f71": [
             "show"
         ]
     },
     "*.nuomi.com": {
-        "影城-电影": [
+        "\u5f71\u57ce-\u7535\u5f71": [
             "show"
         ]
     },
@@ -2747,7 +2747,7 @@ var interestsdata = {
                 ]
             }
         },
-        "影城-电影": [
+        "\u5f71\u57ce-\u7535\u5f71": [
             "show"
         ]
     },
@@ -2761,7 +2761,7 @@ var interestsdata = {
         }
     },
     "beijing.55tuan.com": {
-        "影城-电影": [
+        "\u5f71\u57ce-\u7535\u5f71": [
             "show"
         ]
     },
@@ -2773,7 +2773,7 @@ var interestsdata = {
                 ]
             }
         },
-        "影城-电影": [
+        "\u5f71\u57ce-\u7535\u5f71": [
             "show"
         ]
     },
@@ -2785,7 +2785,7 @@ var interestsdata = {
                 ]
             }
         },
-        "影城-电影": [
+        "\u5f71\u57ce-\u7535\u5f71": [
             "show"
         ]
     },
@@ -2797,7 +2797,7 @@ var interestsdata = {
                 ]
             }
         },
-        "影城-电影": [
+        "\u5f71\u57ce-\u7535\u5f71": [
             "show"
         ]
     },
@@ -3127,25 +3127,25 @@ var interestsdata = {
                 ]
             }
         },
-        "资讯": [
+        "\u8d44\u8baf": [
             "news"
         ],
-        "综艺": [
+        "\u7efc\u827a": [
             "entertainment-gossip"
         ],
-        "音乐": [
+        "\u97f3\u4e50": [
             "music"
         ],
-        "电影": [
+        "\u7535\u5f71": [
             "movie"
         ],
-        "电视剧": [
+        "\u7535\u89c6\u5267": [
             "TV-series"
         ],
-        "动漫": [
+        "\u52a8\u6f2b": [
             "anime-manga"
         ],
-        "体育": [
+        "\u4f53\u80b2": [
             "sports"
         ]
     },
@@ -3563,19 +3563,19 @@ var interestsdata = {
         ]
     },
     "v.youku.com": {
-        "综艺": [
+        "\u7efc\u827a": [
             "entertainment-gossip"
         ],
-        "音乐": [
+        "\u97f3\u4e50": [
             "music"
         ],
-        "电影": [
+        "\u7535\u5f71": [
             "movie"
         ],
-        "电视剧": [
+        "\u7535\u89c6\u5267": [
             "TV-series"
         ],
-        "动漫": [
+        "\u52a8\u6f2b": [
             "anime-manga"
         ]
     },
@@ -3957,20 +3957,20 @@ var interestsdata = {
         ]
     },
     "so.tv.sohu.com": {
-        "电影": [
+        "\u7535\u5f71": [
             "movie"
         ],
-        "电视剧": [
+        "\u7535\u89c6\u5267": [
             "TV-series"
         ],
-        "动漫": [
+        "\u52a8\u6f2b": [
             "anime-manga"
         ]
     },
     "www.yyets.com": {
         "__PATH": {
             "/resource": {
-                "美剧-英剧-日剧-韩剧": [
+                "\u7f8e\u5267-\u82f1\u5267-\u65e5\u5267-\u97e9\u5267": [
                     "TV-series"
                 ]
             }
