@@ -1,12 +1,46 @@
 var interestsdata = {
-    "digi.tech.qq.com/mobile": {
+    "digi.tech.qq.com": {
+        "__PATH": {
+            "/mobile": {
+                "__ANY": [
+                    "mobile"
+                ]
+            },
+            "/yx.htm": {
+                "__ANY": [
+                    "photography-dc"
+                ]
+            },
+            "/hea": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            }
+        },
         "__ANY": [
-            "mobile"
+            "digital"
         ]
     },
-    "digi.ifeng.com/mobile": {
+    "digi.ifeng.com": {
+        "__PATH": {
+            "/mobile": {
+                "__ANY": [
+                    "mobile"
+                ]
+            },
+            "/dc": {
+                "__ANY": [
+                    "photography-dc"
+                ]
+            },
+            "/ehome": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            }
+        },
         "__ANY": [
-            "mobile"
+            "digital"
         ]
     },
     "mobile.163.com": {
@@ -24,20 +58,101 @@ var interestsdata = {
             "mobile"
         ]
     },
-    "tech.sina.com.cn/mobile": {
+    "tech.sina.com.cn": {
+        "__PATH": {
+            "/mobile": {
+                "__ANY": [
+                    "mobile"
+                ]
+            },
+            "/n": {
+                "__ANY": [
+                    "digital"
+                ]
+            },
+            "/digital": {
+                "__ANY": [
+                    "photography-dc"
+                ]
+            },
+            "/digi": {
+                "__ANY": [
+                    "photography-dc"
+                ]
+            },
+            "/elec": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            },
+            "/e": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            }
+        },
         "__ANY": [
-            "mobile"
+            "technology"
         ]
     },
-    "detail.zol.com.cn/cell_phone": {
-        "__ANY": [
-            "mobile"
-        ]
-    },
-    "detail.zol.com.cn/cell_phone_index": {
-        "__ANY": [
-            "mobile"
-        ]
+    "detail.zol.com.cn": {
+        "__PATH": {
+            "/cell_phone": {
+                "__ANY": [
+                    "mobile"
+                ]
+            },
+            "/cell_phone_index": {
+                "__ANY": [
+                    "mobile"
+                ]
+            },
+            "/notebook_index": {
+                "__ANY": [
+                    "digital"
+                ]
+            },
+            "/notebook": {
+                "__ANY": [
+                    "digital"
+                ]
+            },
+            "/tablepc": {
+                "__ANY": [
+                    "digital"
+                ]
+            },
+            "/digital_camera_index": {
+                "__ANY": [
+                    "photography-dc"
+                ]
+            },
+            "/digital_camera": {
+                "__ANY": [
+                    "photography-dc"
+                ]
+            },
+            "/digital_tv": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            },
+            "/icebox": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            },
+            "/air-condition": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            },
+            "/washer": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            }
+        }
     },
     "mobile.zol.com.cn": {
         "__ANY": [
@@ -48,97 +163,13 @@ var interestsdata = {
         "手机": [
             "mobile"
         ],
-        "笔记本": [
-            "digital"
-        ],
-        "台式": [
-            "digital"
-        ],
-        "平板": [
-            "digital"
-        ],
-        "鼠标": [
-            "digital"
-        ],
-        "键盘": [
-            "digital"
-        ],
-        "硬盘": [
-            "digital"
-        ],
-        "U盘": [
-            "digital"
-        ],
-        "主板": [
-            "digital"
-        ],
-        "显卡": [
-            "digital"
-        ],
-        "CPU": [
-            "digital"
-        ],
-        "内存": [
-            "digital"
-        ],
-        "几项": [
-            "digital"
-        ],
-        "店员": [
-            "digital"
-        ],
-        "显示器": [
-            "digital"
-        ],
-        "装机": [
+        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
             "digital"
         ],
         "相机": [
             "photography-dc"
         ],
-        "电视": [
-            "home-applicance"
-        ],
-        "洗衣机": [
-            "home-applicance"
-        ],
-        "冰箱": [
-            "home-applicance"
-        ],
-        "空调": [
-            "home-applicance"
-        ],
-        "热水器": [
-            "home-applicance"
-        ],
-        "风扇": [
-            "home-applicance"
-        ],
-        "吸尘器": [
-            "home-applicance"
-        ],
-        "净化器": [
-            "home-applicance"
-        ],
-        "烟机": [
-            "home-applicance"
-        ],
-        "电磁炉": [
-            "home-applicance"
-        ],
-        "榨汁机": [
-            "home-applicance"
-        ],
-        "豆浆机": [
-            "home-applicance"
-        ],
-        "微波炉": [
-            "home-applicance"
-        ],
-        "电压力锅": [
-            "home-applicance"
-        ],
-        "电饭煲": [
+        "电视-洗衣机-冰箱-空调-热水器-风扇-吸尘器-净化器-烟机-电磁炉-榨汁机-豆浆机-微波炉-电压力锅-电饭煲": [
             "home-applicance"
         ],
         "图书": [
@@ -149,152 +180,19 @@ var interestsdata = {
         "手机": [
             "mobile"
         ],
-        "笔记本": [
-            "digital"
-        ],
-        "台式": [
-            "digital"
-        ],
-        "平板": [
-            "digital"
-        ],
-        "鼠标": [
-            "digital"
-        ],
-        "键盘": [
-            "digital"
-        ],
-        "硬盘": [
-            "digital"
-        ],
-        "U盘": [
-            "digital"
-        ],
-        "主板": [
-            "digital"
-        ],
-        "显卡": [
-            "digital"
-        ],
-        "CPU": [
-            "digital"
-        ],
-        "内存": [
-            "digital"
-        ],
-        "几项": [
-            "digital"
-        ],
-        "店员": [
-            "digital"
-        ],
-        "显示器": [
-            "digital"
-        ],
-        "装机": [
+        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
             "digital"
         ],
         "相机": [
             "photography-dc"
         ],
-        "电视": [
+        "电视-洗衣机-冰箱-空调-热水器-风扇-吸尘器-净化器-烟机-电磁炉-榨汁机-豆浆机-微波炉-电压力锅-电饭煲": [
             "home-applicance"
         ],
-        "洗衣机": [
-            "home-applicance"
-        ],
-        "冰箱": [
-            "home-applicance"
-        ],
-        "空调": [
-            "home-applicance"
-        ],
-        "热水器": [
-            "home-applicance"
-        ],
-        "风扇": [
-            "home-applicance"
-        ],
-        "吸尘器": [
-            "home-applicance"
-        ],
-        "净化器": [
-            "home-applicance"
-        ],
-        "烟机": [
-            "home-applicance"
-        ],
-        "电磁炉": [
-            "home-applicance"
-        ],
-        "榨汁机": [
-            "home-applicance"
-        ],
-        "豆浆机": [
-            "home-applicance"
-        ],
-        "微波炉": [
-            "home-applicance"
-        ],
-        "电压力锅": [
-            "home-applicance"
-        ],
-        "电饭煲": [
-            "home-applicance"
-        ],
-        "女装": [
+        "女装-女鞋-连衣裙-打底衫-半身裙-雪纺-蕾丝-高跟-防水台-妈妈装-打底衫-娃娃领-民族风女装-毛衣裙-裙-女": [
             "fashion-women"
         ],
-        "女鞋": [
-            "fashion-women"
-        ],
-        "连衣裙": [
-            "fashion-women"
-        ],
-        "打底衫": [
-            "fashion-women",
-            "fashion-women"
-        ],
-        "半身裙": [
-            "fashion-women"
-        ],
-        "雪纺": [
-            "fashion-women"
-        ],
-        "蕾丝": [
-            "fashion-women"
-        ],
-        "高跟": [
-            "fashion-women"
-        ],
-        "防水台": [
-            "fashion-women"
-        ],
-        "妈妈装": [
-            "fashion-women"
-        ],
-        "娃娃领": [
-            "fashion-women"
-        ],
-        "民族风女装": [
-            "fashion-women"
-        ],
-        "毛衣裙": [
-            "fashion-women"
-        ],
-        "裙": [
-            "fashion-women"
-        ],
-        "女": [
-            "fashion-women"
-        ],
-        "男士": [
-            "fashion-men"
-        ],
-        "潮男": [
-            "fashion-men"
-        ],
-        "男": [
+        "男士-潮男-男": [
             "fashion-men"
         ]
     },
@@ -302,152 +200,19 @@ var interestsdata = {
         "手机": [
             "mobile"
         ],
-        "笔记本": [
-            "digital"
-        ],
-        "台式": [
-            "digital"
-        ],
-        "平板": [
-            "digital"
-        ],
-        "鼠标": [
-            "digital"
-        ],
-        "键盘": [
-            "digital"
-        ],
-        "硬盘": [
-            "digital"
-        ],
-        "U盘": [
-            "digital"
-        ],
-        "主板": [
-            "digital"
-        ],
-        "显卡": [
-            "digital"
-        ],
-        "CPU": [
-            "digital"
-        ],
-        "内存": [
-            "digital"
-        ],
-        "几项": [
-            "digital"
-        ],
-        "店员": [
-            "digital"
-        ],
-        "显示器": [
-            "digital"
-        ],
-        "装机": [
+        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
             "digital"
         ],
         "相机": [
             "photography-dc"
         ],
-        "电视": [
+        "电视-洗衣机-冰箱-空调-热水器-风扇-吸尘器-净化器-烟机-电磁炉-榨汁机-豆浆机-微波炉-电压力锅-电饭煲": [
             "home-applicance"
         ],
-        "洗衣机": [
-            "home-applicance"
-        ],
-        "冰箱": [
-            "home-applicance"
-        ],
-        "空调": [
-            "home-applicance"
-        ],
-        "热水器": [
-            "home-applicance"
-        ],
-        "风扇": [
-            "home-applicance"
-        ],
-        "吸尘器": [
-            "home-applicance"
-        ],
-        "净化器": [
-            "home-applicance"
-        ],
-        "烟机": [
-            "home-applicance"
-        ],
-        "电磁炉": [
-            "home-applicance"
-        ],
-        "榨汁机": [
-            "home-applicance"
-        ],
-        "豆浆机": [
-            "home-applicance"
-        ],
-        "微波炉": [
-            "home-applicance"
-        ],
-        "电压力锅": [
-            "home-applicance"
-        ],
-        "电饭煲": [
-            "home-applicance"
-        ],
-        "女装": [
+        "女装-女鞋-连衣裙-打底衫-半身裙-雪纺-蕾丝-高跟-防水台-妈妈装-打底衫-娃娃领-民族风女装-毛衣裙-裙-女": [
             "fashion-women"
         ],
-        "女鞋": [
-            "fashion-women"
-        ],
-        "连衣裙": [
-            "fashion-women"
-        ],
-        "打底衫": [
-            "fashion-women",
-            "fashion-women"
-        ],
-        "半身裙": [
-            "fashion-women"
-        ],
-        "雪纺": [
-            "fashion-women"
-        ],
-        "蕾丝": [
-            "fashion-women"
-        ],
-        "高跟": [
-            "fashion-women"
-        ],
-        "防水台": [
-            "fashion-women"
-        ],
-        "妈妈装": [
-            "fashion-women"
-        ],
-        "娃娃领": [
-            "fashion-women"
-        ],
-        "民族风女装": [
-            "fashion-women"
-        ],
-        "毛衣裙": [
-            "fashion-women"
-        ],
-        "裙": [
-            "fashion-women"
-        ],
-        "女": [
-            "fashion-women"
-        ],
-        "男士": [
-            "fashion-men"
-        ],
-        "潮男": [
-            "fashion-men"
-        ],
-        "男": [
+        "男士-潮男-男": [
             "fashion-men"
         ]
     },
@@ -455,152 +220,19 @@ var interestsdata = {
         "手机": [
             "mobile"
         ],
-        "笔记本": [
-            "digital"
-        ],
-        "台式": [
-            "digital"
-        ],
-        "平板": [
-            "digital"
-        ],
-        "鼠标": [
-            "digital"
-        ],
-        "键盘": [
-            "digital"
-        ],
-        "硬盘": [
-            "digital"
-        ],
-        "U盘": [
-            "digital"
-        ],
-        "主板": [
-            "digital"
-        ],
-        "显卡": [
-            "digital"
-        ],
-        "CPU": [
-            "digital"
-        ],
-        "内存": [
-            "digital"
-        ],
-        "几项": [
-            "digital"
-        ],
-        "店员": [
-            "digital"
-        ],
-        "显示器": [
-            "digital"
-        ],
-        "装机": [
+        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
             "digital"
         ],
         "相机": [
             "photography-dc"
         ],
-        "电视": [
+        "电视-洗衣机-冰箱-空调-热水器-风扇-吸尘器-净化器-烟机-电磁炉-榨汁机-豆浆机-微波炉-电压力锅-电饭煲": [
             "home-applicance"
         ],
-        "洗衣机": [
-            "home-applicance"
-        ],
-        "冰箱": [
-            "home-applicance"
-        ],
-        "空调": [
-            "home-applicance"
-        ],
-        "热水器": [
-            "home-applicance"
-        ],
-        "风扇": [
-            "home-applicance"
-        ],
-        "吸尘器": [
-            "home-applicance"
-        ],
-        "净化器": [
-            "home-applicance"
-        ],
-        "烟机": [
-            "home-applicance"
-        ],
-        "电磁炉": [
-            "home-applicance"
-        ],
-        "榨汁机": [
-            "home-applicance"
-        ],
-        "豆浆机": [
-            "home-applicance"
-        ],
-        "微波炉": [
-            "home-applicance"
-        ],
-        "电压力锅": [
-            "home-applicance"
-        ],
-        "电饭煲": [
-            "home-applicance"
-        ],
-        "女装": [
+        "女装-女鞋-连衣裙-打底衫-半身裙-雪纺-蕾丝-高跟-防水台-妈妈装-打底衫-娃娃领-民族风女装-毛衣裙-裙-女": [
             "fashion-women"
         ],
-        "女鞋": [
-            "fashion-women"
-        ],
-        "连衣裙": [
-            "fashion-women"
-        ],
-        "打底衫": [
-            "fashion-women",
-            "fashion-women"
-        ],
-        "半身裙": [
-            "fashion-women"
-        ],
-        "雪纺": [
-            "fashion-women"
-        ],
-        "蕾丝": [
-            "fashion-women"
-        ],
-        "高跟": [
-            "fashion-women"
-        ],
-        "防水台": [
-            "fashion-women"
-        ],
-        "妈妈装": [
-            "fashion-women"
-        ],
-        "娃娃领": [
-            "fashion-women"
-        ],
-        "民族风女装": [
-            "fashion-women"
-        ],
-        "毛衣裙": [
-            "fashion-women"
-        ],
-        "裙": [
-            "fashion-women"
-        ],
-        "女": [
-            "fashion-women"
-        ],
-        "男士": [
-            "fashion-men"
-        ],
-        "潮男": [
-            "fashion-men"
-        ],
-        "男": [
+        "男士-潮男-男": [
             "fashion-men"
         ],
         "图书": [
@@ -611,49 +243,7 @@ var interestsdata = {
         "手机": [
             "mobile"
         ],
-        "笔记本": [
-            "digital"
-        ],
-        "台式": [
-            "digital"
-        ],
-        "平板": [
-            "digital"
-        ],
-        "鼠标": [
-            "digital"
-        ],
-        "键盘": [
-            "digital"
-        ],
-        "硬盘": [
-            "digital"
-        ],
-        "U盘": [
-            "digital"
-        ],
-        "主板": [
-            "digital"
-        ],
-        "显卡": [
-            "digital"
-        ],
-        "CPU": [
-            "digital"
-        ],
-        "内存": [
-            "digital"
-        ],
-        "几项": [
-            "digital"
-        ],
-        "店员": [
-            "digital"
-        ],
-        "显示器": [
-            "digital"
-        ],
-        "装机": [
+        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
             "digital"
         ],
         "相机": [
@@ -664,49 +254,7 @@ var interestsdata = {
         "手机": [
             "mobile"
         ],
-        "笔记本": [
-            "digital"
-        ],
-        "台式": [
-            "digital"
-        ],
-        "平板": [
-            "digital"
-        ],
-        "鼠标": [
-            "digital"
-        ],
-        "键盘": [
-            "digital"
-        ],
-        "硬盘": [
-            "digital"
-        ],
-        "U盘": [
-            "digital"
-        ],
-        "主板": [
-            "digital"
-        ],
-        "显卡": [
-            "digital"
-        ],
-        "CPU": [
-            "digital"
-        ],
-        "内存": [
-            "digital"
-        ],
-        "几项": [
-            "digital"
-        ],
-        "店员": [
-            "digital"
-        ],
-        "显示器": [
-            "digital"
-        ],
-        "装机": [
+        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
             "digital"
         ],
         "相机": [
@@ -720,49 +268,7 @@ var interestsdata = {
         "手机": [
             "mobile"
         ],
-        "笔记本": [
-            "digital"
-        ],
-        "台式": [
-            "digital"
-        ],
-        "平板": [
-            "digital"
-        ],
-        "鼠标": [
-            "digital"
-        ],
-        "键盘": [
-            "digital"
-        ],
-        "硬盘": [
-            "digital"
-        ],
-        "U盘": [
-            "digital"
-        ],
-        "主板": [
-            "digital"
-        ],
-        "显卡": [
-            "digital"
-        ],
-        "CPU": [
-            "digital"
-        ],
-        "内存": [
-            "digital"
-        ],
-        "几项": [
-            "digital"
-        ],
-        "店员": [
-            "digital"
-        ],
-        "显示器": [
-            "digital"
-        ],
-        "装机": [
+        "笔记本-台式-平板-鼠标-键盘-硬盘-U盘-主板-显卡-CPU-内存-几项-店员-显示器-装机": [
             "digital"
         ],
         "相机": [
@@ -774,15 +280,23 @@ var interestsdata = {
             "mobile"
         ]
     },
-    "product.pconline.com.cn/mobile": {
-        "__ANY": [
-            "mobile"
-        ]
+    "product.pconline.com.cn": {
+        "__PATH": {
+            "/mobile": {
+                "__ANY": [
+                    "mobile"
+                ]
+            }
+        }
     },
-    "itbbs.pconline.com.cn/mobile": {
-        "__ANY": [
-            "mobile"
-        ]
+    "itbbs.pconline.com.cn": {
+        "__PATH": {
+            "/mobile": {
+                "__ANY": [
+                    "mobile"
+                ]
+            }
+        }
     },
     "*.3533.com": {
         "__ANY": [
@@ -852,7 +366,14 @@ var interestsdata = {
     "www.weiphone.com": {
         "__ANY": [
             "mobile"
-        ]
+        ],
+        "__PATH": {
+            "/appstore": {
+                "__ANY": [
+                    "app"
+                ]
+            }
+        }
     },
     "bbs.fengbao.com": {
         "__ANY": [
@@ -864,10 +385,14 @@ var interestsdata = {
             "mobile"
         ]
     },
-    "www.wandoujia.com/apps": {
-        "__ANY": [
-            "app"
-        ]
+    "www.wandoujia.com": {
+        "__PATH": {
+            "/apps": {
+                "__ANY": [
+                    "app"
+                ]
+            }
+        }
     },
     "www.xapcn.com": {
         "__ANY": [
@@ -890,10 +415,14 @@ var interestsdata = {
             "app"
         ]
     },
-    "www.windowsphone.com/zh-cn/store": {
-        "__ANY": [
-            "app"
-        ]
+    "www.windowsphone.com": {
+        "__PATH": {
+            "/zh-cn/store": {
+                "__ANY": [
+                    "app"
+                ]
+            }
+        }
     },
     "www.moxiu.com": {
         "__ANY": [
@@ -950,11 +479,6 @@ var interestsdata = {
             "app"
         ]
     },
-    "www.weiphone.com/APPSTORE": {
-        "__ANY": [
-            "app"
-        ]
-    },
     "www.app111.com": {
         "__ANY": [
             "app"
@@ -965,44 +489,92 @@ var interestsdata = {
             "app"
         ]
     },
-    "digi.tech.qq.com": {
+    "tech.ifeng.com": {
+        "__PATH": {
+            "/digi": {
+                "__ANY": [
+                    "digital"
+                ]
+            },
+            "/digi/dc": {
+                "__ANY": [
+                    "photography-dc"
+                ]
+            },
+            "/digi/ehome": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            }
+        },
         "__ANY": [
-            "digital"
-        ]
-    },
-    "digi.ifeng.com": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "tech.ifeng.com/digi": {
-        "__ANY": [
-            "digital"
+            "technology"
         ]
     },
     "digi.163.com": {
         "__ANY": [
             "digital"
-        ]
+        ],
+        "__PATH": {
+            "/dc": {
+                "__ANY": [
+                    "photography-dc"
+                ]
+            },
+            "/television": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            },
+            "/icebox": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            },
+            "/ac": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            },
+            "/washer": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            },
+            "/waterheater": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            }
+        }
     },
     "digi.sina.com.cn": {
         "__ANY": [
             "digital"
-        ]
+        ],
+        "__PATH": {
+            "/notebook": {
+                "__ANY": [
+                    "digital"
+                ]
+            }
+        }
     },
-    "digi.sina.com.cn/notebook": {
+    "tech.huanqiu.com": {
+        "__PATH": {
+            "/digi": {
+                "__ANY": [
+                    "digital"
+                ]
+            },
+            "/elec": {
+                "__ANY": [
+                    "home-applicance"
+                ]
+            }
+        },
         "__ANY": [
-            "digital"
-        ]
-    },
-    "tech.sina.com.cn/n": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "tech.huanqiu.com/digi": {
-        "__ANY": [
-            "digital"
+            "technology"
         ]
     },
     "www.zol.com.cn": {
@@ -1020,22 +592,7 @@ var interestsdata = {
             "digital"
         ]
     },
-    "detail.zol.com.cn/notebook_index": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "detail.zol.com.cn/notebook": {
-        "__ANY": [
-            "digital"
-        ]
-    },
     "pad.zol.com.cn": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "detail.zol.com.cn/tablepc": {
         "__ANY": [
             "digital"
         ]
@@ -1093,46 +650,6 @@ var interestsdata = {
     "3c.tmall.com": {
         "__ANY": [
             "digital"
-        ]
-    },
-    "digi.tech.qq.com/yx.htm": {
-        "__ANY": [
-            "photography-dc"
-        ]
-    },
-    "digi.ifeng.com/dc": {
-        "__ANY": [
-            "photography-dc"
-        ]
-    },
-    "tech.ifeng.com/digi/dc": {
-        "__ANY": [
-            "photography-dc"
-        ]
-    },
-    "digi.163.com/dc": {
-        "__ANY": [
-            "photography-dc"
-        ]
-    },
-    "tech.sina.com.cn/digital": {
-        "__ANY": [
-            "photography-dc"
-        ]
-    },
-    "tech.sina.com.cn/digi": {
-        "__ANY": [
-            "photography-dc"
-        ]
-    },
-    "detail.zol.com.cn/digital_camera_index": {
-        "__ANY": [
-            "photography-dc"
-        ]
-    },
-    "detail.zol.com.cn/digital_camera": {
-        "__ANY": [
-            "photography-dc"
         ]
     },
     "dcdv.zol.com.cn": {
@@ -1220,9 +737,26 @@ var interestsdata = {
             "auto"
         ]
     },
-    "news.xinhuanet.com/auto": {
+    "news.xinhuanet.com": {
+        "__PATH": {
+            "/auto": {
+                "__ANY": [
+                    "auto"
+                ]
+            },
+            "/mil": {
+                "__ANY": [
+                    "militery"
+                ]
+            },
+            "/fortune": {
+                "__ANY": [
+                    "finance"
+                ]
+            }
+        },
         "__ANY": [
-            "auto"
+            "news"
         ]
     },
     "auto.huanqiu.com": {
@@ -1240,10 +774,19 @@ var interestsdata = {
             "auto"
         ]
     },
-    "www.hao123.com/auto": {
-        "__ANY": [
-            "auto"
-        ]
+    "www.hao123.com": {
+        "__PATH": {
+            "/auto": {
+                "__ANY": [
+                    "auto"
+                ]
+            },
+            "/gaoxiao": {
+                "__ANY": [
+                    "humor"
+                ]
+            }
+        }
     },
     "*.autohome.com.cn": {
         "__ANY": [
@@ -1395,62 +938,7 @@ var interestsdata = {
             "realestate"
         ]
     },
-    "digi.tech.qq.com/hea": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
     "hea.163.com": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "digi.163.com/television": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "digi.163.com/icebox": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "digi.163.com/ac": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "digi.163.com/washer": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "digi.163.com/waterheater": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "digi.ifeng.com/ehome": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "tech.ifeng.com/digi/ehome": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "tech.sina.com.cn/elec": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "tech.sina.com.cn/e": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "tech.huanqiu.com/elec": {
         "__ANY": [
             "home-applicance"
         ]
@@ -1465,17 +953,7 @@ var interestsdata = {
             "home-applicance"
         ]
     },
-    "detail.zol.com.cn/digital_tv": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
     "icebox.zol.com.cn": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "detail.zol.com.cn/icebox": {
         "__ANY": [
             "home-applicance"
         ]
@@ -1485,17 +963,7 @@ var interestsdata = {
             "home-applicance"
         ]
     },
-    "detail.zol.com.cn/air-condition": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
     "washer.zol.com.cn": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "detail.zol.com.cn/washer": {
         "__ANY": [
             "home-applicance"
         ]
@@ -1545,10 +1013,14 @@ var interestsdata = {
             "home-decoration"
         ]
     },
-    "henan.qq.com/jiaju": {
-        "__ANY": [
-            "home-decoration"
-        ]
+    "henan.qq.com": {
+        "__PATH": {
+            "/jiaju": {
+                "__ANY": [
+                    "home-decoration"
+                ]
+            }
+        }
     },
     "www.ljlj.cc": {
         "__ANY": [
@@ -1570,35 +1042,121 @@ var interestsdata = {
             "home-decoration"
         ]
     },
-    "fashion.qq.com/vogue": {
-        "__ANY": [
-            "fashion-women"
-        ]
+    "fashion.qq.com": {
+        "__PATH": {
+            "/vogue": {
+                "__ANY": [
+                    "fashion-women"
+                ]
+            },
+            "/gentlemen": {
+                "__ANY": [
+                    "fashion-men"
+                ]
+            },
+            "/beauty": {
+                "__ANY": [
+                    "beauty"
+                ]
+            }
+        }
     },
-    "fashion.ifeng.com/trends": {
-        "__ANY": [
-            "fashion-women"
-        ]
+    "fashion.ifeng.com": {
+        "__PATH": {
+            "/trends": {
+                "__ANY": [
+                    "fashion-women"
+                ]
+            },
+            "/luxury": {
+                "__ANY": [
+                    "luxury"
+                ]
+            },
+            "/body": {
+                "__ANY": [
+                    "fitness"
+                ]
+            },
+            "/health": {
+                "__ANY": [
+                    "health"
+                ]
+            },
+            "/baby": {
+                "__ANY": [
+                    "parenting"
+                ]
+            },
+            "/travel": {
+                "__ANY": [
+                    "travel"
+                ]
+            }
+        }
     },
     "fushi.163.com": {
         "__ANY": [
             "fashion-women"
         ]
     },
-    "slide.fashion.sina.com.cn/s": {
-        "__ANY": [
-            "fashion-women"
-        ]
+    "slide.fashion.sina.com.cn": {
+        "__PATH": {
+            "/s": {
+                "__ANY": [
+                    "fashion-women"
+                ]
+            }
+        }
     },
-    "fashion.sina.com.cn/s": {
-        "__ANY": [
-            "fashion-women"
-        ]
-    },
-    "fashion.sina.com.cn/style": {
-        "__ANY": [
-            "fashion-women"
-        ]
+    "fashion.sina.com.cn": {
+        "__PATH": {
+            "/s": {
+                "__ANY": [
+                    "fashion-women"
+                ]
+            },
+            "/style": {
+                "__ANY": [
+                    "fashion-women"
+                ]
+            },
+            "/b": {
+                "__ANY": [
+                    "beauty"
+                ]
+            },
+            "/body": {
+                "__ANY": [
+                    "beauty"
+                ]
+            },
+            "/cosmetics": {
+                "__ANY": [
+                    "beauty"
+                ]
+            },
+            "/beauty": {
+                "__ANY": [
+                    "beauty"
+                ]
+            },
+            "/d/ft": {
+                "__ANY": [
+                    "fitness"
+                ]
+            },
+            "/w": {
+                "__ANY": [
+                    "wedding"
+                ]
+            },
+            "/wedding": {
+                "__ANY": [
+                    "wedding"
+                ]
+            }
+        }
     },
     "fashion.rayli.com.cn": {
         "__ANY": [
@@ -1620,20 +1178,72 @@ var interestsdata = {
             "fashion-women"
         ]
     },
-    "www.ellechina.com/fashion": {
-        "__ANY": [
-            "fashion-women"
-        ]
+    "www.ellechina.com": {
+        "__PATH": {
+            "/fashion": {
+                "__ANY": [
+                    "fashion-women"
+                ]
+            },
+            "/men": {
+                "__ANY": [
+                    "fashion-men"
+                ]
+            },
+            "/beauty": {
+                "__ANY": [
+                    "beauty"
+                ]
+            },
+            "/hair": {
+                "__ANY": [
+                    "beauty"
+                ]
+            }
+        }
     },
-    "www.vogue.com.cn/fashion": {
-        "__ANY": [
-            "fashion-women"
-        ]
+    "www.vogue.com.cn": {
+        "__PATH": {
+            "/fashion": {
+                "__ANY": [
+                    "fashion-women"
+                ]
+            },
+            "/beauty": {
+                "__ANY": [
+                    "beauty"
+                ]
+            },
+            "/wedding": {
+                "__ANY": [
+                    "wedding"
+                ]
+            }
+        }
     },
-    "www.yoka.com/fashion": {
-        "__ANY": [
-            "fashion-women"
-        ]
+    "www.yoka.com": {
+        "__PATH": {
+            "/fashion": {
+                "__ANY": [
+                    "fashion-women"
+                ]
+            },
+            "/luxury": {
+                "__ANY": [
+                    "luxury"
+                ]
+            },
+            "/beauty": {
+                "__ANY": [
+                    "beauty"
+                ]
+            },
+            "/marry": {
+                "__ANY": [
+                    "wedding"
+                ]
+            }
+        }
     },
     "www.mogujie.com": {
         "__ANY": [
@@ -1651,7 +1261,14 @@ var interestsdata = {
         ],
         "男": [
             "fashion-men"
-        ]
+        ],
+        "__PATH": {
+            "/beauty.php": {
+                "__ANY": [
+                    "beauty"
+                ]
+            }
+        }
     },
     "*.moonbasa.com": {
         "女": [
@@ -1714,22 +1331,12 @@ var interestsdata = {
             "fashion-men"
         ]
     },
-    "fashion.qq.com/gentlemen": {
-        "__ANY": [
-            "fashion-men"
-        ]
-    },
     "men.sohu.com": {
         "__ANY": [
             "fashion-men"
         ]
     },
     "man.pclady.com.cn": {
-        "__ANY": [
-            "fashion-men"
-        ]
-    },
-    "www.ellechina.com/men": {
         "__ANY": [
             "fashion-men"
         ]
@@ -1759,20 +1366,37 @@ var interestsdata = {
             "fashion-men"
         ]
     },
-    "men.trends.com.cn/fashion": {
-        "__ANY": [
-            "fashion-men"
-        ]
+    "men.trends.com.cn": {
+        "__PATH": {
+            "/fashion": {
+                "__ANY": [
+                    "fashion-men"
+                ]
+            }
+        }
     },
-    "www.mangangs.com/trends": {
-        "__ANY": [
-            "fashion-men"
-        ]
+    "www.mangangs.com": {
+        "__PATH": {
+            "/trends": {
+                "__ANY": [
+                    "fashion-men"
+                ]
+            }
+        }
     },
-    "www.trends.com.cn/man/fashion": {
-        "__ANY": [
-            "fashion-men"
-        ]
+    "www.trends.com.cn": {
+        "__PATH": {
+            "/man/fashion": {
+                "__ANY": [
+                    "fashion-men"
+                ]
+            },
+            "/marriage": {
+                "__ANY": [
+                    "wedding"
+                ]
+            }
+        }
     },
     "www.moonbasa.com": {
         "男": [
@@ -1829,11 +1453,6 @@ var interestsdata = {
             "luxury"
         ]
     },
-    "fashion.ifeng.com/luxury": {
-        "__ANY": [
-            "luxury"
-        ]
-    },
     "luxury.pclady.com.cn": {
         "__ANY": [
             "luxury"
@@ -1850,11 +1469,6 @@ var interestsdata = {
         ]
     },
     "shows.vogue.com.cn": {
-        "__ANY": [
-            "luxury"
-        ]
-    },
-    "www.yoka.com/luxury": {
         "__ANY": [
             "luxury"
         ]
@@ -2021,51 +1635,19 @@ var interestsdata = {
             "luxury"
         ]
     },
-    "fashion.qq.com/beauty": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
     "cosmetics.ifeng.com": {
         "__ANY": [
             "beauty"
         ]
     },
-    "fashion.ifeng.com/body": {
-        "__ANY": [
-            "beauty",
-            "fitness"
-        ]
-    },
-    "lady.163.com/beauty": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "fashion.sina.com.cn/b": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "fashion.sina.com.cn/body": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "fashion.sina.com.cn/cosmetics": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "fashion.sina.com.cn/beauty": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "www.vip.com/beauty.php": {
-        "__ANY": [
-            "beauty"
-        ]
+    "lady.163.com": {
+        "__PATH": {
+            "/beauty": {
+                "__ANY": [
+                    "beauty"
+                ]
+            }
+        }
     },
     "plastic.pclady.com.cn": {
         "__ANY": [
@@ -2102,26 +1684,6 @@ var interestsdata = {
             "beauty"
         ]
     },
-    "www.ellechina.com/beauty": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "www.ellechina.com/hair": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "www.vogue.com.cn/beauty": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "www.yoka.com/beauty": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
     "hzp.yoka.com": {
         "__ANY": [
             "beauty"
@@ -2147,10 +1709,14 @@ var interestsdata = {
             "fitness"
         ]
     },
-    "www.lady8844.com/shoushen": {
-        "__ANY": [
-            "fitness"
-        ]
+    "www.lady8844.com": {
+        "__PATH": {
+            "/shoushen": {
+                "__ANY": [
+                    "fitness"
+                ]
+            }
+        }
     },
     "www.jianfei.com": {
         "__ANY": [
@@ -2167,17 +1733,7 @@ var interestsdata = {
             "fitness"
         ]
     },
-    "fashion.sina.com.cn/d/ft": {
-        "__ANY": [
-            "fitness"
-        ]
-    },
     "health.qq.com": {
-        "__ANY": [
-            "health"
-        ]
-    },
-    "fashion.ifeng.com/health": {
         "__ANY": [
             "health"
         ]
@@ -2382,10 +1938,14 @@ var interestsdata = {
             "online-novel"
         ]
     },
-    "top.baidu.com/buzz/book.html": {
-        "__ANY": [
-            "online-novel"
-        ]
+    "top.baidu.com": {
+        "__PATH": {
+            "/buzz/book.html": {
+                "__ANY": [
+                    "online-novel"
+                ]
+            }
+        }
     },
     "www.yanqing888.net": {
         "__ANY": [
@@ -2572,20 +2132,14 @@ var interestsdata = {
             "gourmet"
         ]
     },
-    "www.vogue.com.cn/wedding": {
-        "__ANY": [
-            "wedding"
-        ]
-    },
-    "lady.hao123.com/hunjia": {
-        "__ANY": [
-            "wedding"
-        ]
-    },
-    "www.yoka.com/marry": {
-        "__ANY": [
-            "wedding"
-        ]
+    "lady.hao123.com": {
+        "__PATH": {
+            "/hunjia": {
+                "__ANY": [
+                    "wedding"
+                ]
+            }
+        }
     },
     "wed.haxiu.com": {
         "__ANY": [
@@ -2602,22 +2156,7 @@ var interestsdata = {
             "wedding"
         ]
     },
-    "www.trends.com.cn/marriage": {
-        "__ANY": [
-            "wedding"
-        ]
-    },
     "bbs.xfwed.com": {
-        "__ANY": [
-            "wedding"
-        ]
-    },
-    "fashion.sina.com.cn/w": {
-        "__ANY": [
-            "wedding"
-        ]
-    },
-    "fashion.sina.com.cn/wedding": {
         "__ANY": [
             "wedding"
         ]
@@ -2633,11 +2172,6 @@ var interestsdata = {
         ]
     },
     "baby.qq.com": {
-        "__ANY": [
-            "parenting"
-        ]
-    },
-    "fashion.ifeng.com/baby": {
         "__ANY": [
             "parenting"
         ]
@@ -2737,9 +2271,44 @@ var interestsdata = {
             "parenting"
         ]
     },
-    "tv.sohu.com/edu": {
+    "tv.sohu.com": {
+        "__PATH": {
+            "/edu": {
+                "__ANY": [
+                    "education"
+                ]
+            },
+            "/open": {
+                "__ANY": [
+                    "mooc"
+                ]
+            },
+            "/news": {
+                "__ANY": [
+                    "news"
+                ]
+            },
+            "/show": {
+                "__ANY": [
+                    "entertainment-gossip"
+                ]
+            },
+            "/movie": {
+                "__ANY": [
+                    "movie"
+                ]
+            },
+            "/comic": {
+                "__ANY": [
+                    "anime-manga"
+                ]
+            }
+        },
+        "综艺": [
+            "entertainment-gossip"
+        ],
         "__ANY": [
-            "education"
+            "TV-series"
         ]
     },
     "edu.qq.com": {
@@ -2817,10 +2386,44 @@ var interestsdata = {
             "mooc"
         ]
     },
-    "v.ifeng.com/gongkaike": {
-        "__ANY": [
-            "mooc"
-        ]
+    "v.ifeng.com": {
+        "__PATH": {
+            "/gongkaike": {
+                "__ANY": [
+                    "mooc"
+                ]
+            },
+            "/news": {
+                "__ANY": [
+                    "news"
+                ]
+            },
+            "/mil": {
+                "__ANY": [
+                    "militery"
+                ]
+            },
+            "/ent": {
+                "__ANY": [
+                    "entertainment-gossip"
+                ]
+            },
+            "/movie": {
+                "__ANY": [
+                    "movie"
+                ]
+            },
+            "/teleplay": {
+                "__ANY": [
+                    "TV-series"
+                ]
+            },
+            "/game": {
+                "__ANY": [
+                    "game"
+                ]
+            }
+        }
     },
     "open.sina.com.cn": {
         "__ANY": [
@@ -2843,11 +2446,6 @@ var interestsdata = {
         ]
     },
     "opencla.cntv.cn": {
-        "__ANY": [
-            "mooc"
-        ]
-    },
-    "tv.sohu.com/open": {
         "__ANY": [
             "mooc"
         ]
@@ -2878,11 +2476,6 @@ var interestsdata = {
         ]
     },
     "travel.go.qq.com": {
-        "__ANY": [
-            "travel"
-        ]
-    },
-    "fashion.ifeng.com/travel": {
         "__ANY": [
             "travel"
         ]
@@ -3062,10 +2655,14 @@ var interestsdata = {
             "travel"
         ]
     },
-    "piao.soku.com/*/movie": {
-        "__ANY": [
-            "show"
-        ]
+    "piao.soku.com": {
+        "__PATH": {
+            "/awefwefwefwewsssssssfewfwe/movie": {
+                "__ANY": [
+                    "show"
+                ]
+            }
+        }
     },
     "www.228.com.cn": {
         "__ANY": [
@@ -3087,20 +2684,28 @@ var interestsdata = {
             "show"
         ]
     },
-    "*.58.com/yanchanghui": {
-        "__ANY": [
-            "show"
-        ]
+    "*.58.com": {
+        "__PATH": {
+            "/yanchanghui": {
+                "__ANY": [
+                    "show"
+                ]
+            },
+            "/piao": {
+                "__ANY": [
+                    "show"
+                ]
+            }
+        }
     },
-    "*.58.com/piao": {
-        "__ANY": [
-            "show"
-        ]
-    },
-    "www.gewara.com/movie": {
-        "__ANY": [
-            "show"
-        ]
+    "www.gewara.com": {
+        "__PATH": {
+            "/movie": {
+                "__ANY": [
+                    "show"
+                ]
+            }
+        }
     },
     "theater.mtime.com": {
         "__ANY": [
@@ -3112,97 +2717,87 @@ var interestsdata = {
             "show"
         ]
     },
-    "*.meituan.com/dianying": {
-        "__ANY": [
-            "show"
-        ]
-    },
     "*.meituan.com": {
-        "影城": [
-            "show"
-        ],
-        "电影": [
+        "__PATH": {
+            "/dianying": {
+                "__ANY": [
+                    "show"
+                ]
+            }
+        },
+        "影城-电影": [
             "show"
         ]
     },
     "www.gaopeng.com": {
-        "影城": [
-            "show"
-        ],
-        "电影": [
+        "影城-电影": [
             "show"
         ]
     },
     "*.nuomi.com": {
-        "影城": [
-            "show"
-        ],
-        "电影": [
-            "show"
-        ]
-    },
-    "t.dianping.com/movie": {
-        "__ANY": [
+        "影城-电影": [
             "show"
         ]
     },
     "t.dianping.com": {
-        "影城": [
-            "show"
-        ],
-        "电影": [
+        "__PATH": {
+            "/movie": {
+                "__ANY": [
+                    "show"
+                ]
+            }
+        },
+        "影城-电影": [
             "show"
         ]
     },
-    "*.55tuan.com/cate/dianying": {
-        "__ANY": [
-            "show"
-        ]
+    "*.55tuan.com": {
+        "__PATH": {
+            "/cate/dianying": {
+                "__ANY": [
+                    "show"
+                ]
+            }
+        }
     },
     "beijing.55tuan.com": {
-        "影城": [
-            "show"
-        ],
-        "电影": [
-            "show"
-        ]
-    },
-    "*.lashou.com/cate/dianying": {
-        "__ANY": [
+        "影城-电影": [
             "show"
         ]
     },
     "*.lashou.com": {
-        "影城": [
-            "show"
-        ],
-        "电影": [
-            "show"
-        ]
-    },
-    "*.manzuo.com/dy": {
-        "__ANY": [
+        "__PATH": {
+            "/cate/dianying": {
+                "__ANY": [
+                    "show"
+                ]
+            }
+        },
+        "影城-电影": [
             "show"
         ]
     },
     "*.manzuo.com": {
-        "影城": [
-            "show"
-        ],
-        "电影": [
-            "show"
-        ]
-    },
-    "*.didatuan.com/c-dianying": {
-        "__ANY": [
+        "__PATH": {
+            "/dy": {
+                "__ANY": [
+                    "show"
+                ]
+            }
+        },
+        "影城-电影": [
             "show"
         ]
     },
     "*.didatuan.com": {
-        "影城": [
-            "show"
-        ],
-        "电影": [
+        "__PATH": {
+            "/c-dianying": {
+                "__ANY": [
+                    "show"
+                ]
+            }
+        },
+        "影城-电影": [
             "show"
         ]
     },
@@ -3251,22 +2846,7 @@ var interestsdata = {
             "technology"
         ]
     },
-    "tech.ifeng.com": {
-        "__ANY": [
-            "technology"
-        ]
-    },
     "tech.163.com": {
-        "__ANY": [
-            "technology"
-        ]
-    },
-    "tech.sina.com.cn": {
-        "__ANY": [
-            "technology"
-        ]
-    },
-    "tech.huanqiu.com": {
         "__ANY": [
             "technology"
         ]
@@ -3276,10 +2856,14 @@ var interestsdata = {
             "technology"
         ]
     },
-    "news.zol.com.cn/tech": {
-        "__ANY": [
-            "technology"
-        ]
+    "news.zol.com.cn": {
+        "__PATH": {
+            "/tech": {
+                "__ANY": [
+                    "technology"
+                ]
+            }
+        }
     },
     "cn.engadget.com": {
         "__ANY": [
@@ -3436,22 +3020,113 @@ var interestsdata = {
             "news"
         ]
     },
-    "video.sina.com.cn/news": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "video.sina.com.cn/p/news": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "www.iqiyi.com/news": {
-        "__ANY": [
-            "news"
-        ]
+    "video.sina.com.cn": {
+        "__PATH": {
+            "/news": {
+                "__ANY": [
+                    "news"
+                ]
+            },
+            "/p/news": {
+                "__ANY": [
+                    "news"
+                ]
+            },
+            "/mil": {
+                "__ANY": [
+                    "militery"
+                ]
+            },
+            "/p/news/mil": {
+                "__ANY": [
+                    "militery"
+                ]
+            },
+            "/movie/zongyi": {
+                "__ANY": [
+                    "entertainment-gossip"
+                ]
+            },
+            "/ent": {
+                "__ANY": [
+                    "entertainment-gossip"
+                ]
+            },
+            "/p/ent": {
+                "__ANY": [
+                    "entertainment-gossip"
+                ]
+            },
+            "/gaoxiao": {
+                "__ANY": [
+                    "humor"
+                ]
+            },
+            "/p/news/gaoxiao": {
+                "__ANY": [
+                    "humor"
+                ]
+            },
+            "/movie/movie": {
+                "__ANY": [
+                    "movie"
+                ]
+            },
+            "/movie/teleplay": {
+                "__ANY": [
+                    "TV-series"
+                ]
+            },
+            "/movie/comic": {
+                "__ANY": [
+                    "anime-manga"
+                ]
+            },
+            "/sports": {
+                "__ANY": [
+                    "sports"
+                ]
+            },
+            "/p/sports": {
+                "__ANY": [
+                    "sports"
+                ]
+            }
+        }
     },
     "www.iqiyi.com": {
+        "__PATH": {
+            "/news": {
+                "__ANY": [
+                    "news"
+                ]
+            },
+            "/zongyi": {
+                "__ANY": [
+                    "entertainment-gossip"
+                ]
+            },
+            "/dianying": {
+                "__ANY": [
+                    "movie"
+                ]
+            },
+            "/dianshiju": {
+                "__ANY": [
+                    "TV-series"
+                ]
+            },
+            "/dongman": {
+                "__ANY": [
+                    "anime-manga"
+                ]
+            },
+            "/sports": {
+                "__ANY": [
+                    "sports"
+                ]
+            }
+        },
         "资讯": [
             "news"
         ],
@@ -3474,20 +3149,74 @@ var interestsdata = {
             "sports"
         ]
     },
-    "v.qq.com/news": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "tv.sohu.com/news": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "v.ifeng.com/news": {
-        "__ANY": [
-            "news"
-        ]
+    "v.qq.com": {
+        "__PATH": {
+            "/news": {
+                "__ANY": [
+                    "news"
+                ]
+            },
+            "/variety": {
+                "__ANY": [
+                    "entertainment-gossip"
+                ]
+            },
+            "/ent": {
+                "__ANY": [
+                    "entertainment-gossip"
+                ]
+            },
+            "/hotshare": {
+                "__ANY": [
+                    "humor"
+                ]
+            },
+            "/movie": {
+                "__ANY": [
+                    "movie"
+                ]
+            },
+            "/cinema": {
+                "__ANY": [
+                    "movie"
+                ]
+            },
+            "/tv": {
+                "__ANY": [
+                    "TV-series"
+                ]
+            },
+            "/games": {
+                "__ANY": [
+                    "game"
+                ]
+            },
+            "/cartoon": {
+                "__ANY": [
+                    "anime-manga"
+                ]
+            },
+            "/sports": {
+                "__ANY": [
+                    "sports"
+                ]
+            },
+            "/l/sports/basketball": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/l/sports/isocce": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/sports/isocce": {
+                "__ANY": [
+                    "soccer"
+                ]
+            }
+        }
     },
     "news.qq.com": {
         "__ANY": [
@@ -3497,7 +3226,14 @@ var interestsdata = {
     "news.ifeng.com": {
         "__ANY": [
             "news"
-        ]
+        ],
+        "__PATH": {
+            "/mil": {
+                "__ANY": [
+                    "militery"
+                ]
+            }
+        }
     },
     "news.163.com": {
         "__ANY": [
@@ -3514,25 +3250,29 @@ var interestsdata = {
             "news"
         ]
     },
-    "news.xinhuanet.com": {
-        "__ANY": [
-            "news"
-        ]
-    },
     "news.cnr.cn": {
         "__ANY": [
             "news"
         ]
     },
-    "www.chinanews.com/gj": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "www.chinanews.com/gn": {
-        "__ANY": [
-            "news"
-        ]
+    "www.chinanews.com": {
+        "__PATH": {
+            "/gj": {
+                "__ANY": [
+                    "news"
+                ]
+            },
+            "/gn": {
+                "__ANY": [
+                    "news"
+                ]
+            },
+            "/mil": {
+                "__ANY": [
+                    "militery"
+                ]
+            }
+        }
     },
     "world.huanqiu.com": {
         "__ANY": [
@@ -3584,37 +3324,21 @@ var interestsdata = {
             "news"
         ]
     },
-    "www.zaobao.com/news": {
-        "__ANY": [
-            "news"
-        ]
+    "www.zaobao.com": {
+        "__PATH": {
+            "/news": {
+                "__ANY": [
+                    "news"
+                ]
+            }
+        }
     },
     "*.cankaoxiaoxi.com": {
         "__ANY": [
             "news"
         ]
     },
-    "video.sina.com.cn/mil": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "video.sina.com.cn/p/news/mil": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "v.ifeng.com/mil": {
-        "__ANY": [
-            "militery"
-        ]
-    },
     "mil.qq.com": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "news.ifeng.com/mil": {
         "__ANY": [
             "militery"
         ]
@@ -3625,16 +3349,6 @@ var interestsdata = {
         ]
     },
     "mil.news.sina.com.cn": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "news.xinhuanet.com/mil": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "www.chinanews.com/mil": {
         "__ANY": [
             "militery"
         ]
@@ -3749,10 +3463,14 @@ var interestsdata = {
             "militery"
         ]
     },
-    "phtv.ifeng.com/program/jqgcs": {
-        "__ANY": [
-            "militery"
-        ]
+    "phtv.ifeng.com": {
+        "__PATH": {
+            "/program/jqgcs": {
+                "__ANY": [
+                    "militery"
+                ]
+            }
+        }
     },
     "military.cntv.cn": {
         "__ANY": [
@@ -3790,11 +3508,6 @@ var interestsdata = {
         ]
     },
     "money.163.com": {
-        "__ANY": [
-            "finance"
-        ]
-    },
-    "news.xinhuanet.com/fortune": {
         "__ANY": [
             "finance"
         ]
@@ -3871,10 +3584,44 @@ var interestsdata = {
             "entertainment-gossip"
         ]
     },
-    "v.baidu.com/show": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
+    "v.baidu.com": {
+        "__PATH": {
+            "/show": {
+                "__ANY": [
+                    "entertainment-gossip"
+                ]
+            },
+            "/movie": {
+                "__ANY": [
+                    "movie"
+                ]
+            },
+            "/tv": {
+                "__ANY": [
+                    "TV-series"
+                ]
+            },
+            "/live": {
+                "__ANY": [
+                    "TV-series"
+                ]
+            },
+            "/gameindex": {
+                "__ANY": [
+                    "game"
+                ]
+            },
+            "/comic": {
+                "__ANY": [
+                    "anime-manga"
+                ]
+            },
+            "/kan/comic": {
+                "__ANY": [
+                    "anime-manga"
+                ]
+            }
+        }
     },
     "zy.tudou.com": {
         "__ANY": [
@@ -3886,37 +3633,7 @@ var interestsdata = {
             "entertainment-gossip"
         ]
     },
-    "video.sina.com.cn/movie/zongyi": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "video.sina.com.cn/ent": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "video.sina.com.cn/p/ent": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "www.iqiyi.com/zongyi": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
     "yule.iqiyi.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "v.qq.com/variety": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "v.qq.com/ent": {
         "__ANY": [
             "entertainment-gossip"
         ]
@@ -3937,24 +3654,6 @@ var interestsdata = {
         ]
     },
     "ent.56.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "tv.sohu.com/show": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "tv.sohu.com": {
-        "综艺": [
-            "entertainment-gossip"
-        ],
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "v.ifeng.com/ent": {
         "__ANY": [
             "entertainment-gossip"
         ]
@@ -3987,17 +3686,44 @@ var interestsdata = {
     "ent.sina.com.cn": {
         "__ANY": [
             "entertainment-gossip"
-        ]
-    },
-    "ent.sina.com.cn/gossip": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "ent.sina.com.cn/s": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
+        ],
+        "__PATH": {
+            "/gossip": {
+                "__ANY": [
+                    "entertainment-gossip"
+                ]
+            },
+            "/s": {
+                "__ANY": [
+                    "entertainment-gossip"
+                ]
+            },
+            "/y": {
+                "__ANY": [
+                    "music"
+                ]
+            },
+            "/film": {
+                "__ANY": [
+                    "movie"
+                ]
+            },
+            "/m": {
+                "__ANY": [
+                    "movie"
+                ]
+            },
+            "/tv": {
+                "__ANY": [
+                    "TV-series"
+                ]
+            },
+            "/v": {
+                "__ANY": [
+                    "TV-series"
+                ]
+            }
+        }
     },
     "ent.huanqiu.com": {
         "__ANY": [
@@ -4019,27 +3745,7 @@ var interestsdata = {
             "humor"
         ]
     },
-    "video.sina.com.cn/gaoxiao": {
-        "__ANY": [
-            "humor"
-        ]
-    },
-    "video.sina.com.cn/p/news/gaoxiao": {
-        "__ANY": [
-            "humor"
-        ]
-    },
-    "v.qq.com/hotshare": {
-        "__ANY": [
-            "humor"
-        ]
-    },
     "fun.56.com": {
-        "__ANY": [
-            "humor"
-        ]
-    },
-    "www.hao123.com/gaoxiao": {
         "__ANY": [
             "humor"
         ]
@@ -4075,11 +3781,6 @@ var interestsdata = {
         ]
     },
     "www.budejie.com": {
-        "__ANY": [
-            "humor"
-        ]
-    },
-    "tieba.baidu.com/f?kw=%D0%A6%BB%B0&fr=ala0": {
         "__ANY": [
             "humor"
         ]
@@ -4145,11 +3846,6 @@ var interestsdata = {
         ]
     },
     "yue.sina.com.cn": {
-        "__ANY": [
-            "music"
-        ]
-    },
-    "ent.sina.com.cn/y": {
         "__ANY": [
             "music"
         ]
@@ -4234,11 +3930,6 @@ var interestsdata = {
             "movie"
         ]
     },
-    "v.baidu.com/movie": {
-        "__ANY": [
-            "movie"
-        ]
-    },
     "www.m1905.com": {
         "__ANY": [
             "movie",
@@ -4246,26 +3937,6 @@ var interestsdata = {
         ]
     },
     "movie.tudou.com": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "video.sina.com.cn/movie/movie": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "www.iqiyi.com/dianying": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "v.qq.com/movie": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "v.qq.com/cinema": {
         "__ANY": [
             "movie"
         ]
@@ -4285,11 +3956,6 @@ var interestsdata = {
             "movie"
         ]
     },
-    "tv.sohu.com/movie": {
-        "__ANY": [
-            "movie"
-        ]
-    },
     "so.tv.sohu.com": {
         "电影": [
             "movie"
@@ -4301,39 +3967,16 @@ var interestsdata = {
             "anime-manga"
         ]
     },
-    "v.ifeng.com/movie": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "www.yyets.com/resource": {
-        "电影": [
-            "movie"
-        ],
-        "美剧": [
-            "TV-series"
-        ],
-        "英剧": [
-            "TV-series"
-        ],
-        "日剧": [
-            "TV-series"
-        ],
-        "韩剧": [
-            "TV-series"
-        ]
+    "www.yyets.com": {
+        "__PATH": {
+            "/resource": {
+                "美剧-英剧-日剧-韩剧": [
+                    "TV-series"
+                ]
+            }
+        }
     },
     "movie.letv.com": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "ent.sina.com.cn/film": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "ent.sina.com.cn/m": {
         "__ANY": [
             "movie"
         ]
@@ -4358,32 +4001,7 @@ var interestsdata = {
             "TV-series"
         ]
     },
-    "v.baidu.com/tv": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "v.baidu.com/live": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
     "tv.tudou.com": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "video.sina.com.cn/movie/teleplay": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "www.iqiyi.com/dianshiju": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "v.qq.com/tv": {
         "__ANY": [
             "TV-series"
         ]
@@ -4393,22 +4011,7 @@ var interestsdata = {
             "TV-series"
         ]
     },
-    "v.ifeng.com/teleplay": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
     "tv.letv.com": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "ent.sina.com.cn/tv": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "ent.sina.com.cn/v": {
         "__ANY": [
             "TV-series"
         ]
@@ -4423,19 +4026,18 @@ var interestsdata = {
             "TV-series"
         ]
     },
-    "www.a67.com/tv": {
-        "__ANY": [
-            "TV-series"
-        ]
+    "www.a67.com": {
+        "__PATH": {
+            "/tv": {
+                "__ANY": [
+                    "TV-series"
+                ]
+            }
+        }
     },
     "www.77vcd.com": {
         "__ANY": [
             "TV-series"
-        ]
-    },
-    "v.ifeng.com/game": {
-        "__ANY": [
-            "game"
         ]
     },
     "game.youku.com": {
@@ -4444,11 +4046,6 @@ var interestsdata = {
         ]
     },
     "game.tudou.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "v.baidu.com/gameindex": {
         "__ANY": [
             "game"
         ]
@@ -4465,11 +4062,6 @@ var interestsdata = {
         ]
     },
     "g.pps.tv": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "v.qq.com/games": {
         "__ANY": [
             "game"
         ]
@@ -4604,47 +4196,21 @@ var interestsdata = {
             "anime-manga"
         ]
     },
-    "v.baidu.com/comic": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "v.baidu.com/kan/comic": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "baidu.letv.com/comic": {
-        "__ANY": [
-            "anime-manga"
-        ]
+    "baidu.letv.com": {
+        "__PATH": {
+            "/comic": {
+                "__ANY": [
+                    "anime-manga"
+                ]
+            }
+        }
     },
     "cartoon.tudou.com": {
         "__ANY": [
             "anime-manga"
         ]
     },
-    "video.sina.com.cn/movie/comic": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "www.iqiyi.com/dongman": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "v.qq.com/cartoon": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
     "dm.56.com": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "tv.sohu.com/comic": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4772,17 +4338,158 @@ var interestsdata = {
     "sports.sina.com.cn": {
         "__ANY": [
             "sports"
-        ]
+        ],
+        "__PATH": {
+            "/nba": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/cba": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/global": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/g": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/csl": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/j": {
+                "__ANY": [
+                    "soccer"
+                ]
+            }
+        }
     },
     "sports.qq.com": {
         "__ANY": [
             "sports"
-        ]
+        ],
+        "__PATH": {
+            "/nba": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/cba": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/nbavideo": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/ucl": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/premierleague": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/laliga": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/seriea": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/csocce": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/isocce": {
+                "__ANY": [
+                    "soccer"
+                ]
+            }
+        }
     },
     "sports.163.com": {
         "__ANY": [
             "sports"
-        ]
+        ],
+        "__PATH": {
+            "/nba": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/cba": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/world": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/yc": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/xj": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/yj": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/dj": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/gjb": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/china": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/zc": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/gjd": {
+                "__ANY": [
+                    "soccer"
+                ]
+            },
+            "/nz": {
+                "__ANY": [
+                    "soccer"
+                ]
+            }
+        }
     },
     "sports.youku.com": {
         "__ANY": [
@@ -4794,27 +4501,7 @@ var interestsdata = {
             "sports"
         ]
     },
-    "video.sina.com.cn/sports": {
-        "__ANY": [
-            "sports"
-        ]
-    },
-    "video.sina.com.cn/p/sports": {
-        "__ANY": [
-            "sports"
-        ]
-    },
-    "www.iqiyi.com/sports": {
-        "__ANY": [
-            "sports"
-        ]
-    },
     "sports.iqiyi.com": {
-        "__ANY": [
-            "sports"
-        ]
-    },
-    "v.qq.com/sports": {
         "__ANY": [
             "sports"
         ]
@@ -4842,7 +4529,19 @@ var interestsdata = {
     "sports.huanqiu.com": {
         "__ANY": [
             "sports"
-        ]
+        ],
+        "__PATH": {
+            "/basketball": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/soccer": {
+                "__ANY": [
+                    "soccer"
+                ]
+            }
+        }
     },
     "sports.sohu.com": {
         "__ANY": [
@@ -4862,34 +4561,21 @@ var interestsdata = {
     "sports.cntv.cn": {
         "__ANY": [
             "sports"
-        ]
-    },
-    "sports.sina.com.cn/nba": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "sports.sina.com.cn/cba": {
-        "__ANY": [
-            "basketball"
-        ]
+        ],
+        "__PATH": {
+            "/nba": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/football": {
+                "__ANY": [
+                    "soccer"
+                ]
+            }
+        }
     },
     "nba.weibo.com": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "sports.qq.com/nba": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "sports.qq.com/cba": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "sports.163.com/nba": {
         "__ANY": [
             "basketball"
         ]
@@ -4899,27 +4585,7 @@ var interestsdata = {
             "basketball"
         ]
     },
-    "sports.163.com/cba": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
     "cba.sports.163.com": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "sports.qq.com/nbavideo": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "v.qq.com/l/sports/basketball": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "sports.huanqiu.com/basketball": {
         "__ANY": [
             "basketball"
         ]
@@ -4929,27 +4595,40 @@ var interestsdata = {
             "basketball"
         ]
     },
-    "voice.hupu.com/nba": {
-        "__ANY": [
-            "basketball"
-        ]
+    "voice.hupu.com": {
+        "__PATH": {
+            "/nba": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/soccer": {
+                "__ANY": [
+                    "soccer"
+                ]
+            }
+        }
     },
     "nba.hupu.com": {
         "__ANY": [
             "basketball"
         ]
     },
-    "www.zhibo8.cc/nba": {
-        "__ANY": [
-            "basketball"
-        ]
+    "www.zhibo8.cc": {
+        "__PATH": {
+            "/nba": {
+                "__ANY": [
+                    "basketball"
+                ]
+            },
+            "/zuqiu": {
+                "__ANY": [
+                    "soccer"
+                ]
+            }
+        }
     },
     "china.nba.com": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "sports.cntv.cn/nba": {
         "__ANY": [
             "basketball"
         ]
@@ -4979,147 +4658,12 @@ var interestsdata = {
             "basketball"
         ]
     },
-    "tieba.baidu.com/f?kw=%C0%BA%C7%F2": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "sports.sina.com.cn/global": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.sina.com.cn/g": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.sina.com.cn/csl": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.sina.com.cn/j": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.qq.com/ucl": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.qq.com/premierleague": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.qq.com/laliga": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.qq.com/seriea": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.qq.com/csocce": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.qq.com/isocce": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.163.com/world": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.163.com/yc": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.163.com/xj": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.163.com/yj": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.163.com/dj": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.163.com/gjb": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.163.com/china": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.163.com/zc": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.163.com/gjd": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.163.com/nz": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "v.qq.com/l/sports/isocce": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "v.qq.com/sports/isocce": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.huanqiu.com/soccer": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "voice.hupu.com/soccer": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
     "soccer.hupu.com": {
         "__ANY": [
             "soccer"
         ]
     },
-    "www.zhibo8.cc/zuqiu": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
     "www.1soccer.com": {
-        "__ANY": [
-            "soccer"
-        ]
-    },
-    "sports.cntv.cn/football": {
         "__ANY": [
             "soccer"
         ]

@@ -10,12 +10,17 @@ const kNotWordPattern = /[^a-z0-9 ]+/g;
 const kMinimumMatchTokens = 3;
 const kSimilarityCutOff = Math.log(0.95);
 
-function PlaceTokenizer(aUrlStopwordSet) {
-  this._urlStopwordSet = aUrlStopwordSet;
+function PlaceTokenizer({urlStopwordSet, model, regionCode}) {
+  this._urlStopwordSet = urlStopwordSet;
+  this._regionCode = regionCode;
+
+  if (regionCode == 'zh-CN' && model) {
+    this._cnTokenizer = new ChineseTokenizer(model);
+  }
 }
 
 PlaceTokenizer.prototype = {
-  tokenize: function(aUrl, aTitle) {
+  tokenize: function(aUrl, aTitle, aKeywords) {
     aUrl = aUrl.toLowerCase().replace(kNotWordPattern, " ");
     aTitle = (aTitle) ? aTitle.toLowerCase().replace(kNotWordPattern, " ") : "";
 
@@ -28,11 +33,65 @@ PlaceTokenizer.prototype = {
       }
     }, this);
 
-    tokens = tokens.concat(aTitle.split(/\s+/));
+    aKeywords = aKeywords || '';
+
+    if (this._regionCode == 'zh-CN') {
+      tokens = tokens.concat(this._cnTokenizer.tokenize(aTitle + ' ' + aKeywords));
+    } else {
+      tokens = tokens.concat(aTitle.split(/\s+/));
+      tokens = tokens.concat(aKeywords.split(/\s+/));
+    }
 
     return tokens;
   }
+};
+
+/**
+ * A very simple Reverse Maximum Match tokenizer, the dictionary is
+ * generated from the text classifier model.
+ */
+function ChineseTokenizer(aModel) {
+  this._hash = [];
+  this.initialize(aModel);
 }
+
+ChineseTokenizer.prototype = {
+  initialize: function(aModel) {
+    for (let key in aModel.logLikelihoods) {
+      this._addDict(key);
+    }
+  },
+
+  _addDict: function(s) {
+    let n = s.length;
+
+    if (!this._hash[n]) {
+      this._hash[n] = {};
+    }
+
+    this._hash[n][s] = true;
+  },
+
+  tokenize: function(sen) {
+    let max = Math.min(sen.length, this._hash.length - 1);
+    for (let n = max; n > 0; n--) {
+      if (!this._hash[n]) {
+        continue;
+      }
+
+      let section = sen.slice(sen.length - n);
+      if (this._hash[n][section]) {
+        return sen.length >= n
+          ? this.tokenize(sen.slice(0, sen.length - n)).concat([section])
+          : [];
+      }
+    }
+
+    return sen.length >= 1
+      ? this.tokenize(sen.slice(0, sen.length - 1))
+      : [];
+  }
+};
 
 function NaiveBayesClassifier(aModel) {
   this._classes = aModel.classes;

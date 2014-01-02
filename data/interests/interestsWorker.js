@@ -14,6 +14,7 @@ InterestsWorkerError.prototype = new Error();
 InterestsWorkerError.prototype.constructor = InterestsWorkerError;
 
 let gNamespace = null;
+let gRegionCode = null;
 let gTokenizer = null;
 let gClassifier = null;
 let gInterestsData = null;
@@ -21,10 +22,18 @@ const kSplitter = /[^-\w\xco-\u017f\u0380-\u03ff\u0400-\u04ff]+/;
 
 // bootstrap the worker with data and models
 function bootstrap(aMessageData) {
-  //expects : {interestsData, interestsDataType, interestsClassifierModel, interestsUrlStopwords}
+  // expects : {interestsData, interestsDataType, interestsClassifierModel, interestsUrlStopwords, workerRegionCode}
+
+  gRegionCode = aMessageData.workerRegionCode;
+
   if (aMessageData.interestsUrlStopwords) {
-    gTokenizer = new PlaceTokenizer(aMessageData.interestsUrlStopwords);
+    gTokenizer = new PlaceTokenizer({
+      urlStopwordSet: aMessageData.interestsUrlStopwords,
+      model: aMessageData.interestsData,
+      regionCode: gRegionCode
+    });
   }
+
   if (aMessageData.interestsClassifierModel) {
     gClassifier = new NaiveBayesClassifier(aMessageData.interestsClassifierModel);
   }
@@ -157,6 +166,9 @@ function getInterestsForDocument(aMessageData) {
     self.postMessage(aMessageData);
   }
   catch (ex) {
+    dump('!!!!!!!!!! ');
+    dump(ex);
+    dump('\n')
     Components.utils.reportError(ex);
   }
 }
