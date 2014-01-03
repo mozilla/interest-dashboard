@@ -54,7 +54,7 @@ function bootstrap(aMessageData) {
   });
 }
 
-// Only support regexp with wildcard
+// XXX Only support regexp with wildcard
 function buildMappingWithWildcard() {
   gInterestsDataInRegExp = [];
 
@@ -83,7 +83,7 @@ function _getValidRule(hostRule, path) {
       /**
        * For path:
        *   '/path'
-       * there are cases to be matched:
+       * there are four cases to be matched:
        *   '/path'
        *   '/path/'
        *   '/path?kw='
@@ -150,8 +150,7 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
 
     // process keywords
     if (hostKeys || tldKeys) {
-      // Split on non-dash, alphanumeric, latin-small, greek, cyrillic
-      let words = (url + " " + title).toLowerCase().split(kSplitter);
+      let words = gTokenizer.tokenize((url + " " + title).toLowerCase());
 
       let matchedAllTokens = function(tokens) {
         return tokens.every(function(word) {
