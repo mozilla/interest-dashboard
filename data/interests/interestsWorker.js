@@ -125,7 +125,7 @@ function swapRules({interestsData, interestsDataType}) {
   }
 }
 
-function _ruleClassify(rule, title, url) {
+function doRuleClassify(rule, title, url) {
   let keyLength = rule ? Object.keys(rule).length : 0;
   if (!keyLength)
     return [];
@@ -147,18 +147,14 @@ function _ruleClassify(rule, title, url) {
     });
   }
 
-  let processDFRKeys = function(hostObject) {
-    Object.keys(hostObject).forEach(function(key) {
-      if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
-        interests = interests.concat(hostObject[key]);
-      }
-      else if (key.indexOf("__") < 0 && matchedAllTokens(key.split(/[\s-]+/))) {  // XXXX original splitter doesn't apply to chinese.
-        interests = interests.concat(hostObject[key]);
-      }
-    });
-  }
-
-  processDFRKeys(rule);
+  Object.keys(rule).forEach(function(key) {
+    if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
+      interests = interests.concat(rule[key]);
+    }
+    else if (key.indexOf("__") < 0 && matchedAllTokens(key.split(/[\s-]+/))) {  // XXXX original splitter doesn't apply to chinese.
+      interests = interests.concat(rule[key]);
+    }
+  });
 
   return interests;
 }
@@ -172,12 +168,12 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
   let interests = [];
 
   getMatchedHostRule(host, path).forEach(rule => {
-    interests = interests.concat(_ruleClassify(rule, title, url));
+    interests = interests.concat(doRuleClassify(rule, title, url));
   });
 
   if (host != tld) {
     getMatchedHostRule(tld, path).forEach(rule => {
-      interests = interests.concat(_ruleClassify(rule, title, url));
+      interests = interests.concat(doRuleClassify(rule, title, url));
     });
   }
 
