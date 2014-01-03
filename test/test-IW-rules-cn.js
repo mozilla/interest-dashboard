@@ -14,7 +14,11 @@ Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
 let testDomainRules = {
-  "*.testvideosite.com" : {
+  "*.sina.com.cn" : {
+    "__ANY": [
+      "News"
+    ],
+
     "__PATH": {
       "/video": {
         "__ANY" : [
@@ -33,10 +37,10 @@ let testDomainRules = {
 // the test array
 let matchTests = [
 {
-  info: "Match Test 1 (Rules): v.testvideosite.com",
-  url:  "http://v.testvideosite.com/video?kw=aa",
+  info: "Match Test 1 (Rules): sina.com.cn",
+  url:  "http://www.sina.com.cn/video?kw=aa",
   title: "电视剧影视频道",
-  expectedInterests:  [{"type":"rules","interests":["Video","TV Series"]},{"type":"combined","interests":["Video","TV Series"]},{"type":"keywords","interests":[]}],
+  expectedInterests:  [{"type":"rules","interests":["News","Video","TV Series"]},{"type":"combined","interests":["News","Video","TV Series"]},{"type":"keywords","interests":[]}],
 }];
 
 exports["test default matcher"] = function test_default_matcher(assert, done) {

@@ -66,14 +66,16 @@ function buildMappingWithWildcard() {
 }
 
 function _getValidRule(hostRule, path) {
+  let result = [];
+
   if (!hostRule)
-    return null;
+    return result;
 
   if (hostRule["__ANY"])
-    return hostRule;
+    result.push(hostRule);
 
   if (!path)
-    return null;
+    return result;
 
   // check path
   let pathRules = hostRule["__PATH"];
@@ -90,17 +92,17 @@ function _getValidRule(hostRule, path) {
        */
       if (p == path || path.indexOf(path) == 0 &&
           /[#?\/]/i.test(path.substring(p.length, p.length + 1))) {
-        return pathRules[p];
+        result.push(pathRules[p])
       }
     }
   }
 
-  return null;
+  return result;
 }
 
 function getMatchedHostRule(host, path) {
   let result = _getValidRule(gInterestsData[host], path);
-  if (result)
+  if (result.length > 0)
     return result;
 
   // Check domains in regexp.
@@ -112,7 +114,7 @@ function getMatchedHostRule(host, path) {
     }
   }
 
-  return null;
+  return [];
 }
 
 // swap out rules
@@ -123,59 +125,62 @@ function swapRules({interestsData, interestsDataType}) {
   }
 }
 
+function _ruleClassify(rule, title, url) {
+  let keyLength = rule ? Object.keys(rule).length : 0;
+  if (!keyLength)
+    return [];
+
+  let interests = [];
+  if (rule["__ANY"]) {
+    interests = interests.concat(rule["__ANY"]);
+    keyLength--;
+  }
+
+  if (!keyLength)
+    return interests;
+
+  let words = gTokenizer.tokenize(url, title);
+
+  let matchedAllTokens = function(tokens) {
+    return tokens.every(function(word) {
+      return words.indexOf(word) != -1;
+    });
+  }
+
+  let processDFRKeys = function(hostObject) {
+    Object.keys(hostObject).forEach(function(key) {
+      if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
+        interests = interests.concat(hostObject[key]);
+      }
+      else if (key.indexOf("__") < 0 && matchedAllTokens(key.split(/[\s-]+/))) {  // XXXX original splitter doesn't apply to chinese.
+        interests = interests.concat(hostObject[key]);
+      }
+    });
+  }
+
+  processDFRKeys(rule);
+
+  return interests;
+}
+
 // classify a page using rules
 function ruleClassify({host, language, tld, metaData, path, title, url}) {
   if (gInterestsData == null) {
     return [];
   }
+
   let interests = [];
 
-  let matchedHost = getMatchedHostRule(host, path);
-  let hostKeys = matchedHost ? Object.keys(matchedHost).length : 0;
+  getMatchedHostRule(host, path).forEach(rule => {
+    interests = interests.concat(_ruleClassify(rule, title, url));
+  });
 
-  let matchedTLD = host != tld ? getMatchedHostRule(tld) : matchedHost;
-  let tldKeys = (host != tld && matchedTLD) ? Object.keys(matchedTLD).length : 0;
-
-  if (hostKeys || tldKeys) {
-    // process __ANY first
-    if (hostKeys && matchedHost["__ANY"]) {
-      interests = interests.concat(matchedHost["__ANY"]);
-      hostKeys--;
-    }
-    if (tldKeys && matchedTLD["__ANY"]) {
-      interests = interests.concat(matchedTLD["__ANY"]);
-      tldKeys--;
-    }
-
-    // process keywords
-    if (hostKeys || tldKeys) {
-      let words = gTokenizer.tokenize(url, title);
-
-      let matchedAllTokens = function(tokens) {
-        return tokens.every(function(word) {
-          return words.indexOf(word) != -1;
-        });
-      }
-
-      let processDFRKeys = function(hostObject) {
-        Object.keys(hostObject).forEach(function(key) {
-          if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
-            interests = interests.concat(hostObject[key]);
-          }
-          else if (key != "__ANY" && matchedAllTokens(key.split(/[\s-]+/))) {  // XXXX original splitter doesn't apply to chinese.
-            interests = interests.concat(hostObject[key]);
-          }
-        });
-      }
-
-      if (hostKeys) {
-        processDFRKeys(matchedHost);
-      }
-      if (tldKeys) {
-        processDFRKeys(matchedTLD);
-      }
-    }
+  if (host != tld) {
+    getMatchedHostRule(tld, path).forEach(rule => {
+      interests = interests.concat(_ruleClassify(rule, title, url));
+    });
   }
+
   return interests;
 }
 
