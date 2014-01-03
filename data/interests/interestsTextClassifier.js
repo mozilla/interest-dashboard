@@ -10,19 +10,18 @@ const kNotWordPattern = /[^a-z0-9 ]+/g;
 const kMinimumMatchTokens = 3;
 const kSimilarityCutOff = Math.log(0.95);
 
-function PlaceTokenizer({urlStopwordSet, model, regionCode}) {
+function PlaceTokenizer({urlStopwordSet, model, rules, regionCode}) {
   this._urlStopwordSet = urlStopwordSet;
   this._regionCode = regionCode;
 
-  if (regionCode == 'zh-CN' && model) {
-    this._cnTokenizer = new ChineseTokenizer(model);
+  if (regionCode == 'zh-CN') {
+    this._cnTokenizer = new ChineseTokenizer(model, rules);
   }
 }
 
 PlaceTokenizer.prototype = {
   tokenize: function(aUrl, aTitle, aKeywords) {
     aUrl = aUrl.toLowerCase().replace(kNotWordPattern, " ");
-    aTitle = (aTitle) ? aTitle.toLowerCase().replace(kNotWordPattern, " ") : "";
 
     let tokens = [];
 
@@ -38,6 +37,7 @@ PlaceTokenizer.prototype = {
     if (this._regionCode == 'zh-CN') {
       tokens = tokens.concat(this._cnTokenizer.tokenize(aTitle + ' ' + aKeywords));
     } else {
+      aTitle = (aTitle) ? aTitle.toLowerCase().replace(kNotWordPattern, " ") : "";
       tokens = tokens.concat(aTitle.split(/\s+/));
       tokens = tokens.concat(aKeywords.split(/\s+/));
     }
@@ -48,18 +48,39 @@ PlaceTokenizer.prototype = {
 
 /**
  * A very simple Reverse Maximum Match tokenizer, the dictionary is
- * generated from the text classifier model.
+ * generated from the text classifier model and rule keywords.
  */
-function ChineseTokenizer(aModel) {
+function ChineseTokenizer(aModel, aRules) {
   this._hash = [];
-  this.initialize(aModel);
+  this.initialize(aModel, aRules);
 }
 
 ChineseTokenizer.prototype = {
-  initialize: function(aModel) {
-    for (let key in aModel.logLikelihoods) {
-      this._addDict(key);
+  initialize: function(aModel, aRules) {
+    if (aModel) {
+      Object.keys(aModel.logLikelihoods).forEach(key => {
+        this._addDict(key);
+      });
     }
+
+    if (aRules) {
+      this._addRuleKeywords(aRules);
+    }
+  },
+
+  _addRuleKeywords: function(rules) {
+    let self = this;
+    Object.keys(rules).forEach(domain => {
+      let domainRules = rules[domain];
+
+      Object.keys(domainRules).forEach(key => {
+        if (key.indexOf("__") < 0) {
+          key.split(/[\s-]+/).forEach(this._addDict.bind(this));
+        } else if (key == "__PATH") {
+          this._addRuleKeywords(domainRules["__PATH"]);
+        }
+      });
+    });
   },
 
   _addDict: function(s) {

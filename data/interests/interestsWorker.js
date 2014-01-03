@@ -30,24 +30,23 @@ const kSplitter = /[^-\w\xco-\u017f\u0380-\u03ff\u0400-\u04ff]+/;
 // bootstrap the worker with data and models
 function bootstrap(aMessageData) {
   // expects : {interestsData, interestsDataType, interestsClassifierModel, interestsUrlStopwords, workerRegionCode}
-
   gRegionCode = aMessageData.workerRegionCode;
+
+  gNamespace = aMessageData.workerNamespace;
+  swapRules(aMessageData);
 
   if (aMessageData.interestsUrlStopwords) {
     gTokenizer = new PlaceTokenizer({
       urlStopwordSet: aMessageData.interestsUrlStopwords,
-      model: aMessageData.interestsData,
-      regionCode: gRegionCode
+      model: aMessageData.interestsClassifierModel,
+      regionCode: gRegionCode,
+      rules: gInterestsData
     });
   }
 
   if (aMessageData.interestsClassifierModel) {
     gClassifier = new NaiveBayesClassifier(aMessageData.interestsClassifierModel);
   }
-
-  gNamespace = aMessageData.workerNamespace;
-
-  swapRules(aMessageData);
 
   self.postMessage({
     message: "bootstrapComplete"
@@ -150,7 +149,7 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
 
     // process keywords
     if (hostKeys || tldKeys) {
-      let words = gTokenizer.tokenize((url + " " + title).toLowerCase());
+      let words = gTokenizer.tokenize(url, title);
 
       let matchedAllTokens = function(tokens) {
         return tokens.every(function(word) {
@@ -163,7 +162,7 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
           if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
             interests = interests.concat(hostObject[key]);
           }
-          else if (key != "__ANY" && matchedAllTokens(key.split(kSplitter))) {
+          else if (key != "__ANY" && matchedAllTokens(key.split(/[\s-]+/))) {  // XXXX original splitter doesn't apply to chinese.
             interests = interests.concat(hostObject[key]);
           }
         });

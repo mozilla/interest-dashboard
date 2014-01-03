@@ -163,13 +163,97 @@ var interestsdata = {
         "\u624b\u673a": [
             "mobile"
         ],
-        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
+        "\u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "\u53f0\u5f0f": [
+            "digital"
+        ],
+        "\u5e73\u677f": [
+            "digital"
+        ],
+        "\u9f20\u6807": [
+            "digital"
+        ],
+        "\u952e\u76d8": [
+            "digital"
+        ],
+        "\u786c\u76d8": [
+            "digital"
+        ],
+        "U\u76d8": [
+            "digital"
+        ],
+        "\u4e3b\u677f": [
+            "digital"
+        ],
+        "\u663e\u5361": [
+            "digital"
+        ],
+        "CPU": [
+            "digital"
+        ],
+        "\u5185\u5b58": [
+            "digital"
+        ],
+        "\u51e0\u9879": [
+            "digital"
+        ],
+        "\u5e97\u5458": [
+            "digital"
+        ],
+        "\u663e\u793a\u5668": [
+            "digital"
+        ],
+        "\u88c5\u673a": [
             "digital"
         ],
         "\u76f8\u673a": [
             "photography-dc"
         ],
-        "\u7535\u89c6-\u6d17\u8863\u673a-\u51b0\u7bb1-\u7a7a\u8c03-\u70ed\u6c34\u5668-\u98ce\u6247-\u5438\u5c18\u5668-\u51c0\u5316\u5668-\u70df\u673a-\u7535\u78c1\u7089-\u69a8\u6c41\u673a-\u8c46\u6d46\u673a-\u5fae\u6ce2\u7089-\u7535\u538b\u529b\u9505-\u7535\u996d\u7172": [
+        "\u7535\u89c6": [
+            "home-applicance"
+        ],
+        "\u6d17\u8863\u673a": [
+            "home-applicance"
+        ],
+        "\u51b0\u7bb1": [
+            "home-applicance"
+        ],
+        "\u7a7a\u8c03": [
+            "home-applicance"
+        ],
+        "\u70ed\u6c34\u5668": [
+            "home-applicance"
+        ],
+        "\u98ce\u6247": [
+            "home-applicance"
+        ],
+        "\u5438\u5c18\u5668": [
+            "home-applicance"
+        ],
+        "\u51c0\u5316\u5668": [
+            "home-applicance"
+        ],
+        "\u70df\u673a": [
+            "home-applicance"
+        ],
+        "\u7535\u78c1\u7089": [
+            "home-applicance"
+        ],
+        "\u69a8\u6c41\u673a": [
+            "home-applicance"
+        ],
+        "\u8c46\u6d46\u673a": [
+            "home-applicance"
+        ],
+        "\u5fae\u6ce2\u7089": [
+            "home-applicance"
+        ],
+        "\u7535\u538b\u529b\u9505": [
+            "home-applicance"
+        ],
+        "\u7535\u996d\u7172": [
             "home-applicance"
         ],
         "\u56fe\u4e66": [
@@ -180,19 +264,152 @@ var interestsdata = {
         "\u624b\u673a": [
             "mobile"
         ],
-        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
+        "\u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "\u53f0\u5f0f": [
+            "digital"
+        ],
+        "\u5e73\u677f": [
+            "digital"
+        ],
+        "\u9f20\u6807": [
+            "digital"
+        ],
+        "\u952e\u76d8": [
+            "digital"
+        ],
+        "\u786c\u76d8": [
+            "digital"
+        ],
+        "U\u76d8": [
+            "digital"
+        ],
+        "\u4e3b\u677f": [
+            "digital"
+        ],
+        "\u663e\u5361": [
+            "digital"
+        ],
+        "CPU": [
+            "digital"
+        ],
+        "\u5185\u5b58": [
+            "digital"
+        ],
+        "\u51e0\u9879": [
+            "digital"
+        ],
+        "\u5e97\u5458": [
+            "digital"
+        ],
+        "\u663e\u793a\u5668": [
+            "digital"
+        ],
+        "\u88c5\u673a": [
             "digital"
         ],
         "\u76f8\u673a": [
             "photography-dc"
         ],
-        "\u7535\u89c6-\u6d17\u8863\u673a-\u51b0\u7bb1-\u7a7a\u8c03-\u70ed\u6c34\u5668-\u98ce\u6247-\u5438\u5c18\u5668-\u51c0\u5316\u5668-\u70df\u673a-\u7535\u78c1\u7089-\u69a8\u6c41\u673a-\u8c46\u6d46\u673a-\u5fae\u6ce2\u7089-\u7535\u538b\u529b\u9505-\u7535\u996d\u7172": [
+        "\u7535\u89c6": [
             "home-applicance"
         ],
-        "\u5973\u88c5-\u5973\u978b-\u8fde\u8863\u88d9-\u6253\u5e95\u886b-\u534a\u8eab\u88d9-\u96ea\u7eba-\u857e\u4e1d-\u9ad8\u8ddf-\u9632\u6c34\u53f0-\u5988\u5988\u88c5-\u6253\u5e95\u886b-\u5a03\u5a03\u9886-\u6c11\u65cf\u98ce\u5973\u88c5-\u6bdb\u8863\u88d9-\u88d9-\u5973": [
+        "\u6d17\u8863\u673a": [
+            "home-applicance"
+        ],
+        "\u51b0\u7bb1": [
+            "home-applicance"
+        ],
+        "\u7a7a\u8c03": [
+            "home-applicance"
+        ],
+        "\u70ed\u6c34\u5668": [
+            "home-applicance"
+        ],
+        "\u98ce\u6247": [
+            "home-applicance"
+        ],
+        "\u5438\u5c18\u5668": [
+            "home-applicance"
+        ],
+        "\u51c0\u5316\u5668": [
+            "home-applicance"
+        ],
+        "\u70df\u673a": [
+            "home-applicance"
+        ],
+        "\u7535\u78c1\u7089": [
+            "home-applicance"
+        ],
+        "\u69a8\u6c41\u673a": [
+            "home-applicance"
+        ],
+        "\u8c46\u6d46\u673a": [
+            "home-applicance"
+        ],
+        "\u5fae\u6ce2\u7089": [
+            "home-applicance"
+        ],
+        "\u7535\u538b\u529b\u9505": [
+            "home-applicance"
+        ],
+        "\u7535\u996d\u7172": [
+            "home-applicance"
+        ],
+        "\u5973\u88c5": [
             "fashion-women"
         ],
-        "\u7537\u58eb-\u6f6e\u7537-\u7537": [
+        "\u5973\u978b": [
+            "fashion-women"
+        ],
+        "\u8fde\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "\u6253\u5e95\u886b": [
+            "fashion-women",
+            "fashion-women"
+        ],
+        "\u534a\u8eab\u88d9": [
+            "fashion-women"
+        ],
+        "\u96ea\u7eba": [
+            "fashion-women"
+        ],
+        "\u857e\u4e1d": [
+            "fashion-women"
+        ],
+        "\u9ad8\u8ddf": [
+            "fashion-women"
+        ],
+        "\u9632\u6c34\u53f0": [
+            "fashion-women"
+        ],
+        "\u5988\u5988\u88c5": [
+            "fashion-women"
+        ],
+        "\u5a03\u5a03\u9886": [
+            "fashion-women"
+        ],
+        "\u6c11\u65cf\u98ce\u5973\u88c5": [
+            "fashion-women"
+        ],
+        "\u6bdb\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "\u88d9": [
+            "fashion-women"
+        ],
+        "\u5973": [
+            "fashion-women"
+        ],
+        "\u7537\u58eb": [
+            "fashion-men"
+        ],
+        "\u6f6e\u7537": [
+            "fashion-men"
+        ],
+        "\u7537": [
             "fashion-men"
         ]
     },
@@ -200,19 +417,152 @@ var interestsdata = {
         "\u624b\u673a": [
             "mobile"
         ],
-        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
+        "\u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "\u53f0\u5f0f": [
+            "digital"
+        ],
+        "\u5e73\u677f": [
+            "digital"
+        ],
+        "\u9f20\u6807": [
+            "digital"
+        ],
+        "\u952e\u76d8": [
+            "digital"
+        ],
+        "\u786c\u76d8": [
+            "digital"
+        ],
+        "U\u76d8": [
+            "digital"
+        ],
+        "\u4e3b\u677f": [
+            "digital"
+        ],
+        "\u663e\u5361": [
+            "digital"
+        ],
+        "CPU": [
+            "digital"
+        ],
+        "\u5185\u5b58": [
+            "digital"
+        ],
+        "\u51e0\u9879": [
+            "digital"
+        ],
+        "\u5e97\u5458": [
+            "digital"
+        ],
+        "\u663e\u793a\u5668": [
+            "digital"
+        ],
+        "\u88c5\u673a": [
             "digital"
         ],
         "\u76f8\u673a": [
             "photography-dc"
         ],
-        "\u7535\u89c6-\u6d17\u8863\u673a-\u51b0\u7bb1-\u7a7a\u8c03-\u70ed\u6c34\u5668-\u98ce\u6247-\u5438\u5c18\u5668-\u51c0\u5316\u5668-\u70df\u673a-\u7535\u78c1\u7089-\u69a8\u6c41\u673a-\u8c46\u6d46\u673a-\u5fae\u6ce2\u7089-\u7535\u538b\u529b\u9505-\u7535\u996d\u7172": [
+        "\u7535\u89c6": [
             "home-applicance"
         ],
-        "\u5973\u88c5-\u5973\u978b-\u8fde\u8863\u88d9-\u6253\u5e95\u886b-\u534a\u8eab\u88d9-\u96ea\u7eba-\u857e\u4e1d-\u9ad8\u8ddf-\u9632\u6c34\u53f0-\u5988\u5988\u88c5-\u6253\u5e95\u886b-\u5a03\u5a03\u9886-\u6c11\u65cf\u98ce\u5973\u88c5-\u6bdb\u8863\u88d9-\u88d9-\u5973": [
+        "\u6d17\u8863\u673a": [
+            "home-applicance"
+        ],
+        "\u51b0\u7bb1": [
+            "home-applicance"
+        ],
+        "\u7a7a\u8c03": [
+            "home-applicance"
+        ],
+        "\u70ed\u6c34\u5668": [
+            "home-applicance"
+        ],
+        "\u98ce\u6247": [
+            "home-applicance"
+        ],
+        "\u5438\u5c18\u5668": [
+            "home-applicance"
+        ],
+        "\u51c0\u5316\u5668": [
+            "home-applicance"
+        ],
+        "\u70df\u673a": [
+            "home-applicance"
+        ],
+        "\u7535\u78c1\u7089": [
+            "home-applicance"
+        ],
+        "\u69a8\u6c41\u673a": [
+            "home-applicance"
+        ],
+        "\u8c46\u6d46\u673a": [
+            "home-applicance"
+        ],
+        "\u5fae\u6ce2\u7089": [
+            "home-applicance"
+        ],
+        "\u7535\u538b\u529b\u9505": [
+            "home-applicance"
+        ],
+        "\u7535\u996d\u7172": [
+            "home-applicance"
+        ],
+        "\u5973\u88c5": [
             "fashion-women"
         ],
-        "\u7537\u58eb-\u6f6e\u7537-\u7537": [
+        "\u5973\u978b": [
+            "fashion-women"
+        ],
+        "\u8fde\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "\u6253\u5e95\u886b": [
+            "fashion-women",
+            "fashion-women"
+        ],
+        "\u534a\u8eab\u88d9": [
+            "fashion-women"
+        ],
+        "\u96ea\u7eba": [
+            "fashion-women"
+        ],
+        "\u857e\u4e1d": [
+            "fashion-women"
+        ],
+        "\u9ad8\u8ddf": [
+            "fashion-women"
+        ],
+        "\u9632\u6c34\u53f0": [
+            "fashion-women"
+        ],
+        "\u5988\u5988\u88c5": [
+            "fashion-women"
+        ],
+        "\u5a03\u5a03\u9886": [
+            "fashion-women"
+        ],
+        "\u6c11\u65cf\u98ce\u5973\u88c5": [
+            "fashion-women"
+        ],
+        "\u6bdb\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "\u88d9": [
+            "fashion-women"
+        ],
+        "\u5973": [
+            "fashion-women"
+        ],
+        "\u7537\u58eb": [
+            "fashion-men"
+        ],
+        "\u6f6e\u7537": [
+            "fashion-men"
+        ],
+        "\u7537": [
             "fashion-men"
         ]
     },
@@ -220,19 +570,152 @@ var interestsdata = {
         "\u624b\u673a": [
             "mobile"
         ],
-        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
+        "\u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "\u53f0\u5f0f": [
+            "digital"
+        ],
+        "\u5e73\u677f": [
+            "digital"
+        ],
+        "\u9f20\u6807": [
+            "digital"
+        ],
+        "\u952e\u76d8": [
+            "digital"
+        ],
+        "\u786c\u76d8": [
+            "digital"
+        ],
+        "U\u76d8": [
+            "digital"
+        ],
+        "\u4e3b\u677f": [
+            "digital"
+        ],
+        "\u663e\u5361": [
+            "digital"
+        ],
+        "CPU": [
+            "digital"
+        ],
+        "\u5185\u5b58": [
+            "digital"
+        ],
+        "\u51e0\u9879": [
+            "digital"
+        ],
+        "\u5e97\u5458": [
+            "digital"
+        ],
+        "\u663e\u793a\u5668": [
+            "digital"
+        ],
+        "\u88c5\u673a": [
             "digital"
         ],
         "\u76f8\u673a": [
             "photography-dc"
         ],
-        "\u7535\u89c6-\u6d17\u8863\u673a-\u51b0\u7bb1-\u7a7a\u8c03-\u70ed\u6c34\u5668-\u98ce\u6247-\u5438\u5c18\u5668-\u51c0\u5316\u5668-\u70df\u673a-\u7535\u78c1\u7089-\u69a8\u6c41\u673a-\u8c46\u6d46\u673a-\u5fae\u6ce2\u7089-\u7535\u538b\u529b\u9505-\u7535\u996d\u7172": [
+        "\u7535\u89c6": [
             "home-applicance"
         ],
-        "\u5973\u88c5-\u5973\u978b-\u8fde\u8863\u88d9-\u6253\u5e95\u886b-\u534a\u8eab\u88d9-\u96ea\u7eba-\u857e\u4e1d-\u9ad8\u8ddf-\u9632\u6c34\u53f0-\u5988\u5988\u88c5-\u6253\u5e95\u886b-\u5a03\u5a03\u9886-\u6c11\u65cf\u98ce\u5973\u88c5-\u6bdb\u8863\u88d9-\u88d9-\u5973": [
+        "\u6d17\u8863\u673a": [
+            "home-applicance"
+        ],
+        "\u51b0\u7bb1": [
+            "home-applicance"
+        ],
+        "\u7a7a\u8c03": [
+            "home-applicance"
+        ],
+        "\u70ed\u6c34\u5668": [
+            "home-applicance"
+        ],
+        "\u98ce\u6247": [
+            "home-applicance"
+        ],
+        "\u5438\u5c18\u5668": [
+            "home-applicance"
+        ],
+        "\u51c0\u5316\u5668": [
+            "home-applicance"
+        ],
+        "\u70df\u673a": [
+            "home-applicance"
+        ],
+        "\u7535\u78c1\u7089": [
+            "home-applicance"
+        ],
+        "\u69a8\u6c41\u673a": [
+            "home-applicance"
+        ],
+        "\u8c46\u6d46\u673a": [
+            "home-applicance"
+        ],
+        "\u5fae\u6ce2\u7089": [
+            "home-applicance"
+        ],
+        "\u7535\u538b\u529b\u9505": [
+            "home-applicance"
+        ],
+        "\u7535\u996d\u7172": [
+            "home-applicance"
+        ],
+        "\u5973\u88c5": [
             "fashion-women"
         ],
-        "\u7537\u58eb-\u6f6e\u7537-\u7537": [
+        "\u5973\u978b": [
+            "fashion-women"
+        ],
+        "\u8fde\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "\u6253\u5e95\u886b": [
+            "fashion-women",
+            "fashion-women"
+        ],
+        "\u534a\u8eab\u88d9": [
+            "fashion-women"
+        ],
+        "\u96ea\u7eba": [
+            "fashion-women"
+        ],
+        "\u857e\u4e1d": [
+            "fashion-women"
+        ],
+        "\u9ad8\u8ddf": [
+            "fashion-women"
+        ],
+        "\u9632\u6c34\u53f0": [
+            "fashion-women"
+        ],
+        "\u5988\u5988\u88c5": [
+            "fashion-women"
+        ],
+        "\u5a03\u5a03\u9886": [
+            "fashion-women"
+        ],
+        "\u6c11\u65cf\u98ce\u5973\u88c5": [
+            "fashion-women"
+        ],
+        "\u6bdb\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "\u88d9": [
+            "fashion-women"
+        ],
+        "\u5973": [
+            "fashion-women"
+        ],
+        "\u7537\u58eb": [
+            "fashion-men"
+        ],
+        "\u6f6e\u7537": [
+            "fashion-men"
+        ],
+        "\u7537": [
             "fashion-men"
         ],
         "\u56fe\u4e66": [
@@ -243,7 +726,49 @@ var interestsdata = {
         "\u624b\u673a": [
             "mobile"
         ],
-        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
+        "\u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "\u53f0\u5f0f": [
+            "digital"
+        ],
+        "\u5e73\u677f": [
+            "digital"
+        ],
+        "\u9f20\u6807": [
+            "digital"
+        ],
+        "\u952e\u76d8": [
+            "digital"
+        ],
+        "\u786c\u76d8": [
+            "digital"
+        ],
+        "U\u76d8": [
+            "digital"
+        ],
+        "\u4e3b\u677f": [
+            "digital"
+        ],
+        "\u663e\u5361": [
+            "digital"
+        ],
+        "CPU": [
+            "digital"
+        ],
+        "\u5185\u5b58": [
+            "digital"
+        ],
+        "\u51e0\u9879": [
+            "digital"
+        ],
+        "\u5e97\u5458": [
+            "digital"
+        ],
+        "\u663e\u793a\u5668": [
+            "digital"
+        ],
+        "\u88c5\u673a": [
             "digital"
         ],
         "\u76f8\u673a": [
@@ -254,7 +779,49 @@ var interestsdata = {
         "\u624b\u673a": [
             "mobile"
         ],
-        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
+        "\u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "\u53f0\u5f0f": [
+            "digital"
+        ],
+        "\u5e73\u677f": [
+            "digital"
+        ],
+        "\u9f20\u6807": [
+            "digital"
+        ],
+        "\u952e\u76d8": [
+            "digital"
+        ],
+        "\u786c\u76d8": [
+            "digital"
+        ],
+        "U\u76d8": [
+            "digital"
+        ],
+        "\u4e3b\u677f": [
+            "digital"
+        ],
+        "\u663e\u5361": [
+            "digital"
+        ],
+        "CPU": [
+            "digital"
+        ],
+        "\u5185\u5b58": [
+            "digital"
+        ],
+        "\u51e0\u9879": [
+            "digital"
+        ],
+        "\u5e97\u5458": [
+            "digital"
+        ],
+        "\u663e\u793a\u5668": [
+            "digital"
+        ],
+        "\u88c5\u673a": [
             "digital"
         ],
         "\u76f8\u673a": [
@@ -268,7 +835,49 @@ var interestsdata = {
         "\u624b\u673a": [
             "mobile"
         ],
-        "\u7b14\u8bb0\u672c-\u53f0\u5f0f-\u5e73\u677f-\u9f20\u6807-\u952e\u76d8-\u786c\u76d8-U\u76d8-\u4e3b\u677f-\u663e\u5361-CPU-\u5185\u5b58-\u51e0\u9879-\u5e97\u5458-\u663e\u793a\u5668-\u88c5\u673a": [
+        "\u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "\u53f0\u5f0f": [
+            "digital"
+        ],
+        "\u5e73\u677f": [
+            "digital"
+        ],
+        "\u9f20\u6807": [
+            "digital"
+        ],
+        "\u952e\u76d8": [
+            "digital"
+        ],
+        "\u786c\u76d8": [
+            "digital"
+        ],
+        "U\u76d8": [
+            "digital"
+        ],
+        "\u4e3b\u677f": [
+            "digital"
+        ],
+        "\u663e\u5361": [
+            "digital"
+        ],
+        "CPU": [
+            "digital"
+        ],
+        "\u5185\u5b58": [
+            "digital"
+        ],
+        "\u51e0\u9879": [
+            "digital"
+        ],
+        "\u5e97\u5458": [
+            "digital"
+        ],
+        "\u663e\u793a\u5668": [
+            "digital"
+        ],
+        "\u88c5\u673a": [
             "digital"
         ],
         "\u76f8\u673a": [
@@ -298,7 +907,7 @@ var interestsdata = {
             }
         }
     },
-    "*.3533.com": {
+    "3533.com": {
         "__ANY": [
             "mobile"
         ]
@@ -308,7 +917,7 @@ var interestsdata = {
             "mobile"
         ]
     },
-    "*.imobile.com.cn": {
+    "imobile.com.cn": {
         "__ANY": [
             "mobile"
         ]
@@ -328,7 +937,7 @@ var interestsdata = {
             "mobile"
         ]
     },
-    "*.younet.com": {
+    "younet.com": {
         "__ANY": [
             "mobile"
         ]
@@ -343,7 +952,7 @@ var interestsdata = {
             "mobile"
         ]
     },
-    "*.hiapk.com": {
+    "hiapk.com": {
         "__ANY": [
             "mobile"
         ]
@@ -682,12 +1291,12 @@ var interestsdata = {
             "photography-dc"
         ]
     },
-    "*.fengniao.com": {
+    "fengniao.com": {
         "__ANY": [
             "photography-dc"
         ]
     },
-    "*.xitek.com": {
+    "xitek.com": {
         "__ANY": [
             "photography-dc"
         ]
@@ -788,37 +1397,37 @@ var interestsdata = {
             }
         }
     },
-    "*.autohome.com.cn": {
+    "autohome.com.cn": {
         "__ANY": [
             "auto"
         ]
     },
-    "*.xcar.com.cn": {
+    "xcar.com.cn": {
         "__ANY": [
             "auto"
         ]
     },
-    "*.cheshi.com": {
+    "cheshi.com": {
         "__ANY": [
             "auto"
         ]
     },
-    "*.bitauto.com": {
+    "bitauto.com": {
         "__ANY": [
             "auto"
         ]
     },
-    "*.chinacars.com": {
+    "chinacars.com": {
         "__ANY": [
             "auto"
         ]
     },
-    "*.autofan.com.cn": {
+    "autofan.com.cn": {
         "__ANY": [
             "auto"
         ]
     },
-    "*.xgo.com.cn": {
+    "xgo.com.cn": {
         "__ANY": [
             "auto"
         ]
@@ -828,22 +1437,22 @@ var interestsdata = {
             "auto"
         ]
     },
-    "*.chexun.com": {
+    "chexun.com": {
         "__ANY": [
             "auto"
         ]
     },
-    "*.chetx.com": {
+    "chetx.com": {
         "__ANY": [
             "auto"
         ]
     },
-    "*.xincheping.com": {
+    "xincheping.com": {
         "__ANY": [
             "auto"
         ]
     },
-    "*.pcauto.com.cn": {
+    "pcauto.com.cn": {
         "__ANY": [
             "auto"
         ]
@@ -868,7 +1477,7 @@ var interestsdata = {
             "realestate"
         ]
     },
-    "*.centanet.com": {
+    "centanet.com": {
         "__ANY": [
             "realestate"
         ]
@@ -898,27 +1507,27 @@ var interestsdata = {
             "realestate"
         ]
     },
-    "*.soufun.com": {
+    "soufun.com": {
         "__ANY": [
             "realestate"
         ]
     },
-    "*.anjuke.com": {
+    "anjuke.com": {
         "__ANY": [
             "realestate"
         ]
     },
-    "*.homelink.com.cn": {
+    "homelink.com.cn": {
         "__ANY": [
             "realestate"
         ]
     },
-    "*.5i5j.com": {
+    "5i5j.com": {
         "__ANY": [
             "realestate"
         ]
     },
-    "*.loupan.com": {
+    "loupan.com": {
         "__ANY": [
             "realestate"
         ]
@@ -928,12 +1537,12 @@ var interestsdata = {
             "realestate"
         ]
     },
-    "*.house365.com": {
+    "house365.com": {
         "__ANY": [
             "realestate"
         ]
     },
-    "*.taofang.com": {
+    "taofang.com": {
         "__ANY": [
             "realestate"
         ]
@@ -1032,7 +1641,7 @@ var interestsdata = {
             "home-decoration"
         ]
     },
-    "*.17house.com": {
+    "17house.com": {
         "__ANY": [
             "home-decoration"
         ]
@@ -1270,7 +1879,7 @@ var interestsdata = {
             }
         }
     },
-    "*.moonbasa.com": {
+    "moonbasa.com": {
         "\u5973": [
             "fashion-women"
         ]
@@ -1448,7 +2057,7 @@ var interestsdata = {
             "luxury"
         ]
     },
-    "*.chinese-luxury.com": {
+    "chinese-luxury.com": {
         "__ANY": [
             "luxury"
         ]
@@ -1798,12 +2407,12 @@ var interestsdata = {
             "medicine"
         ]
     },
-    "*.familydoctor.com.cn": {
+    "familydoctor.com.cn": {
         "__ANY": [
             "medicine"
         ]
     },
-    "*.999120.net": {
+    "999120.net": {
         "__ANY": [
             "medicine"
         ]
@@ -1818,7 +2427,7 @@ var interestsdata = {
             "medicine"
         ]
     },
-    "*.guahao.com": {
+    "guahao.com": {
         "__ANY": [
             "medicine"
         ]
@@ -1992,7 +2601,7 @@ var interestsdata = {
             "online-novel"
         ]
     },
-    "*.meishichina.com": {
+    "meishichina.com": {
         "__ANY": [
             "cooking"
         ]
@@ -2161,12 +2770,12 @@ var interestsdata = {
             "wedding"
         ]
     },
-    "*.77hunjia.com": {
+    "77hunjia.com": {
         "__ANY": [
             "wedding"
         ]
     },
-    "*.99wed.com": {
+    "99wed.com": {
         "__ANY": [
             "wedding"
         ]
@@ -2216,7 +2825,7 @@ var interestsdata = {
             "parenting"
         ]
     },
-    "*.ci123.com": {
+    "ci123.com": {
         "__ANY": [
             "parenting"
         ]
@@ -2226,17 +2835,17 @@ var interestsdata = {
             "parenting"
         ]
     },
-    "*.iyaya.com": {
+    "iyaya.com": {
         "__ANY": [
             "parenting"
         ]
     },
-    "*.seedit.com": {
+    "seedit.com": {
         "__ANY": [
             "parenting"
         ]
     },
-    "*.yaolan.com": {
+    "yaolan.com": {
         "__ANY": [
             "parenting"
         ]
@@ -2246,7 +2855,7 @@ var interestsdata = {
             "parenting"
         ]
     },
-    "*.pcbaby.com.cn": {
+    "pcbaby.com.cn": {
         "__ANY": [
             "parenting"
         ]
@@ -2261,12 +2870,12 @@ var interestsdata = {
             "parenting"
         ]
     },
-    "*.zaojiao.com": {
+    "zaojiao.com": {
         "__ANY": [
             "parenting"
         ]
     },
-    "*.goodbaby.com": {
+    "goodbaby.com": {
         "__ANY": [
             "parenting"
         ]
@@ -2465,7 +3074,7 @@ var interestsdata = {
             "mooc"
         ]
     },
-    "*.elong.com": {
+    "elong.com": {
         "__ANY": [
             "travel"
         ]
@@ -2520,12 +3129,12 @@ var interestsdata = {
             "travel"
         ]
     },
-    "*.ctrip.com": {
+    "ctrip.com": {
         "__ANY": [
             "travel"
         ]
     },
-    "*.mangocity.com": {
+    "mangocity.com": {
         "__ANY": [
             "travel"
         ]
@@ -2535,12 +3144,12 @@ var interestsdata = {
             "travel"
         ]
     },
-    "*.qunar.com": {
+    "qunar.com": {
         "__ANY": [
             "travel"
         ]
     },
-    "*.tuniu.com": {
+    "tuniu.com": {
         "__ANY": [
             "travel"
         ]
@@ -2560,7 +3169,7 @@ var interestsdata = {
             "travel"
         ]
     },
-    "*.qyer.com": {
+    "qyer.com": {
         "__ANY": [
             "travel"
         ]
@@ -2590,7 +3199,7 @@ var interestsdata = {
             "travel"
         ]
     },
-    "*.dili360.com": {
+    "dili360.com": {
         "__ANY": [
             "travel"
         ]
@@ -2605,17 +3214,17 @@ var interestsdata = {
             "travel"
         ]
     },
-    "*.aoyou.com": {
+    "aoyou.com": {
         "__ANY": [
             "travel"
         ]
     },
-    "*.cits.com.cn": {
+    "cits.com.cn": {
         "__ANY": [
             "travel"
         ]
     },
-    "*.ctsho.com": {
+    "ctsho.com": {
         "__ANY": [
             "travel"
         ]
@@ -2684,7 +3293,7 @@ var interestsdata = {
             "show"
         ]
     },
-    "*.58.com": {
+    "58.com": {
         "__PATH": {
             "/yanchanghui": {
                 "__ANY": [
@@ -2712,12 +3321,12 @@ var interestsdata = {
             "show"
         ]
     },
-    "*.hipiao.com": {
+    "hipiao.com": {
         "__ANY": [
             "show"
         ]
     },
-    "*.meituan.com": {
+    "meituan.com": {
         "__PATH": {
             "/dianying": {
                 "__ANY": [
@@ -2725,17 +3334,26 @@ var interestsdata = {
                 ]
             }
         },
-        "\u5f71\u57ce-\u7535\u5f71": [
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
             "show"
         ]
     },
     "www.gaopeng.com": {
-        "\u5f71\u57ce-\u7535\u5f71": [
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
             "show"
         ]
     },
-    "*.nuomi.com": {
-        "\u5f71\u57ce-\u7535\u5f71": [
+    "nuomi.com": {
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
             "show"
         ]
     },
@@ -2747,11 +3365,14 @@ var interestsdata = {
                 ]
             }
         },
-        "\u5f71\u57ce-\u7535\u5f71": [
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
             "show"
         ]
     },
-    "*.55tuan.com": {
+    "55tuan.com": {
         "__PATH": {
             "/cate/dianying": {
                 "__ANY": [
@@ -2761,11 +3382,14 @@ var interestsdata = {
         }
     },
     "beijing.55tuan.com": {
-        "\u5f71\u57ce-\u7535\u5f71": [
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
             "show"
         ]
     },
-    "*.lashou.com": {
+    "lashou.com": {
         "__PATH": {
             "/cate/dianying": {
                 "__ANY": [
@@ -2773,11 +3397,14 @@ var interestsdata = {
                 ]
             }
         },
-        "\u5f71\u57ce-\u7535\u5f71": [
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
             "show"
         ]
     },
-    "*.manzuo.com": {
+    "manzuo.com": {
         "__PATH": {
             "/dy": {
                 "__ANY": [
@@ -2785,11 +3412,14 @@ var interestsdata = {
                 ]
             }
         },
-        "\u5f71\u57ce-\u7535\u5f71": [
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
             "show"
         ]
     },
-    "*.didatuan.com": {
+    "didatuan.com": {
         "__PATH": {
             "/c-dianying": {
                 "__ANY": [
@@ -2797,7 +3427,10 @@ var interestsdata = {
                 ]
             }
         },
-        "\u5f71\u57ce-\u7535\u5f71": [
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
             "show"
         ]
     },
@@ -2880,7 +3513,7 @@ var interestsdata = {
             "technology"
         ]
     },
-    "*.mydrivers.com": {
+    "mydrivers.com": {
         "__ANY": [
             "technology"
         ]
@@ -2890,12 +3523,12 @@ var interestsdata = {
             "programming"
         ]
     },
-    "*.csdn.net": {
+    "csdn.net": {
         "__ANY": [
             "programming"
         ]
     },
-    "*.cnblogs.com": {
+    "cnblogs.com": {
         "__ANY": [
             "programming"
         ]
@@ -2970,7 +3603,7 @@ var interestsdata = {
             "science"
         ]
     },
-    "*.sciencetimes.com.cn": {
+    "sciencetimes.com.cn": {
         "__ANY": [
             "science"
         ]
@@ -3289,7 +3922,7 @@ var interestsdata = {
             "news"
         ]
     },
-    "*.haiwainet.cn": {
+    "haiwainet.cn": {
         "__ANY": [
             "news"
         ]
@@ -3333,7 +3966,7 @@ var interestsdata = {
             }
         }
     },
-    "*.cankaoxiaoxi.com": {
+    "cankaoxiaoxi.com": {
         "__ANY": [
             "news"
         ]
@@ -3388,7 +4021,7 @@ var interestsdata = {
             "militery"
         ]
     },
-    "*.tiexue.net": {
+    "tiexue.net": {
         "__ANY": [
             "militery"
         ]
@@ -3532,27 +4165,27 @@ var interestsdata = {
             "finance"
         ]
     },
-    "*.eastmoney.com": {
+    "eastmoney.com": {
         "__ANY": [
             "finance"
         ]
     },
-    "*.hexun.com": {
+    "hexun.com": {
         "__ANY": [
             "finance"
         ]
     },
-    "*.jrj.com.cn": {
+    "jrj.com.cn": {
         "__ANY": [
             "finance"
         ]
     },
-    "*.ce.cn": {
+    "ce.cn": {
         "__ANY": [
             "finance"
         ]
     },
-    "*.cnfol.com": {
+    "cnfol.com": {
         "__ANY": [
             "finance"
         ]
@@ -3970,7 +4603,16 @@ var interestsdata = {
     "www.yyets.com": {
         "__PATH": {
             "/resource": {
-                "\u7f8e\u5267-\u82f1\u5267-\u65e5\u5267-\u97e9\u5267": [
+                "\u7f8e\u5267": [
+                    "TV-series"
+                ],
+                "\u82f1\u5267": [
+                    "TV-series"
+                ],
+                "\u65e5\u5267": [
+                    "TV-series"
+                ],
+                "\u97e9\u5267": [
                     "TV-series"
                 ]
             }
@@ -4101,7 +4743,7 @@ var interestsdata = {
             "game"
         ]
     },
-    "*.duowan.com": {
+    "duowan.com": {
         "__ANY": [
             "game"
         ]
@@ -4136,7 +4778,7 @@ var interestsdata = {
             "game"
         ]
     },
-    "*.17173.com": {
+    "17173.com": {
         "__ANY": [
             "game"
         ]
@@ -4146,7 +4788,7 @@ var interestsdata = {
             "game"
         ]
     },
-    "*.07073.com": {
+    "07073.com": {
         "__ANY": [
             "game"
         ]
@@ -4156,7 +4798,7 @@ var interestsdata = {
             "game"
         ]
     },
-    "*.5173.com": {
+    "5173.com": {
         "__ANY": [
             "game"
         ]
@@ -4255,7 +4897,7 @@ var interestsdata = {
             "anime-manga"
         ]
     },
-    "*.zymk.cn": {
+    "zymk.cn": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4270,7 +4912,7 @@ var interestsdata = {
             "anime-manga"
         ]
     },
-    "*.emland.net": {
+    "emland.net": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4290,12 +4932,12 @@ var interestsdata = {
             "anime-manga"
         ]
     },
-    "*.61.com": {
+    "61.com": {
         "__ANY": [
             "anime-manga"
         ]
     },
-    "*.100bt.com": {
+    "100bt.com": {
         "__ANY": [
             "anime-manga"
         ]
