@@ -74,7 +74,7 @@ function _getValidRule(hostRule, path) {
   if (hostRule["__ANY"])
     result.push(hostRule);
 
-  if (!path)
+  if (!path || path == "/")
     return result;
 
   // check path
@@ -125,7 +125,7 @@ function swapRules({interestsData, interestsDataType}) {
   }
 }
 
-function doRuleClassify(rule, title, url) {
+function doRuleClassify(rule, title, url, path) {
   let keyLength = rule ? Object.keys(rule).length : 0;
   if (!keyLength)
     return [];
@@ -168,12 +168,12 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
   let interests = [];
 
   getMatchedHostRule(host, path).forEach(rule => {
-    interests = interests.concat(doRuleClassify(rule, title, url));
+    interests = interests.concat(doRuleClassify(rule, title, url, path));
   });
 
   if (host != tld) {
     getMatchedHostRule(tld, path).forEach(rule => {
-      interests = interests.concat(doRuleClassify(rule, title, url));
+      interests = interests.concat(doRuleClassify(rule, title, url, path));
     });
   }
 
