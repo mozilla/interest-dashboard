@@ -31,6 +31,18 @@
         "title": "Seconds to wait when idle until data is sent",
         "type": "integer",
         "value": 120
+      },
+      {
+        "name": "enableNewTabShow",
+        "title": "Show recommended links in a newtab page",
+        "type": "bool",
+        "value": false
+      },
+      {
+        "name": "newtabLinkServer",
+        "title": "Link recommendation sever endpoint",
+        "type": "string",
+        "value": "http://127.0.0.1:4355/nytimes/mostpopular/Technology.json"
       }
   ]
 }

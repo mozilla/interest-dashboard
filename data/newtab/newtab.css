@@ -1,0 +1,35 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+.linkGrid {
+  display: -moz-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.linkList {
+}
+
+.linkItem {
+  width: 300px;
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+.linkImage {
+  width: 40px;
+  margin-right: 8px;
+  vertical-align: top;
+}
+
+.linkDiv {
+  display: inline-block;
+  width: 150px;
+  overflow: hidden;
+};
+
+.linkRef {
+  font-size: 16px;
+}
+
