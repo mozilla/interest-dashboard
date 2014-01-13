@@ -15,10 +15,12 @@ const simplePrefs = require("simple-prefs");
 const {Cc, Ci, Cu} = require("chrome");
 const {storage} = require("sdk/simple-storage");
 Cu.import("resource://gre/modules/NetUtil.jsm");
+Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
 
 exports["test PrefsManager prefs"] = function test_PrefsManagerPrefs(assert) {
   let testController = new Controller();
   StudyApp.controller = testController;
+  StudyApp.submitPromise = Promise.defer().promise;
   PrefsManager.setObservers();
 
   let dispatcher = testController._dispatcher;
