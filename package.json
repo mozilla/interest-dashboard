@@ -31,6 +31,18 @@
         "title": "Seconds to wait when idle until data is sent",
         "type": "integer",
         "value": 120
+      },
+      {
+        "name": "nytimes_headliner_url",
+        "title": "New York Times content personalization server",
+        "type": "string",
+        "value": "https://headliner.mozillalabs.com/nytimes/mostpopular/personalize"
+      },
+      {
+        "name": "headliner_refresh_interval",
+        "title": "Time interval to refresh headliner content in seconds",
+        "type": "integer",
+        "value": 54000
       }
   ]
 }
