@@ -41,4 +41,76 @@ exports["test NYTimesRecommendation pref changes"] = function test_NYT_init(asse
   }).then(done);
 }
 
+exports["test NYTimesRecommendation getInterests"] = function test_NYT_getInterests(assert) {
+  let userInterestSample = null;
+  let orderedInterests = null;
+
+  NYTimesRecommendations.allowedInterestSet = {
+    "Arts": true,
+    "Basketball": true,
+    "Tennis": true,
+    "Fashion-Men": true,
+    "Video-Games": true,
+    "Do-It-Yourself": true
+  }
+
+  StudyApp.controller = {
+    getRankedInterests: function() {
+      return userInterestSample;
+    }
+  }
+
+  userInterestSample = {'Video-Games': 42, 'Arts': 3, 'Basketball': 18, 'Humor': 41, 'Do-It-Yourself': 55, 'Tennis': 13, 'Fashion-Men': 14};
+  orderedInterests = NYTimesRecommendations.getTop5Interests();
+  assert.equal(Object.keys(orderedInterests).length, 5, "At most 5 are returned");
+
+  userInterestSample = {'Gossip': 51, 'Arts': 3};
+  orderedInterests = NYTimesRecommendations.getTop5Interests();
+  assert.equal(Object.keys(orderedInterests).length, 1, "Only allowed interests are let through");
+}
+
+exports["test NYTimesRecommendation transformData"] = function test_NYT_transformData(assert) {
+  let rawData = {
+    "d": [
+      {
+        "media": [
+          {
+            "caption": "The 2014 Mazda 3 flaunts Euro-style curves and intriguing shapes.", 
+            "copyright": "Mazda North America", 
+            "media-metadata": [
+              {
+                "format": "Standard Thumbnail", 
+                "height": 75, 
+                "url": "http://graphics8.nytimes.com/images/2013/12/01/automobiles/SUB-WHEEL1/SUB-WHEEL1-thumbStandard.jpg", 
+                "width": 75
+              }, 
+              {
+                "format": "thumbLarge", 
+                "height": 150, 
+                "url": "http://graphics8.nytimes.com/images/2013/12/01/automobiles/SUB-WHEEL1/SUB-WHEEL1-thumbLarge.jpg", 
+                "width": 150
+              }, 
+              {
+                "format": "mediumThreeByTwo210", 
+                "height": 140, 
+                "url": "http://graphics8.nytimes.com/images/2013/12/01/automobiles/SUB-WHEEL1/SUB-WHEEL1-mediumThreeByTwo210.jpg", 
+                "width": 210
+              }
+            ], 
+            "subtype": "photo", 
+            "type": "image"
+          }
+        ], 
+        "title": "Performer Available for Private Parties", 
+        "url": "http://www.nytimes.com/2013/12/01/automobiles/autoreviews/performer-available-for-private-parties.html?src=moz-up"
+      }
+    ], 
+    "num_articles": 1
+  };
+  let data = NYTimesRecommendations.transformData(rawData);
+  assert.equal(data.length, 1, "one object in results expected");
+  console.log("data:" + JSON.stringify(data));
+  assert.equal(Object.keys(data[0]).length, 3, "three attributes in object expected");
+}
+
 require("sdk/test").run(exports);

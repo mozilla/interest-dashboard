@@ -29,10 +29,10 @@ self.port.on("recommend_on_page", function(data) {
 
       let article = document.createElement("article");
       article.className = "story theme-summary";
-      if (data.thumb_url) {
+      if (data.thumbUrl) {
         let thumbDiv = document.createElement("div");
         let thumbImg = document.createElement("img");
-        thumbImg.attributes["src"] = item.thumb_url;
+        thumbImg.attributes["src"] = item.thumbUrl;
         thumbDiv.className = "thumb";
         thumbDiv.appendChild(thumbImg);
         article.appendChild(thumbDiv);
