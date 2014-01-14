@@ -109,7 +109,6 @@ exports["test NYTimesRecommendation transformData"] = function test_NYT_transfor
   };
   let data = NYTimesRecommendations.transformData(rawData);
   assert.equal(data.length, 1, "one object in results expected");
-  console.log("data:" + JSON.stringify(data));
   assert.equal(Object.keys(data[0]).length, 3, "three attributes in object expected");
 }
 
