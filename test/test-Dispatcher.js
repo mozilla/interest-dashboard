@@ -11,7 +11,6 @@ Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
-Cu.import("resource://gre/modules/NetUtil.jsm");
 XPCOMUtils.defineLazyServiceGetter(this, "uuid",
                                    "@mozilla.org/uuid-generator;1",
                                    "nsIUUIDGenerator");
@@ -167,7 +166,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
   Task.spawn(function() {
     let server = new nsHttpServer();
     server.start(-1);
-    let serverPort = server.identity.primaryPort
+    let serverPort = server.identity.primaryPort;
     let serverUrl = "http://localhost:" + serverPort + "/post";
 
     yield StudyApp.saveAddonInfo();
