@@ -109,7 +109,7 @@ exports["test NYTimesRecommendation transformData"] = function test_NYT_transfor
   };
   let data = NYTimesRecommendations.transformData(rawData);
   assert.equal(data.length, 1, "one object in results expected");
-  assert.equal(Object.keys(data[0]).length, 3, "three attributes in object expected");
+  assert.equal(Object.keys(data[0]).length, 4, "four attributes in object expected");
 }
 
 require("sdk/test").run(exports);
