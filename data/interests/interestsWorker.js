@@ -24,9 +24,8 @@ let gRegionCode = null;
 let gTokenizer = null;
 let gClassifier = null;
 let gInterestsData = null;
-let gTLDMap = null;
 
-// XXXX The original splitter doesn't apply to chinese:
+// XXX The original splitter doesn't apply to chinese:
 //   /[^-\w\xco-\u017f\u0380-\u03ff\u0400-\u04ff]+/;
 const kSplitter = /[\s-]+/;
 
