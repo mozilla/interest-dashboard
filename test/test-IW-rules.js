@@ -34,7 +34,7 @@ let testDomainRules = {
       "news"
     ]
   },
-  "*.testpathdomain.com" : {
+  "testpathdomain.com" : {
     "__PATH": {
       "/code": {
         "__ANY" : [

@@ -14,7 +14,7 @@ Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
 let testDomainRules = {
-  "*.sina.com.cn" : {
+  "bar.sina.com.cn" : {
     "__ANY": [
       "News"
     ],
@@ -38,7 +38,7 @@ let testDomainRules = {
 let matchTests = [
 {
   info: "Match Test 1 (Rules): sina.com.cn",
-  url:  "http://www.sina.com.cn/video?kw=aa",
+  url:  "http://foo.bar.sina.com.cn/video?kw=aa",
   title: "电视剧影视频道",
   expectedInterests:  [{"type":"rules","interests":["News","Video","TV Series"]},{"type":"combined","interests":["News","Video","TV Series"]},{"type":"keywords","interests":[]}],
 }];

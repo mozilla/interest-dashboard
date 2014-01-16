@@ -24,9 +24,11 @@ let gRegionCode = null;
 let gTokenizer = null;
 let gClassifier = null;
 let gInterestsData = null;
-let gInterestsDataInRegExp = null;
+let gTLDMap = null;
 
-const kSplitter = /[^-\w\xco-\u017f\u0380-\u03ff\u0400-\u04ff]+/;
+// XXXX The original splitter doesn't apply to chinese:
+//   /[^-\w\xco-\u017f\u0380-\u03ff\u0400-\u04ff]+/;
+const kSplitter = /[\s-]+/;
 
 // bootstrap the worker with data and models
 function bootstrap(aMessageData) {
@@ -52,20 +54,6 @@ function bootstrap(aMessageData) {
   self.postMessage({
     message: "bootstrapComplete"
   });
-}
-
-// XXX Only support regexp with wildcard
-function buildMappingWithWildcard() {
-  gInterestsDataInRegExp = [];
-
-  if (gInterestsData) {
-    Object.keys(gInterestsData).forEach(function(domain) {
-      if (domain.indexOf("*") < 0)
-        return;
-
-      gInterestsDataInRegExp.push(domain);
-    });
-  }
 }
 
 function _getValidRule(hostRule, path) {
@@ -105,26 +93,23 @@ function _getValidRule(hostRule, path) {
 
 function getMatchedHostRule(host, path) {
   let result = _getValidRule(gInterestsData[host], path);
-  if (result.length > 0)
-    return result;
 
-  // Check domains in regexp.
-  for (let idx = 0; idx < gInterestsDataInRegExp.length; idx++) {
-    let exp = gInterestsDataInRegExp[idx];
-    let re = new RegExp("^" + exp.replace(/\./g, "\\.").replace("*", ".+") + "$", "i");
-    if (re.test(host)) {
-      return _getValidRule(gInterestsData[exp], path);
-    }
+  // Check parent domain.
+  let tmp = host.split('.');
+  tmp.shift();
+
+  while (tmp.length > 1) {
+    result = result.concat(_getValidRule(gInterestsData[tmp.join('.')], path));
+    tmp.shift();
   }
 
-  return [];
+  return result;
 }
 
 // swap out rules
 function swapRules({interestsData, interestsDataType}) {
   if (interestsDataType == "dfr") {
     gInterestsData = interestsData;
-    buildMappingWithWildcard();
   }
 }
 
@@ -154,7 +139,7 @@ function doRuleClassify(rule, title, url, path) {
     if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
       interests = interests.concat(rule[key]);
     }
-    else if (key.indexOf("__") < 0 && matchedAllTokens(key.split(/[\s-]+/))) {  // XXXX original splitter doesn't apply to chinese.
+    else if (key.indexOf("__") < 0 && matchedAllTokens(key.split(kSplitter))) {
       interests = interests.concat(rule[key]);
     }
   });
@@ -173,12 +158,6 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
   getMatchedHostRule(host, path).forEach(rule => {
     interests = interests.concat(doRuleClassify(rule, title, url, path));
   });
-
-  if (host != tld) {
-    getMatchedHostRule(tld, path).forEach(rule => {
-      interests = interests.concat(doRuleClassify(rule, title, url, path));
-    });
-  }
 
   return interests;
 }
