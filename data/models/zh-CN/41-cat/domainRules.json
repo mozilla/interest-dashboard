@@ -159,7 +159,7 @@ var interestsData = {
             "mobile"
         ]
     },
-    "www.amazon.cn": {
+    "amazon.cn": {
         "\u624b\u673a": [
             "mobile"
         ],
@@ -831,7 +831,7 @@ var interestsData = {
             "book"
         ]
     },
-    "www.newegg.cn": {
+    "newegg.cn": {
         "\u624b\u673a": [
             "mobile"
         ],
@@ -922,7 +922,7 @@ var interestsData = {
             "mobile"
         ]
     },
-    "www.cnmo.com": {
+    "cnmo.com": {
         "__ANY": [
             "mobile"
         ]
@@ -962,17 +962,17 @@ var interestsData = {
             "mobile"
         ]
     },
-    "www.dospy.com": {
+    "dospy.com": {
         "__ANY": [
             "mobile"
         ]
     },
-    "www.miui.com": {
+    "miui.com": {
         "__ANY": [
             "mobile"
         ]
     },
-    "www.weiphone.com": {
+    "weiphone.com": {
         "__ANY": [
             "mobile"
         ],
@@ -994,7 +994,7 @@ var interestsData = {
             "mobile"
         ]
     },
-    "www.wandoujia.com": {
+    "wandoujia.com": {
         "__PATH": {
             "/apps": {
                 "__ANY": [
@@ -1003,12 +1003,12 @@ var interestsData = {
             }
         }
     },
-    "www.xapcn.com": {
+    "xapcn.com": {
         "__ANY": [
             "app"
         ]
     },
-    "www.mumayi.com": {
+    "mumayi.com": {
         "__ANY": [
             "app",
             "app"
@@ -1024,7 +1024,7 @@ var interestsData = {
             "app"
         ]
     },
-    "www.windowsphone.com": {
+    "windowsphone.com": {
         "__PATH": {
             "/zh-cn/store": {
                 "__ANY": [
@@ -1033,12 +1033,12 @@ var interestsData = {
             }
         }
     },
-    "www.moxiu.com": {
+    "moxiu.com": {
         "__ANY": [
             "app"
         ]
     },
-    "www.3g37.com": {
+    "3g37.com": {
         "__ANY": [
             "app"
         ]
@@ -1048,7 +1048,7 @@ var interestsData = {
             "app"
         ]
     },
-    "www.wpwan.com": {
+    "wpwan.com": {
         "__ANY": [
             "app"
         ]
@@ -1063,22 +1063,22 @@ var interestsData = {
             "app"
         ]
     },
-    "www.appchina.com": {
+    "appchina.com": {
         "__ANY": [
             "app"
         ]
     },
-    "www.anzhi.com": {
+    "anzhi.com": {
         "__ANY": [
             "app"
         ]
     },
-    "www.165.cc": {
+    "165.cc": {
         "__ANY": [
             "app"
         ]
     },
-    "www.anzhuostore.com": {
+    "anzhuostore.com": {
         "__ANY": [
             "app"
         ]
@@ -1088,7 +1088,7 @@ var interestsData = {
             "app"
         ]
     },
-    "www.app111.com": {
+    "app111.com": {
         "__ANY": [
             "app"
         ]
@@ -1186,7 +1186,7 @@ var interestsData = {
             "technology"
         ]
     },
-    "www.zol.com.cn": {
+    "zol.com.cn": {
         "__ANY": [
             "digital"
         ]
@@ -1301,7 +1301,7 @@ var interestsData = {
             "photography-dc"
         ]
     },
-    "www.wujiyou.com": {
+    "wujiyou.com": {
         "__ANY": [
             "photography-dc"
         ]
@@ -1326,7 +1326,7 @@ var interestsData = {
             "auto"
         ]
     },
-    "*.auto.ifeng.com": {
+    "auto.ifeng.com": {
         "__ANY": [
             "auto"
         ]
@@ -1341,7 +1341,7 @@ var interestsData = {
             "auto"
         ]
     },
-    "*.auto.sina.com.cn": {
+    "auto.sina.com.cn": {
         "__ANY": [
             "auto"
         ]
@@ -1375,15 +1375,11 @@ var interestsData = {
     },
     "auto.sohu.com": {
         "__ANY": [
+            "auto",
             "auto"
         ]
     },
-    "*.auto.sohu.com": {
-        "__ANY": [
-            "auto"
-        ]
-    },
-    "www.hao123.com": {
+    "hao123.com": {
         "__PATH": {
             "/auto": {
                 "__ANY": [
@@ -1432,7 +1428,7 @@ var interestsData = {
             "auto"
         ]
     },
-    "www.webcars.com.cn": {
+    "webcars.com.cn": {
         "__ANY": [
             "auto"
         ]
@@ -1472,7 +1468,7 @@ var interestsData = {
             "realestate"
         ]
     },
-    "*.house.163.com": {
+    "house.163.com": {
         "__ANY": [
             "realestate"
         ]
@@ -1482,12 +1478,12 @@ var interestsData = {
             "realestate"
         ]
     },
-    "*.house.sina.com.cn": {
+    "house.sina.com.cn": {
         "__ANY": [
             "realestate"
         ]
     },
-    "*.esf.sina.com.cn": {
+    "esf.sina.com.cn": {
         "__ANY": [
             "realestate"
         ]
@@ -1502,7 +1498,7 @@ var interestsData = {
             "realestate"
         ]
     },
-    "*.esf.focus.cn": {
+    "esf.focus.cn": {
         "__ANY": [
             "realestate"
         ]
@@ -1532,7 +1528,7 @@ var interestsData = {
             "realestate"
         ]
     },
-    "www.taofw.cn": {
+    "taofw.cn": {
         "__ANY": [
             "realestate"
         ]
@@ -1582,7 +1578,7 @@ var interestsData = {
             "home-applicance"
         ]
     },
-    "www.jia360.com": {
+    "jia360.com": {
         "__ANY": [
             "home-decoration"
         ]
@@ -1631,12 +1627,12 @@ var interestsData = {
             }
         }
     },
-    "www.ljlj.cc": {
+    "ljlj.cc": {
         "__ANY": [
             "home-decoration"
         ]
     },
-    "www.juran.cn": {
+    "juran.cn": {
         "__ANY": [
             "home-decoration"
         ]
@@ -1787,7 +1783,7 @@ var interestsData = {
             "fashion-women"
         ]
     },
-    "www.ellechina.com": {
+    "ellechina.com": {
         "__PATH": {
             "/fashion": {
                 "__ANY": [
@@ -1811,7 +1807,7 @@ var interestsData = {
             }
         }
     },
-    "www.vogue.com.cn": {
+    "vogue.com.cn": {
         "__PATH": {
             "/fashion": {
                 "__ANY": [
@@ -1830,7 +1826,7 @@ var interestsData = {
             }
         }
     },
-    "www.yoka.com": {
+    "yoka.com": {
         "__PATH": {
             "/fashion": {
                 "__ANY": [
@@ -1854,17 +1850,17 @@ var interestsData = {
             }
         }
     },
-    "www.mogujie.com": {
+    "mogujie.com": {
         "__ANY": [
             "fashion-women"
         ]
     },
-    "www.meilishuo.com": {
+    "meilishuo.com": {
         "__ANY": [
             "fashion-women"
         ]
     },
-    "www.vip.com": {
+    "vip.com": {
         "\u5973": [
             "fashion-women"
         ],
@@ -1882,6 +1878,9 @@ var interestsData = {
     "moonbasa.com": {
         "\u5973": [
             "fashion-women"
+        ],
+        "\u7537": [
+            "fashion-men"
         ]
     },
     "item.vancl.com": {
@@ -1900,7 +1899,7 @@ var interestsData = {
             "fashion-men"
         ]
     },
-    "www.shopin.net": {
+    "shopin.net": {
         "\u5973": [
             "fashion-women"
         ],
@@ -1916,7 +1915,7 @@ var interestsData = {
             "fashion-men"
         ]
     },
-    "www.fclub.cn": {
+    "fclub.cn": {
         "\u5973": [
             "fashion-women"
         ],
@@ -1924,7 +1923,7 @@ var interestsData = {
             "fashion-men"
         ]
     },
-    "www.mbaobao.com": {
+    "mbaobao.com": {
         "\u5973": [
             "fashion-women"
         ],
@@ -1932,7 +1931,7 @@ var interestsData = {
             "fashion-men"
         ]
     },
-    "www.okbuy.com": {
+    "okbuy.com": {
         "\u5973": [
             "fashion-women"
         ],
@@ -1950,22 +1949,22 @@ var interestsData = {
             "fashion-men"
         ]
     },
-    "www.yokamen.cn": {
+    "yokamen.cn": {
         "__ANY": [
             "fashion-men"
         ]
     },
-    "www.esquire.com.cn": {
+    "esquire.com.cn": {
         "__ANY": [
             "fashion-men"
         ]
     },
-    "www.gq.com.cn": {
+    "gq.com.cn": {
         "__ANY": [
             "fashion-men"
         ]
     },
-    "www.yksuit.com": {
+    "yksuit.com": {
         "__ANY": [
             "fashion-men"
         ]
@@ -1984,7 +1983,7 @@ var interestsData = {
             }
         }
     },
-    "www.mangangs.com": {
+    "mangangs.com": {
         "__PATH": {
             "/trends": {
                 "__ANY": [
@@ -1993,7 +1992,7 @@ var interestsData = {
             }
         }
     },
-    "www.trends.com.cn": {
+    "trends.com.cn": {
         "__PATH": {
             "/man/fashion": {
                 "__ANY": [
@@ -2007,47 +2006,42 @@ var interestsData = {
             }
         }
     },
-    "www.moonbasa.com": {
-        "\u7537": [
-            "fashion-men"
-        ]
-    },
-    "www.shangpin.com": {
+    "shangpin.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.5lux.com": {
+    "5lux.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.aolai.com": {
+    "aolai.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.zhenpin.com": {
+    "zhenpin.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.meici.com": {
+    "meici.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.xiu.com": {
+    "xiu.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.wbiao.cn": {
+    "wbiao.cn": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.uemall.com": {
+    "uemall.com": {
         "__ANY": [
             "luxury"
         ]
@@ -2082,7 +2076,7 @@ var interestsData = {
             "luxury"
         ]
     },
-    "www.prada.com": {
+    "prada.com": {
         "__ANY": [
             "luxury",
             "luxury"
@@ -2093,37 +2087,37 @@ var interestsData = {
             "luxury"
         ]
     },
-    "www.dior.com": {
+    "dior.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.gucci.com": {
+    "gucci.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.hermes.com": {
+    "hermes.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.armani.com": {
+    "armani.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.ctf.com.cn": {
+    "ctf.com.cn": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.louisvuitton.com": {
+    "louisvuitton.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.rolex.com": {
+    "rolex.com": {
         "__ANY": [
             "luxury"
         ]
@@ -2133,52 +2127,52 @@ var interestsData = {
             "luxury"
         ]
     },
-    "www.coach.com": {
+    "coach.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.tiffany.cn": {
+    "tiffany.cn": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.tiffany.com": {
+    "tiffany.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.cartier.cn": {
+    "cartier.cn": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.cartier.com": {
+    "cartier.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.longines.cn": {
+    "longines.cn": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.longines.com": {
+    "longines.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.ctfeshop.com.cn": {
+    "ctfeshop.com.cn": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.omegawatches.cn": {
+    "omegawatches.cn": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.omegawatches.com": {
+    "omegawatches.com": {
         "__ANY": [
             "luxury",
             "luxury"
@@ -2189,52 +2183,52 @@ var interestsData = {
             "luxury"
         ]
     },
-    "www.burberry.com": {
+    "burberry.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.versace.com": {
+    "versace.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.ferragamo.cn": {
+    "ferragamo.cn": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.miumiu.com": {
+    "miumiu.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.celine.com": {
+    "celine.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.marcjacobs.com": {
+    "marcjacobs.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.balenciaga.com": {
+    "balenciaga.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.chloe.com": {
+    "chloe.com": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.fendi.cn": {
+    "fendi.cn": {
         "__ANY": [
             "luxury"
         ]
     },
-    "www.fendi.com": {
+    "fendi.com": {
         "__ANY": [
             "luxury"
         ]
@@ -2278,7 +2272,7 @@ var interestsData = {
             "beauty"
         ]
     },
-    "www.faxingw.cn": {
+    "faxingw.cn": {
         "__ANY": [
             "beauty"
         ]
@@ -2298,12 +2292,12 @@ var interestsData = {
             "beauty"
         ]
     },
-    "www.boohee.com": {
+    "boohee.com": {
         "__ANY": [
             "fitness"
         ]
     },
-    "www.ssnn.net": {
+    "ssnn.net": {
         "__ANY": [
             "fitness"
         ]
@@ -2313,12 +2307,12 @@ var interestsData = {
             "fitness"
         ]
     },
-    "www.zyjyyy.com": {
+    "zyjyyy.com": {
         "__ANY": [
             "fitness"
         ]
     },
-    "www.lady8844.com": {
+    "lady8844.com": {
         "__PATH": {
             "/shoushen": {
                 "__ANY": [
@@ -2327,7 +2321,7 @@ var interestsData = {
             }
         }
     },
-    "www.jianfei.com": {
+    "jianfei.com": {
         "__ANY": [
             "fitness"
         ]
@@ -2382,7 +2376,7 @@ var interestsData = {
             "health"
         ]
     },
-    "www.39yst.com": {
+    "39yst.com": {
         "__ANY": [
             "health"
         ]
@@ -2392,12 +2386,12 @@ var interestsData = {
             "health"
         ]
     },
-    "www.fx120.net": {
+    "fx120.net": {
         "__ANY": [
             "health"
         ]
     },
-    "www.dxy.cn": {
+    "dxy.cn": {
         "__ANY": [
             "medicine"
         ]
@@ -2417,12 +2411,12 @@ var interestsData = {
             "medicine"
         ]
     },
-    "www.haodf.com": {
+    "haodf.com": {
         "__ANY": [
             "medicine"
         ]
     },
-    "www.120ask.com": {
+    "120ask.com": {
         "__ANY": [
             "medicine"
         ]
@@ -2432,7 +2426,7 @@ var interestsData = {
             "medicine"
         ]
     },
-    "www.bjguahao.gov.cn": {
+    "bjguahao.gov.cn": {
         "__ANY": [
             "medicine"
         ]
@@ -2482,22 +2476,22 @@ var interestsData = {
             "book"
         ]
     },
-    "www.wfjsd.com": {
+    "wfjsd.com": {
         "__ANY": [
             "book"
         ]
     },
-    "www.bookschina.com": {
+    "bookschina.com": {
         "__ANY": [
             "book"
         ]
     },
-    "www.sciencep.com": {
+    "sciencep.com": {
         "__ANY": [
             "book"
         ]
     },
-    "www.china-pub.com": {
+    "china-pub.com": {
         "__ANY": [
             "book"
         ]
@@ -2517,7 +2511,7 @@ var interestsData = {
             "online-novel"
         ]
     },
-    "www.qidian.com": {
+    "qidian.com": {
         "__ANY": [
             "online-novel"
         ]
@@ -2527,12 +2521,12 @@ var interestsData = {
             "online-novel"
         ]
     },
-    "www.readnovel.com": {
+    "readnovel.com": {
         "__ANY": [
             "online-novel"
         ]
     },
-    "www.hongxiu.com": {
+    "hongxiu.com": {
         "__ANY": [
             "online-novel"
         ]
@@ -2542,7 +2536,7 @@ var interestsData = {
             "online-novel"
         ]
     },
-    "www.xxsy.net": {
+    "xxsy.net": {
         "__ANY": [
             "online-novel"
         ]
@@ -2556,17 +2550,17 @@ var interestsData = {
             }
         }
     },
-    "www.yanqing888.net": {
+    "yanqing888.net": {
         "__ANY": [
             "online-novel"
         ]
     },
-    "www.xs8.cn": {
+    "xs8.cn": {
         "__ANY": [
             "online-novel"
         ]
     },
-    "www.jjwxc.net": {
+    "jjwxc.net": {
         "__ANY": [
             "online-novel"
         ]
@@ -2576,7 +2570,7 @@ var interestsData = {
             "online-novel"
         ]
     },
-    "www.huanxia.com": {
+    "huanxia.com": {
         "__ANY": [
             "online-novel"
         ]
@@ -2586,12 +2580,12 @@ var interestsData = {
             "online-novel"
         ]
     },
-    "www.fmx.cn": {
+    "fmx.cn": {
         "__ANY": [
             "online-novel"
         ]
     },
-    "www.17k.com": {
+    "17k.com": {
         "__ANY": [
             "online-novel"
         ]
@@ -2606,82 +2600,82 @@ var interestsData = {
             "cooking"
         ]
     },
-    "www.xiachufang.com": {
+    "xiachufang.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.meishij.net": {
+    "meishij.net": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.beitaichufang.com": {
+    "beitaichufang.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.zhms.cn": {
+    "zhms.cn": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.ttmeishi.com": {
+    "ttmeishi.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.xinshipu.com": {
+    "xinshipu.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.haodou.com": {
+    "haodou.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.douguo.com": {
+    "douguo.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.tfysw.com": {
+    "tfysw.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.koovoo.com": {
+    "koovoo.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.chinacaipu.com": {
+    "chinacaipu.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.caipucaipu.com": {
+    "caipucaipu.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.bjxdf.com": {
+    "bjxdf.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.yiqin92.com": {
+    "yiqin92.com": {
         "__ANY": [
             "cooking"
         ]
     },
-    "www.dianping.com": {
+    "dianping.com": {
         "__ANY": [
             "gourmet"
         ]
     },
-    "www.doodii.com": {
+    "doodii.com": {
         "__ANY": [
             "gourmet"
         ]
@@ -2691,7 +2685,7 @@ var interestsData = {
             "gourmet"
         ]
     },
-    "www.fantong.com": {
+    "fantong.com": {
         "__ANY": [
             "gourmet"
         ]
@@ -2701,27 +2695,27 @@ var interestsData = {
             "gourmet"
         ]
     },
-    "www.lingshishe.com": {
+    "lingshishe.com": {
         "__ANY": [
             "gourmet"
         ]
     },
-    "www.lingshikong.com": {
+    "lingshikong.com": {
         "__ANY": [
             "gourmet"
         ]
     },
-    "www.52yxs.com": {
+    "52yxs.com": {
         "__ANY": [
             "gourmet"
         ]
     },
-    "www.didamall.com": {
+    "didamall.com": {
         "__ANY": [
             "gourmet"
         ]
     },
-    "www.hclsw.com": {
+    "hclsw.com": {
         "__ANY": [
             "gourmet"
         ]
@@ -2731,12 +2725,12 @@ var interestsData = {
             "gourmet"
         ]
     },
-    "www.ju04.com": {
+    "ju04.com": {
         "__ANY": [
             "gourmet"
         ]
     },
-    "www.010duoduo.com": {
+    "010duoduo.com": {
         "__ANY": [
             "gourmet"
         ]
@@ -2755,12 +2749,12 @@ var interestsData = {
             "wedding"
         ]
     },
-    "www.xfwed.com": {
+    "xfwed.com": {
         "__ANY": [
             "wedding"
         ]
     },
-    "www.marry52.com": {
+    "marry52.com": {
         "__ANY": [
             "wedding"
         ]
@@ -2815,12 +2809,12 @@ var interestsData = {
             "parenting"
         ]
     },
-    "www.babytree.com": {
+    "babytree.com": {
         "__ANY": [
             "parenting"
         ]
     },
-    "www.mmbang.com": {
+    "mmbang.com": {
         "__ANY": [
             "parenting"
         ]
@@ -2830,7 +2824,7 @@ var interestsData = {
             "parenting"
         ]
     },
-    "www.mama.cn": {
+    "mama.cn": {
         "__ANY": [
             "parenting"
         ]
@@ -2860,7 +2854,7 @@ var interestsData = {
             "parenting"
         ]
     },
-    "www.babyschool.com.cn": {
+    "babyschool.com.cn": {
         "__ANY": [
             "parenting"
         ]
@@ -2955,32 +2949,32 @@ var interestsData = {
             "education"
         ]
     },
-    "www.51edu.com": {
+    "51edu.com": {
         "__ANY": [
             "education"
         ]
     },
-    "www.jd100.com": {
+    "jd100.com": {
         "__ANY": [
             "education"
         ]
     },
-    "www.kaoshi110.net": {
+    "kaoshi110.net": {
         "__ANY": [
             "education"
         ]
     },
-    "www.eduol.cn": {
+    "eduol.cn": {
         "__ANY": [
             "education"
         ]
     },
-    "www.exam8.com": {
+    "exam8.com": {
         "__ANY": [
             "education"
         ]
     },
-    "www.dearedu.com": {
+    "dearedu.com": {
         "__ANY": [
             "education"
         ]
@@ -2990,7 +2984,7 @@ var interestsData = {
             "mooc"
         ]
     },
-    "www.xuexila.com": {
+    "xuexila.com": {
         "__ANY": [
             "mooc"
         ]
@@ -3044,7 +3038,7 @@ var interestsData = {
             "mooc"
         ]
     },
-    "www.oer.edu.cn": {
+    "oer.edu.cn": {
         "__ANY": [
             "mooc"
         ]
@@ -3059,17 +3053,17 @@ var interestsData = {
             "mooc"
         ]
     },
-    "www.coursera.org": {
+    "coursera.org": {
         "__ANY": [
             "mooc"
         ]
     },
-    "www.edx.org": {
+    "edx.org": {
         "__ANY": [
             "mooc"
         ]
     },
-    "www.khanacademy.org": {
+    "khanacademy.org": {
         "__ANY": [
             "mooc"
         ]
@@ -3114,7 +3108,7 @@ var interestsData = {
             "travel"
         ]
     },
-    "*.trip.taobao.com": {
+    "trip.taobao.com": {
         "__ANY": [
             "travel"
         ]
@@ -3139,7 +3133,7 @@ var interestsData = {
             "travel"
         ]
     },
-    "www.mafengwo.cn": {
+    "mafengwo.cn": {
         "__ANY": [
             "travel"
         ]
@@ -3154,12 +3148,12 @@ var interestsData = {
             "travel"
         ]
     },
-    "www.17u.cn": {
+    "17u.cn": {
         "__ANY": [
             "travel"
         ]
     },
-    "www.lvping.com": {
+    "lvping.com": {
         "__ANY": [
             "travel"
         ]
@@ -3184,17 +3178,17 @@ var interestsData = {
             "travel"
         ]
     },
-    "www.lotour.com": {
+    "lotour.com": {
         "__ANY": [
             "travel"
         ]
     },
-    "www.sozhen.com": {
+    "sozhen.com": {
         "__ANY": [
             "travel"
         ]
     },
-    "www.cncn.com": {
+    "cncn.com": {
         "__ANY": [
             "travel"
         ]
@@ -3204,7 +3198,7 @@ var interestsData = {
             "travel"
         ]
     },
-    "www.daodao.com": {
+    "daodao.com": {
         "__ANY": [
             "travel"
         ]
@@ -3229,66 +3223,66 @@ var interestsData = {
             "travel"
         ]
     },
-    "www.cct.cn": {
+    "cct.cn": {
         "__ANY": [
             "travel"
         ]
     },
-    "www.homeinns.com": {
+    "homeinns.com": {
         "__ANY": [
             "travel"
         ]
     },
-    "www.jinjianginns.com": {
+    "jinjianginns.com": {
         "__ANY": [
             "travel"
         ]
     },
-    "www.7daysinn.cn": {
+    "7daysinn.cn": {
         "__ANY": [
             "travel"
         ]
     },
-    "www.yhachina.com": {
+    "yhachina.com": {
         "__ANY": [
             "travel"
         ]
     },
-    "www.agoda.com": {
+    "agoda.com": {
         "__ANY": [
             "travel"
         ]
     },
-    "www.booking.com": {
+    "booking.com": {
         "__ANY": [
             "travel"
         ]
     },
     "piao.soku.com": {
         "__PATH": {
-            "/awefwefwefwewsssssssfewfwe/movie": {
+            "/*/movie": {
                 "__ANY": [
                     "show"
                 ]
             }
         }
     },
-    "www.228.com.cn": {
+    "228.com.cn": {
         "__ANY": [
             "show"
         ]
     },
-    "www.piao.com.cn": {
+    "piao.com.cn": {
         "__ANY": [
             "show"
         ]
     },
-    "www.damai.cn": {
+    "damai.cn": {
         "__ANY": [
             "show"
         ]
     },
-    "www.piao88.com": {
+    "piao88.com": {
         "__ANY": [
             "show"
         ]
@@ -3307,7 +3301,7 @@ var interestsData = {
             }
         }
     },
-    "www.gewara.com": {
+    "gewara.com": {
         "__PATH": {
             "/movie": {
                 "__ANY": [
@@ -3341,7 +3335,7 @@ var interestsData = {
             "show"
         ]
     },
-    "www.gaopeng.com": {
+    "gaopeng.com": {
         "\u5f71\u57ce": [
             "show"
         ],
@@ -3434,32 +3428,32 @@ var interestsData = {
             "show"
         ]
     },
-    "www.yanchupiao.com": {
+    "yanchupiao.com": {
         "__ANY": [
             "show"
         ]
     },
-    "www.chncpa.org": {
+    "chncpa.org": {
         "__ANY": [
             "show"
         ]
     },
-    "www.piaobuy.com": {
+    "piaobuy.com": {
         "__ANY": [
             "show"
         ]
     },
-    "www.chinapiao.com.cn": {
+    "chinapiao.com.cn": {
         "__ANY": [
             "show"
         ]
     },
-    "www.zzzgg.com": {
+    "zzzgg.com": {
         "__ANY": [
             "show"
         ]
     },
-    "www.chnmuseum.cn": {
+    "chnmuseum.cn": {
         "__ANY": [
             "show"
         ]
@@ -3503,12 +3497,12 @@ var interestsData = {
             "technology"
         ]
     },
-    "www.ifanr.com": {
+    "ifanr.com": {
         "__ANY": [
             "technology"
         ]
     },
-    "www.cfan.com.cn": {
+    "cfan.com.cn": {
         "__ANY": [
             "technology"
         ]
@@ -3548,7 +3542,7 @@ var interestsData = {
             "programming"
         ]
     },
-    "www.w3schools.com": {
+    "w3schools.com": {
         "__ANY": [
             "programming"
         ]
@@ -3558,37 +3552,37 @@ var interestsData = {
             "programming"
         ]
     },
-    "www.kuqin.com": {
+    "kuqin.com": {
         "__ANY": [
             "programming"
         ]
     },
-    "www.cxy.me": {
+    "cxy.me": {
         "__ANY": [
             "programming"
         ]
     },
-    "www.zzzj.com": {
+    "zzzj.com": {
         "__ANY": [
             "programming"
         ]
     },
-    "www.webjx.com": {
+    "webjx.com": {
         "__ANY": [
             "programming"
         ]
     },
-    "www.bcwhy.com": {
+    "bcwhy.com": {
         "__ANY": [
             "programming"
         ]
     },
-    "www.qqview.com": {
+    "qqview.com": {
         "__ANY": [
             "programming"
         ]
     },
-    "www.guokr.com": {
+    "guokr.com": {
         "__ANY": [
             "science"
         ]
@@ -3608,37 +3602,37 @@ var interestsData = {
             "science"
         ]
     },
-    "www.huanqiukexue.com": {
+    "huanqiukexue.com": {
         "__ANY": [
             "science"
         ]
     },
-    "www.bjkp.gov.cn": {
+    "bjkp.gov.cn": {
         "__ANY": [
             "science"
         ]
     },
-    "www.astron.ac.cn": {
+    "astron.ac.cn": {
         "__ANY": [
             "science"
         ]
     },
-    "www.plantphoto.cn": {
+    "plantphoto.cn": {
         "__ANY": [
             "science"
         ]
     },
-    "www.math.org.cn": {
+    "math.org.cn": {
         "__ANY": [
             "science"
         ]
     },
-    "www.cosmoscape.com": {
+    "cosmoscape.com": {
         "__ANY": [
             "science"
         ]
     },
-    "www.cnphys.com": {
+    "cnphys.com": {
         "__ANY": [
             "science"
         ]
@@ -3727,7 +3721,7 @@ var interestsData = {
             }
         }
     },
-    "www.iqiyi.com": {
+    "iqiyi.com": {
         "__PATH": {
             "/news": {
                 "__ANY": [
@@ -3888,7 +3882,7 @@ var interestsData = {
             "news"
         ]
     },
-    "www.chinanews.com": {
+    "chinanews.com": {
         "__PATH": {
             "/gj": {
                 "__ANY": [
@@ -3957,7 +3951,7 @@ var interestsData = {
             "news"
         ]
     },
-    "www.zaobao.com": {
+    "zaobao.com": {
         "__PATH": {
             "/news": {
                 "__ANY": [
@@ -3996,7 +3990,7 @@ var interestsData = {
             "militery"
         ]
     },
-    "www.chinaiiss.com": {
+    "chinaiiss.com": {
         "__ANY": [
             "militery"
         ]
@@ -4016,7 +4010,7 @@ var interestsData = {
             "militery"
         ]
     },
-    "www.milnews2.com": {
+    "milnews2.com": {
         "__ANY": [
             "militery"
         ]
@@ -4031,37 +4025,37 @@ var interestsData = {
             "militery"
         ]
     },
-    "www.qianyan001.com": {
+    "qianyan001.com": {
         "__ANY": [
             "militery"
         ]
     },
-    "www.cankaoa.com": {
+    "cankaoa.com": {
         "__ANY": [
             "militery"
         ]
     },
-    "www.shijiemil.com": {
+    "shijiemil.com": {
         "__ANY": [
             "militery"
         ]
     },
-    "www.chn2007.com": {
+    "chn2007.com": {
         "__ANY": [
             "militery"
         ]
     },
-    "www.51junshi.com": {
+    "51junshi.com": {
         "__ANY": [
             "militery"
         ]
     },
-    "www.top81.com.cn": {
+    "top81.com.cn": {
         "__ANY": [
             "militery"
         ]
     },
-    "www.miercn.com": {
+    "miercn.com": {
         "__ANY": [
             "militery"
         ]
@@ -4076,17 +4070,17 @@ var interestsData = {
             "militery"
         ]
     },
-    "www.leiting001.com": {
+    "leiting001.com": {
         "__ANY": [
             "militery"
         ]
     },
-    "www.liangjian.com": {
+    "liangjian.com": {
         "__ANY": [
             "militery"
         ]
     },
-    "www.xinjunshi.com": {
+    "xinjunshi.com": {
         "__ANY": [
             "militery"
         ]
@@ -4160,7 +4154,7 @@ var interestsData = {
             "finance"
         ]
     },
-    "www.ftchinese.com": {
+    "ftchinese.com": {
         "__ANY": [
             "finance"
         ]
@@ -4383,17 +4377,17 @@ var interestsData = {
             "humor"
         ]
     },
-    "www.qiushibaike.com": {
+    "qiushibaike.com": {
         "__ANY": [
             "humor"
         ]
     },
-    "www.mahua.com": {
+    "mahua.com": {
         "__ANY": [
             "humor"
         ]
     },
-    "www.pengfu.com": {
+    "pengfu.com": {
         "__ANY": [
             "humor"
         ]
@@ -4403,7 +4397,7 @@ var interestsData = {
             "humor"
         ]
     },
-    "www.haha.mx": {
+    "haha.mx": {
         "__ANY": [
             "humor"
         ]
@@ -4413,37 +4407,37 @@ var interestsData = {
             "humor"
         ]
     },
-    "www.budejie.com": {
+    "budejie.com": {
         "__ANY": [
             "humor"
         ]
     },
-    "www.fanjian.net": {
+    "fanjian.net": {
         "__ANY": [
             "humor"
         ]
     },
-    "www.haha365.com": {
+    "haha365.com": {
         "__ANY": [
             "humor"
         ]
     },
-    "www.gaoxiao8.com": {
+    "gaoxiao8.com": {
         "__ANY": [
             "humor"
         ]
     },
-    "www.youmogu.com": {
+    "youmogu.com": {
         "__ANY": [
             "humor"
         ]
     },
-    "www.gaoxiaovod.com": {
+    "gaoxiaovod.com": {
         "__ANY": [
             "humor"
         ]
     },
-    "www.yikexun.cn": {
+    "yikexun.cn": {
         "__ANY": [
             "humor"
         ]
@@ -4498,32 +4492,32 @@ var interestsData = {
             "music"
         ]
     },
-    "www.xiami.com": {
+    "xiami.com": {
         "__ANY": [
             "music"
         ]
     },
-    "www.1ting.com": {
+    "1ting.com": {
         "__ANY": [
             "music"
         ]
     },
-    "www.kuwo.cn": {
+    "kuwo.cn": {
         "__ANY": [
             "music"
         ]
     },
-    "www.kugou.com": {
+    "kugou.com": {
         "__ANY": [
             "music"
         ]
     },
-    "www.9ku.com": {
+    "9ku.com": {
         "__ANY": [
             "music"
         ]
     },
-    "www.vvvdj.com": {
+    "vvvdj.com": {
         "__ANY": [
             "music"
         ]
@@ -4563,7 +4557,7 @@ var interestsData = {
             "movie"
         ]
     },
-    "www.m1905.com": {
+    "m1905.com": {
         "__ANY": [
             "movie",
             "movie"
@@ -4600,7 +4594,7 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "www.yyets.com": {
+    "yyets.com": {
         "__PATH": {
             "/resource": {
                 "\u7f8e\u5267": [
@@ -4628,12 +4622,12 @@ var interestsData = {
             "movie"
         ]
     },
-    "www.piaohua.com": {
+    "piaohua.com": {
         "__ANY": [
             "movie"
         ]
     },
-    "www.dygod.net": {
+    "dygod.net": {
         "__ANY": [
             "movie"
         ]
@@ -4668,7 +4662,7 @@ var interestsData = {
             "TV-series"
         ]
     },
-    "www.a67.com": {
+    "a67.com": {
         "__PATH": {
             "/tv": {
                 "__ANY": [
@@ -4677,7 +4671,7 @@ var interestsData = {
             }
         }
     },
-    "www.77vcd.com": {
+    "77vcd.com": {
         "__ANY": [
             "TV-series"
         ]
@@ -4758,7 +4752,7 @@ var interestsData = {
             "game"
         ]
     },
-    "www.gamersky.com": {
+    "gamersky.com": {
         "__ANY": [
             "game"
         ]
@@ -4773,7 +4767,7 @@ var interestsData = {
             "game"
         ]
     },
-    "www.7k7k.com": {
+    "7k7k.com": {
         "__ANY": [
             "game"
         ]
@@ -4783,7 +4777,7 @@ var interestsData = {
             "game"
         ]
     },
-    "www.4399.com": {
+    "4399.com": {
         "__ANY": [
             "game"
         ]
@@ -4793,7 +4787,7 @@ var interestsData = {
             "game"
         ]
     },
-    "www.ali213.net": {
+    "ali213.net": {
         "__ANY": [
             "game"
         ]
@@ -4808,7 +4802,7 @@ var interestsData = {
             "game"
         ]
     },
-    "www.ptbus.com": {
+    "ptbus.com": {
         "__ANY": [
             "game"
         ]
@@ -4823,12 +4817,12 @@ var interestsData = {
             "game"
         ]
     },
-    "www.bilibili.tv": {
+    "bilibili.tv": {
         "__ANY": [
             "anime-manga"
         ]
     },
-    "www.acfun.tv": {
+    "acfun.tv": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4872,7 +4866,7 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "www.narutom.com": {
+    "narutom.com": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4882,17 +4876,17 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "www.4399dmw.com": {
+    "4399dmw.com": {
         "__ANY": [
             "anime-manga"
         ]
     },
-    "www.52tian.net": {
+    "52tian.net": {
         "__ANY": [
             "anime-manga"
         ]
     },
-    "www.u17.com": {
+    "u17.com": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4902,7 +4896,7 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "www.mkzhan.com": {
+    "mkzhan.com": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4917,7 +4911,7 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "www.dm123.cn": {
+    "dm123.cn": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4952,7 +4946,7 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "www.hltm.cc": {
+    "hltm.cc": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4962,7 +4956,7 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "www.dm456.com": {
+    "dm456.com": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4972,7 +4966,7 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "www.bukade.com": {
+    "bukade.com": {
         "__ANY": [
             "anime-manga"
         ]
@@ -5195,7 +5189,7 @@ var interestsData = {
             "sports"
         ]
     },
-    "www.hupu.com": {
+    "hupu.com": {
         "__ANY": [
             "sports"
         ]
@@ -5256,7 +5250,7 @@ var interestsData = {
             "basketball"
         ]
     },
-    "www.zhibo8.cc": {
+    "zhibo8.cc": {
         "__PATH": {
             "/nba": {
                 "__ANY": [
@@ -5280,7 +5274,7 @@ var interestsData = {
             "basketball"
         ]
     },
-    "www.bbboo.com": {
+    "bbboo.com": {
         "__ANY": [
             "basketball"
         ]
@@ -5290,12 +5284,12 @@ var interestsData = {
             "basketball"
         ]
     },
-    "www.cba.gov.cn": {
+    "cba.gov.cn": {
         "__ANY": [
             "basketball"
         ]
     },
-    "www.espnstar.com.cn": {
+    "espnstar.com.cn": {
         "__ANY": [
             "basketball"
         ]
@@ -5305,17 +5299,17 @@ var interestsData = {
             "soccer"
         ]
     },
-    "www.1soccer.com": {
+    "1soccer.com": {
         "__ANY": [
             "soccer"
         ]
     },
-    "www.soccerbar.cn": {
+    "soccerbar.cn": {
         "__ANY": [
             "soccer"
         ]
     },
-    "www.wenqiu.com": {
+    "wenqiu.com": {
         "__ANY": [
             "soccer"
         ]

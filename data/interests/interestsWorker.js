@@ -4,7 +4,8 @@
 
 "use strict";
 
-importScripts("interestsTextClassifier.js");
+importScripts("tokenizerFactory.js");
+importScripts("naiveBayesClassifier.js");
 
 function InterestsWorkerError(message) {
     this.name = "InterestsWorkerError";
@@ -36,7 +37,7 @@ function bootstrap(aMessageData) {
   swapRules(aMessageData);
 
   if (aMessageData.interestsUrlStopwords) {
-    gTokenizer = new PlaceTokenizer({
+    gTokenizer = tokenizerFactory.getTokenizer({
       urlStopwordSet: aMessageData.interestsUrlStopwords,
       model: aMessageData.interestsClassifierModel,
       regionCode: gRegionCode,
@@ -57,12 +58,14 @@ function bootstrap(aMessageData) {
 function buildMappingWithWildcard() {
   gInterestsDataInRegExp = [];
 
-  Object.keys(gInterestsData).forEach(function(domain) {
-    if (domain.indexOf("*") < 0)
-      return;
+  if (gInterestsData) {
+    Object.keys(gInterestsData).forEach(function(domain) {
+      if (domain.indexOf("*") < 0)
+        return;
 
-    gInterestsDataInRegExp.push(domain);
-  });
+      gInterestsDataInRegExp.push(domain);
+    });
+  }
 }
 
 function _getValidRule(hostRule, path) {
