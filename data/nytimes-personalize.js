@@ -11,7 +11,7 @@ self.port.on("recommend_on_page", function(data) {
     let main = mostEmailedWidget.parentNode;
     let recommendations = document.createElement("aside");
     recommendations.className = "marginalia headliner-marginalia";
-    recommendations.attributes["data-truncate-enabled"] = true;
+    recommendations.setAttribute("data-truncate-enabled", true);
 
     let header = document.createElement("header");
     let h2 = document.createElement("h2");
@@ -29,10 +29,10 @@ self.port.on("recommend_on_page", function(data) {
 
       let article = document.createElement("article");
       article.className = "story theme-summary";
-      if (data.thumbUrl) {
+      if (item.thumbUrl) {
         let thumbDiv = document.createElement("div");
         let thumbImg = document.createElement("img");
-        thumbImg.attributes["src"] = item.thumbUrl;
+        thumbImg.src = item.thumbUrl;
         thumbDiv.className = "thumb";
         thumbDiv.appendChild(thumbImg);
         article.appendChild(thumbDiv);
