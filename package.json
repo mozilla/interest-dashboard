@@ -42,7 +42,7 @@
         "name": "headliner_refresh_interval",
         "title": "Time interval to refresh headliner content in seconds",
         "type": "integer",
-        "value": 54000
+        "value": 10800
       }
   ]
 }

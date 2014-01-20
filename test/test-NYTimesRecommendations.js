@@ -18,6 +18,7 @@ exports["test NYTimesRecommendation pref changes"] = function test_NYT_init(asse
   // the pagemod is applied on init and when pref changes happen
   Task.spawn(function() {
     simplePrefs.prefs.consented = false;
+
     let deferred = Promise.defer();
     StudyApp.submitPromise = deferred.promise;
     deferred.resolve();
@@ -25,17 +26,24 @@ exports["test NYTimesRecommendation pref changes"] = function test_NYT_init(asse
     simplePrefs.prefs.consented = true;
     PrefsManager.setObservers();
 
-    let controller = {_dispatcher: {_enabled: false}};
+    let controller = {_dispatcher: {_enabled: false}, getRankedInterests: function() {return {};}};
     StudyApp.controller = controller;
     yield NYTimesRecommendations.init();
 
     simplePrefs.prefs.consented = false;
     assert.ok(NYTimesRecommendations.mod == null, "unsetting consent removes pagemod");
     assert.ok(NYTimesRecommendations.contentClient == null, "unsetting consent removes headliner client");
+    assert.ok(NYTimesRecommendations.refreshTaskId == null, "there should be no active refresh task");
 
     simplePrefs.prefs.consented = true;
     assert.ok(NYTimesRecommendations.mod != null, "setting consent re-adds pagemod");
     assert.ok(NYTimesRecommendations.contentClient != null, "setting consent re-adds headliner client");
+    assert.ok(NYTimesRecommendations.refreshTaskId != null, "there should be an active refresh task");
+
+    let oldRefreshTaskId = NYTimesRecommendations.refreshTaskId;
+    simplePrefs.prefs.headliner_refresh_interval = 3600;
+    assert.notEqual(NYTimesRecommendations.refreshTaskId, oldRefreshTaskId, "refresh task id should have changed");
+
   }).then(_ => {
     PrefsManager.unsetObservers();
   }).then(done);
@@ -110,6 +118,39 @@ exports["test NYTimesRecommendation transformData"] = function test_NYT_transfor
   let data = NYTimesRecommendations.transformData(rawData);
   assert.equal(data.length, 1, "one object in results expected");
   assert.equal(Object.keys(data[0]).length, 4, "four attributes in object expected");
+}
+
+exports["test NYTimesRecommendation periodic refresh task"] = function test_NYT_periodicRefreshTask(assert, done) {
+  Task.spawn(function() {
+    NYTimesRecommendations.debug = true;
+    simplePrefs.prefs.consented = true;
+
+    let deferred = Promise.defer();
+    StudyApp.submitPromise = deferred.promise;
+    deferred.resolve();
+    yield NYTimesRecommendations.init();
+
+    assert.ok(NYTimesRecommendations.refreshTaskId != null, "there should be an active refresh task");
+
+    let clientConsumeDeferred = Promise.defer();
+    let numConsumed = 0;
+    NYTimesRecommendations.contentClient.consume = function() {
+      numConsumed += 1;
+      assert.ok(true, "refresh task has run");
+      if (numConsumed > 1) {
+        assert.ok(true, "refresh task has run recurrently");
+        clientConsumeDeferred.resolve();
+      }
+    }
+
+    simplePrefs.prefs.headliner_refresh_interval = 1;
+    NYTimesRecommendations.unsetContentRefresh();
+    assert.ok(NYTimesRecommendations.refreshTaskId == null, "there should be no active refresh task");
+    NYTimesRecommendations.setContentRefresh();
+    assert.ok(NYTimesRecommendations.refreshTaskId != null, "there should be an active refresh task");
+
+    yield clientConsumeDeferred.promise;
+  }).then(done);
 }
 
 require("sdk/test").run(exports);
