@@ -3,7 +3,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
-  if(!data || !data.length) return;
 
   let ribbon = document.querySelector("#ribbon");
   if (ribbon) {
@@ -59,6 +58,8 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
     ribbonScriptElem.type = "text/javascript";
     document.body.appendChild(ribbonScriptElem);
   }
+
+  if(!data || !data.length) return;
 
   let mostEmailedWidget = document.querySelector("aside.marginalia.most-emailed-marginalia");
   if (mostEmailedWidget) {
