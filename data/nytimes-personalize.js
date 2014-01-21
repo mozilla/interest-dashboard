@@ -16,6 +16,42 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
     newRibbon.innerHTML = '<ol class="ribbon-menu"><li class="collection ribbon-loader"><div class="loader"><span class="visually-hidden">Loading...</span></div></li></ol><div class="ribbon-navigation-container"><nav class="ribbon-navigation next"><span class="visually-hidden">See next articles</span><div class="arrow arrow-right"><div class="arrow-conceal"></div></div></nav><nav class="ribbon-navigation previous"><span class="visually-hidden">See previous articles</span><div class="arrow arrow-left"><div class="arrow-conceal"></div></div></nav></div>';
     let node = document.querySelector("#shell").replaceChild(newRibbon, ribbon);
 
+    let articles = [];
+    for (let item of data) {
+      let article = {};
+      article.title = item.title;
+      article.headline = item.title;
+      article.kicker = item.topic;
+      article.link = item.url;
+      article.guid = item.url;
+      article.description = "";
+      article.byline = "";
+      article.authors = [];
+      article.type = "article";
+      article.promotional_media = {
+        type: "image",
+        image: {
+          image_crops: {
+            thumbStandard: {
+              width: 75,
+              height: 75,
+              url: item.thumbUrl,
+            }
+          }
+        }
+      };
+      articles.push(article);
+    }
+
+    let collection = {
+      items: articles
+    }
+
+    let ribbonDataElem = document.createElement("script");
+    ribbonDataElem.type = "text/javascript";
+    ribbonDataElem.innerHTML = "var headlinerRibbonData = " + JSON.stringify(articles) + ";";
+    document.body.appendChild(ribbonDataElem);
+
     // inject new backbone collection, view and more
     let ribbonScriptElem = document.createElement("script");
     ribbonScriptElem.id = "headliner-script"

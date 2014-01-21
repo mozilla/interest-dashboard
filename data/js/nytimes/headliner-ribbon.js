@@ -1,4 +1,676 @@
 /**
+ * Creates a new collection for headliner recommendations.
+ *
+ * <p><b>Require Path:</b> shared/data/collections/headliner</p>
+ *
+ * @module Shared
+ * @submodule Shared.Data
+ * @class Headliner
+ * @constructor
+ * @extends BaseCollection
+**/
+define('shared/data/collections/headliner',[
+    'backbone/nyt',
+    'foundation/collections/base-collection',
+    'shared/data/models/article',
+    'foundation/hosts',
+    'underscore/nyt',
+    'shared/data/helpers/collection-mixin'
+], function (Backbone, BaseCollection, Article, hosts, _, collectionMixin) {
+    'use strict';
+
+
+    var Headliner = BaseCollection.extend(
+
+        _.extend({}, collectionMixin, {
+
+            model: Article,
+
+            /**
+             * Fetches the collection if it hasn't been fetched yet
+             *
+             * @private
+             * @method isFetchingData
+             * @return {Boolean} A determination of whether the data is being fetched.
+             **/
+            loadData: function() {
+              if (this.length === 0 && !this.hasFetched && headlinerRibbonData) {
+                this.hasFetched = true;
+                this.add(headlinerRibbonData);
+              }
+              return this;
+            },
+
+            /**
+             * Returns the query parameter that is used to identify what to load on the
+             * next page view
+             *
+             * @private
+             * @method getIdentifier
+             * @return {String} A query parameter string
+            **/
+            getIdentifier: function () {
+                return 'src=recmoz';
+            }
+        })
+    );
+
+    return Headliner;
+});
+/**
+ * Creates a new instance of the headliner collection
+ *
+ * <p><b>Require Path:</b> shared/data/instances/headliner</p>
+ *
+ * @module Shared
+ * @submodule Shared.Data
+ * @class HeadlinerInstance
+ * @static
+**/
+define('shared/data/instances/headliner',[
+    'jquery/nyt',
+    'foundation/views/page-manager',
+    'shared/data/collections/headliner'
+], function ($, pageManager, Headliner) {
+    'use strict';
+
+    return new Headliner();
+
+});
+/**
+ * Creates an Article Collection that will be used to sync data for the Ribbon and the
+ * Arrow buttons
+ *
+ * <p><b>Require Path:</b> shared/ribbon/collections/ribbon</p>
+ *
+ * @module Shared
+ * @submodule Shared.Ribbon
+ * @class Collection
+ * @constructor
+ * @extends BaseCollection
+**/
+define('shared/ribbon/collections/ribbon-headliner',[
+    'backbone/nyt',
+    'underscore/nyt',
+    'foundation/collections/base-collection',
+    'shared/data/models/article',
+    'foundation/hosts',
+    'foundation/models/user-data',
+    'shared/data/instances/most-emailed',
+    'shared/data/instances/recommendations',
+    'shared/data/instances/context',
+    'shared/data/instances/top-news',
+    'shared/data/instances/section-origin',
+    'shared/data/instances/headliner'
+], function (Backbone, _, BaseCollection, Article, Hosts, userData, mostEmailed, recommendations, context, topNews, sectionOrigin, headliner) {
+    'use strict';
+
+    var RibbonCollection = BaseCollection.extend({
+
+        url: function () {
+            if (_.isFunction(this.feedUrl)) {
+                this.handleFeedAsFunction(this.feedUrl);
+            }
+
+            return this.feedUrl || '';
+        },
+
+        model: Article,
+
+        initialize: function (settings) {
+            _.bindAll(this, 'getMostEmailed', 'getContext', 'getTopNews', 'getRecommendations', 'getOrigin', 'getHeadliner');
+
+            this.collectionLabels = [];
+
+            this.feedSource = [
+                { origin: this.getOrigin },
+                { context: this.getContext },
+                { mostEmailed: this.getMostEmailed },
+                { homepage: this.getTopNews },
+                { recommendations: this.getRecommendations },
+                { headliner: this.getHeadliner },
+                { world: Hosts.json + '/services/json/sectionfronts/world/index.jsonp' },
+                { us: Hosts.json + '/services/json/sectionfronts/national/index.jsonp' },
+                { business: Hosts.json + '/services/json/sectionfronts/business/index.jsonp' },
+                { opinion: Hosts.json + '/services/json/sectionfronts/opinion/index.jsonp' },
+                { technology: Hosts.json + '/services/json/sectionfronts/technology/index.jsonp' },
+                { politics: Hosts.json + '/services/json/sectionfronts/politics/index.jsonp' },
+                { sports: Hosts.json + '/services/json/sectionfronts/sports/index.jsonp' },
+                { science: Hosts.json + '/services/json/sectionfronts/science/index.jsonp' },
+                { health: Hosts.json + '/services/json/sectionfronts/health/index.jsonp' },
+                { arts: Hosts.json + '/services/json/sectionfronts/arts/index.jsonp' },
+                { style: Hosts.json + '/services/json/sectionfronts/style/index.jsonp' },
+                { nyregion: Hosts.json + '/services/json/sectionfronts/nyregion/index.jsonp' }
+            ];
+
+            this.currentArticleUrl = settings.currentArticleUrl;
+            this.originalLoadType = 'context';
+            this.feedUrl = this.setFeedUrl(settings.sectionFeedUrl);
+
+            this.subscribe(this, 'sync', this.setCurrentArticle);
+        },
+
+        /**
+         * Overriding mixin helper function. Called by the ribbon view to initialize our first collection
+         *
+         * @private
+         * @method loadData
+        **/
+        loadData: function () {
+            if (_.isFunction(this.feedUrl)) {
+                this.handleFeedAsFunction(this.feedUrl);
+            } else {
+                this.fetch();
+            }
+        },
+
+        /**
+         * Called each time we want to fetch a new set of articles from a particular feed
+         *
+         * @private
+         * @method sync
+         * @param method {String} Create, Read, Update, or Delete
+         * @param model {Object} the model to be saved (or collection to be read)
+         * @param options {Object} jquery ajax request options
+         * @return {Object} Backbone Sync
+        **/
+        sync: function (method, model, options) {
+            //callbacks are jsonFeedCallback_section_subsection
+            var callback = this.url().match(/sectionfronts\/(.+)\/index/) || ['', 'homepage'];
+
+            options.dataType = 'jsonp';
+            options.jsonpCallback = 'jsonFeedCallback_' + callback[1].replace('/', '_');
+
+            //sets sectionId for use in ?rref=section/subsection
+            this.sectionId = 'rref=' + callback[1];
+
+
+            return Backbone.sync(method, model, options);
+        },
+
+
+        /**
+         * Sets the currentArticle property based on the currentArticleUrl property
+         *
+         * @private
+         * @method setCurrentArticle
+        **/
+        setCurrentArticle: function () {
+            var feedCollection = this;
+
+            this.currentArticle = this.find(function (article) {
+                return article.get('link') === feedCollection.currentArticleUrl;
+            });
+
+        },
+
+        /**
+         * Modifies the format of our article collection results
+         *
+         * @private
+         * @method parse
+         * @param response {Object} The data returned after a sync is completed
+         * @return {Object} Revised JSON response to be added to the collection
+        **/
+        parse: function (response) {
+            return this.prepCollection(response.items, response.title.replace('NYT > ', ''), response.link, 'news');
+        },
+
+
+        /**
+         * Use a key to find the url of a feed source
+         *
+         * @private
+         * @method getFeedSourceValue
+         * @param key {String} the key to look up
+         * @return {String} the url
+        **/
+        getFeedSourceValue: function (key) {
+            for (var i = 0, objectLength = this.feedSource.length; i < objectLength; i++) {
+                if (this.feedSource[i].hasOwnProperty(key)) {
+                    return this.feedSource[i][key];
+                }
+            }
+        },
+
+        /**
+         * Use a key to remove an object from the feed source
+         *
+         * @private
+         * @method removeFeedByKey
+         * @param keyToRemove {String}
+        **/
+        removeFeedByKey: function (keyToRemove) {
+            for (var i = 0, objectLength = this.feedSource.length; i < objectLength; i++) {
+                if (_.keys(this.feedSource[i])[0] === keyToRemove) {
+                    this.feedSource.splice(i, 1);
+                    return;
+                }
+            }
+        },
+
+        /**
+         * Use a url to remove an object from the feed source
+         *
+         * @private
+         * @method removeFeedByUrl
+         * @param urlToRemove {String}
+        **/
+        removeFeedByUrl: function (urlToRemove) {
+            var feedSourceValue;
+            var pathname = this.createAnchor(urlToRemove).pathname;
+
+            for (var i = 0, objectLength = this.feedSource.length; i < objectLength; i++) {
+                feedSourceValue = _.values(this.feedSource[i])[0];
+                if (!_.isFunction(feedSourceValue) && feedSourceValue.indexOf(pathname) > -1) {
+                    this.feedSource.splice(i, 1);
+                    return;
+                }
+            }
+        },
+
+        /**
+         * Create an anchor element for easy url parsing
+         *
+         * @private
+         * @method createAnchor
+         * @param url {String} the url to apply to the element as href
+         * @return {Object} the element created by the method
+        **/
+        createAnchor: function (url) {
+            var anchor = document.createElement('a');
+            anchor.href = url;
+            return anchor;
+        },
+
+        /**
+         * Compare a url to the url for the desired section
+         *
+         * @private
+         * @method isUrlForSection
+         * @param testUrl {String}
+         * @param section {String} the section to lookup
+         * @return {Boolean} the result of the test
+        **/
+        isUrlForSection: function (testUrl, section) {
+            var testPath = this.createAnchor(testUrl).pathname;
+            var lookupPath = this.createAnchor(this.getFeedSourceValue(section)).pathname;
+            return testPath === lookupPath;
+        },
+
+        /**
+         * Set the initial feed for the collection
+         *
+         * @private
+         * @method setFeedUrl
+         * @param sectionFeedUrl {String} the current default section feed
+         * @return {String} the updated url
+        **/
+        setFeedUrl: function (sectionFeedUrl) {
+            var ref, feedSrc, firstRibbonCollection;
+            var collectionObj = this;
+            var source = this.pageManager.getUrlParam('src') || '';
+            var ribbonReference = this.pageManager.getUrlParam('rref');
+            var loadType = 'origin';
+
+            //user arrives from clicking on an item in the ribbon
+            if (ribbonReference && ribbonReference !== 'homepage') {
+                this.removeFeedByKey(ribbonReference);
+                feedSrc = 'origin';
+
+            //user arrives from home page or section front
+            } else if (this.pageManager.getUrlParam('hp') === '' || ribbonReference === 'homepage') {
+                feedSrc = 'homepage';
+
+            //user arrives from section front
+            } else if (this.pageManager.getUrlParam('ref')) {
+                ref = this.createAnchor(document.referrer);
+
+                //if nyt and a section front
+                if (/.nytimes.com$/.test(ref.host) && /^\/pages/.test(ref.pathname)) {
+                    feedSrc = 'origin';
+
+                //otherwise load the collection in context
+                } else {
+                    feedSrc = 'context';
+                    loadType = 'context';
+                }
+
+            //user arrives from most emailed
+            } else if (source === 'me') {
+                feedSrc = 'mostEmailed';
+
+            //User arrives from rec engine
+            } else if (source.indexOf('rec') === 0) {
+                feedSrc = 'recommendations';
+
+            //collection in context
+            } else {
+                feedSrc = 'context';
+                loadType = 'context';
+            }
+
+            //The collection that should be loaded
+            //If not empty, headliner recommendations should always be first
+            firstRibbonCollection = this.getFeedSourceValue("headliner");
+            /*
+            if (headliner.contentLength > 0) {
+              firstRibbonCollection = this.getFeedSourceValue("headliner");
+            }
+            else {
+              firstRibbonCollection = this.getFeedSourceValue(feedSrc);
+            }
+            */
+
+            //set load type
+            this.originalLoadType = loadType;
+
+            //always remove the origin, context and the feed's src from the list
+            this.removeFeedByKey('context');
+            this.removeFeedByKey('origin');
+            this.removeFeedByKey(feedSrc);
+
+            //remove recommendations if the user is anonymous
+            userData.ready(function () {
+                if (!userData.isLoggedIn()) {
+                    collectionObj.removeFeedByKey('recommendations');
+                }
+            });
+
+            return firstRibbonCollection;
+        },
+
+        /**
+         * Process a feed that is represented by a function
+         *
+         * @private
+         * @method handleFeedAsFunction
+         * @param feed {Function}
+        **/
+        handleFeedAsFunction: function (feed) {
+            var collection = feed();
+            //if the response is an array, add it to the collection immediately
+            if (_.isArray(collection)) {
+                // reset the collection if there is a single model instead of zero models
+                this[this.length === 1 ? 'reset' : 'add'](collection);
+                this.local(this, 'sync');
+                this.local(this, 'nyt:ribbon-custom-collection-loaded');
+            //if the response is a callback because the data isn't ready, fire it
+            } else {
+                collection();
+            }
+        },
+
+        /**
+         * Pulls the next section off the list and loads its content
+         *
+         * @method loadSection
+        **/
+        loadFeed: function () {
+            var collection, feed;
+            //Special collections (most emailed) are added in bulk with JSON
+            if (this.feedSource.length > 0) {
+                feed = _.values(this.feedSource.shift())[0];
+
+                if (_.isFunction(feed)) {
+                    this.handleFeedAsFunction(feed);
+
+                //Normal URL based feeds use Backbone Fetch
+                } else {
+                    this.feedUrl = feed;
+                    this.fetch({remove: false});
+                }
+
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        /**
+         * return an article model tagged as an ad
+         *
+         * @public
+         * @method getAdModel
+         * @return {Object} an unprocessed article Model with an isAd attribute set to true
+        **/
+        getAdModel: function () {
+            return new Article({ processed: false, isAd: true});
+        },
+
+        /**
+         * Prepare a collection for use with the ribbon and also associate the ribbon content
+         * with the appropriate section name and url
+         *
+         * @method prepCollection
+         * @return {Object} A modified JSON collection that has the collectionId
+        **/
+        prepCollection: function (items, title, url, type) {
+            var i, l;
+            var labelId = this.collectionLabels.length;
+
+            for (i = 0, l = items.length; i < l; i += 1) {
+                items[i].collectionId = labelId;
+            }
+
+            this.collectionLabels.push({
+                title: title,
+                url: url,
+                type: type
+            });
+
+            return items;
+        },
+
+        /**
+         * By passing this method a model, it will return the next model in the collection
+         *
+         * @method next
+         * @param model {Object} In theory, it should be the current article model data passed to the method
+         * @return {Object} Returns the next model
+        **/
+        next: function (model) {
+            var index = this.indexOf(model);
+            var next;
+
+            if (index === this.length) {
+                next = 0;
+            } else {
+                next = index + 1;
+            }
+
+            /**
+             * Fired when the collection moves forward one article.
+             * @event nyt:ribbon-collection-next
+             * @param model {Object} The next model in the collection.
+            **/
+            this.local(this, 'nyt:ribbon-collection-next', this.models[next]);
+
+            return this.models[next];
+        },
+
+        /**
+         * By passing this method a model, it will return the previous model in the collection
+         *
+         * @method previous
+         * @param model {Object} In theory, it should be the current article model data passed to the method
+         * @return {Object} The previous model in the collection.
+        **/
+        previous: function (model) {
+            var index = this.indexOf(model);
+            var prev;
+
+            if (index === 0) {
+                prev = this.models.length;
+            } else {
+                prev = index - 1;
+            }
+
+            /**
+             * Fired when the collection moves back one article.
+             * @event nyt:ribbon-collection-previous
+             * @param model {Object} The previous model in the collection.
+            **/
+            this.local(this, 'nyt:ribbon-collection-previous', this.models[prev]);
+
+            return this.models[prev];
+
+        },
+
+        /**
+         * Import a special collection for use in the ribbon
+         *
+         * @method importCollection
+         * @return {Object} A JSON collection for most emailed
+        **/
+        importCollection: function (settings) {
+            var ribbonCollection = this;
+            var json = settings.collection.toJSON();
+
+            //if there is JSON available, return the data immediately
+            if (json.length > 0) {
+                this.sectionId = settings.collection.getIdentifier();
+                return this.prepCollection(json, settings.name, settings.url, settings.type);
+
+            //if no JSON is available, add the collection back to the front and wait
+            } else {
+                this.feedSource.unshift(settings.callback);
+                return function () {
+                    //when the collection has data, load it into the ribbon
+                    var collectionCallback = function () {
+                        window.clearTimeout(collectionTimeout);
+                        ribbonCollection.loadFeed();
+                    };
+
+                    //if nothing after 1 sec, cancel call and ask for next feed
+                    var collectionTimeout = window.setTimeout(function () {
+                        ribbonCollection.stopSubscribing(settings.collection, 'sync', collectionCallback);
+                        ribbonCollection.feedSource.shift();
+                        ribbonCollection.loadFeed();
+                    }, 1500);
+
+                    //when the collection is available, try the feed again
+                    ribbonCollection.subscribeOnce(settings.collection, 'sync', collectionCallback);
+                };
+            }
+        },
+
+        /**
+         * Gets the collection's identifier to be used to track between ribbon clicks
+         *
+         * @private
+         * @method getIdentifier
+        **/
+        getIdentifier: function () {
+            return this.sectionId;
+        },
+
+        /**
+         * Get the most emailed collection so it can be added to the ribbon.
+         *
+         * @private
+         * @method getMostEmailed
+        **/
+        getMostEmailed: function () {
+            return this.importCollection({
+                collection: mostEmailed.loadData(),
+                name: 'Most Emailed',
+                url: Hosts.www + '/most-popular-emailed',
+                type: 'most-emailed',
+                callback: {mostEmailed: this.getMostEmailed}
+            });
+        },
+
+        /**
+         * Get the recommendations collection so it can be added to the ribbon.
+         *
+         * @private
+         * @method getRecommendations
+        **/
+        getRecommendations: function () {
+            return this.importCollection({
+                collection: recommendations.loadData(),
+                name: 'Recommended',
+                url: Hosts.www + '/recommendations',
+                type: 'news',
+                callback: {recommendations: this.getRecommendations}
+            });
+        },
+
+        /**
+         * Get the home page collection so it can be added to the ribbon.
+         *
+         * @private
+         * @method getTopNews
+        **/
+        getTopNews: function () {
+            return this.importCollection({
+                collection: topNews.loadData(),
+                name: 'Home Page',
+                url: Hosts.www,
+                type: 'news',
+                callback: {homepage: this.getTopNews}
+            });
+        },
+
+        /**
+         * Get Headliner recommendations so it can be added to the ribbon.
+         *
+         * @private
+         * @method getHeadliner
+         **/
+        getHeadliner: function() {
+          return this.importCollection({
+              collection: headliner.loadData(),
+              name: 'Recommended For You',
+              url: 'https://www.mozilla.org',
+              type: 'news',
+              callback: {headliner: this.getHeadliner}
+          });
+        },
+
+        /**
+         * Get the section front of context collection so it can be added to the ribbon.
+         *
+         * @private
+         * @method getContext
+        **/
+        getContext: function () {
+            var collection = this.pageManager.getMeta('article:collection') || '';
+
+            //if collection in context is also in the default set of urls, remove it
+            this.removeFeedByUrl(collection);
+
+            return this.importCollection({
+                collection: context.loadData(),
+                name: context.getName(),
+                url: context.getUrl(),
+                type: 'news',
+                callback: {context: this.getContext}
+            });
+        },
+
+        /**
+         * Get the section front of origin collection so it can be added to the ribbon.
+         *
+         * @private
+         * @method getContext
+        **/
+        getOrigin: function () {
+            this.removeFeedByKey(this.pageManager.getUrlParam('ref'));
+            return this.importCollection({
+                collection: sectionOrigin.loadData(),
+                name: sectionOrigin.getName(),
+                url: sectionOrigin.getUrl(),
+                type: 'news',
+                callback: {origin: this.getOrigin}
+            });
+        }
+    });
+
+    return RibbonCollection;
+});
+/**
  * Creates a new instance of the ribbon feed collection
  *
  * <p><b>Require Path:</b> shared/ribbon/instances/ribbon-data</p>
@@ -11,7 +683,7 @@
 define('shared/ribbon/instances/ribbon-data-headliner',[
     'jquery/nyt',
     'foundation/views/page-manager',
-    'shared/ribbon/collections/ribbon'
+    'shared/ribbon/collections/ribbon-headliner'
 ], function ($, pageManager, Feed) {
     'use strict';
 
