@@ -1,3 +1,7 @@
+#ribbon .news-collection, #ribbon .most-emailed-collection {
+    display: none !important;
+}
+
 .marginalia.most-emailed-marginalia{
     display: none !important;
 }

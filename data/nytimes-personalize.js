@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-self.port.on("recommend_on_page", function(data) {
+self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
   if(!data || !data.length) return;
 
   let ribbon = document.querySelector("#ribbon");
@@ -16,73 +16,12 @@ self.port.on("recommend_on_page", function(data) {
     newRibbon.innerHTML = '<ol class="ribbon-menu"><li class="collection ribbon-loader"><div class="loader"><span class="visually-hidden">Loading...</span></div></li></ol><div class="ribbon-navigation-container"><nav class="ribbon-navigation next"><span class="visually-hidden">See next articles</span><div class="arrow arrow-right"><div class="arrow-conceal"></div></div></nav><nav class="ribbon-navigation previous"><span class="visually-hidden">See previous articles</span><div class="arrow arrow-left"><div class="arrow-conceal"></div></div></nav></div>';
     let node = document.querySelector("#shell").replaceChild(newRibbon, ribbon);
 
-    let elemListItem = document.createElement("li");
-    elemListItem.className = "collection news-collection";
-
-    let collectionMarker = document.createElement("div");
-    collectionMarker.className = "collection-marker";
-    collectionMarker.innerHTML = "<h2 class=\"label\"><a href=\"https://mozilla.org\">Recommended for you</a></h2>";
-
-    let collectionMenu = document.createElement("ol");
-    collectionMenu.className = "collection-menu";
-
-    for (let index in data) {
-      let item = data[index];
-
-      let lineItem = document.createElement("li");
-      let lineItemClassName = "collection-item";
-      if (index == data.length-1) {
-        lineItemClassName += " last-collection-item";
-      }
-      lineItem.className = lineItemClassName;
-      lineItem.style.opacity = 1;
-      lineItem.style.marginLeft = "0px";
-
-      let link = document.createElement("a");
-      link.className = "story-link";
-      link.href = item.url;
-
-      let storyContainer = document.createElement("div");
-      storyContainer.className = "story-container";
-
-      let article = document.createElement("article");
-      article.className = "story theme-summary";
-      if (item.thumbUrl) {
-        let thumbDiv = document.createElement("div");
-        let thumbImg = document.createElement("img");
-        thumbImg.src = item.thumbUrl;
-        thumbDiv.className = "thumb";
-        thumbDiv.appendChild(thumbImg);
-        article.appendChild(thumbDiv);
-      }
-      if (item.topic) {
-        let topicHeader = document.createElement("h3");
-        topicHeader.className = "kicker";
-        topicHeader.innerHTML = item.topic;
-        article.appendChild(topicHeader);
-      }
-      let articleHeader = document.createElement("h2");
-      articleHeader.className = "story-heading";
-      articleHeader.innerHTML = item.title;
-      article.appendChild(articleHeader);
-
-      storyContainer.appendChild(article)
-      link.appendChild(storyContainer);
-      lineItem.appendChild(link);
-      collectionMenu.appendChild(lineItem);
-    }
-
-    elemListItem.appendChild(collectionMarker);
-    elemListItem.appendChild(collectionMenu);
-    let ribbonMenu = newRibbon.querySelector(".ribbon-menu");
-    ribbonMenu.insertBefore(elemListItem, ribbonMenu.firstChild);
-
-    // set ribbon menu width
-    let collectionStoryWidth = 249;
-    let animationDistance = 100;
-    let initialUnitWidth = collectionStoryWidth + animationDistance;
-    let containerWidth = (data.length * initialUnitWidth) + document.querySelector(".collection.ribbon-loader").clientWidth + 1;
-    ribbonMenu.style.width = containerWidth + "px";
+    // inject new backbone collection, view and more
+    let ribbonScriptElem = document.createElement("script");
+    ribbonScriptElem.id = "headliner-script"
+    ribbonScriptElem.src = ribbonScriptUrl;
+    ribbonScriptElem.type = "text/javascript";
+    document.body.appendChild(ribbonScriptElem);
   }
 
   let mostEmailedWidget = document.querySelector("aside.marginalia.most-emailed-marginalia");
