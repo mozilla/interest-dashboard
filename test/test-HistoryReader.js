@@ -186,4 +186,24 @@ exports["test tldCounter"] = function test_TldCounter(assert, done) {
   }).then(done);
 }
 
+exports["test historyVisistor"] = function test_HistoryVisitor(assert, done) {
+  Task.spawn(function() {
+    let visits = [];
+    yield testUtils.promiseClearHistory();
+    yield testUtils.addVisits("www.autoblog.com",2);
+    dayBuffer.clear();
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), dayBuffer, 0);
+    let theVisitor = {
+      consumeHistoryVisit: function(visit) {
+        visits.push(visit);
+      }
+    };
+    yield historyReader.resubmitHistory({startDay: today-20, historyVisitor: theVisitor});
+    assert.equal(visits[0].visitId, 1);
+    assert.equal(visits[1].visitId, 2);
+    assert.equal(visits[2].visitId, 3);
+  }).then(done);
+}
+
+
 test.run(exports);
