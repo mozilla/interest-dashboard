@@ -260,6 +260,184 @@ define('shared/ribbon/instances/ribbon-data-headliner',[
     });
 
 });
+define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
+  var templates = {};
+  templates["ribbonPageNavTip"] = function(obj){var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};with(obj||{}){__p+='<div class="placeholder-button-group">\n<div class="placeholder-button"><div class="previous"></div></div>\n<div class="placeholder-button"><div class="next"></div></div>\n</div>\n<h4>New!</h4>\n<p>Use your left and right arrow keys to browse articles.</p>';}return __p;};
+  templates["ribbonPageNavigationHeadliner"] = function (obj) {
+    var __t, __p = '',
+        __j = Array.prototype.join,
+        print = function () {
+          __p += __j.call(arguments, '');
+        };
+    with(obj || {}) {
+      __p += '<nav data-href="' + ((__t = (link)) == null ? '' : __t) + '" data-queue-ad="' + ((__t = (shouldQueueAd)) == null ? '' : __t) + '" class="ribbon-page-navigation-headliner ' + ((__t = (direction)) == null ? '' : __t) + '" style="display:' + ((__t = (display)) == null ? '' : __t) + '; overflow:hidden;">\n<a href="' + ((__t = (link)) == null ? '' : __t) + '" >\n<article class="story theme-summary ';
+      if (!image) {
+        __p += ' no-thumb ';
+      }
+      __p += '" style="display:none;">\n';
+      if (image) {
+        __p += '\n<div class="thumb">\n<img src="' + ((__t = (image.url)) == null ? '' : __t) + '" />\n</div>\n';
+      }
+      __p += '\n<div class="summary">\n';
+      if (kicker) {
+        __p += '\n<h3 class="kicker">' + ((__t = (kicker)) == null ? '' : __t) + '</h3>\n';
+      }
+      __p += '\n<h2 title="' + ((__t = (title)) == null ? '' : __t) + '" class="story-heading">' + ((__t = (title)) == null ? '' : __t) + '</h2>\n</div>\n</article>\n<div class="arrow arrow-';
+      if (direction === 'next') {
+        __p += 'right';
+      } else {
+        __p += 'left';
+      }
+      __p += '">\n<span class="visually-hidden">Go to the ' + ((__t = (direction)) == null ? '' : __t) + ' story</span>\n<div class="arrow-conceal"></div>\n</div>\n</a>\n</nav>';
+    }
+    return __p;
+  };
+  return templates;
+});
+/**
+ * The headliner ribbon page navigation
+ *
+ * <p><b>Require Path:</b> shared/ribbon/views/ribbon-page-navigation-headliner</p>
+ *
+ * @module Shared
+ * @submodule Shared.Ribbon
+ * @namespace Ribbon.PageNavigation
+ * @class View
+ * @constructor
+ * @extends foundation/views/base-view
+**/
+define('shared/ribbon/views/ribbon-page-navigation-headliner', [
+    'jquery/nyt',
+    'underscore/nyt',
+    'shared/ribbon/views/ribbon-page-navigation',
+    'foundation/views/page-manager',
+    'shared/ribbon/instances/ribbon-data-headliner',
+    'shared/ribbon/templates-headliner',
+    'shared/modal/views/modal',
+    'foundation/models/page-storage',
+    'shared/ribbon/views/helpers/mixin'
+], function ($, _, RibbonPageNavigation, pageManager, feed, templates, Modal, pageStorage, RibbonMixin) {
+    'use strict';
+
+    var HeadlinerRibbonPageNavigation = RibbonPageNavigation.extend({
+      initialize: function () {
+        _.bindAll(this, 'preventScroll', 'checkForFeed');
+
+        this.feed = feed;
+        this.subscribe('nyt:ads-fire-ribbon-interstitial', this.ribbonInterstitialFired);
+
+        if (this.pageManager.isDomReady()) {
+          this.handlePageReady();
+        } else {
+          this.subscribe('nyt:page-ready', this.handlePageReady);
+        }
+
+        this.trackingBaseData = {
+          'module': 'ArrowsNav',
+        'contentCollection': this.pageManager.getMeta('article:section')
+        };
+
+      },
+      events: {
+        'click .ribbon-page-navigation-headliner': 'changeArticle',
+        'mouseenter .ribbon-page-navigation-headliner': 'showArticle',
+        'mouseleave .ribbon-page-navigation-headliner': 'hideArticle',
+        'mouseleave #ribbon-page-navigation-modal-headliner .modal': 'hideArticle'
+      },
+      handlePageReady: function () {
+        this.restrict = false;
+        this.createAdsDeferral(this.checkForFeed);
+      },
+      createTemplate: function (dir, article) {
+        var adRelationship, shouldQueueAd, adPosition;
+
+        var data = {
+          direction       : dir,
+          display         : 'none',
+          title           : '',
+          image           : '',
+          link            : '',
+          kicker          : '',
+          shouldQueueAd   : false
+        };
+
+        if (article) {
+          // if there is an ad, find its position and determine whether it should be fired on click / arrow
+          if (_.indexOf(this.pageManager.getMeta('ads_adNames'), 'Ribbon') >= 0) {
+            adPosition = this.getAdIndex(this.activeStoryIndex);
+            adRelationship = adPosition - _.indexOf(this.feed.models, article);
+            shouldQueueAd = ((dir === 'previous' && adRelationship === 1) || (dir === 'next' && adRelationship === 0));
+          }
+
+          data = {
+            direction       : dir,
+            display         : 'block',
+            title           : article.get('headline') || article.get('title'),
+            image           : article.getCrop('thumbStandard'),
+            link            : this.makeLinkRelative(article.get('link'), adPosition),
+            kicker          : article.get('kicker'),
+            shouldQueueAd   : shouldQueueAd
+          };
+        }
+
+        return templates.ribbonPageNavigationHeadliner(data);
+
+      },
+      hideArticle: function (event) {
+        var arrowsView = this;
+        var $tooltip = $('#ribbon-page-navigation-modal-headliner').find('.modal');
+        var $arrow = $tooltip.is(event.currentTarget) ? $('.ribbon-page-navigation-headliner.next') : $(event.currentTarget);
+
+        clearTimeout(this.timeout);
+
+        //when the nav isn't expanded and not moving on a tooltip exit out
+        if (!this.expanded || $tooltip.has(event.relatedTarget).length > 0) {
+          return;
+        }
+
+        $arrow.animate({
+          width: arrowsView.origWidth
+        }, {
+          duration: this.speed,
+          complete: function () {
+            $arrow.css('width', '');
+          }
+        }).find('.story').hide();
+        this.expanded = false;
+
+      },
+      addToolTip: function () {
+        var ribbonObj = this;
+        var openTimeout;
+
+        var ribbonTip = new Modal({
+          id: 'ribbon-page-navigation-modal-headliner',
+          modalContent: templates.ribbonPageNavTip(),
+          binding: '.ribbon-page-navigation-headliner.next',
+          tailDirection: 'right',
+          canOpenOnHover: true,
+          width: '322px',
+          mouseEnterDelay: 500,
+          tailTopOffset: -5,
+          tailLeftOffset: 9,
+          closeOnMouseOut: true,
+          openCallback: function () {
+            pageStorage.save('ribbon_hasViewedTooltip', true);
+            openTimeout = window.setTimeout(ribbonTip.close, 20000);
+            ribbonObj.subscribeOnce('nyt:page-scroll', ribbonTip.close);
+          },
+          closeCallback: function () {
+            ribbonTip.removeFromPage();
+            window.clearTimeout(openTimeout);
+          }
+        });
+
+        //Add modal to page
+        ribbonTip.addToPage();
+      }
+    });
+    return HeadlinerRibbonPageNavigation;
+});
 /**
  * Adds the ability to navigate through a ribbon on a page.
  *
@@ -277,15 +455,35 @@ define('shared/ribbon/views/ribbon-headliner',[
     'underscore/nyt',
     'shared/ribbon/views/ribbon',
     'shared/ribbon/templates',
-    'shared/ribbon/views/ribbon-page-navigation',
+    'shared/ribbon/views/ribbon-page-navigation-headliner',
     'shared/ribbon/instances/ribbon-data-headliner',
     'shared/ribbon/views/helpers/mixin'
-], function ($, _, RibbonView, Templates, RibbonPageNavigation, feed, RibbonMixin) {
+], function ($, _, RibbonView, Templates, HeadlinerRibbonPageNavigation, feed, RibbonMixin) {
     'use strict';
 
     var HeadlinerRibbonView = RibbonView.extend({
         el: '#ribbon-headliner',
         collection: feed,
+        
+        /** collection of actions that allow rendering and data init
+         *
+         * @private
+         * @method assignListenersAndLoad
+        **/
+        assignListenersAndLoad: function () {
+            window.clearTimeout(this.adxTimeout);
+            this.stopSubscribing('nyt:ads-rendered', this.assignListenersAndLoad);
+
+            //fire on initial load
+            this.listenTo(this.collection, 'sync', this.render);
+            this.listenToOnce(this.collection, 'sync', this.renderFurniture);
+            this.listenTo(this.collection, 'nyt:ribbon-custom-collection-loaded', this.render);
+            this.collection.loadData();
+
+            //create the page navigation arrows so they sit in the story body
+            new HeadlinerRibbonPageNavigation();
+
+        },
     });
 
     return HeadlinerRibbonView;
