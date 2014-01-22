@@ -8,10 +8,13 @@
 
 var tokenizerFactory = {
   getTokenizer: function({regionCode, urlStopwordSet, model, rules}) {
+    let Tokenizer = null;
     if (regionCode == 'zh-CN') {
       importScripts("tokenizers/zh-CN.js");
+      Tokenizer = Tokenizer_ZH_CN;
     } else {
       importScripts("tokenizers/en-US.js");
+      Tokenizer = Tokenizer_EN_US;
     }
 
     return new Tokenizer({

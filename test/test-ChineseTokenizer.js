@@ -18,9 +18,9 @@ scriptLoader.loadSubScript(data.url("models/zh-CN/41-cat/textModel.json"));
 scriptLoader.loadSubScript(data.url("interests/tokenizers/zh-CN.js"));
 
 exports["test ChineseTokeinzer"] = function test_ChineseTokenizer(assert) {
-  testUtils.isIdentical(assert, !!Tokenizer, true);
+  testUtils.isIdentical(assert, !!Tokenizer_ZH_CN, true);
 
-  let tokenizer = new Tokenizer({
+  let tokenizer = new Tokenizer_ZH_CN({
     urlStopwordSet: interestsUrlStopwords,
     model: {
       classes: {

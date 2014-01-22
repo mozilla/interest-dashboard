@@ -8,12 +8,12 @@
 
 const kNotWordPattern = /[^a-z0-9 ]+/g;
 
-function Tokenizer({urlStopwordSet, model, rules}) {
+function Tokenizer_EN_US({urlStopwordSet, model, rules}) {
   this._urlStopwordSet = urlStopwordSet;
 }
 
-Tokenizer.prototype = {
-  tokenize: function(aUrl, aTitle, aKeywords) {
+Tokenizer_EN_US.prototype = {
+  tokenize: function(aUrl, aTitle) {
     aUrl = aUrl.toLowerCase().replace(kNotWordPattern, " ");
 
     let tokens = [];
@@ -25,11 +25,8 @@ Tokenizer.prototype = {
       }
     }, this);
 
-    aKeywords = aKeywords || '';
-
     aTitle = (aTitle) ? aTitle.toLowerCase().replace(kNotWordPattern, " ") : "";
     tokens = tokens.concat(aTitle.split(/\s+/));
-    tokens = tokens.concat(aKeywords.split(/\s+/));
 
     return tokens;
   }
