@@ -27,6 +27,7 @@ const {testUtils} = require("./helpers");
 const {getRelevantPrefs} = require("Utils");
 const {StudyApp} = require("Application");
 const {getTLDCounts} = require("HistoryReader");
+const {NYTimesHistoryVisitor} = require("NYTimesHistoryVisitor");
 const sampleData = require("./sampleData");
 
 StudyApp.setSourceUri(NetUtil.newURI("http://localhost"));
@@ -45,6 +46,7 @@ function makeTestPayload(referencePayload, interests) {
     version: storage.version,
     locale: Services.prefs.getCharPref("general.useragent.locale"),
     tldCounter: getTLDCounts(),
+    nytVisits: NYTimesHistoryVisitor.getVisits() || [],
     interests: interests || storage.interests
   };
 }

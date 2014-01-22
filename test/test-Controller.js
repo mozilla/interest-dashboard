@@ -13,6 +13,7 @@ Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
 const {Controller} = require("Controller");
+const {NYTimesHistoryVisitor} = require("NYTimesHistoryVisitor");
 const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
 const {storage} = require("sdk/simple-storage");
@@ -142,6 +143,7 @@ exports["test clear storage"] = function test_ClearStorage(assert, done) {
                        "www.rivals.com",
                        "www.mysql.com",
                        "www.cracked.com",
+                       "www.nytimes.com",
                        "www.androidpolice.com"];
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits(hostArray,59);
@@ -158,6 +160,7 @@ exports["test clear storage"] = function test_ClearStorage(assert, done) {
       assert.equal(storage.dayBufferInterests, undefined);
       assert.equal(storage.interests, undefined);
       assert.equal(storage.ranking, undefined);
+      assert.equal(storage.nytimesVisits, undefined);
       assert.equal(storage.hasOwnProperty("interests"), false);
 
       // avoid intermittent unit-test failures caused by storage cleanup
@@ -177,6 +180,25 @@ exports["test get uuid"] = function test_GetUUID(assert, done) {
       let testController = new Controller();
       assert.ok(testController.getUserID() != null);
       assert.ok(testController.getUserID() != "");
+    } catch(ex) {
+      dump(ex + " ERROR\n");
+    }
+  }).then(done);
+}
+
+exports["test nytCollect"] = function test_NYTCollect(assert, done) {
+  Task.spawn(function() {
+    try {
+      let hostArray = ["www.nytimes.com"];
+      yield testUtils.promiseClearHistory();
+      yield testUtils.addVisits(hostArray,1);
+      let testController = new Controller();
+      testController.clear();
+      yield testController.submitHistory({flush: true});
+      assert.equal(NYTimesHistoryVisitor.getVisits().length, 2);
+      yield testController.stopAndClearStorage();
+      assert.ok(NYTimesHistoryVisitor.getVisits() == null);
+      assert.ok(true);
     } catch(ex) {
       dump(ex + " ERROR\n");
     }
