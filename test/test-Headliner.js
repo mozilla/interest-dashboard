@@ -79,4 +79,65 @@ exports["test Headliner client request error"] = function test_HeadlinerRequestE
   }).then(done);
 }
 
+exports["test Headliner client refresh"] = function test_HeadlinerClientRefresh(assert, done) {
+  Task.spawn(function() {
+    let interests = {Arts:0.9, Autos:0.5, Design:0.3};
+
+    let server = new nsHttpServer();
+    server.start(-1);
+    let serverPort = server.identity.primaryPort;
+    let articleCount = 0;
+    let articles = [];
+
+    let failRequest = (request, response) => {
+      let bodySize = request._bodyInputStream.available();
+      response.setHeader("Content-Type", "text/plain", false);
+      response.setStatusLine(request.httpVersion, 500, "Server Error");
+      response.write("Internal Server error");
+    }
+    let successRequest = (request, response) => {
+      let bodySize = request._bodyInputStream.available();
+      articleCount += 1;
+      response.setHeader("Content-Type", "application/json", false);
+      response.setStatusLine(request.httpVersion, 200, "OK");
+      articles.push({article: articleCount});
+      response.write(JSON.stringify(articles));
+    }
+
+    server.registerPathHandler("/fail", (request, response) => {
+      failRequest(request, response);
+    });
+
+    server.registerPathHandler("/success", (request, response) => {
+      successRequest(request, response);
+    });
+
+    let failUrl = "http://localhost:" + serverPort + "/fail";
+    let successUrl = "http://localhost:" + serverPort + "/success";
+
+    let headliner = new HeadlinerPersonalizationAPI(successUrl);
+    let oldData;
+    let refreshed;
+    let cachedData;
+
+    cachedData = yield headliner.getContent(interests);
+    refreshed = yield headliner.refreshContent(interests);
+    assert.notEqual(refreshed.length, cachedData.length, "content should have been refreshed after a successful consume");
+
+    oldData = refreshed;
+    headliner._personalizationUrl = failUrl;
+    refreshed = yield headliner.refreshContent(interests);
+    assert.equal(refreshed, null, "result of a failed refresh should be null");
+    cachedData = yield headliner.getContent(interests);
+    testUtils.isIdentical(assert, cachedData, oldData, "content cache should still show old results");
+
+    headliner._personalizationUrl = successUrl;
+    refreshed = yield headliner.refreshContent(interests);
+    cachedData = yield headliner.getContent(interests);
+    testUtils.isIdentical(assert, cachedData, refreshed, "content cache should show new results");
+
+    server.stop(function(){});
+  }).then(done);
+}
+
 require("sdk/test").run(exports);
