@@ -14,23 +14,19 @@ Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
 let testDomainRules = {
-  "bar.sina.com.cn" : {
+  "sina.com.cn" : {
     "__ANY": [
       "News"
     ],
 
-    "__PATH": {
-      "/video": {
-        "__ANY" : [
-          "Video"
-        ],
+    "bar. /video": [
+      "Video"
+    ],
 
-        // 电视剧
-        "\u7535\u89C6\u5267": [
-          "TV Series"
-        ],
-      }
-    }
+    // 电视剧
+    "bar. /video \u7535\u89C6\u5267": [
+      "TV Series"
+    ]
   }
 };
 

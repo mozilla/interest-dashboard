@@ -1,162 +1,700 @@
 var interestsData = {
-    "digi.tech.qq.com": {
-        "__PATH": {
-            "/mobile": {
-                "__ANY": [
-                    "mobile"
-                ]
-            },
-            "/yx.htm": {
-                "__ANY": [
-                    "photography-dc"
-                ]
-            },
-            "/hea": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            }
-        },
-        "__ANY": [
+    "qq.com": {
+        "digi. tech. /mobile": [
+            "mobile"
+        ],
+        "digi. tech.": [
             "digital"
-        ]
-    },
-    "digi.ifeng.com": {
-        "__PATH": {
-            "/mobile": {
-                "__ANY": [
-                    "mobile"
-                ]
-            },
-            "/dc": {
-                "__ANY": [
-                    "photography-dc"
-                ]
-            },
-            "/ehome": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            }
-        },
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "mobile.163.com": {
-        "__ANY": [
-            "mobile"
-        ]
-    },
-    "product.mobile.163.com": {
-        "__ANY": [
-            "mobile"
-        ]
-    },
-    "mobile.sina.com.cn": {
-        "__ANY": [
-            "mobile"
-        ]
-    },
-    "tech.sina.com.cn": {
-        "__PATH": {
-            "/mobile": {
-                "__ANY": [
-                    "mobile"
-                ]
-            },
-            "/n": {
-                "__ANY": [
-                    "digital"
-                ]
-            },
-            "/digital": {
-                "__ANY": [
-                    "photography-dc"
-                ]
-            },
-            "/digi": {
-                "__ANY": [
-                    "photography-dc"
-                ]
-            },
-            "/elec": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            },
-            "/e": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            }
-        },
-        "__ANY": [
+        ],
+        "digi. tech. /yx.htm": [
+            "photography-dc"
+        ],
+        "auto.": [
+            "auto"
+        ],
+        "house.": [
+            "realestate"
+        ],
+        "digi. tech. /hea": [
+            "home-applicance"
+        ],
+        "henan. /jiaju": [
+            "home-decoration"
+        ],
+        "fashion. /vogue": [
+            "fashion-women"
+        ],
+        "fashion. /gentlemen": [
+            "fashion-men"
+        ],
+        "fashion. /beauty": [
+            "beauty"
+        ],
+        "health.": [
+            "health"
+        ],
+        "cul.": [
+            "book"
+        ],
+        "dushu.": [
+            "book"
+        ],
+        "chuangshi.": [
+            "online-novel"
+        ],
+        "baby.": [
+            "parenting"
+        ],
+        "edu.": [
+            "education"
+        ],
+        "go.": [
+            "travel"
+        ],
+        "travel. go.": [
+            "travel"
+        ],
+        "tech.": [
             "technology"
+        ],
+        "v. /news": [
+            "news"
+        ],
+        "news.": [
+            "news"
+        ],
+        "mil.": [
+            "militery"
+        ],
+        "finance.": [
+            "finance"
+        ],
+        "v. /variety": [
+            "entertainment-gossip"
+        ],
+        "v. /ent": [
+            "entertainment-gossip"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "v. /hotshare": [
+            "humor"
+        ],
+        "joke.": [
+            "humor"
+        ],
+        "fm.": [
+            "music"
+        ],
+        "v. /movie": [
+            "movie"
+        ],
+        "v. /cinema": [
+            "movie"
+        ],
+        "film.": [
+            "movie"
+        ],
+        "v. /tv": [
+            "TV-series"
+        ],
+        "v. /games": [
+            "game"
+        ],
+        "games.": [
+            "game"
+        ],
+        "lol.": [
+            "game"
+        ],
+        "v. /cartoon": [
+            "anime-manga"
+        ],
+        "comic.": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "v. /sports": [
+            "sports"
+        ],
+        "sports. /nba": [
+            "basketball"
+        ],
+        "sports. /cba": [
+            "basketball"
+        ],
+        "sports. /nbavideo": [
+            "basketball"
+        ],
+        "v. /l /sports /basketball": [
+            "basketball"
+        ],
+        "sports. /ucl": [
+            "soccer"
+        ],
+        "sports. /premierleague": [
+            "soccer"
+        ],
+        "sports. /laliga": [
+            "soccer"
+        ],
+        "sports. /seriea": [
+            "soccer"
+        ],
+        "sports. /csocce": [
+            "soccer"
+        ],
+        "sports. /isocce": [
+            "soccer"
+        ],
+        "v. /l /sports /isocce": [
+            "soccer"
+        ],
+        "v. /sports /isocce": [
+            "soccer"
         ]
     },
-    "detail.zol.com.cn": {
-        "__PATH": {
-            "/cell_phone": {
-                "__ANY": [
-                    "mobile"
-                ]
-            },
-            "/cell_phone_index": {
-                "__ANY": [
-                    "mobile"
-                ]
-            },
-            "/notebook_index": {
-                "__ANY": [
-                    "digital"
-                ]
-            },
-            "/notebook": {
-                "__ANY": [
-                    "digital"
-                ]
-            },
-            "/tablepc": {
-                "__ANY": [
-                    "digital"
-                ]
-            },
-            "/digital_camera_index": {
-                "__ANY": [
-                    "photography-dc"
-                ]
-            },
-            "/digital_camera": {
-                "__ANY": [
-                    "photography-dc"
-                ]
-            },
-            "/digital_tv": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            },
-            "/icebox": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            },
-            "/air-condition": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            },
-            "/washer": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            }
-        }
-    },
-    "mobile.zol.com.cn": {
-        "__ANY": [
+    "ifeng.com": {
+        "digi. /mobile": [
             "mobile"
+        ],
+        "digi.": [
+            "digital"
+        ],
+        "tech. /digi": [
+            "digital"
+        ],
+        "digi. /dc": [
+            "photography-dc"
+        ],
+        "tech. /digi /dc": [
+            "photography-dc"
+        ],
+        "auto.": [
+            "auto"
+        ],
+        "house.": [
+            "realestate"
+        ],
+        "app. house.": [
+            "realestate"
+        ],
+        "digi. /ehome": [
+            "home-applicance"
+        ],
+        "tech. /digi /ehome": [
+            "home-applicance"
+        ],
+        "home.": [
+            "home-decoration"
+        ],
+        "fashion. /trends": [
+            "fashion-women"
+        ],
+        "fashion. /luxury": [
+            "luxury"
+        ],
+        "cosmetics.": [
+            "beauty"
+        ],
+        "fashion. /body": [
+            "beauty",
+            "fitness"
+        ],
+        "fashion. /health": [
+            "health"
+        ],
+        "book.": [
+            "book"
+        ],
+        "fashion. /baby": [
+            "parenting"
+        ],
+        "bbs. baby.": [
+            "parenting"
+        ],
+        "edu.": [
+            "education"
+        ],
+        "v. /gongkaike": [
+            "mooc"
+        ],
+        "fashion. /travel": [
+            "travel"
+        ],
+        "tech.": [
+            "technology"
+        ],
+        "v. /news": [
+            "news"
+        ],
+        "news.": [
+            "news"
+        ],
+        "v. /mil": [
+            "militery"
+        ],
+        "news. /mil": [
+            "militery"
+        ],
+        "phtv. /program /jqgcs": [
+            "militery"
+        ],
+        "finance.": [
+            "finance"
+        ],
+        "v. /ent": [
+            "entertainment-gossip"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "v. /movie": [
+            "movie"
+        ],
+        "v. /teleplay": [
+            "TV-series"
+        ],
+        "v. /game": [
+            "game"
+        ],
+        "games.": [
+            "game"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "live. sports.": [
+            "sports"
+        ]
+    },
+    "163.com": {
+        "mobile.": [
+            "mobile"
+        ],
+        "product. mobile.": [
+            "mobile"
+        ],
+        "digi.": [
+            "digital"
+        ],
+        "digi. /dc": [
+            "photography-dc"
+        ],
+        "auto.": [
+            "auto"
+        ],
+        "product. auto.": [
+            "auto"
+        ],
+        "house.": [
+            "realestate"
+        ],
+        "hea.": [
+            "home-applicance"
+        ],
+        "digi. /television": [
+            "home-applicance"
+        ],
+        "digi. /icebox": [
+            "home-applicance"
+        ],
+        "digi. /ac": [
+            "home-applicance"
+        ],
+        "digi. /washer": [
+            "home-applicance"
+        ],
+        "digi. /waterheater": [
+            "home-applicance"
+        ],
+        "home.": [
+            "home-decoration"
+        ],
+        "bbs. home.": [
+            "home-decoration"
+        ],
+        "fushi.": [
+            "fashion-women"
+        ],
+        "lady. /beauty": [
+            "beauty"
+        ],
+        "yuedu.": [
+            "book"
+        ],
+        "baby.": [
+            "parenting"
+        ],
+        "bbs. baby.": [
+            "parenting"
+        ],
+        "edu.": [
+            "education"
+        ],
+        "open.": [
+            "mooc"
+        ],
+        "travel.": [
+            "travel"
+        ],
+        "tech.": [
+            "technology"
+        ],
+        "discovery.": [
+            "science"
+        ],
+        "news.": [
+            "news"
+        ],
+        "war.": [
+            "militery"
+        ],
+        "money.": [
+            "finance"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "game.": [
+            "game"
+        ],
+        "product. game.": [
+            "game"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "sports. /nba": [
+            "basketball"
+        ],
+        "nba. sports.": [
+            "basketball"
+        ],
+        "sports. /cba": [
+            "basketball"
+        ],
+        "cba. sports.": [
+            "basketball"
+        ],
+        "cbachina.": [
+            "basketball"
+        ],
+        "sports. /world": [
+            "soccer"
+        ],
+        "sports. /yc": [
+            "soccer"
+        ],
+        "sports. /xj": [
+            "soccer"
+        ],
+        "sports. /yj": [
+            "soccer"
+        ],
+        "sports. /dj": [
+            "soccer"
+        ],
+        "sports. /gjb": [
+            "soccer"
+        ],
+        "sports. /china": [
+            "soccer"
+        ],
+        "sports. /zc": [
+            "soccer"
+        ],
+        "sports. /gjd": [
+            "soccer"
+        ],
+        "sports. /nz": [
+            "soccer"
+        ]
+    },
+    "sina.com.cn": {
+        "mobile.": [
+            "mobile"
+        ],
+        "tech. /mobile": [
+            "mobile"
+        ],
+        "digi.": [
+            "digital"
+        ],
+        "digi. /notebook": [
+            "digital"
+        ],
+        "tech. /n": [
+            "digital"
+        ],
+        "tech. /digital": [
+            "photography-dc"
+        ],
+        "tech. /digi": [
+            "photography-dc"
+        ],
+        "auto.": [
+            "auto"
+        ],
+        "house.": [
+            "realestate"
+        ],
+        "esf.": [
+            "realestate"
+        ],
+        "tech. /elec": [
+            "home-applicance"
+        ],
+        "tech. /e": [
+            "home-applicance"
+        ],
+        "jiaju.": [
+            "home-decoration"
+        ],
+        "bbs. jiaju.": [
+            "home-decoration"
+        ],
+        "slide. fashion. /s": [
+            "fashion-women"
+        ],
+        "fashion. /s": [
+            "fashion-women"
+        ],
+        "fashion. /style": [
+            "fashion-women"
+        ],
+        "fashion. /b": [
+            "beauty"
+        ],
+        "fashion. /body": [
+            "beauty"
+        ],
+        "fashion. /cosmetics": [
+            "beauty"
+        ],
+        "fashion. /beauty": [
+            "beauty"
+        ],
+        "fashion. /d /ft": [
+            "fitness"
+        ],
+        "health.": [
+            "health"
+        ],
+        "book.": [
+            "online-novel"
+        ],
+        "vip. book.": [
+            "online-novel"
+        ],
+        "fashion. /w": [
+            "wedding"
+        ],
+        "fashion. /wedding": [
+            "wedding"
+        ],
+        "baby.": [
+            "parenting"
+        ],
+        "edu.": [
+            "education"
+        ],
+        "open.": [
+            "mooc"
+        ],
+        "travel.": [
+            "travel"
+        ],
+        "tech.": [
+            "technology"
+        ],
+        "video. /news": [
+            "news"
+        ],
+        "video. /p /news": [
+            "news"
+        ],
+        "news.": [
+            "news"
+        ],
+        "slide. news.": [
+            "news"
+        ],
+        "video. /mil": [
+            "militery"
+        ],
+        "video. /p /news /mil": [
+            "militery"
+        ],
+        "mil. news.": [
+            "militery"
+        ],
+        "finance.": [
+            "finance"
+        ],
+        "video. /movie /zongyi": [
+            "entertainment-gossip"
+        ],
+        "video. /ent": [
+            "entertainment-gossip"
+        ],
+        "video. /p /ent": [
+            "entertainment-gossip"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "ent. /gossip": [
+            "entertainment-gossip"
+        ],
+        "ent. /s": [
+            "entertainment-gossip"
+        ],
+        "video. /gaoxiao": [
+            "humor"
+        ],
+        "video. /p /news /gaoxiao": [
+            "humor"
+        ],
+        "yue.": [
+            "music"
+        ],
+        "ent. /y": [
+            "music"
+        ],
+        "video. /movie /movie": [
+            "movie"
+        ],
+        "ent. /film": [
+            "movie"
+        ],
+        "ent. /m": [
+            "movie"
+        ],
+        "video. /movie /teleplay": [
+            "TV-series"
+        ],
+        "ent. /tv": [
+            "TV-series"
+        ],
+        "ent. /v": [
+            "TV-series"
+        ],
+        "games.": [
+            "game"
+        ],
+        "video. /movie /comic": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "video. /sports": [
+            "sports"
+        ],
+        "video. /p /sports": [
+            "sports"
+        ],
+        "sports. /nba": [
+            "basketball"
+        ],
+        "sports. /cba": [
+            "basketball"
+        ],
+        "sports. /global": [
+            "soccer"
+        ],
+        "sports. /g": [
+            "soccer"
+        ],
+        "sports. /csl": [
+            "soccer"
+        ],
+        "sports. /j": [
+            "soccer"
+        ]
+    },
+    "zol.com.cn": {
+        "detail. /cell_phone": [
+            "mobile"
+        ],
+        "detail. /cell_phone_index": [
+            "mobile"
+        ],
+        "mobile.": [
+            "mobile"
+        ],
+        "__ANY": [
+            "digital"
+        ],
+        "power.": [
+            "digital"
+        ],
+        "nb.": [
+            "digital"
+        ],
+        "detail. /notebook_index": [
+            "digital"
+        ],
+        "detail. /notebook": [
+            "digital"
+        ],
+        "pad.": [
+            "digital"
+        ],
+        "detail. /tablepc": [
+            "digital"
+        ],
+        "diy.": [
+            "digital"
+        ],
+        "detail. /digital_camera_index": [
+            "photography-dc"
+        ],
+        "detail. /digital_camera": [
+            "photography-dc"
+        ],
+        "dcdv.": [
+            "photography-dc"
+        ],
+        "jd.": [
+            "home-applicance"
+        ],
+        "tv.": [
+            "home-applicance"
+        ],
+        "detail. /digital_tv": [
+            "home-applicance"
+        ],
+        "icebox.": [
+            "home-applicance"
+        ],
+        "detail. /icebox": [
+            "home-applicance"
+        ],
+        "ac.": [
+            "home-applicance"
+        ],
+        "detail. /air-condition": [
+            "home-applicance"
+        ],
+        "washer.": [
+            "home-applicance"
+        ],
+        "detail. /washer": [
+            "home-applicance"
+        ],
+        "xjd.": [
+            "home-applicance"
+        ],
+        "news. /tech": [
+            "technology"
+        ],
+        "jishu.": [
+            "programming"
         ]
     },
     "amazon.cn": {
@@ -260,574 +798,589 @@ var interestsData = {
             "book"
         ]
     },
-    "item.taobao.com": {
-        "\u624b\u673a": [
+    "taobao.com": {
+        "item. \u624b\u673a": [
             "mobile"
         ],
-        "\u7b14\u8bb0\u672c": [
+        "item. \u7b14\u8bb0\u672c": [
             "digital"
         ],
-        "\u53f0\u5f0f": [
+        "item. \u53f0\u5f0f": [
             "digital"
         ],
-        "\u5e73\u677f": [
+        "item. \u5e73\u677f": [
             "digital"
         ],
-        "\u9f20\u6807": [
+        "item. \u9f20\u6807": [
             "digital"
         ],
-        "\u952e\u76d8": [
+        "item. \u952e\u76d8": [
             "digital"
         ],
-        "\u786c\u76d8": [
+        "item. \u786c\u76d8": [
             "digital"
         ],
-        "U\u76d8": [
+        "item. U\u76d8": [
             "digital"
         ],
-        "\u4e3b\u677f": [
+        "item. \u4e3b\u677f": [
             "digital"
         ],
-        "\u663e\u5361": [
+        "item. \u663e\u5361": [
             "digital"
         ],
-        "CPU": [
+        "item. CPU": [
             "digital"
         ],
-        "\u5185\u5b58": [
+        "item. \u5185\u5b58": [
             "digital"
         ],
-        "\u51e0\u9879": [
+        "item. \u51e0\u9879": [
             "digital"
         ],
-        "\u5e97\u5458": [
+        "item. \u5e97\u5458": [
             "digital"
         ],
-        "\u663e\u793a\u5668": [
+        "item. \u663e\u793a\u5668": [
             "digital"
         ],
-        "\u88c5\u673a": [
+        "item. \u88c5\u673a": [
             "digital"
         ],
-        "\u76f8\u673a": [
+        "item. \u76f8\u673a": [
             "photography-dc"
         ],
-        "\u7535\u89c6": [
+        "item. \u7535\u89c6": [
             "home-applicance"
         ],
-        "\u6d17\u8863\u673a": [
+        "item. \u6d17\u8863\u673a": [
             "home-applicance"
         ],
-        "\u51b0\u7bb1": [
+        "item. \u51b0\u7bb1": [
             "home-applicance"
         ],
-        "\u7a7a\u8c03": [
+        "item. \u7a7a\u8c03": [
             "home-applicance"
         ],
-        "\u70ed\u6c34\u5668": [
+        "item. \u70ed\u6c34\u5668": [
             "home-applicance"
         ],
-        "\u98ce\u6247": [
+        "item. \u98ce\u6247": [
             "home-applicance"
         ],
-        "\u5438\u5c18\u5668": [
+        "item. \u5438\u5c18\u5668": [
             "home-applicance"
         ],
-        "\u51c0\u5316\u5668": [
+        "item. \u51c0\u5316\u5668": [
             "home-applicance"
         ],
-        "\u70df\u673a": [
+        "item. \u70df\u673a": [
             "home-applicance"
         ],
-        "\u7535\u78c1\u7089": [
+        "item. \u7535\u78c1\u7089": [
             "home-applicance"
         ],
-        "\u69a8\u6c41\u673a": [
+        "item. \u69a8\u6c41\u673a": [
             "home-applicance"
         ],
-        "\u8c46\u6d46\u673a": [
+        "item. \u8c46\u6d46\u673a": [
             "home-applicance"
         ],
-        "\u5fae\u6ce2\u7089": [
+        "item. \u5fae\u6ce2\u7089": [
             "home-applicance"
         ],
-        "\u7535\u538b\u529b\u9505": [
+        "item. \u7535\u538b\u529b\u9505": [
             "home-applicance"
         ],
-        "\u7535\u996d\u7172": [
+        "item. \u7535\u996d\u7172": [
             "home-applicance"
         ],
-        "\u5973\u88c5": [
+        "item. \u5973\u88c5": [
             "fashion-women"
         ],
-        "\u5973\u978b": [
+        "item. \u5973\u978b": [
             "fashion-women"
         ],
-        "\u8fde\u8863\u88d9": [
+        "item. \u8fde\u8863\u88d9": [
             "fashion-women"
         ],
-        "\u6253\u5e95\u886b": [
+        "item. \u6253\u5e95\u886b": [
             "fashion-women",
             "fashion-women"
         ],
-        "\u534a\u8eab\u88d9": [
+        "item. \u534a\u8eab\u88d9": [
             "fashion-women"
         ],
-        "\u96ea\u7eba": [
+        "item. \u96ea\u7eba": [
             "fashion-women"
         ],
-        "\u857e\u4e1d": [
+        "item. \u857e\u4e1d": [
             "fashion-women"
         ],
-        "\u9ad8\u8ddf": [
+        "item. \u9ad8\u8ddf": [
             "fashion-women"
         ],
-        "\u9632\u6c34\u53f0": [
+        "item. \u9632\u6c34\u53f0": [
             "fashion-women"
         ],
-        "\u5988\u5988\u88c5": [
+        "item. \u5988\u5988\u88c5": [
             "fashion-women"
         ],
-        "\u5a03\u5a03\u9886": [
+        "item. \u5a03\u5a03\u9886": [
             "fashion-women"
         ],
-        "\u6c11\u65cf\u98ce\u5973\u88c5": [
+        "item. \u6c11\u65cf\u98ce\u5973\u88c5": [
             "fashion-women"
         ],
-        "\u6bdb\u8863\u88d9": [
+        "item. \u6bdb\u8863\u88d9": [
             "fashion-women"
         ],
-        "\u88d9": [
+        "item. \u88d9": [
             "fashion-women"
         ],
-        "\u5973": [
+        "item. \u5973": [
             "fashion-women"
         ],
-        "\u7537\u58eb": [
+        "item. \u7537\u58eb": [
             "fashion-men"
         ],
-        "\u6f6e\u7537": [
+        "item. \u6f6e\u7537": [
             "fashion-men"
         ],
-        "\u7537": [
+        "item. \u7537": [
+            "fashion-men"
+        ],
+        "trip.": [
+            "travel"
+        ],
+        "go.": [
+            "travel"
+        ]
+    },
+    "tmall.com": {
+        "detail. \u624b\u673a": [
+            "mobile"
+        ],
+        "3c.": [
+            "digital"
+        ],
+        "detail. \u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "detail. \u53f0\u5f0f": [
+            "digital"
+        ],
+        "detail. \u5e73\u677f": [
+            "digital"
+        ],
+        "detail. \u9f20\u6807": [
+            "digital"
+        ],
+        "detail. \u952e\u76d8": [
+            "digital"
+        ],
+        "detail. \u786c\u76d8": [
+            "digital"
+        ],
+        "detail. U\u76d8": [
+            "digital"
+        ],
+        "detail. \u4e3b\u677f": [
+            "digital"
+        ],
+        "detail. \u663e\u5361": [
+            "digital"
+        ],
+        "detail. CPU": [
+            "digital"
+        ],
+        "detail. \u5185\u5b58": [
+            "digital"
+        ],
+        "detail. \u51e0\u9879": [
+            "digital"
+        ],
+        "detail. \u5e97\u5458": [
+            "digital"
+        ],
+        "detail. \u663e\u793a\u5668": [
+            "digital"
+        ],
+        "detail. \u88c5\u673a": [
+            "digital"
+        ],
+        "detail. \u76f8\u673a": [
+            "photography-dc"
+        ],
+        "detail. \u7535\u89c6": [
+            "home-applicance"
+        ],
+        "detail. \u6d17\u8863\u673a": [
+            "home-applicance"
+        ],
+        "detail. \u51b0\u7bb1": [
+            "home-applicance"
+        ],
+        "detail. \u7a7a\u8c03": [
+            "home-applicance"
+        ],
+        "detail. \u70ed\u6c34\u5668": [
+            "home-applicance"
+        ],
+        "detail. \u98ce\u6247": [
+            "home-applicance"
+        ],
+        "detail. \u5438\u5c18\u5668": [
+            "home-applicance"
+        ],
+        "detail. \u51c0\u5316\u5668": [
+            "home-applicance"
+        ],
+        "detail. \u70df\u673a": [
+            "home-applicance"
+        ],
+        "detail. \u7535\u78c1\u7089": [
+            "home-applicance"
+        ],
+        "detail. \u69a8\u6c41\u673a": [
+            "home-applicance"
+        ],
+        "detail. \u8c46\u6d46\u673a": [
+            "home-applicance"
+        ],
+        "detail. \u5fae\u6ce2\u7089": [
+            "home-applicance"
+        ],
+        "detail. \u7535\u538b\u529b\u9505": [
+            "home-applicance"
+        ],
+        "detail. \u7535\u996d\u7172": [
+            "home-applicance"
+        ],
+        "detail. \u5973\u88c5": [
+            "fashion-women"
+        ],
+        "detail. \u5973\u978b": [
+            "fashion-women"
+        ],
+        "detail. \u8fde\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "detail. \u6253\u5e95\u886b": [
+            "fashion-women",
+            "fashion-women"
+        ],
+        "detail. \u534a\u8eab\u88d9": [
+            "fashion-women"
+        ],
+        "detail. \u96ea\u7eba": [
+            "fashion-women"
+        ],
+        "detail. \u857e\u4e1d": [
+            "fashion-women"
+        ],
+        "detail. \u9ad8\u8ddf": [
+            "fashion-women"
+        ],
+        "detail. \u9632\u6c34\u53f0": [
+            "fashion-women"
+        ],
+        "detail. \u5988\u5988\u88c5": [
+            "fashion-women"
+        ],
+        "detail. \u5a03\u5a03\u9886": [
+            "fashion-women"
+        ],
+        "detail. \u6c11\u65cf\u98ce\u5973\u88c5": [
+            "fashion-women"
+        ],
+        "detail. \u6bdb\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "detail. \u88d9": [
+            "fashion-women"
+        ],
+        "detail. \u5973": [
+            "fashion-women"
+        ],
+        "detail. \u7537\u58eb": [
+            "fashion-men"
+        ],
+        "detail. \u6f6e\u7537": [
+            "fashion-men"
+        ],
+        "detail. \u7537": [
             "fashion-men"
         ]
     },
-    "detail.tmall.com": {
-        "\u624b\u673a": [
+    "jd.com": {
+        "item. \u624b\u673a": [
             "mobile"
         ],
-        "\u7b14\u8bb0\u672c": [
+        "item. \u7b14\u8bb0\u672c": [
             "digital"
         ],
-        "\u53f0\u5f0f": [
+        "item. \u53f0\u5f0f": [
             "digital"
         ],
-        "\u5e73\u677f": [
+        "item. \u5e73\u677f": [
             "digital"
         ],
-        "\u9f20\u6807": [
+        "item. \u9f20\u6807": [
             "digital"
         ],
-        "\u952e\u76d8": [
+        "item. \u952e\u76d8": [
             "digital"
         ],
-        "\u786c\u76d8": [
+        "item. \u786c\u76d8": [
             "digital"
         ],
-        "U\u76d8": [
+        "item. U\u76d8": [
             "digital"
         ],
-        "\u4e3b\u677f": [
+        "item. \u4e3b\u677f": [
             "digital"
         ],
-        "\u663e\u5361": [
+        "item. \u663e\u5361": [
             "digital"
         ],
-        "CPU": [
+        "item. CPU": [
             "digital"
         ],
-        "\u5185\u5b58": [
+        "item. \u5185\u5b58": [
             "digital"
         ],
-        "\u51e0\u9879": [
+        "item. \u51e0\u9879": [
             "digital"
         ],
-        "\u5e97\u5458": [
+        "item. \u5e97\u5458": [
             "digital"
         ],
-        "\u663e\u793a\u5668": [
+        "item. \u663e\u793a\u5668": [
             "digital"
         ],
-        "\u88c5\u673a": [
+        "item. \u88c5\u673a": [
             "digital"
         ],
-        "\u76f8\u673a": [
+        "item. \u76f8\u673a": [
             "photography-dc"
         ],
-        "\u7535\u89c6": [
+        "item. \u7535\u89c6": [
             "home-applicance"
         ],
-        "\u6d17\u8863\u673a": [
+        "item. \u6d17\u8863\u673a": [
             "home-applicance"
         ],
-        "\u51b0\u7bb1": [
+        "item. \u51b0\u7bb1": [
             "home-applicance"
         ],
-        "\u7a7a\u8c03": [
+        "item. \u7a7a\u8c03": [
             "home-applicance"
         ],
-        "\u70ed\u6c34\u5668": [
+        "item. \u70ed\u6c34\u5668": [
             "home-applicance"
         ],
-        "\u98ce\u6247": [
+        "item. \u98ce\u6247": [
             "home-applicance"
         ],
-        "\u5438\u5c18\u5668": [
+        "item. \u5438\u5c18\u5668": [
             "home-applicance"
         ],
-        "\u51c0\u5316\u5668": [
+        "item. \u51c0\u5316\u5668": [
             "home-applicance"
         ],
-        "\u70df\u673a": [
+        "item. \u70df\u673a": [
             "home-applicance"
         ],
-        "\u7535\u78c1\u7089": [
+        "item. \u7535\u78c1\u7089": [
             "home-applicance"
         ],
-        "\u69a8\u6c41\u673a": [
+        "item. \u69a8\u6c41\u673a": [
             "home-applicance"
         ],
-        "\u8c46\u6d46\u673a": [
+        "item. \u8c46\u6d46\u673a": [
             "home-applicance"
         ],
-        "\u5fae\u6ce2\u7089": [
+        "item. \u5fae\u6ce2\u7089": [
             "home-applicance"
         ],
-        "\u7535\u538b\u529b\u9505": [
+        "item. \u7535\u538b\u529b\u9505": [
             "home-applicance"
         ],
-        "\u7535\u996d\u7172": [
+        "item. \u7535\u996d\u7172": [
             "home-applicance"
         ],
-        "\u5973\u88c5": [
+        "item. \u5973\u88c5": [
             "fashion-women"
         ],
-        "\u5973\u978b": [
+        "item. \u5973\u978b": [
             "fashion-women"
         ],
-        "\u8fde\u8863\u88d9": [
+        "item. \u8fde\u8863\u88d9": [
             "fashion-women"
         ],
-        "\u6253\u5e95\u886b": [
+        "item. \u6253\u5e95\u886b": [
             "fashion-women",
             "fashion-women"
         ],
-        "\u534a\u8eab\u88d9": [
+        "item. \u534a\u8eab\u88d9": [
             "fashion-women"
         ],
-        "\u96ea\u7eba": [
+        "item. \u96ea\u7eba": [
             "fashion-women"
         ],
-        "\u857e\u4e1d": [
+        "item. \u857e\u4e1d": [
             "fashion-women"
         ],
-        "\u9ad8\u8ddf": [
+        "item. \u9ad8\u8ddf": [
             "fashion-women"
         ],
-        "\u9632\u6c34\u53f0": [
+        "item. \u9632\u6c34\u53f0": [
             "fashion-women"
         ],
-        "\u5988\u5988\u88c5": [
+        "item. \u5988\u5988\u88c5": [
             "fashion-women"
         ],
-        "\u5a03\u5a03\u9886": [
+        "item. \u5a03\u5a03\u9886": [
             "fashion-women"
         ],
-        "\u6c11\u65cf\u98ce\u5973\u88c5": [
+        "item. \u6c11\u65cf\u98ce\u5973\u88c5": [
             "fashion-women"
         ],
-        "\u6bdb\u8863\u88d9": [
+        "item. \u6bdb\u8863\u88d9": [
             "fashion-women"
         ],
-        "\u88d9": [
+        "item. \u88d9": [
             "fashion-women"
         ],
-        "\u5973": [
+        "item. \u5973": [
             "fashion-women"
         ],
-        "\u7537\u58eb": [
+        "item. \u7537\u58eb": [
             "fashion-men"
         ],
-        "\u6f6e\u7537": [
+        "item. \u6f6e\u7537": [
             "fashion-men"
         ],
-        "\u7537": [
-            "fashion-men"
-        ]
-    },
-    "item.jd.com": {
-        "\u624b\u673a": [
-            "mobile"
-        ],
-        "\u7b14\u8bb0\u672c": [
-            "digital"
-        ],
-        "\u53f0\u5f0f": [
-            "digital"
-        ],
-        "\u5e73\u677f": [
-            "digital"
-        ],
-        "\u9f20\u6807": [
-            "digital"
-        ],
-        "\u952e\u76d8": [
-            "digital"
-        ],
-        "\u786c\u76d8": [
-            "digital"
-        ],
-        "U\u76d8": [
-            "digital"
-        ],
-        "\u4e3b\u677f": [
-            "digital"
-        ],
-        "\u663e\u5361": [
-            "digital"
-        ],
-        "CPU": [
-            "digital"
-        ],
-        "\u5185\u5b58": [
-            "digital"
-        ],
-        "\u51e0\u9879": [
-            "digital"
-        ],
-        "\u5e97\u5458": [
-            "digital"
-        ],
-        "\u663e\u793a\u5668": [
-            "digital"
-        ],
-        "\u88c5\u673a": [
-            "digital"
-        ],
-        "\u76f8\u673a": [
-            "photography-dc"
-        ],
-        "\u7535\u89c6": [
-            "home-applicance"
-        ],
-        "\u6d17\u8863\u673a": [
-            "home-applicance"
-        ],
-        "\u51b0\u7bb1": [
-            "home-applicance"
-        ],
-        "\u7a7a\u8c03": [
-            "home-applicance"
-        ],
-        "\u70ed\u6c34\u5668": [
-            "home-applicance"
-        ],
-        "\u98ce\u6247": [
-            "home-applicance"
-        ],
-        "\u5438\u5c18\u5668": [
-            "home-applicance"
-        ],
-        "\u51c0\u5316\u5668": [
-            "home-applicance"
-        ],
-        "\u70df\u673a": [
-            "home-applicance"
-        ],
-        "\u7535\u78c1\u7089": [
-            "home-applicance"
-        ],
-        "\u69a8\u6c41\u673a": [
-            "home-applicance"
-        ],
-        "\u8c46\u6d46\u673a": [
-            "home-applicance"
-        ],
-        "\u5fae\u6ce2\u7089": [
-            "home-applicance"
-        ],
-        "\u7535\u538b\u529b\u9505": [
-            "home-applicance"
-        ],
-        "\u7535\u996d\u7172": [
-            "home-applicance"
-        ],
-        "\u5973\u88c5": [
-            "fashion-women"
-        ],
-        "\u5973\u978b": [
-            "fashion-women"
-        ],
-        "\u8fde\u8863\u88d9": [
-            "fashion-women"
-        ],
-        "\u6253\u5e95\u886b": [
-            "fashion-women",
-            "fashion-women"
-        ],
-        "\u534a\u8eab\u88d9": [
-            "fashion-women"
-        ],
-        "\u96ea\u7eba": [
-            "fashion-women"
-        ],
-        "\u857e\u4e1d": [
-            "fashion-women"
-        ],
-        "\u9ad8\u8ddf": [
-            "fashion-women"
-        ],
-        "\u9632\u6c34\u53f0": [
-            "fashion-women"
-        ],
-        "\u5988\u5988\u88c5": [
-            "fashion-women"
-        ],
-        "\u5a03\u5a03\u9886": [
-            "fashion-women"
-        ],
-        "\u6c11\u65cf\u98ce\u5973\u88c5": [
-            "fashion-women"
-        ],
-        "\u6bdb\u8863\u88d9": [
-            "fashion-women"
-        ],
-        "\u88d9": [
-            "fashion-women"
-        ],
-        "\u5973": [
-            "fashion-women"
-        ],
-        "\u7537\u58eb": [
+        "item. \u7537": [
             "fashion-men"
         ],
-        "\u6f6e\u7537": [
-            "fashion-men"
+        "book.": [
+            "book"
         ],
-        "\u7537": [
-            "fashion-men"
-        ],
-        "\u56fe\u4e66": [
+        "item. \u56fe\u4e66": [
             "book"
         ]
     },
-    "item.yhd.com": {
-        "\u624b\u673a": [
+    "yhd.com": {
+        "item. \u624b\u673a": [
             "mobile"
         ],
-        "\u7b14\u8bb0\u672c": [
+        "item. \u7b14\u8bb0\u672c": [
             "digital"
         ],
-        "\u53f0\u5f0f": [
+        "item. \u53f0\u5f0f": [
             "digital"
         ],
-        "\u5e73\u677f": [
+        "item. \u5e73\u677f": [
             "digital"
         ],
-        "\u9f20\u6807": [
+        "item. \u9f20\u6807": [
             "digital"
         ],
-        "\u952e\u76d8": [
+        "item. \u952e\u76d8": [
             "digital"
         ],
-        "\u786c\u76d8": [
+        "item. \u786c\u76d8": [
             "digital"
         ],
-        "U\u76d8": [
+        "item. U\u76d8": [
             "digital"
         ],
-        "\u4e3b\u677f": [
+        "item. \u4e3b\u677f": [
             "digital"
         ],
-        "\u663e\u5361": [
+        "item. \u663e\u5361": [
             "digital"
         ],
-        "CPU": [
+        "item. CPU": [
             "digital"
         ],
-        "\u5185\u5b58": [
+        "item. \u5185\u5b58": [
             "digital"
         ],
-        "\u51e0\u9879": [
+        "item. \u51e0\u9879": [
             "digital"
         ],
-        "\u5e97\u5458": [
+        "item. \u5e97\u5458": [
             "digital"
         ],
-        "\u663e\u793a\u5668": [
+        "item. \u663e\u793a\u5668": [
             "digital"
         ],
-        "\u88c5\u673a": [
+        "item. \u88c5\u673a": [
             "digital"
         ],
-        "\u76f8\u673a": [
+        "item. \u76f8\u673a": [
             "photography-dc"
         ]
     },
-    "product.suning.com": {
-        "\u624b\u673a": [
+    "suning.com": {
+        "product. \u624b\u673a": [
             "mobile"
         ],
-        "\u7b14\u8bb0\u672c": [
+        "product. \u7b14\u8bb0\u672c": [
             "digital"
         ],
-        "\u53f0\u5f0f": [
+        "product. \u53f0\u5f0f": [
             "digital"
         ],
-        "\u5e73\u677f": [
+        "product. \u5e73\u677f": [
             "digital"
         ],
-        "\u9f20\u6807": [
+        "product. \u9f20\u6807": [
             "digital"
         ],
-        "\u952e\u76d8": [
+        "product. \u952e\u76d8": [
             "digital"
         ],
-        "\u786c\u76d8": [
+        "product. \u786c\u76d8": [
             "digital"
         ],
-        "U\u76d8": [
+        "product. U\u76d8": [
             "digital"
         ],
-        "\u4e3b\u677f": [
+        "product. \u4e3b\u677f": [
             "digital"
         ],
-        "\u663e\u5361": [
+        "product. \u663e\u5361": [
             "digital"
         ],
-        "CPU": [
+        "product. CPU": [
             "digital"
         ],
-        "\u5185\u5b58": [
+        "product. \u5185\u5b58": [
             "digital"
         ],
-        "\u51e0\u9879": [
+        "product. \u51e0\u9879": [
             "digital"
         ],
-        "\u5e97\u5458": [
+        "product. \u5e97\u5458": [
             "digital"
         ],
-        "\u663e\u793a\u5668": [
+        "product. \u663e\u793a\u5668": [
             "digital"
         ],
-        "\u88c5\u673a": [
+        "product. \u88c5\u673a": [
             "digital"
         ],
-        "\u76f8\u673a": [
+        "product. \u76f8\u673a": [
             "photography-dc"
         ],
-        "\u56fe\u4e66": [
+        "book.": [
+            "book"
+        ],
+        "product. \u56fe\u4e66": [
             "book"
         ]
     },
@@ -884,36 +1437,33 @@ var interestsData = {
             "photography-dc"
         ]
     },
-    "mobile.pconline.com.cn": {
-        "__ANY": [
+    "pconline.com.cn": {
+        "mobile.": [
             "mobile"
+        ],
+        "product. /mobile": [
+            "mobile"
+        ],
+        "itbbs. /mobile": [
+            "mobile"
+        ],
+        "notebook.": [
+            "digital"
+        ],
+        "pad.": [
+            "digital"
+        ],
+        "dc.": [
+            "photography-dc"
         ]
-    },
-    "product.pconline.com.cn": {
-        "__PATH": {
-            "/mobile": {
-                "__ANY": [
-                    "mobile"
-                ]
-            }
-        }
-    },
-    "itbbs.pconline.com.cn": {
-        "__PATH": {
-            "/mobile": {
-                "__ANY": [
-                    "mobile"
-                ]
-            }
-        }
     },
     "3533.com": {
         "__ANY": [
             "mobile"
         ]
     },
-    "mobile.pcpop.com": {
-        "__ANY": [
+    "pcpop.com": {
+        "mobile.": [
             "mobile"
         ]
     },
@@ -925,15 +1475,11 @@ var interestsData = {
     "cnmo.com": {
         "__ANY": [
             "mobile"
-        ]
-    },
-    "product.cnmo.com": {
-        "__ANY": [
+        ],
+        "product.": [
             "mobile"
-        ]
-    },
-    "bbs.cnmo.com": {
-        "__ANY": [
+        ],
+        "bbs.": [
             "mobile"
         ]
     },
@@ -942,24 +1488,42 @@ var interestsData = {
             "mobile"
         ]
     },
-    "mobile.it168.com": {
-        "__ANY": [
+    "it168.com": {
+        "mobile.": [
             "mobile"
+        ],
+        "notebook.": [
+            "digital"
+        ],
+        "pad.": [
+            "digital"
+        ],
+        "dc.": [
+            "photography-dc"
         ]
     },
-    "bbs.gfan.com": {
-        "__ANY": [
+    "gfan.com": {
+        "bbs.": [
             "mobile"
+        ],
+        "apk.": [
+            "app"
         ]
     },
     "hiapk.com": {
         "__ANY": [
             "mobile"
+        ],
+        "apk.": [
+            "app"
         ]
     },
-    "bbs.anzhi.com": {
-        "__ANY": [
+    "anzhi.com": {
+        "bbs.": [
             "mobile"
+        ],
+        "__ANY": [
+            "app"
         ]
     },
     "dospy.com": {
@@ -976,32 +1540,24 @@ var interestsData = {
         "__ANY": [
             "mobile"
         ],
-        "__PATH": {
-            "/appstore": {
-                "__ANY": [
-                    "app"
-                ]
-            }
-        }
+        "/appstore": [
+            "app"
+        ]
     },
-    "bbs.fengbao.com": {
-        "__ANY": [
+    "fengbao.com": {
+        "bbs.": [
             "mobile"
         ]
     },
-    "iphone.91.com": {
-        "__ANY": [
+    "91.com": {
+        "iphone.": [
             "mobile"
         ]
     },
     "wandoujia.com": {
-        "__PATH": {
-            "/apps": {
-                "__ANY": [
-                    "app"
-                ]
-            }
-        }
+        "/apps": [
+            "app"
+        ]
     },
     "xapcn.com": {
         "__ANY": [
@@ -1014,24 +1570,64 @@ var interestsData = {
             "app"
         ]
     },
-    "shouji.baidu.com": {
-        "__ANY": [
+    "baidu.com": {
+        "shouji.": [
             "app"
-        ]
-    },
-    "apk.gfan.com": {
-        "__ANY": [
-            "app"
+        ],
+        "top. /buzz /book.html": [
+            "online-novel"
+        ],
+        "lvyou.": [
+            "travel"
+        ],
+        "news.": [
+            "news"
+        ],
+        "read. news.": [
+            "news"
+        ],
+        "v. /show": [
+            "entertainment-gossip"
+        ],
+        "music.": [
+            "music"
+        ],
+        "play.": [
+            "music"
+        ],
+        "fm.": [
+            "music"
+        ],
+        "v. /movie": [
+            "movie"
+        ],
+        "v. /tv": [
+            "TV-series"
+        ],
+        "v. /live": [
+            "TV-series"
+        ],
+        "v. /gameindex": [
+            "game"
+        ],
+        "youxi.": [
+            "game",
+            "game"
+        ],
+        "hao123qipai.": [
+            "game"
+        ],
+        "v. /comic": [
+            "anime-manga"
+        ],
+        "v. /kan /comic": [
+            "anime-manga"
         ]
     },
     "windowsphone.com": {
-        "__PATH": {
-            "/zh-cn/store": {
-                "__ANY": [
-                    "app"
-                ]
-            }
-        }
+        "/zh-cn /store": [
+            "app"
+        ]
     },
     "moxiu.com": {
         "__ANY": [
@@ -1043,8 +1639,8 @@ var interestsData = {
             "app"
         ]
     },
-    "app.xiaomi.com": {
-        "__ANY": [
+    "xiaomi.com": {
+        "app.": [
             "app"
         ]
     },
@@ -1053,22 +1649,12 @@ var interestsData = {
             "app"
         ]
     },
-    "apk.hiapk.com": {
-        "__ANY": [
-            "app"
-        ]
-    },
-    "app.vmall.com": {
-        "__ANY": [
+    "vmall.com": {
+        "app.": [
             "app"
         ]
     },
     "appchina.com": {
-        "__ANY": [
-            "app"
-        ]
-    },
-    "anzhi.com": {
         "__ANY": [
             "app"
         ]
@@ -1083,8 +1669,8 @@ var interestsData = {
             "app"
         ]
     },
-    "android.159.com": {
-        "__ANY": [
+    "159.com": {
+        "android.": [
             "app"
         ]
     },
@@ -1093,202 +1679,83 @@ var interestsData = {
             "app"
         ]
     },
-    "itunes.apple.com": {
-        "__ANY": [
+    "apple.com": {
+        "itunes.": [
             "app"
         ]
     },
-    "tech.ifeng.com": {
-        "__PATH": {
-            "/digi": {
-                "__ANY": [
-                    "digital"
-                ]
-            },
-            "/digi/dc": {
-                "__ANY": [
-                    "photography-dc"
-                ]
-            },
-            "/digi/ehome": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            }
-        },
-        "__ANY": [
-            "technology"
-        ]
-    },
-    "digi.163.com": {
-        "__ANY": [
+    "huanqiu.com": {
+        "tech. /digi": [
             "digital"
         ],
-        "__PATH": {
-            "/dc": {
-                "__ANY": [
-                    "photography-dc"
-                ]
-            },
-            "/television": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            },
-            "/icebox": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            },
-            "/ac": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            },
-            "/washer": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            },
-            "/waterheater": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            }
-        }
+        "auto.": [
+            "auto"
+        ],
+        "tech. /elec": [
+            "home-applicance"
+        ],
+        "health.": [
+            "health"
+        ],
+        "go.": [
+            "travel"
+        ],
+        "tech.": [
+            "technology"
+        ],
+        "world.": [
+            "news"
+        ],
+        "china.": [
+            "news"
+        ],
+        "mil.": [
+            "militery"
+        ],
+        "finance.": [
+            "finance"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "sports. /basketball": [
+            "basketball"
+        ],
+        "sports. /soccer": [
+            "soccer"
+        ]
     },
-    "digi.sina.com.cn": {
-        "__ANY": [
+    "pchome.net": {
+        "notebook.": [
             "digital"
         ],
-        "__PATH": {
-            "/notebook": {
-                "__ANY": [
-                    "digital"
-                ]
-            }
-        }
-    },
-    "tech.huanqiu.com": {
-        "__PATH": {
-            "/digi": {
-                "__ANY": [
-                    "digital"
-                ]
-            },
-            "/elec": {
-                "__ANY": [
-                    "home-applicance"
-                ]
-            }
-        },
-        "__ANY": [
-            "technology"
-        ]
-    },
-    "zol.com.cn": {
-        "__ANY": [
+        "pad.": [
             "digital"
-        ]
-    },
-    "power.zol.com.cn": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "nb.zol.com.cn": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "pad.zol.com.cn": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "diy.zol.com.cn": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "notebook.pconline.com.cn": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "pad.pconline.com.cn": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "notebook.it168.com": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "pad.it168.com": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "notebook.pchome.net": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "pad.pchome.net": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "notebook.yesky.com": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "pad.yesky.com": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "bbs.mydigit.cn": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "3c.tmall.com": {
-        "__ANY": [
-            "digital"
-        ]
-    },
-    "dcdv.zol.com.cn": {
-        "__ANY": [
+        ],
+        "dc.": [
             "photography-dc"
         ]
     },
-    "dc.pconline.com.cn": {
-        "__ANY": [
+    "yesky.com": {
+        "notebook.": [
+            "digital"
+        ],
+        "pad.": [
+            "digital"
+        ],
+        "dc.": [
+            "photography-dc"
+        ],
+        "digital.": [
             "photography-dc"
         ]
     },
-    "dc.it168.com": {
-        "__ANY": [
-            "photography-dc"
-        ]
-    },
-    "dc.pchome.net": {
-        "__ANY": [
-            "photography-dc"
-        ]
-    },
-    "dc.yesky.com": {
-        "__ANY": [
-            "photography-dc"
-        ]
-    },
-    "digital.yesky.com": {
-        "__ANY": [
-            "photography-dc"
+    "mydigit.cn": {
+        "bbs.": [
+            "digital"
         ]
     },
     "fengniao.com": {
@@ -1306,92 +1773,258 @@ var interestsData = {
             "photography-dc"
         ]
     },
-    "auto.youku.com": {
-        "__ANY": [
+    "youku.com": {
+        "auto.": [
             "auto"
-        ]
-    },
-    "auto.tudou.com": {
-        "__ANY": [
-            "auto"
-        ]
-    },
-    "auto.ku6.com": {
-        "__ANY": [
-            "auto"
-        ]
-    },
-    "auto.qq.com": {
-        "__ANY": [
-            "auto"
-        ]
-    },
-    "auto.ifeng.com": {
-        "__ANY": [
-            "auto"
-        ]
-    },
-    "auto.163.com": {
-        "__ANY": [
-            "auto"
-        ]
-    },
-    "product.auto.163.com": {
-        "__ANY": [
-            "auto"
-        ]
-    },
-    "auto.sina.com.cn": {
-        "__ANY": [
-            "auto"
-        ]
-    },
-    "news.xinhuanet.com": {
-        "__PATH": {
-            "/auto": {
-                "__ANY": [
-                    "auto"
-                ]
-            },
-            "/mil": {
-                "__ANY": [
-                    "militery"
-                ]
-            },
-            "/fortune": {
-                "__ANY": [
-                    "finance"
-                ]
-            }
-        },
-        "__ANY": [
+        ],
+        "tech.": [
+            "technology"
+        ],
+        "news.": [
             "news"
+        ],
+        "finance.": [
+            "finance"
+        ],
+        "zy.": [
+            "entertainment-gossip"
+        ],
+        "v. \u7efc\u827a": [
+            "entertainment-gossip"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "fun.": [
+            "humor"
+        ],
+        "music.": [
+            "music"
+        ],
+        "v. \u97f3\u4e50": [
+            "music"
+        ],
+        "movie.": [
+            "movie"
+        ],
+        "v. \u7535\u5f71": [
+            "movie"
+        ],
+        "tv.": [
+            "TV-series"
+        ],
+        "v. \u7535\u89c6\u5267": [
+            "TV-series"
+        ],
+        "game.": [
+            "game"
+        ],
+        "comic.": [
+            "anime-manga"
+        ],
+        "v. \u52a8\u6f2b": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
         ]
     },
-    "auto.huanqiu.com": {
-        "__ANY": [
+    "tudou.com": {
+        "auto.": [
             "auto"
+        ],
+        "it.": [
+            "technology"
+        ],
+        "news.": [
+            "news"
+        ],
+        "zy.": [
+            "entertainment-gossip"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "fun.": [
+            "humor"
+        ],
+        "music.": [
+            "music"
+        ],
+        "movie.": [
+            "movie"
+        ],
+        "tv.": [
+            "TV-series"
+        ],
+        "game.": [
+            "game"
+        ],
+        "cartoon.": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
         ]
     },
-    "auto.sohu.com": {
-        "__ANY": [
+    "ku6.com": {
+        "auto.": [
+            "auto"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "zongyi.": [
+            "entertainment-gossip"
+        ],
+        "mv.": [
+            "music"
+        ],
+        "cinema.": [
+            "movie"
+        ],
+        "games.": [
+            "game"
+        ],
+        "sports.": [
+            "sports"
+        ]
+    },
+    "xinhuanet.com": {
+        "news. /auto": [
+            "auto"
+        ],
+        "news.": [
+            "news"
+        ],
+        "news. /mil": [
+            "militery"
+        ],
+        "news. /fortune": [
+            "finance"
+        ]
+    },
+    "sohu.com": {
+        "auto.": [
             "auto",
             "auto"
+        ],
+        "men.": [
+            "fashion-men"
+        ],
+        "women.": [
+            "beauty"
+        ],
+        "health.": [
+            "health"
+        ],
+        "zhongyi.": [
+            "health"
+        ],
+        "book.": [
+            "book"
+        ],
+        "baobao.": [
+            "parenting"
+        ],
+        "bbs. baobao.": [
+            "parenting"
+        ],
+        "tv. /edu": [
+            "education"
+        ],
+        "learning.": [
+            "education"
+        ],
+        "goabroad.": [
+            "education"
+        ],
+        "bschool.": [
+            "mooc"
+        ],
+        "tv. /open": [
+            "mooc"
+        ],
+        "travel.": [
+            "travel"
+        ],
+        "it.": [
+            "technology"
+        ],
+        "tv. /news": [
+            "news"
+        ],
+        "news.": [
+            "news"
+        ],
+        "mil.": [
+            "militery"
+        ],
+        "club. mil. news.": [
+            "militery"
+        ],
+        "business.": [
+            "finance"
+        ],
+        "tv. /show": [
+            "entertainment-gossip"
+        ],
+        "tv. \u7efc\u827a": [
+            "entertainment-gossip"
+        ],
+        "yule.": [
+            "entertainment-gossip"
+        ],
+        "tv. /movie": [
+            "movie"
+        ],
+        "so. tv. \u7535\u5f71": [
+            "movie"
+        ],
+        "tv.": [
+            "TV-series"
+        ],
+        "so. tv. \u7535\u89c6\u5267": [
+            "TV-series"
+        ],
+        "tv. /comic": [
+            "anime-manga"
+        ],
+        "so. tv. \u52a8\u6f2b": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "pic. sports.": [
+            "sports"
+        ],
+        "cbachina. sports.": [
+            "basketball"
         ]
     },
     "hao123.com": {
-        "__PATH": {
-            "/auto": {
-                "__ANY": [
-                    "auto"
-                ]
-            },
-            "/gaoxiao": {
-                "__ANY": [
-                    "humor"
-                ]
-            }
-        }
+        "/auto": [
+            "auto"
+        ],
+        "lady. /hunjia": [
+            "wedding"
+        ],
+        "lvyou.": [
+            "travel"
+        ],
+        "/gaoxiao": [
+            "humor"
+        ],
+        "tv.": [
+            "TV-series"
+        ],
+        "xyx.": [
+            "game"
+        ],
+        "qipai.": [
+            "game"
+        ]
     },
     "autohome.com.cn": {
         "__ANY": [
@@ -1453,53 +2086,42 @@ var interestsData = {
             "auto"
         ]
     },
-    "house.qq.com": {
-        "__ANY": [
-            "realestate"
-        ]
-    },
-    "house.ifeng.com": {
-        "__ANY": [
-            "realestate"
-        ]
-    },
-    "app.house.ifeng.com": {
-        "__ANY": [
-            "realestate"
-        ]
-    },
-    "house.163.com": {
-        "__ANY": [
-            "realestate"
-        ]
-    },
     "centanet.com": {
         "__ANY": [
             "realestate"
         ]
     },
-    "house.sina.com.cn": {
-        "__ANY": [
+    "people.com.cn": {
+        "house.": [
             "realestate"
+        ],
+        "health.": [
+            "health"
+        ],
+        "edu.": [
+            "education"
+        ],
+        "travel.": [
+            "travel"
+        ],
+        "politics.": [
+            "news"
+        ],
+        "society.": [
+            "news"
+        ],
+        "world.": [
+            "news"
+        ],
+        "finance.": [
+            "finance"
         ]
     },
-    "esf.sina.com.cn": {
-        "__ANY": [
+    "focus.cn": {
+        "house.": [
             "realestate"
-        ]
-    },
-    "house.people.com.cn": {
-        "__ANY": [
-            "realestate"
-        ]
-    },
-    "house.focus.cn": {
-        "__ANY": [
-            "realestate"
-        ]
-    },
-    "esf.focus.cn": {
-        "__ANY": [
+        ],
+        "esf.": [
             "realestate"
         ]
     },
@@ -1543,89 +2165,20 @@ var interestsData = {
             "realestate"
         ]
     },
-    "hea.163.com": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "jd.zol.com.cn": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "tv.zol.com.cn": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "icebox.zol.com.cn": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "ac.zol.com.cn": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "washer.zol.com.cn": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
-    "xjd.zol.com.cn": {
-        "__ANY": [
-            "home-applicance"
-        ]
-    },
     "jia360.com": {
         "__ANY": [
             "home-decoration"
         ]
     },
-    "home.ifeng.com": {
-        "__ANY": [
+    "jiaju.com": {
+        "16.": [
             "home-decoration"
         ]
     },
-    "home.163.com": {
-        "__ANY": [
+    "focus.com": {
+        "home.": [
             "home-decoration"
         ]
-    },
-    "bbs.home.163.com": {
-        "__ANY": [
-            "home-decoration"
-        ]
-    },
-    "jiaju.sina.com.cn": {
-        "__ANY": [
-            "home-decoration"
-        ]
-    },
-    "bbs.jiaju.sina.com.cn": {
-        "__ANY": [
-            "home-decoration"
-        ]
-    },
-    "16.jiaju.com": {
-        "__ANY": [
-            "home-decoration"
-        ]
-    },
-    "home.focus.com": {
-        "__ANY": [
-            "home-decoration"
-        ]
-    },
-    "henan.qq.com": {
-        "__PATH": {
-            "/jiaju": {
-                "__ANY": [
-                    "home-decoration"
-                ]
-            }
-        }
     },
     "ljlj.cc": {
         "__ANY": [
@@ -1642,213 +2195,109 @@ var interestsData = {
             "home-decoration"
         ]
     },
-    "zhuangxiu.pchouse.com.cn": {
-        "__ANY": [
+    "pchouse.com.cn": {
+        "zhuangxiu.": [
             "home-decoration"
         ]
     },
-    "fashion.qq.com": {
-        "__PATH": {
-            "/vogue": {
-                "__ANY": [
-                    "fashion-women"
-                ]
-            },
-            "/gentlemen": {
-                "__ANY": [
-                    "fashion-men"
-                ]
-            },
-            "/beauty": {
-                "__ANY": [
-                    "beauty"
-                ]
-            }
-        }
-    },
-    "fashion.ifeng.com": {
-        "__PATH": {
-            "/trends": {
-                "__ANY": [
-                    "fashion-women"
-                ]
-            },
-            "/luxury": {
-                "__ANY": [
-                    "luxury"
-                ]
-            },
-            "/body": {
-                "__ANY": [
-                    "fitness"
-                ]
-            },
-            "/health": {
-                "__ANY": [
-                    "health"
-                ]
-            },
-            "/baby": {
-                "__ANY": [
-                    "parenting"
-                ]
-            },
-            "/travel": {
-                "__ANY": [
-                    "travel"
-                ]
-            }
-        }
-    },
-    "fushi.163.com": {
-        "__ANY": [
+    "rayli.com.cn": {
+        "fashion.": [
             "fashion-women"
+        ],
+        "inleon.": [
+            "fashion-men"
+        ],
+        "luxury.": [
+            "luxury"
+        ],
+        "beauty.": [
+            "beauty"
         ]
     },
-    "slide.fashion.sina.com.cn": {
-        "__PATH": {
-            "/s": {
-                "__ANY": [
-                    "fashion-women"
-                ]
-            }
-        }
-    },
-    "fashion.sina.com.cn": {
-        "__PATH": {
-            "/s": {
-                "__ANY": [
-                    "fashion-women"
-                ]
-            },
-            "/style": {
-                "__ANY": [
-                    "fashion-women"
-                ]
-            },
-            "/b": {
-                "__ANY": [
-                    "beauty"
-                ]
-            },
-            "/body": {
-                "__ANY": [
-                    "beauty"
-                ]
-            },
-            "/cosmetics": {
-                "__ANY": [
-                    "beauty"
-                ]
-            },
-            "/beauty": {
-                "__ANY": [
-                    "beauty"
-                ]
-            },
-            "/d/ft": {
-                "__ANY": [
-                    "fitness"
-                ]
-            },
-            "/w": {
-                "__ANY": [
-                    "wedding"
-                ]
-            },
-            "/wedding": {
-                "__ANY": [
-                    "wedding"
-                ]
-            }
-        }
-    },
-    "fashion.rayli.com.cn": {
-        "__ANY": [
+    "pclady.com.cn": {
+        "dress.": [
             "fashion-women"
+        ],
+        "man.": [
+            "fashion-men"
+        ],
+        "luxury.": [
+            "luxury"
+        ],
+        "plastic.": [
+            "beauty"
+        ],
+        "beauty.": [
+            "beauty"
+        ],
+        "cosme.": [
+            "beauty"
+        ],
+        "fitness.": [
+            "fitness"
+        ],
+        "health.": [
+            "health"
         ]
     },
-    "dress.pclady.com.cn": {
-        "__ANY": [
+    "haibao.com": {
+        "fashion.": [
             "fashion-women"
-        ]
-    },
-    "fashion.haibao.com": {
-        "__ANY": [
+        ],
+        "accessory.": [
             "fashion-women"
-        ]
-    },
-    "accessory.haibao.com": {
-        "__ANY": [
-            "fashion-women"
+        ],
+        "jewelrywatch.": [
+            "luxury"
+        ],
+        "beauty.": [
+            "beauty"
         ]
     },
     "ellechina.com": {
-        "__PATH": {
-            "/fashion": {
-                "__ANY": [
-                    "fashion-women"
-                ]
-            },
-            "/men": {
-                "__ANY": [
-                    "fashion-men"
-                ]
-            },
-            "/beauty": {
-                "__ANY": [
-                    "beauty"
-                ]
-            },
-            "/hair": {
-                "__ANY": [
-                    "beauty"
-                ]
-            }
-        }
+        "/fashion": [
+            "fashion-women"
+        ],
+        "/men": [
+            "fashion-men"
+        ],
+        "/beauty": [
+            "beauty"
+        ],
+        "/hair": [
+            "beauty"
+        ]
     },
     "vogue.com.cn": {
-        "__PATH": {
-            "/fashion": {
-                "__ANY": [
-                    "fashion-women"
-                ]
-            },
-            "/beauty": {
-                "__ANY": [
-                    "beauty"
-                ]
-            },
-            "/wedding": {
-                "__ANY": [
-                    "wedding"
-                ]
-            }
-        }
+        "/fashion": [
+            "fashion-women"
+        ],
+        "shows.": [
+            "luxury"
+        ],
+        "/beauty": [
+            "beauty"
+        ],
+        "/wedding": [
+            "wedding"
+        ]
     },
     "yoka.com": {
-        "__PATH": {
-            "/fashion": {
-                "__ANY": [
-                    "fashion-women"
-                ]
-            },
-            "/luxury": {
-                "__ANY": [
-                    "luxury"
-                ]
-            },
-            "/beauty": {
-                "__ANY": [
-                    "beauty"
-                ]
-            },
-            "/marry": {
-                "__ANY": [
-                    "wedding"
-                ]
-            }
-        }
+        "/fashion": [
+            "fashion-women"
+        ],
+        "/luxury": [
+            "luxury"
+        ],
+        "/beauty": [
+            "beauty"
+        ],
+        "hzp.": [
+            "beauty"
+        ],
+        "/marry": [
+            "wedding"
+        ]
     },
     "mogujie.com": {
         "__ANY": [
@@ -1867,13 +2316,12 @@ var interestsData = {
         "\u7537": [
             "fashion-men"
         ],
-        "__PATH": {
-            "/beauty.php": {
-                "__ANY": [
-                    "beauty"
-                ]
-            }
-        }
+        "lux.": [
+            "luxury"
+        ],
+        "/beauty.php": [
+            "beauty"
+        ]
     },
     "moonbasa.com": {
         "\u5973": [
@@ -1883,19 +2331,19 @@ var interestsData = {
             "fashion-men"
         ]
     },
-    "item.vancl.com": {
-        "\u5973": [
+    "vancl.com": {
+        "item. \u5973": [
             "fashion-women"
         ],
-        "\u7537": [
+        "item. \u7537": [
             "fashion-men"
         ]
     },
-    "item.yintai.com": {
-        "\u5973": [
+    "yintai.com": {
+        "item. \u5973": [
             "fashion-women"
         ],
-        "\u7537": [
+        "item. \u7537": [
             "fashion-men"
         ]
     },
@@ -1907,12 +2355,15 @@ var interestsData = {
             "fashion-men"
         ]
     },
-    "item.xiu.com": {
-        "\u5973": [
+    "xiu.com": {
+        "item. \u5973": [
             "fashion-women"
         ],
-        "\u7537": [
+        "item. \u7537": [
             "fashion-men"
+        ],
+        "__ANY": [
+            "luxury"
         ]
     },
     "fclub.cn": {
@@ -1939,16 +2390,6 @@ var interestsData = {
             "fashion-men"
         ]
     },
-    "men.sohu.com": {
-        "__ANY": [
-            "fashion-men"
-        ]
-    },
-    "man.pclady.com.cn": {
-        "__ANY": [
-            "fashion-men"
-        ]
-    },
     "yokamen.cn": {
         "__ANY": [
             "fashion-men"
@@ -1969,42 +2410,21 @@ var interestsData = {
             "fashion-men"
         ]
     },
-    "inleon.rayli.com.cn": {
-        "__ANY": [
+    "trends.com.cn": {
+        "men. /fashion": [
             "fashion-men"
+        ],
+        "/man /fashion": [
+            "fashion-men"
+        ],
+        "/marriage": [
+            "wedding"
         ]
     },
-    "men.trends.com.cn": {
-        "__PATH": {
-            "/fashion": {
-                "__ANY": [
-                    "fashion-men"
-                ]
-            }
-        }
-    },
     "mangangs.com": {
-        "__PATH": {
-            "/trends": {
-                "__ANY": [
-                    "fashion-men"
-                ]
-            }
-        }
-    },
-    "trends.com.cn": {
-        "__PATH": {
-            "/man/fashion": {
-                "__ANY": [
-                    "fashion-men"
-                ]
-            },
-            "/marriage": {
-                "__ANY": [
-                    "wedding"
-                ]
-            }
-        }
+        "/trends": [
+            "fashion-men"
+        ]
     },
     "shangpin.com": {
         "__ANY": [
@@ -2031,11 +2451,6 @@ var interestsData = {
             "luxury"
         ]
     },
-    "xiu.com": {
-        "__ANY": [
-            "luxury"
-        ]
-    },
     "wbiao.cn": {
         "__ANY": [
             "luxury"
@@ -2046,32 +2461,7 @@ var interestsData = {
             "luxury"
         ]
     },
-    "lux.vip.com": {
-        "__ANY": [
-            "luxury"
-        ]
-    },
     "chinese-luxury.com": {
-        "__ANY": [
-            "luxury"
-        ]
-    },
-    "luxury.pclady.com.cn": {
-        "__ANY": [
-            "luxury"
-        ]
-    },
-    "luxury.rayli.com.cn": {
-        "__ANY": [
-            "luxury"
-        ]
-    },
-    "jewelrywatch.haibao.com": {
-        "__ANY": [
-            "luxury"
-        ]
-    },
-    "shows.vogue.com.cn": {
         "__ANY": [
             "luxury"
         ]
@@ -2082,8 +2472,8 @@ var interestsData = {
             "luxury"
         ]
     },
-    "www-cn.chanel.com": {
-        "__ANY": [
+    "chanel.com": {
+        "www-cn.": [
             "luxury"
         ]
     },
@@ -2122,12 +2512,10 @@ var interestsData = {
             "luxury"
         ]
     },
-    "china.coach.com": {
-        "__ANY": [
-            "luxury"
-        ]
-    },
     "coach.com": {
+        "china.": [
+            "luxury"
+        ],
         "__ANY": [
             "luxury"
         ]
@@ -2178,12 +2566,10 @@ var interestsData = {
             "luxury"
         ]
     },
-    "cn.burberry.com": {
-        "__ANY": [
-            "luxury"
-        ]
-    },
     "burberry.com": {
+        "cn.": [
+            "luxury"
+        ],
         "__ANY": [
             "luxury"
         ]
@@ -2233,61 +2619,12 @@ var interestsData = {
             "luxury"
         ]
     },
-    "store.hugoboss.cn": {
-        "__ANY": [
+    "hugoboss.cn": {
+        "store.": [
             "luxury"
         ]
     },
-    "cosmetics.ifeng.com": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "lady.163.com": {
-        "__PATH": {
-            "/beauty": {
-                "__ANY": [
-                    "beauty"
-                ]
-            }
-        }
-    },
-    "plastic.pclady.com.cn": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "beauty.pclady.com.cn": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "cosme.pclady.com.cn": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "beauty.rayli.com.cn": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
     "faxingw.cn": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "women.sohu.com": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "beauty.haibao.com": {
-        "__ANY": [
-            "beauty"
-        ]
-    },
-    "hzp.yoka.com": {
         "__ANY": [
             "beauty"
         ]
@@ -2302,9 +2639,21 @@ var interestsData = {
             "fitness"
         ]
     },
-    "fitness.39.net": {
-        "__ANY": [
+    "39.net": {
+        "fitness.": [
             "fitness"
+        ],
+        "jianfei.": [
+            "fitness"
+        ],
+        "care.": [
+            "health"
+        ],
+        "news.": [
+            "health"
+        ],
+        "zl.": [
+            "medicine"
         ]
     },
     "zyjyyy.com": {
@@ -2313,75 +2662,16 @@ var interestsData = {
         ]
     },
     "lady8844.com": {
-        "__PATH": {
-            "/shoushen": {
-                "__ANY": [
-                    "fitness"
-                ]
-            }
-        }
+        "/shoushen": [
+            "fitness"
+        ]
     },
     "jianfei.com": {
         "__ANY": [
             "fitness"
         ]
     },
-    "jianfei.39.net": {
-        "__ANY": [
-            "fitness"
-        ]
-    },
-    "fitness.pclady.com.cn": {
-        "__ANY": [
-            "fitness"
-        ]
-    },
-    "health.qq.com": {
-        "__ANY": [
-            "health"
-        ]
-    },
-    "health.sina.com.cn": {
-        "__ANY": [
-            "health"
-        ]
-    },
-    "health.huanqiu.com": {
-        "__ANY": [
-            "health"
-        ]
-    },
-    "health.pclady.com.cn": {
-        "__ANY": [
-            "health"
-        ]
-    },
-    "health.sohu.com": {
-        "__ANY": [
-            "health"
-        ]
-    },
-    "zhongyi.sohu.com": {
-        "__ANY": [
-            "health"
-        ]
-    },
-    "care.39.net": {
-        "__ANY": [
-            "health"
-        ]
-    },
-    "news.39.net": {
-        "__ANY": [
-            "health"
-        ]
-    },
     "39yst.com": {
-        "__ANY": [
-            "health"
-        ]
-    },
-    "health.people.com.cn": {
         "__ANY": [
             "health"
         ]
@@ -2392,11 +2682,6 @@ var interestsData = {
         ]
     },
     "dxy.cn": {
-        "__ANY": [
-            "medicine"
-        ]
-    },
-    "zl.39.net": {
         "__ANY": [
             "medicine"
         ]
@@ -2431,48 +2716,22 @@ var interestsData = {
             "medicine"
         ]
     },
-    "cul.qq.com": {
-        "__ANY": [
+    "douban.com": {
+        "book.": [
             "book"
+        ],
+        "read.": [
+            "book"
+        ],
+        "music.": [
+            "music"
+        ],
+        "movie.": [
+            "movie"
         ]
     },
-    "book.ifeng.com": {
-        "__ANY": [
-            "book"
-        ]
-    },
-    "yuedu.163.com": {
-        "__ANY": [
-            "book"
-        ]
-    },
-    "book.sohu.com": {
-        "__ANY": [
-            "book"
-        ]
-    },
-    "book.douban.com": {
-        "__ANY": [
-            "book"
-        ]
-    },
-    "read.douban.com": {
-        "__ANY": [
-            "book"
-        ]
-    },
-    "book.jd.com": {
-        "__ANY": [
-            "book"
-        ]
-    },
-    "product.dangdang.com": {
-        "\u56fe\u4e66": [
-            "book"
-        ]
-    },
-    "book.suning.com": {
-        "__ANY": [
+    "dangdang.com": {
+        "product. \u56fe\u4e66": [
             "book"
         ]
     },
@@ -2496,28 +2755,11 @@ var interestsData = {
             "book"
         ]
     },
-    "dushu.qq.com": {
-        "__ANY": [
-            "book"
-        ]
-    },
-    "book.sina.com.cn": {
-        "__ANY": [
-            "online-novel"
-        ]
-    },
-    "vip.book.sina.com.cn": {
-        "__ANY": [
-            "online-novel"
-        ]
-    },
     "qidian.com": {
         "__ANY": [
             "online-novel"
-        ]
-    },
-    "read.qidian.com": {
-        "__ANY": [
+        ],
+        "read.": [
             "online-novel"
         ]
     },
@@ -2529,10 +2771,8 @@ var interestsData = {
     "hongxiu.com": {
         "__ANY": [
             "online-novel"
-        ]
-    },
-    "novel.hongxiu.com": {
-        "__ANY": [
+        ],
+        "novel.": [
             "online-novel"
         ]
     },
@@ -2540,15 +2780,6 @@ var interestsData = {
         "__ANY": [
             "online-novel"
         ]
-    },
-    "top.baidu.com": {
-        "__PATH": {
-            "/buzz/book.html": {
-                "__ANY": [
-                    "online-novel"
-                ]
-            }
-        }
     },
     "yanqing888.net": {
         "__ANY": [
@@ -2565,8 +2796,8 @@ var interestsData = {
             "online-novel"
         ]
     },
-    "book.hjsm.tom.com": {
-        "__ANY": [
+    "tom.com": {
+        "book. hjsm.": [
             "online-novel"
         ]
     },
@@ -2575,8 +2806,8 @@ var interestsData = {
             "online-novel"
         ]
     },
-    "book.zongheng.com": {
-        "__ANY": [
+    "zongheng.com": {
+        "book.": [
             "online-novel"
         ]
     },
@@ -2586,11 +2817,6 @@ var interestsData = {
         ]
     },
     "17k.com": {
-        "__ANY": [
-            "online-novel"
-        ]
-    },
-    "chuangshi.qq.com": {
         "__ANY": [
             "online-novel"
         ]
@@ -2673,6 +2899,15 @@ var interestsData = {
     "dianping.com": {
         "__ANY": [
             "gourmet"
+        ],
+        "t. /movie": [
+            "show"
+        ],
+        "t. \u5f71\u57ce": [
+            "show"
+        ],
+        "t. \u7535\u5f71": [
+            "show"
         ]
     },
     "doodii.com": {
@@ -2690,8 +2925,8 @@ var interestsData = {
             "gourmet"
         ]
     },
-    "item.lingshi.com": {
-        "__ANY": [
+    "lingshi.com": {
+        "item.": [
             "gourmet"
         ]
     },
@@ -2720,8 +2955,8 @@ var interestsData = {
             "gourmet"
         ]
     },
-    "lingshi.99114.com": {
-        "__ANY": [
+    "99114.com": {
+        "lingshi.": [
             "gourmet"
         ]
     },
@@ -2735,31 +2970,20 @@ var interestsData = {
             "gourmet"
         ]
     },
-    "lady.hao123.com": {
-        "__PATH": {
-            "/hunjia": {
-                "__ANY": [
-                    "wedding"
-                ]
-            }
-        }
-    },
-    "wed.haxiu.com": {
-        "__ANY": [
+    "haxiu.com": {
+        "wed.": [
             "wedding"
         ]
     },
     "xfwed.com": {
         "__ANY": [
             "wedding"
-        ]
-    },
-    "marry52.com": {
-        "__ANY": [
+        ],
+        "bbs.": [
             "wedding"
         ]
     },
-    "bbs.xfwed.com": {
+    "marry52.com": {
         "__ANY": [
             "wedding"
         ]
@@ -2772,41 +2996,6 @@ var interestsData = {
     "99wed.com": {
         "__ANY": [
             "wedding"
-        ]
-    },
-    "baby.qq.com": {
-        "__ANY": [
-            "parenting"
-        ]
-    },
-    "bbs.baby.ifeng.com": {
-        "__ANY": [
-            "parenting"
-        ]
-    },
-    "baby.163.com": {
-        "__ANY": [
-            "parenting"
-        ]
-    },
-    "bbs.baby.163.com": {
-        "__ANY": [
-            "parenting"
-        ]
-    },
-    "baby.sina.com.cn": {
-        "__ANY": [
-            "parenting"
-        ]
-    },
-    "baobao.sohu.com": {
-        "__ANY": [
-            "parenting"
-        ]
-    },
-    "bbs.baobao.sohu.com": {
-        "__ANY": [
-            "parenting"
         ]
     },
     "babytree.com": {
@@ -2844,8 +3033,8 @@ var interestsData = {
             "parenting"
         ]
     },
-    "cn.babycenter.com": {
-        "__ANY": [
+    "babycenter.com": {
+        "cn.": [
             "parenting"
         ]
     },
@@ -2857,10 +3046,8 @@ var interestsData = {
     "babyschool.com.cn": {
         "__ANY": [
             "parenting"
-        ]
-    },
-    "bbs.babyschool.com.cn": {
-        "__ANY": [
+        ],
+        "bbs.": [
             "parenting"
         ]
     },
@@ -2872,81 +3059,6 @@ var interestsData = {
     "goodbaby.com": {
         "__ANY": [
             "parenting"
-        ]
-    },
-    "tv.sohu.com": {
-        "__PATH": {
-            "/edu": {
-                "__ANY": [
-                    "education"
-                ]
-            },
-            "/open": {
-                "__ANY": [
-                    "mooc"
-                ]
-            },
-            "/news": {
-                "__ANY": [
-                    "news"
-                ]
-            },
-            "/show": {
-                "__ANY": [
-                    "entertainment-gossip"
-                ]
-            },
-            "/movie": {
-                "__ANY": [
-                    "movie"
-                ]
-            },
-            "/comic": {
-                "__ANY": [
-                    "anime-manga"
-                ]
-            }
-        },
-        "\u7efc\u827a": [
-            "entertainment-gossip"
-        ],
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "edu.qq.com": {
-        "__ANY": [
-            "education"
-        ]
-    },
-    "edu.ifeng.com": {
-        "__ANY": [
-            "education"
-        ]
-    },
-    "edu.163.com": {
-        "__ANY": [
-            "education"
-        ]
-    },
-    "edu.sina.com.cn": {
-        "__ANY": [
-            "education"
-        ]
-    },
-    "edu.people.com.cn": {
-        "__ANY": [
-            "education"
-        ]
-    },
-    "learning.sohu.com": {
-        "__ANY": [
-            "education"
-        ]
-    },
-    "goabroad.sohu.com": {
-        "__ANY": [
-            "education"
         ]
     },
     "51edu.com": {
@@ -2979,63 +3091,17 @@ var interestsData = {
             "education"
         ]
     },
-    "bschool.sohu.com": {
-        "__ANY": [
-            "mooc"
-        ]
-    },
     "xuexila.com": {
         "__ANY": [
             "mooc"
         ]
     },
-    "v.ifeng.com": {
-        "__PATH": {
-            "/gongkaike": {
-                "__ANY": [
-                    "mooc"
-                ]
-            },
-            "/news": {
-                "__ANY": [
-                    "news"
-                ]
-            },
-            "/mil": {
-                "__ANY": [
-                    "militery"
-                ]
-            },
-            "/ent": {
-                "__ANY": [
-                    "entertainment-gossip"
-                ]
-            },
-            "/movie": {
-                "__ANY": [
-                    "movie"
-                ]
-            },
-            "/teleplay": {
-                "__ANY": [
-                    "TV-series"
-                ]
-            },
-            "/game": {
-                "__ANY": [
-                    "game"
-                ]
-            }
-        }
-    },
-    "open.sina.com.cn": {
-        "__ANY": [
+    "guokr.com": {
+        "mooc.": [
             "mooc"
-        ]
-    },
-    "mooc.guokr.com": {
+        ],
         "__ANY": [
-            "mooc"
+            "science"
         ]
     },
     "oer.edu.cn": {
@@ -3043,14 +3109,24 @@ var interestsData = {
             "mooc"
         ]
     },
-    "open.163.com": {
-        "__ANY": [
+    "cntv.cn": {
+        "opencla.": [
             "mooc"
-        ]
-    },
-    "opencla.cntv.cn": {
-        "__ANY": [
-            "mooc"
+        ],
+        "news.": [
+            "news"
+        ],
+        "military.": [
+            "militery"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "sports. /nba": [
+            "basketball"
+        ],
+        "sports. /football": [
+            "soccer"
         ]
     },
     "coursera.org": {
@@ -3073,58 +3149,11 @@ var interestsData = {
             "travel"
         ]
     },
-    "go.qq.com": {
-        "__ANY": [
-            "travel"
-        ]
-    },
-    "travel.go.qq.com": {
-        "__ANY": [
-            "travel"
-        ]
-    },
-    "travel.163.com": {
-        "__ANY": [
-            "travel"
-        ]
-    },
-    "travel.sina.com.cn": {
-        "__ANY": [
-            "travel"
-        ]
-    },
-    "go.huanqiu.com": {
-        "__ANY": [
-            "travel"
-        ]
-    },
-    "travel.people.com.cn": {
-        "__ANY": [
-            "travel"
-        ]
-    },
-    "travel.sohu.com": {
-        "__ANY": [
-            "travel"
-        ]
-    },
-    "trip.taobao.com": {
-        "__ANY": [
-            "travel"
-        ]
-    },
-    "go.taobao.com": {
-        "__ANY": [
-            "travel"
-        ]
-    },
-    "lvyou.hao123.com": {
-        "__ANY": [
-            "travel"
-        ]
-    },
     "ctrip.com": {
         "__ANY": [
+            "travel"
+        ],
+        "you.": [
             "travel"
         ]
     },
@@ -3158,23 +3187,14 @@ var interestsData = {
             "travel"
         ]
     },
-    "you.ctrip.com": {
-        "__ANY": [
-            "travel"
-        ]
-    },
     "qyer.com": {
         "__ANY": [
             "travel"
-        ]
-    },
-    "bbs.qyer.com": {
-        "__ANY": [
+        ],
+        "bbs.": [
             "travel"
-        ]
-    },
-    "guide.qyer.com": {
-        "__ANY": [
+        ],
+        "guide.": [
             "travel"
         ]
     },
@@ -3199,11 +3219,6 @@ var interestsData = {
         ]
     },
     "daodao.com": {
-        "__ANY": [
-            "travel"
-        ]
-    },
-    "lvyou.baidu.com": {
         "__ANY": [
             "travel"
         ]
@@ -3258,14 +3273,10 @@ var interestsData = {
             "travel"
         ]
     },
-    "piao.soku.com": {
-        "__PATH": {
-            "/*/movie": {
-                "__ANY": [
-                    "show"
-                ]
-            }
-        }
+    "soku.com": {
+        "piao. /* /movie": [
+            "show"
+        ]
     },
     "228.com.cn": {
         "__ANY": [
@@ -3288,30 +3299,20 @@ var interestsData = {
         ]
     },
     "58.com": {
-        "__PATH": {
-            "/yanchanghui": {
-                "__ANY": [
-                    "show"
-                ]
-            },
-            "/piao": {
-                "__ANY": [
-                    "show"
-                ]
-            }
-        }
+        "/yanchanghui": [
+            "show"
+        ],
+        "/piao": [
+            "show"
+        ]
     },
     "gewara.com": {
-        "__PATH": {
-            "/movie": {
-                "__ANY": [
-                    "show"
-                ]
-            }
-        }
+        "/movie": [
+            "show"
+        ]
     },
-    "theater.mtime.com": {
-        "__ANY": [
+    "mtime.com": {
+        "theater.": [
             "show"
         ]
     },
@@ -3321,13 +3322,9 @@ var interestsData = {
         ]
     },
     "meituan.com": {
-        "__PATH": {
-            "/dianying": {
-                "__ANY": [
-                    "show"
-                ]
-            }
-        },
+        "/dianying": [
+            "show"
+        ],
         "\u5f71\u57ce": [
             "show"
         ],
@@ -3351,46 +3348,21 @@ var interestsData = {
             "show"
         ]
     },
-    "t.dianping.com": {
-        "__PATH": {
-            "/movie": {
-                "__ANY": [
-                    "show"
-                ]
-            }
-        },
-        "\u5f71\u57ce": [
-            "show"
-        ],
-        "\u7535\u5f71": [
-            "show"
-        ]
-    },
     "55tuan.com": {
-        "__PATH": {
-            "/cate/dianying": {
-                "__ANY": [
-                    "show"
-                ]
-            }
-        }
-    },
-    "beijing.55tuan.com": {
-        "\u5f71\u57ce": [
+        "/cate /dianying": [
             "show"
         ],
-        "\u7535\u5f71": [
+        "beijing. \u5f71\u57ce": [
+            "show"
+        ],
+        "beijing. \u7535\u5f71": [
             "show"
         ]
     },
     "lashou.com": {
-        "__PATH": {
-            "/cate/dianying": {
-                "__ANY": [
-                    "show"
-                ]
-            }
-        },
+        "/cate /dianying": [
+            "show"
+        ],
         "\u5f71\u57ce": [
             "show"
         ],
@@ -3399,13 +3371,9 @@ var interestsData = {
         ]
     },
     "manzuo.com": {
-        "__PATH": {
-            "/dy": {
-                "__ANY": [
-                    "show"
-                ]
-            }
-        },
+        "/dy": [
+            "show"
+        ],
         "\u5f71\u57ce": [
             "show"
         ],
@@ -3414,13 +3382,9 @@ var interestsData = {
         ]
     },
     "didatuan.com": {
-        "__PATH": {
-            "/c-dianying": {
-                "__ANY": [
-                    "show"
-                ]
-            }
-        },
+        "/c-dianying": [
+            "show"
+        ],
         "\u5f71\u57ce": [
             "show"
         ],
@@ -3458,42 +3422,8 @@ var interestsData = {
             "show"
         ]
     },
-    "tech.youku.com": {
-        "__ANY": [
-            "technology"
-        ]
-    },
-    "it.tudou.com": {
-        "__ANY": [
-            "technology"
-        ]
-    },
-    "tech.qq.com": {
-        "__ANY": [
-            "technology"
-        ]
-    },
-    "tech.163.com": {
-        "__ANY": [
-            "technology"
-        ]
-    },
-    "it.sohu.com": {
-        "__ANY": [
-            "technology"
-        ]
-    },
-    "news.zol.com.cn": {
-        "__PATH": {
-            "/tech": {
-                "__ANY": [
-                    "technology"
-                ]
-            }
-        }
-    },
-    "cn.engadget.com": {
-        "__ANY": [
+    "engadget.com": {
+        "cn.": [
             "technology"
         ]
     },
@@ -3512,11 +3442,6 @@ var interestsData = {
             "technology"
         ]
     },
-    "jishu.zol.com.cn": {
-        "__ANY": [
-            "programming"
-        ]
-    },
     "csdn.net": {
         "__ANY": [
             "programming"
@@ -3527,8 +3452,8 @@ var interestsData = {
             "programming"
         ]
     },
-    "msdn.microsoft.com": {
-        "__ANY": [
+    "microsoft.com": {
+        "msdn.": [
             "programming"
         ]
     },
@@ -3537,8 +3462,8 @@ var interestsData = {
             "programming"
         ]
     },
-    "developer.mozilla.org": {
-        "__ANY": [
+    "mozilla.org": {
+        "developer.": [
             "programming"
         ]
     },
@@ -3547,8 +3472,8 @@ var interestsData = {
             "programming"
         ]
     },
-    "bbs.bccn.net": {
-        "__ANY": [
+    "bccn.net": {
+        "bbs.": [
             "programming"
         ]
     },
@@ -3582,17 +3507,7 @@ var interestsData = {
             "programming"
         ]
     },
-    "guokr.com": {
-        "__ANY": [
-            "science"
-        ]
-    },
     "songshuhui.net": {
-        "__ANY": [
-            "science"
-        ]
-    },
-    "discovery.163.com": {
         "__ANY": [
             "science"
         ]
@@ -3637,283 +3552,76 @@ var interestsData = {
             "science"
         ]
     },
-    "news.youku.com": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "news.tudou.com": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "video.sina.com.cn": {
-        "__PATH": {
-            "/news": {
-                "__ANY": [
-                    "news"
-                ]
-            },
-            "/p/news": {
-                "__ANY": [
-                    "news"
-                ]
-            },
-            "/mil": {
-                "__ANY": [
-                    "militery"
-                ]
-            },
-            "/p/news/mil": {
-                "__ANY": [
-                    "militery"
-                ]
-            },
-            "/movie/zongyi": {
-                "__ANY": [
-                    "entertainment-gossip"
-                ]
-            },
-            "/ent": {
-                "__ANY": [
-                    "entertainment-gossip"
-                ]
-            },
-            "/p/ent": {
-                "__ANY": [
-                    "entertainment-gossip"
-                ]
-            },
-            "/gaoxiao": {
-                "__ANY": [
-                    "humor"
-                ]
-            },
-            "/p/news/gaoxiao": {
-                "__ANY": [
-                    "humor"
-                ]
-            },
-            "/movie/movie": {
-                "__ANY": [
-                    "movie"
-                ]
-            },
-            "/movie/teleplay": {
-                "__ANY": [
-                    "TV-series"
-                ]
-            },
-            "/movie/comic": {
-                "__ANY": [
-                    "anime-manga"
-                ]
-            },
-            "/sports": {
-                "__ANY": [
-                    "sports"
-                ]
-            },
-            "/p/sports": {
-                "__ANY": [
-                    "sports"
-                ]
-            }
-        }
-    },
     "iqiyi.com": {
-        "__PATH": {
-            "/news": {
-                "__ANY": [
-                    "news"
-                ]
-            },
-            "/zongyi": {
-                "__ANY": [
-                    "entertainment-gossip"
-                ]
-            },
-            "/dianying": {
-                "__ANY": [
-                    "movie"
-                ]
-            },
-            "/dianshiju": {
-                "__ANY": [
-                    "TV-series"
-                ]
-            },
-            "/dongman": {
-                "__ANY": [
-                    "anime-manga"
-                ]
-            },
-            "/sports": {
-                "__ANY": [
-                    "sports"
-                ]
-            }
-        },
+        "/news": [
+            "news"
+        ],
         "\u8d44\u8baf": [
             "news"
+        ],
+        "business.": [
+            "finance"
+        ],
+        "/zongyi": [
+            "entertainment-gossip"
         ],
         "\u7efc\u827a": [
             "entertainment-gossip"
         ],
+        "yule.": [
+            "entertainment-gossip"
+        ],
+        "music.": [
+            "music"
+        ],
         "\u97f3\u4e50": [
             "music"
+        ],
+        "/dianying": [
+            "movie"
         ],
         "\u7535\u5f71": [
             "movie"
         ],
+        "/dianshiju": [
+            "TV-series"
+        ],
         "\u7535\u89c6\u5267": [
             "TV-series"
+        ],
+        "games.": [
+            "game"
+        ],
+        "/dongman": [
+            "anime-manga"
         ],
         "\u52a8\u6f2b": [
             "anime-manga"
         ],
+        "/sports": [
+            "sports"
+        ],
         "\u4f53\u80b2": [
+            "sports"
+        ],
+        "sports.": [
             "sports"
         ]
     },
-    "v.qq.com": {
-        "__PATH": {
-            "/news": {
-                "__ANY": [
-                    "news"
-                ]
-            },
-            "/variety": {
-                "__ANY": [
-                    "entertainment-gossip"
-                ]
-            },
-            "/ent": {
-                "__ANY": [
-                    "entertainment-gossip"
-                ]
-            },
-            "/hotshare": {
-                "__ANY": [
-                    "humor"
-                ]
-            },
-            "/movie": {
-                "__ANY": [
-                    "movie"
-                ]
-            },
-            "/cinema": {
-                "__ANY": [
-                    "movie"
-                ]
-            },
-            "/tv": {
-                "__ANY": [
-                    "TV-series"
-                ]
-            },
-            "/games": {
-                "__ANY": [
-                    "game"
-                ]
-            },
-            "/cartoon": {
-                "__ANY": [
-                    "anime-manga"
-                ]
-            },
-            "/sports": {
-                "__ANY": [
-                    "sports"
-                ]
-            },
-            "/l/sports/basketball": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/l/sports/isocce": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/sports/isocce": {
-                "__ANY": [
-                    "soccer"
-                ]
-            }
-        }
-    },
-    "news.qq.com": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "news.ifeng.com": {
-        "__ANY": [
-            "news"
-        ],
-        "__PATH": {
-            "/mil": {
-                "__ANY": [
-                    "militery"
-                ]
-            }
-        }
-    },
-    "news.163.com": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "news.sina.com.cn": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "news.baidu.com": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "news.cnr.cn": {
-        "__ANY": [
+    "cnr.cn": {
+        "news.": [
             "news"
         ]
     },
     "chinanews.com": {
-        "__PATH": {
-            "/gj": {
-                "__ANY": [
-                    "news"
-                ]
-            },
-            "/gn": {
-                "__ANY": [
-                    "news"
-                ]
-            },
-            "/mil": {
-                "__ANY": [
-                    "militery"
-                ]
-            }
-        }
-    },
-    "world.huanqiu.com": {
-        "__ANY": [
+        "/gj": [
             "news"
-        ]
-    },
-    "china.huanqiu.com": {
-        "__ANY": [
+        ],
+        "/gn": [
             "news"
-        ]
-    },
-    "read.news.baidu.com": {
-        "__ANY": [
-            "news"
+        ],
+        "/mil": [
+            "militery"
         ]
     },
     "haiwainet.cn": {
@@ -3921,92 +3629,24 @@ var interestsData = {
             "news"
         ]
     },
-    "politics.people.com.cn": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "society.people.com.cn": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "world.people.com.cn": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "slide.news.sina.com.cn": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "news.sohu.com": {
-        "__ANY": [
-            "news"
-        ]
-    },
-    "news.cntv.cn": {
-        "__ANY": [
-            "news"
-        ]
-    },
     "zaobao.com": {
-        "__PATH": {
-            "/news": {
-                "__ANY": [
-                    "news"
-                ]
-            }
-        }
+        "/news": [
+            "news"
+        ]
     },
     "cankaoxiaoxi.com": {
         "__ANY": [
             "news"
         ]
     },
-    "mil.qq.com": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "war.163.com": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "mil.news.sina.com.cn": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "mil.huanqiu.com": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "mil.chinaiiss.com": {
-        "__ANY": [
-            "militery"
-        ]
-    },
     "chinaiiss.com": {
+        "mil.": [
+            "militery"
+        ],
         "__ANY": [
             "militery"
-        ]
-    },
-    "club.chinaiiss.com": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "mil.sohu.com": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "club.mil.news.sohu.com": {
-        "__ANY": [
+        ],
+        "club.": [
             "militery"
         ]
     },
@@ -4020,8 +3660,8 @@ var interestsData = {
             "militery"
         ]
     },
-    "junshi.xilu.com": {
-        "__ANY": [
+    "xilu.com": {
+        "junshi.": [
             "militery"
         ]
     },
@@ -4058,15 +3698,13 @@ var interestsData = {
     "miercn.com": {
         "__ANY": [
             "militery"
-        ]
-    },
-    "bbs.miercn.com": {
-        "__ANY": [
+        ],
+        "bbs.": [
             "militery"
         ]
     },
-    "mil.eastday.com": {
-        "__ANY": [
+    "eastday.com": {
+        "mil.": [
             "militery"
         ]
     },
@@ -4083,75 +3721,38 @@ var interestsData = {
     "xinjunshi.com": {
         "__ANY": [
             "militery"
-        ]
-    },
-    "bbs.xinjunshi.com": {
-        "__ANY": [
+        ],
+        "bbs.": [
             "militery"
         ]
     },
-    "phtv.ifeng.com": {
-        "__PATH": {
-            "/program/jqgcs": {
-                "__ANY": [
-                    "militery"
-                ]
-            }
-        }
-    },
-    "military.cntv.cn": {
-        "__ANY": [
-            "militery"
-        ]
-    },
-    "finance.letv.com": {
-        "__ANY": [
+    "letv.com": {
+        "finance.": [
             "finance"
-        ]
-    },
-    "finance.youku.com": {
-        "__ANY": [
-            "finance"
-        ]
-    },
-    "business.iqiyi.com": {
-        "__ANY": [
-            "finance"
-        ]
-    },
-    "finance.qq.com": {
-        "__ANY": [
-            "finance"
-        ]
-    },
-    "finance.sina.com.cn": {
-        "__ANY": [
-            "finance"
-        ]
-    },
-    "finance.ifeng.com": {
-        "__ANY": [
-            "finance"
-        ]
-    },
-    "money.163.com": {
-        "__ANY": [
-            "finance"
-        ]
-    },
-    "finance.huanqiu.com": {
-        "__ANY": [
-            "finance"
-        ]
-    },
-    "finance.people.com.cn": {
-        "__ANY": [
-            "finance"
-        ]
-    },
-    "business.sohu.com": {
-        "__ANY": [
-            "finance"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "zongyi.": [
+            "entertainment-gossip"
+        ],
+        "music.": [
+            "music"
+        ],
+        "movie.": [
+            "movie"
+        ],
+        "tv.": [
+            "TV-series"
+        ],
+        "baidu. /comic": [
+            "anime-manga"
+        ],
+        "comic.": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
         ]
     },
     "ftchinese.com": {
@@ -4184,197 +3785,30 @@ var interestsData = {
             "finance"
         ]
     },
-    "zy.youku.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "v.youku.com": {
-        "\u7efc\u827a": [
+    "56.com": {
+        "zy.": [
             "entertainment-gossip"
         ],
-        "\u97f3\u4e50": [
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "fun.": [
+            "humor"
+        ],
+        "music.": [
             "music"
         ],
-        "\u7535\u5f71": [
+        "movielist.": [
             "movie"
         ],
-        "\u7535\u89c6\u5267": [
+        "tv.": [
             "TV-series"
         ],
-        "\u52a8\u6f2b": [
-            "anime-manga"
-        ]
-    },
-    "ent.youku.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "v.baidu.com": {
-        "__PATH": {
-            "/show": {
-                "__ANY": [
-                    "entertainment-gossip"
-                ]
-            },
-            "/movie": {
-                "__ANY": [
-                    "movie"
-                ]
-            },
-            "/tv": {
-                "__ANY": [
-                    "TV-series"
-                ]
-            },
-            "/live": {
-                "__ANY": [
-                    "TV-series"
-                ]
-            },
-            "/gameindex": {
-                "__ANY": [
-                    "game"
-                ]
-            },
-            "/comic": {
-                "__ANY": [
-                    "anime-manga"
-                ]
-            },
-            "/kan/comic": {
-                "__ANY": [
-                    "anime-manga"
-                ]
-            }
-        }
-    },
-    "zy.tudou.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "ent.tudou.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "yule.iqiyi.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "ent.ku6.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "zongyi.ku6.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "zy.56.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "ent.56.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "ent.letv.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "zongyi.letv.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "ent.qq.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "ent.ifeng.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "ent.163.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "ent.sina.com.cn": {
-        "__ANY": [
-            "entertainment-gossip"
+        "games.": [
+            "game"
         ],
-        "__PATH": {
-            "/gossip": {
-                "__ANY": [
-                    "entertainment-gossip"
-                ]
-            },
-            "/s": {
-                "__ANY": [
-                    "entertainment-gossip"
-                ]
-            },
-            "/y": {
-                "__ANY": [
-                    "music"
-                ]
-            },
-            "/film": {
-                "__ANY": [
-                    "movie"
-                ]
-            },
-            "/m": {
-                "__ANY": [
-                    "movie"
-                ]
-            },
-            "/tv": {
-                "__ANY": [
-                    "TV-series"
-                ]
-            },
-            "/v": {
-                "__ANY": [
-                    "TV-series"
-                ]
-            }
-        }
-    },
-    "ent.huanqiu.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "yule.sohu.com": {
-        "__ANY": [
-            "entertainment-gossip"
-        ]
-    },
-    "fun.youku.com": {
-        "__ANY": [
-            "humor"
-        ]
-    },
-    "fun.tudou.com": {
-        "__ANY": [
-            "humor"
-        ]
-    },
-    "fun.56.com": {
-        "__ANY": [
-            "humor"
+        "dm.": [
+            "anime-manga"
         ]
     },
     "qiushibaike.com": {
@@ -4398,11 +3832,6 @@ var interestsData = {
         ]
     },
     "haha.mx": {
-        "__ANY": [
-            "humor"
-        ]
-    },
-    "joke.qq.com": {
         "__ANY": [
             "humor"
         ]
@@ -4442,56 +3871,6 @@ var interestsData = {
             "humor"
         ]
     },
-    "music.youku.com": {
-        "__ANY": [
-            "music"
-        ]
-    },
-    "music.tudou.com": {
-        "__ANY": [
-            "music"
-        ]
-    },
-    "music.iqiyi.com": {
-        "__ANY": [
-            "music"
-        ]
-    },
-    "mv.ku6.com": {
-        "__ANY": [
-            "music"
-        ]
-    },
-    "music.56.com": {
-        "__ANY": [
-            "music"
-        ]
-    },
-    "music.letv.com": {
-        "__ANY": [
-            "music"
-        ]
-    },
-    "yue.sina.com.cn": {
-        "__ANY": [
-            "music"
-        ]
-    },
-    "music.baidu.com": {
-        "__ANY": [
-            "music"
-        ]
-    },
-    "play.baidu.com": {
-        "__ANY": [
-            "music"
-        ]
-    },
-    "music.douban.com": {
-        "__ANY": [
-            "music"
-        ]
-    },
     "xiami.com": {
         "__ANY": [
             "music"
@@ -4522,11 +3901,6 @@ var interestsData = {
             "music"
         ]
     },
-    "fm.baidu.com": {
-        "__ANY": [
-            "music"
-        ]
-    },
     "douban.fm": {
         "__ANY": [
             "music"
@@ -4537,24 +3911,14 @@ var interestsData = {
             "music"
         ]
     },
-    "fm.qq.com": {
-        "__ANY": [
+    "musicool.cn": {
+        "bbs.": [
             "music"
         ]
     },
-    "bbs.musicool.cn": {
-        "__ANY": [
+    "xialala.com": {
+        "club.": [
             "music"
-        ]
-    },
-    "club.xialala.com": {
-        "__ANY": [
-            "music"
-        ]
-    },
-    "movie.youku.com": {
-        "__ANY": [
-            "movie"
         ]
     },
     "m1905.com": {
@@ -4563,63 +3927,21 @@ var interestsData = {
             "movie"
         ]
     },
-    "movie.tudou.com": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "film.qq.com": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "cinema.ku6.com": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "movielist.56.com": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "so.tv.sohu.com": {
-        "\u7535\u5f71": [
+    "yyets.com": {
+        "/resource \u7535\u5f71": [
             "movie"
         ],
-        "\u7535\u89c6\u5267": [
+        "/resource \u7f8e\u5267": [
             "TV-series"
         ],
-        "\u52a8\u6f2b": [
-            "anime-manga"
-        ]
-    },
-    "yyets.com": {
-        "__PATH": {
-            "/resource": {
-                "\u7f8e\u5267": [
-                    "TV-series"
-                ],
-                "\u82f1\u5267": [
-                    "TV-series"
-                ],
-                "\u65e5\u5267": [
-                    "TV-series"
-                ],
-                "\u97e9\u5267": [
-                    "TV-series"
-                ]
-            }
-        }
-    },
-    "movie.letv.com": {
-        "__ANY": [
-            "movie"
-        ]
-    },
-    "movie.douban.com": {
-        "__ANY": [
-            "movie"
+        "/resource \u82f1\u5267": [
+            "TV-series"
+        ],
+        "/resource \u65e5\u5267": [
+            "TV-series"
+        ],
+        "/resource \u97e9\u5267": [
+            "TV-series"
         ]
     },
     "piaohua.com": {
@@ -4632,149 +3954,59 @@ var interestsData = {
             "movie"
         ]
     },
-    "tv.youku.com": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "tv.tudou.com": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "tv.56.com": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "tv.letv.com": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "tv.2345.com": {
-        "__ANY": [
-            "TV-series"
-        ]
-    },
-    "tv.hao123.com": {
-        "__ANY": [
+    "2345.com": {
+        "tv.": [
             "TV-series"
         ]
     },
     "a67.com": {
-        "__PATH": {
-            "/tv": {
-                "__ANY": [
-                    "TV-series"
-                ]
-            }
-        }
+        "/tv": [
+            "TV-series"
+        ]
     },
     "77vcd.com": {
         "__ANY": [
             "TV-series"
         ]
     },
-    "game.youku.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "game.tudou.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "youxi.baidu.com": {
-        "__ANY": [
-            "game",
-            "game"
-        ]
-    },
-    "games.iqiyi.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "g.pps.tv": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "games.ku6.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "games.56.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "games.qq.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "games.ifeng.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "game.163.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "product.game.163.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "games.sina.com.cn": {
-        "__ANY": [
+    "pps.tv": {
+        "g.": [
             "game"
         ]
     },
     "duowan.com": {
         "__ANY": [
             "game"
-        ]
-    },
-    "lol.duowan.com": {
-        "__ANY": [
+        ],
+        "lol.": [
             "game"
-        ]
-    },
-    "bbs.duowan.com": {
-        "__ANY": [
+        ],
+        "bbs.": [
             "game"
         ]
     },
     "gamersky.com": {
         "__ANY": [
             "game"
-        ]
-    },
-    "ol.gamersky.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "lol.qq.com": {
-        "__ANY": [
+        ],
+        "ol.": [
             "game"
         ]
     },
     "7k7k.com": {
         "__ANY": [
             "game"
+        ],
+        "donghua.": [
+            "anime-manga"
         ]
     },
     "17173.com": {
         "__ANY": [
             "game"
+        ],
+        "acg.": [
+            "anime-manga"
         ]
     },
     "4399.com": {
@@ -4797,22 +4029,7 @@ var interestsData = {
             "game"
         ]
     },
-    "xyx.hao123.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
     "ptbus.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "qipai.hao123.com": {
-        "__ANY": [
-            "game"
-        ]
-    },
-    "hao123qipai.baidu.com": {
         "__ANY": [
             "game"
         ]
@@ -4827,42 +4044,8 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "comic.youku.com": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "baidu.letv.com": {
-        "__PATH": {
-            "/comic": {
-                "__ANY": [
-                    "anime-manga"
-                ]
-            }
-        }
-    },
-    "cartoon.tudou.com": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "dm.56.com": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "dh.bityx.com": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "comic.letv.com": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "comic.qq.com": {
-        "__ANY": [
+    "bityx.com": {
+        "dh.": [
             "anime-manga"
         ]
     },
@@ -4871,8 +4054,11 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "op.52pk.com": {
-        "__ANY": [
+    "52pk.com": {
+        "op.": [
+            "anime-manga"
+        ],
+        "sishen.": [
             "anime-manga"
         ]
     },
@@ -4901,8 +4087,8 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "acg.178.com": {
-        "__ANY": [
+    "178.com": {
+        "acg.": [
             "anime-manga"
         ]
     },
@@ -4912,16 +4098,6 @@ var interestsData = {
         ]
     },
     "dm123.cn": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "sishen.52pk.com": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "acg.17173.com": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4936,13 +4112,13 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "donghua.dmzj.com": {
-        "__ANY": [
+    "dmzj.com": {
+        "donghua.": [
             "anime-manga"
         ]
     },
-    "bt.ktxp.com": {
-        "__ANY": [
+    "ktxp.com": {
+        "bt.": [
             "anime-manga"
         ]
     },
@@ -4951,17 +4127,12 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "share.dmhy.org": {
-        "__ANY": [
+    "dmhy.org": {
+        "share.": [
             "anime-manga"
         ]
     },
     "dm456.com": {
-        "__ANY": [
-            "anime-manga"
-        ]
-    },
-    "donghua.7k7k.com": {
         "__ANY": [
             "anime-manga"
         ]
@@ -4971,316 +4142,46 @@ var interestsData = {
             "anime-manga"
         ]
     },
-    "sports.sina.com.cn": {
-        "__ANY": [
-            "sports"
-        ],
-        "__PATH": {
-            "/nba": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/cba": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/global": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/g": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/csl": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/j": {
-                "__ANY": [
-                    "soccer"
-                ]
-            }
-        }
-    },
-    "sports.qq.com": {
-        "__ANY": [
-            "sports"
-        ],
-        "__PATH": {
-            "/nba": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/cba": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/nbavideo": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/ucl": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/premierleague": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/laliga": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/seriea": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/csocce": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/isocce": {
-                "__ANY": [
-                    "soccer"
-                ]
-            }
-        }
-    },
-    "sports.163.com": {
-        "__ANY": [
-            "sports"
-        ],
-        "__PATH": {
-            "/nba": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/cba": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/world": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/yc": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/xj": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/yj": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/dj": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/gjb": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/china": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/zc": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/gjd": {
-                "__ANY": [
-                    "soccer"
-                ]
-            },
-            "/nz": {
-                "__ANY": [
-                    "soccer"
-                ]
-            }
-        }
-    },
-    "sports.youku.com": {
-        "__ANY": [
-            "sports"
-        ]
-    },
-    "sports.tudou.com": {
-        "__ANY": [
-            "sports"
-        ]
-    },
-    "sports.iqiyi.com": {
-        "__ANY": [
-            "sports"
-        ]
-    },
-    "sports.ku6.com": {
-        "__ANY": [
-            "sports"
-        ]
-    },
-    "sports.letv.com": {
-        "__ANY": [
-            "sports"
-        ]
-    },
-    "sports.ifeng.com": {
-        "__ANY": [
-            "sports"
-        ]
-    },
-    "live.sports.ifeng.com": {
-        "__ANY": [
-            "sports"
-        ]
-    },
-    "sports.huanqiu.com": {
-        "__ANY": [
-            "sports"
-        ],
-        "__PATH": {
-            "/basketball": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/soccer": {
-                "__ANY": [
-                    "soccer"
-                ]
-            }
-        }
-    },
-    "sports.sohu.com": {
-        "__ANY": [
-            "sports"
-        ]
-    },
-    "pic.sports.sohu.com": {
-        "__ANY": [
-            "sports"
-        ]
-    },
     "hupu.com": {
         "__ANY": [
             "sports"
-        ]
-    },
-    "sports.cntv.cn": {
-        "__ANY": [
-            "sports"
         ],
-        "__PATH": {
-            "/nba": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/football": {
-                "__ANY": [
-                    "soccer"
-                ]
-            }
-        }
-    },
-    "nba.weibo.com": {
-        "__ANY": [
+        "voice. /nba": [
             "basketball"
+        ],
+        "nba.": [
+            "basketball"
+        ],
+        "voice. /soccer": [
+            "soccer"
+        ],
+        "soccer.": [
+            "soccer"
         ]
     },
-    "nba.sports.163.com": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "cba.sports.163.com": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "cbachina.sports.sohu.com": {
-        "__ANY": [
-            "basketball"
-        ]
-    },
-    "voice.hupu.com": {
-        "__PATH": {
-            "/nba": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/soccer": {
-                "__ANY": [
-                    "soccer"
-                ]
-            }
-        }
-    },
-    "nba.hupu.com": {
-        "__ANY": [
+    "weibo.com": {
+        "nba.": [
             "basketball"
         ]
     },
     "zhibo8.cc": {
-        "__PATH": {
-            "/nba": {
-                "__ANY": [
-                    "basketball"
-                ]
-            },
-            "/zuqiu": {
-                "__ANY": [
-                    "soccer"
-                ]
-            }
-        }
-    },
-    "china.nba.com": {
-        "__ANY": [
+        "/nba": [
             "basketball"
+        ],
+        "/zuqiu": [
+            "soccer"
         ]
     },
-    "cbachina.163.com": {
-        "__ANY": [
+    "nba.com": {
+        "china.": [
             "basketball"
         ]
     },
     "bbboo.com": {
         "__ANY": [
             "basketball"
-        ]
-    },
-    "v.bbboo.com": {
-        "__ANY": [
+        ],
+        "v.": [
             "basketball"
         ]
     },
@@ -5292,11 +4193,6 @@ var interestsData = {
     "espnstar.com.cn": {
         "__ANY": [
             "basketball"
-        ]
-    },
-    "soccer.hupu.com": {
-        "__ANY": [
-            "soccer"
         ]
     },
     "1soccer.com": {

@@ -19,14 +19,14 @@ let testDomainRules = {
       "computers"
     ]
   },
-  "nws.noaa.gov" : {
-    "__ANY" : [
+  "noaa.gov" : {
+    "nws." : [
       "government",
       "weather",
       "science",
     ]
   },
-  "www.news.com" : {
+  "news.com" : {
     "__HOME" : [
       "news_home"
     ],
@@ -35,17 +35,13 @@ let testDomainRules = {
     ]
   },
   "testpathdomain.com" : {
-    "__PATH": {
-      "/code": {
-        "__ANY" : [
-          "programming"
-        ],
+    "/code": [
+      "programming"
+    ],
 
-        "cplusplus": [
-          "oop"
-        ],
-      }
-    }
+    "/code cplusplus": [
+      "oop"
+    ],
   }
 }
 

@@ -55,56 +55,6 @@ function bootstrap(aMessageData) {
   });
 }
 
-function _getValidRule(hostRule, path) {
-  let result = [];
-
-  if (!hostRule)
-    return result;
-
-  if (hostRule["__ANY"])
-    result.push(hostRule);
-
-  if (!path || path == "/")
-    return result;
-
-  // check path
-  let pathRules = hostRule["__PATH"];
-  if (pathRules) {
-    for (let p in pathRules) {
-      /**
-       * For path:
-       *   '/path'
-       * there are four cases to be matched:
-       *   '/path'
-       *   '/path/'
-       *   '/path?kw='
-       *   '/path#hash'
-       */
-      if (p == path || path.indexOf(path) == 0 &&
-          /[#?\/]/i.test(path.substring(p.length, p.length + 1))) {
-        result.push(pathRules[p])
-      }
-    }
-  }
-
-  return result;
-}
-
-function getMatchedHostRule(host, path) {
-  let result = _getValidRule(gInterestsData[host], path);
-
-  // Check parent domain.
-  let tmp = host.split('.');
-  tmp.shift();
-
-  while (tmp.length > 1) {
-    result = result.concat(_getValidRule(gInterestsData[tmp.join('.')], path));
-    tmp.shift();
-  }
-
-  return result;
-}
-
 // swap out rules
 function swapRules({interestsData, interestsDataType}) {
   if (interestsDataType == "dfr") {
@@ -112,10 +62,19 @@ function swapRules({interestsData, interestsDataType}) {
   }
 }
 
-function doRuleClassify(rule, title, url, path) {
+// classify a page using rules
+function ruleClassify({host, language, tld, metaData, path, title, url}) {
+  let interests = [];
+
+  if (!gInterestsData || !gInterestsData[tld]) {
+    return interests;
+  }
+
+  let rule = gInterestsData[tld];
+
   let keyLength = rule ? Object.keys(rule).length : 0;
   if (!keyLength)
-    return [];
+    return interests;
 
   let interests = [];
   if (rule["__ANY"]) {
@@ -127,6 +86,13 @@ function doRuleClassify(rule, title, url, path) {
     return interests;
 
   let words = gTokenizer.tokenize(url, title);
+
+  // subdomain tokens, for example:
+  //   host="foo.bar.rootdomain.com", we got ["foo.", "bar."]
+  words = words.concat(host.substring(0, host.length - tld.length).match(/[^.\/]+\./gi));
+  // path tokens, for example:
+  //   path="/foo/bar/blabla.html", we got ["/foo", "/bar", "/blabla.html"]
+  words = words.concat(path.match(/\/[^\/#?]+/gi));
 
   let matchedAllTokens = function(tokens) {
     return tokens.every(function(word) {
@@ -141,21 +107,6 @@ function doRuleClassify(rule, title, url, path) {
     else if (key.indexOf("__") < 0 && matchedAllTokens(key.split(kSplitter))) {
       interests = interests.concat(rule[key]);
     }
-  });
-
-  return interests;
-}
-
-// classify a page using rules
-function ruleClassify({host, language, tld, metaData, path, title, url}) {
-  if (gInterestsData == null) {
-    return [];
-  }
-
-  let interests = [];
-
-  getMatchedHostRule(host, path).forEach(rule => {
-    interests = interests.concat(doRuleClassify(rule, title, url, path));
   });
 
   return interests;
