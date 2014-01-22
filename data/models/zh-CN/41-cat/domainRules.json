@@ -905,7 +905,6 @@ var interestsData = {
             "fashion-women"
         ],
         "item. \u6253\u5e95\u886b": [
-            "fashion-women",
             "fashion-women"
         ],
         "item. \u534a\u8eab\u88d9": [
@@ -1067,7 +1066,6 @@ var interestsData = {
             "fashion-women"
         ],
         "detail. \u6253\u5e95\u886b": [
-            "fashion-women",
             "fashion-women"
         ],
         "detail. \u534a\u8eab\u88d9": [
@@ -1220,7 +1218,6 @@ var interestsData = {
             "fashion-women"
         ],
         "item. \u6253\u5e95\u886b": [
-            "fashion-women",
             "fashion-women"
         ],
         "item. \u534a\u8eab\u88d9": [
@@ -1566,7 +1563,6 @@ var interestsData = {
     },
     "mumayi.com": {
         "__ANY": [
-            "app",
             "app"
         ]
     },
@@ -1611,7 +1607,6 @@ var interestsData = {
             "game"
         ],
         "youxi.": [
-            "game",
             "game"
         ],
         "hao123qipai.": [
@@ -1906,7 +1901,6 @@ var interestsData = {
     },
     "sohu.com": {
         "auto.": [
-            "auto",
             "auto"
         ],
         "men.": [
@@ -2468,7 +2462,6 @@ var interestsData = {
     },
     "prada.com": {
         "__ANY": [
-            "luxury",
             "luxury"
         ]
     },
@@ -2562,7 +2555,6 @@ var interestsData = {
     },
     "omegawatches.com": {
         "__ANY": [
-            "luxury",
             "luxury"
         ]
     },
@@ -3923,7 +3915,6 @@ var interestsData = {
     },
     "m1905.com": {
         "__ANY": [
-            "movie",
             "movie"
         ]
     },
