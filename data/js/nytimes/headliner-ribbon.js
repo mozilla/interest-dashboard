@@ -211,7 +211,13 @@ define('shared/ribbon/collections/ribbon-headliner',[
 
             //The collection that should be loaded
             //If not empty, headliner recommendations should always be first
-            firstRibbonCollection = this.getFeedSourceValue("headliner");
+            headliner.loadData();
+            if (headliner.length) {
+              firstRibbonCollection = this.getFeedSourceValue("headliner");
+            }
+            else {
+              firstRibbonCollection = this.getFeedSourceValue(feedSrc);
+            }
 
             //set load type
             this.originalLoadType = loadType;
