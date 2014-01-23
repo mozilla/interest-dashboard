@@ -13,6 +13,7 @@ Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
 const {promiseTimeout, getRelevantPrefs} = require("Utils");
+const simplePrefs = require("simple-prefs");
 const {testUtils} = require("./helpers");
 const test = require("sdk/test");
 
@@ -38,7 +39,8 @@ exports["test getRelevantPrefs"] = function test_GetRelevantPrefs(assert, done) 
     "network.cookie.lifetimePolicy": 0,
     "privacy.sanitize.sanitizeOnShutdown":false,
     "places.history.enabled":true,
-    "browser.formfill.enable":true
+    "browser.formfill.enable":true,
+    "nytimes_personalization_start": simplePrefs.prefs.nytimes_personalization_start
   };
   testUtils.isIdentical(assert,prefs,expected);
   done();

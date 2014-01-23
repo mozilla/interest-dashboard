@@ -153,4 +153,20 @@ exports["test NYTimesRecommendation periodic refresh task"] = function test_NYT_
   }).then(done);
 }
 
+exports["test personalization timestamp"] = function test_PersonalizationTimestamp(assert, done) {
+  Task.spawn(function() {
+    let now = Date.now();
+    yield NYTimesRecommendations.init();
+    let personalizationStart = simplePrefs.prefs.nytimes_personalization_start;
+    // since other tests may already set nytimes_personalization_start, let's at least make sure
+    // that nytimes_personalization_start is witnin 10 minutes of now
+    assert.ok(Math.abs(parseInt(personalizationStart) - now) < 10*60*1000)
+
+    // also test that repeated calling to NYTimesRecommendations.init, does not reset it
+    yield NYTimesRecommendations.destroy();
+    yield NYTimesRecommendations.init();
+    assert.equal(personalizationStart, simplePrefs.prefs.nytimes_personalization_start);
+  }).then(done);
+}
+
 require("sdk/test").run(exports);

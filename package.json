@@ -55,6 +55,13 @@
         "title": "Time interval to refresh headliner content in seconds",
         "type": "integer",
         "value": 10800
+      },
+      {
+        "name": "nytimes_personalization_start",
+        "title": "The date/time when nytimes personalization starts",
+        "type": "string",
+        "value": ""
       }
+
   ]
 }
