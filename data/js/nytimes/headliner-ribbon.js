@@ -355,16 +355,43 @@ define('shared/ribbon/views/ribbon-page-navigation-headliner', [
         };
 
       },
+
       events: {
         'click .ribbon-page-navigation-headliner': 'changeArticle',
         'mouseenter .ribbon-page-navigation-headliner': 'showArticle',
         'mouseleave .ribbon-page-navigation-headliner': 'hideArticle',
         'mouseleave #ribbon-page-navigation-modal-headliner .modal': 'hideArticle'
       },
+
       handlePageReady: function () {
         this.restrict = false;
         this.createAdsDeferral(this.checkForFeed);
       },
+
+      render: function () {
+          var curArt = this.feed.currentArticle;
+          var prev = this.feed.previous(curArt);
+          var next = this.feed.next(curArt);
+
+          this.activeStoryIndex = this.getStoryIndex(this.feed.models, this.feed.currentArticle);
+          this.$arrows = $(this.createTemplate('previous', prev) + this.createTemplate('next', next));
+
+          this.$shell.append(this.$arrows);
+          this.adjustArrows();
+          this.adjustText();
+
+          this.pageManager.$document.undelegate('nyt:ribbon-left');
+          this.pageManager.$document.undelegate('nyt:ribbon-right');
+          this.subscribe('nyt:page-resize', this.adjustArrows);
+          this.subscribe('nyt:ribbon-visiblility', this.restrictArrow);
+          this.subscribe('nyt:ribbon-left', this.handleKeyboardLeftArrow);
+          this.subscribe('nyt:ribbon-right', this.handleKeyboardRightArrow);
+
+          if (this.pageManager.isMobile()) {
+              this.$arrows.hide();
+          }
+      },
+
       createTemplate: function (dir, article) {
         var adRelationship, shouldQueueAd, adPosition;
 
