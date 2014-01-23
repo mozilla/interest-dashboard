@@ -43,6 +43,18 @@
         "title": "Link recommendation sever endpoint",
         "type": "string",
         "value": "http://127.0.0.1:4355/nytimes/mostpopular/Technology.json"
+      },
+      {
+        "name": "nytimes_headliner_url",
+        "title": "New York Times content personalization server",
+        "type": "string",
+        "value": "https://headliner.mozillalabs.com/nytimes/mostpopular/personalize"
+      },
+      {
+        "name": "headliner_refresh_interval",
+        "title": "Time interval to refresh headliner content in seconds",
+        "type": "integer",
+        "value": 10800
       }
   ]
 }
