@@ -276,7 +276,7 @@ nav.ribbon-page-navigation {
 	font-family:"nyt-franklin",arial,helvetica,sans-serif
 }
 
-#ribbon .news-collection, #ribbon .most-emailed-collection {
+#ribbon .news-collection, #ribbon .most-emailed-collection, #ribbon .collection-marker {
     display: none !important;
 }
 
