@@ -116,79 +116,149 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
   if (mostPopWidget) {
     console.debug("modifying mostPopular widget");
 
-    // hide nytimes tabs
     let mostEmailedTab = document.querySelector("#mostPopTabMostEmailed");
-    mostEmailedTab.style.display = "block";
-    mostEmailedTab.className = "tab";
-    let mostViewedTab = document.querySelector("#mostPopTabMostViewed");
-    mostViewedTab.style.display = "none";
-    mostViewedTab.className = "tab";
-    let recommendationsTab = document.querySelector("#mostPopTabRecommendations");
-    recommendationsTab.style.display = "none";
-    recommendationsTab.className = "tab";
 
-    // headliner tab
-    let headlinerTab = document.createElement("li");
-    headlinerTab.id = "mostPopTabHeadliner";
-    headlinerTab.className = "tab selected";
-    let headlinerTabLink = document.createElement("a");
-    headlinerTabLink.href = "https://mozilla.org";
-    headlinerTabLink.innerHTML = "Recommended for you";
-    headlinerTab.appendChild(headlinerTabLink);
+    if (mostEmailedTab) {
+      // old-style rubric
 
-    let tabs = mostPopWidget.querySelector(".tabs");
-    tabs.appendChild(headlinerTab);
+      // hide nytimes tabs
+      mostEmailedTab.style.display = "block";
+      mostEmailedTab.className = "tab";
+      let mostViewedTab = document.querySelector("#mostPopTabMostViewed");
+      mostViewedTab.style.display = "none";
+      mostViewedTab.className = "tab";
+      let recommendationsTab = document.querySelector("#mostPopTabRecommendations");
+      recommendationsTab.style.display = "none";
+      recommendationsTab.className = "tab";
 
-    // hide nytimes content
-    let mostEmailedContent = document.querySelector("#mostPopContentMostEmailed");
-    mostEmailedContent.style.display = "none";
-    mostEmailedContent.className = "tabContent";
-    let mostViewedContent = document.querySelector("#mostPopContentMostViewed");
-    mostViewedContent.style.display = "none";
-    mostViewedContent.className = "tabContent";
-    let recommendations = document.querySelector("#mostPopContentRecommendations");
-    recommendations.style.display = "none";
-    recommendations.className = "tabContent";
+      // headliner tab
+      let headlinerTab = document.createElement("li");
+      headlinerTab.id = "mostPopTabHeadliner";
+      headlinerTab.className = "tab selected";
+      let headlinerTabLink = document.createElement("a");
+      headlinerTabLink.href = "https://mozilla.org";
+      headlinerTabLink.innerHTML = "Recommended for you";
+      headlinerTab.appendChild(headlinerTabLink);
 
-    // create and show headliner content
-    let headlinerContent = document.createElement("div");
-    headlinerContent.id = "mostPopContentHeadliner";
-    headlinerContent.className = "tabContent tabContentActive";
-    headlinerContent.style.display = "block";
+      let tabs = mostPopWidget.querySelector(".tabs");
+      tabs.appendChild(headlinerTab);
 
-    let contentTable = document.createElement("table");
-    contentTable.className = "leftAlignedMostPop";
-    let contentBody = document.createElement("tbody");
-    for (let index in data) {
-      let item = data[index];
-      let contentRow = document.createElement("tr");
-
-      let numberColumn = document.createElement("td");
-      numberColumn.className = "listNumber";
-      numberColumn.innerHTML = (parseInt(index)+1) + ".";
-
-      let titleColumn = document.createElement("td");
-      titleColumn.className = "mostPopularTitle";
-      if (item.topic) {
-        let topicHeader = document.createElement("h6");
-        topicHeader.className = "kicker";
-        topicHeader.innerHTML = item.topic;
-        titleColumn.appendChild(topicHeader);
+      // hide nytimes content
+      let mostEmailedContent = document.querySelector("#mostPopContentMostEmailed");
+      if (mostEmailedContent) {
+        mostEmailedContent.style.display = "none";
+        mostEmailedContent.className = "tabContent";
       }
-      let title = document.createElement("h4");
-      let titleLink = document.createElement("a");
-      titleLink.href = item.url;
-      titleLink.innerHTML = item.title;
+      let mostViewedContent = document.querySelector("#mostPopContentMostViewed");
+      if (mostViewedContent) {
+        mostViewedContent.style.display = "none";
+        mostViewedContent.className = "tabContent";
+      }
+      let recommendations = document.querySelector("#mostPopContentRecommendations");
+      if (recommendations) {
+        recommendations.style.display = "none";
+        recommendations.className = "tabContent";
+      }
 
-      title.appendChild(titleLink);
-      titleColumn.appendChild(title);
-      contentRow.appendChild(numberColumn);
-      contentRow.appendChild(titleColumn);
-      contentBody.appendChild(contentRow);
+      // create and show headliner content
+      let headlinerContent = document.createElement("div");
+      headlinerContent.id = "mostPopContentHeadliner";
+      headlinerContent.className = "tabContent tabContentActive";
+      headlinerContent.style.display = "block";
+
+      let contentTable = document.createElement("table");
+      contentTable.className = "leftAlignedMostPop";
+      let contentBody = document.createElement("tbody");
+      for (let index in data) {
+        let item = data[index];
+        let contentRow = document.createElement("tr");
+
+        let numberColumn = document.createElement("td");
+        numberColumn.className = "listNumber";
+        numberColumn.innerHTML = (parseInt(index)+1) + ".";
+
+        let titleColumn = document.createElement("td");
+        titleColumn.className = "mostPopularTitle";
+        if (item.topic) {
+          let topicHeader = document.createElement("h6");
+          topicHeader.className = "kicker";
+          topicHeader.innerHTML = item.topic;
+          titleColumn.appendChild(topicHeader);
+        }
+        let title = document.createElement("h4");
+        let titleLink = document.createElement("a");
+        titleLink.href = item.url;
+        titleLink.innerHTML = item.title;
+
+        title.appendChild(titleLink);
+        titleColumn.appendChild(title);
+        contentRow.appendChild(numberColumn);
+        contentRow.appendChild(titleColumn);
+        contentBody.appendChild(contentRow);
+      }
+
+      contentTable.appendChild(contentBody);
+      headlinerContent.appendChild(contentTable);
+      mostPopWidget.appendChild(headlinerContent);
     }
+    else {
+      // new-style rubric
+      let recommendedHeader = document.createElement("li");
+      recommendedHeader.className = "selected";
+      recommendedHeader.innerHTML = "<a href=\"#\">Recommended</a>"
+      let currentSelected = mostPopWidget.querySelector(".tabs .selected");
+      currentSelected.className = "";
 
-    contentTable.appendChild(contentBody);
-    headlinerContent.appendChild(contentTable);
-    mostPopWidget.appendChild(headlinerContent);
+      let tabHeaders = mostPopWidget.querySelector("ul.tabs");
+      let tabs = tabHeaders.querySelectorAll("li");
+      tabHeaders.replaceChild(recommendedHeader, tabs[tabs.length-1]);
+
+      // hide nytimes content
+      let mostEmailedContent = document.querySelector("#mostEmailed");
+      if (mostEmailedContent) {
+        mostEmailedContent.style.display = "none";
+        mostEmailedContent.className = "tabContent";
+      }
+      let mostViewedContent = document.querySelector("#mostViewed");
+      if (mostViewedContent) {
+        mostViewedContent.style.display = "none";
+        mostViewedContent.className = "tabContent";
+      }
+      let blogged = document.querySelector("#mostBlogged");
+      if (blogged) {
+        blogged.style.display = "none";
+        blogged.className = "tabContent";
+      }
+      let searched = document.querySelector("#mostSearched");
+      if (searched) {
+        searched.style.display = "none";
+        searched.className = "tabContent";
+      }
+
+      let mostRecommended = document.createElement("div");
+      mostRecommended.className = "tabContent tabContentActive";
+      mostRecommended.id = "mostRecommended";
+      mostRecommended.style.overflow = "hidden";
+      mostRecommended.style.display = "block";
+
+      let olRecommended = document.createElement("ol");
+      for (let item of data) {
+        let container = document.createElement("li");
+        container.setAttribute("kicker", item.topic || "")
+        container.setAttribute("img", item.thumbUrl || "")
+        let link = document.createElement("a");
+        link.href = item.url;
+        link.setAttribute("title", "Click to go to this article");
+        link.innerHTML = item.title;
+        container.appendChild(link);
+        olRecommended.appendChild(container);
+      }
+      mostRecommended.appendChild(olRecommended);
+      let mozLink = document.createElement("a");
+      mozLink.className = "more";
+      mozLink.href = "https://mozilla.org";
+      mostRecommended.appendChild(mozLink);
+      mostPopWidget.appendChild(mostRecommended);
+    }
   }
 });
