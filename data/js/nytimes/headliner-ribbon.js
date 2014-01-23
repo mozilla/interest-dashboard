@@ -137,7 +137,24 @@ define('shared/ribbon/collections/ribbon-headliner',[
             this.originalLoadType = 'context';
             this.feedUrl = this.setFeedUrl(settings.sectionFeedUrl);
 
+            this.setCurrentArticle();
             this.subscribe(this, 'sync', this.setCurrentArticle);
+        },
+
+        /**
+         * Sets the currentArticle property based on the currentArticleUrl property
+         *
+         * @private
+         * @method setCurrentArticle
+        **/
+        setCurrentArticle: function () {
+            var feedCollection = this;
+
+            this.currentArticle = this.find(function (article) {
+                var url = article.get('link').match(/^[^\#\?]+/)[0];
+                return url === feedCollection.currentArticleUrl;
+            });
+
         },
 
         /**
@@ -334,7 +351,7 @@ define('shared/ribbon/views/ribbon-page-navigation-headliner', [
 
         this.trackingBaseData = {
           'module': 'ArrowsNav',
-        'contentCollection': this.pageManager.getMeta('article:section')
+          'contentCollection': this.pageManager.getMeta('article:section')
         };
 
       },
