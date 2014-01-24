@@ -182,8 +182,12 @@ function test_ConsumeHistoryVisit(assert, done) {
       yield testUtils.promiseClearHistory();
       yield testUtils.promiseAddVisits([
        {uri: NetUtil.newURI("http://www.nytimes.com")},
+       {uri: NetUtil.newURI("http://dealbook.nytimes.com/2014/11/11/x_y_z.html?ref=biz&moz_test=1")},
+       {uri: NetUtil.newURI("http://autos.nytimes.com/2014/11/11/x_y_z.html?ref=biz&moz_test=1")},
        {uri: NetUtil.newURI("http://world.nytimes.com/2014/11/11/x_y_z.html?ref=biz&moz_test=1")},
-       {uri: NetUtil.newURI("http://www.nytimes.com/us/ca/index.html?hp")},
+       {uri: NetUtil.newURI("http://foo.bar.blogs.nytimes.com/us/ca/index.html?hp")},
+       {uri: NetUtil.newURI("http://x.y.z.nytimes.com/2014/11/11/x_y_z.html?ref=biz&moz_test=1")},
+       {uri: NetUtil.newURI("http://nytimes.com")},
       ]);
 
       NYTimesHistoryVisitor.clear();
@@ -192,18 +196,24 @@ function test_ConsumeHistoryVisit(assert, done) {
       yield historyReader.resubmitHistory({startDay: today-20, historyVisitor: NYTimesHistoryVisitor});
       let visits =  NYTimesHistoryVisitor.getVisits();
 
+      assert.equal(visits.length, 4);
+
       assert.equal(visits[0].visitId, 1);
       assert.equal(visits[0].host, "nytimes.com");
       assert.ok(visits[0].timeStamp != null);
 
       assert.equal(visits[1].visitId, 2);
-      assert.equal(visits[1].host, "world.nytimes.com");
+      assert.equal(visits[1].host, "dealbook.nytimes.com");
 
-      assert.equal(visits[2].visitId, 3);
-      assert.equal(visits[2].host, "nytimes.com");
+      assert.equal(visits[2].visitId, 5);
+      assert.equal(visits[2].host, "foo.bar.blogs.nytimes.com");
+
+      assert.equal(visits[3].visitId, 7);
+      assert.equal(visits[3].host, "nytimes.com");
 
       NYTimesHistoryVisitor.clear();
       assert.ok(NYTimesHistoryVisitor.getVisits() == null);
+
     } catch (ex) {
       dump( ex + " ERROR\n");
     }
