@@ -44,6 +44,13 @@ const EXTRACT_TEST_CASES = [
     },
   },
   {
+    path: "/?hp",
+    expected: {
+      path: "/",
+      "query":["hp"]
+    },
+  },
+  {
     path: "index.html",
     expected: {
       path: "index.html",
@@ -60,21 +67,28 @@ const EXTRACT_TEST_CASES = [
   {
     path: "/foo/bar/title.html",
     expected: {
-      path: "/foo/bar",
+      path: "/foo/bar/_TITLE",
       "query":[]
     },
   },
   {
     path: "/2014/11/22/us/title.html",
     expected: {
-      path: "/_DATE/us",
+      path: "/_DATE/us/_TITLE",
+      "query":[]
+    },
+  },
+  {
+    path: "/xyz/2014/11/22/us/title.html",
+    expected: {
+      path: "/xyz/_DATE/us/_TITLE",
       "query":[]
     },
   },
   {
     path: "/2014/11/22/title.html",
     expected: {
-      path: "/_DATE",
+      path: "/_DATE/_TITLE",
       "query":[]
     },
   },
@@ -88,7 +102,7 @@ const EXTRACT_TEST_CASES = [
   {
     path: "/2014/11/22/us/ca/title.html",
     expected: {
-      path: "/_DATE/us/ca",
+      path: "/_DATE/us/ca/_TITLE",
       "query":[]
     },
   },
@@ -104,6 +118,41 @@ const EXTRACT_TEST_CASES = [
     expected: {
       path: "/us/index.html",
       "query":["hp", "action=1", "module=1", "contentCollection=1"]
+    },
+  },
+  {
+    path: "/2013/07/10/a-game-that-deals-in-personal-data/?_php=true&_type=blogs&_php=true&_type=blogs&_r=1",
+    expected: {
+      path: "/_DATE/_TITLE",
+      "query":[]
+    },
+  },
+  {
+    path: "/2013/07/10/section-with-dash/title-with-dash",
+    expected: {
+      path: "/_DATE/section-with-dash/_TITLE",
+      "query":[]
+    },
+  },
+  {
+    path: "/2009/07/10/section-with-dash/title-with-dash",
+    expected: {
+      path: "/_DATE/section-with-dash/_TITLE",
+      "query":[]
+    },
+  },
+  {
+    path: "/1998/07/10/section-with-dash/title-with-dash",
+    expected: {
+      path: "/_DATE/section-with-dash/_TITLE",
+      "query":[]
+    },
+  },
+  {
+    path: "/video/dining/100000002663579/the-women-in-the-kitchen.html",
+    expected: {
+      path: "/video/dining/_NUM/_TITLE",
+      "query":[]
     },
   },
 ];
