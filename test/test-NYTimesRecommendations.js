@@ -26,7 +26,7 @@ exports["test NYTimesRecommendation pref changes"] = function test_NYT_init(asse
     simplePrefs.prefs.consented = true;
     PrefsManager.setObservers();
 
-    let controller = {_dispatcher: {_enabled: false}, getRankedInterests: function() {return {};}};
+    let controller = {_dispatcher: {_enabled: false}, getUserInterests: function() {return {};}};
     StudyApp.controller = controller;
     yield NYTimesRecommendations.init();
 
@@ -63,7 +63,7 @@ exports["test NYTimesRecommendation getInterests"] = function test_NYT_getIntere
   }
 
   StudyApp.controller = {
-    getRankedInterests: function() {
+    getUserInterests: function() {
       return userInterestSample;
     }
   }
