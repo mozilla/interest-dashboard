@@ -26,6 +26,7 @@ const {testUtils} = require("./helpers");
 const {getRelevantPrefs} = require("Utils");
 const {StudyApp} = require("Application");
 const {getTLDCounts} = require("HistoryReader");
+const {Crypto} = require("Crypto");
 const {NYTimesHistoryVisitor} = require("NYTimesHistoryVisitor");
 const sampleData = require("./sampleData");
 
@@ -45,6 +46,7 @@ function makeTestPayload(referencePayload, interests) {
     version: storage.version,
     locale: Services.prefs.getCharPref("general.useragent.locale"),
     tldCounter: getTLDCounts(),
+    hasSurveyInterests: Crypto.hasMappedInterests(simplePrefs.prefs.uuid),
     nytVisits: NYTimesHistoryVisitor.getVisits() || [],
     interests: interests || storage.interests
   };

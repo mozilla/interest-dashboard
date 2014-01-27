@@ -103,6 +103,8 @@ function test_uuidMappings(assert, done) {
   let nosuchInterest = Crypto.uuidGetMappedInterests("NO_SUCH_UUID");
   testUtils.isIdentical(assert, nosuchInterest, {"NO_SUCH_INTREST":1});
   assert.ok(Crypto.uuidGetMappedInterests("MISSING_UUID") == null);
+  assert.ok(Crypto.hasMappedInterests("NO_SUCH_UUID"));
+  assert.ok(Crypto.hasMappedInterests("NON_EXISTENT_UUID") == false);
   done();
 }
 
