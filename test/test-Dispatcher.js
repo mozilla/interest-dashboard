@@ -349,4 +349,11 @@ exports["test idle-daily dispatch"] = function test_IdleDailyDispatch(assert, do
   }).then(done);
 }
 
+exports["test addExtraParameterToPayload"] = function test_addExtraParameterToPayload(assert) {
+  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
+  dispatcher.addExtraParameterToPayload("p1","v1");
+  let payloadObject = dispatcher._makePayloadObject();
+  assert.equal(payloadObject.p1, "v1");
+}
+
 test.run(exports);

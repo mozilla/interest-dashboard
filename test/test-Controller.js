@@ -230,4 +230,26 @@ exports["test getUserInterests"] = function test_GetUserInterests(assert, done) 
   }).then(done);
 }
 
+exports["test mayPersonalize"] = function test_MayPersonalize(assert, done) {
+  Task.spawn(function() {
+    try {
+      // set uuid andt make a controller
+      simplePrefs.prefs.uuid = "1";
+      let testController = new Controller();
+      let pObject = testController._dispatcher._makePayloadObject();
+      assert.ok(testController.mayPersonalize() == true);
+      assert.ok(pObject.personalizeOn == true);
+
+      // remake controller for a different uuid
+      simplePrefs.prefs.uuid = "2";
+      testController = new Controller();
+      assert.ok(testController.mayPersonalize() == false);
+      pObject = testController._dispatcher._makePayloadObject();
+      assert.ok(pObject.personalizeOn == false);
+    } catch(ex) {
+      dump(ex + " ERROR\n");
+    }
+  }).then(done);
+}
+
 test.run(exports);
