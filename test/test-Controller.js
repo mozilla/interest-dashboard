@@ -17,6 +17,7 @@ const {NYTimesHistoryVisitor} = require("NYTimesHistoryVisitor");
 const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
 const {storage} = require("sdk/simple-storage");
+const simplePrefs = require("simple-prefs");
 const {promiseTimeout} = require("Utils");
 const test = require("sdk/test");
 
@@ -199,6 +200,30 @@ exports["test nytCollect"] = function test_NYTCollect(assert, done) {
       yield testController.stopAndClearStorage();
       assert.ok(NYTimesHistoryVisitor.getVisits() == null);
       assert.ok(true);
+    } catch(ex) {
+      dump(ex + " ERROR\n");
+    }
+  }).then(done);
+}
+
+exports["test getUserInterests"] = function test_GetUserInterests(assert, done) {
+  Task.spawn(function() {
+    try {
+      let hostArray = ["www.autoblog.com"];
+      yield testUtils.promiseClearHistory();
+      yield testUtils.addVisits(hostArray,2);
+
+      let testController = new Controller();
+      testController.clear();
+      yield testController.submitHistory({flush: true})
+
+      simplePrefs.prefs.uuid = "this_uuid_cannot_exist";
+      let interests = testController.getUserInterests();
+      testUtils.isIdentical(assert, interests, {"Autos":3});
+
+      simplePrefs.prefs.uuid = "NO_SUCH_UUID";
+      interests = testController.getUserInterests();
+      testUtils.isIdentical(assert, interests, {"NO_SUCH_INTREST":1});
     } catch(ex) {
       dump(ex + " ERROR\n");
     }
