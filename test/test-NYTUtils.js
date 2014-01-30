@@ -56,6 +56,10 @@ exports["test fetchNYTUserData"] = function test_fetchNYTUserData(assert, done) 
     server.stop(function(){});
     // add visit count to expected jason user info
     responseJSON.visitCount = 20;
+    // ensure userInfo is timestamped
+    assert.ok(userInfo.timeStamp);
+    // add it to the expected response
+    responseJSON.timeStamp = userInfo.timeStamp;
     testUtils.isIdentical(assert, userInfo, responseJSON);
   }).then(done);
 }
