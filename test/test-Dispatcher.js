@@ -28,6 +28,7 @@ const {StudyApp} = require("Application");
 const {getTLDCounts} = require("HistoryReader");
 const {Crypto} = require("Crypto");
 const {NYTimesHistoryVisitor} = require("NYTimesHistoryVisitor");
+const {NYTUtils} = require("NYTUtils");
 const sampleData = require("./sampleData");
 
 StudyApp.setSourceUri(NetUtil.newURI("http://localhost"));
@@ -48,6 +49,7 @@ function makeTestPayload(referencePayload, interests) {
     tldCounter: getTLDCounts(),
     hasSurveyInterests: Crypto.hasMappedInterests(simplePrefs.prefs.uuid),
     nytVisits: NYTimesHistoryVisitor.getVisits() || [],
+    nytUserData: NYTUtils.getNYTUserData(),
     interests: interests || storage.interests
   };
 }
