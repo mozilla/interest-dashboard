@@ -58,9 +58,14 @@ exports["test fetchNYTUserData"] = function test_fetchNYTUserData(assert, done) 
     responseJSON.visitCount = 20;
     // ensure userInfo is timestamped
     assert.ok(userInfo.timeStamp);
-    // add it to the expected response
-    responseJSON.timeStamp = userInfo.timeStamp;
-    testUtils.isIdentical(assert, userInfo, responseJSON);
+    // make expected response
+    let expectedObject = {
+      hasId: false,
+      subscription: { "web": "0", "mobile": "0", "crosswords": "0", "hd": "0" },
+      visitCount: 20,
+      timeStamp: userInfo.timeStamp,
+    };
+    testUtils.isIdentical(assert, userInfo, expectedObject);
   }).then(done);
 }
 
