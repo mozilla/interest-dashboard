@@ -65,6 +65,7 @@ exports["test fetchNYTUserData"] = function test_fetchNYTUserData(assert, done) 
       visitCount: 20,
       timeStamp: userInfo.timeStamp,
     };
+    assert.equal(typeof(userInfo.visitCount), "number");
     testUtils.isIdentical(assert, userInfo, expectedObject);
   }).then(done);
 }
