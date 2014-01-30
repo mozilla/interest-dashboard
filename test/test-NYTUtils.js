@@ -18,6 +18,9 @@ const test = require("sdk/test");
 const {NYTUtils} = require("NYTUtils");
 const {testUtils} = require("./helpers");
 
+// setup nyt-m cookie
+Services.cookies.add(".nytimes.com", "/", "nyt-m", "t=i.10&v=i.20&l=l.25", false, false, false, Date.now() / 1000 + 100000);
+
 exports["test fetchNYTUserData"] = function test_fetchNYTUserData(assert, done) {
   Task.spawn(function() {
     let server = new nsHttpServer();
@@ -51,6 +54,8 @@ exports["test fetchNYTUserData"] = function test_fetchNYTUserData(assert, done) 
     yield NYTUtils.fetchNYTUserData();
     let userInfo = NYTUtils.getNYTUserData();
     server.stop(function(){});
+    // add visit count to expected jason user info
+    responseJSON.visitCount = 20;
     testUtils.isIdentical(assert, userInfo, responseJSON);
   }).then(done);
 }
