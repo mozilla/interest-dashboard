@@ -1,3 +1,115 @@
+#mostPopWidget {
+  display: none;
+}
+#mostPopWidget-headliner div#tabsContainer {
+  left:0;
+}
+#mostPopWidget-headliner a.more {
+  font-family: arial, helvetica, sans-serif;
+  font-size:1.1em !important;
+}
+#mostPopWidget-headliner {
+ border-bottom: 0 !important;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner .tabs li,
+.NYT5Style .columnGroup #mostPopWidget-headliner a.more {
+  font-family: "nyt-franklin", arial, helvetica, sans-serif;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner ol {
+  font-family: 'nyt-cheltenham-sh', georgia, "times new roman", times, serif;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner a.more {
+  font-size: 11px;
+  line-height: 14px;
+  color: #326891;
+  font-weight: 500;
+  margin-left: -7px;
+}
+.NYT5Style #mostPopWidget-headliner {
+  margin-bottom: 30px;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner h4 {
+  display: none;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner .tabs {
+  background-image: url("http://www.nytimes/images/layout/dbl-rule.png");
+  background-repeat: repeat-x;
+  background-position-y: 4px;
+  height: 28px;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner .tabs li {
+  background: none;
+  border: 0;
+  font-size: 11px;
+  height: 30px;
+  left: 5px;
+  margin-top: 6px;
+  padding: 5px 10px;
+  position: relative;
+  line-height: 11px;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner .tabs li a {
+  display: block;
+  text-decoration: none;
+  color: #999 !important;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner .tabs li a:hover {
+  border-bottom: 1px solid #ccc;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner .tabs li a:before {
+  content: "MOST";
+  display: inline-block;
+  margin-right: 4px;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner .tabs li.selected {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  margin: 0;
+  padding-top: 8px;
+  background: white;
+}
+.NYT5Style .ticketNetworkModule,
+.NYT5Style .eventsCalendarModule,
+.NYT5Style  #mostPopWidget-headliner ~ .columnGroup {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: -7px;
+}
+
+.NYT5Style .columnGroup #mostPopWidget-headliner .tabs li.selected a {
+  color: #000 !important;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner .tabs li.selected a:hover {
+  border-bottom: 1px solid black;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner .tabContent {
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner ol {;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  padding: 5px 0;
+  margin-left: 18px;
+  margin-bottom: 0;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner ol li {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 3px;
+  color: #333333;
+}
+.NYT5Style .columnGroup #mostPopWidget-headliner  ol li a {
+  font-weight: 400;
+}
+
 nav.ribbon-page-navigation {
     display: none !important;
 }

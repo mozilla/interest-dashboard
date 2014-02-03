@@ -59,7 +59,11 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
     document.body.appendChild(ribbonScriptElem);
   }
 
-  if(!data || !data.length) return;
+  if(!data || !data.length) {
+    let mostPop = document.querySelector("#mostPopWidget");
+    mostPop.style.display = "block";
+    return;
+  }
 
   let mostEmailedWidget = document.querySelector("aside.marginalia.most-emailed-marginalia");
   if (mostEmailedWidget) {
@@ -203,33 +207,41 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
     }
     else {
       // new-style rubric
+      let widget = mostPopWidget.cloneNode();
+      widget.id = "mostPopWidget-headliner";
+
+      widget.removeChild(widget.querySelector("script"));
+      let scriptElem = document.createElement("script");
+      scriptElem.type = "text/javascript";
+      scriptElem.textContent = "new Accordian(\"mostPopWidget-headliner\");";
+
       let recommendedHeader = document.createElement("li");
       recommendedHeader.className = "selected";
       recommendedHeader.innerHTML = "<a href=\"#\">Recommended</a>"
-      let currentSelected = mostPopWidget.querySelector(".tabs .selected");
+      let currentSelected = widget.querySelector(".tabs .selected");
       currentSelected.className = "";
 
-      let tabHeaders = mostPopWidget.querySelector("ul.tabs");
+      let tabHeaders = widget.querySelector("ul.tabs");
       let tabs = tabHeaders.querySelectorAll("li");
-      tabHeaders.replaceChild(recommendedHeader, tabs[tabs.length-1]);
+      tabHeaders.insertBefore(recommendedHeader, tabs[0]);
 
       // hide nytimes content
-      let mostEmailedContent = document.querySelector("#mostEmailed");
+      let mostEmailedContent = widget.querySelector("#mostEmailed");
       if (mostEmailedContent) {
         mostEmailedContent.style.display = "none";
         mostEmailedContent.className = "tabContent";
       }
-      let mostViewedContent = document.querySelector("#mostViewed");
+      let mostViewedContent = widget.querySelector("#mostViewed");
       if (mostViewedContent) {
         mostViewedContent.style.display = "none";
         mostViewedContent.className = "tabContent";
       }
-      let blogged = document.querySelector("#mostBlogged");
+      let blogged = widget.querySelector("#mostBlogged");
       if (blogged) {
         blogged.style.display = "none";
         blogged.className = "tabContent";
       }
-      let searched = document.querySelector("#mostSearched");
+      let searched = widget.querySelector("#mostSearched");
       if (searched) {
         searched.style.display = "none";
         searched.className = "tabContent";
@@ -254,11 +266,10 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
         olRecommended.appendChild(container);
       }
       mostRecommended.appendChild(olRecommended);
-      let mozLink = document.createElement("a");
-      mozLink.className = "more";
-      mozLink.href = "https://mozilla.org";
-      mostRecommended.appendChild(mozLink);
-      mostPopWidget.appendChild(mostRecommended);
+      widget.insertBefore(mostRecommended, widget.querySelector("#mostEmailed"));
+      widget.appendChild(scriptElem);
+
+      mostPopWidget.parentNode.replaceChild(widget, mostPopWidget);
     }
   }
 });
