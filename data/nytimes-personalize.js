@@ -124,6 +124,7 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
 
     if (mostEmailedTab) {
       // old-style rubric
+      mostPopWidget.style.display = "block";
 
       // hide nytimes tabs
       mostEmailedTab.style.display = "block";
