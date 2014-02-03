@@ -135,10 +135,7 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
       let headlinerTab = document.createElement("li");
       headlinerTab.id = "mostPopTabHeadliner";
       headlinerTab.className = "tab selected";
-      let headlinerTabLink = document.createElement("a");
-      headlinerTabLink.href = "https://mozilla.org";
-      headlinerTabLink.innerHTML = "Recommended for you";
-      headlinerTab.appendChild(headlinerTabLink);
+      headlinerTab.innerHTML = "Recommended for you";
 
       let tabs = mostPopWidget.querySelector(".tabs");
       tabs.appendChild(headlinerTab);
