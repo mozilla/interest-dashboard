@@ -51,13 +51,6 @@ const EXTRACT_TEST_CASES = [
     },
   },
   {
-    path: "index.html",
-    expected: {
-      path: "index.html",
-      "query":[]
-    },
-  },
-  {
     path: "/index.html",
     expected: {
       path: "/index.html",
@@ -155,6 +148,13 @@ const EXTRACT_TEST_CASES = [
       "query":[]
     },
   },
+  {
+    path: "/projects/2013/invisible-child/#/?chapt=2",
+    expected: {
+      path: "/projects/_NUM/_TITLE",
+      "query":[]
+    },
+  },
 ];
 
 exports["test extractFromPath"] =
@@ -162,7 +162,7 @@ function test_ExtractFromPath(assert, done) {
   Task.spawn(function() {
     try {
       EXTRACT_TEST_CASES.forEach(testCase => {
-        let obj = NYTimesHistoryVisitor._extractFromPath(testCase.path);
+        let obj = NYTimesHistoryVisitor._extractFromUrl("http://www.nytimes.com" + testCase.path);
         testUtils.isIdentical(assert, obj, testCase.expected);
       });
     } catch (ex) {
