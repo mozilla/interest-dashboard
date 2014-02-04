@@ -1,3 +1,6 @@
+#mostPopWidget {
+    display: none !important;
+}
 nav.ribbon-page-navigation {
     display: none !important;
 }

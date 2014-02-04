@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
+self.port.on("recommend_on_page", function([data, ribbonScriptUrl, oldStyleRubricScriptUrl]) {
 
   let ribbon = document.querySelector("#ribbon");
   if (ribbon) {
@@ -48,7 +48,7 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
 
     let ribbonDataElem = document.createElement("script");
     ribbonDataElem.type = "text/javascript";
-    ribbonDataElem.innerHTML = "var headlinerRibbonData = " + JSON.stringify(articles) + ";";
+    ribbonDataElem.textContent = "var headlinerRibbonData = " + JSON.stringify(articles) + ";";
     document.body.appendChild(ribbonDataElem);
 
     // inject new backbone collection, view and more
@@ -114,92 +114,42 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl]) {
 
   let mostPopWidget = document.querySelector("#mostPopWidget");
   if (mostPopWidget) {
-    console.debug("modifying mostPopular widget");
+    console.debug("replacing mostPopular widget");
 
     let mostEmailedTab = document.querySelector("#mostPopTabMostEmailed");
 
     if (mostEmailedTab) {
       // old-style rubric
-
-      // hide nytimes tabs
-      mostEmailedTab.style.display = "block";
-      mostEmailedTab.className = "tab";
-      let mostViewedTab = document.querySelector("#mostPopTabMostViewed");
-      mostViewedTab.style.display = "none";
-      mostViewedTab.className = "tab";
-      let recommendationsTab = document.querySelector("#mostPopTabRecommendations");
-      recommendationsTab.style.display = "none";
-      recommendationsTab.className = "tab";
-
-      // headliner tab
-      let headlinerTab = document.createElement("li");
-      headlinerTab.id = "mostPopTabHeadliner";
-      headlinerTab.className = "tab selected";
-      headlinerTab.innerHTML = "Recommended for you";
-
-      let tabs = mostPopWidget.querySelector(".tabs");
-      tabs.appendChild(headlinerTab);
-
-      // hide nytimes content
-      let mostEmailedContent = document.querySelector("#mostPopContentMostEmailed");
-      if (mostEmailedContent) {
-        mostEmailedContent.style.display = "none";
-        mostEmailedContent.className = "tabContent";
-      }
-      let mostViewedContent = document.querySelector("#mostPopContentMostViewed");
-      if (mostViewedContent) {
-        mostViewedContent.style.display = "none";
-        mostViewedContent.className = "tabContent";
-      }
-      let recommendations = document.querySelector("#mostPopContentRecommendations");
-      if (recommendations) {
-        recommendations.style.display = "none";
-        recommendations.className = "tabContent";
-      }
-
-      // create and show headliner content
-      let headlinerContent = document.createElement("div");
-      headlinerContent.id = "mostPopContentHeadliner";
-      headlinerContent.className = "tabContent tabContentActive";
-      headlinerContent.style.display = "block";
-
-      let contentTable = document.createElement("table");
-      contentTable.className = "leftAlignedMostPop";
-      let contentBody = document.createElement("tbody");
-      for (let index in data) {
-        let item = data[index];
-        let contentRow = document.createElement("tr");
-
-        let numberColumn = document.createElement("td");
-        numberColumn.className = "listNumber";
-        numberColumn.innerHTML = (parseInt(index)+1) + ".";
-
-        let titleColumn = document.createElement("td");
-        titleColumn.className = "mostPopularTitle";
-        if (item.topic) {
-          let topicHeader = document.createElement("h6");
-          topicHeader.className = "kicker";
-          topicHeader.innerHTML = item.topic;
-          titleColumn.appendChild(topicHeader);
+      let articles = [];
+      for (let item of data) {
+        let article = {};
+        article.title = item.title;
+        article.item_type = "article";
+        article.url = item.url;
+        article.kicker = item.topic;
+        article.thumbnail = {
+          url: item.thumbUrl,
         }
-        let title = document.createElement("h4");
-        let titleLink = document.createElement("a");
-        titleLink.href = item.url;
-        titleLink.innerHTML = item.title;
-
-        title.appendChild(titleLink);
-        titleColumn.appendChild(title);
-        contentRow.appendChild(numberColumn);
-        contentRow.appendChild(titleColumn);
-        contentBody.appendChild(contentRow);
+        articles.push(article);
       }
+      let widgetElem = document.createElement("div");
+      widgetElem.id = "mostPopWidgetHeadliner";
+      widgetElem.className = "doubleRule nocontent";
 
-      contentTable.appendChild(contentBody);
-      headlinerContent.appendChild(contentTable);
-      mostPopWidget.appendChild(headlinerContent);
+      let scriptElem = document.createElement("script");
+      scriptElem.type = "text/javascript";
+      scriptElem.src = oldStyleRubricScriptUrl;
+      widgetElem.appendChild(scriptElem);
+
+      let scriptDataElem = document.createElement("script");
+      scriptDataElem.type = "text/javascript";
+      scriptDataElem.textContent = "var headlinerOldStyleRubric = " + JSON.stringify(articles) + ";";
+      document.body.appendChild(scriptDataElem);
+      mostPopWidget.parentNode.replaceChild(widgetElem, mostPopWidget);
     }
     else {
       // new-style rubric
+      mostPopWidget.style.display = "block !important";
       let recommendedHeader = document.createElement("li");
       recommendedHeader.className = "selected";
       recommendedHeader.innerHTML = "<a href=\"#\">Recommended</a>"
