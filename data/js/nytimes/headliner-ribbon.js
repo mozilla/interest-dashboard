@@ -247,7 +247,7 @@ define('shared/ribbon/collections/ribbon-headliner',[
           return this.importCollection({
               collection: headliner.loadData(),
               name: 'Recommended For You',
-              url: 'https://www.mozilla.org',
+              url: '#',
               type: 'news',
               callback: {headliner: this.getHeadliner}
           });
