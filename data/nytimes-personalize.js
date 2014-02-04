@@ -114,7 +114,7 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl, oldStyleRubri
 
     recommendations.appendChild(header);
     recommendations.appendChild(content);
-    main.insertBefore(recommendations, mostEmailedWidget);
+    main.replaceChild(recommendations, mostEmailedWidget);
   }
 
 
