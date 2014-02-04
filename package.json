@@ -36,7 +36,7 @@
         "name": "nytimes_headliner_url",
         "title": "New York Times content personalization server",
         "type": "string",
-        "value": "https://headliner.mozillalabs.com/nytimes/mostpopular/personalize"
+        "value": "https://headliner.mozillalabs.com/nytimes/mostpopular/personalize?limit=10"
       },
       {
         "name": "headliner_refresh_interval",
