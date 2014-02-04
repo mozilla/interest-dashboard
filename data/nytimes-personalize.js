@@ -60,8 +60,10 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl, oldStyleRubri
   }
 
   if(!data || !data.length) {
-    let mostPop = document.querySelector("#mostPopWidget");
-    mostPop.style.display = "block";
+    let mostPopWidget = document.querySelector("#mostPopWidget");
+    if (mostPopWidget) {
+      mostPopWidget.style.display = "block";
+    }
     return;
   }
 
@@ -112,7 +114,7 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl, oldStyleRubri
 
     recommendations.appendChild(header);
     recommendations.appendChild(content);
-    main.insertBefore(recommendations, mostEmailedWidget);
+    main.replaceChild(recommendations, mostEmailedWidget);
   }
 
 
