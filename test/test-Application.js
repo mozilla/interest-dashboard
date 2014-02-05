@@ -6,14 +6,15 @@
 
 "use strict";
 
+const simplePrefs = require("sdk/simple-prefs");
+const {storage} = require("sdk/simple-storage");
+
 const {PrefsManager, StudyApp} = require("Application");
 const {Controller} = require("Controller");
 const {testUtils} = require("./helpers");
 const test = require("sdk/test");
-const simplePrefs = require("simple-prefs");
 
 const {Cc, Ci, Cu} = require("chrome");
-const {storage} = require("sdk/simple-storage");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
 

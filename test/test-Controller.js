@@ -6,6 +6,10 @@
 
 "use strict";
 
+const simplePrefs = require("sdk/simple-prefs");
+const {storage} = require("sdk/simple-storage");
+const test = require("sdk/test");
+
 const {Cc, Ci, Cu} = require("chrome");
 const Promise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Services.jsm");
@@ -16,10 +20,7 @@ const {Controller} = require("Controller");
 const {NYTimesHistoryVisitor} = require("NYTimesHistoryVisitor");
 const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
-const {storage} = require("sdk/simple-storage");
-const simplePrefs = require("simple-prefs");
 const {promiseTimeout} = require("Utils");
-const test = require("sdk/test");
 
 exports["test controller"] = function test_Controller(assert, done) {
   Task.spawn(function() {

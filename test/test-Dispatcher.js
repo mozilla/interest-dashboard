@@ -15,10 +15,10 @@ XPCOMUtils.defineLazyServiceGetter(this, "uuid",
                                    "@mozilla.org/uuid-generator;1",
                                    "nsIUUIDGenerator");
 
-const {storage} = require("sdk/simple-storage");
 const {nsHttpServer, startServerAsync} = require("sdk/test/httpd");
+const simplePrefs = require("sdk/simple-prefs")
+const {storage} = require("sdk/simple-storage");
 const test = require("sdk/test");
-const simplePrefs = require("simple-prefs")
 
 const {Controller} = require("Controller");
 const {Dispatcher} = require("Dispatcher");

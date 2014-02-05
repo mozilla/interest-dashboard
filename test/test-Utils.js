@@ -12,10 +12,11 @@ Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
-const {promiseTimeout, getRelevantPrefs} = require("Utils");
-const simplePrefs = require("simple-prefs");
-const {testUtils} = require("./helpers");
+const simplePrefs = require("sdk/simple-prefs");
 const test = require("sdk/test");
+
+const {promiseTimeout, getRelevantPrefs} = require("Utils");
+const {testUtils} = require("./helpers");
 
 exports["test promiseTimeout"] = function test_promiseTimeout(assert, done) {
   Task.spawn(function() {

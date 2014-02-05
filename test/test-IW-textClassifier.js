@@ -6,10 +6,12 @@
 
 "use strict";
 
+const {data} = require("sdk/self");
+const Promise = require("sdk/core/promise");
+
 const {testUtils} = require("./helpers");
 const {Cc, Ci, Cu, ChromeWorker} = require("chrome");
-const Promise = require("sdk/core/promise");
-const {data} = require("self");
+
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");

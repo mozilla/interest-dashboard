@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const {Cc, Ci, Cu, ChromeWorker,components} = require("chrome");
-const {data} = require("self");
+const {data} = require("sdk/self");
 
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
