@@ -336,11 +336,15 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
         if (a.hostname.indexOf('www') === 0 && window.location.hostname.indexOf('www') === 0) {
           newLink = a.pathname.indexOf('/') === 0 ? a.pathname : '/' + a.pathname;
         }
-        if (adPosition) {
-          newLink += '?ribbon-ad-idx=' + adPosition;
+        newLink += /\?/.test(newLink) ? '&' : '?';
+        var identifierRE = new RegExp(sectionId);
+        if (!identifierRE.test(newLink)) {
+          newLink += sectionId;
         }
         newLink += /\?/.test(newLink) ? '&' : '?';
-        newLink += sectionId;
+        if (adPosition) {
+          newLink += 'ribbon-ad-idx=' + adPosition;
+        }
         var classString;
         var classList = [];
         if (article.get('link') === canonical && firstLoad) {
@@ -558,7 +562,7 @@ define('shared/ribbon/views/ribbon-headliner',[
     'jquery/nyt',
     'underscore/nyt',
     'shared/ribbon/views/ribbon',
-    'shared/ribbon/templates',
+    'shared/ribbon/templates-headliner',
     'shared/ribbon/views/ribbon-page-navigation-headliner',
     'shared/ribbon/instances/ribbon-data-headliner',
     'shared/ribbon/views/helpers/mixin'
