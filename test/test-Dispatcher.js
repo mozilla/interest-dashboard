@@ -19,6 +19,7 @@ const {nsHttpServer, startServerAsync} = require("sdk/test/httpd");
 const simplePrefs = require("sdk/simple-prefs")
 const {storage} = require("sdk/simple-storage");
 const test = require("sdk/test");
+const prefs = require("sdk/preferences/service");
 
 const {Controller} = require("Controller");
 const {Dispatcher} = require("Dispatcher");
@@ -45,7 +46,7 @@ function makeTestPayload(referencePayload, interests) {
     installDate: storage.installDate,
     updateDate: storage.updateDate,
     version: storage.version,
-    locale: Services.prefs.getCharPref("general.useragent.locale"),
+    locale: prefs.getLocalized("general.useragent.locale"),
     tldCounter: getTLDCounts(),
     hasSurveyInterests: Crypto.hasMappedInterests(simplePrefs.prefs.uuid),
     nytVisits: NYTimesHistoryVisitor.getVisits() || [],
