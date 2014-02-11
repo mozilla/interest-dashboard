@@ -6,10 +6,11 @@
 
 "use strict";
 
-const {testUtils} = require("./helpers");
-const {data} = require("self");
-const {Cc, Ci} = require("chrome");
+const {data} = require("sdk/self");
 const test = require("sdk/test");
+
+const {testUtils} = require("./helpers");
+const {Cc, Ci} = require("chrome");
 
 let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
 scriptLoader.loadSubScript(data.url("models/urlStopwords.json"));
