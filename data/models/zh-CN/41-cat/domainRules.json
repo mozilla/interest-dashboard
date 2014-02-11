@@ -64,7 +64,7 @@ var interestsData = {
             "news"
         ],
         "mil.": [
-            "militery"
+            "military"
         ],
         "finance.": [
             "finance"
@@ -235,13 +235,13 @@ var interestsData = {
             "news"
         ],
         "v. /mil": [
-            "militery"
+            "military"
         ],
         "news. /mil": [
-            "militery"
+            "military"
         ],
         "phtv. /program /jqgcs": [
-            "militery"
+            "military"
         ],
         "finance.": [
             "finance"
@@ -351,7 +351,7 @@ var interestsData = {
             "news"
         ],
         "war.": [
-            "militery"
+            "military"
         ],
         "money.": [
             "finance"
@@ -524,13 +524,13 @@ var interestsData = {
             "news"
         ],
         "video. /mil": [
-            "militery"
+            "military"
         ],
         "video. /p /news /mil": [
-            "militery"
+            "military"
         ],
         "mil. news.": [
-            "militery"
+            "military"
         ],
         "finance.": [
             "finance"
@@ -1705,7 +1705,7 @@ var interestsData = {
             "news"
         ],
         "mil.": [
-            "militery"
+            "military"
         ],
         "finance.": [
             "finance"
@@ -1893,7 +1893,7 @@ var interestsData = {
             "news"
         ],
         "news. /mil": [
-            "militery"
+            "military"
         ],
         "news. /fortune": [
             "finance"
@@ -1952,10 +1952,10 @@ var interestsData = {
             "news"
         ],
         "mil.": [
-            "militery"
+            "military"
         ],
         "club. mil. news.": [
-            "militery"
+            "military"
         ],
         "business.": [
             "finance"
@@ -3109,7 +3109,7 @@ var interestsData = {
             "news"
         ],
         "military.": [
-            "militery"
+            "military"
         ],
         "sports.": [
             "sports"
@@ -3613,7 +3613,7 @@ var interestsData = {
             "news"
         ],
         "/mil": [
-            "militery"
+            "military"
         ]
     },
     "haiwainet.cn": {
@@ -3633,89 +3633,89 @@ var interestsData = {
     },
     "chinaiiss.com": {
         "mil.": [
-            "militery"
+            "military"
         ],
         "__ANY": [
-            "militery"
+            "military"
         ],
         "club.": [
-            "militery"
+            "military"
         ]
     },
     "milnews2.com": {
         "__ANY": [
-            "militery"
+            "military"
         ]
     },
     "tiexue.net": {
         "__ANY": [
-            "militery"
+            "military"
         ]
     },
     "xilu.com": {
         "junshi.": [
-            "militery"
+            "military"
         ]
     },
     "qianyan001.com": {
         "__ANY": [
-            "militery"
+            "military"
         ]
     },
     "cankaoa.com": {
         "__ANY": [
-            "militery"
+            "military"
         ]
     },
     "shijiemil.com": {
         "__ANY": [
-            "militery"
+            "military"
         ]
     },
     "chn2007.com": {
         "__ANY": [
-            "militery"
+            "military"
         ]
     },
     "51junshi.com": {
         "__ANY": [
-            "militery"
+            "military"
         ]
     },
     "top81.com.cn": {
         "__ANY": [
-            "militery"
+            "military"
         ]
     },
     "miercn.com": {
         "__ANY": [
-            "militery"
+            "military"
         ],
         "bbs.": [
-            "militery"
+            "military"
         ]
     },
     "eastday.com": {
         "mil.": [
-            "militery"
+            "military"
         ]
     },
     "leiting001.com": {
         "__ANY": [
-            "militery"
+            "military"
         ]
     },
     "liangjian.com": {
         "__ANY": [
-            "militery"
+            "military"
         ]
     },
     "xinjunshi.com": {
         "__ANY": [
-            "militery"
+            "military"
         ],
         "bbs.": [
-            "militery"
+            "military"
         ]
     },
     "letv.com": {
