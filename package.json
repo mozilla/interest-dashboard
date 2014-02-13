@@ -5,7 +5,11 @@
   "id": "firefox.personalization.study@up.mozilla",
   "license": "MPL 2.0",
   "name": "firefox-personalization-study",
-  "version": "3.0.1",
+  "version": "3.0.2",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-angular-gettext": "~0.2.6"
+  },
   "preferences": [
       {
         "name": "consented",
@@ -50,6 +54,5 @@
         "type": "string",
         "value": ""
       }
-
   ]
 }

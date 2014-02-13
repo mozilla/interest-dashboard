@@ -14,136 +14,142 @@
                         </h2>
                     </header>
                     <main id="content-area" role="main">
-                        <h2>Firefox Personalization Study</h2>
-                        <p ng-show="origin_testpilot">Mozilla Firefox is conducting a study of personalized content on the Web, and as a Test Pilot user, we&apos;d really appreciate your help in completing this study.</p>
-                        <p ng-hide="origin_testpilot">Mozilla Firefox is conducting a study of personalized content on the Web. To participate, please review the information below.</p>
+                        <h2 translate>Firefox Personalization Study</h2>
+                        <p ng-show="origin_testpilot" translate>Mozilla Firefox is conducting a study of personalized content on the Web, and as a Test Pilot user, we'd really appreciate your help in completing this study.</p>
+                        <p ng-hide="origin_testpilot" translate>Mozilla Firefox is conducting a study of personalized content on the Web. To participate, please review the information below.</p>
 
-                        <h4>How it works</h4>
-                        <p>Firefox will choose a set of interest topics (such as music, humor, or technology) that best match the websites you tend to visit, based on your browsing history. You will then be asked to answer some questions about those topics and your browsing preferences.</p>
-                        <p>These interests and study data will only be shared with Mozilla, unless you authorize specific websites to access your interests (<a href="#" ng-click="openModalPreview()">view a sample of the data</a>). The study will be removed automatically from your computer when it finishes.</p>
+                        <h4 translate>How it works</h4>
+                        <p translate>Firefox will choose a set of interest topics (such as music, humor, or technology) that best match the websites you tend to visit, based on your browsing history. You will then be asked to answer some questions about those topics and your browsing preferences.</p>
+                        <p translate>These interests and study data will only be shared with Mozilla, unless you authorize specific websites to access your interests (<a href="#" ng-click="openModalPreview()">view a sample of the data</a>). The study will be removed automatically from your computer when it finishes.</p>
 
-                        <p>Please review this study&apos;s <a href=# ng-click="openModalFAQ()">Frequently Asked Questions</a> and <a href="#" ng-click="openModalPrivacyPolicy()">Privacy Policy</a> for more information.</p>
+                        <p translate>Please review this study's <a href=# ng-click="openModalFAQ()">Frequently Asked Questions</a> and <a href="#" ng-click="openModalPrivacyPolicy()">Privacy Policy</a> for more information.</p>
 
                         <div class="action">
-                            <a class="button button-negative" ng-click="rejectStudy()">No, I don&apos;t want to participate</a>
-                            <a class="button button-next" ng-click="acceptStudy()">Yes, I&apos;m willing to participate</a>
+                            <a class="button button-negative" ng-click="rejectStudy()" translate>No, I don't want to participate</a>
+                            <a class="button button-next" ng-click="acceptStudy()" translate>Yes, I'm willing to participate</a>
                         </div>
                     </main>
                 </div>
 
-                <script type="text/ng-template" id="privacy-policy.html">
-                    <div class="modal-header"><h3>Privacy Policy</h3></div>
+                <div id="privacyPolicyMarkup">
+                    <div class="modal-header"><h3 translate>Privacy Policy</h3></div>
                     <div class="modal-body">
-                        <h3>Mozilla Personalization Study - Privacy Notice</h3>
-                        <p>Date: November 14, 2013</p>
-                        <p>We care about user privacy. When Mozilla (that&apos;s us) collects information about participants of the Mozilla Personalization Study (&quot;<span class="text-underline">Study Participants</span>&quot; and &quot;<span class="text-underline">Study</span>&quot;), this Privacy Notice describes how we handle that information.</p>
+                        <h3 translate>Mozilla Personalization Study - Privacy Notice</h3>
+                        <p translate>Date: November 14, 2013</p>
+                        <p translate>We care about user privacy. When Mozilla (that's us) collects information about participants of the Mozilla Personalization Study ("<span class="text-underline">Study Participants</span>" and "<span class="text-underline">Study</span>"), this Privacy Notice describes how we handle that information.</p>
                         <ol>
-                            <li><strong>Scope of Study.</strong> Mozilla is considering a web personalization feature for Firefox that puts users in control of what data is shared and with whom. This Study analyzes user engagement with personalized content, non-personalized content, and browser history to help us determine which personalization methods, if any, are most engaging to Firefox users.</li>
-                            <li><strong>Term&#x2F;Termination.</strong> Study Participants must install the User Personalization Study Add-on (&quot;<span class="text-underline">Research Add-on</span>&quot;) to Firefox web browser (&quot;<span class="text-underline">Firefox</span>&quot;). You may uninstall the Research Add-on at any time.  Otherwise, the Research Add-on will receive periodic testing updates from Mozilla and will uninstall itself no later than 6 months from initial installation.  Testing updates may include new phases of the Study, such as new algorithms, surveys, and prompts.</li>
-                            <li><strong>Automatic Data Collection.</strong> The following data may be automatically collected from Study Participants with an installed Research Add-on: (1) interests of users based on Pre-Study browsing history, for example, sports, finance, and other topics (&quot;<span class="text-underline">Interest(s)</span>&quot;); frequency of access to websites in each Interest; (3) engagement metrics on certain content accessed by STudy Participants, including but not limited to, click rates, bounce rates, time spent and top-level domains visited (such as .com, .org, .co.uk); (4) metrics on user engagement with Mozilla&apos;s prompts; and (5) certain user-agent information, such as browser language and cookie preferences. Your data is connected to an anonymous ID and cannot be used to personally identify you.</li>
-                            <li><strong>Optional Data Collection: Surveys.</strong> You may be asked to respond to optional surveys, the responses of which will be analyzed in an aggregated format (&quot;<span class="text-underline">Survey Data</span>&quot;) Survey Data may include your demographics, interests, computer usage, and browsing habits.  Survey Data cannot be used to personally identify you.  Mozilla may correlate the Survey Data with other data, but will do so in a manner that cannot be used to personally identify you.</li>
-                            <li><strong>Optional Data Collection: Interests &amp; Personalized Content.</strong> Certain websites are participating in this Study to display personalized content to you through the Research Add-on.  You may be prompted by Firefox to share your Interests with these websites, or to edit a website &quot;whitelist&quot; to allow certain websites to access your Interests to display personalized content.  Unless you expressly consent, these websites will not have access to your Interests by default.  Websites cannot use your Interest data to personally identify you.</li>
-                            <li><strong>Data Sharing and Retention.</strong> Your data will be retained by Mozilla for the period necessary to fulfill the purpose of this Study. Your Interest data may be shared with websites participating in this Study, in accordance with Section 5. Such websites will no longer have access to your Interest data when the Research Add-on is uninstalled.</li>
-                             <li><strong>Data Protection.</strong>
+                            <li translate><strong>Scope of Study.</strong> Mozilla is considering a web personalization feature for Firefox that puts users in control of what data is shared and with whom. This Study analyzes user engagement with personalized content, non-personalized content, and browser history to help us determine which personalization methods, if any, are most engaging to Firefox users.</li>
+                            <li translate><strong>Term/Termination.</strong> Study Participants must install the User Personalization Study Add-on ("<span class="text-underline">Research Add-on</span>") to Firefox web browser ("<span class="text-underline">Firefox</span>"). You may uninstall the Research Add-on at any time.  Otherwise, the Research Add-on will receive periodic testing updates from Mozilla and will uninstall itself no later than 6 months from initial installation.  Testing updates may include new phases of the Study, such as new algorithms, surveys, and prompts.</li>
+                            <li translate><strong>Automatic Data Collection.</strong> The following data may be automatically collected from Study Participants with an installed Research Add-on: (1) interests of users based on Pre-Study browsing history, for example, sports, finance, and other topics ("<span class="text-underline">Interest(s)</span>"); frequency of access to websites in each Interest; (3) engagement metrics on certain content accessed by STudy Participants, including but not limited to, click rates, bounce rates, time spent and top-level domains visited (such as .com, .org, .co.uk); (4) metrics on user engagement with Mozilla's prompts; and (5) certain user-agent information, such as browser language and cookie preferences. Your data is connected to an anonymous ID and cannot be used to personally identify you.</li>
+                            <li translate><strong>Optional Data Collection: Surveys.</strong> You may be asked to respond to optional surveys, the responses of which will be analyzed in an aggregated format ("<span class="text-underline">Survey Data</span>") Survey Data may include your demographics, interests, computer usage, and browsing habits.  Survey Data cannot be used to personally identify you.  Mozilla may correlate the Survey Data with other data, but will do so in a manner that cannot be used to personally identify you.</li>
+                            <li translate><strong>Optional Data Collection: Interests and Personalized Content.</strong> Certain websites are participating in this Study to display personalized content to you through the Research Add-on.  You may be prompted by Firefox to share your Interests with these websites, or to edit a website "whitelist" to allow certain websites to access your Interests to display personalized content.  Unless you expressly consent, these websites will not have access to your Interests by default.  Websites cannot use your Interest data to personally identify you.</li>
+                            <li translate><strong>Data Sharing and Retention.</strong> Your data will be retained by Mozilla for the period necessary to fulfill the purpose of this Study. Your Interest data may be shared with websites participating in this Study, in accordance with Section 5. Such websites will no longer have access to your Interest data when the Research Add-on is uninstalled.</li>
+                            <li><strong translate>Data Protection.</strong>
                                 <ol class="list-latin">
-                                    <li>Mozilla&apos;s use of your data will be in accordance with this Privacy Notice and the Mozilla Privacy Policy below.</li>
-                                    <li>Mozilla uses a third party, <a href="https://www.surveygizmo.com">SurveyGizmo.com</a>, for its tests, which has its own privacy policy. SurveyGizmo states that they will not share this information with others or use the information for purposes other than to maintain the services they provide to Mozilla</li>
-                                    <li>Firefox will prompt you for your consent when a website participating in this Study seeks access to your Interest data.  Participating websites may employ web analytics software to monitor general website engagement, as further described in their privacy policies.</li>
+                                    <li translate>Mozilla's use of your data will be in accordance with this Privacy Notice and the Mozilla Privacy Policy below.</li>
+                                    <li translate>Mozilla uses a third party, <a href="https://www.surveygizmo.com">SurveyGizmo.com</a>, for its tests, which has its own privacy policy. SurveyGizmo states that they will not share this information with others or use the information for purposes other than to maintain the services they provide to Mozilla</li>
+                                    <li translate>Firefox will prompt you for your consent when a website participating in this Study seeks access to your Interest data.  Participating websites may employ web analytics software to monitor general website engagement, as further described in their privacy policies.</li>
                                 </ol>
                             </li>
                         </ol>
-                        <h3>Mozilla Privacy Policy</h3>
-                        <p>Your privacy is an important factor that the Mozilla Corporation, located at 650 Castro St #300, Mountain View, CA 94041</p> (&quot;<span class="text-underline">Mozilla</span>&quot;) (that&apos;s us) considers in the development of each of our products and services. We are committed to being transparent and open and want you to know how we receive information about you, and what we do with that information once we have it.</p>
-                        <p><strong>What do we mean by &quot;personal information&quot;?</strong></p>
-                        <p>For us, &quot;personal information&quot; means information which identifies you, like your name or email address.</p>
-                        <p>Any information that falls outside of this is &quot;non-personal information&quot;</p>
-                        <p>If we store your personal information with information that is non-personal, we will consider the combination as personal information. If we remove all personal information from a set of data then the remaining is non-personal information.</p>
-                        <p><strong>How do we learn information about you?</strong></p>
-                        <p>We learn information about you when:
+                        <h3 translate>Mozilla Privacy Policy</h3>
+                        <p translate>Your privacy is an important factor that the Mozilla Corporation, located at 650 Castro St #300, Mountain View, CA 94041</p> ("<span class="text-underline">Mozilla</span>") (that's us) considers in the development of each of our products and services. We are committed to being transparent and open and want you to know how we receive information about you, and what we do with that information once we have it.</p>
+                        <p translate><strong>What do we mean by "personal information"?</strong></p>
+                        <p translate>For us, "personal information" means information which identifies you, like your name or email address.</p>
+                        <p translate>Any information that falls outside of this is "non-personal information"</p>
+                        <p translate>If we store your personal information with information that is non-personal, we will consider the combination as personal information. If we remove all personal information from a set of data then the remaining is non-personal information.</p>
+                        <p translate><strong>How do we learn information about you?</strong></p>
+                        <p>
+                            <span translate>We learn information about you when:</span>
                             <ul>
-                                <li>you give it to us directly (e.g., when you choose to send us crash reports from Firefox);</li>
-                                <li>we collect it automatically through our products and services (e.g., when we check whether your version of Firefox is up to date);</li>
-                                <li>someone else tells us information about you (e.g., Thunderbird works with your email providers to set up your account); or</li>
-                                <li>when we try and understand more about you based on information you&apos;ve given to us (e.g., when we use your IP address to customize language for some of our services).</li>
+                                <li translate>you give it to us directly (e.g., when you choose to send us crash reports from Firefox);</li>
+                                <li translate>we collect it automatically through our products and services (e.g., when we check whether your version of Firefox is up to date);</li>
+                                <li translate>someone else tells us information about you (e.g., Thunderbird works with your email providers to set up your account); or</li>
+                                <li translate>when we try and understand more about you based on information you've given to us (e.g., when we use your IP address to customize language for some of our services).</li>
                             </ul>
                         </p>
-                        <p><strong>What do we do with your information once we have it?</strong></p>
-                        <p>When you give us personal information, we will use it in the ways for which you&quot;ve given us permission. Generally, we use your information to help us provide and improve our products and services for you.</p>
-                        <p><strong>When do we share your information with others?</strong></p>
+                        <p translate><strong>What do we do with your information once we have it?</strong></p>
+                        <p translate>When you give us personal information, we will use it in the ways for which you've given us permission. Generally, we use your information to help us provide and improve our products and services for you.</p>
+                        <p translate><strong>When do we share your information with others?</strong></p>
                         <ul>
-                            <li>When we have gotten your permission to share it.</li>
-                            <li>For processing or providing products and services to you, but only if those entities receiving your information are contractually obligated to handle the data in ways that are approved by Mozilla.</li>
-                            <li>When we are fulfilling our <a href="https://www.mozilla.org/about/manifesto.html">mission of being open</a>. We sometimes release information to make our products better and foster an open web, but when we do so, we will remove your personal information and try to disclose it in a way that minimizes the risk of you being re-identified.</li>
-                            <li>When the law requires it. We follow the law whenever we receive requests about you from a government or related to a lawsuit. We&apos;ll notify you when we&apos;re asked to hand over your personal information in this way unless we&apos;re legally prohibited from doing so. When we receive requests like this, we&apos;ll only release your personal information if we have a good faith belief that the law requires us to do so. Nothing in this policy is intended to limit any legal defenses or objections that you may have to a third party&apos;s request to disclose your information.</li>
-                            <li>When we believe it is necessary to prevent harm to you or someone else. We will only share your information in this way if we have a good faith belief that it is reasonably necessary to protect the rights, property or safety of you, our other users, Mozilla or the public.</li>
-                            <li>If our organizational structure or status changes (if we undergo a restructuring, are acquired, or go bankrupt) we may pass your information to a successor or affiliate.</li>
+                            <li translate>When we have gotten your permission to share it.</li>
+                            <li translate>For processing or providing products and services to you, but only if those entities receiving your information are contractually obligated to handle the data in ways that are approved by Mozilla.</li>
+                            <li translate>When we are fulfilling our <a href="https://www.mozilla.org/about/manifesto.html">mission of being open</a>. We sometimes release information to make our products better and foster an open web, but when we do so, we will remove your personal information and try to disclose it in a way that minimizes the risk of you being re-identified.</li>
+                            <li translate>When the law requires it. We follow the law whenever we receive requests about you from a government or related to a lawsuit. We'll notify you when we're asked to hand over your personal information in this way unless we're legally prohibited from doing so. When we receive requests like this, we'll only release your personal information if we have a good faith belief that the law requires us to do so. Nothing in this policy is intended to limit any legal defenses or objections that you may have to a third party's request to disclose your information.</li>
+                            <li translate>When we believe it is necessary to prevent harm to you or someone else. We will only share your information in this way if we have a good faith belief that it is reasonably necessary to protect the rights, property or safety of you, our other users, Mozilla or the public.</li>
+                            <li translate>If our organizational structure or status changes (if we undergo a restructuring, are acquired, or go bankrupt) we may pass your information to a successor or affiliate.</li>
                         </ul>
-                        <p><strong>How do we store and protect your personal information?</strong></p>
-                        <p>We are committed to protecting your personal information once we have it. We implement physical, business and technical security measures. Despite our efforts, if we learn of a security breach, we&apos;ll notify you so that you can take appropriate protective steps.</p>
-                        <p>We also don&apos;t want your personal information for any longer than we need it, so we only keep it long enough to do what we collected it for. Once we don&apos;t need it, we take steps to destroy it unless we are required by law to keep it longer.</p>
-                        <p><strong>What else do we want you to know?</strong></p>
-                        <p>We&apos;re a global organization and our computers are in several different places around the world. We also use service providers whose computers may also be in various countries. This means that your information might end up on one of those computers in another country, and that country may have a different level of data protection regulation than yours. By giving us information, you consent to this kind of transfer of your information. No matter what country your information is in, we comply with applicable law and will also abide by the commitments we make in this privacy policy.</p>
-                        <p>If you are under 13, we don&apos;t want your personal information, and you must not provide it to us. If you are a parent and believe that your child who is under 13 has provided us with personal information, please contact us to have your child&apos;s information removed.</p>
-                        <p><strong>What if we change this policy?</strong></p>
-                        <p>We may need to change this policy and when we do, we&apos;ll notify you.</p>
-                        <p><strong>Contact Us</strong></p>
+                        <p translate><strong>How do we store and protect your personal information?</strong></p>
+                        <p translate>We are committed to protecting your personal information once we have it. We implement physical, business and technical security measures. Despite our efforts, if we learn of a security breach, we'll notify you so that you can take appropriate protective steps.</p>
+                        <p translate>We also don't want your personal information for any longer than we need it, so we only keep it long enough to do what we collected it for. Once we don't need it, we take steps to destroy it unless we are required by law to keep it longer.</p>
+                        <p translate><strong>What else do we want you to know?</strong></p>
+                        <p translate>We're a global organization and our computers are in several different places around the world. We also use service providers whose computers may also be in various countries. This means that your information might end up on one of those computers in another country, and that country may have a different level of data protection regulation than yours. By giving us information, you consent to this kind of transfer of your information. No matter what country your information is in, we comply with applicable law and will also abide by the commitments we make in this privacy policy.</p>
+                        <p translate>If you are under 13, we don't want your personal information, and you must not provide it to us. If you are a parent and believe that your child who is under 13 has provided us with personal information, please contact us to have your child's information removed.</p>
+                        <p translate><strong>What if we change this policy?</strong></p>
+                        <p translate>We may need to change this policy and when we do, we'll notify you.</p>
+                        <p translate><strong>Contact Us</strong></p>
                         <p>
-                            If you want to make a correction to your information, or you have any questions about our privacy policies, please get in touch with:
-                            <address>
-                            Mozilla Corporation<br/>
-                            Attn: Legal Notices - Privacy<br/>
-                            650 Castro Street, Suite 300<br/>
-                            Mountain View, CA 94041-2072<br/>
-                            Phone: +1-650-903-0800<br/>
+                            <span translate>If you want to make a correction to your information, or you have any questions about our privacy policies, please get in touch with:
+                            </span>
+                            <address translate>
+                            Mozilla Corporation<br/> Attn: Legal Notices - Privacy<br/> 650 Castro Street, Suite 300<br/> Mountain View, CA 94041-2072<br/> Phone: +1-650-903-0800<br/>
                             </address>
                         </p>
                     </div>
+                </div>
+
+                <div id="faqMarkup">
+                    <div class="modal-header"><h3 translate>Frequently Asked Questions</h3></div>
+                    <div class="modal-body">
+                        <h3 translate>What is this study?</h3>
+                        <p translate>Mozilla Firefox is conducting a study of how the websites you visit correlate with your interests, and the impact of content personalized based on those interest topics. Mozilla is considering a web personalization feature for Firefox that puts users in control of what data is shared and with whom. This study will help us determine which personalization methods, if any, are most engaging to users.</p>
+                        <h3 translate>Why was I offered this study?</h3>
+                        <p translate>This study is offered to Test Pilot participants, as well as users who have installed the Firefox Personalization Study Add-on.</p>
+                        <h3 translate>What data is collected during this study?</h3>
+                        <p translate>You can view a sample of the data collected <a href="#" ng-click="switchToPreview()">here</a>. Please review our <a href="#" ng-click="switchToPrivacyPolicy()">Privacy Policy</a> for more details.</p>
+                        <h3 translate>How long does this study last and what happens afterward?</h3>
+                        <p translate>This study lasts 6 months and the add-on will be automatically uninstalled at the end of the study. At the end of the study, personalization will end and websites will no longer be allowed to access your interests.</p>
+                        <h3 translate>How can I leave the study?</h3>
+                        <p translate>You may opt out of the study and disable interest sharing at any time by removing the "Firefox Personalization Study" add-on from Firefox's Add-ons Manager.</p>
+                    </div>
+                </div>
+
+                <script type="text/ng-template" id="privacy-policy.html">
+                    <div compile="noticeBody"></div>
                     <div class="modal-footer">
-                        <a class="button button-next" ng-click="done()">Done</a>
+                        <a class="button button-next" ng-click="done()">{{"Done"|translate}}</a>
                     </div>
                 </script>
 
                 <script type="text/ng-template" id="faq.html">
-                    <div class="modal-header"><h3>Frequently Asked Questions</h3></div>
-                    <div class="modal-body">
-                        <h3>What is this study?</h3>
-                        <p>Mozilla Firefox is conducting a study of how the websites you visit correlate with your interests, and the impact of content personalized based on those interest topics. Mozilla is considering a web personalization feature for Firefox that puts users in control of what data is shared and with whom. This study will help us determine which personalization methods, if any, are most engaging to users.</p>
-                        <h3>Why was I offered this study?</h3>
-                        <p>This study is offered to Test Pilot participants, as well as users who have installed the Firefox Personalization Study Add-on.</p>
-                        <h3>What data is collected during this study?</h3>
-                        <p>You can view a sample of the data collected <a href="#" ng-click="switchToPreview()">here</a>. Please review our <a href="#" ng-click="switchToPrivacyPolicy()">Privacy Policy</a> for more details.</p>
-                        <h3>How long does this study last and what happens afterward?</h3>
-                        <p>This study lasts 6 months and the add-on will be automatically uninstalled at the end of the study. At the end of the study, personalization will end and websites will no longer be allowed to access your interests.</p>
-                        <h3>How can I leave the study?</h3>
-                        <p>You may opt out of the study and disable interest sharing at any time by removing the &quot;Firefox Personalization Study&quot; add-on from Firefox&apos;s Add-ons Manager.</p>
-                    </div>
+                    <div compile="noticeBody"></div>
                     <div class="modal-footer">
-                        <a class="button button-next" ng-click="done()">Done</a>
+                        <a class="button button-next" ng-click="done()">{{"Done"|translate}}</a>
                     </div>
                 </script>
 
                 <script type="text/ng-template" id="dataPreview.html">
                     <div class="modal-header">
-                        <h3>Study Data Preview<a class="small button-link" ng-show="dispatchBatch" ng-click="selectText()">select text</a></h3>
+                        <h3>{{"Study Data Preview"|translate}}<a class="small button-link" ng-show="dispatchBatch" ng-click="selectText()">{{"select text"|translate}}</a></h3>
                     </div>
                     <div class="modal-body">
                         <pre ng-show="dispatchBatch" id="previewText">{{dispatchBatch}}</pre>
-                        <p ng-hide="dispatchBatch">No data is available yet.</br>Please try again in a few moments or wait until this window updates.</p>
+                        <p ng-hide="dispatchBatch">{{"No data is available yet.</br>Please try again in a few moments or wait until this window updates."|translate}}</p>
                     </div>
                     <div class="modal-footer">
-                        <a class="button button-next" ng-click="done()">Done</a>
+                        <a class="button button-next" ng-click="done()">{{"Done"|translate}}</a>
                     </div>
                 </script>
                 <div ng-show="daysLeftStart">
                     <div class="modal-backdrop fade in" style="z-index: 1400;"></div>
                     <div class="modal fade in" style="z-index: 1500;">
                         <div class="modal-body">
-                            <p>We are processing your data.<br/>When this computation is finished, you will be redirected to a survey page.</p>
-                            <p>Thank you for waiting!</p>
+                            <p translate>We are processing your data.<br/>When this computation is finished, you will be redirected to a survey page.</p>
+                            <p translate>Thank you for waiting!</p>
                             <div class="progress progress-striped active">
                                 <div id="progressBar" class="bar" style="width: 0%;"></div>
                             </div>
-                            <p>{{daysCompletion}}% complete</p>
+                            <p translate>{{daysCompletion}}% complete</p>
                         </div>
                     </div>
                 </div>
@@ -156,15 +162,15 @@
                         </a>
                     </div>
                     <div class="footer-license">
-                        <p>Portions of this content are ©1998–2013 by individual mozilla.org contributors. Content available under a <a href="https://www.mozilla.org/en-US/foundation/licensing/website-content/">Creative Commons license</a>.</p>
-                        <p><a href="https://www.mozilla.org/en-US/contribute/page/">Contribute to this page</a></p>
+                        <p translate>Portions of this content are ©1998–2013 by individual mozilla.org contributors. Content available under a <a href="https://www.mozilla.org/en-US/foundation/licensing/website-content/">Creative Commons license</a>.</p>
+                        <p translate><a href="https://www.mozilla.org/en-US/contribute/page/">Contribute to this page</a></p>
                     </div>
                     <ul class="footer-nav">
-                        <li><a href="https://www.mozilla.org/en-US/about/contact.html">Contact us</a></li>
-                        <li><a href="https://www.mozilla.org/en-US/about/partnerships/">Partner with us</a></li>
-                        <li><a href="#" ng-click="openModalPrivacyPolicy()">Privacy Policy</a></li>
-                        <li><a href="https://www.mozilla.org/en-US/about/legal.html">Legal Notices</a></li>
-                        <li><a href="https://www.mozilla.org/en-US/legal/fraud-report/index.html">Report Trademark Abuse</a></li>
+                        <li><a href="https://www.mozilla.org/en-US/about/contact.html" translate>Contact us</a></li>
+                        <li><a href="https://www.mozilla.org/en-US/about/partnerships/" translate>Partner with us</a></li>
+                        <li><a href="#" ng-click="openModalPrivacyPolicy()" translate>Privacy Policy</a></li>
+                        <li><a href="https://www.mozilla.org/en-US/about/legal.html" translate>Legal Notices</a></li>
+                        <li><a href="https://www.mozilla.org/en-US/legal/fraud-report/index.html" translate>Report Trademark Abuse</a></li>
                     </ul>
                 </div>
             </footer>

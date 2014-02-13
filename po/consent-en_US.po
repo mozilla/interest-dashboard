@@ -1,0 +1,672 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: Mozilla Personalization Study\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Olivier Yiptong <oyiptong@mozilla.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Language: en_US\n"
+"X-Generator: Poedit 1.6.4\n"
+
+#: data/consent.html
+msgid ""
+"<a href=\"https://www.mozilla.org/en-US/contribute/page/\">Contribute to "
+"this page</a>"
+msgstr ""
+"<a href=\"https://www.mozilla.org/en-US/contribute/page/\">Contribute to "
+"this page</a>"
+
+#: data/consent.html
+msgid ""
+"<strong>Automatic Data Collection.</strong> The following data may be "
+"automatically collected from Study Participants with an installed Research "
+"Add-on: (1) interests of users based on Pre-Study browsing history, for "
+"example, sports, finance, and other topics (\"<span class=\"text-underline"
+"\">Interest(s)</span>\"); frequency of access to websites in each Interest; "
+"(3) engagement metrics on certain content accessed by STudy Participants, "
+"including but not limited to, click rates, bounce rates, time spent and top-"
+"level domains visited (such as .com, .org, .co.uk); (4) metrics on user "
+"engagement with Mozilla's prompts; and (5) certain user-agent information, "
+"such as browser language and cookie preferences. Your data is connected to "
+"an anonymous ID and cannot be used to personally identify you."
+msgstr ""
+"<strong>Automatic Data Collection.</strong> The following data may be "
+"automatically collected from Study Participants with an installed Research "
+"Add-on: (1) interests of users based on Pre-Study browsing history, for "
+"example, sports, finance, and other topics (\"<span class=\"text-underline"
+"\">Interest(s)</span>\"); frequency of access to websites in each Interest; "
+"(3) engagement metrics on certain content accessed by STudy Participants, "
+"including but not limited to, click rates, bounce rates, time spent and top-"
+"level domains visited (such as .com, .org, .co.uk); (4) metrics on user "
+"engagement with Mozilla's prompts; and (5) certain user-agent information, "
+"such as browser language and cookie preferences. Your data is connected to "
+"an anonymous ID and cannot be used to personally identify you."
+
+#: data/consent.html
+msgid "<strong>Contact Us</strong>"
+msgstr "<strong>Contact Us</strong>"
+
+#: data/consent.html
+msgid ""
+"<strong>Data Sharing and Retention.</strong> Your data will be retained by "
+"Mozilla for the period necessary to fulfill the purpose of this Study. Your "
+"Interest data may be shared with websites participating in this Study, in "
+"accordance with Section 5. Such websites will no longer have access to your "
+"Interest data when the Research Add-on is uninstalled."
+msgstr ""
+"<strong>Data Sharing and Retention.</strong> Your data will be retained by "
+"Mozilla for the period necessary to fulfill the purpose of this Study. Your "
+"Interest data may be shared with websites participating in this Study, in "
+"accordance with Section 5. Such websites will no longer have access to your "
+"Interest data when the Research Add-on is uninstalled."
+
+#: data/consent.html
+msgid "<strong>How do we learn information about you?</strong>"
+msgstr "<strong>How do we learn information about you?</strong>"
+
+#: data/consent.html
+msgid "<strong>How do we store and protect your personal information?</strong>"
+msgstr ""
+"<strong>How do we store and protect your personal information?</strong>"
+
+#: data/consent.html
+msgid ""
+"<strong>Optional Data Collection: Interests and Personalized Content.</"
+"strong> Certain websites are participating in this Study to display "
+"personalized content to you through the Research Add-on.  You may be "
+"prompted by Firefox to share your Interests with these websites, or to edit "
+"a website \"whitelist\" to allow certain websites to access your Interests "
+"to display personalized content.  Unless you expressly consent, these "
+"websites will not have access to your Interests by default.  Websites cannot "
+"use your Interest data to personally identify you."
+msgstr ""
+"<strong>Optional Data Collection: Interests and Personalized Content.</"
+"strong> Certain websites are participating in this Study to display "
+"personalized content to you through the Research Add-on.  You may be "
+"prompted by Firefox to share your Interests with these websites, or to edit "
+"a website \"whitelist\" to allow certain websites to access your Interests "
+"to display personalized content.  Unless you expressly consent, these "
+"websites will not have access to your Interests by default.  Websites cannot "
+"use your Interest data to personally identify you."
+
+#: data/consent.html
+msgid ""
+"<strong>Optional Data Collection: Surveys.</strong> You may be asked to "
+"respond to optional surveys, the responses of which will be analyzed in an "
+"aggregated format (\"<span class=\"text-underline\">Survey Data</span>\") "
+"Survey Data may include your demographics, interests, computer usage, and "
+"browsing habits.  Survey Data cannot be used to personally identify you.  "
+"Mozilla may correlate the Survey Data with other data, but will do so in a "
+"manner that cannot be used to personally identify you."
+msgstr ""
+"<strong>Optional Data Collection: Surveys.</strong> You may be asked to "
+"respond to optional surveys, the responses of which will be analyzed in an "
+"aggregated format (\"<span class=\"text-underline\">Survey Data</span>\") "
+"Survey Data may include your demographics, interests, computer usage, and "
+"browsing habits.  Survey Data cannot be used to personally identify you.  "
+"Mozilla may correlate the Survey Data with other data, but will do so in a "
+"manner that cannot be used to personally identify you."
+
+#: data/consent.html
+msgid ""
+"<strong>Scope of Study.</strong> Mozilla is considering a web "
+"personalization feature for Firefox that puts users in control of what data "
+"is shared and with whom. This Study analyzes user engagement with "
+"personalized content, non-personalized content, and browser history to help "
+"us determine which personalization methods, if any, are most engaging to "
+"Firefox users."
+msgstr ""
+"<strong>Scope of Study.</strong> Mozilla is considering a web "
+"personalization feature for Firefox that puts users in control of what data "
+"is shared and with whom. This Study analyzes user engagement with "
+"personalized content, non-personalized content, and browser history to help "
+"us determine which personalization methods, if any, are most engaging to "
+"Firefox users."
+
+#: data/consent.html
+msgid ""
+"<strong>Term/Termination.</strong> Study Participants must install the User "
+"Personalization Study Add-on (\"<span class=\"text-underline\">Research Add-"
+"on</span>\") to Firefox web browser (\"<span class=\"text-underline"
+"\">Firefox</span>\"). You may uninstall the Research Add-on at any time.  "
+"Otherwise, the Research Add-on will receive periodic testing updates from "
+"Mozilla and will uninstall itself no later than 6 months from initial "
+"installation.  Testing updates may include new phases of the Study, such as "
+"new algorithms, surveys, and prompts."
+msgstr ""
+"<strong>Term/Termination.</strong> Study Participants must install the User "
+"Personalization Study Add-on (\"<span class=\"text-underline\">Research Add-"
+"on</span>\") to Firefox web browser (\"<span class=\"text-underline"
+"\">Firefox</span>\"). You may uninstall the Research Add-on at any time.  "
+"Otherwise, the Research Add-on will receive periodic testing updates from "
+"Mozilla and will uninstall itself no later than 6 months from initial "
+"installation.  Testing updates may include new phases of the Study, such as "
+"new algorithms, surveys, and prompts."
+
+#: data/consent.html
+msgid "<strong>What do we do with your information once we have it?</strong>"
+msgstr "<strong>What do we do with your information once we have it?</strong>"
+
+#: data/consent.html
+msgid "<strong>What do we mean by \"personal information\"?</strong>"
+msgstr "<strong>What do we mean by \"personal information\"?</strong>"
+
+#: data/consent.html
+msgid "<strong>What else do we want you to know?</strong>"
+msgstr "<strong>What else do we want you to know?</strong>"
+
+#: data/consent.html
+msgid "<strong>What if we change this policy?</strong>"
+msgstr "<strong>What if we change this policy?</strong>"
+
+#: data/consent.html
+msgid "<strong>When do we share your information with others?</strong>"
+msgstr "<strong>When do we share your information with others?</strong>"
+
+#: data/consent.html
+msgid ""
+"Any information that falls outside of this is \"non-personal information\""
+msgstr ""
+"Any information that falls outside of this is \"non-personal information\""
+
+#: data/consent.html
+msgid "Contact us"
+msgstr "Contact us"
+
+#: data/consent.html
+msgid "Data Protection."
+msgstr "Data Protection."
+
+#: data/consent.html
+msgid "Date: November 14, 2013"
+msgstr "Date: November 14, 2013"
+
+#: data/consent.html
+msgid "Done"
+msgstr "Done"
+
+#: data/consent.html
+msgid "Firefox Personalization Study"
+msgstr "Firefox Personalization Study"
+
+#: data/consent.html
+msgid ""
+"Firefox will choose a set of interest topics (such as music, humor, or "
+"technology) that best match the websites you tend to visit, based on your "
+"browsing history. You will then be asked to answer some questions about "
+"those topics and your browsing preferences."
+msgstr ""
+"Firefox will choose a set of interest topics (such as music, humor, or "
+"technology) that best match the websites you tend to visit, based on your "
+"browsing history. You will then be asked to answer some questions about "
+"those topics and your browsing preferences."
+
+#: data/consent.html
+msgid ""
+"Firefox will prompt you for your consent when a website participating in "
+"this Study seeks access to your Interest data.  Participating websites may "
+"employ web analytics software to monitor general website engagement, as "
+"further described in their privacy policies."
+msgstr ""
+"Firefox will prompt you for your consent when a website participating in "
+"this Study seeks access to your Interest data.  Participating websites may "
+"employ web analytics software to monitor general website engagement, as "
+"further described in their privacy policies."
+
+#: data/consent.html
+msgid ""
+"For processing or providing products and services to you, but only if those "
+"entities receiving your information are contractually obligated to handle "
+"the data in ways that are approved by Mozilla."
+msgstr ""
+"For processing or providing products and services to you, but only if those "
+"entities receiving your information are contractually obligated to handle "
+"the data in ways that are approved by Mozilla."
+
+#: data/consent.html
+msgid ""
+"For us, \"personal information\" means information which identifies you, "
+"like your name or email address."
+msgstr ""
+"For us, \"personal information\" means information which identifies you, "
+"like your name or email address."
+
+#: data/consent.html
+msgid "Frequently Asked Questions"
+msgstr "Frequently Asked Questions"
+
+#: data/consent.html
+msgid "How can I leave the study?"
+msgstr "How can I leave the study?"
+
+#: data/consent.html
+msgid "How it works"
+msgstr "How it works"
+
+#: data/consent.html
+msgid "How long does this study last and what happens afterward?"
+msgstr "How long does this study last and what happens afterward?"
+
+#: data/consent.html
+msgid ""
+"If our organizational structure or status changes (if we undergo a "
+"restructuring, are acquired, or go bankrupt) we may pass your information to "
+"a successor or affiliate."
+msgstr ""
+"If our organizational structure or status changes (if we undergo a "
+"restructuring, are acquired, or go bankrupt) we may pass your information to "
+"a successor or affiliate."
+
+#: data/consent.html
+msgid ""
+"If we store your personal information with information that is non-personal, "
+"we will consider the combination as personal information. If we remove all "
+"personal information from a set of data then the remaining is non-personal "
+"information."
+msgstr ""
+"If we store your personal information with information that is non-personal, "
+"we will consider the combination as personal information. If we remove all "
+"personal information from a set of data then the remaining is non-personal "
+"information."
+
+#: data/consent.html
+msgid ""
+"If you are under 13, we don't want your personal information, and you must "
+"not provide it to us. If you are a parent and believe that your child who is "
+"under 13 has provided us with personal information, please contact us to "
+"have your child's information removed."
+msgstr ""
+"If you are under 13, we don't want your personal information, and you must "
+"not provide it to us. If you are a parent and believe that your child who is "
+"under 13 has provided us with personal information, please contact us to "
+"have your child's information removed."
+
+#: data/consent.html
+msgid ""
+"If you want to make a correction to your information, or you have any "
+"questions about our privacy policies, please get in touch with:"
+msgstr ""
+"If you want to make a correction to your information, or you have any "
+"questions about our privacy policies, please get in touch with:"
+
+#: data/consent.html
+msgid "Legal Notices"
+msgstr "Legal Notices"
+
+#: data/consent.html
+msgid ""
+"Mozilla Corporation<br> Attn: Legal Notices - Privacy<br> 650 Castro Street, "
+"Suite 300<br> Mountain View, CA 94041-2072<br> Phone: +1-650-903-0800<br>"
+msgstr ""
+"Mozilla Corporation<br> Attn: Legal Notices - Privacy<br> 650 Castro Street, "
+"Suite 300<br> Mountain View, CA 94041-2072<br> Phone: +1-650-903-0800<br>"
+
+#: data/consent.html
+msgid ""
+"Mozilla Firefox is conducting a study of how the websites you visit "
+"correlate with your interests, and the impact of content personalized based "
+"on those interest topics. Mozilla is considering a web personalization "
+"feature for Firefox that puts users in control of what data is shared and "
+"with whom. This study will help us determine which personalization methods, "
+"if any, are most engaging to users."
+msgstr ""
+"Mozilla Firefox is conducting a study of how the websites you visit "
+"correlate with your interests, and the impact of content personalized based "
+"on those interest topics. Mozilla is considering a web personalization "
+"feature for Firefox that puts users in control of what data is shared and "
+"with whom. This study will help us determine which personalization methods, "
+"if any, are most engaging to users."
+
+#: data/consent.html
+msgid ""
+"Mozilla Firefox is conducting a study of personalized content on the Web, "
+"and as a Test Pilot user, we'd really appreciate your help in completing "
+"this study."
+msgstr ""
+"Mozilla Firefox is conducting a study of personalized content on the Web, "
+"and as a Test Pilot user, we'd really appreciate your help in completing "
+"this study."
+
+#: data/consent.html
+msgid ""
+"Mozilla Firefox is conducting a study of personalized content on the Web. To "
+"participate, please review the information below."
+msgstr ""
+"Mozilla Firefox is conducting a study of personalized content on the Web. To "
+"participate, please review the information below."
+
+#: data/consent.html
+msgid "Mozilla Personalization Study - Privacy Notice"
+msgstr "Mozilla Personalization Study - Privacy Notice"
+
+#: data/consent.html
+msgid "Mozilla Privacy Policy"
+msgstr "Mozilla Privacy Policy"
+
+#: data/consent.html
+msgid ""
+"Mozilla uses a third party, <a href=\"https://www.surveygizmo.com"
+"\">SurveyGizmo.com</a>, for its tests, which has its own privacy policy. "
+"SurveyGizmo states that they will not share this information with others or "
+"use the information for purposes other than to maintain the services they "
+"provide to Mozilla"
+msgstr ""
+"Mozilla uses a third party, <a href=\"https://www.surveygizmo.com"
+"\">SurveyGizmo.com</a>, for its tests, which has its own privacy policy. "
+"SurveyGizmo states that they will not share this information with others or "
+"use the information for purposes other than to maintain the services they "
+"provide to Mozilla"
+
+#: data/consent.html
+msgid ""
+"Mozilla's use of your data will be in accordance with this Privacy Notice "
+"and the Mozilla Privacy Policy below."
+msgstr ""
+"Mozilla's use of your data will be in accordance with this Privacy Notice "
+"and the Mozilla Privacy Policy below."
+
+#: data/consent.html
+msgid ""
+"No data is available yet.</br>Please try again in a few moments or wait "
+"until this window updates."
+msgstr ""
+"No data is available yet.</br>Please try again in a few moments or wait "
+"until this window updates."
+
+#: data/consent.html
+msgid "No, I don't want to participate"
+msgstr "No, I don't want to participate"
+
+#: data/consent.html
+msgid "Partner with us"
+msgstr "Partner with us"
+
+#: data/consent.html
+msgid ""
+"Please review this study's <a href=\"#\" ng-click="
+"\"openModalFAQ()\">Frequently Asked Questions</a> and <a href=\"#\" ng-click="
+"\"openModalPrivacyPolicy()\">Privacy Policy</a> for more information."
+msgstr ""
+"Please review this study's <a href=\"#\" ng-click="
+"\"openModalFAQ()\">Frequently Asked Questions</a> and <a href=\"#\" ng-click="
+"\"openModalPrivacyPolicy()\">Privacy Policy</a> for more information."
+
+#: data/consent.html
+msgid ""
+"Portions of this content are ©1998–2013 by individual mozilla.org "
+"contributors. Content available under a <a href=\"https://www.mozilla.org/en-"
+"US/foundation/licensing/website-content/\">Creative Commons license</a>."
+msgstr ""
+"Portions of this content are ©1998–2013 by individual mozilla.org "
+"contributors. Content available under a <a href=\"https://www.mozilla.org/en-"
+"US/foundation/licensing/website-content/\">Creative Commons license</a>."
+
+#: data/consent.html
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+#: data/consent.html
+msgid "Report Trademark Abuse"
+msgstr "Report Trademark Abuse"
+
+#: data/consent.html
+msgid "Study Data Preview"
+msgstr "Study Data Preview"
+
+#: data/consent.html
+msgid "Thank you for waiting!"
+msgstr "Thank you for waiting!"
+
+#: data/consent.html
+msgid ""
+"These interests and study data will only be shared with Mozilla, unless you "
+"authorize specific websites to access your interests (<a href=\"#\" ng-click="
+"\"openModalPreview()\">view a sample of the data</a>). The study will be "
+"removed automatically from your computer when it finishes."
+msgstr ""
+"These interests and study data will only be shared with Mozilla, unless you "
+"authorize specific websites to access your interests (<a href=\"#\" ng-click="
+"\"openModalPreview()\">view a sample of the data</a>). The study will be "
+"removed automatically from your computer when it finishes."
+
+#: data/consent.html
+msgid ""
+"This study is offered to Test Pilot participants, as well as users who have "
+"installed the Firefox Personalization Study Add-on."
+msgstr ""
+"This study is offered to Test Pilot participants, as well as users who have "
+"installed the Firefox Personalization Study Add-on."
+
+#: data/consent.html
+msgid ""
+"This study lasts 6 months and the add-on will be automatically uninstalled "
+"at the end of the study. At the end of the study, personalization will end "
+"and websites will no longer be allowed to access your interests."
+msgstr ""
+"This study lasts 6 months and the add-on will be automatically uninstalled "
+"at the end of the study. At the end of the study, personalization will end "
+"and websites will no longer be allowed to access your interests."
+
+#: data/consent.html
+msgid ""
+"We also don't want your personal information for any longer than we need it, "
+"so we only keep it long enough to do what we collected it for. Once we don't "
+"need it, we take steps to destroy it unless we are required by law to keep "
+"it longer."
+msgstr ""
+"We also don't want your personal information for any longer than we need it, "
+"so we only keep it long enough to do what we collected it for. Once we don't "
+"need it, we take steps to destroy it unless we are required by law to keep "
+"it longer."
+
+#: data/consent.html
+msgid ""
+"We are committed to protecting your personal information once we have it. We "
+"implement physical, business and technical security measures. Despite our "
+"efforts, if we learn of a security breach, we'll notify you so that you can "
+"take appropriate protective steps."
+msgstr ""
+"We are committed to protecting your personal information once we have it. We "
+"implement physical, business and technical security measures. Despite our "
+"efforts, if we learn of a security breach, we'll notify you so that you can "
+"take appropriate protective steps."
+
+#: data/consent.html
+msgid ""
+"We are processing your data.<br>When this computation is finished, you will "
+"be redirected to a survey page."
+msgstr ""
+"We are processing your data.<br>When this computation is finished, you will "
+"be redirected to a survey page."
+
+#: data/consent.html
+msgid ""
+"We care about user privacy. When Mozilla (that's us) collects information "
+"about participants of the Mozilla Personalization Study (\"<span class="
+"\"text-underline\">Study Participants</span>\" and \"<span class=\"text-"
+"underline\">Study</span>\"), this Privacy Notice describes how we handle "
+"that information."
+msgstr ""
+"We care about user privacy. When Mozilla (that's us) collects information "
+"about participants of the Mozilla Personalization Study (\"<span class="
+"\"text-underline\">Study Participants</span>\" and \"<span class=\"text-"
+"underline\">Study</span>\"), this Privacy Notice describes how we handle "
+"that information."
+
+#: data/consent.html
+msgid "We learn information about you when:"
+msgstr "We learn information about you when:"
+
+#: data/consent.html
+msgid "We may need to change this policy and when we do, we'll notify you."
+msgstr "We may need to change this policy and when we do, we'll notify you."
+
+#: data/consent.html
+msgid ""
+"We're a global organization and our computers are in several different "
+"places around the world. We also use service providers whose computers may "
+"also be in various countries. This means that your information might end up "
+"on one of those computers in another country, and that country may have a "
+"different level of data protection regulation than yours. By giving us "
+"information, you consent to this kind of transfer of your information. No "
+"matter what country your information is in, we comply with applicable law "
+"and will also abide by the commitments we make in this privacy policy."
+msgstr ""
+"We're a global organization and our computers are in several different "
+"places around the world. We also use service providers whose computers may "
+"also be in various countries. This means that your information might end up "
+"on one of those computers in another country, and that country may have a "
+"different level of data protection regulation than yours. By giving us "
+"information, you consent to this kind of transfer of your information. No "
+"matter what country your information is in, we comply with applicable law "
+"and will also abide by the commitments we make in this privacy policy."
+
+#: data/consent.html
+msgid "What data is collected during this study?"
+msgstr "What data is collected during this study?"
+
+#: data/consent.html
+msgid "What is this study?"
+msgstr "What is this study?"
+
+#: data/consent.html
+msgid ""
+"When the law requires it. We follow the law whenever we receive requests "
+"about you from a government or related to a lawsuit. We'll notify you when "
+"we're asked to hand over your personal information in this way unless we're "
+"legally prohibited from doing so. When we receive requests like this, we'll "
+"only release your personal information if we have a good faith belief that "
+"the law requires us to do so. Nothing in this policy is intended to limit "
+"any legal defenses or objections that you may have to a third party's "
+"request to disclose your information."
+msgstr ""
+"When the law requires it. We follow the law whenever we receive requests "
+"about you from a government or related to a lawsuit. We'll notify you when "
+"we're asked to hand over your personal information in this way unless we're "
+"legally prohibited from doing so. When we receive requests like this, we'll "
+"only release your personal information if we have a good faith belief that "
+"the law requires us to do so. Nothing in this policy is intended to limit "
+"any legal defenses or objections that you may have to a third party's "
+"request to disclose your information."
+
+#: data/consent.html
+msgid ""
+"When we are fulfilling our <a href=\"https://www.mozilla.org/about/manifesto."
+"html\">mission of being open</a>. We sometimes release information to make "
+"our products better and foster an open web, but when we do so, we will "
+"remove your personal information and try to disclose it in a way that "
+"minimizes the risk of you being re-identified."
+msgstr ""
+"When we are fulfilling our <a href=\"https://www.mozilla.org/about/manifesto."
+"html\">mission of being open</a>. We sometimes release information to make "
+"our products better and foster an open web, but when we do so, we will "
+"remove your personal information and try to disclose it in a way that "
+"minimizes the risk of you being re-identified."
+
+#: data/consent.html
+msgid ""
+"When we believe it is necessary to prevent harm to you or someone else. We "
+"will only share your information in this way if we have a good faith belief "
+"that it is reasonably necessary to protect the rights, property or safety of "
+"you, our other users, Mozilla or the public."
+msgstr ""
+"When we believe it is necessary to prevent harm to you or someone else. We "
+"will only share your information in this way if we have a good faith belief "
+"that it is reasonably necessary to protect the rights, property or safety of "
+"you, our other users, Mozilla or the public."
+
+#: data/consent.html
+msgid "When we have gotten your permission to share it."
+msgstr "When we have gotten your permission to share it."
+
+#: data/consent.html
+msgid ""
+"When you give us personal information, we will use it in the ways for which "
+"you've given us permission. Generally, we use your information to help us "
+"provide and improve our products and services for you."
+msgstr ""
+"When you give us personal information, we will use it in the ways for which "
+"you've given us permission. Generally, we use your information to help us "
+"provide and improve our products and services for you."
+
+#: data/consent.html
+msgid "Why was I offered this study?"
+msgstr "Why was I offered this study?"
+
+#: data/consent.html
+msgid "Yes, I'm willing to participate"
+msgstr "Yes, I'm willing to participate"
+
+#: data/consent.html
+msgid ""
+"You can view a sample of the data collected <a href=\"#\" ng-click="
+"\"switchToPreview()\">here</a>. Please review our <a href=\"#\" ng-click="
+"\"switchToPrivacyPolicy()\">Privacy Policy</a> for more details."
+msgstr ""
+"You can view a sample of the data collected <a href=\"#\" ng-click="
+"\"switchToPreview()\">here</a>. Please review our <a href=\"#\" ng-click="
+"\"switchToPrivacyPolicy()\">Privacy Policy</a> for more details."
+
+#: data/consent.html
+msgid ""
+"You may opt out of the study and disable interest sharing at any time by "
+"removing the \"Firefox Personalization Study\" add-on from Firefox's Add-ons "
+"Manager."
+msgstr ""
+"You may opt out of the study and disable interest sharing at any time by "
+"removing the \"Firefox Personalization Study\" add-on from Firefox's Add-ons "
+"Manager."
+
+#: data/consent.html
+msgid ""
+"Your privacy is an important factor that the Mozilla Corporation, located at "
+"650 Castro St #300, Mountain View, CA 94041"
+msgstr ""
+"Your privacy is an important factor that the Mozilla Corporation, located at "
+"650 Castro St #300, Mountain View, CA 94041"
+
+#: data/consent.html
+msgid "select text"
+msgstr "select text"
+
+#: data/consent.html
+msgid ""
+"someone else tells us information about you (e.g., Thunderbird works with "
+"your email providers to set up your account); or"
+msgstr ""
+"someone else tells us information about you (e.g., Thunderbird works with "
+"your email providers to set up your account); or"
+
+#: data/consent.html
+msgid ""
+"we collect it automatically through our products and services (e.g., when we "
+"check whether your version of Firefox is up to date);"
+msgstr ""
+"we collect it automatically through our products and services (e.g., when we "
+"check whether your version of Firefox is up to date);"
+
+#: data/consent.html
+msgid ""
+"when we try and understand more about you based on information you've given "
+"to us (e.g., when we use your IP address to customize language for some of "
+"our services)."
+msgstr ""
+"when we try and understand more about you based on information you've given "
+"to us (e.g., when we use your IP address to customize language for some of "
+"our services)."
+
+#: data/consent.html
+msgid ""
+"you give it to us directly (e.g., when you choose to send us crash reports "
+"from Firefox);"
+msgstr ""
+"you give it to us directly (e.g., when you choose to send us crash reports "
+"from Firefox);"
+
+#: data/consent.html
+msgid "{{daysCompletion}}% complete"
+msgstr "{{daysCompletion}}% complete"

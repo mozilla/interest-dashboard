@@ -1,6 +1,25 @@
 "use strict";
 
-let consentMenu = angular.module("consentMenu", ["ui.bootstrap"]);
+let consentMenu = angular.module("consentMenu", ["ui.bootstrap", "gettext", "ngSanitize"]);
+
+consentMenu.run(function (gettextCatalog) {
+  var locale = navigator.language.replace("-", "_");
+  gettextCatalog.currentLanguage = locale;
+});
+
+consentMenu.directive("compile", function($compile) {
+  return function(scope, element, attrs) {
+    scope.$watch(
+      function(scope) {
+        return scope.$eval(attrs.compile);
+      },
+      function(value) {
+        element.html(value);
+        $compile(element.contents())(scope);
+      }
+    );
+  };
+});
 consentMenu.controller("consentCtrl", function($scope, $modal) {
 
   $scope.daysLeftStart = null;
@@ -45,6 +64,11 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
     let modal = $modal.open({
       templateUrl: "faq.html",
       controller: ModalNoticeCtrl,
+      resolve: {
+        modalType: function() {
+          return "faq";
+        }
+      }
     });
 
     modal.result.then(function(result) {
@@ -64,6 +88,11 @@ consentMenu.controller("consentCtrl", function($scope, $modal) {
     let modal = $modal.open({
       templateUrl: "privacy-policy.html",
       controller: ModalNoticeCtrl,
+      resolve: {
+        modalType: function() {
+          return "privacy";
+        }
+      }
     });
   }
 
@@ -119,7 +148,18 @@ let ModalPreviewCtrl = function($scope, $modalInstance, dispatchBatch) {
   }
 }
 
-let ModalNoticeCtrl = function($scope, $modalInstance) {
+let ModalNoticeCtrl = function($scope, $modalInstance, modalType) {
+
+  $scope.noticeBody = "";
+  switch (modalType) {
+    case "faq":
+      $scope.noticeBody = angular.element(document.querySelector("#faqMarkup")).html();
+      break;
+    case "privacy":
+      $scope.noticeBody = angular.element(document.querySelector("#privacyPolicyMarkup")).html();
+      break;
+  }
+
   $scope.done = function() {
     $modalInstance.close();
   }
@@ -132,8 +172,6 @@ let ModalNoticeCtrl = function($scope, $modalInstance) {
     $modalInstance.close({message: "openModal", type: "privacy"});
   }
 }
-
-angular.bootstrap(document, ['consentMenu']);
 
 self.port.on("style", function(file) {
   let link = document.createElement("link");

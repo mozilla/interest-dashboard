@@ -291,3 +291,7 @@ pre code {
        -o-animation: progress-bar-stripes 2s linear infinite;
           animation: progress-bar-stripes 2s linear infinite;
 }
+
+#privacyPolicyMarkup, #faqMarkup {
+    display: none;
+}
