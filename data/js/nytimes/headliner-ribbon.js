@@ -291,33 +291,33 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
   };
   templates["ribbonPageNavTip"] = function(obj){var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};with(obj||{}){__p+='<div class="placeholder-button-group">\n<div class="placeholder-button"><div class="previous"></div></div>\n<div class="placeholder-button"><div class="next"></div></div>\n</div>\n<h4>New!</h4>\n<p>Use your left and right arrow keys to browse articles.</p>';}return __p;};
   templates["ribbonPageNavigationHeadliner"] = function (obj) {
-    var __t, __p = '',
-        __j = Array.prototype.join,
-        print = function () {
-          __p += __j.call(arguments, '');
-        };
+    var results = '';
     with(obj || {}) {
-      __p += '<nav data-href="' + cleanseBeforeInjection(link) + '" data-queue-ad="' + cleanseBeforeInjection(shouldQueueAd) + '" class="ribbon-page-navigation-headliner ' + cleanseBeforeInjection(direction) + '" style="display:' + cleanseBeforeInjection(display) + '; overflow:hidden;">\n<a href="' + cleanseBeforeInjection(link) + '" >\n<article class="story theme-summary ';
+      results += '<nav data-href="' + cleanseBeforeInjection(link) + '" data-queue-ad="' +
+                 cleanseBeforeInjection(shouldQueueAd) + '" class="ribbon-page-navigation-headliner ' +
+                 cleanseBeforeInjection(direction) + '" style="display:' +
+                 cleanseBeforeInjection(display) + '; overflow:hidden;">\n<a href="' +
+                 cleanseBeforeInjection(link) + '" >\n<article class="story theme-summary ';
       if (!image) {
-        __p += ' no-thumb ';
+        results += ' no-thumb ';
       }
-      __p += '" style="display:none;">\n';
+      results += '" style="display:none;">\n';
       if (image) {
-        __p += '\n<div class="thumb">\n<img src="' + cleanseBeforeInjection(image.url) + '" />\n</div>\n';
+        results += '\n<div class="thumb">\n<img src="' + cleanseBeforeInjection(image.url) + '" />\n</div>\n';
       }
-      __p += '\n<div class="summary">\n';
+      results += '\n<div class="summary">\n';
       if (kicker) {
-        __p += '\n<h3 class="kicker">' + cleanseBeforeInjection(kicker) + '</h3>\n';
+        results += '\n<h3 class="kicker">' + cleanseBeforeInjection(kicker) + '</h3>\n';
       }
-      __p += '\n<h2 title="' + cleanseBeforeInjection(title) + '" class="story-heading">' + cleanseBeforeInjection(title) + '</h2>\n</div>\n</article>\n<div class="arrow arrow-';
+      results += '\n<h2 title="' + cleanseBeforeInjection(title) + '" class="story-heading">' + cleanseBeforeInjection(title) + '</h2>\n</div>\n</article>\n<div class="arrow arrow-';
       if (direction === 'next') {
-        __p += 'right';
+        results += 'right';
       } else {
-        __p += 'left';
+        results += 'left';
       }
-      __p += '">\n<span class="visually-hidden">Go to the ' + cleanseBeforeInjection(direction) + ' story</span>\n<div class="arrow-conceal"></div>\n</div>\n</a>\n</nav>';
+      results += '">\n<span class="visually-hidden">Go to the ' + cleanseBeforeInjection(direction) + ' story</span>\n<div class="arrow-conceal"></div>\n</div>\n</a>\n</nav>';
     }
-    return __p;
+    return results;
   };
 
   templates["storyCollection"] = function (obj) {
