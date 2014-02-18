@@ -321,19 +321,17 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
   };
 
   templates["storyCollection"] = function (obj) {
-    var __t, __p = '',
-        __j = Array.prototype.join,
-        print = function () {
-          __p += __j.call(arguments, '');
-        };
+    var results = '';
     with(obj || {}) {
-      __p += '<li class="collection ' + cleanseBeforeInjection(collectionLabel.type) + '-collection">\n';
+      results += '<li class="collection ' + cleanseBeforeInjection(collectionLabel.type) + '-collection">\n';
       if (collectionLabel.title) {
-        __p += '\n<div class="collection-marker">\n<h2 class="label"><a href="' + cleanseBeforeInjection(collectionLabel.url) + '">' + cleanseBeforeInjection(collectionLabel.title) + '</a></h2>\n</div>\n';
+        results += '\n<div class="collection-marker">\n<h2 class="label"><a href="' +
+                   cleanseBeforeInjection(collectionLabel.url) + '">' +
+                   cleanseBeforeInjection(collectionLabel.title) + '</a></h2>\n</div>\n';
       }
-      __p += '\n<ol class="collection-menu">\n';
+      results += '\n<ol class="collection-menu">\n';
       _.each(articles, function (article, index, list) {
-        __p += '\n';
+        results += '\n';
         var a = document.createElement("a");
         var newLink = article.get('link');
         a.href = newLink;
@@ -358,23 +356,23 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
           classList.push('last-collection-item');
         }
         classString = classList.join(' ');
-        __p += '';
+        results += '';
         if (article.get('isAd') !== true) {
-          __p += '' + cleanseBeforeInjection(articleTemplate({
+          results += '' + cleanseBeforeInjection(articleTemplate({
             article: article,
             classString: classString,
             newLink: newLink
           }));
         } else {
-          __p += '' + cleanseBeforeInjection(adTemplate());
+          results += '' + cleanseBeforeInjection(adTemplate());
         }
-        __p += '';
+        results += '';
         article.set('processed', true);
-        __p += '\n';
+        results += '\n';
       });
-      __p += '\n</ol>\n</li>';
+      results += '\n</ol>\n</li>';
     }
-    return __p;
+    return results;
   };
 
   return templates;
