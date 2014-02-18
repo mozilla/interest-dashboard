@@ -289,7 +289,10 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
     if (data == null) return '';
     return data;
   };
-  templates["ribbonPageNavTip"] = function(obj){var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};with(obj||{}){__p+='<div class="placeholder-button-group">\n<div class="placeholder-button"><div class="previous"></div></div>\n<div class="placeholder-button"><div class="next"></div></div>\n</div>\n<h4>New!</h4>\n<p>Use your left and right arrow keys to browse articles.</p>';}return __p;};
+  templates["ribbonPageNavTip"] = function (obj) {
+    return '<div class="placeholder-button-group">\n<div class="placeholder-button"><div class="previous"></div></div>\n' +
+           '<div class="placeholder-button"><div class="next"></div></div>\n</div>\n<h4>New!</h4>\n<p>Use your left and right arrow keys to browse articles.</p>';
+  };
   templates["ribbonPageNavigationHeadliner"] = function (obj) {
     var results = '';
     with(obj || {}) {
