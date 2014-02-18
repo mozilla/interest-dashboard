@@ -285,6 +285,10 @@ define('shared/ribbon/instances/ribbon-data-headliner',[
 });
 define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
   var templates = {};
+  function cleanseBeforeInjection(data) {
+    if (data == null) return '';
+    return data;
+  };
   templates["ribbonPageNavTip"] = function(obj){var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};with(obj||{}){__p+='<div class="placeholder-button-group">\n<div class="placeholder-button"><div class="previous"></div></div>\n<div class="placeholder-button"><div class="next"></div></div>\n</div>\n<h4>New!</h4>\n<p>Use your left and right arrow keys to browse articles.</p>';}return __p;};
   templates["ribbonPageNavigationHeadliner"] = function (obj) {
     var __t, __p = '',
@@ -293,25 +297,25 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
           __p += __j.call(arguments, '');
         };
     with(obj || {}) {
-      __p += '<nav data-href="' + ((__t = (link)) == null ? '' : __t) + '" data-queue-ad="' + ((__t = (shouldQueueAd)) == null ? '' : __t) + '" class="ribbon-page-navigation-headliner ' + ((__t = (direction)) == null ? '' : __t) + '" style="display:' + ((__t = (display)) == null ? '' : __t) + '; overflow:hidden;">\n<a href="' + ((__t = (link)) == null ? '' : __t) + '" >\n<article class="story theme-summary ';
+      __p += '<nav data-href="' + cleanseBeforeInjection(link) + '" data-queue-ad="' + cleanseBeforeInjection(shouldQueueAd) + '" class="ribbon-page-navigation-headliner ' + cleanseBeforeInjection(direction) + '" style="display:' + cleanseBeforeInjection(display) + '; overflow:hidden;">\n<a href="' + cleanseBeforeInjection(link) + '" >\n<article class="story theme-summary ';
       if (!image) {
         __p += ' no-thumb ';
       }
       __p += '" style="display:none;">\n';
       if (image) {
-        __p += '\n<div class="thumb">\n<img src="' + ((__t = (image.url)) == null ? '' : __t) + '" />\n</div>\n';
+        __p += '\n<div class="thumb">\n<img src="' + cleanseBeforeInjection(image.url) + '" />\n</div>\n';
       }
       __p += '\n<div class="summary">\n';
       if (kicker) {
-        __p += '\n<h3 class="kicker">' + ((__t = (kicker)) == null ? '' : __t) + '</h3>\n';
+        __p += '\n<h3 class="kicker">' + cleanseBeforeInjection(kicker) + '</h3>\n';
       }
-      __p += '\n<h2 title="' + ((__t = (title)) == null ? '' : __t) + '" class="story-heading">' + ((__t = (title)) == null ? '' : __t) + '</h2>\n</div>\n</article>\n<div class="arrow arrow-';
+      __p += '\n<h2 title="' + cleanseBeforeInjection(title) + '" class="story-heading">' + cleanseBeforeInjection(title) + '</h2>\n</div>\n</article>\n<div class="arrow arrow-';
       if (direction === 'next') {
         __p += 'right';
       } else {
         __p += 'left';
       }
-      __p += '">\n<span class="visually-hidden">Go to the ' + ((__t = (direction)) == null ? '' : __t) + ' story</span>\n<div class="arrow-conceal"></div>\n</div>\n</a>\n</nav>';
+      __p += '">\n<span class="visually-hidden">Go to the ' + cleanseBeforeInjection(direction) + ' story</span>\n<div class="arrow-conceal"></div>\n</div>\n</a>\n</nav>';
     }
     return __p;
   };
@@ -323,9 +327,9 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
           __p += __j.call(arguments, '');
         };
     with(obj || {}) {
-      __p += '<li class="collection ' + ((__t = (collectionLabel.type)) == null ? '' : __t) + '-collection">\n';
+      __p += '<li class="collection ' + cleanseBeforeInjection(collectionLabel.type) + '-collection">\n';
       if (collectionLabel.title) {
-        __p += '\n<div class="collection-marker">\n<h2 class="label"><a href="' + ((__t = (collectionLabel.url)) == null ? '' : __t) + '">' + ((__t = (collectionLabel.title)) == null ? '' : __t) + '</a></h2>\n</div>\n';
+        __p += '\n<div class="collection-marker">\n<h2 class="label"><a href="' + cleanseBeforeInjection(collectionLabel.url) + '">' + cleanseBeforeInjection(collectionLabel.title) + '</a></h2>\n</div>\n';
       }
       __p += '\n<ol class="collection-menu">\n';
       _.each(articles, function (article, index, list) {
@@ -356,13 +360,13 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
         classString = classList.join(' ');
         __p += '';
         if (article.get('isAd') !== true) {
-          __p += '' + ((__t = (articleTemplate({
+          __p += '' + cleanseBeforeInjection(articleTemplate({
             article: article,
             classString: classString,
             newLink: newLink
-          }))) == null ? '' : __t) + '';
+          }));
         } else {
-          __p += '' + ((__t = (adTemplate())) == null ? '' : __t) + '';
+          __p += '' + cleanseBeforeInjection(adTemplate());
         }
         __p += '';
         article.set('processed', true);
