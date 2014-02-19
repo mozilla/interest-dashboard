@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-self.port.on("recommend_on_page", function([data, ribbonScriptUrl, oldStyleRubricScriptUrl]) {
+self.port.on("recommend_on_page", function([data, ribbonScriptUrl, oldStyleRubricScriptUrl, bleachUrl]) {
 
   let ribbon = document.querySelector("#ribbon");
   if (ribbon) {
@@ -50,6 +50,11 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl, oldStyleRubri
     ribbonDataElem.type = "text/javascript";
     ribbonDataElem.textContent = "var headlinerRibbonData = " + JSON.stringify(articles) + ";";
     document.body.appendChild(ribbonDataElem);
+
+    let bleachScriptElem = document.createElement("script");
+    bleachScriptElem.type = "text/javascript";
+    bleachScriptElem.src = bleachUrl;
+    document.body.appendChild(bleachScriptElem);
 
     // inject new backbone collection, view and more
     let ribbonScriptElem = document.createElement("script");
@@ -141,6 +146,11 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl, oldStyleRubri
       let widgetElem = document.createElement("div");
       widgetElem.id = "mostPopWidgetHeadliner";
       widgetElem.className = "doubleRule nocontent";
+
+      let bleachScriptElem = document.createElement("script");
+      bleachScriptElem.type = "text/javascript";
+      bleachScriptElem.src = bleachUrl;
+      document.body.appendChild(bleachScriptElem);
 
       let scriptElem = document.createElement("script");
       scriptElem.type = "text/javascript";
