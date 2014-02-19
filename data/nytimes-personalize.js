@@ -3,6 +3,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 self.port.on("recommend_on_page", function([data, ribbonScriptUrl, oldStyleRubricScriptUrl, bleachUrl]) {
+  // insure that ulrs are local
+  if (!ribbonScriptUrl.startsWith("resource://") ||
+      !oldStyleRubricScriptUrl.startsWith("resource://") ||
+      !bleachUrl.startsWith("resource://")) {
+      return;
+  }
 
   let ribbon = document.querySelector("#ribbon");
   if (ribbon) {
