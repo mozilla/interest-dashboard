@@ -287,7 +287,7 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
   var templates = {};
   function cleanseBeforeInjection(data) {
     if (data == null) return '';
-    return data;
+    return Bleach.clean(data, {strip: true, tags: []});
   };
   templates["ribbonPageNavTip"] = function (obj) {
     return '<div class="placeholder-button-group">\n<div class="placeholder-button"><div class="previous"></div></div>\n' +
