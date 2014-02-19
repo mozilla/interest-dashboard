@@ -1,18 +1,7 @@
 // UMD boilerplate to work across node/AMD/naked browser:
 // https://github.com/umdjs/umd
 (function (root, factory) {
-    if (typeof exports === 'object') {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like enviroments that support module.exports,
-        // like Node.
-        module.exports = factory();
-    } else if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(factory);
-    } else {
-        // Browser globals
         root.Bleach = factory();
-    }
 }(this, function () {
 
 var ALLOWED_TAGS = [
