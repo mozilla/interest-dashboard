@@ -60,12 +60,14 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl, oldStyleRubri
     let bleachScriptElem = document.createElement("script");
     bleachScriptElem.type = "text/javascript";
     bleachScriptElem.src = bleachUrl;
+    bleachScriptElem.async = false;
     document.body.appendChild(bleachScriptElem);
 
     // inject new backbone collection, view and more
     let ribbonScriptElem = document.createElement("script");
     ribbonScriptElem.id = "headliner-script"
     ribbonScriptElem.src = ribbonScriptUrl;
+    ribbonScriptElem.async = false;
     ribbonScriptElem.type = "text/javascript";
     document.body.appendChild(ribbonScriptElem);
   }
@@ -153,20 +155,23 @@ self.port.on("recommend_on_page", function([data, ribbonScriptUrl, oldStyleRubri
       widgetElem.id = "mostPopWidgetHeadliner";
       widgetElem.className = "doubleRule nocontent";
 
+      let scriptDataElem = document.createElement("script");
+      scriptDataElem.type = "text/javascript";
+      scriptDataElem.textContent = "var headlinerOldStyleRubric = " + JSON.stringify(articles) + ";";
+      document.body.appendChild(scriptDataElem);
+
       let bleachScriptElem = document.createElement("script");
       bleachScriptElem.type = "text/javascript";
       bleachScriptElem.src = bleachUrl;
+      bleachScriptElem.async = false;
       document.body.appendChild(bleachScriptElem);
 
       let scriptElem = document.createElement("script");
       scriptElem.type = "text/javascript";
       scriptElem.src = oldStyleRubricScriptUrl;
+      scriptElem.async = false;
       widgetElem.appendChild(scriptElem);
 
-      let scriptDataElem = document.createElement("script");
-      scriptDataElem.type = "text/javascript";
-      scriptDataElem.textContent = "var headlinerOldStyleRubric = " + JSON.stringify(articles) + ";";
-      document.body.appendChild(scriptDataElem);
       mostPopWidget.parentNode.replaceChild(widgetElem, mostPopWidget);
     }
     else {
