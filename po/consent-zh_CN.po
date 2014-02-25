@@ -180,8 +180,8 @@ msgid "Mozilla's use of your data will be in accordance with this Privacy Notice
 msgstr "Mozilla 使用您的数据时将遵循此隐私声明和下面的 Mozilla 隐私政策。"
 
 #: data/consent.html
-msgid "No data is available yet.</br>Please try again in a few moments or wait until this window updates."
-msgstr "尚无可用数据。</br>请稍后重试或等待次窗口更新。"
+msgid "No data is available yet. Please try again in a few moments or wait until this window updates."
+msgstr "尚无可用数据。请稍后重试或等待此窗口更新。"
 
 #: data/consent.html
 msgid "No, I don't want to participate"
@@ -300,8 +300,8 @@ msgid "You may opt out of the study and disable interest sharing at any time by 
 msgstr "您可以随时选择退出此次研究，并且禁止分享您的兴趣，您只需在扩展管理器中移除“火狐个性化研究”扩展即可。"
 
 #: data/consent.html
-msgid "Your privacy is an important factor that the Mozilla Corporation, located at 650 Castro St #300, Mountain View, CA 94041"
-msgstr "您的隐私对 Mozilla 公司来说非常重要，公司地点位于 650 Castro St #300, Mountain View, CA 94041"
+msgid "Your privacy is an important factor that the Mozilla Corporation, located at 650 Castro St #300, Mountain View, CA 94041 (\"<span class=\"text-underline\">Mozilla</span>\") (that's us) considers in the development of each of our products and services. We are committed to being transparent and open and want you to know how we receive information about you, and what we do with that information once we have it."
+msgstr "Mozilla 坐落于 650 Castro St #300, Mountain View, CA 94041。\"<span class=\"text-underline\">Mozilla</span>\"（也就是我们）在开发任何产品和服务时，都认为您的隐私是一个非常重要的因素。我们承诺保持透明和开放，并希望您知道我们怎样接收关于您的信息，以及我们获取您的信息之后用来做什么事情。"
 
 #: data/consent.html
 msgid "select text"

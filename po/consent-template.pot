@@ -172,7 +172,7 @@ msgid "Mozilla's use of your data will be in accordance with this Privacy Notice
 msgstr ""
 
 #: data/consent.html
-msgid "No data is available yet.</br>Please try again in a few moments or wait until this window updates."
+msgid "No data is available yet. Please try again in a few moments or wait until this window updates."
 msgstr ""
 
 #: data/consent.html
@@ -292,7 +292,7 @@ msgid "You may opt out of the study and disable interest sharing at any time by 
 msgstr ""
 
 #: data/consent.html
-msgid "Your privacy is an important factor that the Mozilla Corporation, located at 650 Castro St #300, Mountain View, CA 94041"
+msgid "Your privacy is an important factor that the Mozilla Corporation, located at 650 Castro St #300, Mountain View, CA 94041 (\"<span class=\"text-underline\">Mozilla</span>\") (that's us) considers in the development of each of our products and services. We are committed to being transparent and open and want you to know how we receive information about you, and what we do with that information once we have it."
 msgstr ""
 
 #: data/consent.html

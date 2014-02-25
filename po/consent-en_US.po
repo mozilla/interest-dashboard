@@ -371,10 +371,10 @@ msgstr ""
 
 #: data/consent.html
 msgid ""
-"No data is available yet.</br>Please try again in a few moments or wait "
+"No data is available yet. Please try again in a few moments or wait "
 "until this window updates."
 msgstr ""
-"No data is available yet.</br>Please try again in a few moments or wait "
+"No data is available yet. Please try again in a few moments or wait "
 "until this window updates."
 
 #: data/consent.html
@@ -622,12 +622,8 @@ msgstr ""
 "Manager."
 
 #: data/consent.html
-msgid ""
-"Your privacy is an important factor that the Mozilla Corporation, located at "
-"650 Castro St #300, Mountain View, CA 94041"
-msgstr ""
-"Your privacy is an important factor that the Mozilla Corporation, located at "
-"650 Castro St #300, Mountain View, CA 94041"
+msgid "Your privacy is an important factor that the Mozilla Corporation, located at 650 Castro St #300, Mountain View, CA 94041 (\"<span class=\"text-underline\">Mozilla</span>\") (that's us) considers in the development of each of our products and services. We are committed to being transparent and open and want you to know how we receive information about you, and what we do with that information once we have it."
+msgstr "Your privacy is an important factor that the Mozilla Corporation, located at 650 Castro St #300, Mountain View, CA 94041 (\"<span class=\"text-underline\">Mozilla</span>\") (that's us) considers in the development of each of our products and services. We are committed to being transparent and open and want you to know how we receive information about you, and what we do with that information once we have it."
 
 #: data/consent.html
 msgid "select text"
