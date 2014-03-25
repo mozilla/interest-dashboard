@@ -31,16 +31,16 @@ exports["test promiseTimeout"] = function test_promiseTimeout(assert, done) {
 exports["test getRelevantPrefs"] = function test_GetRelevantPrefs(assert, done) {
   let prefs = getRelevantPrefs();
   let expected = {
-    "privacy.donottrackheader.value":1,
-    "privacy.donottrackheader.enabled":false,
-    "browser.privatebrowsing.autostart":false,
-    "browser.urlbar.autocomplete.enabled": true,
-    "browser.urlbar.default.behavior": 0,
-    "network.cookie.cookieBehavior": 0,
-    "network.cookie.lifetimePolicy": 0,
-    "privacy.sanitize.sanitizeOnShutdown":false,
-    "places.history.enabled":true,
-    "browser.formfill.enable":true,
+    "privacy.donottrackheader.value": Services.prefs.getIntPref("privacy.donottrackheader.value"),
+    "privacy.donottrackheader.enabled":Services.prefs.getBoolPref("privacy.donottrackheader.enabled"),
+    "browser.privatebrowsing.autostart": Services.prefs.getBoolPref("browser.privatebrowsing.autostart"),
+    "browser.urlbar.autocomplete.enabled": Services.prefs.getBoolPref("browser.urlbar.autocomplete.enabled"),
+    "browser.urlbar.default.behavior": Services.prefs.getIntPref("browser.urlbar.default.behavior"),
+    "network.cookie.cookieBehavior": Services.prefs.getIntPref("network.cookie.cookieBehavior"),
+    "network.cookie.lifetimePolicy": Services.prefs.getIntPref("network.cookie.lifetimePolicy"),
+    "privacy.sanitize.sanitizeOnShutdown": Services.prefs.getBoolPref("privacy.sanitize.sanitizeOnShutdown"),
+    "places.history.enabled": Services.prefs.getBoolPref("places.history.enabled"),
+    "browser.formfill.enable":Services.prefs.getBoolPref("browser.formfill.enable"),
     "nytimes_personalization_start": simplePrefs.prefs.nytimes_personalization_start
   };
   testUtils.isIdentical(assert,prefs,expected);
