@@ -18,19 +18,12 @@ Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
 exports["test NYTimesRecommendation pref changes"] = function test_NYT_init(assert, done) {
   // the pagemod is applied on init and when pref changes happen
   Task.spawn(function() {
-    simplePrefs.prefs.consented = false;
-
-    let deferred = Promise.defer();
-    StudyApp.submitPromise = deferred.promise;
-    deferred.resolve();
-
-    simplePrefs.prefs.consented = true;
-    PrefsManager.setObservers();
-
     let controller = {_dispatcher: {_enabled: false}, getUserInterests: function() {return {};}};
     StudyApp.controller = controller;
     yield NYTimesRecommendations.init();
 
+    simplePrefs.prefs.consented = true;
+    PrefsManager.setObservers();
     simplePrefs.prefs.consented = false;
     assert.ok(NYTimesRecommendations.mod == null, "unsetting consent removes pagemod");
     assert.ok(NYTimesRecommendations.contentClient == null, "unsetting consent removes headliner client");
