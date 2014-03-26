@@ -77,36 +77,36 @@ exports["test NYTimesRecommendation transformData"] = function test_NYT_transfor
       {
         "media": [
           {
-            "caption": "The 2014 Mazda 3 flaunts Euro-style curves and intriguing shapes.", 
-            "copyright": "Mazda North America", 
+            "caption": "The 2014 Mazda 3 flaunts Euro-style curves and intriguing shapes.",
+            "copyright": "Mazda North America",
             "media-metadata": [
               {
-                "format": "Standard Thumbnail", 
-                "height": 75, 
-                "url": "http://graphics8.nytimes.com/images/2013/12/01/automobiles/SUB-WHEEL1/SUB-WHEEL1-thumbStandard.jpg", 
+                "format": "Standard Thumbnail",
+                "height": 75,
+                "url": "http://graphics8.nytimes.com/images/2013/12/01/automobiles/SUB-WHEEL1/SUB-WHEEL1-thumbStandard.jpg",
                 "width": 75
-              }, 
+              },
               {
-                "format": "thumbLarge", 
-                "height": 150, 
-                "url": "http://graphics8.nytimes.com/images/2013/12/01/automobiles/SUB-WHEEL1/SUB-WHEEL1-thumbLarge.jpg", 
+                "format": "thumbLarge",
+                "height": 150,
+                "url": "http://graphics8.nytimes.com/images/2013/12/01/automobiles/SUB-WHEEL1/SUB-WHEEL1-thumbLarge.jpg",
                 "width": 150
-              }, 
+              },
               {
-                "format": "mediumThreeByTwo210", 
-                "height": 140, 
-                "url": "http://graphics8.nytimes.com/images/2013/12/01/automobiles/SUB-WHEEL1/SUB-WHEEL1-mediumThreeByTwo210.jpg", 
+                "format": "mediumThreeByTwo210",
+                "height": 140,
+                "url": "http://graphics8.nytimes.com/images/2013/12/01/automobiles/SUB-WHEEL1/SUB-WHEEL1-mediumThreeByTwo210.jpg",
                 "width": 210
               }
-            ], 
-            "subtype": "photo", 
+            ],
+            "subtype": "photo",
             "type": "image"
           }
-        ], 
-        "title": "Performer Available for Private Parties", 
+        ],
+        "title": "Performer Available for Private Parties",
         "url": "http://www.nytimes.com/2013/12/01/automobiles/autoreviews/performer-available-for-private-parties.html?src=moz-up"
       }
-    ], 
+    ],
     "num_articles": 1
   };
   let data = NYTimesRecommendations.transformData(rawData);
