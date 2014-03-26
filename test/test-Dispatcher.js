@@ -109,6 +109,7 @@ exports["test _makePayload"] = function test__makePayload(assert) {
 
 exports["test _deletedays"] = function test__DeleteDays(assert) {
   let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
+  storage.interests = {};
 
   dispatcher.consume(sampleData.dayAnnotatedOne);
   dispatcher.consume(sampleData.dayAnnotatedTwo);
