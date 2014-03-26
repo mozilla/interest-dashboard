@@ -116,13 +116,13 @@ exports["test _deletedays"] = function test__DeleteDays(assert) {
 
   let days = Object.keys(storage.interests);
 
-  testUtils.isIdentical(assert, Object.keys(storage.interests).length, 2);
+  assert.equal(Object.keys(storage.interests).length, 2);
   dispatcher._deleteDays([days[0]]);
-  testUtils.isIdentical(assert, Object.keys(storage.interests).length, 1);
+  assert.equal(Object.keys(storage.interests).length, 1);
   dispatcher._deleteDays([days[0]]);
-  testUtils.isIdentical(assert, Object.keys(storage.interests).length, 1);
+  assert.equal(Object.keys(storage.interests).length, 1);
   dispatcher._deleteDays([days[1]]);
-  testUtils.isIdentical(assert, Object.keys(storage.interests).length, 0);
+  assert.equal(Object.keys(storage.interests).length, 0);
 }
 
 exports["test _dispatch"] = function test__Dispatch(assert, done) {
