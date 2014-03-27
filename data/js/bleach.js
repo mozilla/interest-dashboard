@@ -89,6 +89,27 @@ bleach.clean = function (html, opts) {
 };
 
 /**
+  * Escapes all characters with ASCII values less than 256, other than
+  * alphanumeric characters, with the &#xHH; format.
+  */
+bleach.escapeHTML = function(text) {
+  return text.replace(/[\u0000-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u0100]/g, function(c) {
+    return '&#' + c.charCodeAt(0) + ';';
+  });
+}
+
+bleach.sanitize = function (data) {
+  if(data == null || data == '') return '';
+  return bleach.clean(data, {strip: true, tags: []});
+};
+
+bleach.sanitizeURL = function (data) {
+  if(data == null || data == '') return '';
+  if (data.substring(0, 4) != "http") return "#"; //non-http URLs should do nothing
+  return bleach.escapeHTML(data);
+};
+
+/**
  * Clean the children of a node, but not the node itself.  Maybe this is
  * a bad idea.
  */

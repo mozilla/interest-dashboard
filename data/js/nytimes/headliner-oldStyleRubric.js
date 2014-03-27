@@ -142,26 +142,6 @@ NYTD.mostPopWidgetHeadliner = (function() {
     target.insert({ top : errorHTML});
   }
 
-/**
-  * Escapes all characters with ASCII values less than 256, other than
-  * alphanumeric characters, with the &#xHH; format.
-  */
-  function escapeHTML(text) {
-    return text.replace(/[\u0000-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u0100]/g, function(c) {
-      return '&#' + c.charCodeAt(0) + ';';
-    });
-  }
-
-  // Sanitize
-  function sanitize(data, isURL) {
-    if(data == null || data == '') return '';
-    if (isURL && !data.substring(0, 3) == "http") return "#"; //non-http URLs should do nothing
-    if (!isURL) {
-      return Bleach.clean(data, {strip: true, tags: []});
-    }
-    return escapeHTML(data);
-  }
-
   // Inject HTML
   function populateMostPop(item, target, tracking, id) {  
     // Build HTML
@@ -180,8 +160,8 @@ NYTD.mostPopWidgetHeadliner = (function() {
       }
       if (NYTD.MostPop.contentType !== "Homepage") {
         if (item[i].thumbnail != null) {
-          var img = '<td class="mostPopularImg"><a title="Click to go to this article" href="'+sanitize(item[i].url + tracking, true) +
-                    '"><img src="'+sanitize(item[i].thumbnail.url, true)+'"></a></td>';
+          var img = '<td class="mostPopularImg"><a title="Click to go to this article" href="'+Bleach.sanitizeURL(item[i].url + tracking) +
+                    '"><img src="'+Bleach.sanitizeURL(item[i].thumbnail.url)+'"></a></td>';
         } 
         else { 
           var img = "<td></td>"; 
@@ -200,9 +180,9 @@ NYTD.mostPopWidgetHeadliner = (function() {
       }
       mostPopHTML += '<tr>'+ 
         img +'<td class="listNumber">'+ 
-        (i+1) +'.</td><td class="mostPopularTitle"><h6 class="kicker">'+ sanitize(kicker) + '</h6><h4><a title="Click to go to this article" href="'+
-        sanitize(item[i].url + tracking, true) +'">'+
-        sanitize(title) +'</a></h4></td></tr>\n';
+        (i+1) +'.</td><td class="mostPopularTitle"><h6 class="kicker">'+ Bleach.sanitize(kicker) + '</h6><h4><a title="Click to go to this article" href="'+
+        Bleach.sanitizeURL(item[i].url + tracking, true) +'">'+
+        Bleach.sanitize(title) +'</a></h4></td></tr>\n';
     }
     mostPopHTML += '</tbody></table>';
     //Clean Up existing stuff
