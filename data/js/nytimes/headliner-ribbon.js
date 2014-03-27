@@ -285,9 +285,22 @@ define('shared/ribbon/instances/ribbon-data-headliner',[
 });
 define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
   var templates = {};
-  function cleanseBeforeInjection(data) {
+/**
+  * Escapes all characters with ASCII values less than 256, other than
+  * alphanumeric characters, with the &#xHH; format.
+  */
+  function escapeHTML(text) {
+    return text.replace(/[\u0000-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u0100]/g, function(c) {
+      return '&#' + c.charCodeAt(0) + ';';
+    });
+  }
+  function cleanseBeforeInjection(data, isURL) {
     if (data == null) return '';
-    return Bleach.clean(data, {strip: true, tags: []});
+    if (isURL && !data.substring(0, 3) == "http") return "#"; //non-http URLs should do nothing
+    if (!isURL) {
+      return Bleach.clean(data, {strip: true, tags: []});
+    }
+    return escapeHTML(data);
   };
   templates["ribbonPageNavTip"] = function (obj) {
     return '<div class="placeholder-button-group">\n<div class="placeholder-button"><div class="previous"></div></div>\n' +
@@ -296,17 +309,17 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
   templates["ribbonPageNavigationHeadliner"] = function (obj) {
     var results = '';
     with(obj || {}) {
-      results += '<nav data-href="' + cleanseBeforeInjection(link) + '" data-queue-ad="' +
+      results += '<nav data-href="' + cleanseBeforeInjection(link, true) + '" data-queue-ad="' +
                  cleanseBeforeInjection(shouldQueueAd) + '" class="ribbon-page-navigation-headliner ' +
                  cleanseBeforeInjection(direction) + '" style="display:' +
                  cleanseBeforeInjection(display) + '; overflow:hidden;">\n<a href="' +
-                 cleanseBeforeInjection(link) + '" >\n<article class="story theme-summary ';
+                 cleanseBeforeInjection(link, true) + '" >\n<article class="story theme-summary ';
       if (!image) {
         results += ' no-thumb ';
       }
       results += '" style="display:none;">\n';
       if (image) {
-        results += '\n<div class="thumb">\n<img src="' + cleanseBeforeInjection(image.url) + '" />\n</div>\n';
+        results += '\n<div class="thumb">\n<img src="' + cleanseBeforeInjection(image.url, true) + '" />\n</div>\n';
       }
       results += '\n<div class="summary">\n';
       if (kicker) {
@@ -329,7 +342,7 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
       results += '<li class="collection ' + cleanseBeforeInjection(collectionLabel.type) + '-collection">\n';
       if (collectionLabel.title) {
         results += '\n<div class="collection-marker">\n<h2 class="label"><a href="' +
-                   cleanseBeforeInjection(collectionLabel.url) + '">' +
+                   cleanseBeforeInjection(collectionLabel.url, true) + '">' +
                    cleanseBeforeInjection(collectionLabel.title) + '</a></h2>\n</div>\n';
       }
       results += '\n<ol class="collection-menu">\n';
