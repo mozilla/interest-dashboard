@@ -15,6 +15,7 @@ const {Cu} = require("chrome");
 Cu.import("resource://gre/modules/Task.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
 
+StudyApp.submitPromise = Promise.resolve();
 exports["test NYTimesRecommendation pref changes"] = function test_NYT_init(assert, done) {
   // the pagemod is applied on init and when pref changes happen
   Task.spawn(function() {
@@ -119,9 +120,6 @@ exports["test NYTimesRecommendation periodic refresh task"] = function test_NYT_
     NYTimesRecommendations.debug = true;
     simplePrefs.prefs.consented = true;
 
-    let deferred = Promise.defer();
-    StudyApp.submitPromise = deferred.promise;
-    deferred.resolve();
     yield NYTimesRecommendations.init();
 
     assert.ok(NYTimesRecommendations.refreshTaskId != null, "there should be an active refresh task");

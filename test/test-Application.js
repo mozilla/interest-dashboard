@@ -21,7 +21,7 @@ Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
 exports["test PrefsManager prefs"] = function test_PrefsManagerPrefs(assert) {
   let testController = new Controller();
   StudyApp.controller = testController;
-  StudyApp.submitPromise = Promise.defer().promise;
+  StudyApp.submitPromise = Promise.resolve();
   PrefsManager.setObservers();
 
   let dispatcher = testController._dispatcher;
