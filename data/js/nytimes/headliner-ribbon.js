@@ -285,6 +285,33 @@ define('shared/ribbon/instances/ribbon-data-headliner',[
 });
 define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
   var templates = {};
+  templates["ad"] = function (obj) {
+    with(obj || {}) {
+      results += '<li class="collection-item ribbon-ad-container">\n<div id="Ribbon" class="ad ribbon-ad">\n</div>\n</li>';
+    }
+    return results;
+  },
+  templates["article"] = function (obj) {
+    var results = '';
+    with(obj || {}) {
+      results += '<li class="collection-item ' + Bleach.sanitize(classString) + ' " >\n<a class="story-link" href="' + Bleach.sanitizeAttrs(newLink, true) + '">\n<div class="story-container">\n<article class="story theme-summary">\n';
+      var image = article.getCrop('thumbStandard');
+      results += '\n';
+      if (image) {
+        results += '\n<div class="thumb">\n<img src="' + Bleach.sanitizeAttrs(image.url, true) + '" alt="" />\n';
+        if (image.type !== 'image') {
+          results += '\n<div class="media-action-overlay">\n<i class="icon ' + sanitizeAttrs(image.type) + '-icon"></i>\n<span class="overlay-text visually-hidden">' + Bleach.sanitize(image.typeName) + '</span>\n</div>\n';
+        }
+        results += '\n</div>\n';
+      }
+      results += '';
+      if (article.get('kicker') !== '') {
+        results += '\n<h3 class="kicker">' + Bleach.sanitize(article.get('kicker')) + '</h3>\n';
+      }
+      results += '<h2 class="story-heading" title="' + Bleach.sanitizeAttrs(article.get('headline')) + '">' + Bleach.sanitize(article.get('headline')) + '</h2>\n</article>\n</div>\n</a>\n</li>';
+    }
+    return results;
+  },
   templates["ribbonPageNavTip"] = function (obj) {
     return '<div class="placeholder-button-group">\n<div class="placeholder-button"><div class="previous"></div></div>\n' +
            '<div class="placeholder-button"><div class="next"></div></div>\n</div>\n<h4>New!</h4>\n<p>Use your left and right arrow keys to browse articles.</p>';
@@ -573,7 +600,9 @@ define('shared/ribbon/views/ribbon-headliner',[
     var HeadlinerRibbonView = RibbonView.extend({
         el: '#ribbon-headliner',
         collection: feed,
-        
+        adTemplate: Templates.ad,
+        articleTemplate: Templates.article,
+
         /** collection of actions that allow rendering and data init
          *
          * @private
