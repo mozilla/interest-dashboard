@@ -103,9 +103,11 @@ bleach.sanitize = function (data) {
   return bleach.clean(data, {strip: true, tags: []});
 };
 
-bleach.sanitizeURL = function (data) {
+bleach.sanitizeAttrs = function (data, isURL) {
   if(data == null || data == '') return '';
-  if (data.substring(0, 4) != "http") return "#"; //non-http URLs should do nothing
+  if(isURL) {
+    if (data.substring(0, 4) != "http") return "#"; //non-http URLs should do nothing
+  }
   return bleach.escapeHTML(data);
 };
 

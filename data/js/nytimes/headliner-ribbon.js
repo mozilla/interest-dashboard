@@ -292,17 +292,17 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
   templates["ribbonPageNavigationHeadliner"] = function (obj) {
     var results = '';
     with(obj || {}) {
-      results += '<nav data-href="' + Bleach.sanitizeURL(link) + '" data-queue-ad="' +
+      results += '<nav data-href="' + Bleach.sanitizeAttrs(link, true) + '" data-queue-ad="' +
                  Bleach.escapeHTML(shouldQueueAd) + '" class="ribbon-page-navigation-headliner ' +
                  Bleach.escapeHTML(direction) + '" style="display:' +
                  Bleach.escapeHTML(display) + '; overflow:hidden;">\n<a href="' +
-                 Bleach.sanitizeURL(link) + '" >\n<article class="story theme-summary ';
+                 Bleach.sanitizeAttrs(link, true) + '" >\n<article class="story theme-summary ';
       if (!image) {
         results += ' no-thumb ';
       }
       results += '" style="display:none;">\n';
       if (image) {
-        results += '\n<div class="thumb">\n<img src="' + Bleach.sanitizeURL(image.url) + '" />\n</div>\n';
+        results += '\n<div class="thumb">\n<img src="' + Bleach.sanitizeAttrs(image.url, true) + '" />\n</div>\n';
       }
       results += '\n<div class="summary">\n';
       if (kicker) {
@@ -325,7 +325,7 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
       results += '<li class="collection ' + Bleach.escapeHTML(collectionLabel.type) + '-collection">\n';
       if (collectionLabel.title) {
         results += '\n<div class="collection-marker">\n<h2 class="label"><a href="' +
-                   Bleach.sanitizeURL(collectionLabel.url) + '">' +
+                   Bleach.sanitizeAttrs(collectionLabel.url, true) + '">' +
                    Bleach.sanitize(collectionLabel.title) + '</a></h2>\n</div>\n';
       }
       results += '\n<ol class="collection-menu">\n';
@@ -357,13 +357,13 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
         classString = classList.join(' ');
         results += '';
         if (article.get('isAd') !== true) {
-          results += '' + Bleach.sanitize(articleTemplate({
+          results += '' + articleTemplate({
             article: article,
             classString: classString,
             newLink: newLink
-          }));
+          });
         } else {
-          results += '' + Bleach.sanitizeURL(adTemplate());
+          results += '' + adTemplate();
         }
         results += '';
         article.set('processed', true);

@@ -160,8 +160,8 @@ NYTD.mostPopWidgetHeadliner = (function() {
       }
       if (NYTD.MostPop.contentType !== "Homepage") {
         if (item[i].thumbnail != null) {
-          var img = '<td class="mostPopularImg"><a title="Click to go to this article" href="'+Bleach.sanitizeURL(item[i].url + tracking) +
-                    '"><img src="'+Bleach.sanitizeURL(item[i].thumbnail.url)+'"></a></td>';
+          var img = '<td class="mostPopularImg"><a title="Click to go to this article" href="'+Bleach.sanitizeAttrs(item[i].url + tracking, true) +
+                    '"><img src="'+Bleach.sanitizeAttrs(item[i].thumbnail.url, true)+'"></a></td>';
         } 
         else { 
           var img = "<td></td>"; 
@@ -181,7 +181,7 @@ NYTD.mostPopWidgetHeadliner = (function() {
       mostPopHTML += '<tr>'+ 
         img +'<td class="listNumber">'+ 
         (i+1) +'.</td><td class="mostPopularTitle"><h6 class="kicker">'+ Bleach.sanitize(kicker) + '</h6><h4><a title="Click to go to this article" href="'+
-        Bleach.sanitizeURL(item[i].url + tracking) +'">'+
+        Bleach.sanitizeAttrs(item[i].url + tracking, true) +'">'+
         Bleach.sanitize(title) +'</a></h4></td></tr>\n';
     }
     mostPopHTML += '</tbody></table>';
