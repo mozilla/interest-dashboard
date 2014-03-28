@@ -293,9 +293,9 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
     var results = '';
     with(obj || {}) {
       results += '<nav data-href="' + Bleach.sanitizeURL(link) + '" data-queue-ad="' +
-                 Bleach.sanitize(shouldQueueAd) + '" class="ribbon-page-navigation-headliner ' +
-                 Bleach.sanitize(direction) + '" style="display:' +
-                 Bleach.sanitize(display) + '; overflow:hidden;">\n<a href="' +
+                 Bleach.escapeHTML(shouldQueueAd) + '" class="ribbon-page-navigation-headliner ' +
+                 Bleach.escapeHTML(direction) + '" style="display:' +
+                 Bleach.escapeHTML(display) + '; overflow:hidden;">\n<a href="' +
                  Bleach.sanitizeURL(link) + '" >\n<article class="story theme-summary ';
       if (!image) {
         results += ' no-thumb ';
@@ -308,7 +308,7 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
       if (kicker) {
         results += '\n<h3 class="kicker">' + Bleach.sanitize(kicker) + '</h3>\n';
       }
-      results += '\n<h2 title="' + Bleach.sanitize(title) + '" class="story-heading">' + Bleach.sanitize(title) + '</h2>\n</div>\n</article>\n<div class="arrow arrow-';
+      results += '\n<h2 title="' + Bleach.escapeHTML(title) + '" class="story-heading">' + Bleach.sanitize(title) + '</h2>\n</div>\n</article>\n<div class="arrow arrow-';
       if (direction === 'next') {
         results += 'right';
       } else {
@@ -322,7 +322,7 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
   templates["storyCollection"] = function (obj) {
     var results = '';
     with(obj || {}) {
-      results += '<li class="collection ' + Bleach.sanitize(collectionLabel.type) + '-collection">\n';
+      results += '<li class="collection ' + Bleach.escapeHTML(collectionLabel.type) + '-collection">\n';
       if (collectionLabel.title) {
         results += '\n<div class="collection-marker">\n<h2 class="label"><a href="' +
                    Bleach.sanitizeURL(collectionLabel.url) + '">' +
