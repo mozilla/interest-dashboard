@@ -320,9 +320,9 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
     var results = '';
     with(obj || {}) {
       results += '<nav data-href="' + Bleach.sanitizeAttrs(link, true) + '" data-queue-ad="' +
-                 Bleach.escapeHTML(shouldQueueAd) + '" class="ribbon-page-navigation-headliner ' +
-                 Bleach.escapeHTML(direction) + '" style="display:' +
-                 Bleach.escapeHTML(display) + '; overflow:hidden;">\n<a href="' +
+                 Bleach.sanitizeAttrs(shouldQueueAd) + '" class="ribbon-page-navigation-headliner ' +
+                 Bleach.sanitizeAttrs(direction) + '" style="display:' +
+                 Bleach.sanitizeAttrs(display) + '; overflow:hidden;">\n<a href="' +
                  Bleach.sanitizeAttrs(link, true) + '" >\n<article class="story theme-summary ';
       if (!image) {
         results += ' no-thumb ';
@@ -335,7 +335,7 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
       if (kicker) {
         results += '\n<h3 class="kicker">' + Bleach.sanitize(kicker) + '</h3>\n';
       }
-      results += '\n<h2 title="' + Bleach.escapeHTML(title) + '" class="story-heading">' + Bleach.sanitize(title) + '</h2>\n</div>\n</article>\n<div class="arrow arrow-';
+      results += '\n<h2 title="' + Bleach.sanitizeAttrs(title) + '" class="story-heading">' + Bleach.sanitize(title) + '</h2>\n</div>\n</article>\n<div class="arrow arrow-';
       if (direction === 'next') {
         results += 'right';
       } else {
@@ -349,7 +349,7 @@ define('shared/ribbon/templates-headliner', ['underscore/nyt'], function(_) {
   templates["storyCollection"] = function (obj) {
     var results = '';
     with(obj || {}) {
-      results += '<li class="collection ' + Bleach.escapeHTML(collectionLabel.type) + '-collection">\n';
+      results += '<li class="collection ' + Bleach.sanitizeAttrs(collectionLabel.type) + '-collection">\n';
       if (collectionLabel.title) {
         results += '\n<div class="collection-marker">\n<h2 class="label"><a href="' +
                    Bleach.sanitizeAttrs(collectionLabel.url, true) + '">' +
