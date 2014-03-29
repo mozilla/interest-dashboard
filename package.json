@@ -5,7 +5,7 @@
   "id": "firefox.personalization.study@up.mozilla",
   "license": "MPL 2.0",
   "name": "firefox-personalization-study",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-angular-gettext": "~0.2.6"
