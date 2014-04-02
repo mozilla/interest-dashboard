@@ -126,4 +126,27 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
   }).then(done);
 }
 
+exports["test getMozHosts"] = function test_GetMozHosts(assert, done) {
+  Task.spawn(function() {
+    try {
+      yield testUtils.promiseClearHistory();
+      yield testUtils.addVisits("www.autoblog.com",1);
+      yield testUtils.addVisits("mozilla.org",1);
+
+      let results = yield PlacesInterestsUtils.getMozHosts();
+      testUtils.isIdentical(assert, results, [{"host":"mozilla.org","frecency":200},{"host":"autoblog.com","frecency":200}]);
+
+      let collection = [];
+      results = yield PlacesInterestsUtils.getMozHosts(item => {
+        collection.push(item);
+      });
+      testUtils.isIdentical(assert, collection, [{"host":"mozilla.org","frecency":200},{"host":"autoblog.com","frecency":200}]);
+      assert.ok(results == null);
+
+    } catch (ex) {
+      dump( ex + " ERROR\n");
+    }
+  }).then(done);
+}
+
 test.run(exports);
