@@ -138,6 +138,24 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
     }
   });
 
+  $scope.$on("host_interests_data", function(event, data) {
+    if (data != null) {
+      let textdata;
+      if ($scope.prettifiedOutput) {
+        textdata = JSON.stringify(data, null, "  ");
+      }
+      else {
+        textdata = JSON.stringify(data);
+      }
+      $scope.hostInterestsData = textdata;
+    }
+    else {
+      $scope.emptyMessage = "Unable to detect interests in your history. Please run the History Analysis after few days of browsing.";
+    }
+    $scope.historyComputeComplete = true;
+    $scope.historyComputeInProgress = false;
+  });
+
   $scope.selectText = function(selector) {
     let elem = document.querySelector(selector);
     if (elem) {

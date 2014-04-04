@@ -64,6 +64,21 @@
                     <small ng-show="dispatchBatchNotSendable"><strong>Note:</strong> Data will not be dispatched because there is no data to be sent.</small>
                 </div>
             </div>
+
+            <div class="hostInterestsSection">
+                <h2>
+                    Computed Interests Ranking
+                    <div class="btn-group" ng-show="hostInterestsData">
+                        <button class="btn btn-link" ng-show="hostInterestsData" ng-click="selectText('.hostInterestsData pre')">select</button>
+                    </div>
+                </h2>
+                <div class="hostInterestsData">
+                    <pre ng-show="hostInterestsData">{{hostInterestsData}}</pre>
+                    <p ng-hide="hostInterestsData || historyComputeInProgress">Ranking data is not available.</p>
+                    <p ng-show="historyComputeInProgress" ng-hide="hostInterestsData">processing...</p>
+                </div>
+            </div>
+
         </div>
     </body>
 </html>
