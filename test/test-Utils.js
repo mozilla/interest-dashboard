@@ -15,7 +15,7 @@ Cu.import("resource://gre/modules/Task.jsm");
 const simplePrefs = require("sdk/simple-prefs");
 const test = require("sdk/test");
 
-const {promiseTimeout, getRelevantPrefs} = require("Utils");
+const {promiseTimeout, getRelevantPrefs, computeInterestsFromHosts} = require("Utils");
 const {testUtils} = require("./helpers");
 
 exports["test promiseTimeout"] = function test_promiseTimeout(assert, done) {
@@ -47,5 +47,54 @@ exports["test getRelevantPrefs"] = function test_GetRelevantPrefs(assert, done) 
   done();
 }
 
+exports["test computeInterestsFromHosts"] = function test_ComputeInterestsFromHosts(assert, done) {
+  let interestsData = {
+    "salon.com" : {
+       "__ANY" : [
+          "Politics"
+       ]
+    },
+    "autoblog.com" : {
+       "__ANY" : [
+          "Auto"
+       ]
+    },
+    "mozilla.org" : {
+       "__ANY" : [
+          "Computers"
+       ]
+    },
+    "foo.com" : {
+       "__ANY" : [
+          "FOO"
+       ]
+    },
+  };
+
+  Task.spawn(function() {
+    try {
+      yield testUtils.promiseClearHistory();
+      yield testUtils.addVisits("www.autoblog.com", 4);
+      yield testUtils.addVisits("mozilla.org", 3);
+      yield testUtils.addVisits("salon.com", 2);
+
+      let results = yield computeInterestsFromHosts(interestsData);
+      testUtils.isIdentical(assert, results, {
+        "1":{"interests":{"Auto":500},"frecency":500},
+        "2":{"interests":{"Auto":500,"Computers":400},"frecency":400},
+        "3":{"interests":{"Auto":500,"Computers":400,"Politics":300},"frecency":300}
+      });
+      for (let i = 0; i < 20; i++) {
+        yield testUtils.addVisits(i + "dummy.com", 1);
+      }
+      yield testUtils.addVisits("foo.com", 1);
+      results = yield computeInterestsFromHosts(interestsData);
+      assert.equal(Object.keys(results).length,4);
+      testUtils.isIdentical(assert, results["24"], {"interests":{"Auto":500,"Computers":400,"Politics":300,"FOO":200},"frecency":200});
+    } catch (ex) {
+      dump( ex + " ERROR\n");
+    }
+  }).then(done);
+}
 
 test.run(exports);
