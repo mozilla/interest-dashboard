@@ -253,4 +253,29 @@ exports["test mayPersonalize"] = function test_MayPersonalize(assert, done) {
   }).then(done);
 }
 
+exports["test hostComputedInterests"] = function test_HostComputedInterests(assert, done) {
+  Task.spawn(function() {
+    try {
+      let hostArray = ["www.autoblog.com",
+                       "www.thehill.com",
+                       "www.mysql.com",
+                      ];
+      yield testUtils.promiseClearHistory();
+      yield testUtils.addVisits(hostArray,2);
+
+      let testController = new Controller();
+      testController.clear();
+      yield testController.submitHistory({flush: true});
+      let results = testController.getHostComputedInterests();
+      testUtils.isIdentical(assert, results, {
+        "1":{"interests":{"Autos":300},"frecency":300},
+        "2":{"interests":{"Autos":300,"Politics":300},"frecency":300},
+        "3":{"interests":{"Autos":300,"Politics":300,"Programming":300},"frecency":300}
+      });
+    } catch(ex) {
+      dump( ex + " ERROR\n");
+    }
+  }).then(done);
+}
+
 test.run(exports);
