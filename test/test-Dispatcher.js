@@ -359,4 +359,23 @@ exports["test addExtraParameterToPayload"] = function test_addExtraParameterToPa
   assert.equal(payloadObject.p1, "v1");
 }
 
+exports["test mozhosts interests dispatch"] = function test_MozhostsInterestsDispatch(assert, done) {
+  Task.spawn(function() {
+
+    let hostArray = ["www.autoblog.com"];
+    yield testUtils.promiseClearHistory();
+    yield testUtils.addVisits(hostArray,2);
+    let testController = new Controller();
+    testController.clear();
+    yield testController.submitHistory({flush: true});
+    let batch = testController.getNextDispatchBatch();
+    testUtils.isIdentical(assert,
+                          batch.mozhostsInterests,
+                          {"1":{"interests":{"Autos":300},"frecency":300}},
+                          "mozhostsInterests are present and valid");
+  }).then(_ => {
+    removeObservers();
+  }).then(done);
+}
+
 test.run(exports);
