@@ -12,8 +12,8 @@ let DataService = function($rootScope) {
 }
 
 DataService.prototype = {
-  send: function _send(message) {
-    self.port.emit(message);
+  send: function _send(message, data) {
+    self.port.emit(message, data);
   },
 }
 
@@ -50,6 +50,8 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
     $scope.daysLeft = null;
     $scope.daysLeftStart = null;
     $scope.prettifiedOutput = false;
+    $scope.urlClassifyBatch = null;
+    $scope.showUrlClassify = false;
   }
   $scope._initialize();
 
@@ -81,6 +83,19 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
   $scope.dispatchGetNext = function() {
     dataService.send("dispatch_get_next");
     $scope.dispatchBatchNotSendable = true;
+  }
+
+  $scope.toggleUrlClassify = function() {
+    $scope.showUrlClassify = !$scope.showUrlClassify;
+    $scope.urlClassifyBatch = false;
+  }
+
+  $scope.runUrlClassify = function() {
+    dataService.send("url_classify",
+      {
+        url: $scope.url,
+        title: $scope.title,
+      });
   }
 
   $scope.$on("dispatch_success", function(event, data) {
@@ -135,6 +150,12 @@ studyDbgMenu.controller("studyCtrl", function($scope, dataService) {
       if (Object.keys(data.interests).length > 0) {
         $scope.dispatchBatchNotSendable = false;
       }
+    }
+  });
+
+  $scope.$on("url_classify_batch", function(event, data) {
+    if (data != null) {
+      $scope.urlClassifyBatch = JSON.stringify(data, null, "  ");
     }
   });
 
