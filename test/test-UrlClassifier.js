@@ -42,7 +42,7 @@ exports["test url classifier"] = function test_UrlClassifier(assert, done) {
     });
 
     // classify only the text
-    results = yield urlClassifier.classifyPage("http://www.xyz.com", "iphone, ipad, apple, product, phone");
+    results = yield urlClassifier.classifyPage(null, "iphone, ipad, apple, product, phone");
     testUtils.isIdentical(assert, results["edrules"].results,
         [{"type":"rules","interests":[]},
          {"type":"keywords","interests":["Apple"]},
