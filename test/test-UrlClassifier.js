@@ -33,6 +33,13 @@ exports["test url classifier"] = function test_UrlClassifier(assert, done) {
            {"type":"combined","interests":["Autos"]},
            {"type":"keywords","interests":[]}
           ]);
+    // test for an error 
+    yield urlClassifier.classifyPage("not a url").then(result => {
+      assert.ok(false);
+    },
+    error => {
+      assert.ok(true);
+    });
 
   }).then(done);
 }
