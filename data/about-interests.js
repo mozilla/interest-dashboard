@@ -103,6 +103,10 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
     $scope.updateProgressBar();
   });
 
+  $scope.$on("json_update", function(event, data) {
+    DataProcessor.processAndStore(data);
+  });
+
   $scope.$on("ranking_data", function(event, data) {
     let chartData = $scope.makeChartData(data);
     if (data != null) {
