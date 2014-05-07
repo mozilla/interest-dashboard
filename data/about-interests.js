@@ -29,8 +29,8 @@ let DataService = function($rootScope) {
 }
 
 DataService.prototype = {
-  send: function _send(message) {
-    self.port.emit(message);
+  send: function _send(message, obj) {
+    self.port.emit(message, obj);
   },
 }
 
@@ -77,7 +77,6 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
   }
 
   $scope._initialize = function () {
-    ChartUpdater.init();
     $scope.historyComputeInProgress = false;
     $scope.historyComputeComplete = false;
     $scope.emptyMessage = "Your History was not analysed, please run the Full History Analysis.";
@@ -91,6 +90,7 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
 
   $scope.processHistory = function() {
     $scope._initialize();
+    DataProcessor.init();
     dataService.send("history_process");
     $scope.historyComputeInProgress = true;
     $scope.dispatchBatchNotSendable = true;
@@ -105,7 +105,12 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
   });
 
   $scope.$on("json_update", function(event, data) {
-    DataProcessor.processAndStore(data);
+    let dataToStore = DataProcessor.processAndStore(data);
+    dataService.send("json_store", dataToStore);
+  });
+
+  $scope.$on("chart_init", function(event, data) {
+    DataProcessor.init(data);
   });
 
   $scope.$on("ranking_data", function(event, data) {

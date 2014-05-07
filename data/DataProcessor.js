@@ -1,5 +1,11 @@
 var DataProcessor = {
-  timelineData: {},
+  init: function(initData) {
+    this.timelineData = {};
+    if (typeof initData !== 'undefined') {
+      this.timelineData = initData.timelineData;
+    }
+    ChartUpdater.init(initData);
+  },
 
   arraySum: function(arr) {
     sum = 0;
@@ -35,19 +41,20 @@ var DataProcessor = {
       }
     }
     ChartUpdater.updateTimelineWithInterests(this.timelineData);
+    return {timelineData: this.timelineData};
   }
 }
 
 var ChartUpdater = {
-  interestList: [],
   currentType: "keywords",
   currentNamespace: "58-cat",
 
-  init: function(type, namespace, interestList) {
+  init: function(initData, interestList, type, namespace) {
     if (typeof type !== 'undefined') { this.currentType = type };
     if (typeof namespace !== 'undefined') { this.currentNamespace = namespace };
     if (typeof interestList !== 'undefined') { this.interestList = interestList };
 
+    this.interestList = [];
     var self = this;
     nv.addGraph(function() {
       self.chart = nv.models.scatterChart()
@@ -63,6 +70,13 @@ var ChartUpdater = {
       self.chart.xAxis.tickFormat(self.xAxisFormat);
       self.chart.yAxis.tickFormat(self.yAxisFormat);
       nv.utils.windowResize(self.chart.update);
+
+      if (typeof initData !== 'undefined') {
+        self.updateTimelineWithInterests(initData.timelineData);
+      } else {
+        // Clear chart.
+        d3.select('#interestsTimeline svg').selectAll("*").remove();
+      }
       return self.chart;
     });
   },
@@ -93,6 +107,6 @@ var ChartUpdater = {
       .transition().duration(500)
       .call(this.chart);
 
-      nv.utils.windowResize(this.chart.update);
+    nv.utils.windowResize(this.chart.update);
   }
 }
