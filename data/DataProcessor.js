@@ -34,9 +34,63 @@ var DataProcessor = {
         }
       }
     }
+    ChartUpdater.updateTimelineWithInterests(this.timelineData);
   }
 }
 
 var ChartUpdater = {
+  interestList: [],
+  currentType: "keywords",
+  currentNamespace: "58-cat",
 
+  init: function(type, namespace, interestList) {
+    console.log("initing");
+    if (typeof type !== 'undefined') { this.currentType = type };
+    if (typeof namespace !== 'undefined') { this.currentNamespace = namespace };
+    if (typeof interestList !== 'undefined') { this.interestList = interestList };
+
+    var self = this;
+    nv.addGraph(function() {
+      self.chart = nv.models.scatterChart()
+                    .showDistX(true)
+                    .showDistY(true)
+                    .showLegend(false)
+                    .color(d3.scale.category20().range())
+                    .transitionDuration(300);
+
+      self.chart.xAxis.tickFormat(self.xAxisFormat);
+      self.chart.yAxis.tickFormat(self.yAxisFormat);
+      nv.utils.windowResize(self.chart.update);
+      return self.chart;
+    });
+  },
+
+  xAxisFormat: function(d) {
+    return d3.time.format('%x')(new Date(d));
+  },
+
+  yAxisFormat: function(num) {
+    return ChartUpdater.interestList[num];
+  },
+
+  updateTimelineWithInterests: function(data) {
+    var chartJSON = [];
+    this.interestList = Object.keys(data[this.currentType][this.currentNamespace]);
+    for (var i = 0; i < this.interestList.length; i++) {
+      var dataPoints = data[this.currentType][this.currentNamespace][this.interestList[i]];
+      chartJSON.push({
+        key: this.interestList[i],
+        values: Object.keys(dataPoints).map(key => {
+          dataPoints[key]["y"] = i;
+          return dataPoints[key];
+        })
+      });
+    }
+    d3.select('#interestsTimeline svg')
+      .datum(chartJSON)
+      .transition().duration(500)
+      .call(this.chart);
+
+      nv.utils.windowResize(this.chart.update);
+  }
 }

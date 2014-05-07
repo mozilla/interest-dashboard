@@ -77,6 +77,7 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
   }
 
   $scope._initialize = function () {
+    ChartUpdater.init();
     $scope.historyComputeInProgress = false;
     $scope.historyComputeComplete = false;
     $scope.emptyMessage = "Your History was not analysed, please run the Full History Analysis.";
