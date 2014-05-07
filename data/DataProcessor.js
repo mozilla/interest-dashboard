@@ -44,7 +44,6 @@ var ChartUpdater = {
   currentNamespace: "58-cat",
 
   init: function(type, namespace, interestList) {
-    console.log("initing");
     if (typeof type !== 'undefined') { this.currentType = type };
     if (typeof namespace !== 'undefined') { this.currentNamespace = namespace };
     if (typeof interestList !== 'undefined') { this.interestList = interestList };
@@ -57,6 +56,9 @@ var ChartUpdater = {
                     .showLegend(false)
                     .color(d3.scale.category20().range())
                     .transitionDuration(300);
+      self.chart.tooltipContent(function(key, y, e, graph) {
+        return "<h2>" + graph.point.size + (graph.point.size > 1 ? " visits" : " visit") + "</h2>";
+      });
 
       self.chart.xAxis.tickFormat(self.xAxisFormat);
       self.chart.yAxis.tickFormat(self.yAxisFormat);
