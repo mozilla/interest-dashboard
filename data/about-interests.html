@@ -14,7 +14,6 @@
         <div class="container content" ng-controller="vizCtrl">
             <div class="btn-group">
                 <button class="btn" ng-disabled='historyComputeInProgress' ng-click="processHistory()">Analyse Full History</button>
-                <button class="btn" ng-disabled="!(rankingData || dispatchBatch)" ng-click="togglePrettify()">{{ prettifiedOutput && "Uglify" || "Prettify" }} Output</button>
             </div>
 
             <div class="alerts">
@@ -26,20 +25,19 @@
                     <p><span class="badge">{{daysLeft}}</span> days of your history remaining</p>
                 </div>
 
-                <div ng-show="historyComputeComplete && !rankingData" class="alert alert-info">{{emptyMessage}}</div>
+                <div ng-show="historyComputeComplete && !rankingAvailable" class="alert alert-info">{{emptyMessage}}</div>
             </div>
 
             <div class="rankingSection">
                 <h2>
-                    Computed Interests Ranking
-                    <div class="btn-group" ng-show="rankingData">
-                        <button class="btn btn-link" ng-show="rankingData" ng-click="selectText('.rankingData pre')">select</button>
-                    </div>
+                    Top Interests
                 </h2>
                 <div class="rankingData">
-                    <pre ng-show="rankingData">{{rankingData}}</pre>
-                    <p ng-hide="rankingData || historyComputeInProgress">Ranking data is not available.</p>
-                    <p ng-show="historyComputeInProgress" ng-hide="rankingData">processing...</p>
+                    <div id="interestsBarChart">
+                        <svg style="height: 300px; width: 100%;"></svg>
+                    </div>
+                    <p ng-hide="rankingAvailable || historyComputeInProgress">Ranking data is not available.</p>
+                    <p ng-show="historyComputeInProgress" ng-hide="rankingAvailable">processing...</p>
                 </div>
             </div>
         </div>

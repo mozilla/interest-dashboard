@@ -1,5 +1,22 @@
 "use strict";
 
+/////     Chart initialization     /////
+nv.dev = false;
+
+let interestsBarChart = nv.models.discreteBarChart()
+  .x(function(d) { return d.label })
+  .y(function(d) { return d.value })
+  .tooltips(false)
+  .showValues(true);
+
+nv.addGraph(function() {
+  d3.select('#interestsBarChart svg')
+    .transition().duration(500)
+    .call(interestsBarChart);
+  nv.utils.windowResize(interestsBarChart.update);
+  return interestsBarChart;
+});
+
 let DataService = function($rootScope) {
   this.rootScope = $rootScope;
 
@@ -22,28 +39,50 @@ aboutInterests.service("dataService", DataService);
 
 aboutInterests.controller("vizCtrl", function($scope, dataService) {
   /** controller helpers **/
-  $scope.prettifyText = function(json) {
-    if (json) {
-      return JSON.stringify(JSON.parse(json), null, "  ");
+  $scope.makeChartData = function(data) {
+    /**
+     * Prepare data to be fed to D3.
+     * Returns the data normalized and sorted in ascending order.
+     */
+    let valueTotal = 0
+    for (let interestName in data) {
+      valueTotal += data[interestName];
     }
-    return json;
+
+    let dataPoints = [];
+    for (let interestName in data) {
+      dataPoints.push({
+        label: interestName,
+        value: (data[interestName]/valueTotal)*100,
+      });
+    }
+    dataPoints.sort(function(a,b) {
+      return b.value - a.value;
+    })
+
+    let chartData = {
+      key: "interests",
+      values: dataPoints,
+    }
+    return chartData;
   }
 
-  $scope.uglifyText = function(json) {
-    if (json) {
-      return JSON.stringify(JSON.parse(json));
+  $scope.redrawChart = function(elementSelector, chart, chartData) {
+
+    d3.select(elementSelector)
+      .datum([chartData])
+    if (chart.update) {
+      chart.update();
     }
-    return json;
   }
 
   $scope._initialize = function () {
     $scope.historyComputeInProgress = false;
     $scope.historyComputeComplete = false;
     $scope.emptyMessage = "Your History was not analysed, please run the Full History Analysis.";
-    $scope.rankingData = null;
+    $scope.rankingAvailable = false;
     $scope.daysLeft = null;
     $scope.daysLeftStart = null;
-    $scope.prettifiedOutput = false;
   }
   $scope._initialize();
 
@@ -65,15 +104,10 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
   });
 
   $scope.$on("ranking_data", function(event, data) {
+    let chartData = $scope.makeChartData(data);
     if (data != null) {
-      let textdata;
-      if ($scope.prettifiedOutput) {
-        textdata = JSON.stringify(data, null, "  ");
-      }
-      else {
-        textdata = JSON.stringify(data);
-      }
-      $scope.rankingData = textdata;
+      $scope.rankingAvailable = true;
+      $scope.redrawChart("#interestsBarChart svg", interestsBarChart, chartData);
     }
     else {
       $scope.emptyMessage = "Unable to detect interests in your history. Please run the History Analysis after few days of browsing.";
@@ -82,36 +116,11 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
     $scope.historyComputeInProgress = false;
   });
 
-  $scope.selectText = function(selector) {
-    let elem = document.querySelector(selector);
-    if (elem) {
-      let range = document.createRange();
-      let sel = window.getSelection();
-      range.selectNodeContents(elem);
-      sel.removeAllRanges();
-      sel.addRange(range);
-    }
-  }
-
-  $scope.togglePrettify = function() {
-    if ($scope.prettifiedOutput) {
-      $scope.rankingData = $scope.uglifyText($scope.rankingData);
-      $scope.dispatchBatch = $scope.uglifyText($scope.dispatchBatch);
-    }
-    else {
-      $scope.rankingData = $scope.prettifyText($scope.rankingData);
-      $scope.dispatchBatch = $scope.prettifyText($scope.dispatchBatch);
-    }
-    $scope.prettifiedOutput = !$scope.prettifiedOutput;
-  }
-
   $scope.updateProgressBar = function() {
     let elem = document.querySelector("#progressBar");
     elem.style.width = (100 - Math.round($scope.daysLeft/$scope.daysLeftStart*100)) + "%";
   }
 });
-
-angular.bootstrap(document, ['aboutInterests']);
 
 self.port.on("style", function(file) {
   let link = document.createElement("link");
