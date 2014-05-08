@@ -104,6 +104,7 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
   });
 
   $scope.$on("json_update", function(event, data) {
+    $scope.historyComputeInProgress = true;
     let dataToStore = DataProcessor.processAndStore(data);
     dataService.send("json_store", dataToStore);
   });
@@ -113,16 +114,19 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
   });
 
   $scope.$on("ranking_data", function(event, data) {
-    let chartData = $scope.makeChartData(data);
-    if (data != null) {
+    let chartData = $scope.makeChartData(data.rankings);
+    if (data.rankings != null) {
       $scope.rankingAvailable = true;
       $scope.redrawChart("#interestsBarChart svg", interestsBarChart, chartData);
     }
     else {
       $scope.emptyMessage = "Unable to detect interests in your history. Please run the History Analysis after few days of browsing.";
     }
-    $scope.historyComputeComplete = true;
-    $scope.historyComputeInProgress = false;
+
+    if (data.submitComplete) {
+      $scope.historyComputeInProgress = false;
+      $scope.historyComputeComplete = true;
+    }
   });
 
   $scope.updateProgressBar = function() {
