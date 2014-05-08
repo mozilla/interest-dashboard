@@ -93,7 +93,6 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
     DataProcessor.init();
     dataService.send("history_process");
     $scope.historyComputeInProgress = true;
-    $scope.dispatchBatchNotSendable = true;
   }
 
   $scope.$on("days_left", function(event, data) {
