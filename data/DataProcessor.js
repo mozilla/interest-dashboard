@@ -55,29 +55,28 @@ var ChartUpdater = {
     if (typeof interestList !== 'undefined') { this.interestList = interestList };
 
     this.interestList = [];
-    var self = this;
-    nv.addGraph(function() {
-      self.chart = nv.models.scatterChart()
+    nv.addGraph(() => {
+      this.chart = nv.models.scatterChart()
                     .showDistX(true)
                     .showDistY(true)
                     .showLegend(false)
                     .color(d3.scale.category20().range())
                     .transitionDuration(300);
-      self.chart.tooltipContent(function(key, y, e, graph) {
+      this.chart.tooltipContent(function(key, y, e, graph) {
         return "<h2>" + graph.point.size + (graph.point.size > 1 ? " visits" : " visit") + "</h2>";
       });
 
-      self.chart.xAxis.tickFormat(self.xAxisFormat);
-      self.chart.yAxis.tickFormat(self.yAxisFormat);
-      nv.utils.windowResize(self.chart.update);
+      this.chart.xAxis.tickFormat(this.xAxisFormat);
+      this.chart.yAxis.tickFormat(this.yAxisFormat);
+      nv.utils.windowResize(this.chart.update);
 
-      if (typeof initData !== 'undefined') {
-        self.updateTimelineWithInterests(initData.timelineData);
+      if (typeof initData !== 'undefined' && Object.keys(initData).length > 0) {
+        this.updateTimelineWithInterests(initData.timelineData);
       } else {
         // Clear chart.
         d3.select('#interestsTimeline svg').selectAll("*").remove();
       }
-      return self.chart;
+      return this.chart;
     });
   },
 
