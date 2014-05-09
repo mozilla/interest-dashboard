@@ -1,3 +1,5 @@
 .DS_Store
 *.xpi
 *.sw*
+*.mo
+node_modules
