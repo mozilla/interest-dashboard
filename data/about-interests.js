@@ -90,12 +90,12 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
 
   $scope.processHistory = function() {
     $scope._initialize();
-    DataProcessor.init();
     dataService.send("history_process");
     $scope.historyComputeInProgress = true;
   }
 
   $scope.$on("days_left", function(event, data) {
+    $scope.historyComputeInProgress = true;
     if (!$scope.daysLeftStart) {
       $scope.daysLeftStart = data;
     }
@@ -104,13 +104,11 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
   });
 
   $scope.$on("json_update", function(event, data) {
-    $scope.historyComputeInProgress = true;
-    let dataToStore = DataProcessor.processAndStore(data);
-    dataService.send("json_store", dataToStore);
+    ChartManager.appendToGraph(data.type, data.data);
   });
 
   $scope.$on("chart_init", function(event, data) {
-    DataProcessor.init(data);
+    ChartManager.graphAllFromScratch(data);
   });
 
   $scope.$on("ranking_data", function(event, data) {

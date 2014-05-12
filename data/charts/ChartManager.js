@@ -1,0 +1,31 @@
+let ChartManager = {
+  _currentType: "keywords",
+  _currentNamespace: "58-cat",
+  _charts: {},
+
+  /**
+   * this._charts uses an index for each chart object that is the same
+   * as the index used for its data to be stored but without "Data"
+   * appended to the end.
+   *
+   * E.g. The data for the object at this._charts["timeline"] can be found
+   *      at data["timelineData"]
+   *
+   * @data - storage.chartData object which contains data for all charts
+   */
+  graphAllFromScratch: function(data, type, namespace) {
+    if (typeof type !== 'undefined') { this._currentType = type; }
+    if (typeof namespace !== 'undefined') { this._currentNamespace = namespace; }
+
+    if (!this._charts["timeline"]) {
+      this._charts["timeline"] = new TimelineChart(this._currentType, this._currentNamespace);
+    }
+    for (let chart in this._charts) {
+      this._charts[chart].graph(data[chart + "Data"], true);
+    }
+  },
+
+  appendToGraph: function(chartType, data) {
+    this._charts[chartType].graph(data, false);
+  }
+}
