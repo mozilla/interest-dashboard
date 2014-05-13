@@ -1,6 +1,4 @@
 let ChartManager = {
-  _currentType: "keywords",
-  _currentNamespace: "58-cat",
   _charts: {},
 
   /**
@@ -14,13 +12,11 @@ let ChartManager = {
    * @data - storage.chartData object which contains data for all charts
    */
   graphAllFromScratch: function(data, type, namespace) {
-    if (typeof type !== 'undefined') { this._currentType = type; }
-    if (typeof namespace !== 'undefined') { this._currentNamespace = namespace; }
-
     if (!this._charts["timeline"]) {
-      this._charts["timeline"] = new TimelineChart(this._currentType, this._currentNamespace);
+      this._charts["timeline"] = new TimelineChart();
     }
     for (let chart in this._charts) {
+      this._charts[chart].setTypeAndNamespace(type, namespace);
       this._charts[chart].graph(data[chart + "Data"], true);
     }
   },

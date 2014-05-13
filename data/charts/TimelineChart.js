@@ -1,8 +1,5 @@
-function TimelineChart(type, namespace) {
-	this._currentType = type;
-	this._currentNamespace = namespace;
-
-	this._chart = nv.models.scatterChart()
+function TimelineChart() {
+  this._chart = nv.models.scatterChart()
                 .showDistX(true)
                 .showDistY(true)
                 .showLegend(false)
@@ -13,21 +10,26 @@ function TimelineChart(type, namespace) {
     return "<h2>" + graph.point.size + (graph.point.size > 1 ? " visits" : " visit") + "</h2>";
   });
 
-	this._chart.xAxis.tickFormat((d) => { return d3.time.format('%x')(new Date(d)); });
+  this._chart.xAxis.tickFormat((d) => { return d3.time.format('%x')(new Date(d)); });
   this._chart.yAxis.tickFormat((num) => { return this._interestList[num]; });
 
-	nv.addGraph(() => {
+  nv.addGraph(() => {
     nv.utils.windowResize(this._chart.update);
     return this._chart;
   });
 }
 
 TimelineChart.prototype = {
+  setTypeAndNamespace: function(type, namespace) {
+    this._currentType = type;
+    this._currentNamespace = namespace;
+  },
+
   graph: function(data, clearChart) {
-		if (clearChart) {
-			d3.select('#interestsTimeline svg').selectAll("*").remove();
-			this._interestList = [];
-		}
+    if (clearChart) {
+      d3.select('#interestsTimeline svg').selectAll("*").remove();
+      this._interestList = [];
+    }
     let chartJSON = [];
     this._interestList = Object.keys(data[this._currentType][this._currentNamespace]);
     for (let i = 0; i < this._interestList.length; i++) {

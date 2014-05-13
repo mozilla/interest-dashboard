@@ -3,6 +3,9 @@
 /////     Chart initialization     /////
 nv.dev = false;
 
+let types = ["keywords", "rules", "combined"];
+let namespaces = ["58-cat", "edrules", "edrules_extended", "edrules_extended_kw"];
+
 let interestsBarChart = nv.models.discreteBarChart()
   .x(function(d) { return d.label })
   .y(function(d) { return d.value })
@@ -76,6 +79,14 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
     }
   }
 
+  $scope.getTypes = function () {
+    return types;
+  }
+
+  $scope.getNamespaces = function () {
+    return namespaces;
+  }
+
   $scope._initialize = function () {
     $scope.historyComputeInProgress = false;
     $scope.historyComputeComplete = false;
@@ -94,6 +105,10 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
     $scope.historyComputeInProgress = true;
   }
 
+  $scope.updateGraphs = function() {
+    dataService.send("chart_data_request");
+  }
+
   $scope.$on("days_left", function(event, data) {
     $scope.historyComputeInProgress = true;
     if (!$scope.daysLeftStart) {
@@ -108,7 +123,7 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
   });
 
   $scope.$on("chart_init", function(event, data) {
-    ChartManager.graphAllFromScratch(data);
+    ChartManager.graphAllFromScratch(data, $scope.selectedType, $scope.selectedNamespace);
   });
 
   $scope.$on("ranking_data", function(event, data) {
