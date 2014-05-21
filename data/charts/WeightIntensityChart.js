@@ -15,31 +15,11 @@ function WeightIntensityChart() {
 
   // A hack to show clearer labels on the x and y axis where we want them
   this._chart.xAxis.tickFormat((tick) => {
-    let xVals = this._values.map((value) => {
-      return value["x"];
-    });
-    let xMax = Math.max.apply(null, xVals);
-    let xMin = Math.min.apply(null, xVals);
-    if (tick == xMin) {
-      return "Fewer Days Visited"
-    } else if (tick == xMax) {
-      return "More Days Visited";
-    }
-    return "";
+    return this._setTicks(tick, this._xMin, "Fewer Days Visited", this._xMax, "More Days Visited");
   });
 
   this._chart.yAxis.tickFormat((tick) => {
-    let yVals = this._values.map((value) => {
-      return value["y"];
-    });
-    let yMax = Math.max.apply(null, yVals);
-    let yMin = Math.min.apply(null, yVals);
-    if (tick == yMin) {
-      return "Fewer Visits Per Day"
-    } else if (tick == yMax) {
-      return "More Visits Per Day";
-    }
-    return "";
+    return this._setTicks(tick, this._yMin, "Fewer Visits Per Day", this._yMax, "More Visits Per Day");
   });
 
   nv.addGraph(() => {
@@ -49,6 +29,15 @@ function WeightIntensityChart() {
 }
 
 WeightIntensityChart.prototype = {
+  _setTicks: function(tick, minVal, minString, maxVal, maxString) {
+    if (tick == minVal) {
+      return minString;
+    } else if (tick == maxVal) {
+      return maxString;
+    }
+    return "";
+  },
+
   setTypeAndNamespace: function(type, namespace) {
     this._currentType = type;
     this._currentNamespace = namespace;
@@ -61,14 +50,19 @@ WeightIntensityChart.prototype = {
     this._values = [];
     d3.select('#weightIntensityChart svg').selectAll("*").remove();
 
-    for (let interest in data[this._currentType][this._currentNamespace]) {
-      let x = data[this._currentType][this._currentNamespace][interest]["x"];
-      let y = data[this._currentType][this._currentNamespace][interest]["y"];
+    this._xMin = data[this._currentType][this._currentNamespace]["xMin"];
+    this._yMin = data[this._currentType][this._currentNamespace]["yMin"];
+    this._xMax = data[this._currentType][this._currentNamespace]["xMax"];
+    this._yMax = data[this._currentType][this._currentNamespace]["yMax"];
+
+    for (let interest in data[this._currentType][this._currentNamespace]["interests"]) {
+      let x = data[this._currentType][this._currentNamespace]["interests"][interest]["x"];
+      let y = data[this._currentType][this._currentNamespace]["interests"][interest]["y"];
       let hash = x.toString() + y.toString();
 
       if (!this._pointToInterestsMap[hash]) {
         this._pointToInterestsMap[hash] = [];
-        let point = data[this._currentType][this._currentNamespace][interest];
+        let point = data[this._currentType][this._currentNamespace]["interests"][interest];
         this._values.push(point);
       }
       this._pointToInterestsMap[hash].push(interest);
