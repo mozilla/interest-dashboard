@@ -15,6 +15,9 @@ let ChartManager = {
     if (!this._charts["timeline"]) {
       this._charts["timeline"] = new TimelineChart();
     }
+    if (!this._charts["weightIntensity"]) {
+      this._charts["weightIntensity"] = new WeightIntensityChart();
+    }
     for (let chart in this._charts) {
       this._charts[chart].setTypeAndNamespace(type, namespace);
       this._charts[chart].graph(data[chart + "Data"], true);

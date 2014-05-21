@@ -33,7 +33,7 @@ TimelineChart.prototype = {
     let chartJSON = [];
     this._interestList = Object.keys(data[this._currentType][this._currentNamespace]);
     for (let i = 0; i < this._interestList.length; i++) {
-      let dataPoints = data[this._currentType][this._currentNamespace][this._interestList[i]];
+      let dataPoints = data[this._currentType][this._currentNamespace][this._interestList[i]]["dates"];
       chartJSON.push({
         key: this._interestList[i],
         values: Object.keys(dataPoints).map(key => {
