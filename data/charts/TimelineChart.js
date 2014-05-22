@@ -7,7 +7,12 @@ function TimelineChart() {
                 .transitionDuration(300);
 
   this._chart.tooltipContent((key, y, e, graph) => {
-    return "<h2>" + graph.point.size + (graph.point.size > 1 ? " visits" : " visit") + "</h2>";
+    let label = "";
+    for (let domain in graph.point.domainList) {
+      label += "<h3>" + domain + ": " + graph.point.domainList[domain] + " visit(s)</h3>"
+    }
+    label += "<h2>Total: " + graph.point.size + (graph.point.size > 1 ? " visits" : " visit") + "</h2>";
+    return label;
   });
 
   this._chart.xAxis.tickFormat((d) => { return d3.time.format('%x')(new Date(d)); });
