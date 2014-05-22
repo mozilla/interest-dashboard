@@ -30,11 +30,11 @@ exports["test addNode"] = function test_addNode(assert) {
   assert.equal(Object.keys(stream.listensTo["dummyOutput"]).length, 1, "addNode populates dummyOutput listeners");
 }
 
+/*
+ * Tests a simple topology:
+ * Stream = [pairSpout -> capitalizeBolt -> assertionBolt]
+ */
 exports["test push linear topology"] = function test_flush(assert, done) {
-  /*
-   * Tests a simple topology:
-   * Stream = [Spout -> Bolt -> Bolt]
-   */
   Task.spawn(function() {
     let boltDeferred = Promise.defer();
 
@@ -65,12 +65,12 @@ exports["test push linear topology"] = function test_flush(assert, done) {
       }
     });
 
-    let resultAsserterBolt = createNode({
-      identifier: "resultAsserterBolt",
+    let assertionBolt = createNode({
+      identifier: "assertionBolt",
       listenType: "capitalizedPairs",
       emitType: null,
       ingest: function(messages) {
-        boltDeferred.resolve();
+        boltDeferred.resolve(true);
         assert.equal(messages.length, 2);
       }
     });
@@ -78,11 +78,12 @@ exports["test push linear topology"] = function test_flush(assert, done) {
     let stream = new Stream();
     stream.addNode(pairSpout, true);
     stream.addNode(capitalizeBolt);
-    stream.addNode(resultAsserterBolt);
+    stream.addNode(assertionBolt);
 
     let pushPromise = stream.push("lonelyMessage", "message 1");
     stream.push("lonelyMessage", "message 2");
-    yield boltDeferred.promise;
+    let deferredPassed = yield boltDeferred.promise;
+    assert.ok(deferredPassed);
     yield pushPromise;
   }).then(done);
 };
