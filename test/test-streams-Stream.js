@@ -203,12 +203,14 @@ exports["test push complex topology"] = function test_push_complex(assert, done)
 
     let pushPromise;
 
+    // eat is sent with an even count. total is even
     pushPromise = stream.push("events", ["eat", "work", "eat", "sleep"]);
     doAssert = function(message) {
       assert.equal(message.eat, 2);
     }
     yield pushPromise;
 
+    // sleep is sent with an even count, though total is 3
     pushPromise = stream.push("events", ["eat", "sleep", "eat", "sleep", "eat"]);
     doAssert = function(message) {
       assert.equal(message.sleep, 3);
