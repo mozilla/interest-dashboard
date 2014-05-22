@@ -217,4 +217,55 @@ exports["test push complex topology"] = function test_push_complex(assert, done)
   }).then(done);
 }
 
+/*
+ * Tests flushing a stream
+ */
+exports["test flush"] = function test_flush(assert, done) {
+    // spout that waits until a count reaches at least 5 to push
+    let bufferFiveSpout = createNode({
+      identifier: "bufferFiveSpout",
+      listenType: "incr",
+      emitType: "bufferedCount",
+      ingest: function(count) {
+        if (!this.results) {
+          this.results = 0;
+        }
+        this.results += count;
+      },
+      emitReady: function() {
+        return this.results >= 5;
+      }
+    });
+
+    let doAssert;
+    let assertionBolt = createNode({
+      identifier: "assertionBolt",
+      listenType: "bufferedCount",
+      emitType: null,
+      ingest: function(count) {
+        doAssert(count);
+      }
+    });
+    let stream = new Stream();
+    stream.addNode(bufferFiveSpout, true);
+    stream.addNode(assertionBolt);
+
+    let pushPromise;
+
+    // make sure buffering until five works
+    stream.push("incr", 4);
+    doAssert = function(count) {
+      assert.equal(count, 5);
+    }
+    yield stream.push("incr", 1);
+    assert.equal(bufferFiveSpout.results, null);
+
+    // flushing should override the buffering behavior
+    stream.push("incr", 1);
+    doAssert = function(count) {
+      assert.equal(count, 1);
+    }
+    yield stream.flush();
+}
+
 test.run(exports);
