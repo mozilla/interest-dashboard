@@ -34,7 +34,7 @@ exports["test addNode"] = function test_addNode(assert) {
  * Tests a simple topology:
  * Stream = [pairSpout -> capitalizeBolt -> assertionBolt]
  */
-exports["test push linear topology"] = function test_flush(assert, done) {
+exports["test push linear topology"] = function test_push_linear(assert, done) {
   Task.spawn(function() {
     let boltDeferred = Promise.defer();
 
@@ -87,5 +87,134 @@ exports["test push linear topology"] = function test_flush(assert, done) {
     yield pushPromise;
   }).then(done);
 };
+
+/*
+ * Tests a complex topology:
+ * Stream = [countingBolt  -> summingCountBolt -> \
+ *                         \                       \
+ *                          \-> evenAlertBolt ->    comboLoggerSpout -> assertionBolt]
+ */
+exports["test push complex topology"] = function test_push_complex(assert, done) {
+  Task.spawn(function() {
+
+    // takes a series of events and turn them into occurence counts
+    let countingBolt = createNode({
+      identifier: "countingBolt",
+      listenType: "events",
+      emitType: "discreteEvents",
+      ingest: function(events) {
+        if (!this.results) {
+          this.results = {};
+        }
+        for (let evt of events) {
+          if (!this.results[evt]) {
+            this.results[evt] = 0;
+          }
+          this.results[evt] += 1;
+        }
+      }
+    });
+
+    // keeps track of the cummulative count for an event
+    let summingCountBolt = createNode({
+      identifier: "summingCountBolt",
+      listenType: "discreteEvents",
+      emitType: "loggable",
+      ingest: function(eventCounts) {
+        if (!this.results) {
+          this.results = {type:"sum", data:{}};
+        }
+        for (let name in eventCounts) {
+          let count = eventCounts[name];
+
+          if (!this.results.data[name]) {
+            this.results.data[name] = 0;
+          }
+          this.results.data[name] += count;
+        }
+      },
+      clear: function() {
+        this.emitDeffered = Promise.defer();
+      }
+    });
+
+    // alerts whether the current occurence count is even
+    let evenAlertBolt = createNode({
+      identifier: "comboAlertBolt",
+      listenType: "discreteEvents",
+      emitType: "loggable",
+      ingest: function(eventCounts) {
+        if (!this.results) {
+          this.results = {type:"even", data:[]};
+        }
+        for (let name in eventCounts) {
+          let count = eventCounts[name];
+          if (count % 2 == 0) {
+            this.results.data.push(name);
+          }
+        }
+      }
+    });
+
+    // returns the total when an even occurence count is encountered
+    let evenLoggerSpout = createNode({
+      identifier: "evenLoggerSpout",
+      listenType: "loggable",
+      emitType: "evenSums",
+      ingest: function(message) {
+        if (!this.results) {
+          this.results = {};
+        }
+        if (!this.storage) {
+          this.storage = {};
+        }
+        if (message.type == 'sum') {
+          for (let name in message.data) {
+            this.storage[name] = message.data[name];
+          }
+        }
+        else if (message.type == 'even') {
+          for (let name of message.data) {
+            this.results[name] = this.storage[name];
+          }
+        }
+      },
+      emitReady: function() {
+        return this.results != null && Object.keys(this.results).length != 0;
+      }
+    });
+
+    let doAssert;
+    let assertionBolt = createNode({
+      identifier: "assertionBolt",
+      listenType: "evenSums",
+      emitType: null,
+      ingest: function(message) {
+        doAssert(message);
+      }
+    });
+
+    let stream = new Stream();
+    stream.addNode(countingBolt, true);
+    stream.addNode(summingCountBolt);
+    stream.addNode(evenAlertBolt);
+    stream.addNode(evenLoggerSpout);
+    stream.addNode(assertionBolt);
+
+    let pushPromise;
+
+    pushPromise = stream.push("events", ["eat", "work", "eat", "sleep"]);
+    doAssert = function(message) {
+      assert.equal(message.eat, 2);
+    }
+    yield pushPromise;
+
+    pushPromise = stream.push("events", ["eat", "sleep", "eat", "sleep", "eat"]);
+    doAssert = function(message) {
+      assert.equal(message.sleep, 3);
+    }
+    yield pushPromise;
+  }).then(done);
+}
 
 test.run(exports);
