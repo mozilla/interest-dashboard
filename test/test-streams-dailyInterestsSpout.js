@@ -8,12 +8,9 @@
 
 const {Cc, Ci, Cu} = require("chrome");
 const Promise = require("sdk/core/promise");
-Cu.import("resource://gre/modules/Services.jsm");
-Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
-const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
-const {testUtils} = require("./helpers");
+const {DateUtils} = require("DateUtils");
 const {dailyInterestsSpout} = require("streams/dailyInterestsSpout");
 const {Stream, createNode} = require("streams/core");
 const test = require("sdk/test");
