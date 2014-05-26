@@ -276,4 +276,42 @@ exports["test flush"] = function test_flush(assert, done) {
   }).then(done);
 }
 
+/*
+ * Ensures that data is serialized before being sent to workers
+ */
+exports["test message copy"] = function test_message_copy(assert, done) {
+  // in javascript, associative arrays are passed by reference
+  // this is a test that ensures that deep message copies are sent to nodes
+  Task.spawn(function() {
+    let splitToCharBolt = createNode({
+      identifier: "splitToCharBolt",
+      listenType: "testMessage",
+      emitType: null,
+      ingest: function(message) {
+        assert.equal(typeof(message.text), "string", "input is a string");
+        message.text = message.text.split('');
+        this.results = message;
+      }
+    });
+    let capitalizeBolt = createNode({
+      identifier: "capitalizeBolt",
+      listenType: "testMessage",
+      emitType: null,
+      ingest: function(message) {
+        assert.equal(typeof(message.text), "string", "input is still a string");
+        message.text = message.text.toUpperCase();
+        this.results = message;
+      }
+    });
+
+    let stream = new Stream();
+    stream.addNode(splitToCharBolt, true);
+    stream.addNode(capitalizeBolt, true);
+
+    let pushPromise = stream.push("testMessage", {text: "I'm a test message"});
+
+    yield pushPromise;
+  }).then(done);
+}
+
 test.run(exports);
