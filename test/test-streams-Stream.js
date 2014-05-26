@@ -71,7 +71,9 @@ exports["test push linear topology"] = function test_push_linear(assert, done) {
       emitType: null,
       ingest: function(messages) {
         boltDeferred.resolve(true);
-        assert.equal(messages.length, 2);
+        assert.equal(messages.length, 2, "messages are buffered and sent");
+        assert.equal(messages[0], "MESSAGE 1", "messages have been processed by the bolt");
+        assert.equal(messages[1], "MESSAGE 2", "messages have been processed by the bolt");
       }
     });
 
@@ -83,7 +85,7 @@ exports["test push linear topology"] = function test_push_linear(assert, done) {
     let pushPromise = stream.push("lonelyMessage", "message 1");
     stream.push("lonelyMessage", "message 2");
     let deferredPassed = yield boltDeferred.promise;
-    assert.ok(deferredPassed);
+    assert.ok(deferredPassed, "assertionBolt has been invoked");
     yield pushPromise;
   }).then(done);
 };
@@ -206,23 +208,26 @@ exports["test push complex topology"] = function test_push_complex(assert, done)
     // eat is sent with an even count. total is even
     pushPromise = stream.push("events", ["eat", "work", "eat", "sleep"]);
     doAssert = function(message) {
-      assert.equal(message.eat, 2);
+      assert.equal(Object.keys(message).length, 1, "message items are buffered");
+      assert.equal(message.eat, 2, "message items have been counted");
     }
     yield pushPromise;
 
     // sleep is sent with an even count, though total is 3
     pushPromise = stream.push("events", ["eat", "sleep", "eat", "sleep", "eat"]);
     doAssert = function(message) {
-      assert.equal(message.sleep, 3);
+      assert.equal(Object.keys(message).length, 1, "message items are buffered");
+      assert.equal(message.sleep, 3, "message counts have been accumulated");
     }
     yield pushPromise;
   }).then(done);
 }
 
 /*
- * Tests flushing a stream
+ * Tests that flushing a stream makes nodes return immediately.
  */
 exports["test flush"] = function test_flush(assert, done) {
+  Task.spawn(function() {
     // spout that waits until a count reaches at least 5 to push
     let bufferFiveSpout = createNode({
       identifier: "bufferFiveSpout",
@@ -268,6 +273,7 @@ exports["test flush"] = function test_flush(assert, done) {
       assert.equal(count, 1);
     }
     yield stream.flush();
+  }).then(done);
 }
 
 test.run(exports);
