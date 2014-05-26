@@ -14,7 +14,7 @@ Cu.import("resource://gre/modules/Task.jsm");
 
 const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
-const {dailyInterestsSpout} = require("streams/DailyInterestsSpout");
+const {dailyInterestsSpout} = require("streams/dailyInterestsSpout");
 const {Stream, createNode} = require("streams/core");
 const test = require("sdk/test");
 
