@@ -3,3 +3,5 @@
 }
 .content { margin-top: 20px; }
 .alerts { margin-top: 10px; }
+
+.margin-fix { margin: -50px 0 0 0 !important; }

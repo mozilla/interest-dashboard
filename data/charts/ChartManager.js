@@ -18,6 +18,9 @@ let ChartManager = {
     if (!this._charts["weightIntensity"]) {
       this._charts["weightIntensity"] = new WeightIntensityChart();
     }
+    if (!this._charts["intentInterest"]) {
+      this._charts["intentInterest"] = new IntentInterestCharts();
+    }
     for (let chart in this._charts) {
       this._charts[chart].setTypeAndNamespace(type, namespace);
       this._charts[chart].graph(data[chart + "Data"], true);
