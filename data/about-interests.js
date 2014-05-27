@@ -94,6 +94,7 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
     $scope.rankingAvailable = false;
     $scope.daysLeft = null;
     $scope.daysLeftStart = null;
+    dataService.send("chart_data_request");
   }
   $scope._initialize();
 
