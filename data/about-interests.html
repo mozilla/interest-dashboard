@@ -7,7 +7,7 @@
     <body ng-cloak>
         <div class="container">
             <div class="navbar">
-                <span class="brand">About Your Interests</span>
+                <h1>About Your Interests</h1>
             </div>
         </div>
 
@@ -38,17 +38,31 @@
             </div>
 
             <div class="rankingSection">
-                <h2>
-                    Top Interests
-                </h2>
                 <div class="rankingData">
+                    <h2>
+                        Top Intents
+                    </h2>
+                    <div id="intentCharts" class="row"></div>
+                    <h2>
+                        Top Interests
+                    </h2>
+                    <div id="interestCharts" class="row"></div>
                     <div id="interestsBarChart">
+                        <h2>
+                            Category Visit Percentage
+                        </h2>
                         <svg style="height: 300px; width: 100%;"></svg>
                     </div>
                     <div id="interestsTimeline">
+                        <h2>
+                            History Timeline
+                        </h2>
                         <svg style="overflow: visible; height: 800px; width: 100%;"></svg>
                     </div>
                     <div id="weightIntensityChart">
+                        <h2>
+                            Days Visited vs. Visits Per Day
+                        </h2>
                         <svg style="overflow: visible; height: 800px; width: 100%;"></svg>
                     </div>
                     <p ng-hide="rankingAvailable || historyComputeInProgress">Ranking data is not available.</p>
