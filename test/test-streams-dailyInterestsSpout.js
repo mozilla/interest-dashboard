@@ -11,7 +11,7 @@ const Promise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Task.jsm");
 
 const {DateUtils} = require("DateUtils");
-const {dailyInterestsSpout} = require("streams/dailyInterestsSpout");
+const {DailyInterestsSpout} = require("streams/dailyInterestsSpout");
 const {Stream, createNode} = require("streams/core");
 const test = require("sdk/test");
 
@@ -50,6 +50,7 @@ exports["test visit processing"] = function test_PastVisits(assert, done) {
         }
       });
 
+      let dailyInterestsSpout = DailyInterestsSpout.create({});
       let stream = new Stream();
       stream.addNode(dailyInterestsSpout, true);
       stream.addNode(assertionBolt);
@@ -94,6 +95,7 @@ exports["test ignore latest day visit unless flush"] = function test_TodayVisits
         }
       });
 
+      let dailyInterestsSpout = DailyInterestsSpout.create({});
       let stream = new Stream();
       stream.addNode(dailyInterestsSpout, true);
       stream.addNode(assertionBolt);
@@ -138,6 +140,7 @@ exports["test emit callback"] = function test_TodayVisits(assert, done) {
       dateVisits = {}
       dateVisits[today-2] = 1
 
+      let dailyInterestsSpout = DailyInterestsSpout.create({});
       let stream = new Stream();
       stream.addNode(dailyInterestsSpout, true);
 

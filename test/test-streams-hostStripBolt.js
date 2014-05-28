@@ -12,7 +12,7 @@ Cu.import("resource://gre/modules/Task.jsm");
 
 const {DateUtils} = require("DateUtils");
 const {testUtils} = require("./helpers");
-const {hostStripBolt} = require("streams/hostStripBolt");
+const {HostStripBolt} = require("streams/hostStripBolt");
 const {Stream, createNode} = require("streams/core");
 const test = require("sdk/test");
 
@@ -34,6 +34,7 @@ dailyInterestMessage[today] = {
 
 exports["test host strip"] = function test_hostStrip(assert, done) {
   Task.spawn(function() {
+    let hostStripBolt = HostStripBolt.create();
     let stripped = yield hostStripBolt.consume(dailyInterestMessage);
     assert.equal(Object.keys(stripped[today]["rules"]["edrules"]).length, 2, "stripped data contains the same number of categories");
     assert.deepEqual(stripped[today]["rules"]["edrules"]["Autos"], [3], "stripped data contains enumerated data");

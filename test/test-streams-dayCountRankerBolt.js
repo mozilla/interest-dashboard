@@ -4,7 +4,7 @@ const {Cc, Ci, Cu} = require("chrome");
 Cu.import("resource://gre/modules/Task.jsm");
 const Promise = require("sdk/core/promise");
 const test = require("sdk/test");
-const {makeRanker} = require("streams/dayCountRankerBolt");
+const {DayCountRankerBolt} = require("streams/dayCountRankerBolt");
 const {mergeObjects} = require("Utils");
 
 let createMessage = function(namespace, type, options) {
@@ -32,15 +32,16 @@ exports["test persistence"] = function test_persistence(assert, done) {
 
       let namespace = "namespace";
       let type = "persistence_test";
+      let dataStore = {};
 
-      ranker = makeRanker(namespace, type);
+      ranker = DayCountRankerBolt.create(namespace, type, dataStore);
       yield ranker.consume({
         "1": createMessage(namespace, type, {numAutos: 1}),
         "2": createMessage(namespace, type, {numAutos: 1}),
       });
       assert.equal(ranker.getInterests().Autos, 2, "ranking should accumulate");
       // now recreate ranker and add two more days
-      ranker = makeRanker(namespace, type);
+      ranker = DayCountRankerBolt.create(namespace, type, dataStore);
       yield ranker.consume({
         "3": createMessage(namespace, type, {numAutos: 1}),
         "4": createMessage(namespace, type, {numAutos: 1}),
@@ -56,9 +57,10 @@ exports["test persistence"] = function test_persistence(assert, done) {
 exports["test storage keys"] = function test_storageKeys(assert, done) {
   Task.spawn(function() {
     try {
+      let dataStore = {};
       let rankerMeta = [{ns: "namespace", t: "storagekey_test"}, {ns: "namespace1", t: "storagekey_test1"}];
-      let ranker = makeRanker(rankerMeta[0].ns, rankerMeta[0].t);
-      let ranker1 = makeRanker(rankerMeta[1].ns, rankerMeta[1].t);
+      let ranker = DayCountRankerBolt.create(rankerMeta[0].ns, rankerMeta[0].t, dataStore);
+      let ranker1 = DayCountRankerBolt.create(rankerMeta[1].ns, rankerMeta[1].t, dataStore);
 
       let makeMergeMessage = function() {
         let msg1 = createMessage(rankerMeta[0].ns, rankerMeta[0].t, {numAutos: 1});
@@ -94,7 +96,7 @@ exports["test ranking"] = function test_ranking(assert, done) {
       let namespace = "namespace";
       let type = "ranking_test";
 
-      let ranker = makeRanker(namespace, type);
+      let ranker = DayCountRankerBolt.create(namespace, type, {});
 
       yield ranker.consume({
         "1": createMessage(namespace, type, {numAutos: 1, numSports: 2}),
