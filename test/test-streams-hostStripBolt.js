@@ -7,13 +7,10 @@
 "use strict";
 
 const {Cc, Ci, Cu} = require("chrome");
-const Promise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Task.jsm");
 
 const {DateUtils} = require("DateUtils");
-const {testUtils} = require("./helpers");
 const {HostStripBolt} = require("streams/hostStripBolt");
-const {Stream, createNode} = require("streams/core");
 const test = require("sdk/test");
 
 let today = DateUtils.today();

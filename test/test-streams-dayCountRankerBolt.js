@@ -2,7 +2,6 @@
 
 const {Cc, Ci, Cu} = require("chrome");
 Cu.import("resource://gre/modules/Task.jsm");
-const Promise = require("sdk/core/promise");
 const test = require("sdk/test");
 const {DayCountRankerBolt} = require("streams/dayCountRankerBolt");
 const {mergeObjects} = require("Utils");

@@ -1,7 +1,6 @@
 "use strict";
 
 const {Cc, Ci, Cu} = require("chrome");
-Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 const test = require("sdk/test");
 const Promise = require("sdk/core/promise");
