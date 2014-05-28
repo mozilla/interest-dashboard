@@ -11,15 +11,7 @@ function IntentInterestCharts() {
 }
 
 IntentInterestCharts.prototype = {
-  _graphPie: function(chartType, domainList, title) {
-    let chartData = [];
-    for (let domain in domainList) {
-      let obj =  {
-        "label": domain,
-        "value": domainList[domain]
-      };
-      chartData.push(obj);
-    }
+  _graphPie: function(chartType, chartData, title) {
     let div = d3.select("#" + chartType)
       .append("div")
       .attr("height", 100)
@@ -45,25 +37,12 @@ IntentInterestCharts.prototype = {
   graph: function(data, clearChart) {
     d3.select('#intentCharts').selectAll("*").remove();
     d3.select('#interestCharts').selectAll("*").remove();
+
     for (let intentData of data[this._currentType][this._currentNamespace]["sortedIntents"]) {
-      let maxWeightDate = intentData["maxWeightDate"];
-      let domainList = intentData["dates"][maxWeightDate]["domainList"];
-      let maxIntentDate = d3.time.format('%x')(new Date(intentData["dates"][maxWeightDate]["x"]))
-      let title = intentData["category"] + " (" + maxIntentDate + ")";
-      this._graphPie("intentCharts", domainList, title);
+      this._graphPie("intentCharts", intentData["chartJSON"], intentData["title"]);
     }
     for (let interestData of data[this._currentType][this._currentNamespace]["sortedInterests"]) {
-      let domainList = {};
-      for (let dateInfo in interestData["dates"]) {
-        for (let domain in interestData["dates"][dateInfo]["domainList"]) {
-          if (!domainList[domain]) {
-            domainList[domain] = 0;
-          }
-          domainList[domain] += interestData["dates"][dateInfo]["domainList"][domain];
-        }
-      }
-      let title = interestData["category"];
-      this._graphPie("interestCharts", domainList, title);
+      this._graphPie("interestCharts", interestData["chartJSON"], interestData["title"]);
     }
   }
 }
