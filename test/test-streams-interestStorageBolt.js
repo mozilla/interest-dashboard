@@ -23,7 +23,7 @@ exports["test interestStorageBolt"] = function test_interestStoragebolt(assert, 
     let storage = {};
     let interestStorageBolt = InterestStorageBolt.create(storage);
 
-    yield interestStorageBolt.consume(hostlessInterestMessage);
+    yield interestStorageBolt.consume({meta: {}, message: hostlessInterestMessage});
 
     assert.deepEqual(storage.interests[today].rules.edrules, {Autos: [3], Sports: [2, 4]}, "storage backend contains interests");
   }).then(done);

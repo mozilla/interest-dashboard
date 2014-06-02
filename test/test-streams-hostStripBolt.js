@@ -32,10 +32,11 @@ dailyInterestMessage[today] = {
 exports["test host strip"] = function test_hostStrip(assert, done) {
   Task.spawn(function() {
     let hostStripBolt = HostStripBolt.create();
-    let stripped = yield hostStripBolt.consume(dailyInterestMessage);
-    assert.equal(Object.keys(stripped[today]["rules"]["edrules"]).length, 2, "stripped data contains the same number of categories");
-    assert.deepEqual(stripped[today]["rules"]["edrules"]["Autos"], [3], "stripped data contains enumerated data");
-    assert.deepEqual(stripped[today]["rules"]["edrules"]["Sports"], [2,4], "stripped data contains multiple data points");
+    let stripped = yield hostStripBolt.consume({meta: {}, message: dailyInterestMessage});
+    let result = stripped["message"];
+    assert.equal(Object.keys(result[today]["rules"]["edrules"]).length, 2, "stripped data contains the same number of categories");
+    assert.deepEqual(result[today]["rules"]["edrules"]["Autos"], [3], "stripped data contains enumerated data");
+    assert.deepEqual(result[today]["rules"]["edrules"]["Sports"], [2,4], "stripped data contains multiple data points");
   }).then(done);
 }
 

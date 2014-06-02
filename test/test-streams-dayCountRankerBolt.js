@@ -35,15 +35,21 @@ exports["test persistence"] = function test_persistence(assert, done) {
 
       ranker = DayCountRankerBolt.create(namespace, type, dataStore);
       yield ranker.consume({
-        "1": createMessage(namespace, type, {numAutos: 1}),
-        "2": createMessage(namespace, type, {numAutos: 1}),
+        "meta": {},
+        "message": {
+          "1": createMessage(namespace, type, {numAutos: 1}),
+          "2": createMessage(namespace, type, {numAutos: 1}),
+        }
       });
       assert.equal(ranker.getInterests().Autos, 2, "ranking should accumulate");
       // now recreate ranker and add two more days
       ranker = DayCountRankerBolt.create(namespace, type, dataStore);
       yield ranker.consume({
-        "3": createMessage(namespace, type, {numAutos: 1}),
-        "4": createMessage(namespace, type, {numAutos: 1}),
+        "meta": {},
+        "message": {
+          "3": createMessage(namespace, type, {numAutos: 1}),
+          "4": createMessage(namespace, type, {numAutos: 1}),
+        }
       });
       assert.equal(ranker.getInterests().Autos, 4, "ranking should be preserved across instances");
       ranker.clearStorage();
@@ -69,13 +75,19 @@ exports["test storage keys"] = function test_storageKeys(assert, done) {
       }
 
       yield ranker.consume({
-        "1": makeMergeMessage(),
-        "2": makeMergeMessage(),
-        "3": makeMergeMessage(),
+        "meta": {},
+        "message": {
+          "1": makeMergeMessage(),
+          "2": makeMergeMessage(),
+          "3": makeMergeMessage(),
+        }
       });
 
       yield ranker1.consume({
-        "1": makeMergeMessage(),
+        "meta": {},
+        "message": {
+          "1": makeMergeMessage(),
+        }
       });
 
       assert.equal(ranker.getInterests().Autos, 3, "ranking should accumulate");
@@ -98,8 +110,11 @@ exports["test ranking"] = function test_ranking(assert, done) {
       let ranker = DayCountRankerBolt.create(namespace, type, {});
 
       yield ranker.consume({
-        "1": createMessage(namespace, type, {numAutos: 1, numSports: 2}),
-        "2": createMessage(namespace, type, {numAutos: 1}),
+        "meta": {},
+        "message": {
+          "1": createMessage(namespace, type, {numAutos: 1, numSports: 2}),
+          "2": createMessage(namespace, type, {numAutos: 1}),
+        }
       });
 
       let ranking;
@@ -112,9 +127,12 @@ exports["test ranking"] = function test_ranking(assert, done) {
       assert.equal(ranking[1].score, 1, "score should count occurences over only 1 day");
 
       yield ranker.consume({
-        "3": createMessage(namespace, type, {numSports: 1}),
-        "4": createMessage(namespace, type, {numSports: 1}),
-        "5": createMessage(namespace, type, {numSports: 1}),
+        "meta": {},
+        "message": {
+          "3": createMessage(namespace, type, {numSports: 1}),
+          "4": createMessage(namespace, type, {numSports: 1}),
+          "5": createMessage(namespace, type, {numSports: 1}),
+        }
       });
       ranking = ranker.getRanking();
       assert.equal(ranking.length, 2, "interests numbers should be the same");
