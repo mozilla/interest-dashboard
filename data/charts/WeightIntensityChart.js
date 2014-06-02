@@ -46,34 +46,15 @@ WeightIntensityChart.prototype = {
   graph: function(data, clearChart) {
     // _pointToInterestsMap is used to make up for a bug in nvd3 where multiple points can't
     // appear in the same location.
-    this._pointToInterestsMap = {};
-    this._values = [];
-    d3.select('#weightIntensityChart svg').selectAll("*").remove();
-
+    this._pointToInterestsMap = data[this._currentType][this._currentNamespace]["pointToInterestsMap"];
     this._xMin = data[this._currentType][this._currentNamespace]["xMin"];
     this._yMin = data[this._currentType][this._currentNamespace]["yMin"];
     this._xMax = data[this._currentType][this._currentNamespace]["xMax"];
     this._yMax = data[this._currentType][this._currentNamespace]["yMax"];
 
-    for (let interest in data[this._currentType][this._currentNamespace]["interests"]) {
-      let x = data[this._currentType][this._currentNamespace]["interests"][interest]["x"];
-      let y = data[this._currentType][this._currentNamespace]["interests"][interest]["y"];
-      let hash = x.toString() + y.toString();
-
-      if (!this._pointToInterestsMap[hash]) {
-        this._pointToInterestsMap[hash] = [];
-        let point = data[this._currentType][this._currentNamespace]["interests"][interest];
-        this._values.push(point);
-      }
-      this._pointToInterestsMap[hash].push(interest);
-    }
-
-    let chartJSON = [{
-      key: "test",
-      values: this._values
-    }];
+    d3.select('#weightIntensityChart svg').selectAll("*").remove();
     d3.select('#weightIntensityChart svg')
-      .datum(chartJSON)
+      .datum(data[this._currentType][this._currentNamespace]["chartJSON"])
       .transition().duration(500)
       .call(this._chart);
 

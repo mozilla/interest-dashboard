@@ -594,3 +594,30 @@ exports.dayAnnotatedTwo = {
     }
   }
 }
+
+exports.dayAnnotatedThree = {
+  "15914": {
+    "combined": {
+      "58-cat": {
+        "computers": [1, 1, 1, 1],
+      },
+      "edrules": {
+        "Android": [1, 1],
+      },
+    },
+    "keywords": {
+      "58-cat": {
+        "computers": [1, 1, 1, 1],
+        "Programming": [1],
+        "Android": [1, 1],
+      },
+    },
+  },
+  "15916": {
+    "keywords": {
+      "58-cat": {
+        "computers": [1, 1, 1, 1],
+      },
+    },
+  }
+};

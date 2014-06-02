@@ -35,20 +35,9 @@ TimelineChart.prototype = {
       d3.select('#interestsTimeline svg').selectAll("*").remove();
       this._interestList = [];
     }
-    let chartJSON = [];
-    this._interestList = Object.keys(data[this._currentType][this._currentNamespace]);
-    for (let i = 0; i < this._interestList.length; i++) {
-      let dataPoints = data[this._currentType][this._currentNamespace][this._interestList[i]]["dates"];
-      chartJSON.push({
-        key: this._interestList[i],
-        values: Object.keys(dataPoints).map(key => {
-          dataPoints[key]["y"] = i;
-          return dataPoints[key];
-        })
-      });
-    }
+    this._interestList = data[this._currentType][this._currentNamespace]["interestList"];
     d3.select('#interestsTimeline svg')
-      .datum(chartJSON)
+      .datum(data[this._currentType][this._currentNamespace]["chartJSON"])
       .transition().duration(500)
       .call(this._chart);
 
