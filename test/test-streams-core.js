@@ -223,6 +223,47 @@ exports["test push complex topology"] = function test_push_complex(assert, done)
 }
 
 /*
+ * Tests spout waiting
+ * Stream = [pairSpout -> assertionBolt]
+ */
+exports["test spout waiting"] = function test_spout_waiting(assert, done) {
+  Task.spawn(function() {
+    let pairSpout = createNode({
+      identifier: "twoMsgSpout",
+      listenType: "lonelyMessage",
+      emitType: "pairMessages",
+      ingest: function(message) {
+        if (!this.results) {
+          this.results = [];
+        }
+        this.results.push(message);
+      },
+      emitReady: function() {
+        return this.results.length > 1;
+      }
+    });
+    let numCalled = 0;
+    let collectorBolt = createNode({
+      identifier: "collectorBolt",
+      listenType: "pairMessages",
+      emitType: null,
+      ingest: function(messages) {
+        numCalled += 1;
+      }
+    });
+    let stream = new Stream();
+    stream.addNode(pairSpout, true);
+    stream.addNode(collectorBolt);
+
+    for(let msgNum = 0; msgNum < 3; msgNum++) {
+      stream.push("lonelyMessage", "msg_"+msgNum);
+    }
+    yield stream.push("lonelyMessage", "msg_4");
+    assert.equal(numCalled, 2, "consumed calls in the stream don't cause messages to flow");
+  }).then(done);
+}
+
+/*
  * Tests that flushing a stream makes nodes return immediately.
  */
 exports["test flush"] = function test_flush(assert, done) {
