@@ -16,7 +16,7 @@ Cu.import("resource://gre/modules/Task.jsm");
 exports["test intent interest data processing"] = function test_intentInterestDataProcessing(assert, done) {
   Task.spawn(function() {
     let intentInterestDataProcessorBolt = IntentInterestDataProcessorBolt.create();
-    yield intentInterestDataProcessorBolt.consume(chartData.dayAnnotatedThreeChartProcessorConsumeResults);
+    yield intentInterestDataProcessorBolt.consume({meta: {}, message: chartData.dayAnnotatedThreeChartProcessorConsumeResults});
 
     testUtils.isIdentical(assert, JSON.stringify(storage.chartData.intentInterestData),
       JSON.stringify(chartData.dayAnnotatedThreeIntentInterestConsumeResults), "Unexpected chart data in storage");

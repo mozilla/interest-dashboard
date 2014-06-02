@@ -16,7 +16,7 @@ Cu.import("resource://gre/modules/Task.jsm");
 exports["test timeline data processing"] = function test_timelineDataProcessing(assert, done) {
   Task.spawn(function() {
     let timelineDataProcessorBolt = TimelineDataProcessorBolt.create();
-    yield timelineDataProcessorBolt.consume(chartData.dayAnnotatedThreeChartProcessorConsumeResults);
+    yield timelineDataProcessorBolt.consume({meta: {}, message: chartData.dayAnnotatedThreeChartProcessorConsumeResults});
 
     testUtils.isIdentical(assert, JSON.stringify(storage.chartData.timelineData),
       JSON.stringify(chartData.dayAnnotatedThreeTimelineConsumeResults), "Unexpected chart data in storage");

@@ -16,7 +16,7 @@ Cu.import("resource://gre/modules/Task.jsm");
 exports["test weight intensity data processing"] = function test_weightIntensityDataProcessing(assert, done) {
   Task.spawn(function() {
     let weightIntensityDataProcessorBolt = WeightIntensityDataProcessorBolt.create();
-    yield weightIntensityDataProcessorBolt.consume(chartData.dayAnnotatedThreeChartProcessorConsumeResults);
+    yield weightIntensityDataProcessorBolt.consume({meta: {}, message: chartData.dayAnnotatedThreeChartProcessorConsumeResults});
 
     testUtils.isIdentical(assert, JSON.stringify(storage.chartData.weightIntensityData),
       JSON.stringify(chartData.dayAnnotatedThreeWeightIntensityConsumeResults), "Unexpected chart data in storage");
