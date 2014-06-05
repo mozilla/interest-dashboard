@@ -17,9 +17,28 @@ const {testUtils} = require("./helpers");
 const {NYTimesHistoryVisitor} = require("NYTimesHistoryVisitor");
 const {WorkerFactory} = require("WorkerFactory");
 const {HistoryReader, getTLDCounts} = require("HistoryReader");
-const {DayBuffer} = require("DayBuffer");
+const {Stream} = require("streams/core");
+const {DailyInterestsSpout} = require("streams/dailyInterestsSpout");
+const {HostStripBolt} = require("streams/hostStripBolt");
+const {InterestStorageBolt} = require("streams/interestStorageBolt");
 
 const test = require("sdk/test");
+
+function initStream(storageBackend) {
+  // setup stream workers
+  let streamObjects = {
+    dailyInterestsSpout: DailyInterestsSpout.create(storageBackend),
+    hostStripBolt: HostStripBolt.create(),
+    interestStorageBolt: InterestStorageBolt.create(storageBackend),
+    stream: new Stream(),
+  }
+  let stream = streamObjects.stream;
+  stream.addNode(streamObjects.dailyInterestsSpout, true);
+  stream.addNode(streamObjects.hostStripBolt);
+  stream.addNode(streamObjects.interestStorageBolt);
+
+  return streamObjects;
+}
 
 const EXTRACT_TEST_CASES = [
   {
@@ -163,17 +182,16 @@ function test_ExtractFromPath(assert, done) {
     try {
       EXTRACT_TEST_CASES.forEach(testCase => {
         let obj = NYTimesHistoryVisitor._extractFromUrl("http://www.nytimes.com" + testCase.path);
-        testUtils.isIdentical(assert, obj, testCase.expected);
+        assert.deepEqual(obj, testCase.expected);
       });
     } catch (ex) {
-      dump( ex + " ERROR\n");
+      console.error(ex);
     }
   }).then(done);
 }
 
 let gWorkerFactory = new WorkerFactory();
 let today = DateUtils.today();
-let dayBuffer = new DayBuffer();
 
 exports["test consumeHistoryVisit"] =
 function test_ConsumeHistoryVisit(assert, done) {
@@ -192,7 +210,10 @@ function test_ConsumeHistoryVisit(assert, done) {
 
       NYTimesHistoryVisitor.clear();
 
-      let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), dayBuffer, 0);
+      let storageBackend = {};
+      NYTimesHistoryVisitor.storage = storageBackend;
+      let streamObjects = initStream();
+      let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
       yield historyReader.resubmitHistory({startDay: today-20, historyVisitor: NYTimesHistoryVisitor});
       let visits =  NYTimesHistoryVisitor.getVisits();
 
@@ -215,7 +236,7 @@ function test_ConsumeHistoryVisit(assert, done) {
       assert.ok(NYTimesHistoryVisitor.getVisits() == null);
 
     } catch (ex) {
-      dump( ex + " ERROR\n");
+      console.error(ex);
     }
   }).then(done);
 }

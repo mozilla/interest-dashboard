@@ -17,11 +17,11 @@ XPCOMUtils.defineLazyServiceGetter(this, "uuid",
 
 const {nsHttpServer, startServerAsync} = require("sdk/test/httpd");
 const simplePrefs = require("sdk/simple-prefs")
-const {storage} = require("sdk/simple-storage");
 const test = require("sdk/test");
 
 const {Controller} = require("Controller");
 const {Dispatcher} = require("Dispatcher");
+const {InterestStorageBolt} = require("streams/interestStorageBolt");
 const {testUtils} = require("./helpers");
 const {getRelevantPrefs, getUserAgentLocale} = require("Utils");
 const {StudyApp} = require("Application");
@@ -36,21 +36,22 @@ StudyApp.setSourceUri(NetUtil.newURI("http://localhost"));
 // create uuid, which is assumed to be created in the Controller
 simplePrefs.prefs.uuid = uuid.generateUUID().toString().slice(1, -1).replace(/-/g, "");
 
-function makeTestPayload(referencePayload, interests) {
+function makeTestPayload(referencePayload, interests, storage) {
+  NYTUtils.storage = storage;
   return {
     payloadDate: referencePayload.payloadDate,
     uuid: simplePrefs.prefs.uuid,
     prefs: getRelevantPrefs(),
-    source: storage.downloadSource,
-    installDate: storage.installDate,
-    updateDate: storage.updateDate,
-    version: storage.version,
+    source: storage.downloadSource || null,
+    installDate: storage.installDate || null,
+    updateDate: storage.updateDate || null,
+    version: storage.version || null,
     locale: getUserAgentLocale(),
-    tldCounter: getTLDCounts(),
+    tldCounter: getTLDCounts(storage),
     hasSurveyInterests: Crypto.hasMappedInterests(simplePrefs.prefs.uuid),
     nytVisits: NYTimesHistoryVisitor.getVisits() || [],
     nytUserData: NYTUtils.getNYTUserData(),
-    interests: interests || storage.interests
+    interests: interests || storage.interests || null
   };
 }
 
@@ -70,59 +71,56 @@ function removeObservers() {
 }
 
 exports["test init"] = function test_init(assert) {
-  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
+  let storageBackend = {};
+  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1, storageBackend: storageBackend});
 
-  testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't initialized");
+  assert.deepEqual(storageBackend.interests, {}, "interests storage isn't initialized");
 }
 
-exports["test consume"] = function test_consume(assert) {
-  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
+exports["test _makePayload"] = function test__makePayload(assert, done) {
+  Task.spawn(function() {
+    let storageBackend = {};
+    let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1, storageBackend: storageBackend});
 
-  dispatcher.consume(sampleData.dayAnnotatedOne);
-  testUtils.isIdentical(assert, storage.interests, sampleData.dayAnnotatedOne, "unexpected interest data in storage");
-  dispatcher.consume(sampleData.dayAnnotatedTwo);
-  testUtils.isIdentical(assert, Object.keys(storage.interests).length, 2, "new data isn't consumed");
+    let interestStorageBolt = InterestStorageBolt.create(storageBackend);
+    interestStorageBolt.consume({meta: {}, message: sampleData.dayAnnotatedOne});
+    interestStorageBolt.consume({meta: {}, message: sampleData.dayAnnotatedTwo});
 
-  dispatcher.clear();
-  testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't cleared");
+    let payload = null;
+
+    // size limit is big enough to include both days
+    payload = dispatcher._makePayload(1024*256);
+    assert.deepEqual(payload, makeTestPayload(payload, null, storageBackend), "unexpected payload data");
+
+    // size limit is big enough to only include one day. earlier day will be picked due to sorting
+    payload = dispatcher._makePayload(0);
+    assert.deepEqual(payload, makeTestPayload(payload, sampleData.dayAnnotatedOne, storageBackend), "unexpected payload data");
+
+    dispatcher.clear();
+    assert.deepEqual(storageBackend.interests, {}, "interests storage isn't cleared");
+  }).then(done);
 }
 
-exports["test _makePayload"] = function test__makePayload(assert) {
-  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
+exports["test _deletedays"] = function test__DeleteDays(assert, done) {
+  Task.spawn(function() {
+    let storageBackend = {};
+    let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1, storageBackend: storageBackend});
+    storageBackend.interests = {};
 
-  dispatcher.consume(sampleData.dayAnnotatedOne);
-  dispatcher.consume(sampleData.dayAnnotatedTwo);
+    let interestStorageBolt = InterestStorageBolt.create(storageBackend);
+    interestStorageBolt.consume({meta: {}, message: sampleData.dayAnnotatedOne});
+    interestStorageBolt.consume({meta: {}, message: sampleData.dayAnnotatedTwo});
 
-  let payload = null;
+    let days = Object.keys(storageBackend.interests);
 
-  // size limit is big enough to include both days
-  payload = dispatcher._makePayload(1024*256);
-  testUtils.isIdentical(assert, payload, makeTestPayload(payload), "unexpected payload data");
-
-  // size limit is big enough to only include one day. earlier day will be picked due to sorting
-  payload = dispatcher._makePayload(0);
-  testUtils.isIdentical(assert, payload, makeTestPayload(payload, sampleData.dayAnnotatedOne), "unexpected payload data");
-
-  dispatcher.clear();
-  testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't cleared");
-}
-
-exports["test _deletedays"] = function test__DeleteDays(assert) {
-  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
-  storage.interests = {};
-
-  dispatcher.consume(sampleData.dayAnnotatedOne);
-  dispatcher.consume(sampleData.dayAnnotatedTwo);
-
-  let days = Object.keys(storage.interests);
-
-  assert.equal(Object.keys(storage.interests).length, 2);
-  dispatcher._deleteDays([days[0]]);
-  assert.equal(Object.keys(storage.interests).length, 1);
-  dispatcher._deleteDays([days[0]]);
-  assert.equal(Object.keys(storage.interests).length, 1);
-  dispatcher._deleteDays([days[1]]);
-  assert.equal(Object.keys(storage.interests).length, 0);
+    assert.equal(Object.keys(storageBackend.interests).length, 2);
+    dispatcher._deleteDays([days[0]]);
+    assert.equal(Object.keys(storageBackend.interests).length, 1);
+    dispatcher._deleteDays([days[0]]);
+    assert.equal(Object.keys(storageBackend.interests).length, 1);
+    dispatcher._deleteDays([days[1]]);
+    assert.equal(Object.keys(storageBackend.interests).length, 0);
+  }).then(done);
 }
 
 exports["test _dispatch"] = function test__Dispatch(assert, done) {
@@ -133,9 +131,11 @@ exports["test _dispatch"] = function test__Dispatch(assert, done) {
     let serverUrl = "http://localhost:" + serverPort + "/post";
 
     yield StudyApp.saveAddonInfo();
-    let dispatcher = new Dispatcher(serverUrl, {enabled: true, dispatchIdleDelay: 1});
-    dispatcher.consume(sampleData.dayAnnotatedOne);
-    dispatcher.consume(sampleData.dayAnnotatedTwo);
+    let storageBackend = {};
+    let dispatcher = new Dispatcher(serverUrl, {enabled: true, dispatchIdleDelay: 1, storageBackend: storageBackend});
+    let interestStorageBolt = InterestStorageBolt.create(storageBackend);
+    yield interestStorageBolt.consume({meta: {}, message: sampleData.dayAnnotatedOne});
+    yield interestStorageBolt.consume({meta: {}, message: sampleData.dayAnnotatedTwo});
     let payload = dispatcher._makePayload(1024*256);
 
     let responseDeferred = Promise.defer();
@@ -146,7 +146,8 @@ exports["test _dispatch"] = function test__Dispatch(assert, done) {
       assert.ok(body);
 
       let deserialized = JSON.parse(body);
-      testUtils.isIdentical(assert, deserialized, makeTestPayload(deserialized), "unexpected payload data");
+
+      assert.deepEqual(deserialized, makeTestPayload(deserialized, null, storageBackend), "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
       response.setStatusLine(request.httpVersion, 201, "OK");
@@ -163,7 +164,7 @@ exports["test _dispatch"] = function test__Dispatch(assert, done) {
 
     server.stop(function(){});
     dispatcher.clear();
-    testUtils.isIdentical(assert, storage.interests, {}, "interests storage isn't cleared");
+    assert.deepEqual(storageBackend.interests, {}, "interests storage isn't cleared");
   }).then(_ => {
     removeObservers();
   }).then(done);
@@ -177,9 +178,11 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
     let serverUrl = "http://localhost:" + serverPort + "/post";
 
     yield StudyApp.saveAddonInfo();
-    let dispatcher = new Dispatcher(serverUrl, {enabled: true, dispatchIdleDelay: 1});
-    dispatcher.consume(sampleData.dayAnnotatedOne);
-    dispatcher.consume(sampleData.dayAnnotatedTwo);
+    let storageBackend = {};
+    let dispatcher = new Dispatcher(serverUrl, {enabled: true, dispatchIdleDelay: 1, storageBackend: storageBackend});
+    let interestStorageBolt = InterestStorageBolt.create(storageBackend);
+    yield interestStorageBolt.consume({meta: {}, message: sampleData.dayAnnotatedOne});
+    yield interestStorageBolt.consume({meta: {}, message: sampleData.dayAnnotatedTwo});
     let payload = dispatcher._makePayload(1024*256);
 
     let responseDeferred = Promise.defer();
@@ -190,7 +193,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
       assert.ok(body);
 
       let deserialized = JSON.parse(body);
-      testUtils.isIdentical(assert, deserialized, makeTestPayload(deserialized), "unexpected payload data");
+      assert.deepEqual(deserialized, makeTestPayload(deserialized, null, storageBackend), "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
       response.setStatusLine(request.httpVersion, 201, "OK");
@@ -201,7 +204,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
     server.registerPathHandler("/post", (request, response) => {
       testPayload(request, response);
     });
-    let daysInStorage = Object.keys(storage.interests);
+    let daysInStorage = Object.keys(storageBackend.interests);
 
     // observe notification
     let transmitNotifDeferred = Promise.defer();
@@ -210,7 +213,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
         if  (aTopic != "dispatcher-payload-transmission-complete") {
           throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
         }
-        testUtils.isIdentical(assert, aData, daysInStorage.join(","), "transmission contains unexpected items");
+        assert.deepEqual(aData, daysInStorage.join(","), "transmission contains unexpected items");
         transmitNotifDeferred.resolve();
       },
     }
@@ -226,7 +229,7 @@ exports["test _sendPing"] = function test__sendPing(assert, done) {
     // notification should be sent
     yield transmitNotifDeferred.promise;
 
-    testUtils.isIdentical(assert, {}, storage.interests, "storage should have been cleared");
+    assert.deepEqual({}, storageBackend.interests, "storage should have been cleared");
     server.stop(function(){});
   }).then(_ => {
     removeObservers();
@@ -241,9 +244,11 @@ exports["test _sendPing fail"] = function test__sendPingFail(assert, done) {
     let serverUrl = "http://localhost:" + serverPort + "/post";
 
     yield StudyApp.saveAddonInfo();
-    let dispatcher = new Dispatcher(serverUrl, {enabled: true, dispatchIdleDelay: 1});
-    dispatcher.consume(sampleData.dayAnnotatedOne);
-    dispatcher.consume(sampleData.dayAnnotatedTwo);
+    let storageBackend = {};
+    let dispatcher = new Dispatcher(serverUrl, {enabled: true, dispatchIdleDelay: 1, storageBackend: storageBackend});
+    let interestStorageBolt = InterestStorageBolt.create(storageBackend);
+    yield interestStorageBolt.consume({meta: {}, message: sampleData.dayAnnotatedOne});
+    yield interestStorageBolt.consume({meta: {}, message: sampleData.dayAnnotatedTwo});
     let payload = dispatcher._makePayload(1024*256);
 
     let responseDeferred = Promise.defer();
@@ -254,7 +259,7 @@ exports["test _sendPing fail"] = function test__sendPingFail(assert, done) {
       assert.ok(body);
 
       let deserialized = JSON.parse(body);
-      testUtils.isIdentical(assert, deserialized, makeTestPayload(deserialized), "unexpected payload data");
+      assert.deepEqual(deserialized, makeTestPayload(deserialized, null, storageBackend), "unexpected payload data");
 
       response.setHeader("Content-Type", "text/plain", false);
       response.setStatusLine(request.httpVersion, 500, "Server Error");
@@ -265,7 +270,7 @@ exports["test _sendPing fail"] = function test__sendPingFail(assert, done) {
     server.registerPathHandler("/post", (request, response) => {
       testPayload(request, response);
     });
-    let daysInStorage = Object.keys(storage.interests);
+    let daysInStorage = Object.keys(storageBackend.interests);
 
     // observe notification
     let transmitNotifDeferred = Promise.defer();
@@ -290,11 +295,11 @@ exports["test _sendPing fail"] = function test__sendPingFail(assert, done) {
     // notification should be sent
     yield transmitNotifDeferred.promise;
 
-    testUtils.isIdentical(assert, true, Object.keys(storage.interests).length > 0, "storage should not have been cleared");
+    assert.equal(true, Object.keys(storageBackend.interests).length > 0, "storage should not have been cleared");
 
     server.stop(function(){});
     // clean up
-    storage.interests = {};
+    storageBackend.interests = {};
   }).then(_ => {
     removeObservers();
   }).then(done);
@@ -302,7 +307,8 @@ exports["test _sendPing fail"] = function test__sendPingFail(assert, done) {
 
 exports["test consent verification"] = function test__consent_verification(assert, done) {
   Task.spawn(function() {
-    let dispatcher = new Dispatcher("http://example.com", {enabled: false, dispatchIdleDelay: 1});
+    let storageBackend = {};
+    let dispatcher = new Dispatcher("http://example.com", {enabled: false, dispatchIdleDelay: 1, storageBackend: storageBackend});
 
     dispatcher._sendPing = function(aUrl) {
       assert.fail("_sendPing should not run without consent");
@@ -325,7 +331,7 @@ exports["test consent verification"] = function test__consent_verification(asser
 }
 
 exports["test locale"] = function test_locale(assert) {
-  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
+  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1, storageBackend: {}});
   let payloadObject = dispatcher._makePayloadObject();
   assert.equal(payloadObject.locale, "en-US");
 }
@@ -335,7 +341,7 @@ exports["test idle-daily dispatch"] = function test_IdleDailyDispatch(assert, do
     let testController = new Controller();
     testController.clear();
 
-    let dispatcher = new Dispatcher("http://example.com", {enabled: false, dispatchIdleDelay: 1});
+    let dispatcher = new Dispatcher("http://example.com", {enabled: false, dispatchIdleDelay: 1, storageBackend: {}});
     testController._dispatcher = dispatcher;
 
     let sendPingDeferred = Promise.defer();
@@ -353,7 +359,7 @@ exports["test idle-daily dispatch"] = function test_IdleDailyDispatch(assert, do
 }
 
 exports["test addExtraParameterToPayload"] = function test_addExtraParameterToPayload(assert) {
-  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1});
+  let dispatcher = new Dispatcher("http://example.com", {enabled: true, dispatchIdleDelay: 1, storageBackend: {}});
   dispatcher.addExtraParameterToPayload("p1","v1");
   let payloadObject = dispatcher._makePayloadObject();
   assert.equal(payloadObject.p1, "v1");
@@ -365,14 +371,14 @@ exports["test mozhosts interests dispatch"] = function test_MozhostsInterestsDis
     let hostArray = ["www.autoblog.com"];
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits(hostArray,2);
-    let testController = new Controller();
+    let testController = new Controller({storage: {}});
     testController.clear();
     yield testController.submitHistory({flush: true});
     let batch = testController.getNextDispatchBatch();
-    testUtils.isIdentical(assert,
-                          batch.mozhostsInterests,
-                          {"1":{"interests":{"Autos":300},"frecency":300}},
-                          "mozhostsInterests are present and valid");
+    assert.deepEqual(
+      batch.mozhostsInterests,
+      {"1":{"interests":{"Autos":300},"frecency":300}},
+      "mozhostsInterests are present and valid");
   }).then(_ => {
     removeObservers();
   }).then(done);

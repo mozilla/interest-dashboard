@@ -21,6 +21,17 @@ const {NYTimesHistoryVisitor} = require("NYTimesHistoryVisitor");
 const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
 const {promiseTimeout} = require("Utils");
+const {Stream} = require("streams/core");
+const {DailyInterestsSpout} = require("streams/dailyInterestsSpout");
+const {DayCountRankerBolt} = require("streams/dayCountRankerBolt");
+const {HostStripBolt} = require("streams/hostStripBolt");
+const {InterestStorageBolt} = require("streams/interestStorageBolt");
+
+function setupTestController(storageBackend) {
+  let storageBackend = storageBackend || {};
+  let testController = new Controller({storage: storageBackend});
+  return testController;
+}
 
 exports["test controller"] = function test_Controller(assert, done) {
   Task.spawn(function() {
@@ -35,17 +46,17 @@ exports["test controller"] = function test_Controller(assert, done) {
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
 
       // step one day into future to flush the DayBuffer
-      let testController = new Controller();
+      let testController = setupTestController();
       testController.clear();
       yield testController.submitHistory({flush: true});
 
       // we should only see 3 urls being processed, hten Autos should nly contain 3 days
-      testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "4 Autos");
+      assert.deepEqual(testController.getRankedInterests(), {"Autos":4}, "4 Autos");
 
       let payload = testController.getNextDispatchBatch();
       let days = Object.keys(payload.interests);
       // make sure that the history data is keyed on 4,5, and 6 th day
-      testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today], "4 days upto today");
+      assert.deepEqual(days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today], "4 days upto today");
 
       // add one more visits for today and make sure we pick them up
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.thehill.com/"), visitDate: microNow + 1});
@@ -59,15 +70,15 @@ exports["test controller"] = function test_Controller(assert, done) {
               throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
             }
             // we should see the 3 intersts now
-            testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4,"Politics":1,"Sports":1}, "should see 3 intresests");
+            assert.deepEqual(testController.getRankedInterests(), {"Autos":4,"Politics":1,"Sports":1}, "should see 3 intresests");
             // and we must see 4 day in the keys
             payload = testController.getNextDispatchBatch();
             days = Object.keys(payload.interests);
-            testUtils.isIdentical(assert, days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today],"still 4 days");
+            assert.deepEqual(days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today],"still 4 days");
             Services.obs.removeObserver(observer, "controller-history-submission-complete");
             done();
           } catch (ex) {
-            dump( ex + " ERROR\n");
+            console.error(ex);
           }
         },
       };
@@ -75,7 +86,7 @@ exports["test controller"] = function test_Controller(assert, done) {
       Services.obs.addObserver(observer, "controller-history-submission-complete" , false);
       Services.obs.notifyObservers(null, "idle-daily", null);
     } catch(ex) {
-      dump( ex + " ERROR\n");
+      console.error(ex);
     }
   });
 }
@@ -92,7 +103,8 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits(hostArray,59);
 
-      let testController = new Controller();
+      let storageBackend = {hi: "there"};
+      let testController = setupTestController(storageBackend);
       testController.clear();
 
       let testScores = function(theController) {
@@ -106,7 +118,8 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
       };
 
       yield testController.submitHistory({flush: true});
-      let theVeryLastTimeStamp = storage.lastTimeStamp;
+      let today = DateUtils.today();
+      let theVeryLastTimeStamp = storageBackend.lastTimeStamp;
       // verify reanks
       testScores(testController);
 
@@ -119,20 +132,18 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
         yield promiseTimeout(100);
         testController.stop();
         yield promise;
-        let lastTimeStamp = storage.lastTimeStamp;
+        let lastTimeStamp = storageBackend.lastTimeStamp;
         if (lastTimeStamp == theVeryLastTimeStamp) {
           break;
         }
-        testController = new Controller();
+        testController = setupTestController(storageBackend);
         promise = testController.submitHistory();
-        //testController.restart({flush: true});
         cycles++;
       }
       yield testController.submitHistory({flush: true});
-      //testScores(testController);
       assert.ok(cycles > 1);
     } catch(ex) {
-      dump(ex + " ERROR\n");
+      console.error(ex);
     }
   }).then(done);
 }
@@ -150,28 +161,29 @@ exports["test clear storage"] = function test_ClearStorage(assert, done) {
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits(hostArray,59);
 
-      let testController = new Controller();
+      let storageBackend = {};
+      let testController = new Controller(storageBackend);
       testController.clear();
 
       testController.submitHistory({flush: true});
       yield testController.stopAndClearStorage();
 
       // make sure we are all clean
-      assert.equal(storage.lastTimeStamp, undefined);
-      assert.equal(storage.downloadSource, undefined);
-      assert.equal(storage.dayBufferInterests, undefined);
-      assert.equal(storage.interests, undefined);
-      assert.equal(storage.ranking, undefined);
-      assert.equal(storage.nytimesVisits, undefined);
-      assert.equal(storage.hasOwnProperty("interests"), false);
+      assert.equal(storageBackend.lastTimeStamp, undefined);
+      assert.equal(storageBackend.downloadSource, undefined);
+      assert.equal(storageBackend.dayBufferInterests, undefined);
+      assert.equal(storageBackend.interests, undefined);
+      assert.equal(storageBackend.ranking, undefined);
+      assert.equal(storageBackend.nytimesVisits, undefined);
+      assert.equal(storageBackend.hasOwnProperty("interests"), false);
 
       // avoid intermittent unit-test failures caused by storage cleanup
       // simply re-create a controller, and clean it.  This will remake
       // all objects and repopulate storage.
-      testController = new Controller();
+      testController = setupTestController(storage);
       testController.clear();
     } catch(ex) {
-      dump(ex + " ERROR\n");
+      console.error(ex);
     }
   }).then(done);
 }
@@ -179,11 +191,11 @@ exports["test clear storage"] = function test_ClearStorage(assert, done) {
 exports["test get uuid"] = function test_GetUUID(assert, done) {
   Task.spawn(function() {
     try {
-      let testController = new Controller();
+      let testController = setupTestController();
       assert.ok(testController.getUserID() != null);
       assert.ok(testController.getUserID() != "");
     } catch(ex) {
-      dump(ex + " ERROR\n");
+      console.error(ex);
     }
   }).then(done);
 }
@@ -194,7 +206,7 @@ exports["test nytCollect"] = function test_NYTCollect(assert, done) {
       let hostArray = ["www.nytimes.com"];
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits(hostArray,1);
-      let testController = new Controller();
+      let testController = setupTestController();
       testController.clear();
       yield testController.submitHistory({flush: true});
       assert.equal(NYTimesHistoryVisitor.getVisits().length, 2);
@@ -214,17 +226,17 @@ exports["test getUserInterests"] = function test_GetUserInterests(assert, done) 
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits(hostArray,2);
 
-      let testController = new Controller();
+      let testController = setupTestController();
       testController.clear();
       yield testController.submitHistory({flush: true})
 
       simplePrefs.prefs.uuid = "this_uuid_cannot_exist";
       let interests = testController.getUserInterests();
-      testUtils.isIdentical(assert, interests, {"Autos":3});
+      assert.deepEqual(interests, {"Autos":3});
 
       simplePrefs.prefs.uuid = "NO_SUCH_UUID";
       interests = testController.getUserInterests();
-      testUtils.isIdentical(assert, interests, {"NO_SUCH_INTREST":1});
+      assert.deepEqual(interests, {"NO_SUCH_INTREST":1});
     } catch(ex) {
       dump(ex + " ERROR\n");
     }
@@ -236,14 +248,15 @@ exports["test mayPersonalize"] = function test_MayPersonalize(assert, done) {
     try {
       // set uuid andt make a controller
       simplePrefs.prefs.uuid = "1";
-      let testController = new Controller();
+      let storage = {};
+      let testController = setupTestController(storage);
       let pObject = testController._dispatcher._makePayloadObject();
       assert.ok(testController.mayPersonalize() == true);
       assert.ok(pObject.personalizeOn == true);
 
       // remake controller for a different uuid
       simplePrefs.prefs.uuid = "2";
-      testController = new Controller();
+      testController = setupTestController(storage);
       assert.ok(testController.mayPersonalize() == false);
       pObject = testController._dispatcher._makePayloadObject();
       assert.ok(pObject.personalizeOn == false);
@@ -263,11 +276,11 @@ exports["test hostComputedInterests"] = function test_HostComputedInterests(asse
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits(hostArray,2);
 
-      let testController = new Controller();
+      let testController = setupTestController();
       testController.clear();
       yield testController.submitHistory({flush: true});
       let results = testController.getHostComputedInterests();
-      testUtils.isIdentical(assert, results, {
+      assert.deepEqual(results, {
         "1":{"interests":{"Autos":300},"frecency":300},
         "2":{"interests":{"Autos":300,"Politics":300},"frecency":300},
         "3":{"interests":{"Autos":300,"Politics":300,"Programming":300},"frecency":300}

@@ -16,27 +16,56 @@ const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
 const {WorkerFactory} = require("WorkerFactory");
 const {HistoryReader, getTLDCounts} = require("HistoryReader");
-const {DayBuffer} = require("DayBuffer");
 const {promiseTimeout} = require("Utils");
-const {storage} = require("sdk/simple-storage");
+const {Stream} = require("streams/core");
+const {DayCountRankerBolt} = require("streams/dayCountRankerBolt");
+const {DailyInterestsSpout} = require("streams/dailyInterestsSpout");
+const {HostStripBolt} = require("streams/hostStripBolt");
+const {InterestStorageBolt} = require("streams/interestStorageBolt");
 const test = require("sdk/test");
 
 let gWorkerFactory = new WorkerFactory();
 let today = DateUtils.today();
-let dayBuffer = new DayBuffer();
+
+const { pathFor } = require('sdk/system');
+const path = require('sdk/fs/path');
+const file = require('sdk/io/file');
+
+function initStream(storageBackend) {
+  // setup stream workers
+  let streamObjects = {
+    dailyInterestsSpout: DailyInterestsSpout.create(storageBackend),
+    rankerBolts: DayCountRankerBolt.batchCreate(gWorkerFactory.getRankersDefinitions(), storageBackend),
+    hostStripBolt: HostStripBolt.create(),
+    interestStorageBolt: InterestStorageBolt.create(storageBackend),
+    stream: new Stream(),
+  }
+  let stream = streamObjects.stream;
+  stream.addNode(streamObjects.dailyInterestsSpout, true);
+  streamObjects.rankerBolts.forEach(ranker => {
+    stream.addNode(ranker);
+  });
+  stream.addNode(streamObjects.hostStripBolt);
+  stream.addNode(streamObjects.interestStorageBolt);
+
+  return streamObjects;
+}
 
 exports["test read all"] = function test_readAll(assert, done) {
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits("www.autoblog.com",20);
-    dayBuffer.clear();
 
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), dayBuffer, 0);
-    let datum = yield historyReader.resubmitHistory({startDay: today-20});
-    let dates = Object.keys(datum);
+    let storageBackend = {};
+    let streamObjects = initStream(storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
+    yield historyReader.resubmitHistory({startDay: today-20});
+    yield streamObjects.stream.flush(); // flush out the last day
+    let datum = storageBackend.interests;
+    let dates = Object.keys(storageBackend.interests);
     assert.equal(dates.length,21);
-    testUtils.isIdentical(assert, datum[today + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
-    testUtils.isIdentical(assert, datum[(today-20) + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
+    assert.deepEqual(datum[today + ""].rules.edrules, {Autos:[1]});
+    assert.deepEqual(datum[(today-20) + ""].rules.edrules, {Autos: [1]});
     assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
   }).then(done);
 }
@@ -45,15 +74,18 @@ exports["test read from given timestamp"] = function test_readFromGivenTimestamp
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits("www.autoblog.com",20);
-    dayBuffer.clear();
 
+    let storageBackend = {};
+    let streamObjects = initStream(storageBackend);
     // only read starting from id == 10
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,(today-10)*MICROS_PER_DAY);
-    let datum = yield historyReader.resubmitHistory({startDay: today-20});
-    let dates = Object.keys(datum);
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,(today-10)*MICROS_PER_DAY, storageBackend);
+    yield historyReader.resubmitHistory({startDay: today-20});
+    yield streamObjects.stream.flush(); // flush out the last day
+    let datum = storageBackend.interests;
+    let dates = Object.keys(storageBackend.interests);
     assert.equal(dates.length,11);
-    testUtils.isIdentical(assert, datum[today + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
-    testUtils.isIdentical(assert, datum[(today-10) + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
+    assert.deepEqual(datum[today + ""].rules.edrules, {Autos: [1]});
+    assert.deepEqual(datum[(today-10) + ""].rules.edrules, {Autos: [1]});
     assert.ok(datum[(today-11) + ""] == null);
     assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
   }).then(done);
@@ -63,18 +95,24 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits("www.autoblog.com",20);
-    dayBuffer.clear();
 
+    let storageBackend = {};
+    let streamObjects = initStream(storageBackend);
     // only read starting from id == 10
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,10);
-    let datum = yield historyReader.resubmitHistory({startDay: today-20});
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,10, storageBackend);
+    yield historyReader.resubmitHistory({startDay: today-20});
+    yield streamObjects.stream.flush(); // flush out the last day
+    let datum = storageBackend.interests;
     assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
 
     // now set chunksize to 1 and read from same id
-    dayBuffer.clear();
-    historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,10);
-    let newDatum = yield historyReader.resubmitHistory({startDay: today-20},1);
-    testUtils.isIdentical(assert, datum, newDatum);
+    storageBackend = {};
+    streamObjects = initStream(storageBackend);
+    historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,10, storageBackend);
+    yield historyReader.resubmitHistory({startDay: today-20},1);
+    yield streamObjects.stream.flush(); // flush out the last day
+    let newDatum = storageBackend.interests;
+    assert.deepEqual(datum, newDatum);
     assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
   }).then(done);
 }
@@ -83,7 +121,6 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits("www.autoblog.com",20);
-    dayBuffer.clear();
 
     // finally test aggregation
     let microNow = Date.now() * 1000;
@@ -95,13 +132,17 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
 
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,0);
-    let datum = yield historyReader.resubmitHistory({startDay: today-20},1);
-    let dates = Object.keys(datum);
+    let storageBackend = {};
+    let streamObjects = initStream(storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
+    yield historyReader.resubmitHistory({startDay: today-20},1);
+    yield streamObjects.stream.flush(); // flush out the last day
+    let datum = storageBackend.interests;
+    let dates = Object.keys(storageBackend.interests);
     assert.equal(dates.length,3);
-    testUtils.isIdentical(assert, datum[(today-4) + ""].rules.edrules, {"Autos":{"autoblog.com":1}});
-    testUtils.isIdentical(assert, datum[(today-3) + ""].rules.edrules, {"Autos":{"autoblog.com":2}});
-    testUtils.isIdentical(assert, datum[(today-2) + ""].rules.edrules, {"Autos":{"autoblog.com":3}});
+    assert.deepEqual(datum[(today-4) + ""].rules.edrules, {Autos: [1]});
+    assert.deepEqual(datum[(today-3) + ""].rules.edrules, {Autos: [2]});
+    assert.deepEqual(datum[(today-2) + ""].rules.edrules, {Autos: [3]});
   }).then(done);
 }
 
@@ -117,16 +158,40 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits(hostArray,60);
 
-      dayBuffer.clear();
-      let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,0);
-      let allTheData = yield historyReader.resubmitHistory({startDay: today-61},1);
-      testUtils.isIdentical(assert, allTheData[today + ""].rules.edrules["Autos"], {"autoblog.com":1});
-      testUtils.isIdentical(assert, allTheData[(today-60) + ""].rules.edrules["Autos"], {"autoblog.com":1});
+      let storageBackend = {};
+      let streamObjects = initStream(storageBackend);
+      let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
+
+      let processDeferred = Promise.defer();
+      streamObjects.dailyInterestsSpout.setEmitCallback(numFromToday => {
+        if (numFromToday == 0) {
+          processDeferred.resolve();
+        }
+      });
+
+      yield historyReader.resubmitHistory({startDay: today-61},1);
+      yield processDeferred.promise;
+      yield streamObjects.stream.flush(); // flush out the last day
+      yield promiseTimeout(500);
+
+      let allTheData = storageBackend.interests;
+      assert.deepEqual(allTheData[today + ""].rules.edrules["Autos"], [1]);
+      assert.deepEqual(allTheData[(today-60) + ""].rules.edrules["Autos"], [1]);
+      assert.deepEqual(Object.keys(allTheData).length, 61);
       let theVeryLastTimeStamp = historyReader.getLastTimeStamp();
 
       // now start the torture test
-      dayBuffer.clear();
-      historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,0);
+      storageBackend = {};
+      streamObjects = initStream(storageBackend);
+
+      processDeferred = Promise.defer();
+      streamObjects.dailyInterestsSpout.setEmitCallback(numFromToday => {
+        if (numFromToday == 0) {
+          processDeferred.resolve();
+        }
+      });
+
+      historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
       let promise = historyReader.resubmitHistory({startDay: today-61},10);
       let cycles = 0;
       while (true) {
@@ -137,17 +202,20 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
         if (lastTimeStamp == theVeryLastTimeStamp) {
           break;
         }
-        historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,lastTimeStamp);
+        historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,lastTimeStamp, storageBackend);
         promise = historyReader.resubmitHistory({startDay: today-61},1);
         cycles ++;
       }
       assert.ok(cycles > 1);
-      // we should use isIdentical, but it takes too much time, so use string length compare instead
-      // if your quality zeal is hurt, uncoment the line bellow
-      // testUtils.isIdentical(assert, dayBuffer.getInterests(), allTheData);
-      assert.equal(JSON.stringify(dayBuffer.getInterests()).length, JSON.stringify(allTheData).length);
+      yield processDeferred.promise;
+
+      yield streamObjects.stream.flush(); // flush out the last day
+      yield promiseTimeout(500);
+
+      // we cannot be sure when history has done processing, but we can obtain the number of days
+      assert.deepEqual(Object.keys(storageBackend.interests).length, 61);
     } catch(ex) {
-      dump(ex + " ERROR\n");
+      console.error(ex);
     }
   }).then(done);
 }
@@ -167,12 +235,12 @@ exports["test tldCounter"] = function test_TldCounter(assert, done) {
                      "www.androidpolice.org"];
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits(hostArray,10);
-    dayBuffer.clear();
-    delete storage.tldCounter;
 
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),dayBuffer,0);
+    let storageBackend = {};
+    let streamObjects = initStream(storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20},1);
-    testUtils.isIdentical(assert, storage.tldCounter,
+    assert.deepEqual(storageBackend.tldCounter,
       {"au":{"mysql.au":1,"facebook.au":1},
        "com":{"thehill.com":1,"foo.com":1},
        "net":{"rivals.net":1},
@@ -181,18 +249,19 @@ exports["test tldCounter"] = function test_TldCounter(assert, done) {
        "is-ip":{"1.1.1.1":1,"1.2.3.4":1},
        "org":{"androidpolice.org":1}});
 
-    let pureCounts = getTLDCounts();
-    testUtils.isIdentical(assert, pureCounts, {"au":2,"com":2,"ru":1,"net":1,"org":1,"is-ip":2,"no-suffix":2});
+    let pureCounts = getTLDCounts(storageBackend);
+    assert.deepEqual(pureCounts, {"au":2,"com":2,"ru":1,"net":1,"org":1,"is-ip":2,"no-suffix":2});
   }).then(done);
 }
 
-exports["test historyVisistor"] = function test_HistoryVisitor(assert, done) {
+exports["test historyVisitor"] = function test_HistoryVisitor(assert, done) {
   Task.spawn(function() {
     let visits = [];
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits("www.autoblog.com",2);
-    dayBuffer.clear();
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), dayBuffer, 0);
+    let storageBackend = {};
+    let streamObjects = initStream(storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
     let theVisitor = {
       consumeHistoryVisit: function(visit) {
         visits.push(visit);
