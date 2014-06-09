@@ -41,7 +41,10 @@ exports["test fetchNYTUserData"] = function test_fetchNYTUserData(assert, done) 
         }
     };
 
-    NYTUtils._nytUserDataUrl = serverUrl;
+    let storageBackend = {};
+    let nytUtils = new NYTUtils(storageBackend);
+
+    nytUtils._nytUserDataUrl = serverUrl;
 
     // test registration
     server.registerPathHandler("/post", (request, response) => {
@@ -51,8 +54,8 @@ exports["test fetchNYTUserData"] = function test_fetchNYTUserData(assert, done) 
       response.write(JSON.stringify(responseJSON));
     });
 
-    yield NYTUtils.fetchNYTUserData();
-    let userInfo = NYTUtils.getNYTUserData();
+    yield nytUtils.fetchNYTUserData();
+    let userInfo = nytUtils.getNYTUserData();
     server.stop(function(){});
     // add visit count to expected jason user info
     responseJSON.visitCount = 20;

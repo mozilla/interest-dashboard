@@ -180,8 +180,9 @@ exports["test extractFromPath"] =
 function test_ExtractFromPath(assert, done) {
   Task.spawn(function() {
     try {
+      let nytHV = new NYTimesHistoryVisitor({});
       EXTRACT_TEST_CASES.forEach(testCase => {
-        let obj = NYTimesHistoryVisitor._extractFromUrl("http://www.nytimes.com" + testCase.path);
+        let obj = nytHV._extractFromUrl("http://www.nytimes.com" + testCase.path);
         assert.deepEqual(obj, testCase.expected);
       });
     } catch (ex) {
@@ -208,14 +209,15 @@ function test_ConsumeHistoryVisit(assert, done) {
        {uri: NetUtil.newURI("http://nytimes.com")},
       ]);
 
-      NYTimesHistoryVisitor.clear();
 
       let storageBackend = {};
       NYTimesHistoryVisitor.storage = storageBackend;
+      let nytHV = new NYTimesHistoryVisitor(storageBackend);
+
       let streamObjects = initStream();
       let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
-      yield historyReader.resubmitHistory({startDay: today-20, historyVisitor: NYTimesHistoryVisitor});
-      let visits =  NYTimesHistoryVisitor.getVisits();
+      yield historyReader.resubmitHistory({startDay: today-20, historyVisitor: nytHV});
+      let visits =  nytHV.getVisits();
 
       assert.equal(visits.length, 4);
 
@@ -232,8 +234,8 @@ function test_ConsumeHistoryVisit(assert, done) {
       assert.equal(visits[3].visitId, 7);
       assert.equal(visits[3].host, "nytimes.com");
 
-      NYTimesHistoryVisitor.clear();
-      assert.ok(NYTimesHistoryVisitor.getVisits() == null);
+      nytHV.clear();
+      assert.ok(nytHV.getVisits() == null);
 
     } catch (ex) {
       console.error(ex);

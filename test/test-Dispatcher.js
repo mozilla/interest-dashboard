@@ -37,7 +37,8 @@ StudyApp.setSourceUri(NetUtil.newURI("http://localhost"));
 simplePrefs.prefs.uuid = uuid.generateUUID().toString().slice(1, -1).replace(/-/g, "");
 
 function makeTestPayload(referencePayload, interests, storage) {
-  NYTUtils.storage = storage;
+  let nytUtils = new NYTUtils(storage);
+  let nytHistoryVisitor = new NYTimesHistoryVisitor(storage);
   return {
     payloadDate: referencePayload.payloadDate,
     uuid: simplePrefs.prefs.uuid,
@@ -49,8 +50,8 @@ function makeTestPayload(referencePayload, interests, storage) {
     locale: getUserAgentLocale(),
     tldCounter: getTLDCounts(storage),
     hasSurveyInterests: Crypto.hasMappedInterests(simplePrefs.prefs.uuid),
-    nytVisits: NYTimesHistoryVisitor.getVisits() || [],
-    nytUserData: NYTUtils.getNYTUserData(),
+    nytVisits: nytHistoryVisitor.getVisits() || [],
+    nytUserData: nytUtils.getNYTUserData(),
     interests: interests || storage.interests || null
   };
 }
