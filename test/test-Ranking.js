@@ -18,16 +18,31 @@ const {testUtils} = require("./helpers");
 const {storage} = require("sdk/simple-storage");
 const test = require("sdk/test");
 
+let today = DateUtils.today();
+let setupTestController = testUtils.setupTestController;
+
+function flushTestController(testController, resolveTest) {
+  let processDeferred = Promise.defer();
+  testController._streamObjects.interestStorageBolt.setEmitCallback(bolt => {
+    if (resolveTest(bolt)) {
+      processDeferred.resolve();
+    }
+  });
+  return testController.resubmitHistory({flush: true}).then(() => {
+    return processDeferred.promise.then(() => {
+      testController._streamObjects.interestStorageBolt.setEmitCallback(undefined);
+    });
+  });
+}
+
 exports["test empty profile ranking"] = function test_EmptyProfileRanking(assert, done) {
   Task.spawn(function() {
     try {
+      let storageBackend = {};
       yield testUtils.promiseClearHistory();
-      let testController = new Controller();
-      testController.clear()
-      yield testController.submitHistory({flush: true});
-      // we should only see 3 urls being processed, hten Autos should nly contain 3 days
+      let testController = setupTestController({storage: storageBackend});
+
       assert.ok(testController.getRankedInterests() == null);
-      // now test how we generate random zero-score interests
       let sranked = testController.getRankedInterestsForSurvey();
       assert.equal(sranked.length, 30);
       sranked.forEach(pair => {
@@ -39,33 +54,33 @@ exports["test empty profile ranking"] = function test_EmptyProfileRanking(assert
         assert.equal(pair.score,0);
       });
     } catch(ex) {
-      dump(ex + " ERROROR \n");
-      assert.ok(false);
+      console.error(ex);
     }
   }).then(done);
 }
 
 exports["test ranking"] = function test_Ranking(assert, done) {
   Task.spawn(function() {
-   try {
+    try {
     yield testUtils.promiseClearHistory();
     let microNow = Date.now() * 1000;
 
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - MICROS_PER_DAY});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
+    let storageBackend = {};
+    let testController = setupTestController({rankType: "combined", storage: storageBackend});
+    storageBackend.ranking = {
+      "daycount_edrules_rules": {"Autos":4},
+      "daycount_edrules_keywords": {"Autos":4},
+      "daycount_edrules_combined": {"Autos":4},
+      "daycount_edrules_extended_rules": {"Autos":4},
+      "daycount_edrules_extended_keywords": {"Autos":4},
+      "daycount_edrules_extended_combined": {"Autos":4}
+    }
 
-    let testController = new Controller({rankType: "combined"});
-    testController.clear()
-    yield testController.submitHistory({flush: true});
-
-    // we should only see 3 urls being processed, hten Autos should nly contain 3 days
-    testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":4}, "Only Autos");
+    assert.deepEqual(testController.getRankedInterests(), {"Autos":4}, "Only Autos");
 
     // now test how we generate random zero-score interests
     let sranked = testController.getRankedInterestsForSurvey(10);
-    testUtils.isIdentical(assert, sranked[0] , {"interest":"Autos","score":4}, "first is Autos");
+    assert.deepEqual(sranked[0] , {"interest":"Autos","score":4}, "first is Autos");
 
     // make sure the rest of scores is zero
     let duplicateCatcher = {};
@@ -76,7 +91,7 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     }
 
     let newranks = testController.getRankedInterestsForSurvey(10);
-    testUtils.isIdentical(assert, newranks[0] , {"interest":"Autos","score":4}, "still Autos is first");
+    assert.deepEqual(newranks[0] , {"interest":"Autos","score":4}, "still Autos is first");
 
     // make sure that interetsts are different
     let diffCount = 0;
@@ -92,7 +107,15 @@ exports["test ranking"] = function test_Ranking(assert, done) {
     // we should see at least 3 diffs
     assert.ok(diffCount >= 3, "Differences exists and = " + diffCount);
 
-    yield testUtils.promiseClearHistory();
+    storageBackend.ranking = {
+      "daycount_edrules_rules": {"Travel":1, "Tennis": 2, "Politics": 3, "Autos": 4, "Humor": 5, "Programming": 6, "Television": 7, "Science": 8, "Music": 9, "Android": 10},
+      "daycount_edrules_keywords": {},
+      "daycount_edrules_combined": {},
+      "daycount_edrules_extended_rules": {},
+      "daycount_edrules_extended_keywords": {},
+      "daycount_edrules_extended_combined": {}
+    }
+
     let cats = [
      {
       host: "traveler.xyz",
@@ -146,13 +169,6 @@ exports["test ranking"] = function test_Ranking(assert, done) {
      }
     ];
 
-    for (let i = 0; i < cats.length; i++) {
-      let item = cats[i];
-      yield testUtils.addVisits(item.host,item.score,true);
-    }
-
-    // make sure that counts stay the same
-    yield testController.resubmitHistory({flush: true});
     sranked = testController.getRankedInterestsForSurvey(10).sort((a,b) => {
       return b.score - a.score;
     });
@@ -163,28 +179,26 @@ exports["test ranking"] = function test_Ranking(assert, done) {
 
     // now add a few extra interests and see if top/medium/low works
     // add Gossip
-    yield testUtils.addVisits("tmz.com",11,true);
-    yield testController.resubmitHistory({flush: true});
+    storageBackend.ranking.daycount_edrules_rules.Gossip = 11;
 
     // Gossip should be first and then shifteed by 1 cats
     sranked = testController.getRankedInterestsForSurvey();
     assert.equal("Gossip", sranked[0].interest);
     assert.equal(11, sranked[0].score);
 
-    // now add baseball
-    yield testUtils.addVisits("hardballtimes.com",12,true);
-    yield testUtils.addVisits("dezeen.com",13,true);
-    yield testUtils.addVisits("ilounge.com",14,true);
-    yield testController.resubmitHistory({flush: true});
+    storageBackend.ranking.daycount_edrules_rules.Baseball = 12;
+    storageBackend.ranking.daycount_edrules_rules["Home-Design"] = 13;
+    storageBackend.ranking.daycount_edrules_rules.Apple = 14;
+
     sranked = testController.getRankedInterestsForSurvey();
-    testUtils.isIdentical(assert, sranked[0], {"interest":"Apple","score":14});
-    testUtils.isIdentical(assert, sranked[1], {"interest":"Home-Design","score":13});
-    testUtils.isIdentical(assert, sranked[2], {"interest":"Baseball","score":12});
+    assert.deepEqual(sranked[0], {"interest":"Apple","score":14});
+    assert.deepEqual(sranked[1], {"interest":"Home-Design","score":13});
+    assert.deepEqual(sranked[2], {"interest":"Baseball","score":12});
     assert.ok(sranked[29] != null);
     assert.equal(sranked[29].score, 0);
 
    } catch(ex) {
-     dump(ex + " ERROROR \n");
+     console.error(ex);
    }
   }).then(done);
 }
@@ -194,22 +208,30 @@ exports["test day counting"] = function test_DayCounting(assert, done) {
    try {
     yield testUtils.promiseClearHistory();
     let microNow = Date.now() * 1000;
+
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY + 10});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY + 20});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY + 30});
-    let testController = new Controller({rankType: "combined"});
+
+    let storageBackend = {};
+    let testController = setupTestController({rankType: "combined", storage: storageBackend});
     testController.clear()
-    yield testController.resubmitHistory({flush: true});
-    testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":1}, "we should only see score 1 for 1 day");
+
+    yield flushTestController(testController, bolt => {
+      return bolt.storage.interests.hasOwnProperty(today-3);
+    });
+    assert.deepEqual(testController.getRankedInterests(), {"Autos":1}, "we should only see score 1 for 1 day");
 
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY + 10});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY + 20});
     testController.clear()
-    yield testController.resubmitHistory({flush: true});
-    testUtils.isIdentical(assert, testController.getRankedInterests(), {"Autos":2}, "we should see score 2 for 2 days");
+    yield flushTestController(testController, bolt => {
+      return bolt.storage.interests.hasOwnProperty(today-2);
+    });
+    assert.deepEqual(testController.getRankedInterests(), {"Autos":2}, "we should see score 2 for 2 days");
    } catch(ex) {
-     dump(ex + " ERROROR \n");
+     console.error(ex);
    }
   }).then(done);
 }
