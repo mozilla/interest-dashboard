@@ -27,11 +27,7 @@ const {DayCountRankerBolt} = require("streams/dayCountRankerBolt");
 const {HostStripBolt} = require("streams/hostStripBolt");
 const {InterestStorageBolt} = require("streams/interestStorageBolt");
 
-function setupTestController(storageBackend) {
-  let storageBackend = storageBackend || {};
-  let testController = new Controller({storage: storageBackend});
-  return testController;
-}
+let setupTestController = testUtils.setupTestController;
 
 exports["test controller"] = function test_Controller(assert, done) {
   Task.spawn(function() {
@@ -48,10 +44,31 @@ exports["test controller"] = function test_Controller(assert, done) {
       // step one day into future to flush the DayBuffer
       let testController = setupTestController();
       testController.clear();
-      yield testController.submitHistory({flush: true});
 
-      // we should only see 3 urls being processed, hten Autos should nly contain 3 days
+      let processDeferred;;
+
+      processDeferred = Promise.defer();
+      testController._streamObjects.rankerBolts[0].setEmitCallback(bolt => {
+        if (bolt.storage.ranking[bolt.storageKey].Autos == 4) {
+          processDeferred.resolve();
+        }
+      });
+      yield testController.submitHistory({flush: true});
+      yield processDeferred.promise;
+      testController._streamObjects.dailyInterestsSpout.setEmitCallback(undefined);
+
+      // we should see 4 urls being processed, hten Autos should contain 4 days
       assert.deepEqual(testController.getRankedInterests(), {"Autos":4}, "4 Autos");
+
+      // wait till storage bolt has captured the interests
+      processDeferred = Promise.defer();
+      testController._streamObjects.interestStorageBolt.setEmitCallback(bolt => {
+        if (Object.keys(bolt.storage.interests).length == 4) {
+          processDeferred.resolve();
+        }
+      });
+      yield processDeferred.promise;
+      testController._streamObjects.interestStorageBolt.setEmitCallback(undefined);
 
       let payload = testController.getNextDispatchBatch();
       let days = Object.keys(payload.interests);
@@ -103,8 +120,8 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits(hostArray,59);
 
-      let storageBackend = {hi: "there"};
-      let testController = setupTestController(storageBackend);
+      let storageBackend = {};
+      let testController = setupTestController({storage: storageBackend});
       testController.clear();
 
       let testScores = function(theController) {
@@ -117,10 +134,22 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
         assert.equal(interests.Android, 60);
       };
 
+      let processDeferred;
+
+      processDeferred = Promise.defer();
+      testController._streamObjects.interestStorageBolt.setEmitCallback(bolt => {
+        if (Object.keys(bolt.storage.interests).length == 60) {
+          processDeferred.resolve();
+        }
+      });
+
       yield testController.submitHistory({flush: true});
+      yield processDeferred.promise;
+      testController._streamObjects.interestStorageBolt.setEmitCallback(undefined);
+
       let today = DateUtils.today();
       let theVeryLastTimeStamp = storageBackend.lastTimeStamp;
-      // verify reanks
+      // verify ranks
       testScores(testController);
 
       // a toture test to make sure we can disable and re-enable
@@ -136,7 +165,7 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
         if (lastTimeStamp == theVeryLastTimeStamp) {
           break;
         }
-        testController = setupTestController(storageBackend);
+        testController = setupTestController({storage: storageBackend});
         promise = testController.submitHistory();
         cycles++;
       }
@@ -147,6 +176,7 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
     }
   }).then(done);
 }
+
 
 exports["test clear storage"] = function test_ClearStorage(assert, done) {
   Task.spawn(function() {
@@ -162,7 +192,7 @@ exports["test clear storage"] = function test_ClearStorage(assert, done) {
       yield testUtils.addVisits(hostArray,59);
 
       let storageBackend = {};
-      let testController = new Controller(storageBackend);
+      let testController = setupTestController({storage: storageBackend});
       testController.clear();
 
       testController.submitHistory({flush: true});
@@ -176,12 +206,6 @@ exports["test clear storage"] = function test_ClearStorage(assert, done) {
       assert.equal(storageBackend.ranking, undefined);
       assert.equal(storageBackend.nytimesVisits, undefined);
       assert.equal(storageBackend.hasOwnProperty("interests"), false);
-
-      // avoid intermittent unit-test failures caused by storage cleanup
-      // simply re-create a controller, and clean it.  This will remake
-      // all objects and repopulate storage.
-      testController = setupTestController(storage);
-      testController.clear();
     } catch(ex) {
       console.error(ex);
     }
@@ -206,15 +230,18 @@ exports["test nytCollect"] = function test_NYTCollect(assert, done) {
       let hostArray = ["www.nytimes.com"];
       yield testUtils.promiseClearHistory();
       yield testUtils.addVisits(hostArray,1);
-      let testController = setupTestController();
-      testController.clear();
+
+      let storageBackend = {};
+      let testController = setupTestController({storage: storageBackend});
+
+      let nytHistoryVisitor = new NYTimesHistoryVisitor(storageBackend);
+      assert.ok(nytHistoryVisitor.getVisits() == null);
+
       yield testController.submitHistory({flush: true});
-      assert.equal(NYTimesHistoryVisitor.getVisits().length, 2);
-      yield testController.stopAndClearStorage();
-      assert.ok(NYTimesHistoryVisitor.getVisits() == null);
+      assert.equal(nytHistoryVisitor.getVisits().length, 2);
       assert.ok(true);
     } catch(ex) {
-      dump(ex + " ERROR\n");
+      console.error(ex);
     }
   }).then(done);
 }
@@ -230,6 +257,16 @@ exports["test getUserInterests"] = function test_GetUserInterests(assert, done) 
       testController.clear();
       yield testController.submitHistory({flush: true})
 
+
+      let processDeferred = Promise.defer();
+      testController._streamObjects.rankerBolts[0].setEmitCallback(bolt => {
+        if (bolt.storage.ranking[bolt.storageKey].Autos == 3) {
+          processDeferred.resolve();
+        }
+      });
+      yield processDeferred.promise;
+      testController._streamObjects.rankerBolts[0].setEmitCallback(undefined);
+
       simplePrefs.prefs.uuid = "this_uuid_cannot_exist";
       let interests = testController.getUserInterests();
       assert.deepEqual(interests, {"Autos":3});
@@ -238,7 +275,7 @@ exports["test getUserInterests"] = function test_GetUserInterests(assert, done) 
       interests = testController.getUserInterests();
       assert.deepEqual(interests, {"NO_SUCH_INTREST":1});
     } catch(ex) {
-      dump(ex + " ERROR\n");
+      console.error(ex);
     }
   }).then(done);
 }
@@ -249,19 +286,19 @@ exports["test mayPersonalize"] = function test_MayPersonalize(assert, done) {
       // set uuid andt make a controller
       simplePrefs.prefs.uuid = "1";
       let storage = {};
-      let testController = setupTestController(storage);
+      let testController = setupTestController({storage: storage});
       let pObject = testController._dispatcher._makePayloadObject();
       assert.ok(testController.mayPersonalize() == true);
       assert.ok(pObject.personalizeOn == true);
 
       // remake controller for a different uuid
       simplePrefs.prefs.uuid = "2";
-      testController = setupTestController(storage);
+      testController = setupTestController({storage: storage});
       assert.ok(testController.mayPersonalize() == false);
       pObject = testController._dispatcher._makePayloadObject();
       assert.ok(pObject.personalizeOn == false);
     } catch(ex) {
-      dump(ex + " ERROR\n");
+      console.error(ex);
     }
   }).then(done);
 }
@@ -286,7 +323,7 @@ exports["test hostComputedInterests"] = function test_HostComputedInterests(asse
         "3":{"interests":{"Autos":300,"Politics":300,"Programming":300},"frecency":300}
       });
     } catch(ex) {
-      dump( ex + " ERROR\n");
+      console.error(ex);
     }
   }).then(done);
 }
