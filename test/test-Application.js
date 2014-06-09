@@ -10,7 +10,6 @@ const simplePrefs = require("sdk/simple-prefs");
 const {storage} = require("sdk/simple-storage");
 
 const {PrefsManager, StudyApp} = require("Application");
-const {Controller} = require("Controller");
 const {testUtils} = require("./helpers");
 const test = require("sdk/test");
 
@@ -19,7 +18,7 @@ Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
 
 exports["test PrefsManager prefs"] = function test_PrefsManagerPrefs(assert) {
-  let testController = new Controller();
+  let testController = testUtils.setupTestController();
   StudyApp.controller = testController;
   StudyApp.submitPromise = Promise.resolve();
   PrefsManager.setObservers();
