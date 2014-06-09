@@ -339,10 +339,11 @@ exports["test locale"] = function test_locale(assert) {
 
 exports["test idle-daily dispatch"] = function test_IdleDailyDispatch(assert, done) {
   Task.spawn(function() {
-    let testController = new Controller();
+    let storageBackend = {};
+    let testController = testUtils.setupTestController({storage: storageBackend});
     testController.clear();
 
-    let dispatcher = new Dispatcher("http://example.com", {enabled: false, dispatchIdleDelay: 1, storageBackend: {}});
+    let dispatcher = new Dispatcher("http://example.com", {enabled: false, dispatchIdleDelay: 1, storageBackend: storageBackend});
     testController._dispatcher = dispatcher;
 
     let sendPingDeferred = Promise.defer();
@@ -372,7 +373,7 @@ exports["test mozhosts interests dispatch"] = function test_MozhostsInterestsDis
     let hostArray = ["www.autoblog.com"];
     yield testUtils.promiseClearHistory();
     yield testUtils.addVisits(hostArray,2);
-    let testController = new Controller({storage: {}});
+    let testController = testUtils.setupTestController({storage: {}});
     testController.clear();
     yield testController.submitHistory({flush: true});
     let batch = testController.getNextDispatchBatch();
