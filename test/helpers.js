@@ -13,6 +13,7 @@ Cu.import("resource://gre/modules/PlacesUtils.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
 const {MICROS_PER_DAY} = require("DateUtils");
+const {Controller} = require("Controller");
 
 let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
 
@@ -156,5 +157,11 @@ exports.testUtils = {
 
   tsToDay: function(ts) {
     return Math.floor(ts / MICROS_PER_DAY);
+  },
+
+  setupTestController: function(options={}) {
+    options.storage = options.storage || {};
+    let testController = new Controller(options);
+    return testController;
   },
 };
