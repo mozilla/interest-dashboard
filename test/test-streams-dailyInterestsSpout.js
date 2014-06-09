@@ -50,26 +50,27 @@ exports["test visit processing"] = function test_PastVisits(assert, done) {
         }
       });
 
-      let dailyInterestsSpout = DailyInterestsSpout.create({});
+      let storageBackend = {};
+      let dailyInterestsSpout = DailyInterestsSpout.create(storageBackend);
       let stream = new Stream();
       stream.addNode(dailyInterestsSpout, true);
       stream.addNode(assertionBolt);
 
-      let pushPromise = stream.push("interest", {details: interestMessage, dateVisits: dateVisits});
-      doAssert = function(message) {
-        assert.ok(message.hasOwnProperty(today-2), "result should have the day before yesterday's data");
-      }
-      yield pushPromise;
-
       let assertDeferred = Promise.defer();
+      stream.push("interest", [{details: interestMessage, dateVisits: dateVisits}]);
+      doAssert = function(message) {
+        assertDeferred.resolve();
+        assert.deepEqual(Object.keys(message), [today-2 + ""], "result should have the day before yesterday's data only");
+      }
+      yield assertDeferred.promise;
+
+      assertDeferred = Promise.defer();
       doAssert = function(message) {
         assertDeferred.resolve();
         assert.ok(message.hasOwnProperty(today-1), "result should have yesterday's data");
       }
-      let flushPromise = stream.flush();
-      yield flushPromise;
+      stream.flush();
       yield assertDeferred.promise;
-      dailyInterestsSpout.clearStorage();
     }
     catch (ex) {
       console.error(ex);
@@ -100,31 +101,31 @@ exports["test ignore latest day visit unless flush"] = function test_TodayVisits
       stream.addNode(dailyInterestsSpout, true);
       stream.addNode(assertionBolt);
 
-      let pushPromise;
+      let assertDeferred = Promise.defer();
 
       // test that the latest day is not pushed through the network
-      pushPromise = stream.push("interest", {details: interestMessage, dateVisits: dateVisits});
+      stream.push("interest", [{details: interestMessage, dateVisits: dateVisits}]);
       doAssert = function(message) {
+        assertDeferred.resolve();
         assert.ok(message.hasOwnProperty(today-2), "result should have the day before yesterday's data");
         assert.ok(message.hasOwnProperty(today-1), "result should have yesterday's data");
         assert.equal(message.hasOwnProperty(today), false, "result should not have today's data");
       }
-      yield pushPromise;
+      yield assertDeferred.promise;
 
       // test that the latest day is accumulated and returns when flushed
 
-      let flushedDeferred = Promise.defer();
+      assertDeferred = Promise.defer();
       doAssert = function(message) {
-        flushedDeferred.resolve();
+        assertDeferred.resolve();
         assert.ok(message.hasOwnProperty(today), "today's count should be present");
         assert.equal(message[today]["rules"]["edrules"]["Autos"]["autoblog.com"], 3, "today's visit count should have accumulated");
       }
       dateVisits = {};
       dateVisits[today] = 2; // assertion checks if 2 is added to the 1 count set before
-      pushPromise = stream.push("interest", {details: interestMessage, dateVisits: dateVisits});
-      yield stream.flush();
-      yield pushPromise;
-      dailyInterestsSpout.clearStorage();
+      stream.push("interest", [{details: interestMessage, dateVisits: dateVisits}]);
+      stream.flush();
+      yield assertDeferred.promise;
     }
     catch (ex) {
       console.error(ex);
@@ -147,7 +148,7 @@ exports["test emit callback"] = function test_TodayVisits(assert, done) {
       let pushPromise;
 
       // setup spout to keep waiting
-      pushPromise = stream.push("interest", {details: interestMessage, dateVisits: dateVisits});
+      pushPromise = stream.push("interest", [{details: interestMessage, dateVisits: dateVisits}]);
 
       let whenEmitDeferred = Promise.defer();
       let reportWhenEmitting = function() {
@@ -159,7 +160,7 @@ exports["test emit callback"] = function test_TodayVisits(assert, done) {
       // set one more day to trigger emit
       dateVisits = {}
       dateVisits[today-1] = 1
-      stream.push("interest", {details: interestMessage, dateVisits: dateVisits});
+      stream.push("interest", [{details: interestMessage, dateVisits: dateVisits}]);
 
       yield whenEmitDeferred.promise;
       yield pushPromise;
