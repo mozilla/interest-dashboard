@@ -69,10 +69,10 @@ exports["test push linear topology"] = function test_push_linear(assert, done) {
       listenType: "capitalizedPairs",
       emitType: null,
       ingest: function(messages) {
-        boltDeferred.resolve(true);
         assert.equal(messages.length, 2, "messages are buffered and sent");
         assert.equal(messages[0], "MESSAGE 1", "messages have been processed by the bolt");
         assert.equal(messages[1], "MESSAGE 2", "messages have been processed by the bolt");
+        boltDeferred.resolve();
       }
     });
 
@@ -81,11 +81,9 @@ exports["test push linear topology"] = function test_push_linear(assert, done) {
     stream.addNode(capitalizeBolt);
     stream.addNode(assertionBolt);
 
-    let pushPromise = stream.push("lonelyMessage", "message 1");
+    stream.push("lonelyMessage", "message 1");
     stream.push("lonelyMessage", "message 2");
-    let deferredPassed = yield boltDeferred.promise;
-    assert.ok(deferredPassed, "assertionBolt has been invoked");
-    yield pushPromise;
+    yield boltDeferred.promise;
   }).then(done);
 };
 
@@ -202,23 +200,27 @@ exports["test push complex topology"] = function test_push_complex(assert, done)
     stream.addNode(evenLoggerSpout);
     stream.addNode(assertionBolt);
 
-    let pushPromise;
+    let assertDeferred;
 
     // eat is sent with an even count. total is even
-    pushPromise = stream.push("events", ["eat", "work", "eat", "sleep"]);
+    stream.push("events", ["eat", "work", "eat", "sleep"]);
+    assertDeferred = Promise.defer();
     doAssert = function(message) {
       assert.equal(Object.keys(message).length, 1, "message items are buffered");
       assert.equal(message.eat, 2, "message items have been counted");
+      assertDeferred.resolve();
     }
-    yield pushPromise;
+    yield assertDeferred.promise;
 
     // sleep is sent with an even count, though total is 3
-    pushPromise = stream.push("events", ["eat", "sleep", "eat", "sleep", "eat"]);
+    stream.push("events", ["eat", "sleep", "eat", "sleep", "eat"]);
+    assertDeferred = Promise.defer();
     doAssert = function(message) {
       assert.equal(Object.keys(message).length, 1, "message items are buffered");
       assert.equal(message.sleep, 3, "message counts have been accumulated");
+      assertDeferred.resolve();
     }
-    yield pushPromise;
+    yield assertDeferred.promise;
   }).then(done);
 }
 
@@ -242,6 +244,7 @@ exports["test spout waiting"] = function test_spout_waiting(assert, done) {
         return this.results.length > 1;
       }
     });
+    let assertDeferred = Promise.defer();
     let numCalled = 0;
     let collectorBolt = createNode({
       identifier: "collectorBolt",
@@ -249,6 +252,9 @@ exports["test spout waiting"] = function test_spout_waiting(assert, done) {
       emitType: null,
       ingest: function(messages) {
         numCalled += 1;
+        if (numCalled == 2) {
+          assertDeferred.resolve();
+        }
       }
     });
     let stream = new Stream();
@@ -258,7 +264,8 @@ exports["test spout waiting"] = function test_spout_waiting(assert, done) {
     for(let msgNum = 0; msgNum < 3; msgNum++) {
       stream.push("lonelyMessage", "msg_"+msgNum);
     }
-    yield stream.push("lonelyMessage", "msg_4");
+    stream.push("lonelyMessage", "msg_4");
+    yield assertDeferred.promise;
     assert.equal(numCalled, 2, "consumed calls in the stream don't cause messages to flow");
   }).then(done);
 }
@@ -297,22 +304,28 @@ exports["test flush"] = function test_flush(assert, done) {
     stream.addNode(bufferFiveSpout, true);
     stream.addNode(assertionBolt);
 
-    let pushPromise;
+    let assertDeferred;
 
     // make sure buffering until five works
     stream.push("incr", 4);
+    assertDeferred = Promise.defer();
     doAssert = function(count) {
       assert.equal(count, 5);
+      assertDeferred.resolve();
     }
-    yield stream.push("incr", 1);
+    stream.push("incr", 1);
+    yield assertDeferred.promise;
     assert.equal(bufferFiveSpout.results, null);
 
     // flushing should override the buffering behavior
     stream.push("incr", 1);
+    assertDeferred = Promise.defer();
     doAssert = function(count) {
       assert.equal(count, 1);
+      assertDeferred.resolve();
     }
-    yield stream.flush();
+    stream.flush();
+    yield assertDeferred.promise;
   }).then(done);
 }
 
@@ -333,6 +346,7 @@ exports["test message copy"] = function test_message_copy(assert, done) {
         this.results = message;
       }
     });
+    let assertDeferred = Promise.defer();
     let capitalizeBolt = createNode({
       identifier: "capitalizeBolt",
       listenType: "testMessage",
@@ -341,6 +355,7 @@ exports["test message copy"] = function test_message_copy(assert, done) {
         assert.equal(typeof(message.text), "string", "input is still a string");
         message.text = message.text.toUpperCase();
         this.results = message;
+        assertDeferred.resolve();
       }
     });
 
@@ -348,9 +363,9 @@ exports["test message copy"] = function test_message_copy(assert, done) {
     stream.addNode(splitToCharBolt, true);
     stream.addNode(capitalizeBolt, true);
 
-    let pushPromise = stream.push("testMessage", {text: "I'm a test message"});
+    stream.push("testMessage", {text: "I'm a test message"});
 
-    yield pushPromise;
+    yield assertDeferred.promise;
   }).then(done);
 }
 
