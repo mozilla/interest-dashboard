@@ -28,20 +28,29 @@ exports["test matching workers"] = function test_MatchingWorkers(assert, done) {
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
 
 
-    let testController = new Controller();
-    testController.clear();
-    yield testController.submitHistory({flush: true});
-
+    let testController = testUtils.setupTestController();
+    let processDeferred;
     let today = DateUtils.today();
+
+    processDeferred = Promise.defer();
+    testController._streamObjects.interestStorageBolt.setEmitCallback(bolt => {
+      if (bolt.storage.interests.hasOwnProperty(today)) {
+        processDeferred.resolve();
+      }
+    });
+    yield testController.submitHistory({flush: true});
+    yield processDeferred.promise;
+    testController._streamObjects.interestStorageBolt.setEmitCallback(undefined);
+
     let payload = testController.getNextDispatchBatch();
 
-    testUtils.isIdentical(assert, payload["interests"]["" + today]["rules"]["edrules"], {"Autos":[1]}, "edrules model test");
-    testUtils.isIdentical(assert, payload["interests"]["" + today]["rules"]["edrules_extended"], {"Autos":[1]}, "edrules_extended model test");
-    testUtils.isIdentical(assert, payload["interests"]["" + today]["rules"]["58-cat"], {"cars":[1]}, "58-cat model test");
-    testUtils.isIdentical(assert, payload["interests"]["" + (today-4)]["rules"]["edrules"], {"Autos":[1]}, "edrules model test");
-    testUtils.isIdentical(assert, payload["interests"]["" + (today-4)]["rules"]["edrules_extended"], {"Autos":[1]}, "edrules_extended model test");
-    testUtils.isIdentical(assert, payload["interests"]["" + (today-4)]["rules"]["58-cat"], {"cars":[1]}, "58-cat model test");
-    testUtils.isIdentical(assert, payload["interests"]["" + (today-4)]["keywords"]["edrules_extended"], {"Autos":[1]}, "edrules_extended model test");
+    assert.deepEqual(payload["interests"]["" + today]["rules"]["edrules"], {"Autos":[1]}, "edrules model test");
+    assert.deepEqual(payload["interests"]["" + today]["rules"]["edrules_extended"], {"Autos":[1]}, "edrules_extended model test");
+    assert.deepEqual(payload["interests"]["" + today]["rules"]["58-cat"], {"cars":[1]}, "58-cat model test");
+    assert.deepEqual(payload["interests"]["" + (today-4)]["rules"]["edrules"], {"Autos":[1]}, "edrules model test");
+    assert.deepEqual(payload["interests"]["" + (today-4)]["rules"]["edrules_extended"], {"Autos":[1]}, "edrules_extended model test");
+    assert.deepEqual(payload["interests"]["" + (today-4)]["rules"]["58-cat"], {"cars":[1]}, "58-cat model test");
+    assert.deepEqual(payload["interests"]["" + (today-4)]["keywords"]["edrules_extended"], {"Autos":[1]}, "edrules_extended model test");
 
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.nytimes.com/"), visitDate: microNow});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.nytimes.com/thepage"), visitDate: microNow});
@@ -55,14 +64,23 @@ exports["test matching workers"] = function test_MatchingWorkers(assert, done) {
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.mitbbs.com/thepage"), visitDate: microNow});
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.mitbbs.com/thepage1"), visitDate: microNow});
     testController.clear();
+
+    processDeferred = Promise.defer();
+    testController._streamObjects.interestStorageBolt.setEmitCallback(bolt => {
+      if (bolt.storage.interests.hasOwnProperty(today)) {
+        processDeferred.resolve();
+      }
+    });
     yield testController.submitHistory({flush: true});
+    yield processDeferred.promise;
+    testController._streamObjects.interestStorageBolt.setEmitCallback(undefined);
+
     payload = testController.getNextDispatchBatch();
 
-    testUtils.isIdentical(assert, payload["interests"]["" + today]["rules"]["58-cat"],
+    assert.deepEqual(payload["interests"]["" + today]["rules"]["58-cat"],
       {"cars":[1],"news":[2,2,2,2,3],"__news_counter":[2,2,2,2],"__news_home_counter":[1,1,1,1],"politics":[2],"tv":[2]});
 
-    done();
-  });
+  }).then(done);
 }
 
 test.run(exports);
