@@ -22,6 +22,7 @@ const {DayCountRankerBolt} = require("streams/dayCountRankerBolt");
 const {DailyInterestsSpout} = require("streams/dailyInterestsSpout");
 const {HostStripBolt} = require("streams/hostStripBolt");
 const {InterestStorageBolt} = require("streams/interestStorageBolt");
+const {getPlacesHostForURI, getBaseDomain} = require("Utils");
 const test = require("sdk/test");
 
 let gWorkerFactory = new WorkerFactory();
@@ -60,7 +61,14 @@ exports["test read all"] = function test_readAll(assert, done) {
     let streamObjects = initStream(storageBackend);
     let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
-    yield streamObjects.stream.flush(); // flush out the last day
+
+    let assertDeferred = Promise.defer();
+    streamObjects.interestStorageBolt.setEmitCallback(function() {
+      assertDeferred.resolve();
+    });
+    streamObjects.stream.flush(); // flush out the last day
+    yield assertDeferred.promise;
+
     let datum = storageBackend.interests;
     let dates = Object.keys(storageBackend.interests);
     assert.equal(dates.length,21);
@@ -80,7 +88,14 @@ exports["test read from given timestamp"] = function test_readFromGivenTimestamp
     // only read starting from id == 10
     let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,(today-10)*MICROS_PER_DAY, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
-    yield streamObjects.stream.flush(); // flush out the last day
+
+    let assertDeferred = Promise.defer();
+    streamObjects.interestStorageBolt.setEmitCallback(function() {
+      assertDeferred.resolve();
+    });
+    streamObjects.stream.flush(); // flush out the last day
+    yield assertDeferred.promise;
+
     let datum = storageBackend.interests;
     let dates = Object.keys(storageBackend.interests);
     assert.equal(dates.length,11);
@@ -101,7 +116,15 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
     // only read starting from id == 10
     let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,10, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
-    yield streamObjects.stream.flush(); // flush out the last day
+
+    let assertDeferred = Promise.defer();
+    streamObjects.interestStorageBolt.setEmitCallback(function() {
+      assertDeferred.resolve();
+    });
+    streamObjects.stream.flush(); // flush out the last day
+    yield assertDeferred.promise;
+    streamObjects.interestStorageBolt.setEmitCallback(undefined);
+
     let datum = storageBackend.interests;
     assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
 
@@ -109,8 +132,16 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
     storageBackend = {};
     streamObjects = initStream(storageBackend);
     historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,10, storageBackend);
-    yield historyReader.resubmitHistory({startDay: today-20},1);
-    yield streamObjects.stream.flush(); // flush out the last day
+    yield historyReader.resubmitHistory({startDay: today-20, chunkSize: 1});
+
+    assertDeferred = Promise.defer();
+    streamObjects.interestStorageBolt.setEmitCallback(function() {
+      assertDeferred.resolve();
+    });
+    streamObjects.stream.flush(); // flush out the last day
+    yield assertDeferred.promise;
+    streamObjects.interestStorageBolt.setEmitCallback(undefined);
+
     let newDatum = storageBackend.interests;
     assert.deepEqual(datum, newDatum);
     assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
@@ -135,8 +166,15 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
     let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
-    yield historyReader.resubmitHistory({startDay: today-20},1);
-    yield streamObjects.stream.flush(); // flush out the last day
+    yield historyReader.resubmitHistory({startDay: today-20});
+
+    let assertDeferred = Promise.defer();
+    streamObjects.interestStorageBolt.setEmitCallback(function() {
+      assertDeferred.resolve();
+    });
+    streamObjects.stream.flush(); // flush out the last day
+    yield assertDeferred.promise;
+
     let datum = storageBackend.interests;
     let dates = Object.keys(storageBackend.interests);
     assert.equal(dates.length,3);
@@ -162,22 +200,34 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       let streamObjects = initStream(storageBackend);
       let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
 
-      let processDeferred = Promise.defer();
-      streamObjects.dailyInterestsSpout.setEmitCallback(numFromToday => {
-        if (numFromToday == 0) {
+      let processDeferred;
+
+      // block until the data has been processed
+      processDeferred = Promise.defer();
+      streamObjects.dailyInterestsSpout.setEmitCallback(spout => {
+        if (spout.numFromToday == 1) {
           processDeferred.resolve();
         }
       });
-
-      yield historyReader.resubmitHistory({startDay: today-61},1);
+      yield historyReader.resubmitHistory({startDay: today-61});
       yield processDeferred.promise;
-      yield streamObjects.stream.flush(); // flush out the last day
-      yield promiseTimeout(500);
+      streamObjects.dailyInterestsSpout.setEmitCallback(undefined);
+
+      // block until today's data has been flushed
+      processDeferred = Promise.defer();
+      streamObjects.interestStorageBolt.setEmitCallback(bolt => {
+        if (Object.keys(bolt.storage.interests).length == 61) {
+          processDeferred.resolve();
+        }
+      });
+      streamObjects.stream.flush();
+      yield processDeferred.promise;
+      streamObjects.interestStorageBolt.setEmitCallback(undefined);
 
       let allTheData = storageBackend.interests;
+      assert.deepEqual(Object.keys(allTheData).length, 61);
       assert.deepEqual(allTheData[today + ""].rules.edrules["Autos"], [1]);
       assert.deepEqual(allTheData[(today-60) + ""].rules.edrules["Autos"], [1]);
-      assert.deepEqual(Object.keys(allTheData).length, 61);
       let theVeryLastTimeStamp = historyReader.getLastTimeStamp();
 
       // now start the torture test
@@ -185,14 +235,14 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       streamObjects = initStream(storageBackend);
 
       processDeferred = Promise.defer();
-      streamObjects.dailyInterestsSpout.setEmitCallback(numFromToday => {
-        if (numFromToday == 0) {
+      streamObjects.dailyInterestsSpout.setEmitCallback(spout => {
+        if (spout.numFromToday == 1) {
           processDeferred.resolve();
         }
       });
 
       historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
-      let promise = historyReader.resubmitHistory({startDay: today-61},10);
+      let promise = historyReader.resubmitHistory({startDay: today-61});
       let cycles = 0;
       while (true) {
         yield promiseTimeout(100);
@@ -203,17 +253,29 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
           break;
         }
         historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,lastTimeStamp, storageBackend);
-        promise = historyReader.resubmitHistory({startDay: today-61},1);
+        promise = historyReader.resubmitHistory({startDay: today-61});
         cycles ++;
       }
       assert.ok(cycles > 1);
+
       yield processDeferred.promise;
+      streamObjects.dailyInterestsSpout.setEmitCallback(undefined);
 
-      yield streamObjects.stream.flush(); // flush out the last day
-      yield promiseTimeout(500);
+      // torture run is complete
+      // wait until data is flushed
+      processDeferred = Promise.defer();
+      streamObjects.interestStorageBolt.setEmitCallback(bolt => {
+        if (Object.keys(bolt.storage.interests).length == 61) {
+          processDeferred.resolve();
+        }
+      });
 
-      // we cannot be sure when history has done processing, but we can obtain the number of days
-      assert.deepEqual(Object.keys(storageBackend.interests).length, 61);
+      streamObjects.stream.flush();
+      yield processDeferred.promise;
+      streamObjects.interestStorageBolt.setEmitCallback(undefined);
+
+      // the content from the torture test and the single run is the same
+      assert.deepEqual(storageBackend.interests, allTheData);
     } catch(ex) {
       console.error(ex);
     }
