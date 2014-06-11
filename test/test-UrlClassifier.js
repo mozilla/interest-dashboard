@@ -20,9 +20,10 @@ const test = require("sdk/test");
 exports["test url classifier"] = function test_UrlClassifier(assert, done) {
   Task.spawn(function() {
     let workerFactory = new WorkerFactory();
-    let urlClassifier = new UrlClassifier(workerFactory.getCurrentWorkers());
+    let workers = workerFactory.getInterestsWorkers();
+    let urlClassifier = new UrlClassifier(workers);
     let results = yield urlClassifier.classifyPage("http://www.autoblog.com/","Drive honda");
-    assert.equal(Object.keys(results).length, 4);
+    assert.equal(Object.keys(results).length, workers.length);
     testUtils.isIdentical(assert, results["58-cat"].results,
           [{"type":"rules","interests":["cars"]},
            {"type":"combined","interests":["cars"]},
@@ -33,7 +34,7 @@ exports["test url classifier"] = function test_UrlClassifier(assert, done) {
            {"type":"combined","interests":["Autos"]},
            {"type":"keywords","interests":[]}
           ]);
-    // test for an error 
+    // test for an error
     yield urlClassifier.classifyPage("not a url").then(result => {
       assert.ok(false);
     },

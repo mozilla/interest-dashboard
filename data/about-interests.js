@@ -4,7 +4,7 @@
 nv.dev = false;
 
 let types = ["keywords", "rules", "combined"];
-let namespaces = ["58-cat", "edrules", "edrules_extended", "edrules_extended_kw"];
+let namespaces = ["58-cat", "edrules", "edrules_extended"];
 
 let interestsBarChart = nv.models.discreteBarChart()
   .x(function(d) { return d.label })
