@@ -7,7 +7,6 @@
 const {WeightIntensityDataProcessorBolt} = require("streams/weightIntensityDataProcessorBolt");
 const test = require("sdk/test");
 const {testUtils} = require("./helpers");
-const {storage} = require("sdk/simple-storage");
 const {Cc, Ci, Cu} = require("chrome");
 const sampleData = require("./sampleData");
 const chartData = require("./chartData");
@@ -15,7 +14,8 @@ Cu.import("resource://gre/modules/Task.jsm");
 
 exports["test weight intensity data processing"] = function test_weightIntensityDataProcessing(assert, done) {
   Task.spawn(function() {
-    let weightIntensityDataProcessorBolt = WeightIntensityDataProcessorBolt.create();
+    let storage = {};
+    let weightIntensityDataProcessorBolt = WeightIntensityDataProcessorBolt.create(storage);
     yield weightIntensityDataProcessorBolt.consume({meta: {}, message: chartData.dayAnnotatedThreeChartProcessorConsumeResults});
 
     testUtils.isIdentical(assert, JSON.stringify(storage.chartData.weightIntensityData),

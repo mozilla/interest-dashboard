@@ -7,7 +7,6 @@
 const {ChartDataProcessorBolt} = require("streams/chartDataProcessorBolt");
 const test = require("sdk/test");
 const {testUtils} = require("./helpers");
-const {storage} = require("sdk/simple-storage");
 const {Cc, Ci, Cu} = require("chrome");
 const sampleData = require("./sampleData");
 const chartData = require("./chartData");
@@ -15,7 +14,7 @@ Cu.import("resource://gre/modules/Task.jsm");
 
 exports["test chart data processing"] = function test_chartDataProcessing(assert, done) {
   Task.spawn(function() {
-    let chartDataProcessorBolt = ChartDataProcessorBolt.create();
+    let chartDataProcessorBolt = ChartDataProcessorBolt.create({});
     let chartDataProcessorResults = (yield chartDataProcessorBolt.consume({meta: {}, message: sampleData.dayAnnotatedThree})).message;
 
     testUtils.isIdentical(assert, JSON.stringify(chartDataProcessorResults),

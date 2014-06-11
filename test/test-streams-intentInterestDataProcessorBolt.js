@@ -7,7 +7,6 @@
 const {IntentInterestDataProcessorBolt} = require("streams/intentInterestDataProcessorBolt");
 const test = require("sdk/test");
 const {testUtils} = require("./helpers");
-const {storage} = require("sdk/simple-storage");
 const {Cc, Ci, Cu} = require("chrome");
 const sampleData = require("./sampleData");
 const chartData = require("./chartData");
@@ -15,7 +14,8 @@ Cu.import("resource://gre/modules/Task.jsm");
 
 exports["test intent interest data processing"] = function test_intentInterestDataProcessing(assert, done) {
   Task.spawn(function() {
-    let intentInterestDataProcessorBolt = IntentInterestDataProcessorBolt.create();
+    let storage = {};
+    let intentInterestDataProcessorBolt = IntentInterestDataProcessorBolt.create(storage);
     yield intentInterestDataProcessorBolt.consume({meta: {}, message: chartData.dayAnnotatedThreeChartProcessorConsumeResults});
 
     testUtils.isIdentical(assert, JSON.stringify(storage.chartData.intentInterestData),
