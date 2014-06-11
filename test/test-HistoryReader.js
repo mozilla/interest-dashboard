@@ -59,7 +59,7 @@ exports["test read all"] = function test_readAll(assert, done) {
 
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(), streamObjects, 0, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
     let assertDeferred = Promise.defer();
@@ -86,7 +86,7 @@ exports["test read from given timestamp"] = function test_readFromGivenTimestamp
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
     // only read starting from id == 10
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,(today-10)*MICROS_PER_DAY, storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(),streamObjects,(today-10)*MICROS_PER_DAY, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
     let assertDeferred = Promise.defer();
@@ -114,7 +114,7 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
     // only read starting from id == 10
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,10, storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(),streamObjects,10, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
     let assertDeferred = Promise.defer();
@@ -131,7 +131,7 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
     // now set chunksize to 1 and read from same id
     storageBackend = {};
     streamObjects = initStream(storageBackend);
-    historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,10, storageBackend);
+    historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(),streamObjects,10, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20, chunkSize: 1});
 
     assertDeferred = Promise.defer();
@@ -165,7 +165,7 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
 
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(),streamObjects,0, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
     let assertDeferred = Promise.defer();
@@ -198,7 +198,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
 
       let storageBackend = {};
       let streamObjects = initStream(storageBackend);
-      let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
+      let historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(),streamObjects,0, storageBackend);
 
       let processDeferred;
 
@@ -241,7 +241,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
         }
       });
 
-      historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
+      historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(),streamObjects,0, storageBackend);
       let promise = historyReader.resubmitHistory({startDay: today-61});
       let cycles = 0;
       while (true) {
@@ -252,7 +252,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
         if (lastTimeStamp == theVeryLastTimeStamp) {
           break;
         }
-        historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,lastTimeStamp, storageBackend);
+        historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(),streamObjects,lastTimeStamp, storageBackend);
         promise = historyReader.resubmitHistory({startDay: today-61});
         cycles ++;
       }
@@ -300,7 +300,7 @@ exports["test tldCounter"] = function test_TldCounter(assert, done) {
 
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(),streamObjects,0, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20},1);
     assert.deepEqual(storageBackend.tldCounter,
       {"au":{"mysql.au":1,"facebook.au":1},
@@ -323,7 +323,7 @@ exports["test historyVisitor"] = function test_HistoryVisitor(assert, done) {
     yield testUtils.addVisits("www.autoblog.com",2);
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(), streamObjects, 0, storageBackend);
     let theVisitor = {
       consumeHistoryVisit: function(visit) {
         visits.push(visit);

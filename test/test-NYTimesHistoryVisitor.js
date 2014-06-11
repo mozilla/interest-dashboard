@@ -215,7 +215,7 @@ function test_ConsumeHistoryVisit(assert, done) {
       let nytHV = new NYTimesHistoryVisitor(storageBackend);
 
       let streamObjects = initStream();
-      let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
+      let historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(), streamObjects, 0, storageBackend);
       yield historyReader.resubmitHistory({startDay: today-20, historyVisitor: nytHV});
       let visits =  nytHV.getVisits();
 
