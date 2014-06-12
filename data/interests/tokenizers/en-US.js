@@ -20,7 +20,7 @@ Tokenizer_EN_US.prototype = {
 
     let urlTokens = aUrl.split(/\s+/);
     urlTokens.forEach(function(token) {
-      if (!(this._urlStopwordSet.hasOwnProperty(token))) {
+      if (!this._urlStopwordSet.hasOwnProperty(token) && token != "") {
         tokens.push(token);
       }
     }, this);
