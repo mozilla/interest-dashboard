@@ -14,22 +14,21 @@ Cu.import("resource://gre/modules/Task.jsm");
 
 const {WorkerFactory} = require("WorkerFactory");
 const {UrlClassifier} = require("UrlClassifier");
-const {testUtils} = require("./helpers");
 const test = require("sdk/test");
 
-exports["test url classifier"] = function test_UrlClassifier(assert, done) {
+exports["test interest classifier"] = function test_UrlClassifier(assert, done) {
   Task.spawn(function() {
     let workerFactory = new WorkerFactory();
     let workers = workerFactory.getInterestsWorkers();
     let urlClassifier = new UrlClassifier(workers);
     let results = yield urlClassifier.classifyPage("http://www.autoblog.com/","Drive honda");
     assert.equal(Object.keys(results).length, workers.length);
-    testUtils.isIdentical(assert, results["58-cat"].results,
+    assert.deepEqual(results["58-cat"].results,
           [{"type":"rules","interests":["cars"]},
            {"type":"combined","interests":["cars"]},
            {"type":"keywords","interests":[]}
           ]);
-    testUtils.isIdentical(assert, results["edrules"].results,
+    assert.deepEqual(results["edrules"].results,
           [{"type":"rules","interests":["Autos"]},
            {"type":"combined","interests":["Autos"]},
            {"type":"keywords","interests":[]}
@@ -44,7 +43,7 @@ exports["test url classifier"] = function test_UrlClassifier(assert, done) {
 
     // classify only the text
     results = yield urlClassifier.classifyPage(null, "iphone, ipad, apple, product, phone");
-    testUtils.isIdentical(assert, results["edrules"].results,
+    assert.deepEqual(results["edrules"].results,
         [{"type":"rules","interests":[]},
          {"type":"keywords","interests":["Apple"]},
          {"type":"combined","interests":["Apple"]}
