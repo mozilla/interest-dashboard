@@ -22,10 +22,6 @@ let gNamespace = null;
 let gRegionCode = null;
 let gTokenizer = null;
 
-// XXX The original splitter doesn't apply to chinese:
-//   /[^-\w\xco-\u017f\u0380-\u03ff\u0400-\u04ff]+/;
-const kSplitter = /[\s-]+/;
-
 // bootstrap the worker with data and models
 function bootstrap(aMessageData) {
   gRegionCode = aMessageData.workerRegionCode;
