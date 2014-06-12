@@ -45,7 +45,7 @@ let testDomainRules = {
   }
 }
 
-// the test array 
+// the test array
 let matchTests = [
 {
   info: "Match Test 1 (Rules): mozilla.org",
@@ -99,7 +99,7 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
       if (aEvent.type == "message") {
         let msgData = aEvent.data;
         if (msgData.message == "InterestsForDocument") {
-          // make sure that categorization is correct 
+          // make sure that categorization is correct
           let host = msgData.host;
           testUtils.isIdentical(assert, msgData.results, expectedInterests);
           deferred.resolve();
@@ -131,7 +131,7 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
       let title = test.title;
       let host = uri.host;
       let path = uri.path;
-      let tld = Services.eTLD.getBaseDomainFromHost(host);
+      let baseDomain = Services.eTLD.getBaseDomainFromHost(host);
 
       //console.log(test.info);
 
@@ -142,7 +142,7 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
         path: path,
         title: title,
         url: test.url,
-        tld: tld
+        baseDomain: baseDomain
       });
       yield deferred.promise;
     }

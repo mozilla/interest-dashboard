@@ -63,14 +63,14 @@ function swapRules({interestsData, interestsDataType}) {
 }
 
 // classify a page using rules
-function ruleClassify({host, language, tld, metaData, path, title, url}) {
+function ruleClassify({host, language, baseDomain, metaData, path, title, url}) {
   let interests = [];
 
-  if (!gInterestsData || !gInterestsData[tld]) {
+  if (!gInterestsData || !gInterestsData[baseDomain]) {
     return interests;
   }
 
-  let rule = gInterestsData[tld];
+  let rule = gInterestsData[baseDomain];
 
   let keyLength = rule ? Object.keys(rule).length : 0;
   if (!keyLength)
@@ -89,7 +89,7 @@ function ruleClassify({host, language, tld, metaData, path, title, url}) {
 
   // subdomain tokens, for example:
   //   host="foo.bar.rootdomain.com", we got ["foo.", "bar."]
-  words = words.concat(host.substring(0, host.length - tld.length).match(/[^.\/]+\./gi));
+  words = words.concat(host.substring(0, host.length - baseDomain.length).match(/[^.\/]+\./gi));
   // path tokens, for example:
   //   path="/foo/bar/blabla.html", we got ["/foo", "/bar", "/blabla.html"]
   words = words.concat(path.match(/\/[^\/#?]+/gi));
