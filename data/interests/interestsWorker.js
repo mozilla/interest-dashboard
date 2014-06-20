@@ -63,7 +63,7 @@ function swapRules({interestsData, interestsDataType}) {
 }
 
 // classify a page using rules
-function ruleClassify({host, language, baseDomain, metaData, path, title, url}) {
+function ruleClassify({host, language, baseDomain, path, title, url}) {
   let interests = [];
 
   if (!gInterestsData || !gInterestsData[baseDomain]) {
@@ -129,6 +129,7 @@ function textClassify({url, title}) {
 
 // Figure out which interests are associated to the document
 function getInterestsForDocument(aMessageData) {
+
   function dedupeInterests(interests) {
     // remove duplicates
     if (interests.length > 1) {
@@ -171,12 +172,12 @@ function getInterestsForDocument(aMessageData) {
     self.postMessage(aMessageData);
   }
   catch (ex) {
-    log("getInterestsForDocument: " + ex)
+    log(ex)
   }
 }
 
 // Dispatch the message to the appropriate function
 self.onmessage = function({data}) {
-  self[data.message](data);
+  self[data.command](data.payload);
 };
 

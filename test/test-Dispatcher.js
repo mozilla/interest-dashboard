@@ -376,6 +376,16 @@ exports["test mozhosts interests dispatch"] = function test_MozhostsInterestsDis
     let testController = testUtils.setupTestController({storage: {}});
     testController.clear();
     yield testController.submitHistory({flush: true});
+
+    let processDeferred = Promise.defer();
+    testController._streamObjects.interestStorageBolt.setEmitCallback(bolt => {
+      if (Object.keys(bolt.storage.interests).length == 3) {
+        processDeferred.resolve();
+      }
+    });
+    yield processDeferred.promise;
+    testController._streamObjects.interestStorageBolt.setEmitCallback(undefined);
+
     let batch = testController.getNextDispatchBatch();
     assert.deepEqual(
       batch.mozhostsInterests,

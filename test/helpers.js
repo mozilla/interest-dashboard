@@ -58,13 +58,15 @@ exports.testUtils = {
     worker.addEventListener("message", listener, false);
     worker.addEventListener("error", listener, false);
     worker.postMessage({
-      message: "bootstrap",
-      workerNamespace: namespace,
-      workerRegionCode: regionCode || 'en-US',
-      interestsDataType: "dfr",
-      interestsData: domainRules,
-      interestsClassifierModel: textModel,
-      interestsUrlStopwords: urlStopWords
+      command: "bootstrap",
+      payload: {
+        workerNamespace: namespace,
+        workerRegionCode: regionCode || 'en-US',
+        interestsDataType: "dfr",
+        interestsData: domainRules,
+        interestsClassifierModel: textModel,
+        interestsUrlStopwords: urlStopWords
+      }
     });
     return worker;
   },

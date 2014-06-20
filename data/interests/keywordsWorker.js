@@ -86,6 +86,6 @@ function getKeywordsForDocument(aMessageData) {
 
 // Dispatch the message to the appropriate function
 self.onmessage = function({data}) {
-  self[data.message](data);
+  self[data.command](data.payload);
 };
 

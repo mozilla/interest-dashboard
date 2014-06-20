@@ -40,7 +40,7 @@ exports["test edrules text"] = function test_edrules_text(assert, done) {
         if (msgData.message == "InterestsForDocument") {
           // make sure that categorization is correct
           let host = msgData.host;
-          testUtils.isIdentical(assert, msgData.results, expectedInterests);
+          assert.deepEqual(msgData.results, expectedInterests);
           deferred.resolve();
         }
         else if (!(msgData.message in testUtils.kValidMessages)) {
@@ -76,12 +76,14 @@ exports["test edrules text"] = function test_edrules_text(assert, done) {
 
       expectedInterests = test.expectedInterests;
       worker.postMessage({
-        message: "getInterestsForDocument",
-        host: host,
-        path: path,
-        title: title,
-        url: test.url,
-        tld: tld
+        command: "getInterestsForDocument",
+        payload: {
+          host: host,
+          path: path,
+          title: title,
+          url: test.url,
+          tld: tld
+        }
       });
       yield deferred.promise;
     }
@@ -149,8 +151,8 @@ exports["test text classifier"] = function test_text_classification(assert, done
       if (aEvent.type == "message") {
         let msgData = aEvent.data;
         if (msgData.message == "InterestsForDocument") {
-          // make sure that categorization is correct 
-          testUtils.isIdentical(assert, msgData.results, expectedInterests);
+          // make sure that categorization is correct
+          assert.deepEqual(msgData.results, expectedInterests);
           deferred.resolve();
         }
         else if (!(msgData.message in testUtils.kValidMessages)) {
@@ -186,12 +188,14 @@ exports["test text classifier"] = function test_text_classification(assert, done
 
       expectedInterests = test.expectedInterests;
       worker.postMessage({
-        message: "getInterestsForDocument",
-        host: host,
-        path: path,
-        title: title,
-        url: test.url,
-        tld: tld
+        command: "getInterestsForDocument",
+        payload: {
+          host: host,
+          path: path,
+          title: title,
+          url: test.url,
+          tld: tld
+        }
       });
       yield deferred.promise;
     }

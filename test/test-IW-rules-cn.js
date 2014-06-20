@@ -50,7 +50,7 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
         if (msgData.message == "InterestsForDocument") {
           // make sure that categorization is correct
           let host = msgData.host;
-          testUtils.isIdentical(assert, msgData.results, expectedInterests);
+          assert.deepEqual(msgData.results, expectedInterests);
           deferred.resolve();
         }
         else if (!(msgData.message in testUtils.kValidMessages)) {
@@ -59,7 +59,7 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
         }
       }
       else {
-        throw "ERROR_UNEXPECTED_MSG_TYPE" + aEvent.type;
+        throw "ERROR_UNEXPECTED_MSG_TYPE: " + aEvent.type;
       }
     } // end of handleEvent
   };
@@ -83,16 +83,16 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
       let path = uri.path;
       let baseDomain = Services.eTLD.getBaseDomainFromHost(host);
 
-      //console.log(test.info);
-
       expectedInterests = test.expectedInterests;
       worker.postMessage({
-        message: "getInterestsForDocument",
-        host: host,
-        path: path,
-        title: title,
-        url: test.url,
-        baseDomain: baseDomain
+        command: "getInterestsForDocument",
+        payload: {
+          host: host,
+          path: path,
+          title: title,
+          url: test.url,
+          baseDomain: baseDomain
+        }
       });
       yield deferred.promise;
     }
