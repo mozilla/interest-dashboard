@@ -80,25 +80,37 @@ exports["test controller"] = function test_Controller(assert, done) {
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.rivals.com/"), visitDate: microNow + 2});
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.rivals.com/"), visitDate: microNow + MICROS_PER_DAY});
 
+
+      processDeferred = Promise.defer();
       let observer = {
         observe: function(aSubject, aTopic, aData) {
           try {
             if  (aTopic != "controller-history-submission-complete") {
               throw "UNEXPECTED_OBSERVER_TOPIC " + aTopic;
             }
-            // we should see the 3 intersts now
-            assert.deepEqual(testController.getRankedInterests(), {"Autos":4,"Politics":1,"Sports":1}, "should see 3 intresests");
-            // and we must see 4 day in the keys
-            payload = testController.getNextDispatchBatch();
-            days = Object.keys(payload.interests);
-            assert.deepEqual(days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today],"still 4 days");
-            Services.obs.removeObserver(observer, "controller-history-submission-complete");
-            done();
+            processDeferred.promise.then(() => {
+              testController._streamObjects.dailyInterestsSpout.setEmitCallback(undefined);
+
+              // we should see the 3 intersts now
+              assert.deepEqual(testController.getRankedInterests(), {"Autos":4,"Politics":1,"Sports":1}, "should see 3 intresests");
+              // and we must see 4 day in the keys
+              payload = testController.getNextDispatchBatch();
+              days = Object.keys(payload.interests);
+              assert.deepEqual(days ,  ["" + (today-4), "" + (today-3), "" + (today-2), "" + today],"still 4 days");
+              Services.obs.removeObserver(observer, "controller-history-submission-complete");
+              done();
+            });
           } catch (ex) {
             console.error(ex);
           }
         },
       };
+
+      testController._streamObjects.rankerBolts[0].setEmitCallback(bolt => {
+        if (Object.keys(bolt.storage.ranking[bolt.storageKey]).length == 3) {
+          processDeferred.resolve();
+        }
+      });
 
       Services.obs.addObserver(observer, "controller-history-submission-complete" , false);
       Services.obs.notifyObservers(null, "idle-daily", null);

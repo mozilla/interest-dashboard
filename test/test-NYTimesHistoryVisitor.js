@@ -19,6 +19,7 @@ const {WorkerFactory} = require("WorkerFactory");
 const {HistoryReader, getTLDCounts} = require("HistoryReader");
 const {Stream} = require("streams/core");
 const {DailyInterestsSpout} = require("streams/dailyInterestsSpout");
+const {DailyKeywordsSpout} = require("streams/dailyKeywordsSpout");
 const {HostStripBolt} = require("streams/hostStripBolt");
 const {InterestStorageBolt} = require("streams/interestStorageBolt");
 
@@ -28,12 +29,14 @@ function initStream(storageBackend) {
   // setup stream workers
   let streamObjects = {
     dailyInterestsSpout: DailyInterestsSpout.create(storageBackend),
+    dailyKeywordsSpout: DailyKeywordsSpout.create(storageBackend),
     hostStripBolt: HostStripBolt.create(),
     interestStorageBolt: InterestStorageBolt.create(storageBackend),
     stream: new Stream(),
   }
   let stream = streamObjects.stream;
   stream.addNode(streamObjects.dailyInterestsSpout, true);
+  stream.addNode(streamObjects.dailyKeywordsSpout, true);
   stream.addNode(streamObjects.hostStripBolt);
   stream.addNode(streamObjects.interestStorageBolt);
 
@@ -215,7 +218,7 @@ function test_ConsumeHistoryVisit(assert, done) {
       let nytHV = new NYTimesHistoryVisitor(storageBackend);
 
       let streamObjects = initStream();
-      let historyReader = new HistoryReader(gWorkerFactory.getInterestsWorkers(), streamObjects, 0, storageBackend);
+      let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
       yield historyReader.resubmitHistory({startDay: today-20, historyVisitor: nytHV});
       let visits =  nytHV.getVisits();
 
@@ -238,6 +241,7 @@ function test_ConsumeHistoryVisit(assert, done) {
       assert.ok(nytHV.getVisits() == null);
 
     } catch (ex) {
+      assert.ok(false);
       console.error(ex);
     }
   }).then(done);
