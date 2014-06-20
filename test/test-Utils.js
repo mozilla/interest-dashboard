@@ -43,7 +43,7 @@ exports["test getRelevantPrefs"] = function test_GetRelevantPrefs(assert, done) 
     "browser.formfill.enable":Services.prefs.getBoolPref("browser.formfill.enable"),
     "nytimes_personalization_start": simplePrefs.prefs.nytimes_personalization_start
   };
-  testUtils.isIdentical(assert,prefs,expected);
+  assert.deepEqual(prefs,expected);
   done();
 }
 
@@ -79,7 +79,7 @@ exports["test computeInterestsFromHosts"] = function test_ComputeInterestsFromHo
       yield testUtils.addVisits("salon.com", 2);
 
       let results = yield computeInterestsFromHosts(interestsData);
-      testUtils.isIdentical(assert, results, {
+      assert.deepEqual(results, {
         "1":{"interests":{"Auto":500},"frecency":500},
         "2":{"interests":{"Auto":500,"Computers":400},"frecency":400},
         "3":{"interests":{"Auto":500,"Computers":400,"Politics":300},"frecency":300}
@@ -90,7 +90,7 @@ exports["test computeInterestsFromHosts"] = function test_ComputeInterestsFromHo
       yield testUtils.addVisits("foo.com", 1);
       results = yield computeInterestsFromHosts(interestsData);
       assert.equal(Object.keys(results).length,4);
-      testUtils.isIdentical(assert, results["24"], {"interests":{"Auto":500,"Computers":400,"Politics":300,"FOO":200},"frecency":200});
+      assert.deepEqual(results["24"], {"interests":{"Auto":500,"Computers":400,"Politics":300,"FOO":200},"frecency":200});
     } catch (ex) {
       dump( ex + " ERROR\n");
     }

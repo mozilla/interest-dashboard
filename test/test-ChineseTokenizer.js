@@ -19,7 +19,7 @@ scriptLoader.loadSubScript(data.url("models/zh-CN/41-cat/textModel.json"));
 scriptLoader.loadSubScript(data.url("interests/tokenizers/zh-CN.js"));
 
 exports["test ChineseTokeinzer"] = function test_ChineseTokenizer(assert) {
-  testUtils.isIdentical(assert, !!Tokenizer_ZH_CN, true);
+  assert.deepEqual(!!Tokenizer_ZH_CN, true);
 
   let tokenizer = new Tokenizer_ZH_CN({
     urlStopwordSet: interestsUrlStopwords,
@@ -56,11 +56,11 @@ exports["test ChineseTokeinzer"] = function test_ChineseTokenizer(assert) {
   tests.forEach(test => {
     let results = tokenizer.tokenize(test.url, test.title);
     test.must_have.forEach(k => {
-      testUtils.isIdentical(assert, testUtils.itemsHave(results, k), true);
+      assert.deepEqual(testUtils.itemsHave(results, k), true);
     });
 
     test.must_not_have.forEach(k => {
-      testUtils.isIdentical(assert, testUtils.itemsHave(results, k), false);
+      assert.deepEqual(testUtils.itemsHave(results, k), false);
     });
   });
 };

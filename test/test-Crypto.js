@@ -83,7 +83,7 @@ function test_WriteMappings(assert, done) {
 
     //make sure we can decrypt NO_SUCH_UUID interest
     let nosuchInterest = Crypto.uuidGetInterestsFromDictionary("NO_SUCH_UUID", eDict);
-    testUtils.isIdentical(assert, nosuchInterest, {"NO_SUCH_INTREST":1});
+    assert.deepEqual(nosuchInterest, {"NO_SUCH_INTREST":1});
     assert.ok(Crypto.uuidGetInterestsFromDictionary("MISSING_UUID", eDict) == null);
 
     // encrypted dictionary into a file
@@ -101,7 +101,7 @@ function test_WriteMappings(assert, done) {
 exports["test uuid_mapping"] =
 function test_uuidMappings(assert, done) {
   let nosuchInterest = Crypto.uuidGetMappedInterests("NO_SUCH_UUID");
-  testUtils.isIdentical(assert, nosuchInterest, {"NO_SUCH_INTREST":1});
+  assert.deepEqual(nosuchInterest, {"NO_SUCH_INTREST":1});
   assert.ok(Crypto.uuidGetMappedInterests("MISSING_UUID") == null);
   assert.ok(Crypto.hasMappedInterests("NO_SUCH_UUID"));
   assert.ok(Crypto.hasMappedInterests("NON_EXISTENT_UUID") == false);

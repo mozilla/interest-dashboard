@@ -29,30 +29,6 @@ exports.testUtils = {
     return false;
   },
 
-  isIdentical : function isIdentical(assert, actual, expected, text) {
-    if (expected == null || actual == null) {
-      this.do_check_eq(assert, actual, expected, text);
-    }
-    else if (Array.isArray(expected)) {
-      assert.equal(expected.length, actual.length, text);
-      for (let i = 0; i < expected.length; i++) {
-        this.isIdentical(assert,expected[i],actual[i],text);
-      }
-    }
-    else if (typeof expected == "object" && typeof actual == "object") {
-      // Make sure all the keys match up
-      this.do_check_eq(assert, Object.keys(expected).sort() + "", Object.keys(actual).sort(), text);
-
-      // Recursively check each value individually
-      Object.keys(expected).forEach(key => {
-        this.isIdentical(assert, actual[key], expected[key], text);
-      });
-    }
-    else {
-      this.do_check_eq(assert, actual, expected, text);
-    }
-  },
-
   getWorker : function getWorker({namespace, domainRules, textModel, urlStopWords, listener, regionCode}) {
     let worker = new ChromeWorker(data.url("interests/interestsWorker.js"));
     worker.addEventListener("message", listener, false);

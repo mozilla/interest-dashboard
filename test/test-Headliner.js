@@ -30,7 +30,7 @@ exports["test Headliner client request"] = function test_HeadlinerRequest(assert
       let body = NetUtil.readInputStreamToString(request._bodyInputStream, bodySize, {charset: "UTF-8"});
       let deserialized = JSON.parse(body);
 
-      testUtils.isIdentical(assert, deserialized, interests, "unexpected interest data");
+      assert.deepEqual(deserialized, interests, "unexpected interest data");
       response.setHeader("Content-Type", "application/json", false);
       response.setStatusLine(request.httpVersion, 200, "OK");
       response.write(responseJSON);
@@ -44,7 +44,7 @@ exports["test Headliner client request"] = function test_HeadlinerRequest(assert
     let headliner = new HeadlinerPersonalizationAPI(serverUrl);
     let data = yield headliner.consume(interests);
     yield responseDeferred.promise;
-    testUtils.isIdentical(assert, data, JSON.parse(responseJSON), "unexpected response data");
+    assert.deepEqual(data, JSON.parse(responseJSON), "unexpected response data");
     server.stop(function(){});
   }).then(done);
 }
@@ -129,12 +129,12 @@ exports["test Headliner client refresh"] = function test_HeadlinerClientRefresh(
     refreshed = yield headliner.refreshContent(interests);
     assert.equal(refreshed, null, "result of a failed refresh should be null");
     cachedData = yield headliner.getContent(interests);
-    testUtils.isIdentical(assert, cachedData, oldData, "content cache should still show old results");
+    assert.deepEqual(cachedData, oldData, "content cache should still show old results");
 
     headliner._personalizationUrl = successUrl;
     refreshed = yield headliner.refreshContent(interests);
     cachedData = yield headliner.getContent(interests);
-    testUtils.isIdentical(assert, cachedData, refreshed, "content cache should show new results");
+    assert.deepEqual(cachedData, refreshed, "content cache should show new results");
 
     server.stop(function(){});
   }).then(done);

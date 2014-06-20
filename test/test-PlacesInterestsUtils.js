@@ -80,7 +80,7 @@ exports["test onRow"] = function test_OnRow(assert, done) {
           chunkSize: 10,
         }
       );
-      testUtils.isIdentical(assert, newResults, results);
+      assert.deepEqual(newResults, results);
     } catch (ex) {
       dump( ex + " ERROR\n");
     }
@@ -134,13 +134,13 @@ exports["test getMozHosts"] = function test_GetMozHosts(assert, done) {
       yield testUtils.addVisits("mozilla.org",1);
 
       let results = yield PlacesInterestsUtils.getMozHosts();
-      testUtils.isIdentical(assert, results, [{"host":"mozilla.org","frecency":200},{"host":"autoblog.com","frecency":200}]);
+      assert.deepEqual(results, [{"host":"mozilla.org","frecency":200},{"host":"autoblog.com","frecency":200}]);
 
       let collection = [];
       results = yield PlacesInterestsUtils.getMozHosts(item => {
         collection.push(item);
       });
-      testUtils.isIdentical(assert, collection, [{"host":"mozilla.org","frecency":200},{"host":"autoblog.com","frecency":200}]);
+      assert.deepEqual(collection, [{"host":"mozilla.org","frecency":200},{"host":"autoblog.com","frecency":200}]);
       assert.ok(results == null);
 
     } catch (ex) {

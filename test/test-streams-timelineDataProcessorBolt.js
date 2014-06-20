@@ -18,7 +18,7 @@ exports["test timeline data processing"] = function test_timelineDataProcessing(
     let timelineDataProcessorBolt = TimelineDataProcessorBolt.create(storage);
     yield timelineDataProcessorBolt.consume({meta: {}, message: chartData.dayAnnotatedThreeChartProcessorConsumeResults});
 
-    testUtils.isIdentical(assert, JSON.stringify(storage.chartData.timelineData),
+    assert.deepEqual(JSON.stringify(storage.chartData.timelineData),
       JSON.stringify(chartData.dayAnnotatedThreeTimelineConsumeResults), "Unexpected chart data in storage");
 
     // Test expected properties are there.

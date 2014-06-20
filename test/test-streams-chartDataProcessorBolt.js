@@ -17,7 +17,7 @@ exports["test chart data processing"] = function test_chartDataProcessing(assert
     let chartDataProcessorBolt = ChartDataProcessorBolt.create({});
     let chartDataProcessorResults = (yield chartDataProcessorBolt.consume({meta: {}, message: sampleData.dayAnnotatedThree})).message;
 
-    testUtils.isIdentical(assert, JSON.stringify(chartDataProcessorResults),
+    assert.deepEqual(JSON.stringify(chartDataProcessorResults),
       JSON.stringify(chartData.dayAnnotatedThreeChartProcessorConsumeResults), "Unexpected chart data in storage");
 
     // Test expected properties are there.

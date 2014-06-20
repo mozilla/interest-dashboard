@@ -18,7 +18,7 @@ exports["test weight intensity data processing"] = function test_weightIntensity
     let weightIntensityDataProcessorBolt = WeightIntensityDataProcessorBolt.create(storage);
     yield weightIntensityDataProcessorBolt.consume({meta: {}, message: chartData.dayAnnotatedThreeChartProcessorConsumeResults});
 
-    testUtils.isIdentical(assert, JSON.stringify(storage.chartData.weightIntensityData),
+    assert.deepEqual(JSON.stringify(storage.chartData.weightIntensityData),
       JSON.stringify(chartData.dayAnnotatedThreeWeightIntensityConsumeResults), "Unexpected chart data in storage");
 
     // Test expected properties are there.

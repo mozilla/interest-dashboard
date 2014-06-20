@@ -32,9 +32,9 @@ exports["test PrefsManager prefs"] = function test_PrefsManagerPrefs(assert) {
   ];
 
   dispatcherProperties.forEach(prop => {
-    testUtils.isIdentical(assert, simplePrefs.prefs[prop.pref], dispatcher[prop.obj]);
+    assert.deepEqual(simplePrefs.prefs[prop.pref], dispatcher[prop.obj]);
     simplePrefs.prefs[prop.pref] = prop.value;
-    testUtils.isIdentical(assert, simplePrefs.prefs[prop.pref], dispatcher[prop.obj]);
+    assert.deepEqual(simplePrefs.prefs[prop.pref], dispatcher[prop.obj]);
   });
 }
 
@@ -54,7 +54,7 @@ exports["test AMO source attribution"] = function test_AMOSourceAttribution(asse
   for (let data of urls) {
     let uri = NetUtil.newURI(data.url);
     StudyApp.setSourceUri(uri);
-    testUtils.isIdentical(assert, storage.downloadSource, data.src);
+    assert.deepEqual(storage.downloadSource, data.src);
   }
 }
 

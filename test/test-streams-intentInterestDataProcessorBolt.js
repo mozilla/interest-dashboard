@@ -18,7 +18,7 @@ exports["test intent interest data processing"] = function test_intentInterestDa
     let intentInterestDataProcessorBolt = IntentInterestDataProcessorBolt.create(storage);
     yield intentInterestDataProcessorBolt.consume({meta: {}, message: chartData.dayAnnotatedThreeChartProcessorConsumeResults});
 
-    testUtils.isIdentical(assert, JSON.stringify(storage.chartData.intentInterestData),
+    assert.deepEqual(JSON.stringify(storage.chartData.intentInterestData),
       JSON.stringify(chartData.dayAnnotatedThreeIntentInterestConsumeResults), "Unexpected chart data in storage");
 
     // Test expected properties are there.
