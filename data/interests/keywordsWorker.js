@@ -21,11 +21,14 @@ KeywordsWorkerError.prototype.constructor = KeywordsWorkerError;
 let gNamespace = null;
 let gRegionCode = null;
 let gTokenizer = null;
+let gWordPrefixes = null;
+let gNumbersPattern = /\d/
 
 // bootstrap the worker with data and models
 function bootstrap(aMessageData) {
   gRegionCode = aMessageData.workerRegionCode;
   gNamespace = aMessageData.workerNamespace;
+  gWordPrefixes = aMessageData.wordPrefixes;
 
   if (aMessageData.urlStopwordSet) {
     gTokenizer = tokenizerFactory.getTokenizer({
@@ -39,6 +42,28 @@ function bootstrap(aMessageData) {
   });
 }
 
+/**
+ * Return whether the validation trie contains the first three
+ * letters of a given token.
+ */
+function _tokenIsValid(token) {
+  let currentPosition = gWordPrefixes;
+  let isValid = false;
+  for (let i=0;  i < token.length; i++) {
+    if (currentPosition.hasOwnProperty(token[i])) {
+      currentPosition = currentPosition[token[i]];
+      if (currentPosition == 0) {
+        isValid = true;
+        break;
+      }
+    }
+    else {
+      break;
+    }
+  }
+  return isValid;
+}
+
 // obtain unique keywords from a url and a title
 function extractUniqueKeywords({url, title, publicSuffix}) {
   if (gTokenizer == null) {
@@ -48,7 +73,9 @@ function extractUniqueKeywords({url, title, publicSuffix}) {
   let tokens = gTokenizer.tokenize(url, title);
   let tokenSet = {};
   for (let token of tokens) {
-    tokenSet[token] = true;
+    if (token.length >= 3 && token.search(gNumbersPattern) == -1 && _tokenIsValid(token)) {
+      tokenSet[token] = true;
+    }
   }
 
   // remove public suffix tokens

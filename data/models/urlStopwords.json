@@ -1,4 +1,11 @@
 var interestsUrlStopwords = {
+  "com": true,
+  "net": true,
+  "org": true,
+  "int": true,
+  "edu": true,
+  "gov": true,
+  "mil": true,
   "www": true,
   "www1": true,
   "www2": true,
