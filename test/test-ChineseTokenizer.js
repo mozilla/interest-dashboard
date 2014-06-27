@@ -49,7 +49,7 @@ exports["test ChineseTokeinzer"] = function test_ChineseTokenizer(assert) {
   let tests = [{
     url: 'http://sports.sina.com.cn/g/pl/2013-11-11/01036878834.shtml',
     title: '英超-鲁尼助攻范佩西绝杀 曼联胜阿森纳差前四1分',
-    must_have: ['sports', 'sina', 'com', '英超', '曼联', '鲁尼', '范佩西'],
+    must_have: ['sports', 'sina', '英超', '曼联', '鲁尼', '范佩西'],
     must_not_have: ['助攻', '绝杀']
   }];
 
