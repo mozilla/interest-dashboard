@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app="aboutKeywords">
+    <head>
+        <meta charset="utf-8">
+        <title>about:keywords</title>
+    </head>
+    <body ng-cloak>
+        <div class="container">
+            <div class="navbar">
+                <h1>Keywords from your History</h1>
+            </div>
+        </div>
+
+        <div class="container content" ng-controller="vizCtrl">
+            <div class="dropdowns">
+                <select ng-init="selectedType = getTypes()[0]" ng-model="selectedType" ng-options="val for val in getTypes()">
+                    <option value="" disabled>Select Type</option>
+                </select>
+            </div>
+            <div class="btn-group">
+                <button class="btn" ng-disabled='historyComputeInProgress' ng-click="processHistory()">Analyse Full History</button>
+            </div>
+
+            <div class="alerts">
+                <div ng-show="historyComputeInProgress" ng-hide="historyComputeComplete" class="alert alert-info">
+                    <p>Ranking data is being computed. This may take few minutes</p>
+                    <div class="progress progress-striped active">
+                        <div id="progressBar" class="bar" style="width: 0%;"></div>
+                    </div>
+                    <p><span class="badge">{{daysLeft}}</span> days of your history remaining</p>
+                </div>
+
+                <div ng-show="historyComputeComplete && !countsAvailable" class="alert alert-info">{{emptyMessage}}</div>
+            </div>
+
+            <div class="keywordsSection">
+                <div ng-show="typeKeywords">
+
+                    <h3>Keywords for dataset: {{selectedType}}</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Keyword</th>
+                                <th>Occurrences</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="keyword in typeKeywords">
+                                <td>{{$index + 1}}</td><td>{{keyword.key}}</td><td>{{keyword.value}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
