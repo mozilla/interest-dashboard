@@ -22,6 +22,7 @@ let gNamespace = null;
 let gRegionCode = null;
 let gTokenizer = null;
 let gWordPrefixes = null;
+let gStopwords = null;
 let gNumbersPattern = /\d/
 
 // bootstrap the worker with data and models
@@ -29,6 +30,7 @@ function bootstrap(aMessageData) {
   gRegionCode = aMessageData.workerRegionCode;
   gNamespace = aMessageData.workerNamespace;
   gWordPrefixes = aMessageData.wordPrefixes;
+  gStopwords = aMessageData.stopwords;
 
   if (aMessageData.urlStopwordSet) {
     gTokenizer = tokenizerFactory.getTokenizer({
@@ -73,7 +75,7 @@ function extractUniqueKeywords({url, title, publicSuffix}) {
   let tokens = gTokenizer.tokenize(url, title);
   let tokenSet = {};
   for (let token of tokens) {
-    if (token.length >= 3 && token.search(gNumbersPattern) == -1 && _tokenIsValid(token)) {
+    if (token.length >= 3 && token.search(gNumbersPattern) == -1 && !gStopwords.hasOwnProperty(token) && _tokenIsValid(token)) {
       tokenSet[token] = true;
     }
   }
