@@ -19,7 +19,7 @@ const {WorkerFactory} = require("WorkerFactory");
 const {HistoryReader, getTLDCounts} = require("HistoryReader");
 const {Stream} = require("streams/core");
 const {DailyInterestsSpout} = require("streams/dailyInterestsSpout");
-const {DailyKeywordsSpout} = require("streams/dailyKeywordsSpout");
+const {TotalKeywordCountBolt} = require("streams/totalKeywordCountBolt");
 const {HostStripBolt} = require("streams/hostStripBolt");
 const {InterestStorageBolt} = require("streams/interestStorageBolt");
 
@@ -29,14 +29,14 @@ function initStream(storageBackend) {
   // setup stream workers
   let streamObjects = {
     dailyInterestsSpout: DailyInterestsSpout.create(storageBackend),
-    dailyKeywordsSpout: DailyKeywordsSpout.create(storageBackend),
+    totalKeywordCountBolt: TotalKeywordCountBolt.create(storageBackend),
     hostStripBolt: HostStripBolt.create(),
     interestStorageBolt: InterestStorageBolt.create(storageBackend),
     stream: new Stream(),
   }
   let stream = streamObjects.stream;
   stream.addNode(streamObjects.dailyInterestsSpout, true);
-  stream.addNode(streamObjects.dailyKeywordsSpout, true);
+  stream.addNode(streamObjects.totalKeywordCountBolt, true);
   stream.addNode(streamObjects.hostStripBolt);
   stream.addNode(streamObjects.interestStorageBolt);
 

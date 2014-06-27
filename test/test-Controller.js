@@ -22,7 +22,6 @@ const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
 const {promiseTimeout} = require("Utils");
 const {Stream} = require("streams/core");
-const {DailyInterestsSpout} = require("streams/dailyInterestsSpout");
 const {DayCountRankerBolt} = require("streams/dayCountRankerBolt");
 const {HostStripBolt} = require("streams/hostStripBolt");
 const {InterestStorageBolt} = require("streams/interestStorageBolt");

@@ -20,7 +20,7 @@ const {promiseTimeout} = require("Utils");
 const {Stream} = require("streams/core");
 const {DayCountRankerBolt} = require("streams/dayCountRankerBolt");
 const {DailyInterestsSpout} = require("streams/dailyInterestsSpout");
-const {DailyKeywordsSpout} = require("streams/dailyKeywordsSpout");
+const {TotalKeywordCountBolt} = require("streams/totalKeywordCountBolt");
 const {HostStripBolt} = require("streams/hostStripBolt");
 const {InterestStorageBolt} = require("streams/interestStorageBolt");
 const {getPlacesHostForURI, getBaseDomain} = require("Utils");
@@ -37,7 +37,7 @@ function initStream(storageBackend) {
   // setup stream workers
   let streamObjects = {
     dailyInterestsSpout: DailyInterestsSpout.create(storageBackend),
-    dailyKeywordsSpout: DailyKeywordsSpout.create(storageBackend),
+    totalKeywordCountBolt: TotalKeywordCountBolt.create(storageBackend),
     rankerBolts: DayCountRankerBolt.batchCreate(gWorkerFactory.getRankersDefinitions(), storageBackend),
     hostStripBolt: HostStripBolt.create(),
     interestStorageBolt: InterestStorageBolt.create(storageBackend),
@@ -45,7 +45,7 @@ function initStream(storageBackend) {
   }
   let stream = streamObjects.stream;
   stream.addNode(streamObjects.dailyInterestsSpout, true);
-  stream.addNode(streamObjects.dailyKeywordsSpout, true);
+  stream.addNode(streamObjects.totalKeywordCountBolt, true);
   streamObjects.rankerBolts.forEach(ranker => {
     stream.addNode(ranker);
   });
