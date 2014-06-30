@@ -72,9 +72,25 @@ aboutKeywords.controller("vizCtrl", function($scope, dataService) {
   }
 
   $scope.$on("chart_init", function(event, data) {
-    //ChartManager.graphKeywordsFromScratch(data, $scope.selectedType);
     $scope.keywordCounts = data;
     $scope.updateRankingDisplay();
+  });
+
+  $scope.$on("topKeywords", function(event, data) {
+    /*
+    if (data.keywords != null)  {
+      $scope.countsAvailable = true;
+      $scope.keywordCounts = data.keywords;
+      $scope.updateRankingDisplay();
+    }
+    else {
+      $scope.emptyMessage = "Unable to detect interests in your history. Please run the History Analysis after few days of browsing.";
+    }
+    if (data.submitComplete) {
+      $scope.historyComputeInProgress = false;
+      $scope.historyComputeComplete = true;
+    }
+    */
   });
 
   $scope.updateProgressBar = function() {
