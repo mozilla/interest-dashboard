@@ -27,4 +27,15 @@ exports["test keyword extractor"] = function test_keyword_extractor(assert, done
   }).then(done);
 }
 
+exports["test search queries"] = function test_keyword_extractor_search(assert, done) {
+  Task.spawn(function() {
+    let workerFactory = new WorkerFactory();
+    let workers = workerFactory.getKeywordsWorkers();
+    let keywordExtractor = new KeywordExtractor(workers);
+    let results = yield keywordExtractor.extractKeywords("http://www.autoblog.com/search?q=a+search+query","Drive honda");
+    assert.equal(results.places.results.length, 3);
+    assert.deepEqual(results.places.results[2], {type: "search", keywords: ["a","search","query"]});
+  }).then(done);
+}
+
 test.run(exports);

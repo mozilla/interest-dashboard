@@ -1,7 +1,7 @@
 "use strict";
 
 /////     Chart initialization     /////
-let types = ["url_title", "title"];
+let types = ["search", "url_title", "title"];
 
 let DataService = function($rootScope) {
   this.rootScope = $rootScope;

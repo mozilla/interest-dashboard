@@ -18,12 +18,14 @@ function log(msg) {
 KeywordsWorkerError.prototype = new Error();
 KeywordsWorkerError.prototype.constructor = KeywordsWorkerError;
 
+let gQueryParams = ["q", "search_query", "query", "search", "queryString"];
 let gNamespace = null;
-let gRegionCode = null;
+let gRegionCode = null
 let gTokenizer = null;
 let gWordPrefixes = null;
 let gStopwords = null;
-let gNumbersPattern = /\d/
+let gNumbersPattern = /\d/;
+let gSearchPattern = /[Ss]earch/g;
 
 // bootstrap the worker with data and models
 function bootstrap(aMessageData) {
@@ -66,6 +68,25 @@ function _tokenIsValid(token) {
   return isValid;
 }
 
+function extractSearchQueries({url}) {
+  let tokenSet = {};
+  if (url.search(gSearchPattern) != -1) {
+    let u = new URL(url);
+    let params = u.searchParams;
+    for (let query of gQueryParams) {
+      if (params.has(query)) {
+        let queryTokens = gTokenizer.tokenize("", params.get(query));
+        for (let token of queryTokens) {
+          if (token.length > 0 && !gStopwords.hasOwnProperty(token)) {
+            tokenSet[token] = true;
+          }
+        }
+      }
+    }
+  }
+  return Object.keys(tokenSet);
+}
+
 // obtain unique keywords from a url and a title
 function extractUniqueKeywords({url, title, publicSuffix}) {
   if (gTokenizer == null) {
@@ -104,6 +125,11 @@ function getKeywordsForDocument(aMessageData) {
 
     keywords = extractUniqueKeywords({url: "", title: aMessageData.title});
     results.push({type: "title", keywords: keywords});
+
+    let searchQueries = extractSearchQueries(aMessageData);
+    if (searchQueries.length > 0) {
+      results.push({type: "search", keywords: searchQueries});
+    }
 
     aMessageData.results = results;
     self.postMessage(aMessageData);
