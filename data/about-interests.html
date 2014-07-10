@@ -5,12 +5,6 @@
         <title>about:interests</title>
     </head>
     <body ng-cloak>
-        <div class="container">
-            <div class="navbar">
-                <h1>About Your Interests</h1>
-            </div>
-        </div>
-
         <div class="container content" ng-controller="vizCtrl">
             <div class="dropdowns">
                 <select ng-init="selectedType = getTypes()[0]" ng-model="selectedType" ng-options="val for val in getTypes()">
@@ -36,39 +30,12 @@
 
                 <div ng-show="historyComputeComplete && !rankingAvailable" class="alert alert-info">{{emptyMessage}}</div>
             </div>
-
-            <div class="rankingSection">
-                <div class="rankingData">
-                    <h2>
-                        Top Intents
-                    </h2>
-                    <div id="intentCharts" class="row"></div>
-                    <h2>
-                        Top Interests
-                    </h2>
-                    <div id="interestCharts" class="row"></div>
-                    <div id="interestsBarChart">
-                        <h2>
-                            Category Visit Percentage
-                        </h2>
-                        <svg style="height: 300px; width: 100%;"></svg>
-                    </div>
-                    <div id="interestsTimeline">
-                        <h2>
-                            History Timeline
-                        </h2>
-                        <svg style="overflow: visible; height: 800px; width: 100%;"></svg>
-                    </div>
-                    <div id="weightIntensityChart">
-                        <h2>
-                            Days Visited vs. Visits Per Day
-                        </h2>
-                        <svg style="overflow: visible; height: 800px; width: 100%;"></svg>
-                    </div>
-                    <p ng-hide="rankingAvailable || historyComputeInProgress">Ranking data is not available.</p>
-                    <p ng-show="historyComputeInProgress" ng-hide="rankingAvailable">processing...</p>
-                </div>
-            </div>
+        </div>
+        <div id="spiderGraph">
+            <h2>
+                Spider Graph
+            </h2>
+            <svg width="1420" height="800"></svg>
         </div>
     </body>
 </html>

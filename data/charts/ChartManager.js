@@ -12,14 +12,8 @@ let ChartManager = {
    * @data - storage.chartData object which contains data for all charts
    */
   graphAllFromScratch: function(data, type, namespace) {
-    if (!this._charts["timeline"]) {
-      this._charts["timeline"] = new TimelineChart();
-    }
-    if (!this._charts["weightIntensity"]) {
-      this._charts["weightIntensity"] = new WeightIntensityChart();
-    }
-    if (!this._charts["intentInterest"]) {
-      this._charts["intentInterest"] = new IntentInterestCharts();
+    if (!this._charts["spider"]) {
+      this._charts["spider"] = new SpiderGraph();
     }
     for (let chart in this._charts) {
       this._charts[chart].setTypeAndNamespace(type, namespace);

@@ -5,3 +5,36 @@
 .alerts { margin-top: 10px; }
 
 .margin-fix { margin: -50px 0 0 0 !important; }
+
+.link {
+  stroke: #000000;
+  stroke-width: 1.5px;
+}
+
+.node {
+  cursor: move;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+#spiderGraph {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1420px;
+}
+
+text {
+  cursor: move;
+  -moz-user-select: none;
+  pointer-events: none;
+  text-anchor: middle;
+  dominant-baseline: central;
+  user-select: central;
+  stroke: none;
+  fill: #000000;
+}
+
+rect {
+  fill: #FFFFFF;
+  stroke: #000000;
+}
