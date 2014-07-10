@@ -55,11 +55,6 @@ SpiderGraph.prototype = {
     d.scale = scale;
   },
 
-  setTypeAndNamespace: function(type, namespace) {
-    this._currentType = type;
-    this._currentNamespace = namespace;
-  },
-
   graph: function(data, clearChart) {
     console.log("links? " + JSON.stringify(data.links));
     console.log("nodes? " + JSON.stringify(data.nodes));

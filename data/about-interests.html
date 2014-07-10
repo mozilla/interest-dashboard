@@ -6,14 +6,6 @@
     </head>
     <body ng-cloak>
         <div class="container content" ng-controller="vizCtrl">
-            <div class="dropdowns">
-                <select ng-init="selectedType = getTypes()[0]" ng-model="selectedType" ng-options="val for val in getTypes()">
-                    <option value="">Select Type</option>
-                </select>
-                <select ng-init="selectedNamespace = getNamespaces()[0]" ng-model="selectedNamespace" ng-options="val for val in getNamespaces()">
-                    <option value="">Select Namespace</option>
-                </select>
-            </div>
             <div class="btn-group">
                 <button class="btn" ng-click="updateGraphs()">Update Graphs</button>
                 <button class="btn" ng-disabled='historyComputeInProgress' ng-click="processHistory()">Analyse Full History</button>
