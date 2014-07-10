@@ -86,7 +86,6 @@ SpiderGraph.prototype = {
   },
 
   graph: function(data) {
-    try {
     if (data) {
       data.nodes[0].x = this.width / 2 - this.MAIN_RADIUS / 2;
       data.nodes[0].y = this.height / 2 - this.MAIN_RADIUS / 2;
@@ -134,10 +133,6 @@ SpiderGraph.prototype = {
       // Wait for graph to settle down before displaying on first draw.
       for (var i = 0; i < 100; ++i) this.force.tick();
       this.force.stop();
-    }
-
-    } catch (ex) {
-      console.log("ERROR\n\n\n\n" + ex);
     }
   }
 }
