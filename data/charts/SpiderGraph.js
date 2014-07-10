@@ -3,8 +3,8 @@ function SpiderGraph() {
   this.width  = this.svg.attr("width");
   this.height = this.svg.attr("height");
   this.MAIN_RADIUS = 100;
-  this.LINK_LENGTH = 0;
   this.colors = d3.scale.category20();
+  this._nodeList = {};
 
   this.force = d3.layout.force()
     .charge(-6000)
@@ -31,21 +31,51 @@ SpiderGraph.prototype = {
     });
   },
 
-  _click: function(d) {/*
+  _createNodeList: function() {
+    for (let i in this._links) {
+      let link = this._links[i];
+      if (!this._nodeList[link.source]) {
+        this._nodeList[link.source] = {"children": []};
+      }
+      this._nodeList[link.source].children.push(link.target);
+    }
+  },
+
+  _click: function(d) {
     if (d3.event.defaultPrevented) return; // click suppressed
 
-    if (!nodeList[d.id]) {
+    if (!this._nodeList[d.id]) {
       return; // leaf nodes.
     }
-    if (nodeList[d.id].children) {
-      nodeList[d.id]._children = nodeList[d.id].children;
-      nodeList[d.id].children = null;
+    if (this._nodeList[d.id].children) {
+      this._nodeList[d.id]._children = this._nodeList[d.id].children;
+      this._nodeList[d.id].children = null;
     } else {
-      nodeList[d.id].children = nodeList[d.id]._children;
-      nodeList[d.id]._children = null;
+      this._nodeList[d.id].children = this._nodeList[d.id]._children;
+      this._nodeList[d.id]._children = null;
     }
-    recomputeNodes();
-    this.graph();*/
+    this._recomputeNodes();
+    this.graph();
+  },
+
+  _addChild: function(nodeID, parentID) {
+    this._nodes.push(this._originalNodes[nodeID]);
+
+    let parent = this._nodes.length - 1;
+    this._links.push({"source": parentID, "target": parent});
+
+    if (this._nodeList[nodeID] && this._nodeList[nodeID].children) {
+      for (let childIndex in this._nodeList[nodeID].children) {
+        let childID = this._originalNodes[this._nodeList[nodeID].children[childIndex]].id;
+        this._addChild(childID, parent);
+      }
+    }
+  },
+
+  _recomputeNodes: function() {
+    this._links = [];
+    this._nodes = [];
+    this._addChild(0, 0);
   },
 
   _getSize: function(d) {
@@ -55,37 +85,32 @@ SpiderGraph.prototype = {
     d.scale = scale;
   },
 
-  graph: function(data, clearChart) {
-    console.log("links? " + JSON.stringify(data.links));
-    console.log("nodes? " + JSON.stringify(data.nodes));
+  graph: function(data) {
     try {
-    data.nodes[0].x = this.width / 2 - this.MAIN_RADIUS / 2;
-    data.nodes[0].y = this.height / 2 - this.MAIN_RADIUS / 2;
+    if (data) {
+      data.nodes[0].x = this.width / 2 - this.MAIN_RADIUS / 2;
+      data.nodes[0].y = this.height / 2 - this.MAIN_RADIUS / 2;
 
-    let nodes = data.nodes;
-    let links = data.links;
-
-    console.log("width" + this.width);
-    console.log("height" + this.height);
-    console.log("NODES" + JSON.stringify(nodes));
-
+      this._originalNodes = this._nodes = data.nodes;
+      this._links = data.links;
+      this._createNodeList();
+    }
     this.force
-      .nodes(nodes)
-      .links(links)
-      .start();
+      .nodes(this._nodes)
+      .links(this._links)
 
     link = this.svg.select(".links").selectAll(".link")
-    link = link.data(links);
+    link = link.data(this._links);
     link.exit().remove();
     link.enter().append("line")
       .attr("class", "link");
 
     node = this.svg.select(".nodes").selectAll(".node");
-    node = node.data(nodes, function(d) { return  d.id; });
+    node = node.data(this._nodes, function(d) { return  d.id; });
     node.exit().remove();
     node.enter().append("g")
       .attr("class", "node")
-      .on("click", this._click)
+      .on("click", (d) => { return this._click(d); })
       .call(this.force.drag);
 
     node.append("circle")
@@ -103,6 +128,14 @@ SpiderGraph.prototype = {
         d.scale = scale;
       })
       .style("font-size", function(d) { return d.scale + "px"; });
+
+    this.force.start();
+    if (data) {
+      // Wait for graph to settle down before displaying on first draw.
+      for (var i = 0; i < 100; ++i) this.force.tick();
+      this.force.stop();
+    }
+
     } catch (ex) {
       console.log("ERROR\n\n\n\n" + ex);
     }
