@@ -5,29 +5,13 @@
         <title>about:interests</title>
     </head>
     <body ng-cloak>
-        <div class="container content" ng-controller="vizCtrl">
-            <div class="btn-group">
-                <button class="btn" ng-click="updateGraphs()">Update Graphs</button>
-                <button class="btn" ng-disabled='historyComputeInProgress' ng-click="processHistory()">Analyse Full History</button>
+        <div ng-controller="vizCtrl">
+            <div id="spiderGraph">
+                <h2>
+                    Spider Graph
+                </h2>
+                <svg width="1420" height="800"></svg>
             </div>
-
-            <div class="alerts">
-                <div ng-show="historyComputeInProgress" ng-hide="historyComputeComplete" class="alert alert-info">
-                    <p>Ranking data is being computed. This may take few minutes</p>
-                    <div class="progress progress-striped active">
-                        <div id="progressBar" class="bar" style="width: 0%;"></div>
-                    </div>
-                    <p><span class="badge">{{daysLeft}}</span> days of your history remaining</p>
-                </div>
-
-                <div ng-show="historyComputeComplete && !rankingAvailable" class="alert alert-info">{{emptyMessage}}</div>
-            </div>
-        </div>
-        <div id="spiderGraph">
-            <h2>
-                Spider Graph
-            </h2>
-            <svg width="1420" height="800"></svg>
         </div>
     </body>
 </html>
