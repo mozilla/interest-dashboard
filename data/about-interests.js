@@ -79,8 +79,6 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
   $scope._initialize = function () {
     $scope.historyComputeInProgress = false;
     $scope.historyComputeComplete = false;
-    $scope.emptyMessage = "Your History was not analysed, please run the Full History Analysis.";
-    $scope.rankingAvailable = false;
     $scope.daysLeft = null;
     $scope.daysLeftStart = null;
     dataService.send("chart_data_request");
@@ -114,22 +112,6 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
 
   $scope.$on("chart_init", function(event, data) {
     ChartManager.graphAllFromScratch(data);
-  });
-
-  $scope.$on("ranking_data", function(event, data) {
-    let chartData = $scope.makeChartData(data.rankings);
-    if (data.rankings != null) {
-      $scope.rankingAvailable = true;
-      $scope.redrawChart("#interestsBarChart svg", interestsBarChart, chartData);
-    }
-    else {
-      $scope.emptyMessage = "Unable to detect interests in your history. Please run the History Analysis after few days of browsing.";
-    }
-
-    if (data.submitComplete) {
-      $scope.historyComputeInProgress = false;
-      $scope.historyComputeComplete = true;
-    }
   });
 
   $scope.updateProgressBar = function() {
