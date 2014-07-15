@@ -1,7 +1,4 @@
 function SpiderGraph() {
-  this.svg = d3.select("#spiderGraph svg");
-  this.width  = this.svg.attr("width");
-  this.height = this.svg.attr("height");
   this.MAIN_RADIUS = 100;
   this.colors = d3.scale.category20();
   this._nodeList = {};
@@ -11,15 +8,22 @@ function SpiderGraph() {
     .gravity(0.001)
     .on("tick", () => { this._tick(); });
 
-  this.svg.append("rect")
-    .attr("width", this.width)
-    .attr("height", this.height);
-
-  this.svg.append("g").attr("class", "links");
-  this.svg.append("g").attr("class", "nodes");
+  this._init();
 }
 
 SpiderGraph.prototype = {
+  _init: function() {
+    this.svg = d3.select("#spiderGraph svg");
+    this.width  = this.svg.attr("width");
+    this.height = this.svg.attr("height");
+    this.svg.append("rect")
+      .attr("width", this.width)
+      .attr("height", this.height);
+
+    this.svg.append("g").attr("class", "links");
+    this.svg.append("g").attr("class", "nodes");
+  },
+
   _tick: function() {
     link.attr("x1", (d) => { return (Math.max(d.source.radius, Math.min(this.width - d.source.radius, d.source.x))); })
         .attr("y1", (d) => { return (Math.max(d.source.radius, Math.min(this.height - d.source.radius, d.source.y))); })
@@ -87,6 +91,9 @@ SpiderGraph.prototype = {
 
   graph: function(data) {
     if (data) {
+      d3.select("#spiderGraph svg").selectAll("*").remove();
+      this._init();
+
       data.nodes[0].x = this.width / 2 - this.MAIN_RADIUS / 2;
       data.nodes[0].y = this.height / 2 - this.MAIN_RADIUS / 2;
 

@@ -104,6 +104,11 @@ aboutInterests.controller("vizCtrl", function($scope, dataService) {
     }
     $scope.daysLeft = data;
     $scope.updateProgressBar();
+
+    // The last day isn't sent by dailyInterestsSpout.
+    if ($scope.daysLeft == 1) {
+      $scope.historyComputeComplete = true;
+    }
   });
 
   $scope.$on("json_update", function(event, data) {
