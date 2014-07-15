@@ -36,6 +36,7 @@ SpiderGraph.prototype = {
   },
 
   _createNodeList: function() {
+    this._nodeList = {};
     for (let i in this._links) {
       let link = this._links[i];
       if (!this._nodeList[link.source]) {
@@ -76,6 +77,13 @@ SpiderGraph.prototype = {
     }
   },
 
+  _hideSecondLevelChildren: function() {
+    for (let childID of this._nodeList["0"]["children"]) {
+      this._nodeList[childID]._children = this._nodeList[childID].children;
+      this._nodeList[childID].children = null;
+    }
+  },
+
   _recomputeNodes: function() {
     this._links = [];
     this._nodes = [];
@@ -90,9 +98,11 @@ SpiderGraph.prototype = {
       data.nodes[0].x = this.width / 2 - this.MAIN_RADIUS / 2;
       data.nodes[0].y = this.height / 2 - this.MAIN_RADIUS / 2;
 
-      this._originalNodes = this._nodes = data.nodes;
+      this._originalNodes = data.nodes;
       this._links = data.links;
       this._createNodeList();
+      this._hideSecondLevelChildren();
+      this._recomputeNodes();
     }
     this.force
       .nodes(this._nodes)
