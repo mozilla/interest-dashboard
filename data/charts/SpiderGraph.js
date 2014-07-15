@@ -82,13 +82,6 @@ SpiderGraph.prototype = {
     this._addChild(0, 0);
   },
 
-  _getSize: function(d) {
-    let bbox = this.getBBox(),
-        cbbox = this.parentNode.getBBox(),
-        scale = Math.min(cbbox.width/bbox.width, cbbox.height/bbox.height);
-    d.scale = scale;
-  },
-
   graph: function(data) {
     if (data) {
       d3.select("#spiderGraph svg").selectAll("*").remove();
