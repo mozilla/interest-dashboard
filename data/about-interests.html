@@ -6,21 +6,27 @@
     </head>
     <body ng-cloak>
         <div class="main" ng-controller="vizCtrl">
+            <div class="alerts">
+                <div ng-show="historyComputeInProgress" ng-hide="historyComputeComplete" class="alert alert-info">
+                    <p>Graph data is being computed. This may take few minutes</p>
+                    <div class="progress progress-striped active">
+                        <div id="progressBar" class="bar" style="width: 0%;"></div>
+                    </div>
+                    <p><span class="badge">{{daysLeft}}</span> days of your history remaining</p>
+                </div>
+            </div>
             <div id="spiderGraph">
                 <h2>
                     Spider Graph
                 </h2>
                 <p>Clicking a node will expand it or retract its children. Drag nodes to move them around.</p>
                 <p>NOTE: the graph may be redrawn while data is still being processed.</p>
-                <div class="alerts">
-                    <div ng-show="historyComputeInProgress" ng-hide="historyComputeComplete" class="alert alert-info">
-                        <p>Graph data is being computed. This may take few minutes</p>
-                        <div class="progress progress-striped active">
-                            <div id="progressBar" class="bar" style="width: 0%;"></div>
-                        </div>
-                        <p><span class="badge">{{daysLeft}}</span> days of your history remaining</p>
-                    </div>
-                </div>
+                <svg width="1420" height="800"></svg>
+            </div>
+            <div id="areaGraph">
+                <h2>
+                    Area Graph
+                </h2>
                 <svg width="1420" height="800"></svg>
             </div>
         </div>

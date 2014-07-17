@@ -15,6 +15,9 @@ let ChartManager = {
     if (!this._charts["spider"]) {
       this._charts["spider"] = new SpiderGraph();
     }
+    if (!this._charts["area"]) {
+      this._charts["area"] = new AreaGraph();
+    }
     for (let chart in this._charts) {
       this._charts[chart].graph(data[chart + "Data"], true);
     }
