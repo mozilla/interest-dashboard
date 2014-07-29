@@ -3,20 +3,6 @@
 /////     Chart initialization     /////
 nv.dev = false;
 
-let interestsBarChart = nv.models.discreteBarChart()
-  .x(function(d) { return d.label })
-  .y(function(d) { return d.value })
-  .tooltips(false)
-  .showValues(true);
-
-nv.addGraph(function() {
-  d3.select('#interestsBarChart svg')
-    .transition().duration(500)
-    .call(interestsBarChart);
-  nv.utils.windowResize(interestsBarChart.update);
-  return interestsBarChart;
-});
-
 let DataService = function($rootScope) {
   this.rootScope = $rootScope;
 
