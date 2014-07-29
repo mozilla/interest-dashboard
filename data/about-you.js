@@ -34,10 +34,10 @@ DataService.prototype = {
   },
 }
 
-let aboutInterests = angular.module("aboutInterests", []);
-aboutInterests.service("dataService", DataService);
+let aboutYou = angular.module("aboutYou", []);
+aboutYou.service("dataService", DataService);
 
-aboutInterests.controller("vizCtrl", function($scope, dataService) {
+aboutYou.controller("vizCtrl", function($scope, dataService) {
   /** controller helpers **/
   $scope.makeChartData = function(data) {
     /**
