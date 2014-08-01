@@ -1,36 +1,365 @@
 <!doctype html>
 <html ng-app="aboutYou">
-    <head>
-        <meta charset="utf-8">
-        <title>Firefox for You</title>
-    </head>
-    <body ng-cloak>
-        <div class="main" ng-controller="vizCtrl">
-            <h1>Visualization Experiments</h1>
-            <div class="alerts">
-                <div ng-show="historyComputeInProgress" ng-hide="historyComputeComplete" class="alert alert-info">
-                    <p>Graph data is being computed. This may take few minutes</p>
-                    <div class="progress progress-striped active">
-                        <div id="progressBar" class="bar" style="width: 0%;"></div>
-                    </div>
-                    <p><span class="badge">{{daysLeft}}</span> days of your history remaining</p>
-                </div>
-            </div>
-            <hr>
-            <div id="spiderGraph">
-                <h2>
-                    Spider Graph
-                </h2>
-                <p>Clicking a node will expand or retract its children. Drag nodes to move them around.</p>
-                <p>NOTE: the graph may be redrawn while data is still being processed.</p>
-                <svg width="1420" height="800"></svg>
-            </div>
-            <div id="areaGraph">
-                <h2>
-                    Area Graph
-                </h2>
-                <svg width="1420" height="800" style="overflow: visible;"></svg>
-            </div>
-        </div>
-    </body>
+<head>
+  <meta charset="utf-8">
+  <title>Firefox for You</title>
+</head>
+<body ng-cloak>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="vizCtrl">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">INTEREST DASHBOARD</a>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Your Interests</a></li>
+          <li><a href="#">Discover New Interests</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="page-header">Dashboard</h1>
+  <div class="row placeholders">
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>Label</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>Label</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>Label</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>Label</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+  </div>
+
+  <div class="row" id="mainrow" style="display:flex;">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active"><a href="#">Overview</a></li>
+        <li><a href="#">Reports</a></li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Export</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="">Nav item</a></li>
+        <li><a href="">Nav item again</a></li>
+        <li><a href="">One more nav</a></li>
+        <li><a href="">Another nav item</a></li>
+        <li><a href="">More navigation</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="">Nav item again</a></li>
+        <li><a href="">One more nav</a></li>
+        <li><a href="">Another nav item</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <table id="test" class="cell-border" width="100%">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Category</th>
+            <th>Recent Activity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>61</td>
+            <td>2011/04/25</td>
+            <td>$320,800</td>
+          </tr>
+          <tr>
+            <td>63</td>
+            <td>2011/07/25</td>
+            <td>$170,750</td>
+          </tr>
+          <tr>
+            <td>66</td>
+            <td>2009/01/12</td>
+            <td>$86,000</td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>2012/03/29</td>
+            <td>$433,060</td>
+          </tr>
+          <tr>
+            <td>33</td>
+            <td>2008/11/28</td>
+            <td>$162,700</td>
+          </tr>
+          <tr>
+            <td>61</td>
+            <td>2012/12/02</td>
+            <td>$372,000</td>
+          </tr>
+          <tr>
+            <td>59</td>
+            <td>2012/08/06</td>
+            <td>$137,500</td>
+          </tr>
+          <tr>
+            <td>55</td>
+            <td>2010/10/14</td>
+            <td>$327,900</td>
+          </tr>
+          <tr>
+            <td>39</td>
+            <td>2009/09/15</td>
+            <td>$205,500</td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td>2008/12/13</td>
+            <td>$103,600</td>
+          </tr>
+          <tr>
+            <td>30</td>
+            <td>2008/12/19</td>
+            <td>$90,560</td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>2013/03/03</td>
+            <td>$342,000</td>
+          </tr>
+          <tr>
+            <td>36</td>
+            <td>2008/10/16</td>
+            <td>$470,600</td>
+          </tr>
+          <tr>
+            <td>43</td>
+            <td>2012/12/18</td>
+            <td>$313,500</td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>2010/03/17</td>
+            <td>$385,750</td>
+          </tr>
+          <tr>
+            <td>66</td>
+            <td>2012/11/27</td>
+            <td>$198,500</td>
+          </tr>
+          <tr>
+            <td>64</td>
+            <td>2010/06/09</td>
+            <td>$725,000</td>
+          </tr>
+          <tr>
+            <td>59</td>
+            <td>2009/04/10</td>
+            <td>$237,500</td>
+          </tr>
+          <tr>
+            <td>41</td>
+            <td>2012/10/13</td>
+            <td>$132,000</td>
+          </tr>
+          <tr>
+            <td>35</td>
+            <td>2012/09/26</td>
+            <td>$217,500</td>
+          </tr>
+          <tr>
+            <td>30</td>
+            <td>2011/09/03</td>
+            <td>$345,000</td>
+          </tr>
+          <tr>
+            <td>40</td>
+            <td>2009/06/25</td>
+            <td>$675,000</td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>2011/12/12</td>
+            <td>$106,450</td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td>2010/09/20</td>
+            <td>$85,600</td>
+          </tr>
+          <tr>
+            <td>47</td>
+            <td>2009/10/09</td>
+            <td>$1,200,000</td>
+          </tr>
+          <tr>
+            <td>42</td>
+            <td>2010/12/22</td>
+            <td>$92,575</td>
+          </tr>
+          <tr>
+            <td>28</td>
+            <td>2010/11/14</td>
+            <td>$357,650</td>
+          </tr>
+          <tr>
+            <td>28</td>
+            <td>2011/06/07</td>
+            <td>$206,850</td>
+          </tr>
+          <tr>
+            <td>48</td>
+            <td>2010/03/11</td>
+            <td>$850,000</td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>2011/08/14</td>
+            <td>$163,000</td>
+          </tr>
+          <tr>
+            <td>37</td>
+            <td>2011/06/02</td>
+            <td>$95,400</td>
+          </tr>
+          <tr>
+            <td>53</td>
+            <td>2009/10/22</td>
+            <td>$114,500</td>
+          </tr>
+          <tr>
+            <td>27</td>
+            <td>2011/05/07</td>
+            <td>$145,000</td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>2008/10/26</td>
+            <td>$235,500</td>
+          </tr>
+          <tr>
+            <td>46</td>
+            <td>2011/03/09</td>
+            <td>$324,050</td>
+          </tr>
+          <tr>
+            <td>47</td>
+            <td>2009/12/09</td>
+            <td>$85,675</td>
+          </tr>
+          <tr>
+            <td>51</td>
+            <td>2008/12/16</td>
+            <td>$164,500</td>
+          </tr>
+          <tr>
+            <td>41</td>
+            <td>2010/02/12</td>
+            <td>$109,850</td>
+          </tr>
+          <tr>
+            <td>62</td>
+            <td>2009/02/14</td>
+            <td>$452,500</td>
+          </tr>
+          <tr>
+            <td>37</td>
+            <td>2008/12/11</td>
+            <td>$136,200</td>
+          </tr>
+          <tr>
+            <td>65</td>
+            <td>2008/09/26</td>
+            <td>$645,750</td>
+          </tr>
+          <tr>
+            <td>64</td>
+            <td>2011/02/03</td>
+            <td>$234,500</td>
+          </tr>
+          <tr>
+            <td>38</td>
+            <td>2011/05/03</td>
+            <td>$163,500</td>
+          </tr>
+          <tr>
+            <td>37</td>
+            <td>2009/08/19</td>
+            <td>$139,575</td>
+          </tr>
+          <tr>
+            <td>61</td>
+            <td>2013/08/11</td>
+            <td>$98,540</td>
+          </tr>
+          <tr>
+            <td>47</td>
+            <td>2009/07/07</td>
+            <td>$87,500</td>
+          </tr>
+          <tr>
+            <td>64</td>
+            <td>2012/04/09</td>
+            <td>$138,575</td>
+          </tr>
+          <tr>
+            <td>63</td>
+            <td>2010/01/04</td>
+            <td>$125,250</td>
+          </tr>
+          <tr>
+            <td>56</td>
+            <td>2012/06/01</td>
+            <td>$115,000</td>
+          </tr>
+          <tr>
+            <td>43</td>
+            <td>2013/02/01</td>
+            <td>$75,650</td>
+          </tr>
+          <tr>
+            <td>46</td>
+            <td>2011/12/06</td>
+            <td>$145,600</td>
+          </tr>
+          <tr>
+            <td>47</td>
+            <td>2011/03/21</td>
+            <td>$356,250</td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>2009/02/27</td>
+            <td>$103,500</td>
+          </tr>
+          <tr>
+            <td>30</td>
+            <td>2010/07/14</td>
+            <td>$86,500</td>
+          </tr>
+          <tr>
+            <td>51</td>
+            <td>2008/11/13</td>
+            <td>$183,000</td>
+          </tr>
+          <tr>
+            <td>29</td>
+            <td>2011/06/27</td>
+            <td>$183,000</td>
+          </tr>
+          <tr>
+            <td>27</td>
+            <td>2011/01/25</td>
+            <td>$112,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
 </html>
