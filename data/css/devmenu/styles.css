@@ -4,7 +4,7 @@
 .content { margin-top: 20px; }
 .alerts { margin-top: 10px; }
 
-.margin-fix { margin: -50px 0 0 0 !important; }
+.margin-fix { margin: -60px 0 -48px 0 !important; }
 
 .navbar, #mainrow, table.dataTable tbody tr {
   background-color: #f5f5f5; /* Light grey for top navbar */
@@ -83,16 +83,8 @@ body {
  */
 
 .placeholders {
-  margin-bottom: 30px;
   text-align: center;
 }
 .placeholders h4 {
   margin-bottom: 0;
-}
-.placeholder {
-  margin-bottom: 20px;
-}
-.placeholder img {
-  display: inline-block;
-  border-radius: 50%;
 }
