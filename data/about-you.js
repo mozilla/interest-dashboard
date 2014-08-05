@@ -24,6 +24,18 @@ let aboutYou = angular.module("aboutYou", []);
 aboutYou.service("dataService", DataService);
 
 aboutYou.controller("vizCtrl", function($scope, dataService) {
+  $scope._initialize = function () {
+    dataService.send("chart_data_request");
+  }
+  $scope._initialize();
+
+  $scope.$on("json_update", function(event, data) {
+    ChartManager.appendToGraph(data.type, data.data);
+  });
+
+  $scope.$on("chart_init", function(event, data) {
+    ChartManager.graphAllFromScratch(data);
+  });
 });
 
 self.port.on("style", function(file) {
