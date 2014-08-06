@@ -4,15 +4,23 @@
 .content { margin-top: 20px; }
 .alerts { margin-top: 10px; }
 
-.margin-fix { margin: -60px 0 -48px 0 !important; }
+.margin-fix { margin: -30px 0 0 0 !important; }
 
-.navbar, #mainrow, table.dataTable tbody tr {
+.navbar, #main-row-background, .navbar-background, table.dataTable tbody tr {
   background-color: #f5f5f5; /* Light grey for top navbar */
 }
 
+.navbar {
+  border: none;
+  border-bottom: #eee;
+}
+
 body {
-  padding-top: 50px;
   overflow: hidden; /* To prevent body from scrolling */
+}
+
+.visual-header {
+  height: 340px;
 }
 
 .sub-header {
@@ -35,14 +43,12 @@ body {
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;
-    left: 0;
     z-index: 1000;
     display: block;
     padding-left: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: #f5f5f5;
-    border-right: 1px solid #eee;
   }
 }
 
@@ -66,16 +72,22 @@ body {
 /*
  * Main content
  */
-#mainrow {
+#main-row-body {
   border-top: 1px solid #080808;
+}
+
+#main-row-body, .navbar-outer, .visual-header {
+  width: 1130px;
+  margin: auto;
 }
 
 .main .page-header {
   margin-top: 0;
 }
 
-.col-md-offset-2 {
-  margin-left: 17%; /* Adjust this value so the sidebar and table are aligned */
+.main {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 /*
