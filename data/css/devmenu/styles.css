@@ -32,6 +32,11 @@ body {
   width: 100% !important;
 }
 
+td.details-control {
+    background: url('resources/Button_Expand.svg') no-repeat center center;
+    cursor: pointer;
+}
+
 /*
  * Sidebar
  */
