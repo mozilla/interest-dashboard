@@ -1,7 +1,6 @@
 "use strict";
 
-/////     Chart initialization     /////
-nv.dev = false;
+let table;
 
 let DataService = function($rootScope) {
   this.rootScope = $rootScope;
@@ -30,11 +29,11 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
   $scope._initialize();
 
   $scope.$on("json_update", function(event, data) {
-    ChartManager.appendToGraph(data.type, data.data);
+    ChartManager.appendToGraph(data.type, data.data, table);
   });
 
   $scope.$on("chart_init", function(event, data) {
-    ChartManager.graphAllFromScratch(data);
+    ChartManager.graphAllFromScratch(data, table);
   });
 });
 
@@ -47,19 +46,11 @@ self.port.on("style", function(file) {
 });
 
 self.port.on("init", function() {
-  let table = $('#test').DataTable({
-    "scrollY":        "553px",
+  table = $('#test').DataTable({
+    "scrollY":        "450px",
     "scrollCollapse": true,
     "paging":         false,
     "searching":      false,
-    "columns": [{},{},{},
-      {
-        "class":          'details-control',
-        "orderable":      false,
-        "data":           null,
-        "defaultContent": ''
-      },
-    ],
   });
 
   // Add event listener for opening and closing details

@@ -11,16 +11,16 @@ let ChartManager = {
    *
    * @data - storage.chartData object which contains data for all charts
    */
-  graphAllFromScratch: function(data) {
+  graphAllFromScratch: function(data, table) {
     if (!this._charts["interestDashboard"]) {
       this._charts["interestDashboard"] = new InterestDashboard();
     }
     for (let chart in this._charts) {
-      this._charts[chart].graph(data[chart + "Data"], true);
+      this._charts[chart].graph(data[chart + "Data"], table);
     }
   },
 
-  appendToGraph: function(chartType, data) {
-    this._charts[chartType].graph(data, false);
+  appendToGraph: function(chartType, data, table) {
+    this._charts[chartType].graph(data, table);
   }
 }
