@@ -61,6 +61,44 @@ InterestDashboard.prototype = {
     table.columns.adjust();
   },
 
+  _formatSubtable: function() {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td>Full name:</td>'+
+            '<td>BEEP</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Extension number:</td>'+
+            '<td>BOOP</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Extra info:</td>'+
+            '<td>And any further details here (images etc)...</td>'+
+        '</tr>'+
+    '</table>';
+  },
+
+  _handleRowExpand: function(data, table) {
+    // Add event listener for opening and closing details
+    let self = this;
+    $('#test tbody').on('click', 'td.details-control', function() {
+      let tr = $(this).closest('tr');
+      let row = table.row( tr );
+      console.log("WHAT IS THIS ROW??? " + JSON.stringify(row));
+
+      if (row.child.isShown()) {
+        // This row is already open - close it
+        row.child.hide();
+        tr.removeClass('shown');
+      } else {
+        // Open this row
+        row.child(self._formatSubtable(data)).show();
+        tr.addClass('shown');
+      }
+    });
+  },
+
   graph: function(data, table) {
     d3.select('#interestPie').selectAll("*").remove();
     d3.select('#areaGraph').selectAll("*").remove();
@@ -81,5 +119,6 @@ InterestDashboard.prototype = {
     nv.utils.windowResize(this._pieChart.update);
 
     this._addTableRows(data, table);
+    this._handleRowExpand(data, table);
   }
 }
