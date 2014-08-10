@@ -42,6 +42,18 @@ InterestDashboard.prototype = {
     return d3.time.format('%x')(new Date(days[max].x));
   },
 
+  _computeTimeString: function(timestamp) {
+    let AMorPM = "am";
+    let date = new Date(timestamp);
+    let hours = date.getHours();
+    let minutes = date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes();
+    if (hours > 12) {
+      hours -= 12;
+      AMorPM = "pm";
+    }
+    return hours + ":" + minutes + " " + AMorPM;
+  },
+
   _addTableRows: function(data, table) {
     for (let i = 0; i < data.tableData.length; i++) {
       let categoryObj = data.tableData[i];
@@ -61,22 +73,20 @@ InterestDashboard.prototype = {
     table.columns.adjust();
   },
 
-  _formatSubtable: function() {
-    // `d` is the original data object for the row
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-        '<tr>'+
-            '<td>Full name:</td>'+
-            '<td>BEEP</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Extension number:</td>'+
-            '<td>BOOP</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Extra info:</td>'+
-            '<td>And any further details here (images etc)...</td>'+
-        '</tr>'+
-    '</table>';
+  _formatSubtable: function(historyVisits) {
+    let table = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+    for (let visit of historyVisits) {
+      let time = this._computeTimeString(visit.timestamp);
+
+      table += '<tr>' +
+        '<td>' + time + '</td>' +
+        '<td><img src="' + visit.favicon + '"></img></td>' +
+        '<td>' + visit.url + '</td>' +
+        '<td>' + visit.title + '</td>' +
+      '</tr>';
+    }
+    table += '</table>';
+    return table;
   },
 
   _handleRowExpand: function(data, table) {
@@ -84,8 +94,7 @@ InterestDashboard.prototype = {
     let self = this;
     $('#test tbody').on('click', 'td.details-control', function() {
       let tr = $(this).closest('tr');
-      let row = table.row( tr );
-      console.log("WHAT IS THIS ROW??? " + JSON.stringify(row));
+      let row = table.row(tr);
 
       if (row.child.isShown()) {
         // This row is already open - close it
@@ -93,7 +102,7 @@ InterestDashboard.prototype = {
         tr.removeClass('shown');
       } else {
         // Open this row
-        row.child(self._formatSubtable(data)).show();
+        row.child(self._formatSubtable(data.historyVisits[row.data()[1]])).show();
         tr.addClass('shown');
       }
     });
