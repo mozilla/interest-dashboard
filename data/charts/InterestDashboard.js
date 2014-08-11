@@ -73,6 +73,10 @@ InterestDashboard.prototype = {
     table.columns.adjust();
   },
 
+  _addTopSites: function(data, $scope) {
+    $scope.list = data.sortedDomains.slice(0, 10);
+  },
+
   _formatSubtable: function(historyVisits) {
     let table = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
     for (let visit of historyVisits) {
@@ -108,7 +112,7 @@ InterestDashboard.prototype = {
     });
   },
 
-  graph: function(data, table) {
+  graph: function(data, table, $scope) {
     d3.select('#interestPie').selectAll("*").remove();
     d3.select('#areaGraph').selectAll("*").remove();
     table.clear();
@@ -127,6 +131,7 @@ InterestDashboard.prototype = {
     nv.utils.windowResize(this._areaGraph.update);
     nv.utils.windowResize(this._pieChart.update);
 
+    this._addTopSites(data, $scope);
     this._addTableRows(data, table);
     this._handleRowExpand(data, table);
   }

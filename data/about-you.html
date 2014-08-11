@@ -35,16 +35,9 @@
       <div class="col-sm-3 col-md-2 sidebar">
         <div class="title">Most Visited Sites</div>
         <ol class="nav nav-sidebar">
-          <li><a href="">Facebook</a></li>
-          <li><a href="">Twitter</a></li>
-          <li><a href="">BMWBlog</a></li>
-          <li><a href="">Instagram</a></li>
-          <li><a href="">LinkedIn</a></li>
-          <li><a href="">Bimmerpost</a></li>
-          <li><a href="">Behance</a></li>
-          <li><a href="">OkCupid</a></li>
-          <li><a href="">Autoblog Green</a></li>
-          <li><a href="">BMW USA</a></li>
+          <li ng-repeat="item in list">
+            <a ng-href="http://{{item[0]}}">{{item[0]}}</a> <div class="nav-sidebar-info">({{item[1]}}x)</div>
+          </li>
         </ol>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-9 main">

@@ -29,11 +29,11 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
   $scope._initialize();
 
   $scope.$on("json_update", function(event, data) {
-    ChartManager.appendToGraph(data.type, data.data, table);
+    ChartManager.appendToGraph(data.type, data.data, table, $scope);
   });
 
   $scope.$on("chart_init", function(event, data) {
-    ChartManager.graphAllFromScratch(data, table);
+    ChartManager.graphAllFromScratch(data, table, $scope);
   });
 });
 

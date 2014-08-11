@@ -11,16 +11,16 @@ let ChartManager = {
    *
    * @data - storage.chartData object which contains data for all charts
    */
-  graphAllFromScratch: function(data, table) {
+  graphAllFromScratch: function(data, table, $scope) {
     if (!this._charts["interestDashboard"]) {
       this._charts["interestDashboard"] = new InterestDashboard();
     }
     for (let chart in this._charts) {
-      this._charts[chart].graph(data[chart + "Data"], table);
+      this._charts[chart].graph(data[chart + "Data"], table, $scope);
     }
   },
 
-  appendToGraph: function(chartType, data, table) {
-    this._charts[chartType].graph(data, table);
+  appendToGraph: function(chartType, data, table, $scope) {
+    this._charts[chartType].graph(data, table, $scope);
   }
 }
