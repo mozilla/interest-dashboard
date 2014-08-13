@@ -132,10 +132,18 @@ InterestDashboard.prototype = {
       .transition().duration(350)
       .call(this._pieChart);
 
+    let areaGraph = this._areaGraph;
     d3.selectAll('.nv-slice')
       .on('click', function(event) {
         $scope.$apply(function() {
           let categoryClicked = event.data.label;
+          d3.select('#areaGraph').selectAll("*").remove();
+          d3.select("#areaGraph")
+            .attr("class", "area-graph-margin-fix")
+            .datum(data.areaData[categoryClicked])
+            .transition().duration(350)
+            .call(areaGraph);
+
           $scope.totalVisits = data.categories[categoryClicked].visitCount;
           $scope.totalViews = data.categories[categoryClicked].viewCount;
           $scope.weeklyAvg = data.categories[categoryClicked].weeklyAvg.toFixed(0);
@@ -145,7 +153,7 @@ InterestDashboard.prototype = {
 
     d3.select("#areaGraph")
       .attr("class", "area-graph-margin-fix")
-      .datum(data.areaData)
+      .datum(data.areaData.total)
       .transition().duration(350)
       .call(this._areaGraph);
 
