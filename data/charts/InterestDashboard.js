@@ -17,6 +17,8 @@ function InterestDashboard() {
                 .y(function(d) { return d[1] })
                 .useInteractiveGuideline(true)
                 .showLegend(false)
+                .showYAxis(false)
+                .showXAxis(false)
                 .showControls(false)
                 .transitionDuration(300);
 
@@ -77,6 +79,13 @@ InterestDashboard.prototype = {
     $scope.list = data.sortedDomains.slice(0, 10);
   },
 
+  _addStats: function(data, $scope) {
+    $scope.totalVisits = data.totalVisits;
+    $scope.totalViews = data.totalViews;
+    $scope.weeklyAvg = data.totalWeeklyAvg.toFixed(0);
+    $scope.dailyAvg = data.totalDailyAvg.toFixed(0);
+  },
+
   _formatSubtable: function(historyVisits) {
     let table = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
     for (let visit of historyVisits) {
@@ -118,12 +127,24 @@ InterestDashboard.prototype = {
     table.clear();
 
     d3.select("#interestPie")
-      .attr("class", "margin-fix")
+      .attr("class", "pie-graph-margin-fix")
       .datum(data.pieData)
       .transition().duration(350)
       .call(this._pieChart);
 
+    d3.selectAll('.nv-slice')
+      .on('click', function(event) {
+        $scope.$apply(function() {
+          let categoryClicked = event.data.label;
+          $scope.totalVisits = data.categories[categoryClicked].visitCount;
+          $scope.totalViews = data.categories[categoryClicked].viewCount;
+          $scope.weeklyAvg = data.categories[categoryClicked].weeklyAvg.toFixed(0);
+          $scope.dailyAvg = data.categories[categoryClicked].dailyAvg.toFixed(0);
+        });
+    });
+
     d3.select("#areaGraph")
+      .attr("class", "area-graph-margin-fix")
       .datum(data.areaData)
       .transition().duration(350)
       .call(this._areaGraph);
@@ -132,6 +153,7 @@ InterestDashboard.prototype = {
     nv.utils.windowResize(this._pieChart.update);
 
     this._addTopSites(data, $scope);
+    this._addStats(data, $scope);
     this._addTableRows(data, table);
     this._handleRowExpand(data, table);
   }

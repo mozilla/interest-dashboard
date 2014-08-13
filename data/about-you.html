@@ -22,11 +22,21 @@
   </div>
 
   <div class="row-fluid visual-header">
-    <div class="span4">
+    <div class="span3">
       <svg id="interestPie" style="height: 390px; width: 390px;"></svg>
     </div>
-    <div class="span8">
-      <svg id="areaGraph" style="height: 200px; width: 100%"></svg>
+    <div class="span9">
+      <svg id="areaGraph" style="height: 200px; width: 990px"></svg>
+      <div id="statslist">
+        <table id="navlist">
+          <tr>
+            <td><div class="usage-label">Total Visits</div> <div class="usage-value">{{totalVisits}} sites</div></td>
+            <td><div class="usage-label">Total Views</div> <div class="usage-value">{{totalViews}} pages</div></td>
+            <td><div class="usage-label">Weekly Average</div> <div class="usage-value">{{weeklyAvg}} pages</div></td>
+            <td><div class="usage-label">Daily Average</div> <div class="usage-value">{{dailyAvg}} pages</div></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 
