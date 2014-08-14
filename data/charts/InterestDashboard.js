@@ -41,7 +41,7 @@ InterestDashboard.prototype = {
         max = Number(day);
       }
     }
-    return d3.time.format('%x')(new Date(days[max].x));
+    return d3.time.format('%A, %B %e, %Y')(new Date(days[max].x));
   },
 
   _computeTimeString: function(timestamp) {
