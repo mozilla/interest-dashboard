@@ -9,10 +9,10 @@
     <div class="navbar-outer">
       <div class="navbar navbar-inverse" role="navigation">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">INTEREST DASHBOARD</a>
+          <p class="navbar-brand">INTEREST DASHBOARD</p>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Your Interests</a></li>
+              <li class="selected"><a href="#">Your Interests</a></li>
               <li><a href="#">Discover New Interests</a></li>
             </ul>
           </div>
@@ -23,17 +23,26 @@
 
   <div class="row-fluid visual-header">
     <div class="span3">
+      <div id="pie-label">
+        <div class="interest-count">{{interestCount}}</div>
+        <div class="title-font">Interests</div>
+      </div>
       <svg id="interestPie" style="height: 390px; width: 390px;"></svg>
     </div>
     <div class="span9">
+      <div class="graph-header">{{graphHeader}}</div>
       <svg id="areaGraph" style="height: 200px; width: 990px"></svg>
+      <div class="dates">
+        <div class="date-label">30d</div>
+        <div id="today" class="date-label">Today</div>
+      </div>
       <div id="statslist">
         <table id="navlist">
           <tr>
-            <td><div class="usage-label">Total Visits</div> <div class="usage-value">{{totalVisits}} sites</div></td>
-            <td><div class="usage-label">Total Views</div> <div class="usage-value">{{totalViews}} pages</div></td>
-            <td><div class="usage-label">Weekly Average</div> <div class="usage-value">{{weeklyAvg}} pages</div></td>
-            <td><div class="usage-label">Daily Average</div> <div class="usage-value">{{dailyAvg}} pages</div></td>
+            <td><div class="title-font">Total Visits</div> <div class="usage-value">{{totalVisits}} sites</div></td>
+            <td><div class="title-font">Total Views</div> <div class="usage-value">{{totalViews}} pages</div></td>
+            <td><div class="title-font">Weekly Average</div> <div class="usage-value">{{weeklyAvg}} pages</div></td>
+            <td><div class="title-font">Daily Average</div> <div class="usage-value">{{dailyAvg}} pages</div></td>
           </tr>
         </table>
       </div>
@@ -43,7 +52,7 @@
   <div id="main-row-background" class="row-fluid" style="display:flex;">
     <div id="main-row-body">
       <div class="col-sm-3 col-md-2 sidebar">
-        <div class="title">Most Visited Sites</div>
+        <div id="most-visited" class="title-font">Most Visited Sites</div>
         <ol class="nav nav-sidebar">
           <li ng-repeat="item in list">
             <a ng-href="http://{{item[0]}}">{{item[0]}}</a> <div class="nav-sidebar-info">({{item[1]}}x)</div>

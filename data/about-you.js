@@ -47,7 +47,7 @@ self.port.on("style", function(file) {
 
 self.port.on("init", function() {
   table = $('#test').DataTable({
-    "scrollY":        "450px",
+    "scrollY":        "730px",
     "scrollCollapse": true,
     "paging":         false,
     "searching":      false,

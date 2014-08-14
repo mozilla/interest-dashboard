@@ -60,17 +60,14 @@ InterestDashboard.prototype = {
     for (let i = 0; i < data.tableData.length; i++) {
       let categoryObj = data.tableData[i];
       table.row.add([
-        (i + 1),
+        "<div class='rank-container'>" + (i + 1) + "</div>",
         categoryObj.name,
         this._getMaxDate(categoryObj.days),
         null
       ]).draw();
 
-      table
-        .column(-1)
-        .nodes()
-        .to$() // Convert to a jQuery object
-        .addClass('details-control');
+      // Add classes
+      table.column(-1).nodes().to$().addClass('details-control');
     }
     table.columns.adjust();
   },
@@ -126,11 +123,25 @@ InterestDashboard.prototype = {
     d3.select('#areaGraph').selectAll("*").remove();
     table.clear();
 
+    $scope.graphHeader = "Total usage - all categories (past 30 days)";
+    $scope.interestCount = data.tableData.length;
+
     d3.select("#interestPie")
       .attr("class", "pie-graph-margin-fix")
       .datum(data.pieData)
       .transition().duration(350)
       .call(this._pieChart);
+
+    $('div.dataTables_scrollBody').scroll(function(e) {
+      let scrollPosition = $('div.dataTables_scrollBody').scrollTop();
+      let shiftableBottom = document.getElementById("main-row-background");
+
+      if (scrollPosition > 1) {
+        shiftableBottom.classList.add('shift-animate');
+      } else {
+        shiftableBottom.classList.remove('shift-animate');
+      }
+    });
 
     let areaGraph = this._areaGraph;
     d3.selectAll('.nv-slice')
