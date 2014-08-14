@@ -165,6 +165,19 @@ td.details-control {
   border: solid 1px #E6E6E6;
 }
 
+.category-name {
+  display: inline;
+  font-weight: bold;
+  font-size: 18px;
+  color: #6A7B86;
+}
+
+.category-count {
+  display: inline;
+  font-size: 14px;
+  color: #6A7B86;
+}
+
 table.dataTable thead th {
   padding: 0 0 20px 0;
   border-bottom: 1px solid #DCDCDC;

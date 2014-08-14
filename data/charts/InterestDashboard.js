@@ -61,7 +61,8 @@ InterestDashboard.prototype = {
       let categoryObj = data.tableData[i];
       table.row.add([
         "<div class='rank-container'>" + (i + 1) + "</div>",
-        categoryObj.name,
+        "<div class='category-name'>" + categoryObj.name + "</div>" +
+        "<div class='category-count'> (" + categoryObj.visitCount + ")</div>",
         this._getMaxDate(categoryObj.days),
         null
       ]).draw();
@@ -111,8 +112,12 @@ InterestDashboard.prototype = {
         row.child.hide();
         tr.removeClass('shown');
       } else {
+        let parser = new DOMParser();
+        let node = parser.parseFromString(row.data()[1], "text/html");
+        let category = node.getElementsByClassName('category-name')[0].innerHTML;
+
         // Open this row
-        row.child(self._formatSubtable(data.historyVisits[row.data()[1]])).show();
+        row.child(self._formatSubtable(data.historyVisits[category])).show();
         tr.addClass('shown');
       }
     });
