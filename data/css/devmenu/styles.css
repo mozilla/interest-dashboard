@@ -140,9 +140,20 @@ body {
 }
 
 td.details-control {
-    background: url('resources/Button_Expand.svg') no-repeat center center;
-    cursor: pointer;
-    background-size: 21px;
+    width: 21px;
+    height: 21px;
+}
+
+#test tr:hover .details-control {
+  background: url('resources/Button_Expand.svg') no-repeat center center;
+  cursor: pointer;
+  background-size: 21px;
+}
+
+#test tr:hover .rank-container {
+  background-color: #4A90E2;
+  border: solid 1px #E6E6E6;
+  color: #FFFFFF;
 }
 
 #test tr {
@@ -170,6 +181,11 @@ td.details-control {
   font-weight: bold;
   font-size: 18px;
   color: #6A7B86;
+}
+
+#test tr:hover .category-name,
+#test tr:hover .category-count {
+  color: #4A90E2;
 }
 
 .category-count {
