@@ -55,7 +55,7 @@
         <div id="most-visited" class="title-font">Most Visited Sites</div>
         <ol class="nav nav-sidebar">
           <li ng-repeat="item in list">
-            <a ng-href="http://{{item[0]}}">{{item[0]}}</a> <div class="nav-sidebar-info">({{item[1]}}x)</div>
+            <img class="favicon" ng-src="{{item[2]}}"></img><a ng-href="http://{{item[0]}}">{{item[0]}}</a> <div class="nav-sidebar-info">({{item[1]}}x)</div>
           </li>
         </ol>
       </div>

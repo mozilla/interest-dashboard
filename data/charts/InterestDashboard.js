@@ -91,7 +91,7 @@ InterestDashboard.prototype = {
 
       table += '<tr>' +
         '<td>' + time + '</td>' +
-        '<td><img src="' + visit.favicon + '"></img></td>' +
+        '<td><img class="favicon" src="' + visit.favicon + '"></img></td>' +
         '<td>' + visit.url + '</td>' +
         '<td>' + visit.title + '</td>' +
       '</tr>';
