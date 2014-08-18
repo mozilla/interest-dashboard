@@ -123,19 +123,43 @@ InterestDashboard.prototype = {
     });
   },
 
+  _renderPieGraph: function(data) {
+    d3.select("#interestPie")
+      .attr("class", "pie-graph-margin-fix")
+      .datum(data.pieData)
+      .transition().duration(350)
+      .call(this._pieChart);
+
+    d3.select("#interestPie")
+      .append("circle")
+      .attr("cx", 195)
+      .attr("cy", 200)
+      .attr("r", 77)
+      .style("fill", "white")
+
+    let tableLength = data.tableData.length;
+    d3.select("#interestPie")
+      .append("text")
+      .attr("id", "interest-count")
+      .attr("x", 170)
+      .attr("y", 195)
+      .text( function (d) { return tableLength > 9 ? tableLength : "0" + tableLength; });
+
+    d3.select("#interestPie")
+      .append("text")
+      .attr("class", "title-font")
+      .attr("x", 145)
+      .attr("y", 223)
+      .text( function (d) { return "Interests"; });
+  },
+
   graph: function(data, table, $scope) {
     d3.select('#interestPie').selectAll("*").remove();
     d3.select('#areaGraph').selectAll("*").remove();
     table.clear();
 
     $scope.graphHeader = "Total usage - all categories (past 30 days)";
-    $scope.interestCount = data.tableData.length;
-
-    d3.select("#interestPie")
-      .attr("class", "pie-graph-margin-fix")
-      .datum(data.pieData)
-      .transition().duration(350)
-      .call(this._pieChart);
+    this._renderPieGraph(data, data.tableData.length);
 
     $('div.dataTables_scrollBody').scroll(function(e) {
       let scrollPosition = $('div.dataTables_scrollBody').scrollTop();

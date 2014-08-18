@@ -21,6 +21,7 @@ body {
 .title-font, table.dataTable thead th {
   font-size: 18px;
   color: #6A7B86;
+  fill: #6A7B86;
   text-transform: uppercase;
 }
 
@@ -71,22 +72,9 @@ body {
   margin-left: 5px;
 }
 
-#pie-label {
-  border-radius: 50%;
-  height: 154px;
-  position: absolute;
-  top: 149px;
-  left: 283px;
-  width: 154px;
-  background-color: #FFFFFF;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.interest-count {
+#interest-count {
   font-size: 40px;
-  color: #6A7B86;
-  margin-top: 25px;
+  fill: #6A7B86;
 }
 
 .pie-graph-margin-fix {
