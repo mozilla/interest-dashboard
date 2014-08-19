@@ -108,21 +108,40 @@ body {
   width: 830px;
 }
 
+#navlist {
+  display: -moz-box;
+  width: 870px;
+  margin-left: -35px;
+}
+
 #navlist li {
+  display: -moz-box;
   float: left;
   display: inline;
   list-style-type: none;
-  border-right: 3px solid #E6E6E6;
 }
 
 #navlist li:last-child {
   border-right: none;
 }
 
+#navlist li:nth-child(even) {
+  -moz-box-flex: 1;
+}
+
+#navlist li:nth-child(even):after {
+  content:"";
+  position: relative;
+  height: 60px;
+  left: 50%;
+  display: block;
+  border-left: 3px solid #E6E6E6;
+}
+
 .usage-value {
   font-size: 35px;
   color: #6A7B86;
-  line-height: 52px
+  line-height: 45px
 }
 
 
