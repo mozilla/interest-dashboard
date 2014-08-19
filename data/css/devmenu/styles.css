@@ -31,6 +31,11 @@ body {
   display: inline-block;
 }
 
+.col-md-2 {
+  width: 270px;
+}
+
+
 
 /* Top navbar */
 .navbar {
@@ -233,16 +238,13 @@ table.dataTable thead th {
 /* Sidebar navigation */
 .nav-sidebar > li > a {
   padding: 10px 0px;
+  padding-left: 8px;
+  display: inline-block;
 }
 
 .nav-sidebar {
   margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 20px;
-  margin-left: -20px;
-}
-.nav-sidebar > li > a {
-  padding-left: 20px;
-  display: inline-block;
 }
 
 .nav > li > a:hover {
@@ -257,6 +259,14 @@ table.dataTable thead th {
   padding-bottom: 10px;
 }
 
+.most-visited-site-rank {
+  display: inline-block;
+  font-size: 18px;
+  color: #AFAFAF;
+  padding-right: 15px;
+  width: 35px;
+  text-align: right;
+}
 
 
 /*
