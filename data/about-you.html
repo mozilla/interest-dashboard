@@ -5,7 +5,7 @@
   <title>Firefox for You</title>
 </head>
 <body ng-cloak ng-controller="vizCtrl">
-  <div class="navbar-background">
+  <div id="top-navbar" class="navbar-background">
     <div class="navbar-outer">
       <div class="navbar navbar-inverse" role="navigation">
         <div class="container-fluid">
@@ -21,10 +21,10 @@
   </div>
 
   <div class="row-fluid visual-header">
-    <div class="span3">
+    <div class="col-md-2">
       <svg id="interestPie" style="height: 390px; width: 390px;"></svg>
     </div>
-    <div class="span9">
+    <div class="col-md-9">
       <div class="graph-header">{{graphHeader}}</div>
       <svg id="areaGraph" style="height: 200px; width: 990px"></svg>
       <div class="dates">

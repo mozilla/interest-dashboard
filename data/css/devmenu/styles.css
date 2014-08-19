@@ -35,6 +35,11 @@ body {
   width: 270px;
 }
 
+.col-md-9 {
+  width: 860px;
+  padding-left: 30px;
+}
+
 
 
 /* Top navbar */
@@ -83,7 +88,7 @@ body {
 }
 
 .pie-graph-margin-fix {
-  margin: -30px -60px !important;
+  margin: -30px -75px !important;
 }
 
 .area-graph-margin-fix {
