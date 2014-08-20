@@ -85,18 +85,21 @@ InterestDashboard.prototype = {
   },
 
   _formatSubtable: function(historyVisits) {
-    let table = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-    for (let visit of historyVisits) {
+    let table = '<div id="subtable"><table cellpadding="5" cellspacing="0" border="0">';
+    for (let visitIndex = 0; visitIndex < historyVisits.length; visitIndex++) {
+      let visit = historyVisits[visitIndex];
       let time = this._computeTimeString(visit.timestamp);
+      let lastVisitString = visitIndex == (historyVisits.length - 1) ? 'lastVisit' : '';
 
       table += '<tr>' +
-        '<td>' + time + '</td>' +
-        '<td><img class="favicon" src="' + visit.favicon + '"></img></td>' +
-        '<td>' + visit.url + '</td>' +
-        '<td>' + visit.title + '</td>' +
+        '<td class="time historyVisit">' + time + '</td>' +
+        '<td><div class="timelineCircle ' + lastVisitString + '"></div></td>' +
+        '<td><img class="favicon historyVisitFavicon" src="' + visit.favicon + '"></img></td>' +
+        '<td><div class="domain">' + visit.url + '</div>' +
+        '<div class="visitTitle historyVisit"> - ' + visit.title + '</div></td>'
       '</tr>';
     }
-    table += '</table>';
+    table += '</table></div>';
     return table;
   },
 

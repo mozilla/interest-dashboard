@@ -5,7 +5,7 @@
 .alerts { margin-top: 10px; }
 
 /* General */
-.navbar, #main-row-background, .navbar-background, table.dataTable tbody tr {
+.navbar, #main-row-background, .navbar-background, #test tr {
   background-color: #f5f5f5; /* Light grey for top navbar */
 }
 
@@ -140,7 +140,7 @@ body {
 }
 
 #navlist li:nth-child(even):after {
-  content:"";
+  content: "";
   position: relative;
   height: 60px;
   left: 50%;
@@ -157,6 +157,10 @@ body {
 
 
 /* Table */
+table.dataTable tbody td {
+  padding: 0;
+}
+
 .dataTables_scrollHeadInner, table {
   width: 100% !important;
 }
@@ -172,6 +176,18 @@ td.details-control {
   background-size: 21px;
 }
 
+#test .shown:hover .details-control {
+  background: url('resources/Button_Close_Hover.svg') no-repeat center center;
+  cursor: pointer;
+  background-size: 21px;
+}
+
+.shown .details-control {
+  background: url('resources/Button_Close.svg') no-repeat center center;
+  cursor: pointer;
+  background-size: 21px;
+}
+
 #test tr:hover .rank-container {
   background-color: #4A90E2;
   border: solid 1px #E6E6E6;
@@ -180,11 +196,7 @@ td.details-control {
 
 #test tr {
     height: 50px;
-}
-
-.main {
-  padding-left: 0px;
-  padding-right: 0px;
+    background-color: transparent;
 }
 
 .rank-container {
@@ -220,6 +232,61 @@ table.dataTable thead th {
   padding: 0 0 20px 0;
   border-bottom: 1px solid #DCDCDC;
   font-weight: unset;
+}
+
+.time {
+  width: 55px;
+  padding-left: 260px !important;
+}
+.domain {
+  font-size: 13px;
+  color: #4A4A4A;
+  font-weight: bold;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  max-width: 130px;
+}
+.visitTitle {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 250px;
+  white-space: nowrap;
+  vertical-align: bottom;
+  display: inline-block;
+}
+.historyVisit {
+  font-size: 13px;
+  color: #AFAFAF;
+}
+.timelineCircle {
+  background: #6A7B86;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.timelineCircle:not(.lastVisit):after {
+  content: "";
+  border-left: solid 2px #6A7B86;
+  left: 40%;
+  position: relative;
+  display: block;
+  height: 55px;
+}
+.historyVisitFavicon {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#subtable {
+  background: linear-gradient(#FFFFFF, #F9F9F9);
+  max-height: 250px;
+  overflow: auto;
+}
+#subtable td {
+  background: transparent;
+  border-top: none;
 }
 
 

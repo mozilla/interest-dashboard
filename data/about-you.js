@@ -51,5 +51,11 @@ self.port.on("init", function() {
     "scrollCollapse": true,
     "paging":         false,
     "searching":      false,
+    "columns": [
+      { "width": "64px" },
+      { "width": "250px" },
+      { "width": "400px" },
+      { "width": "40px" }
+    ]
   });
 });
