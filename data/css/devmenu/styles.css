@@ -236,7 +236,7 @@ table.dataTable thead th {
 
 .time {
   width: 55px;
-  padding-left: 260px !important;
+  padding-left: 270px !important;
 }
 .domain {
   font-size: 13px;
@@ -261,23 +261,34 @@ table.dataTable thead th {
   font-size: 13px;
   color: #AFAFAF;
 }
+.subtitleCircle {
+  width: 12px;
+  height: 12px;
+  margin-left: 4px;
+  margin-right: 5px;
+  background-color: #FFFFFF;
+  border: 2px solid #6A7B86;;
+  border-radius: 50%;
+  box-shadow: 0 0 2px #888;
+  visibility: hidden;
+}
 .timelineCircle {
   background: #6A7B86;
   width: 10px;
   height: 10px;
   border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
 }
-.timelineCircle:not(.lastVisit):after {
+.timelineCircle:not(.lastVisit):after,
+.subtitleCircle:after {
   content: "";
+  top:10px;
   border-left: solid 2px #6A7B86;
   left: 40%;
   position: relative;
   display: block;
-  height: 55px;
-}
-.historyVisitFavicon {
-  margin-left: 5px;
-  margin-right: 5px;
+  height: 40px;
 }
 #subtable {
   background: linear-gradient(#FFFFFF, #F9F9F9);
@@ -288,7 +299,12 @@ table.dataTable thead th {
   background: transparent;
   border-top: none;
 }
-
+tr.shown .subtitleCircle, .alwaysVisible {
+  visibility: visible !important;
+}
+tr:not(.shown) .subtitleCircle {
+  visibility: hidden;
+}
 
 
 /* Sidebar */

@@ -36,17 +36,17 @@ function InterestDashboard() {
 InterestDashboard.prototype = {
   _getMaxDate: function(days) {
     let max = 0;
-    for (let day in days) {
-      if (Number(day) > max) {
-        max = Number(day);
+    for (let day of days) {
+      if (day.timestamp > max) {
+        max = day.timestamp;
       }
     }
-    return d3.time.format('%A, %B %e, %Y')(new Date(days[max].x));
+    return d3.time.format('%A, %B %e, %Y')(new Date(max / 1000));
   },
 
   _computeTimeString: function(timestamp) {
     let AMorPM = "am";
-    let date = new Date(timestamp);
+    let date = new Date(timestamp / 1000);
     let hours = date.getHours();
     let minutes = date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes();
     if (hours > 12) {
@@ -63,7 +63,8 @@ InterestDashboard.prototype = {
         "<div class='rank-container'>" + (i + 1) + "</div>",
         "<div class='category-name'>" + categoryObj.name + "</div>" +
         "<div class='category-count'> (" + categoryObj.visitCount + ")</div>",
-        this._getMaxDate(categoryObj.days),
+        "<div class='subtitleCircle'></div>",
+        this._getMaxDate(data.historyVisits[categoryObj.name]),
         null
       ]).draw();
 
@@ -84,17 +85,39 @@ InterestDashboard.prototype = {
     $scope.dailyAvg = data.totalDailyAvg.toFixed(0);
   },
 
+  _isNewDay: function(currentTimestamp, newTimestamp) {
+    let currDate = new Date(currentTimestamp / 1000);
+    let newDate = new Date(newTimestamp / 1000);
+
+    return (currDate.getDate() != newDate.getDate()) ||
+           (currDate.getMonth() != newDate.getMonth()) ||
+           (currDate.getYear() != newDate.getYear());
+  },
+
   _formatSubtable: function(historyVisits) {
+    let currentDay = historyVisits[0].timestamp;
+
     let table = '<div id="subtable"><table cellpadding="5" cellspacing="0" border="0">';
     for (let visitIndex = 0; visitIndex < historyVisits.length; visitIndex++) {
       let visit = historyVisits[visitIndex];
       let time = this._computeTimeString(visit.timestamp);
       let lastVisitString = visitIndex == (historyVisits.length - 1) ? 'lastVisit' : '';
 
+      if (this._isNewDay(currentDay, visit.timestamp)) {
+        table += '<tr>' +
+          '<td></td>' +
+          '<td><div class="subtitleCircle alwaysVisible"></div></td>' +
+          '<td colspan = "2" class="date-subheader">' + d3.time.format('%A, %B %e, %Y')(new Date(visit.timestamp / 1000)); + '</td>' +
+          '<td></td>' +
+          '<td></td>' +
+        '</tr>';
+        currentDay = visit.timestamp;
+      }
+
       table += '<tr>' +
         '<td class="time historyVisit">' + time + '</td>' +
         '<td><div class="timelineCircle ' + lastVisitString + '"></div></td>' +
-        '<td><img class="favicon historyVisitFavicon" src="' + visit.favicon + '"></img></td>' +
+        '<td><img class="favicon" src="' + visit.favicon + '"></img></td>' +
         '<td><div class="domain">' + visit.url + '</div>' +
         '<div class="visitTitle historyVisit"> - ' + visit.title + '</div></td>'
       '</tr>';

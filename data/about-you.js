@@ -52,8 +52,9 @@ self.port.on("init", function() {
     "paging":         false,
     "searching":      false,
     "columns": [
-      { "width": "64px" },
-      { "width": "250px" },
+      { "width": "74px" },
+      { "width": "231px" },
+      { "width": "0px" },
       { "width": "400px" },
       { "width": "40px" }
     ]
