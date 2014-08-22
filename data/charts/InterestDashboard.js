@@ -53,6 +53,8 @@ InterestDashboard.prototype = {
       hours -= 12;
       AMorPM = "pm";
     }
+    if (hours == 12) AMorPM = "pm";
+    if (hours == 0) hours = 12;
     return hours + ":" + minutes + " " + AMorPM;
   },
 
@@ -64,7 +66,7 @@ InterestDashboard.prototype = {
         "<div class='category-name'>" + categoryObj.name + "</div>" +
         "<div class='category-count'> (" + categoryObj.visitCount + ")</div>",
         "<div class='subtitleCircle'></div>",
-        this._getMaxDate(data.historyVisits[categoryObj.name]),
+        this._getMaxDate(data.historyVisits[categoryObj.name].visitData),
         null
       ]).draw();
 
@@ -94,19 +96,25 @@ InterestDashboard.prototype = {
            (currDate.getYear() != newDate.getYear());
   },
 
-  _formatSubtable: function(historyVisits) {
-    let currentDay = historyVisits[0].timestamp;
+  _formatSubtable: function(category, historyVisits, complete) {
+    let table = '<div id="' + category + '" class="subtable"><table cellpadding="5" cellspacing="0" border="0">';
+    table += this._getRowsHTML(category, historyVisits, complete);
+    table += '</table></div>';
+    return table;
+  },
 
-    let table = '<div id="subtable"><table cellpadding="5" cellspacing="0" border="0">';
+  _getRowsHTML: function(category, historyVisits, complete) {
+    let rows = "";
+    let currentDay = historyVisits[0].timestamp;
     for (let visitIndex = 0; visitIndex < historyVisits.length; visitIndex++) {
       let visit = historyVisits[visitIndex];
       let time = this._computeTimeString(visit.timestamp);
       let lastVisitString = visitIndex == (historyVisits.length - 1) ? 'lastVisit' : '';
 
       if (this._isNewDay(currentDay, visit.timestamp)) {
-        table += '<tr>' +
+        rows += '<tr>' +
           '<td></td>' +
-          '<td><div class="subtitleCircle alwaysVisible"></div></td>' +
+          '<td style="width: 23px"><div class="subtitleCircle alwaysVisible"></div></td>' +
           '<td colspan = "2" class="date-subheader">' + d3.time.format('%A, %B %e, %Y')(new Date(visit.timestamp / 1000)); + '</td>' +
           '<td></td>' +
           '<td></td>' +
@@ -114,19 +122,37 @@ InterestDashboard.prototype = {
         currentDay = visit.timestamp;
       }
 
-      table += '<tr>' +
+      rows += '<tr>' +
         '<td class="time historyVisit">' + time + '</td>' +
-        '<td><div class="timelineCircle ' + lastVisitString + '"></div></td>' +
+        '<td style="width: 23px"><div class="timelineCircle ' + lastVisitString + '"></div></td>' +
         '<td><img class="favicon" src="' + visit.favicon + '"></img></td>' +
         '<td><div class="domain">' + visit.url + '</div>' +
         '<div class="visitTitle historyVisit"> - ' + visit.title + '</div></td>'
       '</tr>';
     }
-    table += '</table></div>';
-    return table;
+    if (!complete) {
+      rows += '<tr>' +
+        '<td colspan = "5"><div class="loading"></div></td>' +
+      '</tr>';
+    }
+    return rows;
   },
 
-  _handleRowExpand: function(data, table) {
+  appendCategoryVisitData: function(category, historyVisits, pageNum, complete) {
+    if ($('#' + category + ' tr').length > 0) {
+      $('#' + category + ' tr:last').remove();
+    }
+    $('#' + category + ' tr:last').after(
+      this._getRowsHTML(category, historyVisits.slice(
+        (pageNum * 50) - 50, historyVisits.length), complete));
+    this._appendingVisits = false;
+  },
+
+  cancelAppendVisits: function() {
+    this._appendingVisits = false;
+  },
+
+  _handleRowExpand: function(data, table, $scope) {
     // Add event listener for opening and closing details
     let self = this;
     $('#test tbody').on('click', 'td.details-control', function() {
@@ -143,7 +169,18 @@ InterestDashboard.prototype = {
         let category = node.getElementsByClassName('category-name')[0].innerHTML;
 
         // Open this row
-        row.child(self._formatSubtable(data.historyVisits[category])).show();
+        row.child(self._formatSubtable(category, data.historyVisits[category].visitData,
+                                       data.historyVisits[category].complete)).show();
+
+        $(".subtable").scroll(function(e) {
+          // Check if we've scrolled to the bottom.
+          let elem = $(e.currentTarget);
+          if (!self._appendingVisits && elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
+            console.log("bottom");
+            self._appendingVisits = true;
+            $scope._requestCategoryVisits(e.currentTarget.id);
+          }
+        });
         tr.addClass('shown');
       }
     });
@@ -229,6 +266,6 @@ InterestDashboard.prototype = {
     this._addTopSites(data, $scope);
     this._addStats(data, $scope);
     this._addTableRows(data, table);
-    this._handleRowExpand(data, table);
+    this._handleRowExpand(data, table, $scope);
   }
 }

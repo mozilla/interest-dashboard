@@ -290,20 +290,25 @@ table.dataTable thead th {
   display: block;
   height: 40px;
 }
-#subtable {
+.subtable {
   background: linear-gradient(#FFFFFF, #F9F9F9);
   max-height: 250px;
   overflow: auto;
 }
-#subtable td {
+.subtable td {
   background: transparent;
-  border-top: none;
+  border-top: none !important;
 }
 tr.shown .subtitleCircle, .alwaysVisible {
   visibility: visible !important;
 }
 tr:not(.shown) .subtitleCircle {
   visibility: hidden;
+}
+.loading {
+  background: url('resources/load.gif') no-repeat center center;
+  background-size: 32px;
+  height: 32px;
 }
 
 

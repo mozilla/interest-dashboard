@@ -26,10 +26,23 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
   $scope._initialize = function () {
     dataService.send("chart_data_request");
   }
+  $scope._requestCategoryVisits = function (categoryName) {
+    dataService.send("category_visit_request", {
+      "categoryName": categoryName
+    });
+  }
   $scope._initialize();
 
   $scope.$on("json_update", function(event, data) {
     ChartManager.appendToGraph(data.type, data.data, table, $scope);
+  });
+
+  $scope.$on("append_visit_data", function(event, data) {
+    ChartManager.appendCategoryVisitData(data.category, data.historyVisits, data.pageNum, data.complete);
+  });
+
+  $scope.$on("cancel_append_visits", function(event, data) {
+    ChartManager.cancelAppendVisits();
   });
 
   $scope.$on("chart_init", function(event, data) {
