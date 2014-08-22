@@ -162,6 +162,7 @@ InterestDashboard.prototype = {
       if (row.child.isShown()) {
         // This row is already open - close it
         row.child.hide();
+        self.cancelAppendVisits();
         tr.removeClass('shown');
       } else {
         let parser = new DOMParser();
@@ -176,7 +177,6 @@ InterestDashboard.prototype = {
           // Check if we've scrolled to the bottom.
           let elem = $(e.currentTarget);
           if (!self._appendingVisits && elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
-            console.log("bottom");
             self._appendingVisits = true;
             $scope._requestCategoryVisits(e.currentTarget.id);
           }
