@@ -353,9 +353,15 @@ tr:not(.shown) .subtitleCircle {
 
 /* Sidebar navigation */
 .nav-sidebar > li > a {
-  padding: 10px 0px;
-  padding-left: 8px;
   display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+  position: relative;
+  white-space: nowrap;
+  max-width: 130px;
+  padding: 0 !important;
+  padding-left: 8px !important;
 }
 
 .nav-sidebar {
@@ -382,6 +388,9 @@ tr:not(.shown) .subtitleCircle {
   padding-right: 15px;
   width: 35px;
   text-align: right;
+}
+ol li {
+  height: 38px;
 }
 
 
