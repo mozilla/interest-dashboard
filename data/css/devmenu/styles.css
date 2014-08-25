@@ -327,6 +327,12 @@ tr:not(.shown) .subtitleCircle {
   background-size: 32px;
   height: 32px;
 }
+.dataTables_wrapper .dataTables_info {
+  visibility: collapse;
+}
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+  border-bottom: none;
+}
 
 
 /* Sidebar */
@@ -387,6 +393,7 @@ tr:not(.shown) .subtitleCircle {
   padding-top: 40px;
   position: absolute;
   top: 398px;
+  bottom: 0px;
   transition: all 0.5s ease;
 }
 
