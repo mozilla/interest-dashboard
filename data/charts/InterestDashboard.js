@@ -22,9 +22,6 @@ function InterestDashboard() {
                 .showControls(false)
                 .transitionDuration(300);
 
-  this._areaGraph.xAxis
-    .tickFormat((d) => { return d3.time.format('%x')( new Date(d)); });
-
   this._areaGraph.yAxis
     .tickFormat((d) => { return d; });
 
@@ -259,6 +256,22 @@ InterestDashboard.prototype = {
       .datum(data.areaData.total)
       .transition().duration(350)
       .call(this._areaGraph);
+
+    // A bit of a hack for creating a custom tooltip since the nvd3 tooltip
+    // is a hassle to customize.
+    $('.nv-interactiveGuideLine').bind('DOMAttrModified', function(e) {
+      $('.tooltip').css("visibility", "visible");
+      $scope.$apply(function() {
+        $scope.maxCategory = $('.nvtooltip > table > thead .x-value').html();
+      });
+      $('.tooltip').css("left", $(".nv-guideline").attr("x1") + "px");
+    });
+    this._areaGraph.stacked.dispatch.on("areaMouseout", function() {
+      $('.tooltip').css("visibility", "hidden");
+    });
+    this._areaGraph.xAxis.tickFormat((d) => {
+      return data.areaData.maxCategories[d];
+    });
 
     nv.utils.windowResize(this._areaGraph.update);
     nv.utils.windowResize(this._pieChart.update);
