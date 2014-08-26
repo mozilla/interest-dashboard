@@ -213,6 +213,10 @@ td.details-control {
   background-size: 21px;
 }
 
+#test :hover {
+  cursor: pointer;
+}
+
 .shown .details-control {
   background: url('resources/Button_Close.svg') no-repeat center center;
   cursor: pointer;
@@ -323,7 +327,6 @@ table.dataTable thead th {
 }
 .subtable {
   background: linear-gradient(#FFFFFF, #F9F9F9);
-  max-height: 250px;
   overflow: auto;
 }
 .subtable td {

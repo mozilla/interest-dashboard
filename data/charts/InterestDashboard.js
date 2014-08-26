@@ -149,36 +149,62 @@ InterestDashboard.prototype = {
     this._appendingVisits = false;
   },
 
+  _openRowDetails: function(row, tr, data, $scope, table) {
+    // Close all other open rows.
+    let self = this;
+    $("#test tr").each(function() {
+      self._closeRowDetails(table.row($(this)), $(this));
+    });
+
+    // Get the category that was clicked
+    let parser = new DOMParser();
+    let node = parser.parseFromString(row.data()[1], "text/html");
+    let category = node.getElementsByClassName('category-name')[0].innerHTML;
+
+    // Open this row
+    row.child(this._formatSubtable(category, data.historyVisits[category].visitData,
+                                   data.historyVisits[category].complete)).show();
+
+    // Height of open row should fill the rest of the screen.
+    $('.subtable').css("height", ($(window).height() - 195) + "px");
+
+    // Shift main table up and scroll the category up to be a header.
+    let shiftableBottom = document.getElementById("main-row-background");
+    shiftableBottom.classList.add('shift-animate');
+    $('div.dataTables_scrollBody').scrollTop(50 * tr.prevAll().length);
+    $('div.dataTables_scrollBody').css("overflow", "hidden");
+
+    // Infinite scrolling.
+    $(".subtable").scroll(function(e) {
+      // Check if we've scrolled to the bottom.
+      let elem = $(e.currentTarget);
+      if (!self._appendingVisits && elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
+        self._appendingVisits = true;
+        $scope._requestCategoryVisits(e.currentTarget.id);
+      }
+    });
+    tr.addClass('shown');
+  },
+
+  _closeRowDetails: function(row, tr) {
+    // This row is already open - close it
+    row.child.hide();
+    this.cancelAppendVisits();
+    tr.removeClass('shown');
+    $('div.dataTables_scrollBody').css("overflow", "auto");
+  },
+
   _handleRowExpand: function(data, table, $scope) {
     // Add event listener for opening and closing details
     let self = this;
-    $('#test tbody').on('click', 'td.details-control', function() {
+    $('#test tbody').on('click', 'td', function() {
       let tr = $(this).closest('tr');
       let row = table.row(tr);
 
       if (row.child.isShown()) {
-        // This row is already open - close it
-        row.child.hide();
-        self.cancelAppendVisits();
-        tr.removeClass('shown');
+        self._closeRowDetails(row, tr);
       } else {
-        let parser = new DOMParser();
-        let node = parser.parseFromString(row.data()[1], "text/html");
-        let category = node.getElementsByClassName('category-name')[0].innerHTML;
-
-        // Open this row
-        row.child(self._formatSubtable(category, data.historyVisits[category].visitData,
-                                       data.historyVisits[category].complete)).show();
-
-        $(".subtable").scroll(function(e) {
-          // Check if we've scrolled to the bottom.
-          let elem = $(e.currentTarget);
-          if (!self._appendingVisits && elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
-            self._appendingVisits = true;
-            $scope._requestCategoryVisits(e.currentTarget.id);
-          }
-        });
-        tr.addClass('shown');
+        self._openRowDetails(row, tr, data, $scope, table);
       }
     });
   },
