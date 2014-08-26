@@ -40,7 +40,7 @@
         <li></li>
         <li><div class="title-font">Daily Average</div> <div class="usage-value">{{dailyAvg}} pages</div></li>
       </ul>
-      <div class="tooltip">{{maxCategory}}</div>
+      <div ng-bind-html-unsafe="tooltipData" class="tooltip"></div>
     </div>
   </div>
 

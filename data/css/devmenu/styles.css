@@ -126,8 +126,22 @@ body {
   vertical-align: middle;
   white-space: nowrap;
 }
-
-
+.nvd3.nv-pie path {
+  stroke: none !important;
+}
+.tooltipDescription {
+  display: inline-block;
+}
+.totalColorLabel, .categoryColorLabel{
+  background-color: #AEC7E8;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+.categoryColorLabel {
+  background-color: #1F77B4;
+}
 
 /* Stats below area graph */
 #statslist {

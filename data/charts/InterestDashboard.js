@@ -213,6 +213,18 @@ InterestDashboard.prototype = {
       .text( function (d) { return "Interests"; });
   },
 
+  _setTooltip: function($scope, dataFunction) {
+    // A bit of a hack for creating a custom tooltip since the nvd3 tooltip
+    // is a hassle to customize.
+    $('.nv-interactiveGuideLine').bind('DOMAttrModified', function(e) {
+      $('.tooltip').css("visibility", "visible");
+      $scope.$apply(function() {
+        $scope.tooltipData = dataFunction();
+      });
+      $('.tooltip').css("left", $(".nv-guideline").attr("x1") + "px");
+    });
+  },
+
   graph: function(data, table, $scope) {
     d3.select('#interestPie').selectAll("*").remove();
     d3.select('#areaGraph').selectAll("*").remove();
@@ -233,10 +245,19 @@ InterestDashboard.prototype = {
     });
 
     let areaGraph = this._areaGraph;
+    let self = this;
     d3.selectAll('.nv-slice')
       .on('click', function(event) {
+        let clickTarget = $(this);
         $scope.$apply(function() {
+          // Grey out the unselected pie pieces.
+          $(".nvd3.nv-pie path").css("fill-opacity", 0.1);
+          clickTarget.find('path').css("fill-opacity", 1);
+
           let categoryClicked = event.data.label;
+          $scope.graphHeader = categoryClicked + " (past 30 days)";
+
+          // Redraw area graph
           d3.select('#areaGraph').selectAll("*").remove();
           d3.select("#areaGraph")
             .attr("class", "area-graph-margin-fix")
@@ -244,6 +265,31 @@ InterestDashboard.prototype = {
             .transition().duration(350)
             .call(areaGraph);
 
+          areaGraph.stacked.dispatch.on("areaClick", null);
+          areaGraph.stacked.dispatch.on("areaClick.toggle", null);
+          areaGraph.stacked.scatter.dispatch.on("elementClick", null);
+          areaGraph.stacked.scatter.dispatch.on("elementClick.area", null);
+
+          self._setTooltip($scope, function() {
+            let tooltipTotal = Number($('.nvtooltip > table > tbody').find('tr:eq(0)').find('td:eq(2)').html());
+            let tooltipCategory = $('.nvtooltip > table > tbody').find('tr:eq(1)').find('td:eq(2)').html();
+            tooltipTotal += Number(tooltipCategory);
+            let data =
+              "<div>" +
+                "<div class='totalColorLabel'></div>" +
+                "<div class='tooltipDescription'>Total: " + tooltipTotal + "</div>" +
+              "</div>" +
+              "<div>" +
+                "<div class='categoryColorLabel'></div>" +
+                "<div class='tooltipDescription'>" + categoryClicked + ": " + tooltipCategory + "</div>" +
+              "</div>";
+            return data;
+          });
+
+          d3.selectAll('.nv-point').filter(function(d){ return d.shape === 'circle' })
+            .classed('hidden-point', true);
+
+          // Update stats below graph
           $scope.totalVisits = data.categories[categoryClicked].visitCount;
           $scope.totalViews = data.categories[categoryClicked].viewCount;
           $scope.weeklyAvg = data.categories[categoryClicked].weeklyAvg.toFixed(0);
@@ -257,14 +303,8 @@ InterestDashboard.prototype = {
       .transition().duration(350)
       .call(this._areaGraph);
 
-    // A bit of a hack for creating a custom tooltip since the nvd3 tooltip
-    // is a hassle to customize.
-    $('.nv-interactiveGuideLine').bind('DOMAttrModified', function(e) {
-      $('.tooltip').css("visibility", "visible");
-      $scope.$apply(function() {
-        $scope.maxCategory = $('.nvtooltip > table > thead .x-value').html();
-      });
-      $('.tooltip').css("left", $(".nv-guideline").attr("x1") + "px");
+    this._setTooltip($scope, function() {
+      return "<div>" + $('.nvtooltip > table > thead .x-value').html() + "</div>";
     });
     this._areaGraph.stacked.dispatch.on("areaMouseout", function() {
       $('.tooltip').css("visibility", "hidden");
