@@ -21,6 +21,9 @@ let ChartManager = {
   },
 
   appendToGraph: function(chartType, data, table, $scope) {
+    if (!this._charts["interestDashboard"]) {
+      this._charts["interestDashboard"] = new InterestDashboard();
+    }
     this._charts[chartType].graph(data, table, $scope);
   },
 
