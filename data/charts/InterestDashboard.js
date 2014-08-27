@@ -123,8 +123,12 @@ InterestDashboard.prototype = {
         '<td class="time historyVisit">' + time + '</td>' +
         '<td style="width: 23px"><div class="timelineCircle ' + lastVisitString + '"></div></td>' +
         '<td><img class="favicon" src="' + visit.favicon + '"></img></td>' +
-        '<td><div class="domain">' + visit.url + '</div>' +
-        '<div class="visitTitle historyVisit"> - ' + visit.title + '</div></td>'
+        '<td><div class="domain" data-toggle="tooltip" title="' + visit.url + '">' +
+          '<a href="' + visit.url + '">' + visit.domain + '</a>' +
+        '</div>' +
+        '<div class="visitTitle historyVisit" data-toggle="tooltip" title="' + visit.url + '">' +
+          '<a href="' + visit.url + '">- ' + visit.title + '</a>' +
+        '</div></td>'
       '</tr>';
     }
     if (!complete) {
@@ -338,6 +342,7 @@ InterestDashboard.prototype = {
     this._areaGraph.xAxis.tickFormat((d) => {
       return data.areaData.maxCategories[d];
     });
+    $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
 
     nv.utils.windowResize(this._areaGraph.update);
     nv.utils.windowResize(this._pieChart.update);

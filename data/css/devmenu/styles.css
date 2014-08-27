@@ -273,9 +273,11 @@ table.dataTable thead th {
   width: 55px;
   padding-left: 270px !important;
 }
+.domain a {
+  color: #4A4A4A;
+}
 .domain {
   font-size: 13px;
-  color: #4A4A4A;
   font-weight: bold;
   display: inline-block;
   text-overflow: ellipsis;
@@ -292,7 +294,7 @@ table.dataTable thead th {
   vertical-align: bottom;
   display: inline-block;
 }
-.historyVisit {
+.historyVisit, .historyVisit a {
   font-size: 13px;
   color: #AFAFAF;
 }
