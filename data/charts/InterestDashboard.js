@@ -208,7 +208,7 @@ InterestDashboard.prototype = {
   _handleRowExpand: function(data, table, $scope) {
     // Add event listener for opening and closing details
     let self = this;
-    $('#test tbody').on('click', 'td', function() {
+    $('#test tbody td').on('click', function() {
       let tr = $(this).closest('tr');
       let row = table.row(tr);
 
