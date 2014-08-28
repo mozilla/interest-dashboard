@@ -26,10 +26,17 @@
     </div>
     <div class="col-md-9">
       <div class="graph-header">{{graphHeader}}</div>
-      <svg id="areaGraph" style="height: 200px; width: 990px"></svg>
+      <div id="areaGraphDiv">
+        <div id="percentComplete">
+          <div id="percentage">{{percentage}}%</div>
+          <div id="complete">complete</div>
+        </div>
+        <svg id="areaGraph"></svg>
+        <div ng-bind-html-unsafe="tooltipData" class="tooltip"></div>
+      </div>
       <div class="dates">
-        <div class="date-label">30d</div>
-        <div id="today" class="date-label">Today</div>
+        <div class="date-label">Day 1</div>
+        <div id="today" class="date-label">Day 30</div>
       </div>
       <ul id="navlist">
         <li><div class="title-font">Total Visits</div> <div class="usage-value">{{totalVisits}} sites</div></li>
@@ -40,7 +47,6 @@
         <li></li>
         <li><div class="title-font">Daily Average</div> <div class="usage-value">{{dailyAvg}} pages</div></li>
       </ul>
-      <div ng-bind-html-unsafe="tooltipData" class="tooltip"></div>
     </div>
   </div>
 

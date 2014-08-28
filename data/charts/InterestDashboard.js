@@ -12,7 +12,6 @@ function InterestDashboard() {
 
   /* Initing the area graph */
   this._areaGraph = nv.models.stackedAreaChart()
-                .margin({right: 100})
                 .x(function(d) { return d[0] })
                 .y(function(d) { return d[1] })
                 .useInteractiveGuideline(true)
@@ -259,6 +258,16 @@ InterestDashboard.prototype = {
     d3.select('#interestPie').selectAll("*").remove();
     d3.select('#areaGraph').selectAll("*").remove();
     table.clear();
+
+    let today = new Date();
+    let oneDay = 24 * 60 * 60 * 1000;
+    let maxDate = new Date(data.maxDay);
+    let thirtyAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000);
+    let diffDays = Math.round(Math.abs((maxDate.getTime() - thirtyAgo.getTime())/(oneDay)));
+
+    // 795 is width of svg rect, 65 is is 35 for margin + 30 to show up after next day
+    $("#percentComplete").css("left", 795 / 30 * diffDays + 65);
+    $scope.percentage = parseInt(diffDays / 30 * 100);
 
     $scope.graphHeader = "Total usage - all categories (past 30 days)";
     this._renderPieGraph(data, data.tableData.length);

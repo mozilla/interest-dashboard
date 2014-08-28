@@ -185,6 +185,32 @@ body {
   line-height: 45px
 }
 
+#areaGraphDiv {
+  width: 880px;
+  height: 200px;
+}
+
+#percentComplete {
+  height: 110px;
+  position: absolute;
+  top: 70px;
+  border-left: 2px dashed;
+  padding-left: 4px;
+  color: #6A7B86;
+}
+#percentage {
+  font-size: 35px;
+  line-height: 35px;
+  margin-top: -15px;
+  color: #2CA02C;
+}
+#complete {
+  font-size: 14px;
+  line-height: 18px;
+  color: #2CA02C;
+  text-transform: uppercase;
+}
+
 
 
 /* Table */
