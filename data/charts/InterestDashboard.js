@@ -60,7 +60,7 @@ InterestDashboard.prototype = {
       table.row.add([
         "<div class='rank-container'>" + (i + 1) + "</div>",
         "<div class='category-name'>" + categoryObj.name + "</div>" +
-        "<div class='category-count'> (" + categoryObj.visitCount + ")</div>",
+        "<div class='category-count'> (" + this._numberWithCommas(categoryObj.visitCount) + ")</div>",
         "<div class='subtitleCircle'></div>",
         this._getMaxDate(data.historyVisits[categoryObj.name].visitData),
         null
@@ -73,14 +73,22 @@ InterestDashboard.prototype = {
   },
 
   _addTopSites: function(data, $scope) {
-    $scope.list = data.sortedDomains.slice(0, 10);
+    let list = data.sortedDomains.slice(0, 10);
+    for (let item of list) {
+      item[1] = this._numberWithCommas(item[1]);
+    }
+    $scope.list = list;
   },
 
-  _addStats: function(data, $scope) {
-    $scope.totalVisits = data.totalVisits;
-    $scope.totalViews = data.totalViews;
-    $scope.weeklyAvg = data.totalWeeklyAvg.toFixed(0);
-    $scope.dailyAvg = data.totalDailyAvg.toFixed(0);
+  _numberWithCommas: function(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  },
+
+  _setStats: function(totalVisits, totalViews, weeklyAvg, dailyAvg, $scope) {
+    $scope.totalVisits = this._numberWithCommas(totalVisits);
+    $scope.totalViews = this._numberWithCommas(totalViews);
+    $scope.weeklyAvg = this._numberWithCommas(weeklyAvg);
+    $scope.dailyAvg = this._numberWithCommas(dailyAvg);
   },
 
   _isNewDay: function(currentTimestamp, newTimestamp) {
@@ -329,10 +337,11 @@ InterestDashboard.prototype = {
             .classed('hidden-point', true);
 
           // Update stats below graph
-          $scope.totalVisits = data.categories[categoryClicked].visitCount;
-          $scope.totalViews = data.categories[categoryClicked].viewCount;
-          $scope.weeklyAvg = data.categories[categoryClicked].weeklyAvg.toFixed(0);
-          $scope.dailyAvg = data.categories[categoryClicked].dailyAvg.toFixed(0);
+          self._setStats(data.categories[categoryClicked].visitCount,
+                         data.categories[categoryClicked].viewCount,
+                         data.categories[categoryClicked].weeklyAvg.toFixed(0),
+                         data.categories[categoryClicked].dailyAvg.toFixed(0),
+                         $scope);
         });
     });
 
@@ -357,7 +366,10 @@ InterestDashboard.prototype = {
     nv.utils.windowResize(this._pieChart.update);
 
     this._addTopSites(data, $scope);
-    this._addStats(data, $scope);
+    this._setStats(data.totalVisits,
+                   data.totalViews,
+                   data.totalWeeklyAvg.toFixed(0),
+                   data.totalDailyAvg.toFixed(0), $scope);
     this._addTableRows(data, table);
     this._handleRowExpand(data, table, $scope);
   }
