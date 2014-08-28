@@ -11,6 +11,7 @@
 
 body {
   overflow: hidden; /* To prevent body from scrolling */
+  font-family: Fira Sans;
 }
 
 #main-row-body, .navbar-outer, .visual-header {
