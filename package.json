@@ -1,10 +1,10 @@
 {
   "author": "Mozilla",
   "description": "Firefox study of personalized content on the Web. This will be removed automatically when the study finishes.",
-  "fullName": "Firefox Personalization Study",
+  "fullName": "Firefox Interest Dashboard",
   "id": "firefox.personalization.study@up.mozilla",
   "license": "MPL 2.0",
-  "name": "firefox-personalization-study",
+  "name": "firefox-interest-dashboard",
   "version": "4.0.2",
   "devDependencies": {
     "grunt": "~0.4.2",
