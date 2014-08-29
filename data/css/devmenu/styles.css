@@ -11,7 +11,7 @@
 
 body {
   overflow: hidden; /* To prevent body from scrolling */
-  font-family: Fira Sans;
+  font-family: Fira Sans !important;
 }
 
 #main-row-body, .navbar-outer, .visual-header {
@@ -110,28 +110,34 @@ body {
 #today {
   float: right;
 }
-.tooltip ~ .nvtooltip {
-  visibility: hidden;
-}
-.tooltip {
+#areaGraphDiv .nvtooltip {
   position: absolute;
-  top: 40px;
-  line-height: 30px;
+  top: 5px !important;
   opacity: 1;
-  font-size: 12px;
+  font-size: 12px !important;
   color: #FFFFFF;
-  background-color: #424F5A;
-  padding-right: 14px;
-  padding-left: 14px;
+  line-height: 20px;
+  background-color: #424F5A !important;
+  padding-right: 2px !important;
+  padding-left: 12px !important;
   display: inline-block;
   vertical-align: middle;
   white-space: nowrap;
 }
+#areaGraphDiv .nvtooltip > table {
+  margin: 0 auto !important;
+}
+.nvtooltip thead .x-value {
+  font-weight: normal;
+}
+.sliced > table > tbody {
+  visibility: visible;
+}
+#areaGraphDiv .nvtooltip:not(.sliced) > table > tbody {
+  visibility: collapse;
+}
 .nvd3.nv-pie path {
   stroke: none !important;
-}
-.tooltipDescription {
-  display: inline-block;
 }
 .totalColorLabel, .categoryColorLabel{
   background-color: #AEC7E8;
