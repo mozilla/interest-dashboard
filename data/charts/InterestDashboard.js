@@ -184,6 +184,7 @@ InterestDashboard.prototype = {
     shiftableBottom.classList.add('shift-animate');
     $('div.dataTables_scrollBody').scrollTop(50 * tr.prevAll().length);
     $('div.dataTables_scrollBody').css("overflow", "hidden");
+    this._preventScroll = true;
 
     // Infinite scrolling.
     $(".subtable").scroll(function(e) {
@@ -199,6 +200,7 @@ InterestDashboard.prototype = {
 
   _closeRowDetails: function(row, tr) {
     // This row is already open - close it
+    this._preventScroll = false;
     row.child.hide();
     this.cancelAppendVisits();
     tr.removeClass('shown');
@@ -262,6 +264,22 @@ InterestDashboard.prototype = {
     });
   },
 
+  _mouseScroll: function(e) {
+    if (this._preventScroll) {
+      return;
+    }
+    let delta = e.detail ? e.detail : e.wheelDelta;
+    let shiftableBottom = document.getElementById("main-row-background");
+    let tableScrollTop = document.getElementsByClassName('dataTables_scrollBody')[0].scrollTop;
+    if (delta < 0 && tableScrollTop <= 1) {
+      shiftableBottom.classList.remove('shift-animate');
+    } else if (delta > 0) {
+      shiftableBottom.classList.add('shift-animate');
+    }
+    let total = tableScrollTop + delta;
+    document.getElementsByClassName('dataTables_scrollBody')[0].scrollTop = total;
+  },
+
   graph: function(data, table, $scope) {
     d3.select('#interestPie').selectAll("*").remove();
     d3.select('#areaGraph').selectAll("*").remove();
@@ -280,16 +298,7 @@ InterestDashboard.prototype = {
     $scope.graphHeader = "Total usage - all categories (past 30 days)";
     this._renderPieGraph(data, data.tableData.length);
 
-    $('div.dataTables_scrollBody').scroll(function(e) {
-      let scrollPosition = $('div.dataTables_scrollBody').scrollTop();
-      let shiftableBottom = document.getElementById("main-row-background");
-
-      if (scrollPosition > 1) {
-        shiftableBottom.classList.add('shift-animate');
-      } else {
-        shiftableBottom.classList.remove('shift-animate');
-      }
-    });
+    document.addEventListener('DOMMouseScroll', (e) => { this._mouseScroll(e); }, false);
 
     let areaGraph = this._areaGraph;
     let self = this;
