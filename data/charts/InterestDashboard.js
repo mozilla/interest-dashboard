@@ -115,6 +115,19 @@ InterestDashboard.prototype = {
       let time = this._computeTimeString(visit.timestamp);
       let lastVisitString = visitIndex == (historyVisits.length - 1) ? 'lastVisit' : '';
 
+      if (this._lastTimestamp &&
+          this._lastTimestamp == time &&
+          this._lastDomain == visit.domain &&
+          this._lastTitle == visit.title) {
+        this._lastTimestamp = time;
+        this._lastDomain = visit.domain;
+        this._lastTitle = visit.title
+        continue;
+      }
+      this._lastTimestamp = time;
+      this._lastDomain = visit.domain;
+      this._lastTitle = visit.title
+
       if (this._isNewDay(currentDay, visit.timestamp)) {
         rows += '<tr>' +
           '<td></td>' +
