@@ -280,10 +280,20 @@ InterestDashboard.prototype = {
     document.getElementsByClassName('dataTables_scrollBody')[0].scrollTop = total;
   },
 
+  _drawGraphMarkers: function() {
+    for (let i = 0; i < 30; i++) {
+      $(".graphMarkers").append(
+        "<div class='graphMarker' style='left:" + (38 + i * (795 / 30)) + "px'></div>"
+      );
+    }
+  },
+
   graph: function(data, table, $scope) {
     d3.select('#interestPie').selectAll("*").remove();
     d3.select('#areaGraph').selectAll("*").remove();
     table.clear();
+
+    this._drawGraphMarkers();
 
     let today = new Date();
     let oneDay = 24 * 60 * 60 * 1000;

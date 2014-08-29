@@ -98,7 +98,7 @@ body {
 
 .dates {
   width: 830px;
-  margin-top: -43px;
+  margin-top: -40px;
   padding-bottom: 26px;
   margin-left: 5px;
 }
@@ -211,7 +211,21 @@ body {
   color: #2CA02C;
   text-transform: uppercase;
 }
-
+.graphUnderline {
+  width: 795px;
+  position: absolute;
+  top: 180px;
+  left: 35px;
+  border-bottom: 3px solid;
+  color: #E6E6E6;
+}
+.graphMarker {
+  position: absolute;
+  top: 180px;
+  background: url('resources/Marker_Past.svg') no-repeat center center;
+  width: 20px;
+  height: 8px;
+}
 
 
 /* Table */
