@@ -81,6 +81,18 @@ body {
 .graph-header {
   padding-top: 38px;
   margin-left: 5px;
+  display: inline-block;
+}
+
+.back {
+  visibility: collapse;;
+  display: inline-block;
+  cursor: pointer;
+  color: #4A90E2;
+  padding-left: 10px;
+}
+.visibleBack {
+  visibility: visible;
 }
 
 #interest-count {

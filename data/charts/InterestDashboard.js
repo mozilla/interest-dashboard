@@ -265,7 +265,7 @@ InterestDashboard.prototype = {
       .text( function (d) { return "Interests"; });
   },
 
-  _setTooltip: function($scope, dataFunction) {
+  _setTooltip: function($scope) {
     // A bit of a hack for creating a custom tooltip since the nvd3 tooltip
     // is a hassle to customize.
     let self = this;
@@ -301,10 +301,39 @@ InterestDashboard.prototype = {
     }
   },
 
-  graph: function(data, table, $scope) {
-    d3.select('#interestPie').selectAll("*").remove();
+  _setInitialState: function($scope, data) {
+    this._sliced = false;
+    $('.back').removeClass("visibleBack");
+    this._areaGraph.xAxis.tickFormat((d) => {
+      let activity = data.areaData.maxCategories[d] == "" ? "No Activity" : ("Max Activity: " + data.areaData.maxCategories[d]);
+      return "<strong>" + d3.time.format('%x')(new Date(d)) + "</strong><br>" + activity;
+    });
+    $(".nvd3.nv-pie path").css("fill-opacity", 1);
+    $scope.safeApply(function() {
+      $scope.graphHeader = "Total usage - all categories (past 30 days)";
+    })
+
     d3.select('#areaGraph').selectAll("*").remove();
+    d3.select("#areaGraph")
+      .attr("class", "area-graph-margin-fix")
+      .datum(data.areaData.total)
+      .transition().duration(350)
+      .call(this._areaGraph);
+
+    this._setStats(data.totalVisits,
+                   data.totalViews,
+                   data.totalWeeklyAvg.toFixed(0),
+                   data.totalDailyAvg.toFixed(0), $scope);
+  },
+
+  graph: function(data, table, $scope) {
+    this._setInitialState($scope, data);
+    d3.select('#interestPie').selectAll("*").remove();
     table.clear();
+
+    let areaGraph = this._areaGraph;
+    let self = this;
+    $('.back').on('click', () => { self._setInitialState($scope, data); });
 
     this._drawGraphMarkers();
 
@@ -318,16 +347,13 @@ InterestDashboard.prototype = {
     $("#percentComplete").css("left", 795 / 30 * diffDays + 65);
     $scope.percentage = parseInt(diffDays / 30 * 100);
 
-    $scope.graphHeader = "Total usage - all categories (past 30 days)";
     this._renderPieGraph(data, data.tableData.length);
-
     document.addEventListener('DOMMouseScroll', (e) => { this._mouseScroll(e); }, false);
 
-    let areaGraph = this._areaGraph;
-    let self = this;
     d3.selectAll('.nv-slice')
       .on('click', function(event) {
         self._sliced = true;
+        $('.back').addClass("visibleBack");
         areaGraph.xAxis.tickFormat((d) => {
           return "<strong>" + d3.time.format('%x')(new Date(d)) + "</strong>";
         });
@@ -354,9 +380,6 @@ InterestDashboard.prototype = {
           areaGraph.stacked.scatter.dispatch.on("elementClick", null);
           self._setTooltip($scope);
 
-          d3.selectAll('.nv-point').filter(function(d){ return d.shape === 'circle' })
-            .classed('hidden-point', true);
-
           // Update stats below graph
           self._setStats(data.categories[categoryClicked].visitCount,
                          data.categories[categoryClicked].viewCount,
@@ -366,27 +389,13 @@ InterestDashboard.prototype = {
         });
     });
 
-    d3.select("#areaGraph")
-      .attr("class", "area-graph-margin-fix")
-      .datum(data.areaData.total)
-      .transition().duration(350)
-      .call(this._areaGraph);
-
     this._setTooltip($scope);
-    this._areaGraph.xAxis.tickFormat((d) => {
-      let activity = data.areaData.maxCategories[d] == "" ? "No Activity" : ("Max Activity: " + data.areaData.maxCategories[d]);
-      return "<strong>" + d3.time.format('%x')(new Date(d)) + "</strong><br>" + activity;
-    });
     $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
 
     nv.utils.windowResize(this._areaGraph.update);
     nv.utils.windowResize(this._pieChart.update);
 
     this._addTopSites(data, $scope);
-    this._setStats(data.totalVisits,
-                   data.totalViews,
-                   data.totalWeeklyAvg.toFixed(0),
-                   data.totalDailyAvg.toFixed(0), $scope);
     this._addTableRows(data, table);
     this._handleRowExpand(data, table, $scope);
   }

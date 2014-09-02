@@ -26,6 +26,16 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
   $scope._initialize = function () {
     dataService.send("chart_data_request");
   }
+  $scope.safeApply = function(fn) {
+    let phase = this.$root.$$phase;
+    if(phase == '$apply' || phase == '$digest') {
+      if(fn && (typeof(fn) === 'function')) {
+        fn();
+      }
+    } else {
+      this.$apply(fn);
+    }
+  };
   $scope._requestCategoryVisits = function (categoryName) {
     dataService.send("category_visit_request", {
       "categoryName": categoryName
