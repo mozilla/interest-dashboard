@@ -2,57 +2,12 @@
   "author": "Mozilla",
   "description": "Firefox study of personalized content on the Web. This will be removed automatically when the study finishes.",
   "fullName": "Firefox Interest Dashboard",
-  "id": "firefox.personalization.study@up.mozilla",
+  "id": "firefox.interest.dashboard@up.mozilla",
   "license": "MPL 2.0",
   "name": "firefox-interest-dashboard",
   "version": "4.0.2",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-angular-gettext": "~0.2.6"
-  },
-  "preferences": [
-      {
-        "name": "consented",
-        "title": "User consented to study",
-        "type": "bool",
-        "value": false
-      },
-      {
-        "name": "uuid",
-        "title": "Universally Unique Identifier",
-        "description": "An identifier assigned to each user to help make sense of the data",
-        "type": "string",
-        "value": ""
-      },
-      {
-        "name": "server_url",
-        "title": "Data collection server endpoint",
-        "type": "string",
-        "value": "https://data.mozilla.com/submit/userprofile"
-      },
-      {
-        "name": "dispatchIdleDelay",
-        "title": "Seconds to wait when idle until data is sent",
-        "type": "integer",
-        "value": 120
-      },
-      {
-        "name": "nytimes_headliner_url",
-        "title": "New York Times content personalization server",
-        "type": "string",
-        "value": "https://headliner.up.mozillalabs.com/nytimes/mostpopular/personalize?limit=10"
-      },
-      {
-        "name": "headliner_refresh_interval",
-        "title": "Time interval to refresh headliner content in seconds",
-        "type": "integer",
-        "value": 10800
-      },
-      {
-        "name": "nytimes_personalization_start",
-        "title": "The date/time when nytimes personalization starts",
-        "type": "string",
-        "value": ""
-      }
-  ]
+  }
 }
