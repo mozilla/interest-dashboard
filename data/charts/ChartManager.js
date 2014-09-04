@@ -27,8 +27,8 @@ let ChartManager = {
     this._charts[chartType].graph(data, table, $scope);
   },
 
-  appendCategoryVisitData: function(category, historyVisits, pageNum, complete) {
-    this._charts["interestDashboard"].appendCategoryVisitData(category, historyVisits, pageNum, complete);
+  appendCategoryVisitData: function(category, historyVisits, pageNum, complete, $scope) {
+    this._charts["interestDashboard"].appendCategoryVisitData(category, historyVisits, pageNum, complete, $scope);
   },
 
   cancelAppendVisits: function() {

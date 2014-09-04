@@ -48,7 +48,7 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
   });
 
   $scope.$on("append_visit_data", function(event, data) {
-    ChartManager.appendCategoryVisitData(data.category, data.historyVisits, data.pageNum, data.complete);
+    ChartManager.appendCategoryVisitData(data.category, data.historyVisits, data.pageResponseSize, data.complete, $scope);
   });
 
   $scope.$on("cancel_append_visits", function(event, data) {

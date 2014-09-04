@@ -115,19 +115,6 @@ InterestDashboard.prototype = {
       let time = this._computeTimeString(visit.timestamp);
       let lastVisitString = visitIndex == (historyVisits.length - 1) ? 'lastVisit' : '';
 
-      if (this._lastTimestamp &&
-          this._lastTimestamp == time &&
-          this._lastDomain == visit.domain &&
-          this._lastTitle == visit.title) {
-        this._lastTimestamp = time;
-        this._lastDomain = visit.domain;
-        this._lastTitle = visit.title
-        continue;
-      }
-      this._lastTimestamp = time;
-      this._lastDomain = visit.domain;
-      this._lastTitle = visit.title
-
       if (this._isNewDay(currentDay, visit.timestamp)) {
         rows += '<tr>' +
           '<td></td>' +
@@ -159,14 +146,24 @@ InterestDashboard.prototype = {
     return rows;
   },
 
-  appendCategoryVisitData: function(category, historyVisits, pageNum, complete) {
+  _checkListFullAndAppend: function(visitData, category, $scope) {
+    let screenHeight = ($(window).height() - 195);
+    let listFull = (visitData.length * parseFloat($('.subtable tr').css("height"))) > screenHeight;
+    if (!listFull) {
+      self._appendingVisits = true;
+      $scope._requestCategoryVisits(category);
+    }
+  },
+
+  appendCategoryVisitData: function(category, historyVisits, pageResponseSize, complete, $scope) {
     if ($('#' + category + ' tr').length > 0) {
       $('#' + category + ' tr:last').remove();
     }
     $('#' + category + ' tr:last').after(
       this._getRowsHTML(category, historyVisits.slice(
-        (pageNum * 50) - 50, historyVisits.length), complete));
+        historyVisits.length - pageResponseSize, historyVisits.length), complete));
     this._appendingVisits = false;
+    this._checkListFullAndAppend(historyVisits, category, $scope);
   },
 
   cancelAppendVisits: function() {
@@ -209,6 +206,8 @@ InterestDashboard.prototype = {
       }
     });
     tr.addClass('shown');
+    this._checkListFullAndAppend(data.historyVisits[category].visitData, category, $scope);
+
   },
 
   _closeRowDetails: function(row, tr) {
