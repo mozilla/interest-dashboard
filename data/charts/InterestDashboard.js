@@ -102,14 +102,13 @@ InterestDashboard.prototype = {
 
   _formatSubtable: function(category, historyVisits, complete) {
     let table = '<div id="' + category + '" class="subtable"><table cellpadding="5" cellspacing="0" border="0">';
-    table += this._getRowsHTML(category, historyVisits, complete);
+    table += this._getRowsHTML(category, historyVisits, historyVisits[0].timestamp, complete);
     table += '</table></div>';
     return table;
   },
 
-  _getRowsHTML: function(category, historyVisits, complete) {
+  _getRowsHTML: function(category, historyVisits, currentDay, complete) {
     let rows = "";
-    let currentDay = historyVisits[0].timestamp;
     for (let visitIndex = 0; visitIndex < historyVisits.length; visitIndex++) {
       let visit = historyVisits[visitIndex];
       let time = this._computeTimeString(visit.timestamp);
@@ -159,9 +158,10 @@ InterestDashboard.prototype = {
     if ($('#' + category + ' tr').length > 0) {
       $('#' + category + ' tr:last').remove();
     }
+    let currentDay = historyVisits[historyVisits.length - pageResponseSize - 1].timestamp;
     $('#' + category + ' tr:last').after(
       this._getRowsHTML(category, historyVisits.slice(
-        historyVisits.length - pageResponseSize, historyVisits.length), complete));
+        historyVisits.length - pageResponseSize, historyVisits.length), currentDay, complete));
     this._appendingVisits = false;
     this._checkListFullAndAppend(historyVisits, category, $scope);
   },
