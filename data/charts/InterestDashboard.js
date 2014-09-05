@@ -154,14 +154,33 @@ InterestDashboard.prototype = {
     }
   },
 
+  _getStartIndex: function(historyVisits, pageResponseSize) {
+    // If the first entry of the new page is the same as the last entry of the previous page,
+    // skip that entry.
+    let latestEntry = historyVisits[historyVisits.length - pageResponseSize - 1];
+    let nextEntryIndex = historyVisits.length - pageResponseSize;
+    let nextEntry = historyVisits[nextEntryIndex];
+
+    let lastEntryKey = this._computeTimeString(latestEntry.timestamp) + latestEntry.domain + latestEntry.title;
+    let nextEntryKey = this._computeTimeString(nextEntry.timestamp) + nextEntry.domain + nextEntry.title;
+    if (lastEntryKey == nextEntryKey) {
+      nextEntryIndex++;
+    }
+    return nextEntryIndex;
+  },
+
   appendCategoryVisitData: function(category, historyVisits, pageResponseSize, complete, $scope) {
+    let nextEntryIndex = this._getStartIndex(historyVisits, pageResponseSize);
     if ($('#' + category + ' tr').length > 0) {
       $('#' + category + ' tr:last').remove();
+      if (nextEntryIndex < historyVisits.length) {
+        $('#' + category + ' tr:last .timelineCircle').removeClass("lastVisit");
+      }
     }
-    let currentDay = historyVisits[historyVisits.length - pageResponseSize - 1].timestamp;
+
     $('#' + category + ' tr:last').after(
       this._getRowsHTML(category, historyVisits.slice(
-        historyVisits.length - pageResponseSize, historyVisits.length), currentDay, complete));
+        nextEntryIndex, historyVisits.length), historyVisits[nextEntryIndex - 1].timestamp, complete));
     this._appendingVisits = false;
     this._checkListFullAndAppend(historyVisits, category, $scope);
   },
