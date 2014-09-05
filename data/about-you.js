@@ -36,11 +36,16 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
       this.$apply(fn);
     }
   };
+  $scope._requestResetCategoryVisits = function(categoryName) {
+    dataService.send("category_reset_request", {
+      "categoryName": categoryName
+    });
+  };
   $scope._requestCategoryVisits = function (categoryName) {
     dataService.send("category_visit_request", {
       "categoryName": categoryName
     });
-  }
+  };
   $scope._initialize();
 
   $scope.$on("json_update", function(event, data) {

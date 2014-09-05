@@ -170,17 +170,12 @@ InterestDashboard.prototype = {
     this._appendingVisits = false;
   },
 
-  _openRowDetails: function(row, tr, data, $scope, table) {
+  _openRowDetails: function(row, tr, category, $scope, data, table) {
     // Close all other open rows.
     let self = this;
     $("#test tr").each(function() {
       self._closeRowDetails(table.row($(this)), $(this));
     });
-
-    // Get the category that was clicked
-    let parser = new DOMParser();
-    let node = parser.parseFromString(row.data()[1], "text/html");
-    let category = node.getElementsByClassName('category-name')[0].innerHTML;
 
     // Open this row
     row.child(this._formatSubtable(category, data.historyVisits[category].visitData,
@@ -226,10 +221,16 @@ InterestDashboard.prototype = {
       let tr = $(this).closest('tr');
       let row = table.row(tr);
 
+      // Get the category that was clicked
+      let parser = new DOMParser();
+      let node = parser.parseFromString(row.data()[1], "text/html");
+      let category = node.getElementsByClassName('category-name')[0].innerHTML;
+
       if (row.child.isShown()) {
         self._closeRowDetails(row, tr);
+        $scope._requestResetCategoryVisits(category);
       } else {
-        self._openRowDetails(row, tr, data, $scope, table);
+        self._openRowDetails(row, tr, category, $scope, data, table);
       }
     });
   },
