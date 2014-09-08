@@ -332,7 +332,7 @@ InterestDashboard.prototype = {
     $('.back').removeClass("visibleBack");
     this._areaGraph.xAxis.tickFormat((d) => {
       let activity = data.areaData.maxCategories[d] == "" ? "No Activity" : ("Max Activity: " + data.areaData.maxCategories[d]);
-      return "<strong>" + d3.time.format('%x')(new Date(d)) + "</strong><br>" + activity;
+      return "<strong>" + d3.time.format('%A %B %e, %Y')(new Date(d)) + "</strong><br>" + activity;
     });
     this._areaGraph.color(["#F76B1C"]);
 
@@ -383,7 +383,7 @@ InterestDashboard.prototype = {
         self._sliced = true;
         $('.back').addClass("visibleBack");
         areaGraph.xAxis.tickFormat((d) => {
-          return "<strong>" + d3.time.format('%x')(new Date(d)) + "</strong>";
+          return "<strong>" + d3.time.format('%A %B %e, %Y')(new Date(d)) + "</strong>";
         });
 
         let clickTarget = $(this);
