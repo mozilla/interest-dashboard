@@ -338,7 +338,8 @@ InterestDashboard.prototype = {
 
     $(".nvd3.nv-pie path").css("fill-opacity", 1);
     $scope.safeApply(function() {
-      $scope.graphHeader = "Total usage - all categories (past 30 days)";
+      $scope.graphHeader = "Total usage - all categories ";
+      $scope.pastXDays = "(past 30 days)"
     })
 
     d3.select('#areaGraph').selectAll("*").remove();
@@ -395,7 +396,7 @@ InterestDashboard.prototype = {
           areaGraph.color([clickTarget.find('path').css("fill"), "#E6E6E6"]);
 
           let categoryClicked = event.data.label;
-          $scope.graphHeader = categoryClicked + " (past 30 days)";
+          $scope.graphHeader = categoryClicked;
 
           // Redraw area graph
           d3.select('#areaGraph').selectAll("*").remove();

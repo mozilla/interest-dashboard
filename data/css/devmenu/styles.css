@@ -78,10 +78,14 @@ body {
   height: 340px;
 }
 
-.graph-header {
+.past-x-days, .graph-header, .date-label {
   padding-top: 38px;
-  margin-left: 5px;
   display: inline-block;
+  color: #6A7B86;
+}
+
+.graph-header, .date-label {
+  font-weight: bold;
 }
 
 .back {
@@ -117,6 +121,7 @@ body {
 
 .date-label {
   display: inline;
+  padding-top: 0;
 }
 
 #today {
