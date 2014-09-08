@@ -126,6 +126,12 @@ InterestDashboard.prototype = {
         currentDay = visit.timestamp;
       }
 
+      // Escape html tags in the titles.
+      let html = visit.title;
+      let div = document.createElement("div");
+      div.innerHTML = html;
+      let title = div.textContent || div.innerText || "";
+
       rows += '<tr>' +
         '<td class="time historyVisit">' + time + '</td>' +
         '<td style="width: 23px"><div class="timelineCircle ' + lastVisitString + '"></div></td>' +
@@ -134,7 +140,7 @@ InterestDashboard.prototype = {
           '<a href="' + visit.url + '">' + visit.domain + '</a>' +
         '</div>' +
         '<div class="visitTitle historyVisit" data-toggle="tooltip" title="' + visit.url + '">' +
-          '<a href="' + visit.url + '">- ' + visit.title + '</a>' +
+          '<a href="' + visit.url + '">- ' + title + '</a>' +
         '</div></td>'
       '</tr>';
     }
