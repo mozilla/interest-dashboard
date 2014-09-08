@@ -36,9 +36,11 @@
         <svg id="areaGraph"></svg>
       </div>
       <div class="graphMarkers"></div>
+      <div class="mostRecentMarker" ng-hide="isAtAnEnd"></div>
       <div class="graphUnderline"></div>
       <div class="dates">
         <div class="date-label">Day 1</div>
+        <div id="mostRecentDate" class="date-label" ng-hide="isAtAnEnd">{{mostRecentDate}}</div>
         <div id="today" class="date-label">Day 30</div>
       </div>
       <ul id="navlist">

@@ -239,6 +239,17 @@ body {
   width: 20px;
   height: 8px;
 }
+.mostRecentMarker {
+  position: absolute;
+  top: 180px;
+  background: url('resources/Marker_Gray.svg') no-repeat center center;
+  width: 20px;
+  height: 15px;
+  left: 35px;
+}
+#mostRecentDate {
+  position: absolute;
+}
 
 
 /* Table */

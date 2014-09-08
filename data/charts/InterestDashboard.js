@@ -320,9 +320,9 @@ InterestDashboard.prototype = {
   },
 
   _drawGraphMarkers: function() {
-    for (let i = 0; i < 30; i++) {
+    for (let i = 1; i < 30; i++) {
       $(".graphMarkers").append(
-        "<div class='graphMarker' style='left:" + (38 + i * (795 / 30)) + "px'></div>"
+        "<div class='graphMarker' style='left:" + (24 + i * (795 / 30)) + "px'></div>"
       );
     }
   },
@@ -373,10 +373,16 @@ InterestDashboard.prototype = {
     let thirtyAgo = new Date(today.getTime() - 30 * oneDay);
     let diffDays = Math.round(Math.abs((maxDate.getTime() - thirtyAgo.getTime())/(oneDay)));
 
-    // 795 is width of svg rect, 65 is 35 for margin + 30 to show up after next day
-    $("#percentComplete").css("left", 795 / 30 * diffDays + 65);
+    // 795 is width of svg rect, 60 is 30 for margin + 30 to show up after next day
+    let left = 795 / 30 * diffDays + 60 + (795 / 30)
+    $("#percentComplete").css("left", left);
+    $(".mostRecentMarker").css("left", left - 10); // Subtract 10 to center.
+    $("#mostRecentDate").css("left", left - 35);
+
     $scope.percentage = parseInt(diffDays / 28 * 100);
     $scope.isComplete = $scope.percentage >= 100;
+    $scope.isAtAnEnd = diffDays < 2 || diffDays > 25;
+    $scope.mostRecentDate = d3.time.format('%x')(new Date(maxDate.getTime() + oneDay));
 
     this._renderPieGraph(data, data.tableData.length);
     document.addEventListener('DOMMouseScroll', (e) => { this._mouseScroll(e); }, false);
