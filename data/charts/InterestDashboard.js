@@ -299,7 +299,7 @@ InterestDashboard.prototype = {
       if (self._sliced) {
         $(".nvtooltip").addClass("sliced");
       }
-      $('.nvtooltip').css("margin-left", "-150px");
+      $('.nvtooltip').css("margin-left", "-170px");
     });
   },
 
@@ -352,6 +352,7 @@ InterestDashboard.prototype = {
                    data.totalViews,
                    data.totalWeeklyAvg.toFixed(0),
                    data.totalDailyAvg.toFixed(0), $scope);
+    this._setTooltip($scope);
   },
 
   graph: function(data, table, $scope) {
@@ -418,7 +419,6 @@ InterestDashboard.prototype = {
         });
     });
 
-    this._setTooltip($scope);
     $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
 
     nv.utils.windowResize(this._areaGraph.update);

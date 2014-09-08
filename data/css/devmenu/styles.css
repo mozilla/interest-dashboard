@@ -124,7 +124,7 @@ body {
 }
 #areaGraphDiv .nvtooltip {
   position: absolute;
-  top: 5px !important;
+  top: 15px !important;
   opacity: 1;
   font-size: 12px !important;
   color: #FFFFFF;
