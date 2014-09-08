@@ -4,7 +4,8 @@ function InterestDashboard() {
       .showLegend(false)
       .x(function(d) { return d.label })
       .y(function(d) { return d.value })
-      .showLabels(false);
+      .showLabels(false)
+      .color(d3.scale.category10().range());
 
   nv.addGraph(function() {
     return this._pieChart;
@@ -327,6 +328,8 @@ InterestDashboard.prototype = {
       let activity = data.areaData.maxCategories[d] == "" ? "No Activity" : ("Max Activity: " + data.areaData.maxCategories[d]);
       return "<strong>" + d3.time.format('%x')(new Date(d)) + "</strong><br>" + activity;
     });
+    this._areaGraph.color(["#F76B1C"]);
+
     $(".nvd3.nv-pie path").css("fill-opacity", 1);
     $scope.safeApply(function() {
       $scope.graphHeader = "Total usage - all categories (past 30 days)";
@@ -382,6 +385,7 @@ InterestDashboard.prototype = {
           // Grey out the unselected pie pieces.
           $(".nvd3.nv-pie path").css("fill-opacity", 0.1);
           clickTarget.find('path').css("fill-opacity", 1);
+          areaGraph.color([clickTarget.find('path').css("fill"), "#E6E6E6"]);
 
           let categoryClicked = event.data.label;
           $scope.graphHeader = categoryClicked + " (past 30 days)";
