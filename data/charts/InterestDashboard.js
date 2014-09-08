@@ -370,12 +370,13 @@ InterestDashboard.prototype = {
     let today = new Date();
     let oneDay = 24 * 60 * 60 * 1000;
     let maxDate = new Date(data.maxDay);
-    let thirtyAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000);
+    let thirtyAgo = new Date(today.getTime() - 30 * oneDay);
     let diffDays = Math.round(Math.abs((maxDate.getTime() - thirtyAgo.getTime())/(oneDay)));
 
-    // 795 is width of svg rect, 65 is is 35 for margin + 30 to show up after next day
+    // 795 is width of svg rect, 65 is 35 for margin + 30 to show up after next day
     $("#percentComplete").css("left", 795 / 30 * diffDays + 65);
-    $scope.percentage = parseInt(diffDays / 30 * 100);
+    $scope.percentage = parseInt(diffDays / 28 * 100);
+    $scope.isComplete = $scope.percentage >= 100;
 
     this._renderPieGraph(data, data.tableData.length);
     document.addEventListener('DOMMouseScroll', (e) => { this._mouseScroll(e); }, false);
