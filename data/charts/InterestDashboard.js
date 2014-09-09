@@ -5,7 +5,14 @@ function InterestDashboard() {
       .x(function(d) { return d.label })
       .y(function(d) { return d.value })
       .showLabels(false)
-      .color(d3.scale.category10().range());
+      .color(d3.scale.category10().range())
+      .tooltipContent((category, count, e, graph) => {
+        return '<div class="pie-tooltip">' +
+          '<div class="rank">' + this._categories[category].rank + '</div>' +
+          '<div class="category">' + category + '</div>' +
+          '<div class="count">(' + this._numberWithCommas(parseInt(count.replace(/,/g, ''))) + ')</div>' +
+        '</div>';
+      });
 
   nv.addGraph(function() {
     return this._pieChart;
@@ -358,6 +365,7 @@ InterestDashboard.prototype = {
   },
 
   graph: function(data, table, $scope) {
+    this._categories = data.categories;
     this._setInitialState($scope, data);
     d3.select('#interestPie').selectAll("*").remove();
     table.clear();
