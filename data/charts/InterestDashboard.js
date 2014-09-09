@@ -228,7 +228,7 @@ InterestDashboard.prototype = {
     });
     tr.addClass('shown');
     this._checkListFullAndAppend(data.historyVisits[category].visitData, category, $scope);
-
+    $('table.dataTable thead th').css("pointer-events", "none"); // Remove ability to sort while a subtable is open.
   },
 
   _closeRowDetails: function(row, tr) {
@@ -238,6 +238,7 @@ InterestDashboard.prototype = {
     this.cancelAppendVisits();
     tr.removeClass('shown');
     $('div.dataTables_scrollBody').css("overflow", "auto");
+    $('table.dataTable thead th').css("pointer-events", "all");
   },
 
   _handleRowExpand: function(data, table, $scope) {

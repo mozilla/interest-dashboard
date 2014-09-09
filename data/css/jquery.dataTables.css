@@ -41,11 +41,17 @@ table.dataTable thead .sorting {
 table.dataTable thead .sorting {
   background: url("../images/sort_both.png") no-repeat center right;
 }
-table.dataTable thead .sorting_asc {
-  background: url("../images/sort_asc.png") no-repeat center right;
+table.dataTable thead .sorting_desc .sortTriangle,
+table.dataTable thead .sorting_asc .sortTriangle {
+  background: url("devmenu/resources/Sorted_Row_Arrow.svg") no-repeat center center;
+  display: inline-block;
+  background-size: 10px;
+  padding-left: 20px;
+  width: 10px;
+  height: 13px;
 }
-table.dataTable thead .sorting_desc {
-  background: url("../images/sort_desc.png") no-repeat center right;
+table.dataTable thead .sorting_desc .sortTriangle {
+  -moz-transform: scale(1, -1);
 }
 table.dataTable thead .sorting_asc_disabled {
   background: url("../images/sort_asc_disabled.png") no-repeat center right;
