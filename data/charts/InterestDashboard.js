@@ -168,7 +168,7 @@ InterestDashboard.prototype = {
 
   _checkListFullAndAppend: function(visitData, category, $scope) {
     let screenHeight = ($(window).height() - 195);
-    let listFull = (visitData.length * parseFloat($('.subtable tr').css("height"))) > screenHeight;
+    let listFull = ($('#' + category + ' tr').length * parseFloat($('.subtable tr').css("height"))) > screenHeight;
     if (!listFull) {
       self._appendingVisits = true;
       $scope._requestCategoryVisits(category);
