@@ -54,6 +54,14 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     $scope.percentProcessed = val + "%"
     $("#progressBar").css("width", $scope.percentProcessed);
   };
+  $scope.processHistory = function() {
+    if ($scope.daysLeft) {
+      return;
+    }
+    $("#visual-header-overlay").removeClass("fade-out");
+    $("#main-overlay").removeClass("fade-out");
+    dataService.send("history_process");
+  }
   $scope._initialize();
 
   $scope.$on("json_update", function(event, data) {
