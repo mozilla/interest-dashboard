@@ -48,8 +48,8 @@ InterestDashboard.prototype = {
   _getMaxDate: function(days) {
     let max = 0;
     for (let day of days) {
-      if (day.timestamp > max) {
-        max = day.timestamp;
+      if (day > max) {
+        max = day;
       }
     }
     return d3.time.format('%A, %B %e, %Y')(new Date(max / 1000));
@@ -77,7 +77,7 @@ InterestDashboard.prototype = {
         "<div class='category-name'>" + categoryObj.name + "</div>" +
         "<div class='category-count'> (" + this._numberWithCommas(categoryObj.visitCount) + ")</div>",
         "<div class='subtitleCircle'></div>",
-        this._getMaxDate(data.historyVisits[categoryObj.name].visitData),
+        this._getMaxDate(categoryObj.visitIDs),
         null
       ]).draw();
 
