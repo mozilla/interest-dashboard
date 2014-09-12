@@ -71,6 +71,60 @@ body {
   color: #000000;
 }
 
+.cog {
+  position:absolute;
+  right: 0;
+  top: 10px;
+}
+.cog-btn, .cog-btn:hover, .cog-clicked {
+  background-color: #F5F5F5 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.cog-btn:hover .cog-img {
+  background: url('resources/Icon_Cog_Rollover.svg') no-repeat center center;
+}
+
+.cog-clicked .cog-img {
+  background: url('resources/Icon_Cog_Click.svg') no-repeat center center !important;
+  width: 25px;
+  height: 25px;
+  margin-right: -1.5px;
+  margin-top: -1px;
+}
+
+.cog-img {
+  background: url('resources/Icon_Cog_Static.svg') no-repeat center center;
+  width: 22px;
+  height: 22px;
+}
+
+.dropdown-menu {
+  background-color: #2F3943;
+  padding: 0px;
+}
+
+.dropdown-menu > li > a {
+  padding: 0;
+  padding-right: 30px;
+  padding-left: 30px;
+  height: 40px;
+  line-height: 40px;
+  font-weight: 100;
+  color: white;
+}
+
+.dropdown-menu > li > a:hover {
+  background-color: #576872;
+  color: white;
+}
+
+.dropdown-menu .divider {
+  background-color: #576872;
+  margin: 0px;
+}
+
 
 
 /* Visual Area */
@@ -627,7 +681,7 @@ ol li {
 }
 .banner-visible #incomplete-banner {
   height: 138px;
-  background-color: #424F5A;
+  background-color: #2F3943;
   display: block;
 }
 #logo {

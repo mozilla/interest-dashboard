@@ -35,6 +35,13 @@ function InterestDashboard() {
   nv.addGraph(() => {
     return this._areaGraph;
   });
+
+  $('.cog').on('show.bs.dropdown', function () {
+    $('.cog-btn').addClass('cog-clicked');
+  })
+  $('.cog').on('hide.bs.dropdown', function () {
+    $('.cog-btn').removeClass('cog-clicked');
+  })
 }
 
 InterestDashboard.prototype = {
