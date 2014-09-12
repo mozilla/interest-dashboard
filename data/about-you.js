@@ -24,6 +24,9 @@ aboutYou.service("dataService", DataService);
 
 aboutYou.controller("vizCtrl", function($scope, dataService) {
   $scope._initialize = function () {
+    $scope.daysLeft = null;
+    $scope.daysLeftStart = null;
+    $scope.percentProcessed = null;
     dataService.send("chart_data_request");
   }
   $scope.safeApply = function(fn) {
@@ -46,6 +49,11 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
       "categoryName": categoryName
     });
   };
+  $scope.updateProgressBar = function(value) {
+    let val = value ? value : (100 - Math.round($scope.daysLeft / $scope.daysLeftStart * 100));
+    $scope.percentProcessed = val + "%"
+    $("#progressBar").css("width", $scope.percentProcessed);
+  };
   $scope._initialize();
 
   $scope.$on("json_update", function(event, data) {
@@ -62,6 +70,14 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
 
   $scope.$on("chart_init", function(event, data) {
     ChartManager.graphAllFromScratch(data, table, $scope);
+  });
+
+  $scope.$on("days_left", function(event, data) {
+    if (!$scope.daysLeftStart) {
+      $scope.daysLeftStart = data;
+    }
+    $scope.daysLeft = data;
+    $scope.updateProgressBar();
   });
 });
 

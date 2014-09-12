@@ -14,7 +14,7 @@ body {
   font-family: Fira Sans !important;
 }
 
-#main-row-body, .navbar-outer, .visual-header {
+#main-row-body, .navbar-outer, .visual-header, .visual-overlay-content {
   width: 1130px;
   margin: auto;
 }
@@ -456,7 +456,6 @@ tr:not(.shown) .subtitleCircle {
 @media (min-width: 768px) {
   .sidebar {
     position: absolute;
-    z-index: 1000;
     display: block;
     padding-left: 20px;
     overflow-x: hidden;
@@ -522,4 +521,126 @@ ol li {
 
 .shift-animate {
   top: 55px !important;
+}
+.banner-visible .shift-animate {
+  top: 193px !important;
+}
+
+#visual-header-overlay {
+  position: absolute;
+  top: 54;
+  left: 0;
+  width: 100%;
+  height: 345px;
+  z-index: 10;
+  background-color: rgba(66, 79, 90, 0.9);
+  transition: all 0.5s ease;
+}
+.visual-header-text-overlay {
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  position: fixed;
+  width: 1130px;
+  color: #FFFFFF;
+  font-size: 35px;
+  background-color: transparent;
+}
+#main-overlay {
+  position: absolute;
+  top: 400px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: all 0.5s ease;
+}
+.visual-overlay-content {
+  padding-top: 84px;
+}
+.fade-out {
+  background: transparent;
+  pointer-events: none;
+  background-color: transparent;
+  opacity: 0;
+}
+.progress {
+  height: 48px;
+  border-radius: 6px;
+  background-image: url('resources/Status_Bar_BG.png');
+}
+.progress-bar {
+  background: linear-gradient(#FAD961, #F76B1C);
+}
+.analyzing-title {
+  font-size: 35px;
+  color: #F9F9F9;
+  box-shadow: 0 1px 1px 0.6 #424F5A;
+  text-align: center;
+  font-weight: 200;
+  padding-bottom: 28px;
+}
+.analyzing-blurb {
+  font-size: 14px;
+  color: #DCDCDC;
+  text-align: center;
+  padding-top: 28px;
+}
+.banner-visible #main-row-background,
+.banner-visible #main-overlay {
+  top: 536px;
+}
+#incomplete-banner {
+  display: none;
+}
+#incomplete-banner-text {
+  display: inline-block;
+  height: 138px;
+  vertical-align: bottom;
+  position: relative;
+  left: 18px;
+  top: 30px;
+}
+.large-white-text {
+  font-size: 35px;
+  line-height: 30px;
+  color: #F9F9F9;
+}
+.large-white-text .regular,
+.large-white-text .bold {
+  display: inline;
+}
+.large-white-text .regular {
+  font-weight: 100;
+}
+.description-text {
+  padding-top: 20px;
+}
+.description-text .lead-in {
+  color: #F5A623;
+  display: inline;
+}
+.description-text .normal {
+  color: #DCDCDC;
+  display: inline;
+}
+.banner-visible #incomplete-banner {
+  height: 138px;
+  background-color: #424F5A;
+  display: block;
+}
+#logo {
+  background: url('resources/FX-Logo.png') no-repeat;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  left: 70px;
+  top: 39px;
+}
+#incomplete-banner-img {
+  width: 150px;
+  height: 138px;
+  display: inline-block;
+  background: url('resources/Banner_Arrow.svg') no-repeat left center;
 }

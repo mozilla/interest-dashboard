@@ -215,7 +215,8 @@ InterestDashboard.prototype = {
                                    data.historyVisits[category].complete)).show();
 
     // Height of open row should fill the rest of the screen.
-    $('.subtable').css("height", ($(window).height() - 195) + "px");
+    let bannerShown = $("body").hasClass("banner-visible");
+    $('.subtable').css("height", ($(window).height() - 195 - (bannerShown ? 138 : 0)) + "px");
 
     // Shift main table up and scroll the category up to be a header.
     let shiftableBottom = document.getElementById("main-row-background");
@@ -388,10 +389,13 @@ InterestDashboard.prototype = {
     $(".mostRecentMarker").css("left", left - 10); // Subtract 10 to center.
     $("#mostRecentDate").css("left", left - 35);
 
+    let mostRecentDate = new Date(maxDate.getTime() + oneDay);
     $scope.percentage = parseInt(diffDays / 28 * 100);
     $scope.isComplete = $scope.percentage >= 100;
-    $scope.isAtAnEnd = diffDays < 2 || diffDays > 25;
-    $scope.mostRecentDate = d3.time.format('%x')(new Date(maxDate.getTime() + oneDay));
+    $scope.isAtAnEnd = diffDays < 2 || diffDays > 26;
+    $scope.mostRecentDate = d3.time.format('%x')(mostRecentDate);
+    //$scope.monthXX = d3.time.format('%B %e')(new Date(mostRecentDate.getTime() + (28 - diffDays) * oneDay));
+    $scope.monthXX = d3.time.format('%B %e')(new Date(today.getTime() + oneDay));
 
     this._renderPieGraph(data, data.tableData.length);
     document.addEventListener('DOMMouseScroll', (e) => { this._mouseScroll(e); }, false);
@@ -436,6 +440,12 @@ InterestDashboard.prototype = {
         });
     });
 
+    // If we are processing data, prevent scroll.
+    this._preventScroll = false;
+    if ($scope.daysLeft) {
+      this._preventScroll = true;
+    }
+
     $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
 
     nv.utils.windowResize(this._areaGraph.update);
@@ -444,5 +454,28 @@ InterestDashboard.prototype = {
     this._addTopSites(data, $scope);
     this._addTableRows(data, table);
     this._handleRowExpand(data, table, $scope);
+
+    if ($scope.percentProcessed == "100%") {
+      if (28 - diffDays <= 0) {
+        $('body').removeClass("banner-visible");
+      }
+      $("#visual-header-overlay").addClass("fade-out");
+      $("#main-overlay").addClass("fade-out");
+    } else {
+      setTimeout(() => {
+        if (!$scope.percentProcessed) {
+          $scope.updateProgressBar("100");
+        }
+      }, 1000);
+      setTimeout(() => {
+        if ($scope.percentProcessed == "100%") {
+          if (28 - diffDays <= 0) {
+            $('body').removeClass("banner-visible");
+          }
+          $("#visual-header-overlay").addClass("fade-out");
+          $("#main-overlay").addClass("fade-out");
+        }
+      }, 2000);
+    }
   }
 }
