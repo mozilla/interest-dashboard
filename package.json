@@ -1,11 +1,11 @@
 {
   "author": "Mozilla",
-  "description": "Firefox study of personalized content on the Web. This will be removed automatically when the study finishes.",
+  "description": "Firefox Interest Dashboard provides a colorful and interactive view of your interests based on your browsing history.",
   "fullName": "Firefox Interest Dashboard",
   "id": "firefox.interest.dashboard@up.mozilla",
   "license": "MPL 2.0",
   "name": "firefox-interest-dashboard",
-  "version": "4.0.2",
+  "version": "1.0.0",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-angular-gettext": "~0.2.6"
