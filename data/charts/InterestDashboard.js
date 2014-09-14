@@ -345,6 +345,7 @@ InterestDashboard.prototype = {
 
   _setInitialState: function($scope, data) {
     this._sliced = false;
+    let self = this;
     $('.back').removeClass("visibleBack");
     this._areaGraph.xAxis.tickFormat((d) => {
       let activity = data.areaData.maxCategories[d] == "" ? "No Activity" : ("Max Activity: " + data.areaData.maxCategories[d]);
@@ -356,6 +357,10 @@ InterestDashboard.prototype = {
     $scope.safeApply(function() {
       $scope.graphHeader = "Total usage - all categories ";
       $scope.pastXDays = "(past 30 days)"
+      self._setStats(data.totalVisits,
+                     data.totalViews,
+                     data.totalWeeklyAvg.toFixed(0),
+                     data.totalDailyAvg.toFixed(0), $scope);
     })
 
     d3.select('#areaGraph').selectAll("*").remove();
@@ -365,10 +370,6 @@ InterestDashboard.prototype = {
       .transition().duration(350)
       .call(this._areaGraph);
 
-    this._setStats(data.totalVisits,
-                   data.totalViews,
-                   data.totalWeeklyAvg.toFixed(0),
-                   data.totalDailyAvg.toFixed(0), $scope);
     this._setTooltip($scope);
   },
 
