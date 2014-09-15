@@ -110,4 +110,11 @@ self.port.on("init", function() {
       { "width": "40px" }
     ]
   });
+
+  $('.cog').on('show.bs.dropdown', function () {
+    $('.cog-btn').addClass('cog-clicked');
+  });
+  $('.cog').on('hide.bs.dropdown', function () {
+    $('.cog-btn').removeClass('cog-clicked');
+  });
 });
