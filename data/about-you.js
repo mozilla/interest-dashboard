@@ -48,10 +48,10 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     dataService.send("category_visit_request", {
       "categoryName": categoryName
     });
-  };/*
-  $scope.generateDebugReport = function() {
+  };
+  $scope.debugReportRequest = function() {
     dataService.send("debug_report_request");
-  };*/
+  };
   $scope.updateProgressBar = function(value) {
     let val = value ? value : (100 - Math.round($scope.daysLeft / $scope.daysLeftStart * 100));
     $scope.percentProcessed = val + "%"
@@ -81,6 +81,10 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
 
   $scope.$on("chart_init", function(event, data) {
     ChartManager.graphAllFromScratch(data, table, $scope);
+  });
+
+  $scope.$on("debug_report", function(event, data) {
+    ChartManager.sendDebugReport(data);
   });
 
   $scope.$on("days_left", function(event, data) {

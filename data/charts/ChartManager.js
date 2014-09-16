@@ -27,6 +27,10 @@ let ChartManager = {
     this._charts[chartType].graph(data, table, $scope);
   },
 
+  sendDebugReport: function(debugLogs) {
+    this._charts["interestDashboard"].receiveDebugReportFromMainScript(debugLogs);
+  },
+
   appendCategoryVisitData: function(category, historyVisits, pageResponseSize, complete, $scope) {
     this._charts["interestDashboard"].appendCategoryVisitData(category, historyVisits, pageResponseSize, complete, $scope);
   },

@@ -190,6 +190,15 @@ InterestDashboard.prototype = {
     return nextEntryIndex;
   },
 
+  receiveDebugReportFromMainScript: function(debugLogs) {
+    let fulldebugReport = ["DATA PROCESSING LOGS\n====================="];
+    fulldebugReport = fulldebugReport.concat(debugLogs);
+    fulldebugReport = fulldebugReport.concat("\nDASHBOARD UI LOGS\n===================");
+    fulldebugReport = fulldebugReport.concat(this.debugReport);
+    this._scope.debugLog = fulldebugReport.toString().replace(/,/g, '\n');
+    $('#debug-modal').modal();
+  },
+
   appendCategoryVisitData: function(category, historyVisits, pageResponseSize, complete, $scope) {
     try {
       this.debugReport.push("Appending category visit data for [" + category + "] with page size [" + pageResponseSize + "]");
@@ -419,6 +428,11 @@ InterestDashboard.prototype = {
     try {
       self._sliced = true;
       $('.back').addClass("visibleBack");
+      $('.back').on('click', () => {
+        self.debugReport.push("Back clicked to go to initial state.");
+        self._setInitialState($scope, data);
+      });
+
       self._areaGraph.xAxis.tickFormat((d) => {
         return "<strong>" + d3.time.format('%A %B %e, %Y')(new Date(d)) + "</strong>";
       });
@@ -473,10 +487,6 @@ InterestDashboard.prototype = {
       d3.selectAll('.nv-slice').on('click', function(event) {
         self._nvSliceClicked(event, self, data, $scope, $(this));
       });
-      $('.back').on('click', () => {
-        self.debugReport.push("Back clicked to go to initial state.");
-        self._setInitialState($scope, data);
-      });
       this._setInitialState($scope, data);
       nv.utils.windowResize(this._areaGraph.update);
       nv.utils.windowResize(this._pieChart.update);
@@ -515,8 +525,7 @@ InterestDashboard.prototype = {
       this._addTopSites(data, $scope);
       this._addTableRows(data, table);
       $scope.generateDebugReport = () => {
-        $scope.debugLog = this.debugReport.toString().replace(/,/g, '\n');
-        $('#debug-modal').modal();
+        $scope.debugReportRequest();
       };
     } catch (ex) {
       this.debugReport.push("Error in InterestDashboard.graph(): " + ex);
