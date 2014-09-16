@@ -271,6 +271,7 @@ InterestDashboard.prototype = {
   },
 
   _renderPieGraph: function(data) {
+    d3.select('#interestPie').selectAll("*").remove();
     d3.select("#interestPie")
       .attr("class", "pie-graph-margin-fix")
       .datum(data.pieData)
@@ -366,96 +367,8 @@ InterestDashboard.prototype = {
     this._setTooltip($scope);
   },
 
-  graph: function(data, table, $scope) {
-    this._categories = data.categories;
-    this._setInitialState($scope, data);
-    d3.select('#interestPie').selectAll("*").remove();
-    table.clear();
-
-    let areaGraph = this._areaGraph;
-    let self = this;
-    $('.back').on('click', () => { self._setInitialState($scope, data); });
-
-    this._drawGraphMarkers();
-
-    let today = new Date();
-    let oneDay = 24 * 60 * 60 * 1000;
-    let maxDate = new Date(data.maxDay);
-    let thirtyAgo = new Date(today.getTime() - 30 * oneDay);
-    let diffDays = Math.round(Math.abs((maxDate.getTime() - thirtyAgo.getTime())/(oneDay)));
-
-    // 795 is width of svg rect, 60 is 30 for margin + 30 to show up after next day
-    let left = 795 / 30 * diffDays + 60 + (795 / 30)
-    $("#percentComplete").css("left", left);
-    $(".mostRecentMarker").css("left", left - 10); // Subtract 10 to center.
-    $("#mostRecentDate").css("left", left - 35);
-
-    let mostRecentDate = new Date(maxDate.getTime() + oneDay);
-    $scope.percentage = parseInt(diffDays / 28 * 100);
-    $scope.isComplete = $scope.percentage >= 100;
-    $scope.isAtAnEnd = diffDays < 2 || diffDays > 26;
-    $scope.mostRecentDate = d3.time.format('%x')(mostRecentDate);
-    //$scope.monthXX = d3.time.format('%B %e')(new Date(mostRecentDate.getTime() + (28 - diffDays) * oneDay));
-    $scope.monthXX = d3.time.format('%B %e')(new Date(today.getTime() + oneDay));
-
-    this._renderPieGraph(data, data.tableData.length);
-    document.addEventListener('DOMMouseScroll', (e) => { this._mouseScroll(e); }, false);
-
-    d3.selectAll('.nv-slice')
-      .on('click', function(event) {
-        self._sliced = true;
-        $('.back').addClass("visibleBack");
-        areaGraph.xAxis.tickFormat((d) => {
-          return "<strong>" + d3.time.format('%A %B %e, %Y')(new Date(d)) + "</strong>";
-        });
-
-        let clickTarget = $(this);
-        $scope.$apply(function() {
-          // Grey out the unselected pie pieces.
-          $(".nvd3.nv-pie path").css("fill-opacity", 0.1);
-          clickTarget.find('path').css("fill-opacity", 1);
-          areaGraph.color([clickTarget.find('path').css("fill"), "#E6E6E6"]);
-
-          let categoryClicked = event.data.label;
-          $scope.graphHeader = categoryClicked;
-
-          // Redraw area graph
-          d3.select('#areaGraph').selectAll("*").remove();
-          d3.select("#areaGraph")
-            .attr("class", "area-graph-margin-fix")
-            .datum(data.areaData[categoryClicked])
-            .transition().duration(350)
-            .call(areaGraph);
-
-          areaGraph.stacked.dispatch.on("areaClick", null);
-          areaGraph.stacked.dispatch.on("areaClick.toggle", null);
-          areaGraph.stacked.scatter.dispatch.on("elementClick", null);
-          self._setTooltip($scope);
-
-          // Update stats below graph
-          self._setStats(data.categories[categoryClicked].visitCount,
-                         data.categories[categoryClicked].viewCount,
-                         data.categories[categoryClicked].weeklyAvg.toFixed(0),
-                         data.categories[categoryClicked].dailyAvg.toFixed(0),
-                         $scope);
-        });
-    });
-
-    // If we are processing data, prevent scroll.
-    this._preventScroll = false;
-    if ($scope.daysLeft) {
-      this._preventScroll = true;
-    }
-
-    $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
-
-    nv.utils.windowResize(this._areaGraph.update);
-    nv.utils.windowResize(this._pieChart.update);
-
-    this._addTopSites(data, $scope);
-    this._addTableRows(data, table);
-    this._handleRowExpand(data, table, $scope);
-
+  _handleProgressBarAndBannerVisibility: function(diffDays, $scope) {
+    // Handle visibility of progress bar and incompletion banner.
     if ($scope.percentProcessed == "100%") {
       if (28 - diffDays <= 0) {
         $('body').removeClass("banner-visible");
@@ -478,5 +391,96 @@ InterestDashboard.prototype = {
         }
       }, 2000);
     }
+  },
+
+  _nvSliceClicked: function(event, self, data, $scope, clickTarget) {
+    self._sliced = true;
+    $('.back').addClass("visibleBack");
+    self._areaGraph.xAxis.tickFormat((d) => {
+      return "<strong>" + d3.time.format('%A %B %e, %Y')(new Date(d)) + "</strong>";
+    });
+
+    $scope.$apply(function() {
+      // Grey out the unselected pie pieces.
+      $(".nvd3.nv-pie path").css("fill-opacity", 0.1);
+      clickTarget.find('path').css("fill-opacity", 1);
+      self._areaGraph.color([clickTarget.find('path').css("fill"), "#E6E6E6"]);
+
+      let categoryClicked = event.data.label;
+      $scope.graphHeader = categoryClicked;
+
+      // Redraw area graph
+      d3.select('#areaGraph').selectAll("*").remove();
+      d3.select("#areaGraph")
+        .attr("class", "area-graph-margin-fix")
+        .datum(data.areaData[categoryClicked])
+        .transition().duration(350)
+        .call(self._areaGraph);
+
+      self._areaGraph.stacked.dispatch.on("areaClick", null);
+      self._areaGraph.stacked.dispatch.on("areaClick.toggle", null);
+      self._areaGraph.stacked.scatter.dispatch.on("elementClick", null);
+      self._setTooltip($scope);
+
+      // Update stats below graph
+      self._setStats(data.categories[categoryClicked].visitCount,
+                     data.categories[categoryClicked].viewCount,
+                     data.categories[categoryClicked].weeklyAvg.toFixed(0),
+                     data.categories[categoryClicked].dailyAvg.toFixed(0),
+                     $scope);
+    });
+  },
+
+  graph: function(data, table, $scope) {
+    this._categories = data.categories;
+    $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
+    table.clear();
+
+    // Render graphs.
+    let self = this;
+    this._drawGraphMarkers();
+    this._renderPieGraph(data, data.tableData.length);
+    d3.selectAll('.nv-slice').on('click', function(event) {
+      self._nvSliceClicked(event, self, data, $scope, $(this));
+    });
+    $('.back').on('click', () => { self._setInitialState($scope, data); });
+    this._setInitialState($scope, data);
+    nv.utils.windowResize(this._areaGraph.update);
+    nv.utils.windowResize(this._pieChart.update);
+
+
+    // Computations for banner and progress bar.
+    let today = new Date();
+    let oneDay = 24 * 60 * 60 * 1000;
+    let maxDate = new Date(data.maxDay);
+    let thirtyAgo = new Date(today.getTime() - 30 * oneDay);
+    let diffDays = Math.round(Math.abs((maxDate.getTime() - thirtyAgo.getTime())/(oneDay)));
+
+    // 795 is width of svg rect, 60 is 30 for margin + 30 to show up after next day
+    let left = 795 / 30 * diffDays + 60 + (795 / 30)
+    $("#percentComplete").css("left", left);
+    $(".mostRecentMarker").css("left", left - 10); // Subtract 10 to center.
+    $("#mostRecentDate").css("left", left - 35);
+
+    let mostRecentDate = new Date(maxDate.getTime() + oneDay);
+    $scope.percentage = parseInt(diffDays / 28 * 100);
+    $scope.isComplete = $scope.percentage >= 100;
+    $scope.isAtAnEnd = diffDays < 2 || diffDays > 26;
+    $scope.mostRecentDate = d3.time.format('%x')(mostRecentDate);
+    //$scope.monthXX = d3.time.format('%B %e')(new Date(mostRecentDate.getTime() + (28 - diffDays) * oneDay));
+    $scope.monthXX = d3.time.format('%B %e')(new Date(today.getTime() + oneDay));
+    this._handleProgressBarAndBannerVisibility(diffDays, $scope);
+
+
+    // If we are processing data, prevent scroll.
+    this._preventScroll = false;
+    if ($scope.daysLeft) {
+      this._preventScroll = true;
+    }
+    document.addEventListener('DOMMouseScroll', (e) => { this._mouseScroll(e); }, false);
+
+    this._addTopSites(data, $scope);
+    this._addTableRows(data, table);
+    this._handleRowExpand(data, table, $scope);
   }
 }

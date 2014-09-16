@@ -111,6 +111,7 @@ self.port.on("init", function() {
     ]
   });
 
+  // Cog show and hide events for css updates.
   $('.cog').on('show.bs.dropdown', function () {
     $('.cog-btn').addClass('cog-clicked');
   });
