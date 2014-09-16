@@ -27,7 +27,7 @@
         <li class="divider"></li>
         <li ng-click="processHistory()" ><a href="#">Recompute history</a></li>
         <li class="divider"></li>
-        <li><a href="#">Send debug report</a></li>
+        <li ng-click="generateDebugReport()"><a href="#">Generate debug report</a></li>
       </ul>
     </div>
   </div>
@@ -122,5 +122,20 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal dialog for debug log display. -->
+  <div id="debug-modal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">Debug Log</h4>
+        </div>
+        <div class="modal-body">
+          <textarea id="debug-textarea">{{debugLog}}</textarea>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </body>
 </html>

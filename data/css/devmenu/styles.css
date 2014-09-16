@@ -41,6 +41,11 @@ body {
   padding-left: 30px;
 }
 
+#debug-textarea {
+  width: 570px;
+  height: 500px;
+}
+
 
 
 /* Top navbar */

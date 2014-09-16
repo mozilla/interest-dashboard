@@ -48,7 +48,10 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     dataService.send("category_visit_request", {
       "categoryName": categoryName
     });
-  };
+  };/*
+  $scope.generateDebugReport = function() {
+    dataService.send("debug_report_request");
+  };*/
   $scope.updateProgressBar = function(value) {
     let val = value ? value : (100 - Math.round($scope.daysLeft / $scope.daysLeftStart * 100));
     $scope.percentProcessed = val + "%"
@@ -61,7 +64,7 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     $("#visual-header-overlay").removeClass("fade-out");
     $("#main-overlay").removeClass("fade-out");
     dataService.send("history_process");
-  }
+  };
   $scope._initialize();
 
   $scope.$on("json_update", function(event, data) {

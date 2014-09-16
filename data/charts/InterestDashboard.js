@@ -1,40 +1,47 @@
 function InterestDashboard() {
-  /* Initing the pie chart */
-  this._pieChart = nv.models.pieChart()
-      .showLegend(false)
-      .x(function(d) { return d.label })
-      .y(function(d) { return d.value })
-      .showLabels(false)
-      .color(d3.scale.category10().range())
-      .tooltipContent((category, count, e, graph) => {
-        return '<div class="pie-tooltip">' +
-          '<div class="rank">' + this._categories[category].rank + '</div>' +
-          '<div class="category">' + category + '</div>' +
-          '<div class="count">(' + this._numberWithCommas(parseInt(count.replace(/,/g, ''))) + ')</div>' +
-        '</div>';
-      });
+  this.debugReport = [];
 
-  nv.addGraph(function() {
-    return this._pieChart;
-  });
+  try {
+    this.debugReport.push("Initializing pie chart.");
+    this._pieChart = nv.models.pieChart()
+        .showLegend(false)
+        .x(function(d) { return d.label })
+        .y(function(d) { return d.value })
+        .showLabels(false)
+        .color(d3.scale.category10().range())
+        .tooltipContent((category, count, e, graph) => {
+          return '<div class="pie-tooltip">' +
+            '<div class="rank">' + this._data.categories[category].rank + '</div>' +
+            '<div class="category">' + category + '</div>' +
+            '<div class="count">(' + this._numberWithCommas(parseInt(count.replace(/,/g, ''))) + ')</div>' +
+          '</div>';
+        });
 
-  /* Initing the area graph */
-  this._areaGraph = nv.models.stackedAreaChart()
-                .x(function(d) { return d[0] })
-                .y(function(d) { return d[1] })
-                .useInteractiveGuideline(true)
-                .showLegend(false)
-                .showYAxis(false)
-                .showXAxis(false)
-                .showControls(false)
-                .transitionDuration(300);
+    nv.addGraph(function() {
+      return this._pieChart;
+    });
 
-  this._areaGraph.yAxis
-    .tickFormat((d) => { return d; });
+    this.debugReport.push("Initializing area graph.");
+    this._areaGraph = nv.models.stackedAreaChart()
+                  .x(function(d) { return d[0] })
+                  .y(function(d) { return d[1] })
+                  .useInteractiveGuideline(true)
+                  .showLegend(false)
+                  .showYAxis(false)
+                  .showXAxis(false)
+                  .showControls(false)
+                  .transitionDuration(300);
 
-  nv.addGraph(() => {
-    return this._areaGraph;
-  });
+    this._areaGraph.yAxis
+      .tickFormat((d) => { return d; });
+
+    nv.addGraph(() => {
+      return this._areaGraph;
+    });
+    this._handleRowExpand();
+  } catch (ex) {
+    this.debugReport.push("Exception while initializing InterestDashboard: " + ex);
+  }
 }
 
 InterestDashboard.prototype = {
@@ -184,19 +191,24 @@ InterestDashboard.prototype = {
   },
 
   appendCategoryVisitData: function(category, historyVisits, pageResponseSize, complete, $scope) {
-    let nextEntryIndex = this._getStartIndex(historyVisits, pageResponseSize);
-    if ($('#' + category + ' tr').length > 0) {
-      $('#' + category + ' tr:last').remove();
-      if (nextEntryIndex < historyVisits.length) {
-        $('#' + category + ' tr:last .timelineCircle').removeClass("lastVisit");
+    try {
+      this.debugReport.push("Appending category visit data for [" + category + "] with page size [" + pageResponseSize + "]");
+      let nextEntryIndex = this._getStartIndex(historyVisits, pageResponseSize);
+      if ($('#' + category + ' tr').length > 0) {
+        $('#' + category + ' tr:last').remove();
+        if (nextEntryIndex < historyVisits.length) {
+          $('#' + category + ' tr:last .timelineCircle').removeClass("lastVisit");
+        }
       }
-    }
 
-    $('#' + category + ' tr:last').after(
-      this._getRowsHTML(category, historyVisits.slice(
-        nextEntryIndex, historyVisits.length), historyVisits[nextEntryIndex - 1].timestamp, complete));
-    this._appendingVisits = false;
-    this._checkListFullAndAppend(historyVisits, category, $scope);
+      $('#' + category + ' tr:last').after(
+        this._getRowsHTML(category, historyVisits.slice(
+          nextEntryIndex, historyVisits.length), historyVisits[nextEntryIndex - 1].timestamp, complete));
+      this._appendingVisits = false;
+      this._checkListFullAndAppend(historyVisits, category, $scope);
+    } catch (ex) {
+      this.debugReport.push("Error in InterestDashboard.appendCategoryVisitData(): " + ex);
+    }
   },
 
   cancelAppendVisits: function() {
@@ -204,57 +216,66 @@ InterestDashboard.prototype = {
   },
 
   _openRowDetails: function(row, tr, category, $scope, data, table) {
-    // Close all other open rows.
-    let self = this;
-    $("#test tr").each(function() {
-      self._closeRowDetails(table.row($(this)), $(this));
-    });
+    try {
+      this.debugReport.push("InterestDashboard._openRowDetails() [" + category + "]");
+      // Close all other open rows.
+      let self = this;
+      $("#test tr").each(function() {
+        self._closeRowDetails(table.row($(this)), $(this));
+      });
 
-    // Open this row
-    row.child(this._formatSubtable(category, data.historyVisits[category].visitData,
-                                   data.historyVisits[category].complete)).show();
+      // Open this row
+      row.child(this._formatSubtable(category, data.historyVisits[category].visitData,
+                                     data.historyVisits[category].complete)).show();
 
-    // Height of open row should fill the rest of the screen.
-    let bannerShown = $("body").hasClass("banner-visible");
-    $('.subtable').css("height", ($(window).height() - 195 - (bannerShown ? 138 : 0)) + "px");
+      // Height of open row should fill the rest of the screen.
+      let bannerShown = $("body").hasClass("banner-visible");
+      $('.subtable').css("height", ($(window).height() - 195 - (bannerShown ? 138 : 0)) + "px");
 
-    // Shift main table up and scroll the category up to be a header.
-    let shiftableBottom = document.getElementById("main-row-background");
-    shiftableBottom.classList.add('shift-animate');
-    $('div.dataTables_scrollBody').scrollTop(50 * tr.prevAll().length);
-    $('div.dataTables_scrollBody').css("overflow", "hidden");
-    this._preventScroll = true;
+      // Shift main table up and scroll the category up to be a header.
+      let shiftableBottom = document.getElementById("main-row-background");
+      shiftableBottom.classList.add('shift-animate');
+      $('div.dataTables_scrollBody').scrollTop(50 * tr.prevAll().length);
+      $('div.dataTables_scrollBody').css("overflow", "hidden");
+      this._preventScroll = true;
 
-    // Infinite scrolling.
-    $(".subtable").scroll(function(e) {
-      // Check if we've scrolled to the bottom.
-      let elem = $(e.currentTarget);
-      if (!self._appendingVisits && elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
-        self._appendingVisits = true;
-        $scope._requestCategoryVisits(e.currentTarget.id);
-      }
-    });
-    tr.addClass('shown');
-    this._checkListFullAndAppend(data.historyVisits[category].visitData, category, $scope);
-    $('table.dataTable thead th').css("pointer-events", "none"); // Remove ability to sort while a subtable is open.
+      // Infinite scrolling.
+      $(".subtable").scroll(function(e) {
+        // Check if we've scrolled to the bottom.
+        let elem = $(e.currentTarget);
+        if (!self._appendingVisits && elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
+          self._appendingVisits = true;
+          $scope._requestCategoryVisits(e.currentTarget.id);
+        }
+      });
+      tr.addClass('shown');
+      this._checkListFullAndAppend(data.historyVisits[category].visitData, category, $scope);
+      $('table.dataTable thead th').css("pointer-events", "none"); // Remove ability to sort while a subtable is open.
+    } catch (ex) {
+      this.debugReport.push("Error in InterestDashboard._openRowDetails(): " + ex);
+    }
   },
 
   _closeRowDetails: function(row, tr) {
-    // This row is already open - close it
-    this._preventScroll = false;
-    row.child.hide();
-    this.cancelAppendVisits();
-    tr.removeClass('shown');
-    $('div.dataTables_scrollBody').css("overflow", "auto");
-    $('table.dataTable thead th').css("pointer-events", "all");
+    try {
+      // This row is already open - close it
+      this._preventScroll = false;
+      row.child.hide();
+      this.cancelAppendVisits();
+      tr.removeClass('shown');
+      $('div.dataTables_scrollBody').css("overflow", "auto");
+      $('table.dataTable thead th').css("pointer-events", "all");
+    } catch (ex) {
+      this.debugReport.push("Error in InterestDashboard._closeRowDetails(): " + ex);
+    }
   },
 
-  _handleRowExpand: function(data, table, $scope) {
+  _handleRowExpand: function() {
     // Add event listener for opening and closing details
     let self = this;
-    $('#test tbody td').on('click', function() {
+    $('#test').on('click', 'tbody td', function() {
       let tr = $(this).closest('tr');
-      let row = table.row(tr);
+      let row = self._table.row(tr);
 
       // Get the category that was clicked
       let parser = new DOMParser();
@@ -262,10 +283,11 @@ InterestDashboard.prototype = {
       let category = node.getElementsByClassName('category-name')[0].innerHTML;
 
       if (row.child.isShown()) {
+        self.debugReport.push("InterestDashboard._closeRowDetails() [" + category + "]");
         self._closeRowDetails(row, tr);
         $scope._requestResetCategoryVisits(category);
       } else {
-        self._openRowDetails(row, tr, category, $scope, data, table);
+        self._openRowDetails(row, tr, category, self._scope, self._data, self._table);
       }
     });
   },
@@ -394,93 +416,110 @@ InterestDashboard.prototype = {
   },
 
   _nvSliceClicked: function(event, self, data, $scope, clickTarget) {
-    self._sliced = true;
-    $('.back').addClass("visibleBack");
-    self._areaGraph.xAxis.tickFormat((d) => {
-      return "<strong>" + d3.time.format('%A %B %e, %Y')(new Date(d)) + "</strong>";
-    });
+    try {
+      self._sliced = true;
+      $('.back').addClass("visibleBack");
+      self._areaGraph.xAxis.tickFormat((d) => {
+        return "<strong>" + d3.time.format('%A %B %e, %Y')(new Date(d)) + "</strong>";
+      });
 
-    $scope.$apply(function() {
-      // Grey out the unselected pie pieces.
-      $(".nvd3.nv-pie path").css("fill-opacity", 0.1);
-      clickTarget.find('path').css("fill-opacity", 1);
-      self._areaGraph.color([clickTarget.find('path').css("fill"), "#E6E6E6"]);
+      $scope.$apply(function() {
+        // Grey out the unselected pie pieces.
+        $(".nvd3.nv-pie path").css("fill-opacity", 0.1);
+        clickTarget.find('path').css("fill-opacity", 1);
+        self._areaGraph.color([clickTarget.find('path').css("fill"), "#E6E6E6"]);
 
-      let categoryClicked = event.data.label;
-      $scope.graphHeader = categoryClicked;
+        let categoryClicked = event.data.label;
+        $scope.graphHeader = categoryClicked;
+        self.debugReport.push("[" + categoryClicked + "] slice clicked.");
 
-      // Redraw area graph
-      d3.select('#areaGraph').selectAll("*").remove();
-      d3.select("#areaGraph")
-        .attr("class", "area-graph-margin-fix")
-        .datum(data.areaData[categoryClicked])
-        .transition().duration(350)
-        .call(self._areaGraph);
+        // Redraw area graph
+        d3.select('#areaGraph').selectAll("*").remove();
+        d3.select("#areaGraph")
+          .attr("class", "area-graph-margin-fix")
+          .datum(data.areaData[categoryClicked])
+          .transition().duration(350)
+          .call(self._areaGraph);
 
-      self._areaGraph.stacked.dispatch.on("areaClick", null);
-      self._areaGraph.stacked.dispatch.on("areaClick.toggle", null);
-      self._areaGraph.stacked.scatter.dispatch.on("elementClick", null);
-      self._setTooltip($scope);
+        self._areaGraph.stacked.dispatch.on("areaClick", null);
+        self._areaGraph.stacked.dispatch.on("areaClick.toggle", null);
+        self._areaGraph.stacked.scatter.dispatch.on("elementClick", null);
+        self._setTooltip($scope);
 
-      // Update stats below graph
-      self._setStats(data.categories[categoryClicked].visitCount,
-                     data.categories[categoryClicked].viewCount,
-                     data.categories[categoryClicked].weeklyAvg.toFixed(0),
-                     data.categories[categoryClicked].dailyAvg.toFixed(0),
-                     $scope);
-    });
+        // Update stats below graph
+        self._setStats(data.categories[categoryClicked].visitCount,
+                       data.categories[categoryClicked].viewCount,
+                       data.categories[categoryClicked].weeklyAvg.toFixed(0),
+                       data.categories[categoryClicked].dailyAvg.toFixed(0),
+                       $scope);
+      });
+    } catch (ex) {
+      this.debugReport.push("Error in InterestDashboard._nvSliceClicked(): " + ex);
+    }
   },
 
   graph: function(data, table, $scope) {
-    this._categories = data.categories;
-    $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
-    table.clear();
+    try {
+      this._data = data;
+      this._table = table;
+      this._scope = $scope;
+      $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
+      table.clear();
 
-    // Render graphs.
-    let self = this;
-    this._drawGraphMarkers();
-    this._renderPieGraph(data, data.tableData.length);
-    d3.selectAll('.nv-slice').on('click', function(event) {
-      self._nvSliceClicked(event, self, data, $scope, $(this));
-    });
-    $('.back').on('click', () => { self._setInitialState($scope, data); });
-    this._setInitialState($scope, data);
-    nv.utils.windowResize(this._areaGraph.update);
-    nv.utils.windowResize(this._pieChart.update);
-
-
-    // Computations for banner and progress bar.
-    let today = new Date();
-    let oneDay = 24 * 60 * 60 * 1000;
-    let maxDate = new Date(data.maxDay);
-    let thirtyAgo = new Date(today.getTime() - 30 * oneDay);
-    let diffDays = Math.round(Math.abs((maxDate.getTime() - thirtyAgo.getTime())/(oneDay)));
-
-    // 795 is width of svg rect, 60 is 30 for margin + 30 to show up after next day
-    let left = 795 / 30 * diffDays + 60 + (795 / 30)
-    $("#percentComplete").css("left", left);
-    $(".mostRecentMarker").css("left", left - 10); // Subtract 10 to center.
-    $("#mostRecentDate").css("left", left - 35);
-
-    let mostRecentDate = new Date(maxDate.getTime() + oneDay);
-    $scope.percentage = parseInt(diffDays / 28 * 100);
-    $scope.isComplete = $scope.percentage >= 100;
-    $scope.isAtAnEnd = diffDays < 2 || diffDays > 26;
-    $scope.mostRecentDate = d3.time.format('%x')(mostRecentDate);
-    //$scope.monthXX = d3.time.format('%B %e')(new Date(mostRecentDate.getTime() + (28 - diffDays) * oneDay));
-    $scope.monthXX = d3.time.format('%B %e')(new Date(today.getTime() + oneDay));
-    this._handleProgressBarAndBannerVisibility(diffDays, $scope);
+      // Render graphs.
+      let self = this;
+      this._drawGraphMarkers();
+      this._renderPieGraph(data, data.tableData.length);
+      d3.selectAll('.nv-slice').on('click', function(event) {
+        self._nvSliceClicked(event, self, data, $scope, $(this));
+      });
+      $('.back').on('click', () => {
+        self.debugReport.push("Back clicked to go to initial state.");
+        self._setInitialState($scope, data);
+      });
+      this._setInitialState($scope, data);
+      nv.utils.windowResize(this._areaGraph.update);
+      nv.utils.windowResize(this._pieChart.update);
 
 
-    // If we are processing data, prevent scroll.
-    this._preventScroll = false;
-    if ($scope.daysLeft) {
-      this._preventScroll = true;
+      // Computations for banner and progress bar.
+      let today = new Date();
+      let oneDay = 24 * 60 * 60 * 1000;
+      let maxDate = new Date(data.maxDay);
+      let thirtyAgo = new Date(today.getTime() - 30 * oneDay);
+      let diffDays = Math.round(Math.abs((maxDate.getTime() - thirtyAgo.getTime())/(oneDay)));
+
+      // 795 is width of svg rect, 60 is 30 for margin + 30 to show up after next day
+      let left = 795 / 30 * diffDays + 60 + (795 / 30)
+      $("#percentComplete").css("left", left);
+      $(".mostRecentMarker").css("left", left - 10); // Subtract 10 to center.
+      $("#mostRecentDate").css("left", left - 35);
+
+      let mostRecentDate = new Date(maxDate.getTime() + oneDay);
+      $scope.percentage = parseInt(diffDays / 28 * 100);
+      $scope.isComplete = $scope.percentage >= 100;
+      $scope.isAtAnEnd = diffDays < 2 || diffDays > 26;
+      $scope.mostRecentDate = d3.time.format('%x')(mostRecentDate);
+      //$scope.monthXX = d3.time.format('%B %e')(new Date(mostRecentDate.getTime() + (28 - diffDays) * oneDay));
+      $scope.monthXX = d3.time.format('%B %e')(new Date(today.getTime() + oneDay));
+      this._handleProgressBarAndBannerVisibility(diffDays, $scope);
+
+
+      // If we are processing data, prevent scroll.
+      this._preventScroll = false;
+      if ($scope.daysLeft) {
+        this._preventScroll = true;
+      }
+      document.addEventListener('DOMMouseScroll', (e) => { this._mouseScroll(e); }, false);
+
+      this._addTopSites(data, $scope);
+      this._addTableRows(data, table);
+      $scope.generateDebugReport = () => {
+        $scope.debugLog = this.debugReport.toString().replace(/,/g, '\n');
+        $('#debug-modal').modal();
+      };
+    } catch (ex) {
+      this.debugReport.push("Error in InterestDashboard.graph(): " + ex);
     }
-    document.addEventListener('DOMMouseScroll', (e) => { this._mouseScroll(e); }, false);
-
-    this._addTopSites(data, $scope);
-    this._addTableRows(data, table);
-    this._handleRowExpand(data, table, $scope);
   }
 }
