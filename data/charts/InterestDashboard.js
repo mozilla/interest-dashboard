@@ -1,4 +1,4 @@
-function InterestDashboard() {
+function InterestDashboard($scope) {
   this.debugReport = [];
 
   try {
@@ -38,7 +38,7 @@ function InterestDashboard() {
     nv.addGraph(() => {
       return this._areaGraph;
     });
-    this._handleRowExpand();
+    this._handleRowExpand($scope);
   } catch (ex) {
     this.debugReport.push("Exception while initializing InterestDashboard: " + ex);
   }
@@ -279,7 +279,7 @@ InterestDashboard.prototype = {
     }
   },
 
-  _handleRowExpand: function() {
+  _handleRowExpand: function($scope) {
     // Add event listener for opening and closing details
     let self = this;
     $('#test').on('click', 'tbody td', function() {

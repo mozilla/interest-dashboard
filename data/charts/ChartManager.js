@@ -13,7 +13,7 @@ let ChartManager = {
    */
   graphAllFromScratch: function(data, table, $scope) {
     if (!this._charts["interestDashboard"]) {
-      this._charts["interestDashboard"] = new InterestDashboard();
+      this._charts["interestDashboard"] = new InterestDashboard($scope);
     }
     for (let chart in this._charts) {
       this._charts[chart].graph(data[chart + "Data"], table, $scope);
