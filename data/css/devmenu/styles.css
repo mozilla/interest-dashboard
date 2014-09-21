@@ -351,8 +351,25 @@ table.dataTable tbody td {
 }
 
 td.details-control {
-    width: 21px;
-    height: 21px;
+  width: 21px;
+  height: 21px;
+}
+
+.new {
+  background-color: #71B844;
+  border: solid 1px #E6E6E6;
+  border-radius: 2px;
+  color: #FFFFFF;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.fire {
+  width: 18px;
+  height: 28px;
+  background: url('resources/Icon_Flame.svg') no-repeat center center;
 }
 
 #test tr:hover .details-control {

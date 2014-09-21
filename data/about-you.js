@@ -113,7 +113,8 @@ self.port.on("init", function() {
       { "width": "74px" },
       { "width": "231px" },
       { "width": "0px" },
-      { "width": "400px" },
+      { "width": "360px" },
+      { "width": "40px" },
       { "width": "40px" }
     ]
   });

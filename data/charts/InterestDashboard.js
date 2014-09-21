@@ -39,6 +39,11 @@ function InterestDashboard($scope) {
       return this._areaGraph;
     });
     this._handleRowExpand($scope);
+
+    this._today = new Date();
+    this._oneDay = 24 * 60 * 60 * 1000;
+    this._thirtyAgo = new Date(this._today.getTime() - 30 * this._oneDay);
+    this._fourteenAgo = new Date(this._today.getTime() - 14 * this._oneDay);
   } catch (ex) {
     this.debugReport.push("Exception while initializing InterestDashboard: " + ex);
   }
@@ -53,6 +58,26 @@ InterestDashboard.prototype = {
       }
     }
     return d3.time.format('%A, %B %e, %Y')(new Date(max / 1000));
+  },
+
+  _getMinDate: function(days) {
+    let min = 10000000000000000;
+    for (let day of days) {
+      if (day < min) {
+        min = day;
+      }
+    }
+    return parseInt(min / 1000);
+  },
+
+  _isTopIntent: function(categoryName, intents) {
+    for (let i = 0; i < Math.min(5, intents.length); i++) {
+      let intent = intents[i];
+      if (intent.name == categoryName) {
+        return true;
+      }
+    }
+    return false;
   },
 
   _computeTimeString: function(timestamp) {
@@ -78,8 +103,18 @@ InterestDashboard.prototype = {
         "<div class='category-count'> (" + this._numberWithCommas(categoryObj.visitCount) + ")</div>",
         "<div class='subtitleCircle'></div>",
         this._getMaxDate(categoryObj.visitIDs),
+        "<div class='iconIndicator" + i + "'></div>",
         null
       ]).draw();
+
+      if (this._getMinDate(categoryObj.visitIDs) > this._fourteenAgo.getTime()) {
+        $(".iconIndicator" + i).addClass('new');
+        $(".iconIndicator" + i).html('NEW');
+      }
+
+      if (this._isTopIntent(categoryObj.name, data.sortedIntents)) {
+        $(".iconIndicator" + i).addClass('fire');
+      }
 
       // Add classes
       table.column(-1).nodes().to$().addClass('details-control');
@@ -499,11 +534,8 @@ InterestDashboard.prototype = {
 
 
       // Computations for banner and progress bar.
-      let today = new Date();
-      let oneDay = 24 * 60 * 60 * 1000;
       let maxDate = new Date(data.maxDay);
-      let thirtyAgo = new Date(today.getTime() - 30 * oneDay);
-      let diffDays = Math.round(Math.abs((maxDate.getTime() - thirtyAgo.getTime())/(oneDay)));
+      let diffDays = Math.round(Math.abs((maxDate.getTime() - this._thirtyAgo.getTime())/(this._oneDay)));
 
       // 795 is width of svg rect, 60 is 30 for margin + 30 to show up after next day
       let left = 795 / 30 * diffDays + 60 + (795 / 30)
@@ -511,13 +543,13 @@ InterestDashboard.prototype = {
       $(".mostRecentMarker").css("left", left - 10); // Subtract 10 to center.
       $("#mostRecentDate").css("left", left - 35);
 
-      let mostRecentDate = new Date(maxDate.getTime() + oneDay);
+      let mostRecentDate = new Date(maxDate.getTime() + this._oneDay);
       $scope.percentage = parseInt(diffDays / 28 * 100);
       $scope.isComplete = $scope.percentage >= 100;
       $scope.isAtAnEnd = diffDays < 2 || diffDays > 26;
       $scope.mostRecentDate = d3.time.format('%x')(mostRecentDate);
       //$scope.monthXX = d3.time.format('%B %e')(new Date(mostRecentDate.getTime() + (28 - diffDays) * oneDay));
-      $scope.monthXX = d3.time.format('%B %e')(new Date(today.getTime() + oneDay));
+      $scope.monthXX = d3.time.format('%B %e')(new Date(this._today.getTime() + this._oneDay));
       this._handleProgressBarAndBannerVisibility(diffDays, $scope);
 
 
