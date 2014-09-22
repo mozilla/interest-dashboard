@@ -154,20 +154,19 @@ function getInterestsForDocument(aMessageData) {
   // - for combined classification
   let interests = [];
   let results = [];
+  let combinedInterests = [];
   try {
     interests = ruleClassify(aMessageData);
     results.push({type: "rules", interests: dedupeInterests(interests)});
 
     let rulesWorked = interests.length > 0;
-    if (rulesWorked) {
-      results.push({type: "combined", interests: dedupeInterests(interests)});
-    }
+    combinedInterests = interests;
 
     interests = textClassify(aMessageData);
     results.push({type: "keywords", interests: dedupeInterests(interests)});
-    if (!rulesWorked) {
-      results.push({type: "combined", interests: dedupeInterests(interests)});
-    }
+    combinedInterests = dedupeInterests(combinedInterests.concat(interests));
+    results.push({type: "combined", interests: combinedInterests});
+
     aMessageData.results = results;
     self.postMessage(aMessageData);
   }

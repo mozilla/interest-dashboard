@@ -38,7 +38,6 @@ function InterestDashboard($scope) {
     nv.addGraph(() => {
       return this._areaGraph;
     });
-    this._handleRowExpand($scope);
 
     this._today = new Date();
     this._oneDay = 24 * 60 * 60 * 1000;
@@ -122,8 +121,7 @@ InterestDashboard.prototype = {
     table.columns.adjust();
   },
 
-  _addTopSites: function(data, $scope) {
-    let list = data.sortedDomains.slice(0, 10);
+  _addTopSites: function(list, $scope) {
     for (let item of list) {
       item[1] = this._numberWithCommas(item[1]);
     }
@@ -267,6 +265,9 @@ InterestDashboard.prototype = {
       $("#test tr").each(function() {
         self._closeRowDetails(table.row($(this)), $(this));
       });
+      $scope.$apply(function() {
+        self._addTopSites(data.sortedDomains.byInterest[category], $scope);
+      });
 
       // Open this row
       row.child(this._formatSubtable(category, data.historyVisits[category].visitData,
@@ -300,9 +301,13 @@ InterestDashboard.prototype = {
     }
   },
 
-  _closeRowDetails: function(row, tr) {
+  _closeRowDetails: function(row, tr, data, $scope) {
     try {
       // This row is already open - close it
+      let self = this;
+      $scope.$apply(function() {
+        self._addTopSites(data.sortedDomains.all, $scope);
+      });
       this._preventScroll = false;
       row.child.hide();
       this.cancelAppendVisits();
@@ -328,7 +333,7 @@ InterestDashboard.prototype = {
 
       if (row.child.isShown()) {
         self.debugReport.push("InterestDashboard._closeRowDetails() [" + category + "]");
-        self._closeRowDetails(row, tr);
+        self._closeRowDetails(row, tr, self._data, self._scope);
         $scope._requestResetCategoryVisits(category);
       } else {
         self._openRowDetails(row, tr, category, self._scope, self._data, self._table);
@@ -560,8 +565,9 @@ InterestDashboard.prototype = {
       }
       document.addEventListener('DOMMouseScroll', (e) => { this._mouseScroll(e); }, false);
 
-      this._addTopSites(data, $scope);
+      this._addTopSites(data.sortedDomains.all, $scope);
       this._addTableRows(data, table);
+      this._handleRowExpand($scope);
       $scope.generateDebugReport = () => {
         $scope.debugReportRequest();
       };
