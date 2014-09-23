@@ -263,7 +263,7 @@ InterestDashboard.prototype = {
       // Close all other open rows.
       let self = this;
       $("#test tr").each(function() {
-        self._closeRowDetails(table.row($(this)), $(this));
+        self._closeRowDetails(table.row($(this)), $(this), $scope);
       });
       $scope.$apply(function() {
         self._addTopSites(data.sortedDomains.byInterest[category], $scope);
