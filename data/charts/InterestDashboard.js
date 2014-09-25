@@ -93,6 +93,32 @@ InterestDashboard.prototype = {
     return hours + ":" + minutes + " " + AMorPM;
   },
 
+  _handleIntensityPercentages: function(data, categoryObj, i) {
+    if (data.capturedRankings.previousRanks && data.capturedRankings.currentRanks &&
+      data.capturedRankings.previousRanks.rankedIntents[categoryObj.name] &&
+      data.capturedRankings.currentRanks.rankedIntents[categoryObj.name]) {
+
+      let rankChangePercents =
+        parseInt((data.capturedRankings.previousRanks.rankedIntents[categoryObj.name] -
+                  data.capturedRankings.currentRanks.rankedIntents[categoryObj.name]) /
+                  Object.keys(data.capturedRankings.currentRanks.rankedIntents).length * 100);
+
+      if (rankChangePercents > 0) {
+        $(".intensityChange" + i + " .symbol").addClass('increasingArrow');
+        $(".intensityChange" + i + " .intensityPercent").addClass('increasingPercent');
+        $(".intensityChange" + i + " .increasingPercent").html(rankChangePercents + "%");
+      } else if (rankChangePercents < 0) {
+        $(".intensityChange" + i + " .symbol").addClass('decreasingArrow');
+        $(".intensityChange" + i + " .intensityPercent").addClass('decreasingPercent');
+        $(".intensityChange" + i + " .decreasingPercent").html(Math.abs(rankChangePercents) + "%");
+      } else if (rankChangePercents == 0) {
+        $(".intensityChange" + i + " .symbol").addClass('neutral');
+        $(".intensityChange" + i + " .intensityPercent").addClass('neutralPercent');
+        $(".intensityChange" + i + " .neutralPercent").html(rankChangePercents + "%");
+      }
+    }
+  },
+
   _addTableRows: function(data, table) {
     for (let i = 0; i < data.tableData.length; i++) {
       let categoryObj = data.tableData[i];
@@ -102,13 +128,19 @@ InterestDashboard.prototype = {
         "<div class='category-count'> (" + this._numberWithCommas(categoryObj.visitCount) + ")</div>",
         "<div class='subtitleCircle'></div>",
         this._getMaxDate(categoryObj.visitIDs),
+        "<div class='intensityChange" + i + "'><div class='symbol'></div><div class='intensityPercent'></div></div>",
         "<div class='iconIndicator" + i + "'></div>",
         null
       ]).draw();
 
+      this._handleIntensityPercentages(data, categoryObj, i);
+
       if (this._getMinDate(categoryObj.visitIDs) > this._fourteenAgo.getTime()) {
         $(".iconIndicator" + i).addClass('new');
         $(".iconIndicator" + i).html('NEW');
+        $(".intensityChange" + i + " .symbol").addClass('newIntensitySymbol');
+        $(".intensityChange" + i + " .intensityPercent").addClass('neutralPercent');
+        $(".intensityChange" + i + " .neutralPercent").html("---");
       }
 
       if (this._isTopIntent(categoryObj.name, data.sortedIntents)) {

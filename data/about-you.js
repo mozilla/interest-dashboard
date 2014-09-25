@@ -110,10 +110,11 @@ self.port.on("init", function() {
     "paging":         false,
     "searching":      false,
     "columns": [
-      { "width": "74px" },
+      { "width": "80px" },
       { "width": "231px" },
       { "width": "0px" },
-      { "width": "360px" },
+      { "width": "300px" },
+      { "width": "40px", "orderable": false },
       { "width": "40px" },
       { "width": "40px" }
     ]

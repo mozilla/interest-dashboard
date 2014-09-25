@@ -442,7 +442,7 @@ table.dataTable thead th {
 
 .time {
   width: 55px;
-  padding-left: 270px !important;
+  padding-left: 261px !important;
 }
 .domain a {
   color: #4A4A4A;
@@ -522,6 +522,39 @@ tr:not(.shown) .subtitleCircle {
 }
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
   border-bottom: none;
+}
+
+.symbol {
+  width: 18px;
+  height: 28px;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: 8px;
+}
+.intensityPercent {
+  font-size: 18px;
+  display: inline-block;
+}
+.increasingArrow {
+  background: url('resources/Icon_Green_Arrow.svg') no-repeat center center;
+}
+.decreasingArrow {
+  background: url('resources/Icon_Red_Arrow.svg') no-repeat center center;
+}
+.neutral {
+  background: url('resources/Icon_NoChange_Existing.svg') no-repeat center center;
+}
+.newIntensitySymbol {
+  background: url('resources/Icon_NoChange_New.svg') no-repeat center center;
+}
+.increasingPercent {
+  color: #71B844;
+}
+.decreasingPercent {
+  color: #C92C00;
+}
+.neutralPercent {
+  color: #AFAFAF;
 }
 
 
