@@ -135,6 +135,11 @@ body {
   padding: 0;
 }
 
+.area-graph-top {
+  padding-top: 38px;
+  width: 830px;
+}
+
 .dropdown-menu {
   background-color: #2F3943;
   padding: 0px;
@@ -173,7 +178,6 @@ body {
 }
 
 .past-x-days, .graph-header, .date-label {
-  padding-top: 38px;
   display: inline-block;
   color: #6A7B86;
 }
@@ -188,6 +192,10 @@ body {
   cursor: pointer;
   color: #4A90E2;
   padding-left: 10px;
+}
+.lastUpdateTimestamp {
+  float: right;
+  color: #6A7B86;
 }
 .visibleBack {
   visibility: visible;

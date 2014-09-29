@@ -38,6 +38,7 @@ function InterestDashboard($scope) {
     nv.addGraph(() => {
       return this._areaGraph;
     });
+    this._handleRowExpand($scope);
 
     this._today = new Date();
     this._oneDay = 24 * 60 * 60 * 1000;
@@ -344,7 +345,7 @@ InterestDashboard.prototype = {
       // Close all other open rows.
       let self = this;
       $("#test tr").each(function() {
-        self._closeRowDetails(table.row($(this)), $(this), $scope);
+        self._closeRowDetails(table.row($(this)), $(this), self._data, $scope);
       });
       $scope.$apply(function() {
         self._addTopSites(data.sortedDomains.byInterest[category], $scope);
@@ -415,7 +416,9 @@ InterestDashboard.prototype = {
       if (row.child.isShown()) {
         self.debugReport.push("InterestDashboard._closeRowDetails() [" + category + "]");
         self._closeRowDetails(row, tr, self._data, self._scope);
-        $scope._requestResetCategoryVisits(category);
+        $scope.$apply(function() {
+          $scope._requestResetCategoryVisits(category);
+        });
       } else {
         self._openRowDetails(row, tr, category, self._scope, self._data, self._table);
       }
@@ -578,7 +581,7 @@ InterestDashboard.prototype = {
   _getValueInNewRange: function(value) {
     let oldMin = newMin = 1
     let oldRange = this._data.sortedIntents.length - oldMin;
-    let newRange = 249;
+    let newRange = 249; // new max - new min
     return (((value - oldMin) * newRange) / oldRange) + newMin;
   },
 
@@ -654,6 +657,9 @@ InterestDashboard.prototype = {
       this._data = data;
       this._table = table;
       this._scope = $scope;
+      if (Object.keys(data.capturedRankings).length == 3) {
+        $scope.lastUpdate = "Updated " + d3.time.format('%m/%d/%Y at %I:%M%p')(new Date(data.capturedRankings.date[1])); 
+      }
       $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
       table.clear();
 
@@ -698,7 +704,6 @@ InterestDashboard.prototype = {
 
       this._addTopSites(data.sortedDomains.all, $scope);
       this._addTableRows(data, table);
-      this._handleRowExpand($scope);
       $scope.generateDebugReport = () => {
         $scope.debugReportRequest();
       };
