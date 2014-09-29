@@ -106,6 +106,35 @@ body {
   height: 22px;
 }
 
+#help-btn {
+  padding: 0;
+  padding-bottom: 2px;
+  width: 16px;
+  border: none;
+}
+
+#help-btn:hover {
+  background-color: white;
+}
+
+#help-btn + .tooltip > .tooltip-inner {
+  background-color: white;
+  color: black;
+  border: solid 1px;
+  box-shadow: 10px 10px 5px #888888;
+  text-transform: none;
+  text-align: left;
+  font-size: 13px;
+  padding: 20px;
+}
+
+.help-img {
+  background: url('resources/Icon_Help.svg') no-repeat center center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+}
+
 .dropdown-menu {
   background-color: #2F3943;
   padding: 0px;
