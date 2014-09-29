@@ -70,16 +70,6 @@ InterestDashboard.prototype = {
     return parseInt(min / 1000);
   },
 
-  _isTopIntent: function(categoryName, intents) {
-    for (let i = 0; i < Math.min(5, intents.length); i++) {
-      let intent = intents[i];
-      if (intent.name == categoryName) {
-        return true;
-      }
-    }
-    return false;
-  },
-
   _computeTimeString: function(timestamp) {
     let AMorPM = "am";
     let date = new Date(timestamp / 1000);
@@ -117,10 +107,12 @@ InterestDashboard.prototype = {
         $(".intensityChange" + i + " .intensityPercent").addClass('neutralPercent');
         $(".intensityChange" + i + " .neutralPercent").html(rankChangePercents + "%");
       }
+      return rankChangePercents;
     }
   },
 
   _addTableRows: function(data, table) {
+    let sortedIntensityPercents = [];
     for (let i = 0; i < data.tableData.length; i++) {
       let categoryObj = data.tableData[i];
       table.row.add([
@@ -134,7 +126,8 @@ InterestDashboard.prototype = {
         null
       ]).draw();
 
-      this._handleIntensityPercentages(data, categoryObj, i);
+      let intensityPercent = this._handleIntensityPercentages(data, categoryObj, i);
+      sortedIntensityPercents.push({"index": i, "intensityPercent": intensityPercent});
 
       if (this._getMinDate(categoryObj.visitIDs) > this._fourteenAgo.getTime()) {
         $(".iconIndicator" + i).addClass('new');
@@ -144,12 +137,13 @@ InterestDashboard.prototype = {
         $(".intensityChange" + i + " .neutralPercent").html("---");
       }
 
-      if (this._isTopIntent(categoryObj.name, data.sortedIntents)) {
-        $(".iconIndicator" + i).addClass('fire');
-      }
-
       // Add classes
       table.column(-1).nodes().to$().addClass('details-control');
+    }
+    sortedIntensityPercents.sort(function(a, b) { return b["intensityPercent"] - a["intensityPercent"] });
+    for (let i = 0; i < 5; i++) {
+      let rowIndex = sortedIntensityPercents[i].index;
+      $(".iconIndicator" + rowIndex).addClass('fire');
     }
     table.columns.adjust();
   },
