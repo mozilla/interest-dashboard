@@ -81,13 +81,37 @@
         <div id="today" class="date-label">Day 30</div>
       </div>
       <ul id="navlist">
-        <li><div class="title-font">Total Visits</div> <div class="usage-value">{{totalVisits}} sites</div></li>
+        <li>
+          <div class="title-font">{{scoreTitle}}</div>
+          <div id="interestScoreHighlights" class="usage-highlights">
+            <div class="usage-value">{{score}}</div>
+            <div class="symbol"></div>
+            <div class="intensityPercent"></div>
+          </div>
+          <div class="usage-detail">{{previousScore}}</div>
+        </li>
         <li></li>
-        <li><div class="title-font">Total Views</div> <div class="usage-value">{{totalViews}} pages</div></li>
+        <li>
+          <div class="title-font">{{rankTitle}}</div>
+          <div class="usage-value">{{rank}}</div>
+          <div class="usage-detail">{{rankDetails}}</div>
+        </li>
         <li></li>
-        <li><div class="title-font">Weekly Average</div> <div class="usage-value">{{weeklyAvg}} pages</div></li>
+        <li>
+          <div class="title-font">{{visitCountTitle}}</div>
+          <div id="visitCountUsageHighlights" class="usage-highlights">
+            <div class="usage-value">{{visitCount}}</div>
+            <div class="symbol"></div>
+            <div class="intensityPercent"></div>
+          </div>
+          <div class="usage-detail">{{visitCountDetails}}</div>
+        </li>
         <li></li>
-        <li><div class="title-font">Daily Average</div> <div class="usage-value">{{dailyAvg}} pages</div></li>
+        <li>
+          <div class="title-font">Time Spent Per Day</div>
+          <div class="usage-value">---</div>
+          <div class="usage-detail">coming soon</div>
+        </li>
       </ul>
     </div>
   </div>

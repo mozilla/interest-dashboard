@@ -164,11 +164,60 @@ InterestDashboard.prototype = {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   },
 
-  _setStats: function(totalVisits, totalViews, weeklyAvg, dailyAvg, $scope) {
-    $scope.totalVisits = this._numberWithCommas(totalVisits);
-    $scope.totalViews = this._numberWithCommas(totalViews);
-    $scope.weeklyAvg = this._numberWithCommas(weeklyAvg);
-    $scope.dailyAvg = this._numberWithCommas(dailyAvg);
+  _setStats: function(data, $scope) {
+    let {score, previousScore, rank, rankDetails, percentChange,
+         visitCount, visitCountDetails, scoreTitle, visitCountTitle, rankTitle} = data;
+    $scope.rankTitle = rankTitle;
+    $scope.scoreTitle = scoreTitle;
+    $scope.visitCountTitle = visitCountTitle;
+    $scope.rankDetails = rankDetails;
+
+    $scope.score = score;
+    $scope.previousScore = previousScore + " last week";
+    $scope.rank = rank;
+
+    // Clear out previous classes.
+    $("#visitCountUsageHighlights .symbol").removeClass('increasingArrow');
+    $("#visitCountUsageHighlights .symbol").removeClass('decreasingArrow');
+    $("#visitCountUsageHighlights .symbol").removeClass('neutral');
+    $("#visitCountUsageHighlights .intensityPercent").removeClass('increasingPercent');
+    $("#visitCountUsageHighlights .intensityPercent").removeClass('decreasingPercent');
+    $("#visitCountUsageHighlights .intensityPercent").removeClass('neutralPercent');
+    $("#interestScoreHighlights .symbol").removeClass('increasingArrow');
+    $("#interestScoreHighlights .symbol").removeClass('decreasingArrow');
+    $("#interestScoreHighlights .symbol").removeClass('neutral');
+    $("#interestScoreHighlights .intensityPercent").removeClass('increasingPercent');
+    $("#interestScoreHighlights .intensityPercent").removeClass('decreasingPercent');
+    $("#interestScoreHighlights .intensityPercent").removeClass('neutralPercent');
+
+    let scoreChange = parseInt((score - previousScore) / previousScore * 100);
+    $("#interestScoreHighlights .intensityPercent").html(Math.abs(scoreChange) + "%");
+    if (scoreChange > 0) {
+      $("#interestScoreHighlights .symbol").addClass('increasingArrow');
+      $("#interestScoreHighlights .intensityPercent").addClass('increasingPercent');
+    } else if (scoreChange < 0) {
+      $("#interestScoreHighlights .symbol").addClass('decreasingArrow');
+      $("#interestScoreHighlights .intensityPercent").addClass('decreasingPercent');
+    } else if (scoreChange == 0) {
+      $("#interestScoreHighlights .symbol").addClass('neutral');
+      $("#interestScoreHighlights .intensityPercent").addClass('neutralPercent');
+    }
+
+    if (percentChange > 0) {
+      $("#visitCountUsageHighlights .symbol").addClass('increasingArrow');
+      $("#visitCountUsageHighlights .intensityPercent").addClass('increasingPercent');
+    } else if (percentChange < 0) {
+      $("#visitCountUsageHighlights .symbol").addClass('decreasingArrow');
+      $("#visitCountUsageHighlights .intensityPercent").addClass('decreasingPercent');
+    } else if (isNaN(percentChange) || percentChange == 0) {
+      $("#visitCountUsageHighlights .symbol").addClass('neutral');
+      $("#visitCountUsageHighlights .intensityPercent").addClass('neutralPercent');
+      percentChange = 0;
+    }
+    $("#visitCountUsageHighlights .intensityPercent").html(Math.abs(percentChange) + "%");
+
+    $scope.visitCount = visitCount;
+    $scope.visitCountDetails = visitCountDetails;
   },
 
   _isNewDay: function(currentTimestamp, newTimestamp) {
@@ -453,12 +502,36 @@ InterestDashboard.prototype = {
     $(".nvd3.nv-pie path").css("fill-opacity", 1);
     $scope.safeApply(function() {
       $scope.graphHeader = "Total usage - all categories ";
-      $scope.pastXDays = "(past 30 days)"
-      self._setStats(data.totalVisits,
-                     data.totalViews,
-                     data.totalWeeklyAvg.toFixed(0),
-                     data.totalDailyAvg.toFixed(0), $scope);
-    })
+      $scope.pastXDays = "(past 30 days)";
+
+      let topRankedCategory = data.tableData[0].name;
+      let rankPercent = Math.round(data.categories[topRankedCategory].viewCount / data.totalViews * 10000) / 100;
+      rankPercent = rankPercent >= 1 ? parseInt(rankPercent) : rankPercent;
+
+      if (Object.keys(data.capturedRankings).length < 3) {
+        return;
+      }
+      let normalizedIntentScore = self._getValueInNewRange(data.capturedRankings.currentRanks.rankedIntents[topRankedCategory]);
+      let normalizedInterestScore = self._getValueInNewRange(data.capturedRankings.currentRanks.rankedInterests[topRankedCategory]);
+      let previousnNormalizedIntentScore = self._getValueInNewRange(data.capturedRankings.previousRanks.rankedIntents[topRankedCategory]);
+      let previousNormalizedInterestScore = self._getValueInNewRange(data.capturedRankings.previousRanks.rankedInterests[topRankedCategory]);
+
+      let statsData = {
+        score: parseInt(500 - (normalizedIntentScore + normalizedInterestScore)),
+        previousScore: parseInt(500 - (previousnNormalizedIntentScore + previousNormalizedInterestScore)),
+        totalVisits: data.totalVisits,
+        rank: topRankedCategory,
+        rankDetails: rankPercent + "% of total activity",
+        percentChange: parseInt((data.dailyAvgVisitCountThisWeek - data.dailyAvgVisitCountLastWeek) /
+                          data.dailyAvgVisitCountLastWeek * 100),
+        visitCount: self._numberWithCommas(parseInt(data.dailyAvgVisitCountThisWeek)) + " sites",
+        visitCountDetails: self._numberWithCommas(parseInt(data.dailyAvgVisitCountLastWeek)) + " sites avg. last week",
+        scoreTitle: "Top Interest Score",
+        visitCountTitle: "Sites Visited Per Day",
+        rankTitle: "Top Ranking"
+      };
+      self._setStats(statsData, $scope);
+    });
 
     d3.select('#areaGraph').selectAll("*").remove();
     d3.select("#areaGraph")
@@ -502,6 +575,13 @@ InterestDashboard.prototype = {
     }
   },
 
+  _getValueInNewRange: function(value) {
+    let oldMin = newMin = 1
+    let oldRange = this._data.sortedIntents.length - oldMin;
+    let newRange = 249;
+    return (((value - oldMin) * newRange) / oldRange) + newMin;
+  },
+
   _nvSliceClicked: function(event, self, data, $scope, clickTarget) {
     try {
       self._sliced = true;
@@ -539,11 +619,30 @@ InterestDashboard.prototype = {
         self._setTooltip($scope);
 
         // Update stats below graph
-        self._setStats(data.categories[categoryClicked].visitCount,
-                       data.categories[categoryClicked].viewCount,
-                       data.categories[categoryClicked].weeklyAvg.toFixed(0),
-                       data.categories[categoryClicked].dailyAvg.toFixed(0),
-                       $scope);
+        if (Object.keys(data.capturedRankings).length < 3) {
+          return;
+        }
+        let normalizedIntentScore = self._getValueInNewRange(data.capturedRankings.currentRanks.rankedIntents[categoryClicked]);
+        let normalizedInterestScore = self._getValueInNewRange(data.capturedRankings.currentRanks.rankedInterests[categoryClicked]);
+        let previousnNormalizedIntentScore = self._getValueInNewRange(data.capturedRankings.previousRanks.rankedIntents[categoryClicked]);
+        let previousNormalizedInterestScore = self._getValueInNewRange(data.capturedRankings.previousRanks.rankedInterests[categoryClicked]);
+        let rankPercent = Math.round(data.categories[categoryClicked].viewCount / data.totalViews * 10000) / 100;
+        rankPercent = rankPercent >= 1 ? parseInt(rankPercent) : rankPercent;
+
+        let statsData = {
+          score: parseInt(500 - (normalizedIntentScore + normalizedInterestScore)),
+          previousScore: parseInt(500 - (previousnNormalizedIntentScore + previousNormalizedInterestScore)),
+          rank: "#" + data.categories[categoryClicked].rank + " (" + rankPercent + "% of total)",
+          rankDetails: "#" + data.capturedRankings.previousRanks.rankedInterests[categoryClicked] + " interest last week",
+          percentChange: parseInt((data.categories[categoryClicked].totalVisitsThisWeek - data.categories[categoryClicked].totalVisitsLastWeek) /
+                            data.categories[categoryClicked].totalVisitsLastWeek * 100),
+          visitCount: self._numberWithCommas(data.categories[categoryClicked].totalVisitsThisWeek) + "x",
+          visitCountDetails: self._numberWithCommas(data.categories[categoryClicked].totalVisitsLastWeek) + " visits last week",
+          scoreTitle: "Interest Score",
+          visitCountTitle: "Total Visits",
+          rankTitle: "Rank"
+        };
+        self._setStats(statsData, $scope);
       });
     } catch (ex) {
       this.debugReport.push("Error in InterestDashboard._nvSliceClicked(): " + ex);

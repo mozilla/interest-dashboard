@@ -23,6 +23,7 @@ body {
   font-size: 18px;
   color: #6A7B86;
   fill: #6A7B86;
+  margin-top: -3px;
   text-transform: uppercase;
 }
 
@@ -135,6 +136,11 @@ body {
 /* Visual Area */
 .visual-header {
   height: 340px;
+}
+
+.usage-detail {
+  color: #6A7B86;
+  font-size: 14px;
 }
 
 .past-x-days, .graph-header, .date-label {
@@ -276,7 +282,7 @@ body > .nvtooltip .count {
 #navlist li:nth-child(even):after {
   content: "";
   position: relative;
-  height: 60px;
+  height: 90px;
   left: 50%;
   display: block;
   border-left: 3px solid #E6E6E6;
@@ -285,7 +291,8 @@ body > .nvtooltip .count {
 .usage-value {
   font-size: 35px;
   color: #6A7B86;
-  line-height: 45px
+  line-height: 45px;
+  display: inline-block;
 }
 
 #areaGraphDiv {
@@ -442,7 +449,7 @@ table.dataTable thead th {
 
 .time {
   width: 55px;
-  padding-left: 261px !important;
+  padding-left: 264px !important;
 }
 .domain a {
   color: #4A4A4A;
@@ -556,6 +563,18 @@ tr:not(.shown) .subtitleCircle {
 .neutralPercent {
   color: #AFAFAF;
 }
+
+.usage-highlights .symbol {
+  width: 22px;
+  height: 40px;
+  margin-right: 0;
+  margin-left: 10px;
+}
+.usage-highlights .intensityPercent {
+  vertical-align: top;
+  padding-top: 13px;
+}
+
 
 
 /* Sidebar */
