@@ -687,9 +687,6 @@ ol li {
 .shift-animate {
   top: 55px !important;
 }
-.banner-visible .shift-animate {
-  top: 193px !important;
-}
 
 #visual-header-overlay {
   position: absolute;
@@ -790,10 +787,20 @@ ol li {
   color: #DCDCDC;
   display: inline;
 }
-.banner-visible #incomplete-banner {
+.banner-visible .outer-banner {
   height: 138px;
   background-color: #2F3943;
   display: block;
+}
+.banner-visible #incomplete-banner {
+  width: 1130px;
+  height: 138px;
+  margin: 0 auto;
+  background-color: #2F3943;
+  display: block;
+}
+.navbar-brand {
+  padding-left: 0;
 }
 #logo {
   background: url('resources/FX-Logo.png') no-repeat;

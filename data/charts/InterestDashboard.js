@@ -350,8 +350,7 @@ InterestDashboard.prototype = {
                                      data.historyVisits[category].complete)).show();
 
       // Height of open row should fill the rest of the screen.
-      let bannerShown = $("body").hasClass("banner-visible");
-      $('.subtable').css("height", ($(window).height() - 195 - (bannerShown ? 138 : 0)) + "px");
+      $('.subtable').css("height", ($(window).height() - 195) + "px");
 
       // Shift main table up and scroll the category up to be a header.
       let shiftableBottom = document.getElementById("main-row-background");
@@ -540,10 +539,10 @@ InterestDashboard.prototype = {
     this._setTooltip($scope);
   },
 
-  _handleProgressBarAndBannerVisibility: function(diffDays, $scope) {
+  _handleProgressBarAndBannerVisibility: function(diffDaysMin, $scope) {
     // Handle visibility of progress bar and incompletion banner.
     if ($scope.percentProcessed == "100%") {
-      if (28 - diffDays <= 0) {
+      if (diffDaysMin <= 0) {
         $('body').removeClass("banner-visible");
       }
       $("#visual-header-overlay").addClass("fade-out");
@@ -559,7 +558,7 @@ InterestDashboard.prototype = {
       }, 1000);
       setTimeout(() => {
         if ($scope.percentProcessed == "100%") {
-          if (28 - diffDays <= 0) {
+          if (diffDaysMin <= 0) {
             $('body').removeClass("banner-visible");
           }
           $("#visual-header-overlay").addClass("fade-out");
@@ -671,7 +670,9 @@ InterestDashboard.prototype = {
 
       // Computations for banner and progress bar.
       let maxDate = new Date(data.maxDay);
+      let minDate = new Date(data.minDay);
       let diffDays = Math.round(Math.abs((maxDate.getTime() - this._thirtyAgo.getTime())/(this._oneDay)));
+      let diffDaysMin = Math.round((minDate.getTime() - this._thirtyAgo.getTime())/(this._oneDay));
 
       // 795 is width of svg rect, 60 is 30 for margin + 30 to show up after next day
       let left = 795 / 30 * diffDays + 60 + (795 / 30)
@@ -684,9 +685,11 @@ InterestDashboard.prototype = {
       $scope.isComplete = $scope.percentage >= 100;
       $scope.isAtAnEnd = diffDays < 2 || diffDays > 26;
       $scope.mostRecentDate = d3.time.format('%x')(mostRecentDate);
-      //$scope.monthXX = d3.time.format('%B %e')(new Date(mostRecentDate.getTime() + (28 - diffDays) * oneDay));
-      $scope.monthXX = d3.time.format('%B %e')(new Date(this._today.getTime() + this._oneDay));
-      this._handleProgressBarAndBannerVisibility(diffDays, $scope);
+      if (diffDaysMin > 0) {
+        $scope.monthXX = d3.time.format('%B %e')(new Date(this._today.getTime() + diffDaysMin + this._oneDay));
+        $('body').addClass("banner-visible");
+      }
+      this._handleProgressBarAndBannerVisibility(diffDaysMin, $scope);
 
 
       // If we are processing data, prevent scroll.

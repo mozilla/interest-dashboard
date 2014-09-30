@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Firefox for You</title>
 </head>
-<body ng-cloak ng-controller="vizCtrl" class="banner-visible">
+<body ng-cloak ng-controller="vizCtrl">
   <div id="top-navbar" class="navbar-background">
     <div class="navbar-outer">
       <div class="navbar navbar-inverse" role="navigation">
@@ -32,18 +32,20 @@
     </div>
   </div>
 
-  <div id="incomplete-banner">
-    <div id="incomplete-banner-img">
-      <div id="logo"></div>
-    </div>
-    <div id="incomplete-banner-text">
-      <div class="large-white-text">
-          <div class="regular">Your Interest Profile won't be complete until</div>
-          <div class="bold">{{monthXX}}</div>
+  <div class="outer-banner">
+    <div id="incomplete-banner">
+      <div id="incomplete-banner-img">
+        <div id="logo"></div>
       </div>
-      <div class="description-text">
-          <div class="lead-in">Firefox needs 30 days of browsing history</div>
-          <div class="normal">to show your complete interest profile. Until then, things may look incomplete (or even a little wonky).</div> 
+      <div id="incomplete-banner-text">
+        <div class="large-white-text">
+            <div class="regular">Your Interest Profile won't be complete until</div>
+            <div class="bold">{{monthXX}}</div>
+        </div>
+        <div class="description-text">
+            <div class="lead-in">Firefox needs 30 days of browsing history</div>
+            <div class="normal">to show your complete interest profile. Until then, things may look incomplete (or even a little wonky).</div> 
+        </div>
       </div>
     </div>
   </div>
