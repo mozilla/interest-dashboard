@@ -224,10 +224,13 @@ InterestDashboard.prototype = {
            (currDate.getYear() != newDate.getYear());
   },
 
-  _formatSubtable: function(category, historyVisits, complete) {
-    let table = '<div id="' + category + '" class="subtable"><table cellpadding="5" cellspacing="0" border="0">';
-    table += this._getRowsHTML(category, historyVisits, historyVisits[0].timestamp, complete);
-    table += '</table></div>';
+  _formatSubtable: function(category) {
+    let table = '<div id="' + category + '" class="subtable"><table cellpadding="5" cellspacing="0" border="0"><tbody>';
+    table +=
+      '<tr>' +
+        '<td colspan = "5"><div class="loading"></div></td>' +
+      '</tr>';
+    table += '</tbody></table></div>';
     return table;
   },
 
@@ -275,7 +278,7 @@ InterestDashboard.prototype = {
     return rows;
   },
 
-  _checkListFullAndAppend: function(visitData, category, $scope) {
+  _checkListFullAndAppend: function(category, $scope) {
     let screenHeight = ($(window).height() - 195);
     let listFull = ($('#' + category + ' tr').length * parseFloat($('.subtable tr').css("height"))) > screenHeight;
     if (!listFull) {
@@ -285,6 +288,11 @@ InterestDashboard.prototype = {
   },
 
   _getStartIndex: function(historyVisits, pageResponseSize) {
+    // Start index is 0 for our first page.
+    if (pageResponseSize == historyVisits.length) {
+      return 0;
+    }
+
     // If the first entry of the new page is the same as the last entry of the previous page,
     // skip that entry.
     let latestEntry = historyVisits[historyVisits.length - pageResponseSize - 1];
@@ -319,11 +327,12 @@ InterestDashboard.prototype = {
         }
       }
 
-      $('#' + category + ' tr:last').after(
+      let currentDayIndex = nextEntryIndex == 0 ? 0 : nextEntryIndex - 1;
+      $('#' + category + ' tbody').append(
         this._getRowsHTML(category, historyVisits.slice(
-          nextEntryIndex, historyVisits.length), historyVisits[nextEntryIndex - 1].timestamp, complete));
+          nextEntryIndex, historyVisits.length), historyVisits[currentDayIndex].timestamp, complete));
       this._appendingVisits = false;
-      this._checkListFullAndAppend(historyVisits, category, $scope);
+      this._checkListFullAndAppend(category, $scope);
     } catch (ex) {
       this.debugReport.push("Error in InterestDashboard.appendCategoryVisitData(): " + ex);
     }
@@ -346,8 +355,7 @@ InterestDashboard.prototype = {
       });
 
       // Open this row
-      row.child(this._formatSubtable(category, data.historyVisits[category].visitData,
-                                     data.historyVisits[category].complete)).show();
+      row.child(this._formatSubtable(category)).show();
 
       // Height of open row should fill the rest of the screen.
       $('.subtable').css("height", ($(window).height() - 195) + "px");
@@ -369,7 +377,7 @@ InterestDashboard.prototype = {
         }
       });
       tr.addClass('shown');
-      this._checkListFullAndAppend(data.historyVisits[category].visitData, category, $scope);
+      this._checkListFullAndAppend(category, $scope);
       $('table.dataTable thead th').css("pointer-events", "none"); // Remove ability to sort while a subtable is open.
     } catch (ex) {
       this.debugReport.push("Error in InterestDashboard._openRowDetails(): " + ex);
