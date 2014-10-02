@@ -39,6 +39,11 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
       this.$apply(fn);
     }
   };
+  $scope._requestSortedDomainsForCategory = function(categoryName) {
+    dataService.send("category_topsites_request", {
+      "categoryName": categoryName
+    });
+  };
   $scope._requestResetCategoryVisits = function(categoryName) {
     dataService.send("category_reset_request", {
       "categoryName": categoryName
@@ -85,6 +90,10 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
 
   $scope.$on("debug_report", function(event, data) {
     ChartManager.sendDebugReport(data);
+  });
+
+  $scope.$on("populate_topsites", function(event, data) {
+    ChartManager.populateTopsites(data.topsites, data.category);
   });
 
   $scope.$on("days_left", function(event, data) {

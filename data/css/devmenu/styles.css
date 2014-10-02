@@ -21,6 +21,7 @@ body {
 
 .title-font, table.dataTable thead th {
   font-size: 18px;
+  line-height: 18px;
   color: #6A7B86;
   fill: #6A7B86;
   margin-top: -3px;

@@ -307,6 +307,12 @@ InterestDashboard.prototype = {
     return nextEntryIndex;
   },
 
+  receiveTopSitesFromMainScript: function(topsites, category) {
+    this._scope.safeApply(() => {
+      this._addTopSites(topsites.byInterest[category], this._scope);
+    });
+  },
+
   receiveDebugReportFromMainScript: function(debugLogs) {
     let fulldebugReport = ["DATA PROCESSING LOGS\n====================="];
     fulldebugReport = fulldebugReport.concat(debugLogs);
@@ -342,7 +348,11 @@ InterestDashboard.prototype = {
     this._appendingVisits = false;
   },
 
-  _openRowDetails: function(row, tr, category, $scope, data, table) {
+  _getTopsitesForCategory: function(category, $scope) {
+    $scope._requestSortedDomainsForCategory(category);
+  },
+
+  _openRowDetails: function(row, tr, category, $scope, table) {
     try {
       this.debugReport.push("InterestDashboard._openRowDetails() [" + category + "]");
       // Close all other open rows.
@@ -350,9 +360,7 @@ InterestDashboard.prototype = {
       $("#test tr").each(function() {
         self._closeRowDetails(table.row($(this)), $(this), self._data, $scope);
       });
-      $scope.$apply(function() {
-        self._addTopSites(data.sortedDomains.byInterest[category], $scope);
-      });
+      self._getTopsitesForCategory(category, $scope);
 
       // Open this row
       row.child(this._formatSubtable(category)).show();
@@ -421,7 +429,7 @@ InterestDashboard.prototype = {
           $scope._requestResetCategoryVisits(category);
         });
       } else {
-        self._openRowDetails(row, tr, category, self._scope, self._data, self._table);
+        self._openRowDetails(row, tr, category, self._scope, self._table);
       }
     });
   },

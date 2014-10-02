@@ -31,6 +31,10 @@ let ChartManager = {
     this._charts["interestDashboard"].receiveDebugReportFromMainScript(debugLogs);
   },
 
+  populateTopsites: function(topsites, category) {
+    this._charts["interestDashboard"].receiveTopSitesFromMainScript(topsites, category);
+  },
+
   appendCategoryVisitData: function(category, historyVisits, pageResponseSize, complete, $scope) {
     this._charts["interestDashboard"].appendCategoryVisitData(category, historyVisits, pageResponseSize, complete, $scope);
   },
