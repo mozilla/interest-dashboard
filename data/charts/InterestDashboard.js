@@ -240,6 +240,7 @@ InterestDashboard.prototype = {
       let visit = historyVisits[visitIndex];
       let time = this._computeTimeString(visit.timestamp);
       let lastVisitString = visitIndex == (historyVisits.length - 1) ? 'lastVisit' : '';
+      let bookmarked = visit.isBookmarked ? "bookmarked" : "unbookmarked";
 
       if (this._isNewDay(currentDay, visit.timestamp)) {
         rows += '<tr>' +
@@ -262,12 +263,13 @@ InterestDashboard.prototype = {
         '<td class="time historyVisit">' + time + '</td>' +
         '<td style="width: 23px"><div class="timelineCircle ' + lastVisitString + '"></div></td>' +
         '<td><img class="favicon" src="' + visit.favicon + '"></img></td>' +
-        '<td><div class="domain" data-toggle="tooltip" title="' + visit.url + '">' +
+        '<td style="width: 380px"><div class="domain" data-toggle="tooltip" title="' + visit.url + '">' +
           '<a href="' + visit.url + '">' + visit.domain + '</a>' +
         '</div>' +
         '<div class="visitTitle historyVisit" data-toggle="tooltip" title="' + visit.url + '">' +
           '<a href="' + visit.url + '">- ' + title + '</a>' +
-        '</div></td>'
+        '</div></td>' +
+        '<td><div" class="' + bookmarked + '"></div></td>' +
       '</tr>';
     }
     if (!complete) {
@@ -339,6 +341,20 @@ InterestDashboard.prototype = {
           nextEntryIndex, historyVisits.length), historyVisits[currentDayIndex].timestamp, complete));
       this._appendingVisits = false;
       this._checkListFullAndAppend(category, $scope);
+
+      $('.bookmarked, .unbookmarked').off('click').on('click', function() {
+        if ($(this).hasClass('bookmarked')) {
+          $(this).removeClass("bookmarked");
+          $(this).addClass("unbookmarked");
+        } else {
+          $(this).removeClass("unbookmarked");
+          $(this).addClass("bookmarked");
+        }
+        let url = $(this).parent().parent().find("td").eq(3).find(".domain").attr("title");
+        let title = $(this).parent().parent().find("td").eq(3).find(".historyVisit a").html();
+        title = title.slice(2, title.length);
+        $scope._requestBookmarkChange(url, title);
+      });
     } catch (ex) {
       this.debugReport.push("Error in InterestDashboard.appendCategoryVisitData(): " + ex);
     }
@@ -413,7 +429,10 @@ InterestDashboard.prototype = {
   _handleRowExpand: function($scope) {
     // Add event listener for opening and closing details
     let self = this;
-    $('#test').on('click', 'tbody td', function() {
+
+    // tbody and td do not yet exist when this click handler is added,
+    // so they must be a parameter and not part of the selector.
+    $('#test').on('click', 'tbody tr[role="row"] td', function() {
       let tr = $(this).closest('tr');
       let row = self._table.row(tr);
 

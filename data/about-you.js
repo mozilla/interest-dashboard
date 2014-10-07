@@ -49,6 +49,12 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
       "categoryName": categoryName
     });
   };
+  $scope._requestBookmarkChange = function(url, title) {
+    dataService.send("bookmark_change_request", {
+      "url": url,
+      "title": title
+    });
+  };
   $scope._requestCategoryVisits = function (categoryName) {
     dataService.send("category_visit_request", {
       "categoryName": categoryName

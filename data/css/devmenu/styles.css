@@ -37,6 +37,30 @@ body {
   display: inline-block;
 }
 
+.unbookmarked, .bookmarked {
+  width: 16px;
+  height: 16px;
+  margin-right: 40px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.unbookmarked {
+  background: url('resources/Button_Bookmark-OFF.svg') no-repeat center center;
+}
+
+.unbookmarked:hover {
+  background: url('resources/Button_Bookmark-OFF_Rollover.svg') no-repeat center center;
+}
+
+.bookmarked {
+  background: url('resources/Button_Bookmark.svg') no-repeat center center;
+}
+
+.bookmarked:hover {
+  background: url('resources/Button_Bookmark_Rollover.svg') no-repeat center center;
+}
+
 .col-md-2 {
   width: 270px;
 }
@@ -490,7 +514,7 @@ table.dataTable thead th {
 
 .time {
   width: 55px;
-  padding-left: 264px !important;
+  padding-left: 261px !important;
 }
 .domain a {
   color: #4A4A4A;
