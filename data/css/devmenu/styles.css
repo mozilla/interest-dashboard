@@ -844,3 +844,58 @@ ol li {
   display: inline-block;
   background: url('resources/Banner_Arrow.svg') no-repeat left center;
 }
+
+
+
+#tutorial-popover {
+  top: 45px;
+  right: 5px;
+  display: block;
+  background-color: #DCDCDC;
+  width: 400px;
+  height: 200px;
+  left: auto;
+  box-shadow: 0 0 10px #ccc;
+  padding: 0;
+  border: none;
+  max-width: none;
+  visibility: hidden;
+}
+
+.popover.bottom > .arrow:after {
+  border-bottom-color: #F7F7F7;
+  margin-left: -10px;
+}
+
+.popover.bottom > .arrow {
+  top: -10px;
+  left: 95%;
+  margin-left: -9px;
+  border-bottom-color: rgba(0, 0, 0, 0.25);
+}
+
+.popover-title #logo {
+  display: inline-block;
+  left: 0;
+  top: 0;
+  margin: 20px;
+}
+
+.popover-title h3 {
+  display: inline-block;
+  position: absolute;
+}
+
+.tutorial-description {
+  font-size: 16px;
+  padding-left: 100px;
+  margin-top: -40px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  line-height: 20px;
+}
+
+.popover-content {
+  padding: 14px 14px;
+  text-align: right;
+}

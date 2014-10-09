@@ -689,6 +689,7 @@ InterestDashboard.prototype = {
         $scope.lastUpdate = "Updated " + d3.time.format('%m/%d/%Y at %I:%M%p')(new Date(data.capturedRankings.date[1])); 
       }
       $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
+      $('[data-toggle="popover"]').popover({'placement': 'bottom'});
       table.clear();
 
       // Render graphs.
