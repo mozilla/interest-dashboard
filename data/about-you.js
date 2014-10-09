@@ -142,4 +142,8 @@ self.port.on("init", function() {
   $('.cog').on('hide.bs.dropdown', function () {
     $('.cog-btn').removeClass('cog-clicked');
   });
+
+  $("#cancelTutorial").on("click", function() {
+    $("#tutorial-popover").removeClass("shownTutorialPanel");
+  })
 });

@@ -582,9 +582,8 @@ InterestDashboard.prototype = {
       }
       $("#visual-header-overlay").addClass("fade-out");
       $("#main-overlay").addClass("fade-out");
-      $scope.daysLeft = null;
-      $scope.daysLeftStart = null;
-      $scope.percentProcessed = null;
+
+      $("#tutorial-popover").addClass("shownTutorialPanel");
     } else {
       setTimeout(() => {
         if (!$scope.percentProcessed) {
@@ -598,9 +597,6 @@ InterestDashboard.prototype = {
           }
           $("#visual-header-overlay").addClass("fade-out");
           $("#main-overlay").addClass("fade-out");
-          $scope.daysLeft = null;
-          $scope.daysLeftStart = null;
-          $scope.percentProcessed = null;
         }
       }, 2000);
     }

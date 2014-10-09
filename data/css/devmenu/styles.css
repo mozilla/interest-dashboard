@@ -850,7 +850,6 @@ ol li {
 #tutorial-popover {
   top: 45px;
   right: 5px;
-  display: block;
   background-color: #DCDCDC;
   width: 400px;
   height: 200px;
@@ -859,7 +858,11 @@ ol li {
   padding: 0;
   border: none;
   max-width: none;
-  visibility: hidden;
+  display: none;
+}
+
+.shownTutorialPanel {
+  display: block !important;
 }
 
 .popover.bottom > .arrow:after {
