@@ -234,7 +234,7 @@ InterestDashboard.prototype = {
     return table;
   },
 
-  _getRowsHTML: function(category, historyVisits, currentDay, complete) {
+  _getRowsHTML: function(historyVisits, currentDay, complete) {
     let rows = "";
     for (let visitIndex = 0; visitIndex < historyVisits.length; visitIndex++) {
       let visit = historyVisits[visitIndex];
@@ -280,9 +280,9 @@ InterestDashboard.prototype = {
     return rows;
   },
 
-  _checkListFullAndAppend: function(category, $scope) {
+  _checkListFullAndAppend: function(category, categoryID, $scope) {
     let screenHeight = ($(window).height() - 195);
-    let listFull = ($('#' + category + ' tr').length * parseFloat($('.subtable tr').css("height"))) > screenHeight;
+    let listFull = ($('#' + categoryID + ' tr').length * parseFloat($('.subtable tr').css("height"))) > screenHeight;
     if (!listFull) {
       self._appendingVisits = true;
       $scope._requestCategoryVisits(category);
@@ -327,20 +327,22 @@ InterestDashboard.prototype = {
   appendCategoryVisitData: function(category, historyVisits, pageResponseSize, complete, $scope) {
     try {
       this.debugReport.push("Appending category visit data for [" + category + "] with page size [" + pageResponseSize + "]");
+      let categoryID = this._categoryToID(category);
       let nextEntryIndex = this._getStartIndex(historyVisits, pageResponseSize);
-      if ($('#' + category + ' tr').length > 0) {
-        $('#' + category + ' tr:last').remove();
+      if ($('#' + categoryID + ' tr').length > 0) {
+        $('#' + categoryID + ' tr:last').remove();
         if (nextEntryIndex < historyVisits.length) {
-          $('#' + category + ' tr:last .timelineCircle').removeClass("lastVisit");
+          $('#' + categoryID + ' tr:last .timelineCircle').removeClass("lastVisit");
         }
       }
 
       let currentDayIndex = nextEntryIndex == 0 ? 0 : nextEntryIndex - 1;
-      $('#' + category + ' tbody').append(
-        this._getRowsHTML(category, historyVisits.slice(
+      $('#' + categoryID + ' tbody').append(
+        this._getRowsHTML(historyVisits.slice(
           nextEntryIndex, historyVisits.length), historyVisits[currentDayIndex].timestamp, complete));
       this._appendingVisits = false;
-      this._checkListFullAndAppend(category, $scope);
+
+      this._checkListFullAndAppend(category, categoryID, $scope);
 
       $('.bookmarked, .unbookmarked').off('click').on('click', function() {
         if ($(this).hasClass('bookmarked')) {
@@ -368,6 +370,16 @@ InterestDashboard.prototype = {
     $scope._requestSortedDomainsForCategory(category);
   },
 
+  _categoryToID: function(category) {
+    let decoded = category.replace(/ /g, '-');
+    return decoded.replace(/&/g, 'and');
+  },
+
+  _idToCategory: function(categoryID) {
+    let decoded = categoryID.replace(/-/g, ' ');
+    return decoded.replace(/and/g, '&');
+  },
+
   _openRowDetails: function(row, tr, category, $scope, table) {
     try {
       this.debugReport.push("InterestDashboard._openRowDetails() [" + category + "]");
@@ -377,9 +389,10 @@ InterestDashboard.prototype = {
         self._closeRowDetails(table.row($(this)), $(this), self._data, $scope);
       });
       self._getTopsitesForCategory(category, $scope);
+      let categoryID = self._categoryToID(category);
 
       // Open this row
-      row.child(this._formatSubtable(category)).show();
+      row.child(this._formatSubtable(categoryID)).show();
 
       // Height of open row should fill the rest of the screen.
       $('.subtable').css("height", ($(window).height() - 195) + "px");
@@ -397,11 +410,11 @@ InterestDashboard.prototype = {
         let elem = $(e.currentTarget);
         if (!self._appendingVisits && elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
           self._appendingVisits = true;
-          $scope._requestCategoryVisits(e.currentTarget.id);
+          $scope._requestCategoryVisits(self._idToCategory(e.currentTarget.id));
         }
       });
       tr.addClass('shown');
-      this._checkListFullAndAppend(category, $scope);
+      this._checkListFullAndAppend(category, categoryID, $scope);
       $('table.dataTable thead th').css("pointer-events", "none"); // Remove ability to sort while a subtable is open.
     } catch (ex) {
       this.debugReport.push("Error in InterestDashboard._openRowDetails(): " + ex);
@@ -440,6 +453,11 @@ InterestDashboard.prototype = {
       let parser = new DOMParser();
       let node = parser.parseFromString(row.data()[1], "text/html");
       let category = node.getElementsByClassName('category-name')[0].innerHTML;
+
+      // Decoding &amp; back to &.
+      let div = document.createElement('div');
+      div.innerHTML = category;
+      category = div.firstChild.nodeValue;
 
       if (row.child.isShown()) {
         self.debugReport.push("InterestDashboard._closeRowDetails() [" + category + "]");
