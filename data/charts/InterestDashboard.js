@@ -284,7 +284,7 @@ InterestDashboard.prototype = {
     let screenHeight = ($(window).height() - 195);
     let listFull = ($('#' + categoryID + ' tr').length * parseFloat($('.subtable tr').css("height"))) > screenHeight;
     if (!listFull) {
-      self._appendingVisits = true;
+      this._appendingVisits = true;
       $scope._requestCategoryVisits(category);
     }
   },
