@@ -902,3 +902,10 @@ ol li {
   padding: 14px 14px;
   text-align: right;
 }
+
+.top-category {
+  max-width: 220px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
