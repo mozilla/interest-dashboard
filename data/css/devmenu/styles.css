@@ -904,7 +904,7 @@ ol li {
 }
 
 .top-category {
-  max-width: 220px;
+  max-width: 260px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
