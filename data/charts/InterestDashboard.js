@@ -245,6 +245,7 @@ InterestDashboard.prototype = {
       if (this._isNewDay(currentDay, visit.timestamp)) {
         rows += '<tr>' +
           '<td></td>' +
+          '<td></td>' +
           '<td style="width: 23px"><div class="subtitleCircle alwaysVisible"></div></td>' +
           '<td colspan = "2" class="date-subheader">' + d3.time.format('%A, %B %e, %Y')(new Date(visit.timestamp / 1000)); + '</td>' +
           '<td></td>' +
@@ -260,6 +261,7 @@ InterestDashboard.prototype = {
       let title = div.textContent || div.innerText || "";
 
       rows += '<tr>' +
+        '<td class="subcat">' + visit.subcat + '</td>' +
         '<td class="time historyVisit">' + time + '</td>' +
         '<td style="width: 23px"><div class="timelineCircle ' + lastVisitString + '"></div></td>' +
         '<td><img class="favicon" src="' + visit.favicon + '"></img></td>' +
@@ -282,7 +284,15 @@ InterestDashboard.prototype = {
 
   _checkListFullAndAppend: function(category, categoryID, $scope) {
     let screenHeight = ($(window).height() - 195);
-    let listFull = ($('#' + categoryID + ' tr').length * parseFloat($('.subtable tr').css("height"))) > screenHeight;
+    let heightOfLastEntry = ($('#' + categoryID + ' tr').length * parseFloat($('.subtable tr').css("height")));
+
+    let subcatLineHeight = 900;
+    if (heightOfLastEntry < screenHeight) {
+       subcatLineHeight = heightOfLastEntry;
+    }
+    $('body').append('<style>#test .shown .category-name:before{height: ' + heightOfLastEntry + 'px;}</style>');
+
+    let listFull = heightOfLastEntry > screenHeight;
     if (!listFull) {
       this._appendingVisits = true;
       $scope._requestCategoryVisits(category);
@@ -411,6 +421,8 @@ InterestDashboard.prototype = {
         if (!self._appendingVisits && elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
           self._appendingVisits = true;
           $scope._requestCategoryVisits(self._idToCategory(e.currentTarget.id));
+
+          $('body').append('<style>#test .shown .category-name:before{height: ' + ($(window).height() - 195) + 'px;}</style>');
         }
       });
       tr.addClass('shown');
@@ -700,7 +712,7 @@ InterestDashboard.prototype = {
       this._table = table;
       this._scope = $scope;
       if (Object.keys(data.capturedRankings).length == 3) {
-        $scope.lastUpdate = "Updated " + d3.time.format('%m/%d/%Y at %I:%M%p')(new Date(data.capturedRankings.date[1])); 
+        $scope.lastUpdate = "Updated " + d3.time.format('%m/%d/%Y at %I:%M%p')(new Date(data.capturedRankings.date[1]));
       }
       $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
       $('[data-toggle="popover"]').popover({'placement': 'bottom'});
