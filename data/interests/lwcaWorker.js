@@ -77,7 +77,8 @@ function processHistoryEntry({visit, timestamp, start, end, domain_titles, qv}) 
 		"message": "visitProcessComplete",
 		"qv": qv,
 		"domain_titles": domain_titles,
-		"timestamp": timestamp
+		"timestamp": timestamp,
+		"totalEntries": visit[3]
 	});
 }
 

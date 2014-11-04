@@ -109,6 +109,26 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     $scope.daysLeft = data;
     $scope.updateProgressBar();
   });
+
+  $scope.$on("progress", function(event, data) {
+    if (!$scope.daysLeftStart) {
+      $scope.daysLeftStart = data.total;
+    }
+    $scope.daysLeft = data.total - data.progress;
+    $scope.updateProgressBar();
+
+    // Handle visibility of progress bar and incompletion banner.
+    if ($scope.percentProcessed == "100%") {
+      $scope.daysLeftStart = null;
+      setTimeout(() => {
+        // After some time, no days_left event was triggered so let's get rid of the progress bar.
+        if (!$scope.daysLeftStart) {
+          $("#visual-header-overlay").addClass("fade-out");
+          $("#main-overlay").addClass("fade-out");
+        }
+      }, 1000);
+    }
+  });
 });
 
 self.port.on("style", function(file) {
