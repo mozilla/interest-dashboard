@@ -44,6 +44,8 @@ function InterestDashboard($scope) {
     this._oneDay = 24 * 60 * 60 * 1000;
     this._thirtyAgo = new Date(this._today.getTime() - 30 * this._oneDay);
     this._fourteenAgo = new Date(this._today.getTime() - 14 * this._oneDay);
+
+    this._flaggedVisits = [];
   } catch (ex) {
     this.debugReport.push("Exception while initializing InterestDashboard: " + ex);
   }
@@ -365,6 +367,28 @@ InterestDashboard.prototype = {
         }
         let {url, title} = $(this).parent().parent().data("visit");
         $scope._requestBookmarkChange(url, title);
+      });
+
+      let self = this;
+      $('.flag').off('click').on('click', function() {
+        let visit = $(this).parent().parent().data("visit");
+        self._flaggedVisits.push([category, visit.subcat, visit.title, visit.url]);
+
+        $("#flag-alert").addClass("shown");
+
+        $("#flag-compose").off('click').on('click', function() {
+          let mailBody = "Here's some feedback about the addon:\n...\n\n" +
+            "I've flagged these pages as needing improvement:\n\n" +
+            self._flaggedVisits.map(([category, subcat, title, url]) => {
+              return "cat: " + category + "\nsub: " + subcat + "\ntitle: " + title + "\nurl: " + url;
+            }).join("\n\n");
+          let message = "To: up-feedback@mozilla.com\n" +
+            "Subject: Dashboard Feedback\n" +
+            "Message: " + mailBody;
+          $scope._copyToClipboard(message);
+
+          $(this).text("Copied! Click to copy again.");
+        });
       });
     } catch (ex) {
       this.debugReport.push("Error in InterestDashboard.appendCategoryVisitData(): " + ex);

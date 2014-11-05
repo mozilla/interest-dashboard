@@ -39,6 +39,9 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
       this.$apply(fn);
     }
   };
+  $scope._copyToClipboard = function(message) {
+    dataService.send("copy_to_clipboard", message);
+  };
   $scope._requestSortedDomainsForCategory = function(categoryName) {
     dataService.send("category_topsites_request", {
       "categoryName": categoryName

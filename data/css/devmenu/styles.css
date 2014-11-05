@@ -112,6 +112,17 @@ body {
   color: #000000;
 }
 
+#flag-alert {
+  display: none;
+  float: left;
+  margin: 6px 0 0 20px;
+  padding: 2px 10px;
+}
+
+#flag-alert.shown {
+  display: block;
+}
+
 .cog {
   position:absolute;
   right: 0;
