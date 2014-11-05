@@ -733,7 +733,7 @@ InterestDashboard.prototype = {
       let maxDate = new Date(data.maxDay);
       let minDate = new Date(data.minDay);
       let diffDays = Math.round(Math.abs((maxDate.getTime() - this._thirtyAgo.getTime())/(this._oneDay)));
-      let diffDaysMin = Math.round((minDate.getTime() - this._thirtyAgo.getTime())/(this._oneDay));
+      let diffDaysMin = Math.round((minDate.getTime() - this._thirtyAgo.getTime() - this._oneDay)/(this._oneDay));
 
       // 795 is width of svg rect, 60 is 30 for margin + 30 to show up after next day
       let left = 795 / 30 * diffDays + 60 + (795 / 30)

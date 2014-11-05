@@ -65,6 +65,13 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
   };
   $scope.updateProgressBar = function(value) {
     let val = value ? value : (100 - Math.round($scope.daysLeft / $scope.daysLeftStart * 100));
+
+    // TODO: find out why sometimes the pipeline says it will process one
+    // more day than it actually does. We shouldn't need to do this check.
+    if ($scope.daysLeft == 1) {
+      val = 100;
+    }
+
     $scope.percentProcessed = val + "%"
     $("#progressBar").css("width", $scope.percentProcessed);
   };
@@ -117,16 +124,19 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     $scope.daysLeft = data.total - data.progress;
     $scope.updateProgressBar();
 
-    // Handle visibility of progress bar and incompletion banner.
+    // Handle visibility of progress bar.
     if ($scope.percentProcessed == "100%") {
-      $scope.daysLeftStart = null;
-      setTimeout(() => {
-        // After some time, no days_left event was triggered so let's get rid of the progress bar.
-        if (!$scope.daysLeftStart) {
-          $("#visual-header-overlay").addClass("fade-out");
-          $("#main-overlay").addClass("fade-out");
-        }
-      }, 1000);
+      $scope.daysLeftStart = 0;
+
+      if (data.progressType == "domainProgress") {
+        setTimeout(() => {
+          // After some time, no days_left event was triggered so let's get rid of the progress bar.
+          if (!$scope.daysLeftStart) {
+            $("#visual-header-overlay").addClass("fade-out");
+            $("#main-overlay").addClass("fade-out");
+          }
+        }, 10000);
+      }
     }
   });
 });

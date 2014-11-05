@@ -40,7 +40,8 @@ parseUri.options = {
 	}
 };
 
-function processHistoryEntry({visit, timestamp, start, end, domain_titles, qv}) {
+function processHistoryEntry({visit, timestamp, start, end, qv}) {
+	let domain_titles = {};
 	let spaceFinder = RegExp(/.+(%20|\+|\s).+/g) //finds get variable values that have spaces in them
 	if ((visit[2] >= start) && (visit[2] <= end)) {
 		let url = parseUri(visit[0])
@@ -112,6 +113,7 @@ function sortDescendingByElementLength(first, second) {
 
 function computePTC({domain_titles}) {
 	let ptc = {};
+	let domainCount = 1;
 	//now for processing
 	for (let domain in domain_titles) {
 		let suffixes = {}
@@ -142,6 +144,14 @@ function computePTC({domain_titles}) {
 		//as largest matches should be eliminated first
 		to_add = to_add.sort(sortDescendingByElementLength)
 		ptc[domain] = to_add
+
+		let domainTitlesLength = Object.keys(domain_titles).length;
+		self.postMessage({
+			"message": "domainAnalyzed",
+			"domainCount": domainCount,
+			"totalCount": domainTitlesLength
+		});
+		domainCount++;
 	}
 
 	//now remove anything empty
