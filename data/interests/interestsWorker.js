@@ -76,7 +76,6 @@ function ruleClassify({host, language, baseDomain, path, title, url}) {
   if (!keyLength)
     return interests;
 
-  let interests = [];
   if (rule["__ANY"]) {
     interests = interests.concat(rule["__ANY"]);
     keyLength--;
