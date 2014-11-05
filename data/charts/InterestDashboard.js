@@ -260,7 +260,7 @@ InterestDashboard.prototype = {
       div.innerHTML = html;
       let title = div.textContent || div.innerText || "";
 
-      rows += '<tr>' +
+      rows += '<tr data-visit=\'' + JSON.stringify(visit) + '\'>' +
         '<td class="subcat">' + visit.subcat + '</td>' +
         '<td class="time historyVisit">' + time + '</td>' +
         '<td style="width: 23px"><div class="timelineCircle ' + lastVisitString + '"></div></td>' +
@@ -363,9 +363,7 @@ InterestDashboard.prototype = {
           $(this).removeClass("unbookmarked");
           $(this).addClass("bookmarked");
         }
-        let url = $(this).parent().parent().find("td").eq(3).find(".domain").attr("title");
-        let title = $(this).parent().parent().find("td").eq(3).find(".historyVisit a").html();
-        title = title.slice(2, title.length);
+        let {url, title} = $(this).parent().parent().data("visit");
         $scope._requestBookmarkChange(url, title);
       });
     } catch (ex) {
