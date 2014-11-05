@@ -274,7 +274,7 @@ InterestDashboard.prototype = {
           '<a href="' + visit.url + '">- ' + title + '</a>' +
         '</div></td>' +
         '<td class="charms"><div class="' + bookmarked + '"></div>' +
-            '<div class="flag"></div></td>' +
+            '<div class="flag" title="Flag for feedback"></div></td>' +
       '</tr>';
     }
     if (!complete) {
