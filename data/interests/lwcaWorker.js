@@ -40,36 +40,34 @@ parseUri.options = {
 	}
 };
 
-function processHistoryEntry({visit, timestamp, start, end, qv}) {
+function processHistoryEntry({visit, timestamp, qv}) {
 	let domain_titles = {};
 	let spaceFinder = RegExp(/.+(%20|\+|\s).+/g) //finds get variable values that have spaces in them
-	if ((visit[2] >= start) && (visit[2] <= end)) {
-		let url = parseUri(visit[0])
-		let domain = url.host
+	let url = parseUri(visit[0])
+	let domain = url.host
 
-		//scan components
-		for (let var_name in url.queryKey) {
-			if (spaceFinder.test(url.queryKey[var_name])) {
-				//Note: the following spaghetti is why you use a decent language like python
-				//with sets/defaultdicts
-				if (qv.hasOwnProperty(domain) == false) {
-					qv[domain] = {}
-				}
-				if (qv[domain].hasOwnProperty(var_name) == false) {
-					qv[domain][var_name] = 0
-				}
-				qv[domain][var_name] += 1
+	//scan components
+	for (let var_name in url.queryKey) {
+		if (spaceFinder.test(url.queryKey[var_name])) {
+			//Note: the following spaghetti is why you use a decent language like python
+			//with sets/defaultdicts
+			if (qv.hasOwnProperty(domain) == false) {
+				qv[domain] = {}
 			}
+			if (qv[domain].hasOwnProperty(var_name) == false) {
+				qv[domain][var_name] = 0
+			}
+			qv[domain][var_name] += 1
 		}
+	}
 
-		//sort title
-		if (domain_titles.hasOwnProperty(domain) == false) {
-			domain_titles[domain] = []
-		}
+	//sort title
+	if (domain_titles.hasOwnProperty(domain) == false) {
+		domain_titles[domain] = []
+	}
 
-		if (visit[1] != null) {
-			domain_titles[domain].push(visit[1])
-		}
+	if (visit[1] != null) {
+		domain_titles[domain].push(visit[1])
 	}
 	if (visit[2] > timestamp) {
 		timestamp = visit[2] //timestamp is now last item loaded
