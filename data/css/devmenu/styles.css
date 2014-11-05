@@ -37,11 +37,10 @@ body {
   display: inline-block;
 }
 
-.unbookmarked, .bookmarked {
+.charms div {
   width: 16px;
   height: 16px;
-  margin-right: 40px;
-  margin-left: 10px;
+  margin: 0 5px;
   display: inline-block;
 }
 
@@ -59,6 +58,14 @@ body {
 
 .bookmarked:hover {
   background: url('resources/Button_Bookmark_Rollover.svg') no-repeat center center;
+}
+
+.flag {
+  background: url('resources/Icon_Flag_Static.svg') no-repeat center center;
+}
+
+.flag:hover {
+  background: url('resources/Icon_Flag_Rollover.svg') no-repeat center center;
 }
 
 .col-md-2 {

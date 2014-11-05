@@ -271,7 +271,8 @@ InterestDashboard.prototype = {
         '<div class="visitTitle historyVisit" data-toggle="tooltip" title="' + visit.url + '">' +
           '<a href="' + visit.url + '">- ' + title + '</a>' +
         '</div></td>' +
-        '<td><div" class="' + bookmarked + '"></div></td>' +
+        '<td class="charms"><div class="' + bookmarked + '"></div>' +
+            '<div class="flag"></div></td>' +
       '</tr>';
     }
     if (!complete) {
