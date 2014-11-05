@@ -111,7 +111,7 @@ function sortDescendingByElementLength(first, second) {
 
 function computePTC({domain_titles}) {
 	let ptc = {};
-	let domainCount = 1;
+	let titleCount = 1;
 	//now for processing
 	for (let domain in domain_titles) {
 		let suffixes = {}
@@ -127,8 +127,12 @@ function computePTC({domain_titles}) {
 						suffixes[lcns] += 1
 					}
 				}
-
 			}
+			self.postMessage({
+				"message": "titleAnalyzed",
+				"domainCount": titleCount
+			});
+			titleCount++;
 		}
 		//eliminate those that only appear once
 		let to_add = [];
@@ -142,14 +146,6 @@ function computePTC({domain_titles}) {
 		//as largest matches should be eliminated first
 		to_add = to_add.sort(sortDescendingByElementLength)
 		ptc[domain] = to_add
-
-		let domainTitlesLength = Object.keys(domain_titles).length;
-		self.postMessage({
-			"message": "domainAnalyzed",
-			"domainCount": domainCount,
-			"totalCount": domainTitlesLength
-		});
-		domainCount++;
 	}
 
 	//now remove anything empty

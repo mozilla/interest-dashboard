@@ -128,7 +128,7 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     if ($scope.percentProcessed == "100%") {
       $scope.daysLeftStart = 0;
 
-      if (data.progressType == "domainProgress") {
+      if (data.progressType == "titleProgress") {
         setTimeout(() => {
           // After some time, no days_left event was triggered so let's get rid of the progress bar.
           if (!$scope.daysLeftStart) {
