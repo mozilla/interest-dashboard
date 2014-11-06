@@ -586,8 +586,19 @@ table.dataTable thead th {
   left: 40%;
   position: relative;
   display: block;
-  height: 42px;
+  height: 30px;
 }
+.headerCircle:after {
+  height: 42px; /* The height of the header is different than the subcat list */
+}
+.headerCircle {
+  position: absolute;
+  left: 349px;
+  visibility: hidden;
+  top: 65px;
+  z-index: 1;
+}
+
 .subtable {
   background: linear-gradient(#FFFFFF, #F9F9F9);
   overflow: auto;
@@ -656,6 +667,9 @@ tr:not(.shown) .subtitleCircle {
 .usage-highlights .intensityPercent {
   vertical-align: top;
   padding-top: 13px;
+}
+.subtable-row {
+  height: 40px !important;
 }
 
 
@@ -934,7 +948,7 @@ ol li {
   width: 170px;
   text-align: left;
   display: inline-block;
-  line-height: 48px;
+  line-height: 38px;
   color: #6A7B86;
   left: 90px;
   position: relative;
@@ -945,7 +959,7 @@ ol li {
   content: "";
   width: 15px;
   left: -1.2em;
-  top: -1.9em;
+  top: -1.5em;
   border-top: 2px dotted #6A7B86;
   position: relative;
   overflow: visible;

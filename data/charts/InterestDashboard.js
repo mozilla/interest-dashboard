@@ -121,7 +121,7 @@ InterestDashboard.prototype = {
         "<div class='rank-container'>" + (i + 1) + "</div>",
         "<div class='category-name'>" + categoryObj.name + "</div>" +
         "<div class='category-count'> (" + this._numberWithCommas(categoryObj.visitCount) + ")</div>",
-        "<div class='subtitleCircle'></div>",
+        "<div></div>",
         this._getMaxDate(categoryObj.visitIDs),
         "<div class='intensityChange" + i + "'><div class='symbol'></div><div class='intensityPercent'></div></div>",
         "<div class='iconIndicator" + i + "'></div>",
@@ -243,9 +243,10 @@ InterestDashboard.prototype = {
       let time = this._computeTimeString(visit.timestamp);
       let lastVisitString = visitIndex == (historyVisits.length - 1) ? 'lastVisit' : '';
       let bookmarked = visit.isBookmarked ? "bookmarked" : "unbookmarked";
+      $(".headerCircle").addClass("alwaysVisible");
 
       if (this._isNewDay(currentDay, visit.timestamp)) {
-        rows += '<tr>' +
+        rows += '<tr class="subtable-row">' +
           '<td></td>' +
           '<td></td>' +
           '<td style="width: 23px"><div class="subtitleCircle alwaysVisible"></div></td>' +
@@ -262,7 +263,7 @@ InterestDashboard.prototype = {
       div.innerHTML = html;
       let title = div.textContent || div.innerText || "";
 
-      rows += '<tr data-visit=\'' + JSON.stringify(visit) + '\'>' +
+      rows += '<tr class="subtable-row" data-visit=\'' + JSON.stringify(visit) + '\'>' +
         '<td class="subcat">' + visit.subcat + '</td>' +
         '<td class="time historyVisit">' + time + '</td>' +
         '<td style="width: 23px"><div class="timelineCircle ' + lastVisitString + '"></div></td>' +
@@ -291,9 +292,9 @@ InterestDashboard.prototype = {
 
     let subcatLineHeight = 900;
     if (heightOfLastEntry < screenHeight) {
-       subcatLineHeight = heightOfLastEntry;
+       subcatLineHeight = heightOfLastEntry + 5;
     }
-    $('body').append('<style>#test .shown .category-name:before{height: ' + heightOfLastEntry + 'px;}</style>');
+    $('body').append('<style>#test .shown .category-name:before{height: ' + subcatLineHeight + 'px;}</style>');
 
     let listFull = heightOfLastEntry > screenHeight;
     if (!listFull) {
@@ -463,6 +464,7 @@ InterestDashboard.prototype = {
       $scope.$apply(function() {
         self._addTopSites(data.sortedDomains.all, $scope);
       });
+      $(".headerCircle").removeClass("alwaysVisible");
       this._preventScroll = false;
       row.child.hide();
       this.cancelAppendVisits();
