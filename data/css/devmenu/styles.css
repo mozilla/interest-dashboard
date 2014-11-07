@@ -588,15 +588,19 @@ table.dataTable thead th {
   display: block;
   height: 30px;
 }
+.firstVisit:after {
+  top: -15px !important;
+  height: 55px !important;
+}
 .headerCircle:after {
-  height: 42px; /* The height of the header is different than the subcat list */
+  z-index: 1;
+  height: 20px; /* The height of the header is different than the subcat list */
 }
 .headerCircle {
   position: absolute;
   left: 349px;
   visibility: hidden;
   top: 65px;
-  z-index: 1;
 }
 
 .subtable {

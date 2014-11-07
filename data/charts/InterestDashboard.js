@@ -241,7 +241,11 @@ InterestDashboard.prototype = {
     for (let visitIndex = 0; visitIndex < historyVisits.length; visitIndex++) {
       let visit = historyVisits[visitIndex];
       let time = this._computeTimeString(visit.timestamp);
-      let lastVisitString = visitIndex == (historyVisits.length - 1) ? 'lastVisit' : '';
+      let lastOrFirstVisitString = visitIndex == (historyVisits.length - 1) ? 'lastVisit' : '';
+      if (visitIndex == 0) {
+        lastOrFirstVisitString = 'firstVisit';
+      }
+
       let bookmarked = visit.isBookmarked ? "bookmarked" : "unbookmarked";
       $(".headerCircle").addClass("alwaysVisible");
 
@@ -266,7 +270,7 @@ InterestDashboard.prototype = {
       rows += '<tr class="subtable-row" data-visit=\'' + JSON.stringify(visit) + '\'>' +
         '<td class="subcat">' + visit.subcat + '</td>' +
         '<td class="time historyVisit">' + time + '</td>' +
-        '<td style="width: 23px"><div class="timelineCircle ' + lastVisitString + '"></div></td>' +
+        '<td style="width: 23px"><div class="timelineCircle ' + lastOrFirstVisitString + '"></div></td>' +
         '<td><img class="favicon" src="' + visit.favicon + '"></img></td>' +
         '<td style="width: 380px"><div class="domain" data-toggle="tooltip" title="' + visit.url + '">' +
           '<a href="' + visit.url + '">' + visit.domain + '</a>' +
