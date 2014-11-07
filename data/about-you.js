@@ -66,16 +66,18 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
   $scope.debugReportRequest = function() {
     dataService.send("debug_report_request");
   };
-  $scope.updateProgressBar = function(value) {
+  $scope.updateProgressBar = function(progressNum, value) {
+    $scope.processingBlurb = progressNum == 3 ? "Analyzing your history..." : "Pre-processing your history...";
     let val = value ? value : (100 - Math.round($scope.daysLeft / $scope.daysLeftStart * 100));
 
     // TODO: find out why sometimes the pipeline says it will process one
     // more day than it actually does. We shouldn't need to do this check.
-    if ($scope.daysLeft == 1) {
+    if (progressNum == 3 && $scope.daysLeft == 1) {
       val = 100;
     }
 
-    $scope.percentProcessed = val + "%"
+    let width = Math.round((progressNum - 1) * (100 / 3) + (val / 3));
+    $scope.percentProcessed = width + "%";
     $("#progressBar").css("width", $scope.percentProcessed);
   };
   $scope.processHistory = function() {
@@ -117,7 +119,7 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
       $scope.daysLeftStart = data;
     }
     $scope.daysLeft = data;
-    $scope.updateProgressBar();
+    $scope.updateProgressBar(3);
   });
 
   $scope.$on("progress", function(event, data) {
@@ -125,10 +127,11 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
       $scope.daysLeftStart = data.total;
     }
     $scope.daysLeft = data.total - data.progress;
-    $scope.updateProgressBar();
+    let progressNum = data.progressType == "historyProgress" ? 1 : 2;
+    $scope.updateProgressBar(progressNum);
 
     // Handle visibility of progress bar.
-    if ($scope.percentProcessed == "100%") {
+    if ($scope.daysLeft == 0) {
       $scope.daysLeftStart = 0;
 
       if (data.progressType == "titleProgress") {
@@ -138,7 +141,7 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
             $("#visual-header-overlay").addClass("fade-out");
             $("#main-overlay").addClass("fade-out");
           }
-        }, 10000);
+        }, 20000);
       }
     }
   });

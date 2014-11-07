@@ -646,7 +646,7 @@ InterestDashboard.prototype = {
     } else {
       setTimeout(() => {
         if (!$scope.percentProcessed) {
-          $scope.updateProgressBar("100");
+          $scope.updateProgressBar(3, "100");
         }
       }, 1000);
       setTimeout(() => {
