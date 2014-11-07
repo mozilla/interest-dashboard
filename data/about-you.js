@@ -67,6 +67,12 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     dataService.send("debug_report_request");
   };
   $scope.updateProgressBar = function(progressNum, value) {
+    if (progressNum != 3) {
+      // When we are building cdb.json and meta.json, treat it as a first
+      // run and show the tutorial prompt at the end of processing.
+      $scope.firstRun = true;
+    }
+
     $scope.processingBlurb = progressNum == 3 ? "Analyzing your history..." : "Pre-processing your history...";
     let val = value ? value : (100 - Math.round($scope.daysLeft / $scope.daysLeftStart * 100));
 

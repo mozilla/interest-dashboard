@@ -642,7 +642,10 @@ InterestDashboard.prototype = {
       $("#visual-header-overlay").addClass("fade-out");
       $("#main-overlay").addClass("fade-out");
 
-      $("#tutorial-popover").addClass("shownTutorialPanel");
+      if ($scope.firstRun) {
+        $("#tutorial-popover").addClass("shownTutorialPanel");
+        $scope.firstRun = false;
+      }
     } else {
       setTimeout(() => {
         if (!$scope.percentProcessed) {
