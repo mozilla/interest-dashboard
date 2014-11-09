@@ -261,22 +261,16 @@ InterestDashboard.prototype = {
         currentDay = visit.timestamp;
       }
 
-      // Escape html tags in the titles.
-      let html = visit.title;
-      let div = document.createElement("div");
-      div.innerHTML = html;
-      let title = div.textContent || div.innerText || "";
-
       rows += '<tr class="subtable-row" data-visit=\'' + JSON.stringify(visit) + '\'>' +
         '<td class="subcat">' + visit.subcat + '</td>' +
         '<td class="time historyVisit">' + time + '</td>' +
         '<td style="width: 23px"><div class="timelineCircle ' + lastOrFirstVisitString + '"></div></td>' +
-        '<td><img class="favicon" src="' + visit.favicon + '"></img></td>' +
-        '<td style="width: 380px"><div class="domain" data-toggle="tooltip" title="' + visit.url + '">' +
-          '<a href="' + visit.url + '">' + visit.domain + '</a>' +
+        '<td><img class="favicon" src="' + html_sanitize(visit.favicon) + '"></img></td>' +
+        '<td style="width: 380px"><div class="domain" data-toggle="tooltip" title="' + html_sanitize(visit.url) + '">' +
+          '<a href="' + html_sanitize(visit.url) + '">' + html_sanitize(visit.domain) + '</a>' +
         '</div>' +
-        '<div class="visitTitle historyVisit" data-toggle="tooltip" title="' + visit.url + '">' +
-          '<a href="' + visit.url + '">- ' + title + '</a>' +
+        '<div class="visitTitle historyVisit" data-toggle="tooltip" title="' + html_sanitize(visit.url) + '">' +
+          '<a href="' + html_sanitize(visit.url) + '">- ' + html_sanitize(visit.title) + '</a>' +
         '</div></td>' +
         '<td class="charms"><div class="' + bookmarked + '"></div>' +
             '<div class="flag" title="Flag for feedback"></div></td>' +
