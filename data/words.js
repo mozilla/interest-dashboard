@@ -105,7 +105,7 @@ let words_tree = {
 			"budget travel": ["backpacking"],
 			"hotels": ["hotel", "hotels"],
 			"air travel": ["airline", "flight", "flights", "airlines", "airways"],
-			"trains": ["train", "trains"],
+			"trains": ["trains", 'rail', 'railway', 'railways'],
 		},
 	"sports": {
 		"general": ["sport", "sports", "athlete", "football"],
@@ -140,7 +140,7 @@ let words_tree = {
 		"climbing": ["climbing", "bouldering"],
 		"rugby": ["rugby"],
 		"sailing": ['sailing'],
-		"racing": ['racing'],
+		"racing": ['racing', 'motorsport', 'nascar', 'formula 1', 'formula one'],
 		'rowing': ["rowing", "sculls", "sculling"],
 		"kayaking": ["kayaking", "canoeing"],
 		"bowling": ["bowling"],
@@ -175,7 +175,7 @@ let words_tree = {
 		"graphics": ["graphics", "3-d", "3d"],
 		"software": ["software", "app"],
 		"hardware": ["hardware"],
-		"gaming": ['gaming'],
+		"video games": ['gaming'],
 		"windows": ['windows'],
 		"programming": ["programming", "programmer", "javascript", "perl", "api"],
 		"database": ["database", "databases"],
@@ -206,7 +206,9 @@ let words_tree = {
 	},
 	"automotive": {
 		'general': ["autos", "car", "automotive", 'cars', "vehicles", "vehicle"],
-		'car brands': ['bmw', 'benz', 'mercedes', 'chevvy', 'chevy', 'chevrolet', 'lexus', 'bentley', 'mazda'],
+		'car brands': ['bmw', 'benz', 'mercedes', 'chevvy', 'chevy', 'chevrolet', 'lexus', 'bentley', 'mazda',
+					   'honda', 'audi', 'buick', 'cadillac', 'chrysler', 'ferrari', 'hyundai', 'jeep', 'kia', 'maserati',
+					   'nissan', 'renault', 'opel', 'peugeot', 'porsche', 'subaru', 'skoda', 'suzuki', 'tesla'],
 		"pickup trucks": ["pickup", "pickups", "truck", "trucks"],
 		'motorcycles': ["motorcycle", "motorcycling", "motorcycles"],
 		"convertibles": ["convertible", "convertibles"],
@@ -220,14 +222,15 @@ let words_tree = {
 		"general": ["philosophy"],
 		},
 	"arts & entertainment": {
-		"general": ["arts", "art", "entertainment", "celebrity", "celebrities"],
+		"general": ["arts", "art", "entertainment"],
+		"celebrities": ["celebrity", "celebrities"],
 		"television": ["tv", "television"],
 		"literature": ["books", "literature", "author"],
 		"humor": ['humor', 'comedian', "comedy"],
 		'theatre': ["theatres", "theaters", "theater", "theatre"],
 		"opera": ["opera", "operas"],
 		"poetry": ["poetry", 'poem', 'poet'],
-		"film": ["movies", "movie", "film", "films", 'actor', 'actress', "dvds", "dvd", "bluray", "blueray"],
+		"film": ["movies", "movie", "film", "films", 'actor', 'actress', "dvds", "dvd", "bluray", "blueray", 'bollywood'],
 		"anime": ['anime'],
 		"comics": ["manga", "comics"],
 		"animation": ['animation'],
@@ -307,8 +310,8 @@ let words_tree = {
 		'terrorism': ["terrorist", "terrorism"],
 	},
 	"history": {
-		'general': ["history"],
-		"archaeology": ["archaeology"],
+		'general': ["historical", "historian", "ancient"],
+		"archaeology": ["archaeology", "archaeologist", "archaeologists"],
 	}
 }
 
@@ -324,6 +327,7 @@ let ignore_domains = {'facebook': 0, 'twitter': 0}
 let ignore_exts = {'com': 0}
 
 let bad_domain_specific = {
+	'linkedin.com': ['in'],
 	'google.com': ['accounts', 'calendar', 'drive', 'maps', 'plus'],
 	'mozilla.org': ['bugzilla'],
 	'adp.com': ['ipay', 'netsecure'],
