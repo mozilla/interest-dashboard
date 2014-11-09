@@ -241,9 +241,13 @@ InterestDashboard.prototype = {
     for (let visitIndex = 0; visitIndex < historyVisits.length; visitIndex++) {
       let visit = historyVisits[visitIndex];
       let time = this._computeTimeString(visit.timestamp);
-      let lastOrFirstVisitString = visitIndex == (historyVisits.length - 1) ? 'lastVisit' : '';
-      if (visitIndex == 0) {
-        lastOrFirstVisitString = 'firstVisit';
+      let lastOrFirstVisitString = (visitIndex == 0) ? 'firstVisit' : '';
+      if (visitIndex == (historyVisits.length - 1)) {
+        if (lastOrFirstVisitString == "firstVisit") {
+          lastOrFirstVisitString = 'firstAndLastVisit';
+        } else {
+          lastOrFirstVisitString = 'lastVisit';
+        }
       }
 
       let bookmarked = visit.isBookmarked ? "bookmarked" : "unbookmarked";

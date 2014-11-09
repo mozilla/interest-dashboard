@@ -592,6 +592,10 @@ table.dataTable thead th {
   top: -15px !important;
   height: 55px !important;
 }
+.firstAndLastVisit:after {
+  top: -15px !important;
+  height: 20px !important;
+}
 .headerCircle:after {
   z-index: 1;
   height: 20px; /* The height of the header is different than the subcat list */
