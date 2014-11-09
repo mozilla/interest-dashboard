@@ -1,4 +1,5 @@
-let domain_rules = {'kiplinger.com': 'personal finance', 
+let domain_rules = {'kiplinger.com': 'personal finance',
+	'pgatour.com': 'golf',
 	'lifenews.com': 'society', 
 	'rogerebert.com': 'arts & entertainment', 
 	'ftbpro.com': 'soccer', 
