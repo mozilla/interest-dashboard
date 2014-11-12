@@ -109,13 +109,6 @@ function sortDescendingByElementLength(first, second) {
 	return second.length - first.length
 }
 
-function stop_everything(){
-	self.postMessage({
-		"message": "stop_everything",
-		"ptc": {}
-	});
-}
-
 function computePTC({domain_titles}) {
 	let ptc = {};
 	let titleCount = 1;

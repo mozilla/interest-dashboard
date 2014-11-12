@@ -66,26 +66,15 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
   $scope.debugReportRequest = function() {
     dataService.send("debug_report_request");
   };
-  $scope.updateProgressBar = function(progressNum, value) {
-    if (progressNum != 3) {
-      // When we are building cdb.json and meta.json, treat it as a first
-      // run and show the tutorial prompt at the end of processing.
-      $scope.firstRun = true;
-    }
 
-    $scope.processingBlurb = progressNum == 3 ? "Analyzing your history..." : "Pre-processing your history...";
+  $scope.updateProgressBar = function(value) {
+    $scope.processingBlurb = "Analyzing your history...";
+
     let val = value ? value : (100 - Math.round($scope.daysLeft / $scope.daysLeftStart * 100));
-
-    // TODO: find out why sometimes the pipeline says it will process one
-    // more day than it actually does. We shouldn't need to do this check.
-    if (progressNum == 3 && $scope.daysLeft == 1) {
-      val = 100;
-    }
-
-    let width = Math.round((progressNum - 1) * (100 / 3) + (val / 3));
-    $scope.percentProcessed = width + "%";
+    $scope.percentProcessed = val + "%"
     $("#progressBar").css("width", $scope.percentProcessed);
   };
+
   $scope.processHistory = function() {
     if ($scope.daysLeft) {
       return;
@@ -125,31 +114,7 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
       $scope.daysLeftStart = data;
     }
     $scope.daysLeft = data;
-    $scope.updateProgressBar(3);
-  });
-
-  $scope.$on("progress", function(event, data) {
-    if (!$scope.daysLeftStart) {
-      $scope.daysLeftStart = data.total;
-    }
-    $scope.daysLeft = data.total - data.progress;
-    let progressNum = data.progressType == "historyProgress" ? 1 : 2;
-    $scope.updateProgressBar(progressNum);
-
-    // Handle visibility of progress bar.
-    if ($scope.daysLeft == 0) {
-      $scope.daysLeftStart = 0;
-
-      if (data.progressType == "titleProgress") {
-        setTimeout(() => {
-          // After some time, no days_left event was triggered so let's get rid of the progress bar.
-          if (!$scope.daysLeftStart) {
-            $("#visual-header-overlay").addClass("fade-out");
-            $("#main-overlay").addClass("fade-out");
-          }
-        }, 20000);
-      }
-    }
+    $scope.updateProgressBar();
   });
 });
 

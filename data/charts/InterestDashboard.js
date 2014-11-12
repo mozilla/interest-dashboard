@@ -641,15 +641,11 @@ InterestDashboard.prototype = {
       }
       $("#visual-header-overlay").addClass("fade-out");
       $("#main-overlay").addClass("fade-out");
-
-      if ($scope.firstRun) {
-        $("#tutorial-popover").addClass("shownTutorialPanel");
-        $scope.firstRun = false;
-      }
+      $("#tutorial-popover").addClass("shownTutorialPanel");
     } else {
       setTimeout(() => {
         if (!$scope.percentProcessed) {
-          $scope.updateProgressBar(3, "100");
+          $scope.updateProgressBar("100");
         }
       }, 1000);
       setTimeout(() => {
