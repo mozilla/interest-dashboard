@@ -11,9 +11,9 @@ function InterestDashboard($scope) {
         .color(d3.scale.category10().range())
         .tooltipContent((category, count, e, graph) => {
           return '<div class="pie-tooltip">' +
-            '<div class="rank">' + this._data.categories[category].rank + '</div>' +
-            '<div class="category">' + category + '</div>' +
-            '<div class="count">(' + this._numberWithCommas(parseInt(count.replace(/,/g, ''))) + ')</div>' +
+            '<div class="rank">' + html_sanitize(this._data.categories[category].rank) + '</div>' +
+            '<div class="category">' + html_sanitize(category) + '</div>' +
+            '<div class="count">(' + html_sanitize(this._numberWithCommas(parseInt(count.replace(/,/g, '')))) + ')</div>' +
           '</div>';
         });
 
@@ -118,9 +118,9 @@ InterestDashboard.prototype = {
     for (let i = 0; i < data.tableData.length; i++) {
       let categoryObj = data.tableData[i];
       table.row.add([
-        "<div class='rank-container'>" + (i + 1) + "</div>",
-        "<div class='category-name'>" + categoryObj.name + "</div>" +
-        "<div class='category-count'> (" + this._numberWithCommas(categoryObj.visitCount) + ")</div>",
+        "<div class='rank-container'>" + html_sanitize(i + 1) + "</div>",
+        "<div class='category-name'>" + html_sanitize(categoryObj.name) + "</div>" +
+        "<div class='category-count'> (" + html_sanitize(this._numberWithCommas(categoryObj.visitCount)) + ")</div>",
         "<div></div>",
         this._getMaxDate(categoryObj.visitIDs),
         "<div class='intensityChange" + i + "'><div class='symbol'></div><div class='intensityPercent'></div></div>",
@@ -227,13 +227,20 @@ InterestDashboard.prototype = {
   },
 
   _formatSubtable: function(category) {
-    let table = '<div id="' + category + '" class="subtable"><table cellpadding="5" cellspacing="0" border="0"><tbody>';
+    let table = '<div id="' + this._escapeHTML(category) + '" class="subtable"><table cellpadding="5" cellspacing="0" border="0"><tbody>';
     table +=
       '<tr>' +
         '<td colspan = "5"><div class="loading"></div></td>' +
       '</tr>';
     table += '</tbody></table></div>';
     return table;
+  },
+
+  _escapeHTML: function(str) {
+    if (str) {
+      return str.replace(/[&"<>]/g, function (m) ({ "&": "&amp;", '"': "&quot;", "<": "&lt;", ">": "&gt;" })[m]);
+    }
+    return "";
   },
 
   _getRowsHTML: function(historyVisits, currentDay, complete) {
@@ -258,25 +265,25 @@ InterestDashboard.prototype = {
           '<td></td>' +
           '<td></td>' +
           '<td style="width: 23px"><div class="subtitleCircle alwaysVisible"></div></td>' +
-          '<td colspan = "2" class="date-subheader">' + d3.time.format('%A, %B %e, %Y')(new Date(visit.timestamp / 1000)); + '</td>' +
+          '<td colspan = "2" class="date-subheader">' + html_sanitize(d3.time.format('%A, %B %e, %Y')(new Date(visit.timestamp / 1000))); + '</td>' +
           '<td></td>' +
           '<td></td>' +
         '</tr>';
         currentDay = visit.timestamp;
       }
 
-      rows += '<tr class="subtable-row" data-visit=\'' + JSON.stringify(visit) + '\'>' +
-        '<td class="subcat">' + visit.subcat + '</td>' +
-        '<td class="time historyVisit">' + time + '</td>' +
-        '<td style="width: 23px"><div class="timelineCircle ' + lastOrFirstVisitString + '"></div></td>' +
-        '<td><img class="favicon" src="' + html_sanitize(visit.favicon) + '"></img></td>' +
-        '<td style="width: 380px"><div class="domain" data-toggle="tooltip" title="' + html_sanitize(visit.url) + '">' +
-          '<a href="' + html_sanitize(visit.url) + '">' + html_sanitize(visit.domain) + '</a>' +
+      rows += '<tr class="subtable-row" data-visit=\'' + this._escapeHTML(JSON.stringify(visit)) + '\'>' +
+        '<td class="subcat">' + html_sanitize(visit.subcat) + '</td>' +
+        '<td class="time historyVisit">' + html_sanitize(time) + '</td>' +
+        '<td style="width: 23px"><div class="timelineCircle ' + this._escapeHTML(lastOrFirstVisitString) + '"></div></td>' +
+        '<td><img class="favicon" src="' + this._escapeHTML(visit.favicon) + '"></img></td>' +
+        '<td style="width: 380px"><div class="domain" data-toggle="tooltip" title="' + this._escapeHTML(visit.url) + '">' +
+          '<a href="' + this._escapeHTML(visit.url) + '">' + html_sanitize(visit.domain) + '</a>' +
         '</div>' +
-        '<div class="visitTitle historyVisit" data-toggle="tooltip" title="' + html_sanitize(visit.url) + '">' +
-          '<a href="' + html_sanitize(visit.url) + '">- ' + html_sanitize(visit.title) + '</a>' +
+        '<div class="visitTitle historyVisit" data-toggle="tooltip" title="' + this._escapeHTML(visit.url) + '">' +
+          '<a href="' + this._escapeHTML(visit.url) + '">- ' + html_sanitize(visit.title) + '</a>' +
         '</div></td>' +
-        '<td class="charms"><div class="' + bookmarked + '"></div>' +
+        '<td class="charms"><div class="' + this._escapeHTML(bookmarked) + '"></div>' +
             '<div class="flag" title="Flag for feedback"></div></td>' +
       '</tr>';
     }
@@ -491,12 +498,7 @@ InterestDashboard.prototype = {
       // Get the category that was clicked
       let parser = new DOMParser();
       let node = parser.parseFromString(row.data()[1], "text/html");
-      let category = node.getElementsByClassName('category-name')[0].innerHTML;
-
-      // Decoding &amp; back to &.
-      let div = document.createElement('div');
-      div.innerHTML = category;
-      category = div.firstChild.nodeValue;
+      let category = node.querySelector('.category-name').textContent;
 
       if (row.child.isShown()) {
         self.debugReport.push("InterestDashboard._closeRowDetails() [" + category + "]");
