@@ -17,27 +17,6 @@ const {Cc, Ci, Cu} = require("chrome");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
 
-exports["test PrefsManager prefs"] = function test_PrefsManagerPrefs(assert) {
-  let testController = testUtils.setupTestController();
-  StudyApp.controller = testController;
-  StudyApp.submitPromise = Promise.resolve();
-  PrefsManager.setObservers();
-
-  let dispatcher = testController._dispatcher;
-
-  let dispatcherProperties = [
-                              {pref: "consented", obj: "_enabled", value: true},
-                              {pref: "server_url", obj: "_serverUrl", value: "http://example.com/userprofile"},
-                              {pref: "dispatchIdleDelay", obj: "_dispatchIdleDelay", value: 5}
-  ];
-
-  dispatcherProperties.forEach(prop => {
-    assert.deepEqual(simplePrefs.prefs[prop.pref], dispatcher[prop.obj]);
-    simplePrefs.prefs[prop.pref] = prop.value;
-    assert.deepEqual(simplePrefs.prefs[prop.pref], dispatcher[prop.obj]);
-  });
-}
-
 exports["test AMO source attribution"] = function test_AMOSourceAttribution(assert) {
   let urls = [
     {url: "https://example.com/foo/bar.xpi", src: "unknown"},

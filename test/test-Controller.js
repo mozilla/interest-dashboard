@@ -17,7 +17,6 @@ Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
 const {Controller} = require("Controller");
-const {NYTimesHistoryVisitor} = require("NYTimesHistoryVisitor");
 const {DateUtils,MICROS_PER_DAY} = require("DateUtils");
 const {testUtils} = require("./helpers");
 const {promiseTimeout} = require("Utils");
@@ -56,9 +55,6 @@ exports["test controller"] = function test_Controller(assert, done) {
       yield processDeferred.promise;
       testController._streamObjects.dailyInterestsSpout.setEmitCallback(undefined);
 
-      // we should see 4 urls being processed, hten Autos should contain 4 days
-      assert.deepEqual(testController.getRankedInterests(), {"Autos":4}, "4 Autos");
-
       // wait till storage bolt has captured the interests
       processDeferred = Promise.defer();
       testController._streamObjects.interestStorageBolt.setEmitCallback(bolt => {
@@ -90,8 +86,6 @@ exports["test controller"] = function test_Controller(assert, done) {
             processDeferred.promise.then(() => {
               testController._streamObjects.dailyInterestsSpout.setEmitCallback(undefined);
 
-              // we should see the 3 intersts now
-              assert.deepEqual(testController.getRankedInterests(), {"Autos":4,"Politics":1,"Sports":1}, "should see 3 intresests");
               // and we must see 4 day in the keys
               payload = testController.getNextDispatchBatch();
               days = Object.keys(payload.interests);
@@ -135,16 +129,6 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
       let testController = setupTestController({storage: storageBackend});
       testController.clear();
 
-      let testScores = function(theController) {
-        let interests = theController.getRankedInterests();
-        assert.equal(interests.Autos, 60);
-        assert.equal(interests.Politics, 60);
-        assert.equal(interests.Sports, 60);
-        assert.equal(interests.Programming, 60);
-        assert.equal(interests.Humor, 60);
-        assert.equal(interests.Android, 60);
-      };
-
       let processDeferred;
 
       processDeferred = Promise.defer();
@@ -160,8 +144,6 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
 
       let today = DateUtils.today();
       let theVeryLastTimeStamp = storageBackend.lastTimeStamp;
-      // verify ranks
-      testScores(testController);
 
       // a toture test to make sure we can disable and re-enable
       // controller without loss of data
@@ -215,7 +197,6 @@ exports["test clear storage"] = function test_ClearStorage(assert, done) {
       assert.equal(storageBackend.dayBufferInterests, undefined);
       assert.equal(storageBackend.interests, undefined);
       assert.equal(storageBackend.ranking, undefined);
-      assert.equal(storageBackend.nytimesVisits, undefined);
       assert.equal(storageBackend.hasOwnProperty("interests"), false);
     } catch(ex) {
       console.error(ex);
@@ -229,62 +210,6 @@ exports["test get uuid"] = function test_GetUUID(assert, done) {
       let testController = setupTestController();
       assert.ok(testController.getUserID() != null);
       assert.ok(testController.getUserID() != "");
-    } catch(ex) {
-      console.error(ex);
-    }
-  }).then(done);
-}
-
-exports["test nytCollect"] = function test_NYTCollect(assert, done) {
-  Task.spawn(function() {
-    try {
-      let hostArray = ["www.nytimes.com"];
-      yield testUtils.promiseClearHistory();
-      yield testUtils.addVisits(hostArray,1);
-
-      let storageBackend = {};
-      let testController = setupTestController({storage: storageBackend});
-
-      let nytHistoryVisitor = new NYTimesHistoryVisitor(storageBackend);
-      assert.ok(nytHistoryVisitor.getVisits() == null);
-
-      yield testController.submitHistory({flush: true});
-      assert.equal(nytHistoryVisitor.getVisits().length, 2);
-      assert.ok(true);
-    } catch(ex) {
-      console.error(ex);
-    }
-  }).then(done);
-}
-
-exports["test getUserInterests"] = function test_GetUserInterests(assert, done) {
-  Task.spawn(function() {
-    try {
-      let hostArray = ["www.autoblog.com"];
-      yield testUtils.promiseClearHistory();
-      yield testUtils.addVisits(hostArray,2);
-
-      let testController = setupTestController();
-      testController.clear();
-      yield testController.submitHistory({flush: true})
-
-
-      let processDeferred = Promise.defer();
-      testController._streamObjects.rankerBolts[0].setEmitCallback(bolt => {
-        if (bolt.storage.ranking[bolt.storageKey].Autos == 3) {
-          processDeferred.resolve();
-        }
-      });
-      yield processDeferred.promise;
-      testController._streamObjects.rankerBolts[0].setEmitCallback(undefined);
-
-      simplePrefs.prefs.uuid = "this_uuid_cannot_exist";
-      let interests = testController.getUserInterests();
-      assert.deepEqual(interests, {"Autos":3});
-
-      simplePrefs.prefs.uuid = "NO_SUCH_UUID";
-      interests = testController.getUserInterests();
-      assert.deepEqual(interests, {"NO_SUCH_INTREST":1});
     } catch(ex) {
       console.error(ex);
     }

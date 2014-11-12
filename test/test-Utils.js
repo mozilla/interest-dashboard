@@ -41,7 +41,6 @@ exports["test getRelevantPrefs"] = function test_GetRelevantPrefs(assert, done) 
     "privacy.sanitize.sanitizeOnShutdown": Services.prefs.getBoolPref("privacy.sanitize.sanitizeOnShutdown"),
     "places.history.enabled": Services.prefs.getBoolPref("places.history.enabled"),
     "browser.formfill.enable":Services.prefs.getBoolPref("browser.formfill.enable"),
-    "nytimes_personalization_start": simplePrefs.prefs.nytimes_personalization_start
   };
   assert.deepEqual(prefs,expected);
   done();
