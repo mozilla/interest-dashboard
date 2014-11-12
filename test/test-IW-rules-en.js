@@ -51,7 +51,7 @@ let matchTests = [
   info: "Match Test 1 (Rules): mozilla.org",
   url:  "http://www.mozilla.org",
   title: "Hello World",
-  expectedInterests:  [{"type":"rules","interests":["computers"]},{"type":"combined","interests":["computers"]},{"type":"keywords","interests":[]}],
+  expectedInterests:  [{"type":"rules","interests":["computers"]},{"type":"combined","interests":["computers"]},{"type":"keywords","interests":[]},],
 },
 {
   info: "Match Test 2 (Rules): weather gov",
@@ -88,7 +88,8 @@ let matchTests = [
   url:  "https://www.testpathdomain.com/code?qw=aa",
   title: "CPlusPlus programming",
   expectedInterests: [{"type":"rules","interests":["programming","oop"]},{"type":"combined","interests":["programming","oop"]},{"type":"keywords","interests":[]}],
-}];
+}
+];
 
 exports["test default matcher"] = function test_default_matcher(assert, done) {
   let deferred;
@@ -101,7 +102,9 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
         if (msgData.message == "InterestsForDocument") {
           // make sure that categorization is correct
           let host = msgData.host;
-          assert.deepEqual(msgData.results, expectedInterests);
+          console.log("msgData=> " + JSON.stringify(msgData.results))
+          console.log("expectedInterests=> " + JSON.stringify(expectedInterests))
+          assert.ok(testUtils.compareArrayOrderIrrelevant(msgData.results, expectedInterests));
           deferred.resolve();
         }
         else if (!(msgData.message in testUtils.kValidMessages)) {
