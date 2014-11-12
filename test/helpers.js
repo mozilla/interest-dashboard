@@ -22,7 +22,23 @@ exports.testUtils = {
   do_check_eq : function do_check_eq(assert, actual, expected, text) {
     assert.equal(actual, expected, text);
   },
-
+  
+  compareArrayOrderIrrelevant : function checkEqualityOfTwoArrays() {
+    //---why? Basically in the tests we have to compare an array of nested objects for equality. However, deepEqual takes
+    //into account the order, which we don't care about here
+    //---accepts: any number of arrays
+    //---returns: true or false
+    
+    first_array = JSON.stringify(arguments[0].map(JSON.stringify).sort()) //take the first item from the array
+    for(let i=1;i<arguments.length;i++){ //iterate through the rest of them
+      if(JSON.stringify(arguments[i].map(JSON.stringify).sort()) != first_array){
+        return false //if not equal, immediately break out of the loop and return
+      }
+    }
+    return true //all must be equal, return true
+    
+  },
+  
   itemsHave : function itemsHave(items, data) {
     for (let i in items) {
       if(items[i] == data) return true;
