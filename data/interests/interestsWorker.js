@@ -62,6 +62,32 @@ function swapRules({interestsData, interestsDataType}) {
   }
 }
 
+function interestFinalizer(interests) {
+  // This is a function to make the decision between a series of rules matched in the DFR
+  // Accepts: an array containing either lists-of-strings, or lists-of-pairs where the pairs
+  // are [string, float]
+  // Returns: [string, string, ...]
+  // Input: ["xyz",["golf",0.7],["foo",0.5],"bar"]
+
+  let finalInterests = {};
+  let highestWeight = 0;
+  let bestWeightedInterest;
+  interests.forEach(item => {
+    if (Array.isArray(item)) {
+      if (item[1] > highestWeight) {
+        highestWeight = item[1];
+        bestWeightedInterest = item[0];
+      }
+    } else {
+      finalInterests[item] = true;
+    }
+  });
+  if (bestWeightedInterest) finalInterests[bestWeightedInterest] = true;
+  //log(JSON.stringify(interests));
+
+  return Object.keys(finalInterests);
+}
+
 // classify a page using rules
 function ruleClassify({host, language, baseDomain, path, title, url}) {
   let interests = [];
@@ -106,7 +132,7 @@ function ruleClassify({host, language, baseDomain, path, title, url}) {
 
   let keyLength = domainRule ? Object.keys(domainRule).length : 0;
   if (!keyLength)
-    return interests;
+    return interestFinalizer(interests);
 
   if (domainRule["__ANY"]) {
     interests = interests.concat(domainRule["__ANY"]);
@@ -114,11 +140,11 @@ function ruleClassify({host, language, baseDomain, path, title, url}) {
   }
 
   if (!keyLength)
-    return interests;
+    return interestFinalizer(interests);
 
   matchRuleInterests(domainRule);
 
-  return interests;
+  return interestFinalizer(interests);
 }
 
 // classify a page using text

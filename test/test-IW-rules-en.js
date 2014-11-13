@@ -58,10 +58,11 @@ let testDomainRules = {
   },
   "__ANY" : {
     "/golf": [
-      "golf"
+      "golf",
     ],
     "golf.": [
-      "golf"
+      ["tiger", 0.7],
+      ["foo", 0.5],
     ]
   },
 }
@@ -136,9 +137,9 @@ let matchTests = [
 },
 {
   info: "Match Test 12 (Rules): golf subdomain",
-  url:  "https://golf.google.com/",
+  url:  "https://golf.google.com/golf",
   title: "tornament",
-  expectedInterests: [{"type":"rules","interests":["golf"]},{"type":"combined","interests":["golf"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":["golf","tiger"]},{"type":"combined","interests":["golf","tiger"]},{"type":"keywords","interests":[]}],
 },
 ];
 
