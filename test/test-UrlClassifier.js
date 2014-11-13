@@ -25,13 +25,13 @@ exports["test interest classifier"] = function test_UrlClassifier(assert, done) 
     assert.equal(Object.keys(results).length, workers.length);
     assert.deepEqual(results["58-cat"].results,
           [{"type":"rules","interests":["cars"]},
-           {"type":"combined","interests":["cars"]},
-           {"type":"keywords","interests":[]}
+           {"type":"keywords","interests":[]},
+           {"type":"combined","interests":["cars"]}
           ]);
     assert.deepEqual(results["edrules"].results,
           [{"type":"rules","interests":["Autos"]},
+           {"type":"keywords","interests":[]},
            {"type":"combined","interests":["Autos"]},
-           {"type":"keywords","interests":[]}
           ]);
     // test for an error
     yield urlClassifier.classifyPage("not a url").then(result => {
