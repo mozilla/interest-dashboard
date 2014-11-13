@@ -1,13 +1,13 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+"use strict";
 
-function getDomain(url){
-	//accepts a url
-	//returns the domain name + TLD
-	return domain
-}
+const { getBaseDomain } = require('./utils/tld');
 
-function parseURI(url){
-	//Accepts: a url string
+function parseURI(uri){
+	//Accepts: a URI string
 	//Returns: different parts of the URI
 	
 	//extract different types of chunks
@@ -17,16 +17,16 @@ function parseURI(url){
 		"domain_name": "",
 		"path": [],
 		"filename": "",
-		"variable_names": [],
-		"variable_values": [],
+		"variables": {},
+		"shebang": ""
 	}
 
 	//this could be made more efficient with a letter-by-letter while loop
-	chunks['protocol'] = url.split("://")[0]
-	chunks['domain_name'] = get_domain(url)
-	chunks['subdomains'] = url.split(chunks['domain_name'])[0].split(chunks['protocol'])[1].split(".")
+	chunks['protocol'] = uri.split("://")[0]
+	chunks['domain_name'] = getBaseDomain(uri)
+	chunks['subdomains'] = uri.split(chunks['domain_name'])[0].split(chunks['protocol'])[1].split(".")
 	
-	path_and_rest = url.split(chunks['domain_name'])[1].split("?")
+	path_and_rest = uri.split(chunks['domain_name'])[1].split("?")
 	path_items = path_and_rest[0].split("/")
 	chunks['path'] = path_items.slice(0,-1)
 	chunks['filename'] = path_items.slice(-1)
@@ -35,9 +35,9 @@ function parseURI(url){
 		variables = path_and_rest[1].split("&")
 		for (let vq of variables) {
 			vq = vq.split("=")
-			variable_names.append(vq[0])
+			variables[vq[0]] = ""
 			if (vq.length > 1) {
-				variable_values.append(vq[1])
+				variables[vq[0]] = vq[1]
 			}
 		}
 	}
