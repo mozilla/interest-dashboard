@@ -5,6 +5,7 @@
 
 const {Cc, Ci, Cu, ChromeWorker,components} = require("chrome");
 const {data} = require("sdk/self");
+const oldPromise = require("sdk/core/promise");
 
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/commonjs/sdk/core/promise.js");
@@ -56,7 +57,7 @@ exports.testUtils = {
 
   promiseAddVisits: function (aPlaceInfo)
   {
-    let deferred = Promise.defer();
+    let deferred = oldPromise.defer();
     let places = [];
     if (aPlaceInfo instanceof Ci.nsIURI) {
       places.push({ uri: aPlaceInfo });
@@ -113,11 +114,11 @@ exports.testUtils = {
         promises.push(this.promiseAddVisits({uri: NetUtil.newURI("http://"+host), visitDate: microToday - i*MICROS_PER_DAY + rand}));
       });
     }
-    return Promise.promised(Array)(promises).then();
+    return oldPromise.promised(Array)(promises).then();
   },
 
   promiseTopicObserved: function(aTopic) {
-    let deferred = Promise.defer();
+    let deferred = oldPromise.defer();
     Services.obs.addObserver(
       function PTO_observe(aSubject, aTopic, aData) {
         Services.obs.removeObserver(PTO_observe, aTopic);

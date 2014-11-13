@@ -7,7 +7,7 @@
 "use strict";
 
 const {Cc, Ci, Cu} = require("chrome");
-const Promise = require("sdk/core/promise");
+const oldPromise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
@@ -62,7 +62,7 @@ exports["test read all"] = function test_readAll(assert, done) {
     let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
-    let assertDeferred = Promise.defer();
+    let assertDeferred = oldPromise.defer();
     streamObjects.interestStorageBolt.setEmitCallback(bolt => {
       if (bolt.storage.interests[today]) {
         assertDeferred.resolve();
@@ -91,7 +91,7 @@ exports["test read from given timestamp"] = function test_readFromGivenTimestamp
     let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,(today-10)*MICROS_PER_DAY, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
-    let assertDeferred = Promise.defer();
+    let assertDeferred = oldPromise.defer();
     streamObjects.interestStorageBolt.setEmitCallback(bolt => {
       if (bolt.storage.interests[today]) {
         assertDeferred.resolve();
@@ -121,7 +121,7 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
     let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,10, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
-    let assertDeferred = Promise.defer();
+    let assertDeferred = oldPromise.defer();
     streamObjects.interestStorageBolt.setEmitCallback(bolt => {
       if (bolt.storage.interests[today]) {
         assertDeferred.resolve();
@@ -140,7 +140,7 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
     historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,10, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20, chunkSize: 1});
 
-    assertDeferred = Promise.defer();
+    assertDeferred = oldPromise.defer();
     streamObjects.interestStorageBolt.setEmitCallback(bolt => {
       if (bolt.storage.interests[today]) {
         assertDeferred.resolve();
@@ -176,7 +176,7 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
     let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
-    let assertDeferred = Promise.defer();
+    let assertDeferred = oldPromise.defer();
     streamObjects.interestStorageBolt.setEmitCallback(bolt => {
       if (bolt.storage.interests[today-2]) {
         assertDeferred.resolve();
@@ -213,7 +213,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       let processDeferred;
 
       // block until the data has been processed
-      processDeferred = Promise.defer();
+      processDeferred = oldPromise.defer();
       streamObjects.dailyInterestsSpout.setEmitCallback(spout => {
         if (spout.numFromToday == 1) {
           processDeferred.resolve();
@@ -224,7 +224,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       streamObjects.dailyInterestsSpout.setEmitCallback(undefined);
 
       // block until today's data has been flushed
-      processDeferred = Promise.defer();
+      processDeferred = oldPromise.defer();
       streamObjects.interestStorageBolt.setEmitCallback(bolt => {
         if (Object.keys(bolt.storage.interests).length == 61) {
           processDeferred.resolve();
@@ -244,7 +244,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       storageBackend = {};
       streamObjects = initStream(storageBackend);
 
-      processDeferred = Promise.defer();
+      processDeferred = oldPromise.defer();
       streamObjects.dailyInterestsSpout.setEmitCallback(spout => {
         if (spout.numFromToday == 1) {
           processDeferred.resolve();
@@ -273,7 +273,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
 
       // torture run is complete
       // wait until data is flushed
-      processDeferred = Promise.defer();
+      processDeferred = oldPromise.defer();
       streamObjects.interestStorageBolt.setEmitCallback(bolt => {
         if (Object.keys(bolt.storage.interests).length == 61) {
           processDeferred.resolve();

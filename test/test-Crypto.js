@@ -7,7 +7,7 @@
 "use strict";
 
 const {Cc, Ci, Cu} = require("chrome");
-const Promise = require("sdk/core/promise");
+const oldPromise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");

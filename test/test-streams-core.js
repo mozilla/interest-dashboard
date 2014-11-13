@@ -3,7 +3,7 @@
 const {Cc, Ci, Cu} = require("chrome");
 Cu.import("resource://gre/modules/Task.jsm");
 const test = require("sdk/test");
-const Promise = require("sdk/core/promise");
+const oldPromise = require("sdk/core/promise");
 const {Stream, Node, createNode} = require("streams/core");
 
 
@@ -35,7 +35,7 @@ exports["test addNode"] = function test_addNode(assert) {
  */
 exports["test push linear topology"] = function test_push_linear(assert, done) {
   Task.spawn(function() {
-    let boltDeferred = Promise.defer();
+    let boltDeferred = oldPromise.defer();
 
     let pairSpout = createNode({
       identifier: "twoMsgSpout",
@@ -133,7 +133,7 @@ exports["test push complex topology"] = function test_push_complex(assert, done)
         }
       },
       clear: function() {
-        this.emitDeffered = Promise.defer();
+        this.emitDeffered = oldPromise.defer();
       }
     });
 
@@ -204,7 +204,7 @@ exports["test push complex topology"] = function test_push_complex(assert, done)
 
     // eat is sent with an even count. total is even
     stream.push("events", ["eat", "work", "eat", "sleep"]);
-    assertDeferred = Promise.defer();
+    assertDeferred = oldPromise.defer();
     doAssert = function(message) {
       assert.equal(Object.keys(message).length, 1, "message items are buffered");
       assert.equal(message.eat, 2, "message items have been counted");
@@ -214,7 +214,7 @@ exports["test push complex topology"] = function test_push_complex(assert, done)
 
     // sleep is sent with an even count, though total is 3
     stream.push("events", ["eat", "sleep", "eat", "sleep", "eat"]);
-    assertDeferred = Promise.defer();
+    assertDeferred = oldPromise.defer();
     doAssert = function(message) {
       assert.equal(Object.keys(message).length, 1, "message items are buffered");
       assert.equal(message.sleep, 3, "message counts have been accumulated");
@@ -244,7 +244,7 @@ exports["test spout waiting"] = function test_spout_waiting(assert, done) {
         return this.results.length > 1;
       }
     });
-    let assertDeferred = Promise.defer();
+    let assertDeferred = oldPromise.defer();
     let numCalled = 0;
     let collectorBolt = createNode({
       identifier: "collectorBolt",
@@ -308,7 +308,7 @@ exports["test flush"] = function test_flush(assert, done) {
 
     // make sure buffering until five works
     stream.push("incr", 4);
-    assertDeferred = Promise.defer();
+    assertDeferred = oldPromise.defer();
     doAssert = function(count) {
       assert.equal(count, 5);
       assertDeferred.resolve();
@@ -319,7 +319,7 @@ exports["test flush"] = function test_flush(assert, done) {
 
     // flushing should override the buffering behavior
     stream.push("incr", 1);
-    assertDeferred = Promise.defer();
+    assertDeferred = oldPromise.defer();
     doAssert = function(count) {
       assert.equal(count, 1);
       assertDeferred.resolve();
@@ -346,7 +346,7 @@ exports["test message copy"] = function test_message_copy(assert, done) {
         this.results = message;
       }
     });
-    let assertDeferred = Promise.defer();
+    let assertDeferred = oldPromise.defer();
     let capitalizeBolt = createNode({
       identifier: "capitalizeBolt",
       listenType: "testMessage",

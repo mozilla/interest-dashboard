@@ -7,7 +7,7 @@
 "use strict";
 
 const {Cc, Ci, Cu} = require("chrome");
-const Promise = require("sdk/core/promise");
+const oldPromise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
@@ -32,7 +32,7 @@ exports["test matching workers"] = function test_MatchingWorkers(assert, done) {
     let processDeferred;
     let today = DateUtils.today();
 
-    processDeferred = Promise.defer();
+    processDeferred = oldPromise.defer();
     testController._streamObjects.interestStorageBolt.setEmitCallback(bolt => {
       if (bolt.storage.interests.hasOwnProperty(today)) {
         processDeferred.resolve();
@@ -65,7 +65,7 @@ exports["test matching workers"] = function test_MatchingWorkers(assert, done) {
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.mitbbs.com/thepage1"), visitDate: microNow});
     testController.clear();
 
-    processDeferred = Promise.defer();
+    processDeferred = oldPromise.defer();
     testController._streamObjects.interestStorageBolt.setEmitCallback(bolt => {
       if (bolt.storage.interests.hasOwnProperty(today)) {
         processDeferred.resolve();

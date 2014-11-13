@@ -7,7 +7,7 @@
 "use strict";
 
 const {data} = require("sdk/self");
-const Promise = require("sdk/core/promise");
+const oldPromise = require("sdk/core/promise");
 
 const {testUtils} = require("./helpers");
 const {Cc, Ci, Cu, ChromeWorker} = require("chrome");
@@ -64,7 +64,7 @@ exports["test edrules text"] = function test_edrules_text(assert, done) {
 
   Task.spawn(function() {
     for (let test of defaultMatchTests) {
-      deferred = Promise.defer();
+      deferred = oldPromise.defer();
 
       let uri = NetUtil.newURI(test.url);
       let title = test.title;
@@ -176,7 +176,7 @@ exports["test text classifier"] = function test_text_classification(assert, done
 
   Task.spawn(function() {
     for (let test of riggedMatchTests.tests) {
-      deferred = Promise.defer();
+      deferred = oldPromise.defer();
 
       let uri = NetUtil.newURI(test.url);
       let title = test.title;

@@ -7,7 +7,7 @@
 "use strict";
 
 const {Cc, Ci, Cu} = require("chrome");
-const Promise = require("sdk/core/promise");
+const oldPromise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
@@ -95,7 +95,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       assert.ok(PlacesInterestsUtils.isStopped() == false);
 
       let newResults = [];
-      let deadPromise = PlacesInterestsUtils.getRecentHistory(today - 20,
+      let deadoldPromise = PlacesInterestsUtils.getRecentHistory(today - 20,
         function(result) {
           newResults.push(result);
         },
@@ -105,8 +105,8 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
         }
       );
       PlacesInterestsUtils.stop();
-      let deadPromiseResult = yield deadPromise;
-      assert.ok(deadPromiseResult == null);
+      let deadoldPromiseResult = yield deadoldPromise;
+      assert.ok(deadoldPromiseResult == null);
       assert.ok(PlacesInterestsUtils.isStopped() == true);
 
       // attempt to run a query again

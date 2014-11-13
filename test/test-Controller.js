@@ -11,7 +11,7 @@ const {storage} = require("sdk/simple-storage");
 const test = require("sdk/test");
 
 const {Cc, Ci, Cu} = require("chrome");
-const Promise = require("sdk/core/promise");
+const oldPromise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
@@ -45,7 +45,7 @@ exports["test controller"] = function test_Controller(assert, done) {
 
       let processDeferred;;
 
-      processDeferred = Promise.defer();
+      processDeferred = oldPromise.defer();
       testController._streamObjects.rankerBolts[0].setEmitCallback(bolt => {
         if (bolt.storage.ranking[bolt.storageKey].Autos == 4) {
           processDeferred.resolve();
@@ -56,7 +56,7 @@ exports["test controller"] = function test_Controller(assert, done) {
       testController._streamObjects.dailyInterestsSpout.setEmitCallback(undefined);
 
       // wait till storage bolt has captured the interests
-      processDeferred = Promise.defer();
+      processDeferred = oldPromise.defer();
       testController._streamObjects.interestStorageBolt.setEmitCallback(bolt => {
         if (Object.keys(bolt.storage.interests).length == 4) {
           processDeferred.resolve();
@@ -76,7 +76,7 @@ exports["test controller"] = function test_Controller(assert, done) {
       yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.rivals.com/"), visitDate: microNow + MICROS_PER_DAY});
 
 
-      processDeferred = Promise.defer();
+      processDeferred = oldPromise.defer();
       let observer = {
         observe: function(aSubject, aTopic, aData) {
           try {
@@ -131,7 +131,7 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
 
       let processDeferred;
 
-      processDeferred = Promise.defer();
+      processDeferred = oldPromise.defer();
       testController._streamObjects.interestStorageBolt.setEmitCallback(bolt => {
         if (Object.keys(bolt.storage.interests).length == 60) {
           processDeferred.resolve();

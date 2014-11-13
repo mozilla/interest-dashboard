@@ -8,7 +8,7 @@
 
 const {testUtils} = require("./helpers");
 const {Cc, Ci, Cu, ChromeWorker} = require("chrome");
-const Promise = require("sdk/core/promise");
+const oldPromise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
@@ -125,7 +125,7 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
 
   Task.spawn(function() {
     for (let test of matchTests) {
-      deferred = Promise.defer();
+      deferred = oldPromise.defer();
 
       let uri = NetUtil.newURI(test.url);
       let title = test.title;

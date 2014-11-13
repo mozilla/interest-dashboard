@@ -7,7 +7,7 @@
 "use strict";
 
 const {Cc, Ci, Cu} = require("chrome");
-const Promise = require("sdk/core/promise");
+const oldPromise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Task.jsm");
 
 const {DateUtils} = require("DateUtils");
@@ -56,7 +56,7 @@ exports["test visit processing"] = function test_PastVisits(assert, done) {
       stream.addNode(dailyInterestsSpout, true);
       stream.addNode(assertionBolt);
 
-      let assertDeferred = Promise.defer();
+      let assertDeferred = oldPromise.defer();
       stream.push("interest", [{details: interestMessage, dateVisits: dateVisits}]);
       doAssert = function(message) {
         assertDeferred.resolve();
@@ -64,7 +64,7 @@ exports["test visit processing"] = function test_PastVisits(assert, done) {
       }
       yield assertDeferred.promise;
 
-      assertDeferred = Promise.defer();
+      assertDeferred = oldPromise.defer();
       doAssert = function(message) {
         assertDeferred.resolve();
         assert.ok(message.hasOwnProperty(today-1), "result should have yesterday's data");
@@ -101,7 +101,7 @@ exports["test ignore latest day visit unless flush"] = function test_TodayVisits
       stream.addNode(dailyInterestsSpout, true);
       stream.addNode(assertionBolt);
 
-      let assertDeferred = Promise.defer();
+      let assertDeferred = oldPromise.defer();
 
       // test that the latest day is not pushed through the network
       stream.push("interest", [{details: interestMessage, dateVisits: dateVisits}]);
@@ -115,7 +115,7 @@ exports["test ignore latest day visit unless flush"] = function test_TodayVisits
 
       // test that the latest day is accumulated and returns when flushed
 
-      assertDeferred = Promise.defer();
+      assertDeferred = oldPromise.defer();
       doAssert = function(message) {
         assertDeferred.resolve();
         assert.ok(message.hasOwnProperty(today), "today's count should be present");
@@ -145,12 +145,12 @@ exports["test emit callback"] = function test_TodayVisits(assert, done) {
       let stream = new Stream();
       stream.addNode(dailyInterestsSpout, true);
 
-      let pushPromise;
+      let pusholdPromise;
 
       // setup spout to keep waiting
-      pushPromise = stream.push("interest", [{details: interestMessage, dateVisits: dateVisits}]);
+      pusholdPromise = stream.push("interest", [{details: interestMessage, dateVisits: dateVisits}]);
 
-      let whenEmitDeferred = Promise.defer();
+      let whenEmitDeferred = oldPromise.defer();
       let reportWhenEmitting = function() {
         assert.ok(true, "report should have fired");
         whenEmitDeferred.resolve(true);
@@ -163,7 +163,7 @@ exports["test emit callback"] = function test_TodayVisits(assert, done) {
       stream.push("interest", [{details: interestMessage, dateVisits: dateVisits}]);
 
       yield whenEmitDeferred.promise;
-      yield pushPromise;
+      yield pusholdPromise;
       assert.ok(true, "original push promise resolves");
     }
     catch (ex) {
