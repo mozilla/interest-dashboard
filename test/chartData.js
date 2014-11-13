@@ -2,395 +2,135 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-let categoryComputersCombined = {
-                    "maxWeight": 4,
-                    "name": "computers",
+let categoryComputing = {
+                    "visitCount": 5,
+                    "maxWeight": 3,
+                    "name": "technology & computing",
                     "days": {
-                        "15914": {
-                            "x": 1374969600000,
-                            "size": 4,
-                            "domainList": [1, 1, 1, 1]
-                        }
-                    },
-                    "maxWeightDate": "15914",
-                    "dayCount": 1,
-                    "x": 1,
-                    "y": 1,
-                    "intentDist": 0,
-                    "interestDist": 0
-                };
-
-let categoryComputersKeywords = {
-                    "maxWeight": 4,
-                    "name": "computers",
-                    "days": {
-                        "15914": {
-                            "x": 1374969600000,
-                            "size": 4,
-                            "domainList": [1, 1, 1, 1]
+                        "16361": {
+                            "x": 1413590400000,
+                            "size": 3,
+                            "domainList": {
+                                "mozilla.org": 1,
+                                "support.mozilla.org": 1,
+                                "developer.mozilla.org": 1
+                            }
                         },
-                        "15916": {
-                            "x": 1375142400000,
-                            "size": 4,
-                            "domainList": [1, 1, 1, 1]
+                        "16358": {
+                            "x": 1413331200000,
+                            "size": 2,
+                            "domainList": {
+                                "dxr.mozilla.org": 1,
+                                "phonebook.mozilla.org": 1
+                            }
                         }
                     },
-                    "maxWeightDate": "15914",
+                    "visitIDs": [1413304843845030, 1413304847283524, 1413556086723392, 1413556346835269, 1413556429978843],
+                    "subcats": {
+                        "1413556086723392": "general",
+                        "1413304843845030": "general",
+                        "1413304847283524": "general"
+                    },
+                    "maxWeightDate": "16361",
                     "dayCount": 2,
                     "x": 2,
-                    "y": 3,
+                    "y": 2,
                     "intentDist": 1,
-                    "interestDist": 0
-                };
+                    "interestDist": 0,
+                    "rank": 1
+                }
 
-let categoryAndroid = {
-                    "maxWeight": 2,
-                    "name": "Android",
+let categoryComputingNoRank = JSON.parse(JSON.stringify(categoryComputing)); // Make copy of categoryComputing
+delete categoryComputingNoRank['rank'];
+
+exports.dayAnnotatedThreeChartProcessorConsumeResults = {
+    "lwca": {
+        "58-cat": {
+            "_type": "lwca",
+            "_namespace": "58-cat",
+            "maxDay": "16361",
+            "minDay": "16358",
+            "categories": {
+                "technology & computing": categoryComputing,
+                "health & fitness": {
+                    "visitCount": 1,
+                    "maxWeight": 1,
+                    "name": "health & fitness",
                     "days": {
-                        "15914": {
-                            "x": 1374969600000,
-                            "size": 2,
-                            "domainList": [1, 1]
+                        "16361": {
+                            "x": 1413590400000,
+                            "size": 1,
+                            "domainList": {
+                                "md-health.com": 1
+                            }
                         }
                     },
-                    "maxWeightDate": "15914",
+                    "visitIDs": [1413565015381142],
+                    "subcats": {
+                        "1413565015381142": "general"
+                    },
+                    "maxWeightDate": "16361",
                     "dayCount": 1,
                     "x": 1,
                     "y": 1,
-                    "intentDist": 0,
-                    "interestDist": 0
-                };
-
-let categoryAndroidKeywords = {
-                "maxWeight": 2,
-                "name": "Android",
-                "days": {
-                    "15914": {
-                        "x": 1374969600000,
-                        "size": 2,
-                        "domainList": [1, 1]
-                    }
-                },
-                "maxWeightDate": "15914",
-                "dayCount": 1,
-                "x": 1,
-                "y": 2,
-                "intentDist": 1,
-                "interestDist": 1.4142135623730951
-            }
-
-let categoryProgramming = {
+                    "intentDist": 1,
+                    "interestDist": 1.4142135623730951,
+                    "rank": 2
+                }
+            },
+            "capturedRankings": {},
+            "sortedInterests": [categoryComputingNoRank, {
+                "visitCount": 1,
                 "maxWeight": 1,
-                "name": "Programming",
+                "name": "health & fitness",
                 "days": {
-                    "15914": {
-                        "x": 1374969600000,
+                    "16361": {
+                        "x": 1413590400000,
                         "size": 1,
-                        "domainList": [1]
+                        "domainList": {
+                            "md-health.com": 1
+                        }
                     }
                 },
-                "maxWeightDate": "15914",
+                "visitIDs": [1413565015381142],
+                "subcats": {
+                    "1413565015381142": "general"
+                },
+                "maxWeightDate": "16361",
                 "dayCount": 1,
                 "x": 1,
                 "y": 1,
-                "intentDist": 2,
-                "interestDist": 2.23606797749979
-            }
-
-exports.dayAnnotatedThreeChartProcessorConsumeResults = {
-    "combined": {
-        "58-cat": {
-            "_type": "combined",
-            "_namespace": "58-cat",
-            "categories": { "computers": categoryComputersCombined },
-            "sortedInterests": [categoryComputersCombined],
-            "sortedIntents": [categoryComputersCombined],
-            "xMax": 1,
-            "xMin": 1,
-            "yMax": 1,
-            "yMin": 1
-        },
-        "edrules": {
-            "_type": "combined",
-            "_namespace": "edrules",
-            "categories": { "Android": categoryAndroid },
-            "sortedInterests": [categoryAndroid],
-            "sortedIntents": [categoryAndroid],
-            "xMax": 1,
-            "xMin": 1,
-            "yMax": 1,
-            "yMin": 1
-        }
-    },
-    "keywords": {
-        "58-cat": {
-            "_type": "keywords",
-            "_namespace": "58-cat",
-            "categories": {
-                "computers": categoryComputersKeywords,
-                "Programming": categoryProgramming,
-                "Android": categoryAndroidKeywords
-            },
-            "sortedInterests": [categoryComputersKeywords, categoryAndroidKeywords, categoryProgramming],
-            "sortedIntents": [categoryComputersKeywords, categoryAndroidKeywords, categoryProgramming],
+                "intentDist": 1,
+                "interestDist": 1.4142135623730951
+            }],
+            "sortedIntents": [categoryComputingNoRank, {
+                "visitCount": 1,
+                "maxWeight": 1,
+                "name": "health & fitness",
+                "days": {
+                    "16361": {
+                        "x": 1413590400000,
+                        "size": 1,
+                        "domainList": {
+                            "md-health.com": 1
+                        }
+                    }
+                },
+                "visitIDs": [1413565015381142],
+                "subcats": {
+                    "1413565015381142": "general"
+                },
+                "maxWeightDate": "16361",
+                "dayCount": 1,
+                "x": 1,
+                "y": 1,
+                "intentDist": 1,
+                "interestDist": 1.4142135623730951
+            }],
             "xMax": 2,
             "xMin": 1,
-            "yMax": 3,
+            "yMax": 2,
             "yMin": 1
         }
     }
 }
-
-exports.dayAnnotatedThreeTimelineConsumeResults = {
-    "combined": {
-        "58-cat": {
-            "interestList": ["computers"],
-            "chartJSON": [{
-                "key": "computers",
-                "values": [{
-                    "x": 1374969600000,
-                    "size": 4,
-                    "domainList": [1, 1, 1, 1],
-                    "y": 0
-                }]
-            }]
-        },
-        "edrules": {
-            "interestList": ["Android"],
-            "chartJSON": [{
-                "key": "Android",
-                "values": [{
-                    "x": 1374969600000,
-                    "size": 2,
-                    "domainList": [1, 1],
-                    "y": 0
-                }]
-            }]
-        }
-    },
-    "keywords": {
-        "58-cat": {
-            "interestList": ["computers", "Programming", "Android"],
-            "chartJSON": [{
-                "key": "computers",
-                "values": [{
-                    "x": 1374969600000,
-                    "size": 4,
-                    "domainList": [1, 1, 1, 1],
-                    "y": 0
-                }, {
-                    "x": 1375142400000,
-                    "size": 4,
-                    "domainList": [1, 1, 1, 1],
-                    "y": 0
-                }]
-            }, {
-                "key": "Programming",
-                "values": [{
-                    "x": 1374969600000,
-                    "size": 1,
-                    "domainList": [1],
-                    "y": 1
-                }]
-            }, {
-                "key": "Android",
-                "values": [{
-                    "x": 1374969600000,
-                    "size": 2,
-                    "domainList": [1, 1],
-                    "y": 2
-                }]
-            }]
-        }
-    }
-};
-
-exports.dayAnnotatedThreeWeightIntensityConsumeResults = {
-    "combined": {
-        "58-cat": {
-            "xMin": 1,
-            "yMin": 1,
-            "xMax": 1,
-            "yMax": 1,
-            "chartJSON": [{
-                "key": "key",
-                "values": [{
-                    "x": 1,
-                    "y": 1
-                }]
-            }],
-            "pointToInterestsMap": {
-                "11": ["computers"]
-            }
-        },
-        "edrules": {
-            "xMin": 1,
-            "yMin": 1,
-            "xMax": 1,
-            "yMax": 1,
-            "chartJSON": [{
-                "key": "key",
-                "values": [{
-                    "x": 1,
-                    "y": 1
-                }]
-            }],
-            "pointToInterestsMap": {
-                "11": ["Android"]
-            }
-        }
-    },
-    "keywords": {
-        "58-cat": {
-            "xMin": 1,
-            "yMin": 1,
-            "xMax": 2,
-            "yMax": 3,
-            "chartJSON": [{
-                "key": "key",
-                "values": [{
-                    "x": 2,
-                    "y": 3
-                }, {
-                    "x": 1,
-                    "y": 1
-                }, {
-                    "x": 1,
-                    "y": 2
-                }]
-            }],
-            "pointToInterestsMap": {
-                "11": ["Programming"],
-                "12": ["Android"],
-                "23": ["computers"]
-            }
-        }
-    }
-};
-
-exports.dayAnnotatedThreeIntentInterestConsumeResults = {
-    "combined": {
-        "58-cat": {
-            "sortedInterests": [{
-                "chartJSON": [{
-                    "label": "0",
-                    "value": 1
-                }, {
-                    "label": "1",
-                    "value": 1
-                }, {
-                    "label": "2",
-                    "value": 1
-                }, {
-                    "label": "3",
-                    "value": 1
-                }],
-                "title": "computers"
-            }],
-            "sortedIntents": [{
-                "chartJSON": [{
-                    "label": "0",
-                    "value": 1
-                }, {
-                    "label": "1",
-                    "value": 1
-                }, {
-                    "label": "2",
-                    "value": 1
-                }, {
-                    "label": "3",
-                    "value": 1
-                }],
-                "title": "computers (7/27/2013)"
-            }]
-        },
-        "edrules": {
-            "sortedInterests": [{
-                "chartJSON": [{
-                    "label": "0",
-                    "value": 1
-                }, {
-                    "label": "1",
-                    "value": 1
-                }],
-                "title": "Android"
-            }],
-            "sortedIntents": [{
-                "chartJSON": [{
-                    "label": "0",
-                    "value": 1
-                }, {
-                    "label": "1",
-                    "value": 1
-                }],
-                "title": "Android (7/27/2013)"
-            }]
-        }
-    },
-    "keywords": {
-        "58-cat": {
-            "sortedInterests": [{
-                "chartJSON": [{
-                    "label": "0",
-                    "value": 2
-                }, {
-                    "label": "1",
-                    "value": 2
-                }, {
-                    "label": "2",
-                    "value": 2
-                }, {
-                    "label": "3",
-                    "value": 2
-                }],
-                "title": "computers"
-            }, {
-                "chartJSON": [{
-                    "label": "0",
-                    "value": 1
-                }, {
-                    "label": "1",
-                    "value": 1
-                }],
-                "title": "Android"
-            }, {
-                "chartJSON": [{
-                    "label": "0",
-                    "value": 1
-                }],
-                "title": "Programming"
-            }],
-            "sortedIntents": [{
-                "chartJSON": [{
-                    "label": "0",
-                    "value": 1
-                }, {
-                    "label": "1",
-                    "value": 1
-                }, {
-                    "label": "2",
-                    "value": 1
-                }, {
-                    "label": "3",
-                    "value": 1
-                }],
-                "title": "computers (7/27/2013)"
-            }, {
-                "chartJSON": [{
-                    "label": "0",
-                    "value": 1
-                }, {
-                    "label": "1",
-                    "value": 1
-                }],
-                "title": "Android (7/27/2013)"
-            }, {
-                "chartJSON": [{
-                    "label": "0",
-                    "value": 1
-                }],
-                "title": "Programming (7/27/2013)"
-            }]
-        }
-    }
-};

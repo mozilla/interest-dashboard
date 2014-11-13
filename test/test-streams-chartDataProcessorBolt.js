@@ -15,7 +15,7 @@ Cu.import("resource://gre/modules/Task.jsm");
 exports["test chart data processing"] = function test_chartDataProcessing(assert, done) {
   Task.spawn(function() {
     let chartDataProcessorBolt = ChartDataProcessorBolt.create({});
-    let chartDataProcessorResults = (yield chartDataProcessorBolt.consume({meta: {}, message: sampleData.dayAnnotatedThree})).message;
+    let chartDataProcessorResults = (yield chartDataProcessorBolt.consume({meta: {}, message: sampleData.dayAnnotatedThree})).message["chartData"];
 
     assert.deepEqual(JSON.stringify(chartDataProcessorResults),
       JSON.stringify(chartData.dayAnnotatedThreeChartProcessorConsumeResults), "Unexpected chart data in storage");
@@ -23,10 +23,13 @@ exports["test chart data processing"] = function test_chartDataProcessing(assert
     // Test expected properties are there.
     for (let type in chartDataProcessorResults) {
       for (let namespace in chartDataProcessorResults[type]) {
-        assert.equal(Object.keys(chartDataProcessorResults[type][namespace]).length, 9);
+        assert.equal(Object.keys(chartDataProcessorResults[type][namespace]).length, 12);
         assert.ok(chartDataProcessorResults[type][namespace].hasOwnProperty("_type"));
         assert.ok(chartDataProcessorResults[type][namespace].hasOwnProperty("_namespace"));
+        assert.ok(chartDataProcessorResults[type][namespace].hasOwnProperty("maxDay"));
+        assert.ok(chartDataProcessorResults[type][namespace].hasOwnProperty("minDay"));
         assert.ok(chartDataProcessorResults[type][namespace].hasOwnProperty("categories"));
+        assert.ok(chartDataProcessorResults[type][namespace].hasOwnProperty("capturedRankings"));
         assert.ok(chartDataProcessorResults[type][namespace].hasOwnProperty("sortedInterests"));
         assert.ok(chartDataProcessorResults[type][namespace].hasOwnProperty("sortedIntents"));
         assert.ok(chartDataProcessorResults[type][namespace].hasOwnProperty("xMax"));
