@@ -66,47 +66,57 @@ function swapRules({interestsData, interestsDataType}) {
 function ruleClassify({host, language, baseDomain, path, title, url}) {
   let interests = [];
 
-  if (!gInterestsData || !gInterestsData[baseDomain]) {
+  if (!gInterestsData || (!gInterestsData[baseDomain] && !gInterestsData["__ANY"])) {
     return interests;
   }
 
-  let rule = gInterestsData[baseDomain];
+  let words = gTokenizer.tokenize(url, title);
 
-  let keyLength = rule ? Object.keys(rule).length : 0;
+  // subdomain tokens, for example:
+  //   host="foo.bar.rootdomain.com", we got ["foo.", "bar."]
+  let hostChunks = host.substring(0, host.length - baseDomain.length).match(/[^.\/]+\./gi);
+  words = words.concat(hostChunks);
+  // path tokens, for example:
+  //   path="/foo/bar/blabla.html", we got ["/foo", "/bar", "/blabla.html"]
+  words = words.concat(path.match(/\/[^\/#?]+/gi));
+
+  function matchedAllTokens(tokens) {
+    return tokens.every(function(word) {
+      return words.indexOf(word) != -1;
+    });
+  }
+
+  function matchRuleInterests(rule) {
+    Object.keys(rule).forEach(function(key) {
+      if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
+        interests = interests.concat(rule[key]);
+      }
+      else if (key.indexOf("__") < 0 && matchedAllTokens(key.split(kSplitter))) {
+        interests = interests.concat(rule[key]);
+      }
+    });
+  }
+
+  // process __ANY rule first
+  if (gInterestsData["__ANY"]) {
+    matchRuleInterests(gInterestsData["__ANY"]);
+  }
+
+  let domainRule = gInterestsData[baseDomain];
+
+  let keyLength = domainRule ? Object.keys(domainRule).length : 0;
   if (!keyLength)
     return interests;
 
-  if (rule["__ANY"]) {
-    interests = interests.concat(rule["__ANY"]);
+  if (domainRule["__ANY"]) {
+    interests = interests.concat(domainRule["__ANY"]);
     keyLength--;
   }
 
   if (!keyLength)
     return interests;
 
-  let words = gTokenizer.tokenize(url, title);
-
-  // subdomain tokens, for example:
-  //   host="foo.bar.rootdomain.com", we got ["foo.", "bar."]
-  words = words.concat(host.substring(0, host.length - baseDomain.length).match(/[^.\/]+\./gi));
-  // path tokens, for example:
-  //   path="/foo/bar/blabla.html", we got ["/foo", "/bar", "/blabla.html"]
-  words = words.concat(path.match(/\/[^\/#?]+/gi));
-
-  let matchedAllTokens = function(tokens) {
-    return tokens.every(function(word) {
-      return words.indexOf(word) != -1;
-    });
-  }
-
-  Object.keys(rule).forEach(function(key) {
-    if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
-      interests = interests.concat(rule[key]);
-    }
-    else if (key.indexOf("__") < 0 && matchedAllTokens(key.split(kSplitter))) {
-      interests = interests.concat(rule[key]);
-    }
-  });
+  matchRuleInterests(domainRule);
 
   return interests;
 }
