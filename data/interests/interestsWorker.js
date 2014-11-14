@@ -62,53 +62,89 @@ function swapRules({interestsData, interestsDataType}) {
   }
 }
 
+function interestFinalizer(interests) {
+  // This is a function to make the decision between a series of rules matched in the DFR
+  // Accepts: an array containing either lists-of-strings, or lists-of-pairs where the pairs
+  // are [string, float]
+  // Returns: [string, string, ...]
+  // Input: ["xyz",["golf",0.7],["foo",0.5],"bar"]
+
+  let finalInterests = {};
+  let highestWeight = 0;
+  let bestWeightedInterest;
+  interests.forEach(item => {
+    if (Array.isArray(item)) {
+      if (item[1] > highestWeight) {
+        highestWeight = item[1];
+        bestWeightedInterest = item[0];
+      }
+    } else {
+      finalInterests[item] = true;
+    }
+  });
+  if (bestWeightedInterest) finalInterests[bestWeightedInterest] = true;
+  //log(JSON.stringify(interests));
+
+  return Object.keys(finalInterests);
+}
+
 // classify a page using rules
 function ruleClassify({host, language, baseDomain, path, title, url}) {
   let interests = [];
 
-  if (!gInterestsData || !gInterestsData[baseDomain]) {
+  if (!gInterestsData || (!gInterestsData[baseDomain] && !gInterestsData["__ANY"])) {
     return interests;
   }
-
-  let rule = gInterestsData[baseDomain];
-
-  let keyLength = rule ? Object.keys(rule).length : 0;
-  if (!keyLength)
-    return interests;
-
-  if (rule["__ANY"]) {
-    interests = interests.concat(rule["__ANY"]);
-    keyLength--;
-  }
-
-  if (!keyLength)
-    return interests;
 
   let words = gTokenizer.tokenize(url, title);
 
   // subdomain tokens, for example:
   //   host="foo.bar.rootdomain.com", we got ["foo.", "bar."]
-  words = words.concat(host.substring(0, host.length - baseDomain.length).match(/[^.\/]+\./gi));
+  let hostChunks = host.substring(0, host.length - baseDomain.length).match(/[^.\/]+\./gi);
+  words = words.concat(hostChunks);
   // path tokens, for example:
   //   path="/foo/bar/blabla.html", we got ["/foo", "/bar", "/blabla.html"]
   words = words.concat(path.match(/\/[^\/#?]+/gi));
 
-  let matchedAllTokens = function(tokens) {
+  function matchedAllTokens(tokens) {
     return tokens.every(function(word) {
       return words.indexOf(word) != -1;
     });
   }
 
-  Object.keys(rule).forEach(function(key) {
-    if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
-      interests = interests.concat(rule[key]);
-    }
-    else if (key.indexOf("__") < 0 && matchedAllTokens(key.split(kSplitter))) {
-      interests = interests.concat(rule[key]);
-    }
-  });
+  function matchRuleInterests(rule) {
+    Object.keys(rule).forEach(function(key) {
+      if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
+        interests = interests.concat(rule[key]);
+      }
+      else if (key.indexOf("__") < 0 && matchedAllTokens(key.split(kSplitter))) {
+        interests = interests.concat(rule[key]);
+      }
+    });
+  }
 
-  return interests;
+  // process __ANY rule first
+  if (gInterestsData["__ANY"]) {
+    matchRuleInterests(gInterestsData["__ANY"]);
+  }
+
+  let domainRule = gInterestsData[baseDomain];
+
+  let keyLength = domainRule ? Object.keys(domainRule).length : 0;
+  if (!keyLength)
+    return interestFinalizer(interests);
+
+  if (domainRule["__ANY"]) {
+    interests = interests.concat(domainRule["__ANY"]);
+    keyLength--;
+  }
+
+  if (!keyLength)
+    return interestFinalizer(interests);
+
+  matchRuleInterests(domainRule);
+
+  return interestFinalizer(interests);
 }
 
 // classify a page using text

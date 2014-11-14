@@ -42,7 +42,29 @@ let testDomainRules = {
     "/code cplusplus": [
       "oop"
     ],
-  }
+  },
+  "stack.com": {
+    "/code /js": [
+      "js"
+    ]
+  },
+  "google.com" : {
+    "app.": [
+      "app"
+    ],
+    "/real_estate": [
+      "real estate"
+    ],
+  },
+  "__ANY" : {
+    "/golf": [
+      "golf",
+    ],
+    "golf.": [
+      ["tiger", 0.7],
+      ["foo", 0.5],
+    ]
+  },
 }
 
 // the test array
@@ -51,7 +73,7 @@ let matchTests = [
   info: "Match Test 1 (Rules): mozilla.org",
   url:  "http://www.mozilla.org",
   title: "Hello World",
-  expectedInterests:  [{"type":"rules","interests":["computers"]},{"type":"combined","interests":["computers"]},{"type":"keywords","interests":[]}],
+  expectedInterests:  [{"type":"rules","interests":["computers"]},{"type":"combined","interests":["computers"]},{"type":"keywords","interests":[]},],
 },
 {
   info: "Match Test 2 (Rules): weather gov",
@@ -88,7 +110,38 @@ let matchTests = [
   url:  "https://www.testpathdomain.com/code?qw=aa",
   title: "CPlusPlus programming",
   expectedInterests: [{"type":"rules","interests":["programming","oop"]},{"type":"combined","interests":["programming","oop"]},{"type":"keywords","interests":[]}],
-}];
+},
+{
+  info: "Match Test 8 (Rules): www.stack.com query url",
+  url:  "https://www.stack.com/code/js?qw=aa",
+  title: "js programming",
+  expectedInterests: [{"type":"rules","interests":["js"]},{"type":"combined","interests":["js"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 9 (Rules): __ANY golf",
+  url:  "https://www.stack.com/golf/js?qw=aa",
+  title: "js programming",
+  expectedInterests: [{"type":"rules","interests":["golf"]},{"type":"combined","interests":["golf"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 10 (Rules): .app",
+  url:  "https://app.dev.google.com/",
+  title: "js programming",
+  expectedInterests: [{"type":"rules","interests":["app"]},{"type":"combined","interests":["app"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 11 (Rules): real_estate",
+  url:  "https://dev.google.com/real_estate/",
+  title: "js programming",
+  expectedInterests: [{"type":"rules","interests":["real estate"]},{"type":"combined","interests":["real estate"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 12 (Rules): golf subdomain",
+  url:  "https://golf.google.com/golf",
+  title: "tornament",
+  expectedInterests: [{"type":"rules","interests":["golf","tiger"]},{"type":"combined","interests":["golf","tiger"]},{"type":"keywords","interests":[]}],
+},
+];
 
 exports["test default matcher"] = function test_default_matcher(assert, done) {
   let deferred;
@@ -101,7 +154,9 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
         if (msgData.message == "InterestsForDocument") {
           // make sure that categorization is correct
           let host = msgData.host;
-          assert.deepEqual(msgData.results, expectedInterests);
+          //console.log("msgData=> " + JSON.stringify(msgData.results))
+          //console.log("expectedInterests=> " + JSON.stringify(expectedInterests))
+          assert.ok(testUtils.compareArrayOrderIrrelevant(msgData.results, expectedInterests), "interests match");
           deferred.resolve();
         }
         else if (!(msgData.message in testUtils.kValidMessages)) {

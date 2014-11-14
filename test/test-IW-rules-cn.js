@@ -50,7 +50,7 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
         if (msgData.message == "InterestsForDocument") {
           // make sure that categorization is correct
           let host = msgData.host;
-          assert.deepEqual(msgData.results, expectedInterests);
+          assert.ok(testUtils.compareArrayOrderIrrelevant(msgData.results, expectedInterests), "interests match");
           deferred.resolve();
         }
         else if (!(msgData.message in testUtils.kValidMessages)) {
