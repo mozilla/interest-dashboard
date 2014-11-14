@@ -19,19 +19,23 @@ let today = DateUtils.today();
 let microNow = Date.now() * 1000;
 let interestMessage = {
   "message": "InterestsForDocument",
-  "url": "http://www.autoblog.com/",
-  "title": "test visit for http://www.autoblog.com/",
-  "host": "autoblog.com",
+  "url": "http://www.w3schools.com/",
+  "title": "test visit for http://www.w3schools.com/",
+  "host": "w3schools.com",
   "path": "/",
-  "tld": "autoblog.com",
+  "tld": "w3schools.com",
   "metaData": {},
   "language": "en",
   "messageId": "resubmit",
-  "namespace": "edrules",
+  "namespace": "58-cat",
   "results": [
-    {"type":"rules","interests":["Autos"]},
-  ]
+    {"type":"lwca","interests":["Education"]},
+  ],
+  "visitIDs": {},
 };
+interestMessage.visitIDs[today-2] = [1415986861953943];
+interestMessage.visitIDs[today-1] = [1415990218988805];
+interestMessage.visitIDs[today] = [1415990218988805];
 
 exports["test visit processing"] = function test_PastVisits(assert, done) {
   Task.spawn(function() {
@@ -119,7 +123,7 @@ exports["test ignore latest day visit unless flush"] = function test_TodayVisits
       doAssert = function(message) {
         assertDeferred.resolve();
         assert.ok(message.hasOwnProperty(today), "today's count should be present");
-        assert.equal(message[today]["rules"]["edrules"]["Autos"]["autoblog.com"], 3, "today's visit count should have accumulated");
+        assert.equal(message[today]["lwca"]["58-cat"]["Education"]["hosts"]["w3schools.com"], 3, "today's visit count should have accumulated");
       }
       dateVisits = {};
       dateVisits[today] = 2; // assertion checks if 2 is added to the 1 count set before
