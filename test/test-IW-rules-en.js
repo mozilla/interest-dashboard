@@ -154,8 +154,8 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
         if (msgData.message == "InterestsForDocument") {
           // make sure that categorization is correct
           let host = msgData.host;
-          console.log("msgData=> " + JSON.stringify(msgData.results))
-          console.log("expectedInterests=> " + JSON.stringify(expectedInterests))
+          //console.log("msgData=> " + JSON.stringify(msgData.results))
+          //console.log("expectedInterests=> " + JSON.stringify(expectedInterests))
           assert.ok(testUtils.compareArrayOrderIrrelevant(msgData.results, expectedInterests), "interests match");
           deferred.resolve();
         }
