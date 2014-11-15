@@ -31,11 +31,9 @@ exports["test promiseTimeout"] = function test_promiseTimeout(assert, done) {
 exports["test getRelevantPrefs"] = function test_GetRelevantPrefs(assert, done) {
   let prefs = getRelevantPrefs();
   let expected = {
-    "privacy.donottrackheader.value": Services.prefs.getIntPref("privacy.donottrackheader.value"),
     "privacy.donottrackheader.enabled":Services.prefs.getBoolPref("privacy.donottrackheader.enabled"),
     "browser.privatebrowsing.autostart": Services.prefs.getBoolPref("browser.privatebrowsing.autostart"),
     "browser.urlbar.autocomplete.enabled": Services.prefs.getBoolPref("browser.urlbar.autocomplete.enabled"),
-    "browser.urlbar.default.behavior": Services.prefs.getIntPref("browser.urlbar.default.behavior"),
     "network.cookie.cookieBehavior": Services.prefs.getIntPref("network.cookie.cookieBehavior"),
     "network.cookie.lifetimePolicy": Services.prefs.getIntPref("network.cookie.lifetimePolicy"),
     "privacy.sanitize.sanitizeOnShutdown": Services.prefs.getBoolPref("privacy.sanitize.sanitizeOnShutdown"),
