@@ -188,10 +188,6 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
 
 exports["test accumulation"] = function test_Accumulation(assert, done) {
   Task.spawn(function() {
-    yield testUtils.promiseClearHistory();
-    yield testUtils.addVisits("www.w3schools.com", 20);
-
-    // finally test aggregation
     let microNow = Date.now() * 1000;
     yield testUtils.promiseClearHistory();
     yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.w3schools.com/"), visitDate: microNow - 4*MICROS_PER_DAY});
