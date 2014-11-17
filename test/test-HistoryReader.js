@@ -85,9 +85,9 @@ exports["test read all"] = function test_readAll(assert, done) {
       {"x":daysPostEpochToDate(today),"size":1,"domainList":{"w3schools.com":1}},
       "Test expected data for today");
 
-    assert.deepEqual(datum[(today-20) + ""],
-      {"x":daysPostEpochToDate(today-20),"size":1,"domainList":{"w3schools.com":1}},
-      "Test expected data for today - 20");
+    assert.deepEqual(datum[(today-19) + ""],
+      {"x":daysPostEpochToDate(today-19),"size":1,"domainList":{"w3schools.com":1}},
+      "Test expected data for today - 19");
     assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
   }).then(done);
 }
@@ -124,12 +124,12 @@ exports["test read from given timestamp"] = function test_readFromGivenTimestamp
       {"x":daysPostEpochToDate(today),"size":1,"domainList":{"w3schools.com":1}},
       "Test expected data for today");
 
-    assert.deepEqual(datum[(today-10) + ""],
-      {"x":daysPostEpochToDate(today-10),"size":1,"domainList":{"w3schools.com":1}},
-      "Test expected data for today - 10");
+    assert.deepEqual(datum[(today-9) + ""],
+      {"x":daysPostEpochToDate(today-9),"size":1,"domainList":{"w3schools.com":1}},
+      "Test expected data for today - 9");
 
-    assert.deepEqual(datum[(today-11) + ""], undefined,
-      "Test expected data for today - 11");
+    assert.deepEqual(datum[(today-10) + ""], undefined,
+      "Test expected data for today - 10");
 
     assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
   }).then(done);
@@ -219,12 +219,12 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
     let datum = storageBackend.chartData.genericChartData.lwca["58-cat"].categories.education.days;
     let dates = Object.keys(datum);
     assert.equal(dates.length,3);
-    assert.deepEqual(datum[(today-4) + ""],
-      {"x":daysPostEpochToDate(today-4),"size":1,"domainList":{"w3schools.com":1}});
     assert.deepEqual(datum[(today-3) + ""],
-      {"x":daysPostEpochToDate(today-3),"size":2,"domainList":{"w3schools.com":2}});
+      {"x":daysPostEpochToDate(today-3),"size":1,"domainList":{"w3schools.com":1}});
     assert.deepEqual(datum[(today-2) + ""],
-      {"x":daysPostEpochToDate(today-2),"size":3,"domainList":{"w3schools.com":3}});
+      {"x":daysPostEpochToDate(today-2),"size":2,"domainList":{"w3schools.com":2}});
+    assert.deepEqual(datum[(today-1) + ""],
+      {"x":daysPostEpochToDate(today-1),"size":3,"domainList":{"w3schools.com":3}});
     done();
   }).then(done);
 }
@@ -255,7 +255,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       // block until the data has been processed
       processDeferred = oldPromise.defer();
       streamObjects.dailyInterestsSpout.setEmitCallback(spout => {
-        if (spout.numFromToday == 1) {
+        if (spout.numFromToday == 0) {
           processDeferred.resolve();
         }
       });
@@ -293,7 +293,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
 
       processDeferred = oldPromise.defer();
       streamObjects.dailyInterestsSpout.setEmitCallback(spout => {
-        if (spout.numFromToday == 1) {
+        if (spout.numFromToday == 0) {
           processDeferred.resolve();
         }
       });
