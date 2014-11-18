@@ -124,9 +124,17 @@ body {
 }
 
 .cog {
-  position:absolute;
-  right: 0;
+  right: -45px;
   top: 10px;
+}
+.cog, .tabWrapper {
+  display: inline-block;
+  float: right;
+  position: relative;
+}
+.tabWrapper {
+  position: relative;
+  right: -30px;
 }
 .cog-btn, .cog-btn:hover, .cog-clicked {
   background-color: #F5F5F5 !important;
