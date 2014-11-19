@@ -107,7 +107,14 @@ body {
   margin: 0px;
 }
 
-.selected {
+.navbar-nav > .active > a {
+  background-color: transparent !important;
+  color: #777 !important;
+}
+.navbar-nav > :not(.active) > a {
+  color: #AFAFAF !important;
+}
+li.active {
   border-bottom: solid 5px #4A90E2;
   color: #000000;
 }
@@ -125,7 +132,7 @@ body {
 
 .cog {
   right: -45px;
-  top: 10px;
+  top: 7px;
 }
 .cog, .tabWrapper {
   display: inline-block;
@@ -150,7 +157,7 @@ body {
   background: url('resources/Icon_Cog_Click.svg') no-repeat center center !important;
   width: 25px;
   height: 25px;
-  margin-right: -1.5px;
+  margin-right: -3.5px;
   margin-top: -1px;
 }
 

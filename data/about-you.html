@@ -40,9 +40,10 @@
                 <li ng-click="generateDebugReport()"><a href="#">Generate debug report</a></li>
               </ul>
             </div>
-            <div class="tabWrapper">
-              <ul class="nav navbar-nav navbar-right">
-                <li class="selected"><a href="#">Your Interests</a></li>
+            <div class="tabWrapper" role="tabpanel">
+              <ul class="nav navbar-nav navbar-right" role="tablist">
+                <li role="presentation" class="active"><a href="#Tab1" aria-controls"Tab1" role="tab" data-toggle="tab" >Your Interests</a></li>
+                <li role="presentation"><a href="#recommendations" aria-controls"recommendations" role="tab" data-toggle="tab" >Your Recommendations</a></li>
               </ul>
             </div>
           </div>
@@ -52,223 +53,231 @@
     </div>
   </div>
 
-  <div class="outer-banner">
-    <div id="incomplete-banner">
-      <div id="incomplete-banner-img">
-        <div id="logo"></div>
-      </div>
-      <div id="incomplete-banner-text">
-        <div class="large-white-text">
-          <div class="regular">Your Interest Profile won't be complete until</div>
-          <div class="bold">{{monthXX}}</div>
-        </div>
-        <div class="description-text">
-          <div class="lead-in">Firefox needs 30 days of browsing history</div>
-          <div class="normal">to show your complete interest profile. Until then, things may look incomplete (or even a little wonky).</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="visual-header-overlay">
-    <div class="visual-overlay-content">
-      <div class="analyzing-title">{{processingBlurb}}</div>
-      <div class="visual-header-text-overlay">{{percentProcessed}}</div>
-      <div class="progress">
-        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
-      </div>
-      <div class="analyzing-blurb">Firefox is generating an overview of your interests based on your recent browsing history... This may take several moments!</div>
-    </div>
-  </div>
-  <div class="row-fluid visual-header">
-    <div class="col-md-2">
-      <svg id="interestPie" style="height: 390px; width: 390px;"></svg>
-    </div>
-    <div class="col-md-9">
-      <div class="area-graph-top">
-        <div class="graph-header">{{graphHeader}}</div>
-        <div class="past-x-days">{{pastXDays}}</div>
-        <div class='back'> < Back</div>
-        <div class="lastUpdateTimestamp">{{lastUpdate}}</div>
-      </div>
-      <div id="areaGraphDiv">
-        <div id="percentComplete" ng-hide="isComplete">
-          <div id="percentage">{{percentage}}%</div>
-          <div id="complete">complete</div>
-        </div>
-        <svg id="areaGraph"></svg>
-      </div>
-      <div class="graphMarkers"></div>
-      <div class="mostRecentMarker" ng-hide="isAtAnEnd"></div>
-      <div class="graphUnderline"></div>
-      <div class="dates">
-        <div class="date-label">Day 1</div>
-        <div id="mostRecentDate" class="date-label" ng-hide="isAtAnEnd">{{mostRecentDate}}</div>
-        <div id="today" class="date-label">Day 30</div>
-      </div>
-      <ul id="navlist">
-        <li>
-          <div class="title-font">{{scoreTitle}}
-            <button id="help-btn" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Your Interest Score is a sum of the Intent rank and Interest rank for a category, normalized to a maximum of 250 for each.">
-              <div class="help-img"></div>
-            </button>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="Tab1">
+      <div class="outer-banner">
+        <div id="incomplete-banner">
+          <div id="incomplete-banner-img">
+            <div id="logo"></div>
           </div>
-          <div id="interestScoreHighlights" class="usage-highlights">
-            <div class="usage-value">{{score}}</div>
-            <div class="symbol"></div>
-            <div class="intensityPercent"></div>
+          <div id="incomplete-banner-text">
+            <div class="large-white-text">
+              <div class="regular">Your Interest Profile won't be complete until</div>
+              <div class="bold">{{monthXX}}</div>
+            </div>
+            <div class="description-text">
+              <div class="lead-in">Firefox needs 30 days of browsing history</div>
+              <div class="normal">to show your complete interest profile. Until then, things may look incomplete (or even a little wonky).</div>
+            </div>
           </div>
-          <div class="usage-detail">{{previousScore}}</div>
-        </li>
-        <li></li>
-        <li>
-          <div class="title-font">{{rankTitle}}</div>
-          <div class="usage-value top-category">{{rank}}</div>
-          <div class="usage-detail">{{rankDetails}}</div>
-        </li>
-        <li></li>
-        <li>
-          <div class="title-font">{{visitCountTitle}}</div>
-          <div id="visitCountUsageHighlights" class="usage-highlights">
-            <div class="usage-value">{{visitCount}}</div>
-            <div class="symbol"></div>
-            <div class="intensityPercent"></div>
+        </div>
+      </div>
+      <div id="visual-header-overlay">
+        <div class="visual-overlay-content">
+          <div class="analyzing-title">{{processingBlurb}}</div>
+          <div class="visual-header-text-overlay">{{percentProcessed}}</div>
+          <div class="progress">
+            <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
           </div>
-          <div class="usage-detail">{{visitCountDetails}}</div>
-        </li>
-        <li></li>
-        <li>
-          <div class="title-font">Time Spent Per Day</div>
-          <div class="usage-value">---</div>
-          <div class="usage-detail">coming soon</div>
-        </li>
-      </ul>
-    </div>
-  </div>
+          <div class="analyzing-blurb">Firefox is generating an overview of your interests based on your recent browsing history... This may take several moments!</div>
+        </div>
+      </div>
+      <div class="row-fluid visual-header">
+        <div class="col-md-2">
+          <svg id="interestPie" style="height: 390px; width: 390px;"></svg>
+        </div>
+        <div class="col-md-9">
+          <div class="area-graph-top">
+            <div class="graph-header">{{graphHeader}}</div>
+            <div class="past-x-days">{{pastXDays}}</div>
+            <div class='back'> < Back</div>
+            <div class="lastUpdateTimestamp">{{lastUpdate}}</div>
+          </div>
+          <div id="areaGraphDiv">
+            <div id="percentComplete" ng-hide="isComplete">
+              <div id="percentage">{{percentage}}%</div>
+              <div id="complete">complete</div>
+            </div>
+            <svg id="areaGraph"></svg>
+          </div>
+          <div class="graphMarkers"></div>
+          <div class="mostRecentMarker" ng-hide="isAtAnEnd"></div>
+          <div class="graphUnderline"></div>
+          <div class="dates">
+            <div class="date-label">Day 1</div>
+            <div id="mostRecentDate" class="date-label" ng-hide="isAtAnEnd">{{mostRecentDate}}</div>
+            <div id="today" class="date-label">Day 30</div>
+          </div>
+          <ul id="navlist">
+            <li>
+              <div class="title-font">{{scoreTitle}}
+                <button id="help-btn" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Your Interest Score is a sum of the Intent rank and Interest rank for a category, normalized to a maximum of 250 for each.">
+                  <div class="help-img"></div>
+                </button>
+              </div>
+              <div id="interestScoreHighlights" class="usage-highlights">
+                <div class="usage-value">{{score}}</div>
+                <div class="symbol"></div>
+                <div class="intensityPercent"></div>
+              </div>
+              <div class="usage-detail">{{previousScore}}</div>
+            </li>
+            <li></li>
+            <li>
+              <div class="title-font">{{rankTitle}}</div>
+              <div class="usage-value top-category">{{rank}}</div>
+              <div class="usage-detail">{{rankDetails}}</div>
+            </li>
+            <li></li>
+            <li>
+              <div class="title-font">{{visitCountTitle}}</div>
+              <div id="visitCountUsageHighlights" class="usage-highlights">
+                <div class="usage-value">{{visitCount}}</div>
+                <div class="symbol"></div>
+                <div class="intensityPercent"></div>
+              </div>
+              <div class="usage-detail">{{visitCountDetails}}</div>
+            </li>
+            <li></li>
+            <li>
+              <div class="title-font">Time Spent Per Day</div>
+              <div class="usage-value">---</div>
+              <div class="usage-detail">coming soon</div>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-  <div id="main-overlay"></div>
-  <div id="main-row-background" class="row-fluid">
-    <div id="main-row-body">
-      <div class="col-sm-3 col-md-2 sidebar">
-        <div id="most-visited" class="title-font">Most Visited Sites</div>
-        <ol class="nav nav-sidebar">
-          <li ng-repeat="item in list">
-            <div class="most-visited-site-rank">{{$index + 1}}</div>
-            <img class="favicon" ng-src="{{item[2]}}"></img>
-            <a ng-href="http://{{item[0]}}">{{item[0]}}</a> <div class="nav-sidebar-info">({{item[1]}}x)</div>
-          </li>
-        </ol>
-      </div>
-      <div class="col-sm-9 col-sm-offset-3 col-md-9 main">
-        <div class='subtitleCircle headerCircle'></div>
-        <table id="test" class="row-border" width="100%">
-          <thead>
-            <tr>
-              <th>Rank<div class="sortTriangle"></div></th>
-              <th>Category<div class="sortTriangle"></div></th>
-              <th></th>
-              <th>Recent Activity<div class="sortTriangle"></div></th>
-              <th>Intensity</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="mainTable">
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal dialog for debug log display. -->
-  <div id="debug-modal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title">Debug Log</h4>
-        </div>
-        <div class="modal-body">
-          <textarea id="debug-textarea">{{debugLog}}</textarea>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
-  <!-- Interest Dashboard tutorial/tour. -->
-  <div id="ui-tour-mask" tabindex="-1" style="display: none;"></div>
-  <div style="display: none;" id="ui-tour" tabindex="-1" aria-expanded="true">
-    <div class="cta">
-      <button type="button" aria-controls="ui-tour">Learn more</button>
-    </div>
-    <div class="tour-tip"><span>Next:</span> Customize</div>
-    <div class="ui-tour-controls">
-      <button style="display: inline-block;" disabled="disabled" class="step prev faded" aria-controls="tour-steps tour-progress">Previous</button>
-      <button class="step next" aria-controls="tour-steps tour-progress">Next</button>
-      <button style="display: inline-block;" class="close" aria-controls="tour-steps tour-progress">Close</button>
-    </div>
-    <div class="tour-background">
-      <div class="tour-inner">
-        <div style="display: block;" id="tour-progress" class="progress-step">
-          <div class="logo"></div>
-          <span class="step">1/4</span>
-          <div class="progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
-            <span class="indicator"></span>
+      <div id="main-overlay"></div>
+      <div id="main-row-background" class="row-fluid">
+        <div id="main-row-body">
+          <div class="col-sm-3 col-md-2 sidebar">
+            <div id="most-visited" class="title-font">Most Visited Sites</div>
+            <ol class="nav nav-sidebar">
+              <li ng-repeat="item in list">
+                <div class="most-visited-site-rank">{{$index + 1}}</div>
+                <img class="favicon" ng-src="{{item[2]}}"></img>
+                <a ng-href="http://{{item[0]}}">{{item[0]}}</a> <div class="nav-sidebar-info">({{item[1]}}x)</div>
+              </li>
+            </ol>
+          </div>
+          <div class="col-sm-9 col-sm-offset-3 col-md-9 main">
+            <div class='subtitleCircle headerCircle'></div>
+            <table id="test" class="row-border" width="100%">
+              <thead>
+                <tr>
+                  <th>Rank<div class="sortTriangle"></div></th>
+                  <th>Category<div class="sortTriangle"></div></th>
+                  <th></th>
+                  <th>Recent Activity<div class="sortTriangle"></div></th>
+                  <th>Intensity</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="mainTable">
+              </tbody>
+            </table>
           </div>
         </div>
-        <ul style="display: block;" id="tour-steps" class="ui-tour-list">
-          <li class="tour-step current app-menu visible" data-step="1" data-tip-next="<span>Next:</span> Area Graph">
-            <div class="tour-item">
-              <h2 class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
-                It all starts with your<br> interest wheel
-              </h2>
-              <ul class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
-                <li>Click on the different categories to start exploring your history</li>
-              </ul>
-            </div>
-            <div id="image1" class="image"></div>
-          </li>
-          <li class="tour-step app-menu" data-step="2" data-tip-prev="<span>Previous:</span> Interest Wheel" data-tip-next="<span>Next:</span> Top Sites">
-            <div class="tour-item">
-              <h2 class="tour-highlight step-target" data-target="customize" data-effect="wobble">
-                See stats about your activity<br> with the area graph
-              </h2>
-              <ul>
-                <li>The area graph will display the intensity of an interest topic in the last 30 days</li>
-                <li>Summarized stats reflect the total or selected category</li>
-              </ul>
-            </div>
-            <div id="image2" class="image"></div>
-          </li>
-          <li class="tour-step app-menu" data-step="3" data-tip-prev="<span>Previous:</span> Area Graph" data-tip-next="<span>Next:</span> Interest History">
-            <div class="tour-item">
-              <h2 class="tour-highlight step-target" data-target="addons" data-effect="wobble">
-                See where you spend your<br> time on the web
-              </h2>
-              <ul>
-                <li>The sites you visit most often are ranked by page views</li>
-              </ul>
-            </div>
-            <div id="image3" class="image"></div>
-          </li>
-          <li class="tour-step" data-step="4" data-tip-prev="<span>Previous:</span> Top Sites">
-            <div class="tour-item">
-              <h2 class="tour-highlight step-target" data-target="bookmarks" data-effect="wobble">
-                Review your interest history<br> by category
-              </h2>
-              <ul>
-                <li>Sort interests by rank, category, or activity</li>
-                <li>Expand category rows to reveal browsing history</li>
-                <li>Icons indicate new or popular interest categories</li>
-              </ul>
-            </div>
-            <div id="image4" class="image"></div>
-          </li>
-        </ul>
-        <div style="display: none;" class="compact-title"><h2>
-          It starts with the new, intuitive menu
-        </h2></div>
-        <div class="tour-init" data-target="appMenu" data-icon="//mozorg.cdn.mozilla.net/media/img/firefox/australis/logo.png?2014-03" data-icon-high-res="//mozorg.cdn.mozilla.net/media/img/firefox/australis/logo-high-res.png?2014-03"></div>
       </div>
+
+      <!-- Modal dialog for debug log display. -->
+      <div id="debug-modal" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title">Debug Log</h4>
+            </div>
+            <div class="modal-body">
+              <textarea id="debug-textarea">{{debugLog}}</textarea>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+      <!-- Interest Dashboard tutorial/tour. -->
+      <div id="ui-tour-mask" tabindex="-1" style="display: none;"></div>
+      <div style="display: none;" id="ui-tour" tabindex="-1" aria-expanded="true">
+        <div class="cta">
+          <button type="button" aria-controls="ui-tour">Learn more</button>
+        </div>
+        <div class="tour-tip"><span>Next:</span> Customize</div>
+        <div class="ui-tour-controls">
+          <button style="display: inline-block;" disabled="disabled" class="step prev faded" aria-controls="tour-steps tour-progress">Previous</button>
+          <button class="step next" aria-controls="tour-steps tour-progress">Next</button>
+          <button style="display: inline-block;" class="close" aria-controls="tour-steps tour-progress">Close</button>
+        </div>
+        <div class="tour-background">
+          <div class="tour-inner">
+            <div style="display: block;" id="tour-progress" class="progress-step">
+              <div class="logo"></div>
+              <span class="step">1/4</span>
+              <div class="progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
+                <span class="indicator"></span>
+              </div>
+            </div>
+            <ul style="display: block;" id="tour-steps" class="ui-tour-list">
+              <li class="tour-step current app-menu visible" data-step="1" data-tip-next="<span>Next:</span> Area Graph">
+                <div class="tour-item">
+                  <h2 class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
+                    It all starts with your<br> interest wheel
+                  </h2>
+                  <ul class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
+                    <li>Click on the different categories to start exploring your history</li>
+                  </ul>
+                </div>
+                <div id="image1" class="image"></div>
+              </li>
+              <li class="tour-step app-menu" data-step="2" data-tip-prev="<span>Previous:</span> Interest Wheel" data-tip-next="<span>Next:</span> Top Sites">
+                <div class="tour-item">
+                  <h2 class="tour-highlight step-target" data-target="customize" data-effect="wobble">
+                    See stats about your activity<br> with the area graph
+                  </h2>
+                  <ul>
+                    <li>The area graph will display the intensity of an interest topic in the last 30 days</li>
+                    <li>Summarized stats reflect the total or selected category</li>
+                  </ul>
+                </div>
+                <div id="image2" class="image"></div>
+              </li>
+              <li class="tour-step app-menu" data-step="3" data-tip-prev="<span>Previous:</span> Area Graph" data-tip-next="<span>Next:</span> Interest History">
+                <div class="tour-item">
+                  <h2 class="tour-highlight step-target" data-target="addons" data-effect="wobble">
+                    See where you spend your<br> time on the web
+                  </h2>
+                  <ul>
+                    <li>The sites you visit most often are ranked by page views</li>
+                  </ul>
+                </div>
+                <div id="image3" class="image"></div>
+              </li>
+              <li class="tour-step" data-step="4" data-tip-prev="<span>Previous:</span> Top Sites">
+                <div class="tour-item">
+                  <h2 class="tour-highlight step-target" data-target="bookmarks" data-effect="wobble">
+                    Review your interest history<br> by category
+                  </h2>
+                  <ul>
+                    <li>Sort interests by rank, category, or activity</li>
+                    <li>Expand category rows to reveal browsing history</li>
+                    <li>Icons indicate new or popular interest categories</li>
+                  </ul>
+                </div>
+                <div id="image4" class="image"></div>
+              </li>
+            </ul>
+            <div style="display: none;" class="compact-title"><h2>
+              It starts with the new, intuitive menu
+            </h2></div>
+            <div class="tour-init" data-target="appMenu" data-icon="//mozorg.cdn.mozilla.net/media/img/firefox/australis/logo.png?2014-03" data-icon-high-res="//mozorg.cdn.mozilla.net/media/img/firefox/australis/logo-high-res.png?2014-03"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="recommendations">
+      BEEP
     </div>
   </div>
 </body>
