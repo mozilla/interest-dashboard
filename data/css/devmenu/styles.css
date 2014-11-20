@@ -897,7 +897,7 @@ ol li {
 
 #tutorial-popover {
   top: 45px;
-  right: 5px;
+  right: -10px;
   background-color: #DCDCDC;
   width: 400px;
   height: 200px;
