@@ -1003,6 +1003,8 @@ ol li {
   top: 70px;
 }
 
+
+
 /* Empty profile */
 #noHistory {
   background: #F5F5F5;
@@ -1081,4 +1083,34 @@ ol li {
 #emptyProfileContent .point {
   height: 64px;
   margin-bottom: 15px;
+}
+
+
+
+/* Recommendations */
+#spiderGraph .link {
+  stroke: #000000;
+  stroke-width: 1.5px;
+}
+
+#spiderGraph .node {
+  cursor: move;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+#spiderGraph text {
+  cursor: move;
+  -moz-user-select: none;
+  pointer-events: none;
+  text-anchor: middle;
+  dominant-baseline: central;
+  user-select: central;
+  stroke: none;
+  fill: #000000;
+}
+
+#spiderGraph rect {
+  fill: #FFFFFF;
+  stroke: #000000;
 }
