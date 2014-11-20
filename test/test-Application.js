@@ -9,7 +9,7 @@
 const simplePrefs = require("sdk/simple-prefs");
 const {storage} = require("sdk/simple-storage");
 
-const {PrefsManager, StudyApp} = require("Application");
+const {PrefsManager, Dashboard} = require("Application");
 const {testUtils} = require("./helpers");
 const test = require("sdk/test");
 
@@ -32,7 +32,7 @@ exports["test AMO source attribution"] = function test_AMOSourceAttribution(asse
 
   for (let data of urls) {
     let uri = NetUtil.newURI(data.url);
-    StudyApp.setSourceUri(uri);
+    Dashboard.setSourceUri(uri);
     assert.deepEqual(storage.downloadSource, data.src);
   }
 }
