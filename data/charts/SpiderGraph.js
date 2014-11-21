@@ -3,22 +3,32 @@ function SpiderGraph($scope) {
   this.colors = d3.scale.category20();
   this._nodeList = {};
 
-  this.force = d3.layout.force()
-    .charge(-6000)
-    .gravity(0.001)
-    .on("tick", () => {
-      console.log("CALLING TICK");
-      this._tick();
-    });
-
   this._init();
+  this.force = d3.layout.force()
+    .size([this.width, this.height])
+    .linkDistance(function(node, index) {
+      let charge = 0;
+      if (index <= 5) {
+        charge = 0;
+      }
+      else if (index <= 10) {
+        charge =  250;
+      }
+      else if (index <= 16) {
+        charge = 1000;
+      }
+      console.log("NODE " + index + " has charge " + charge);
+      return charge;
+    })
+    .charge(-8000)
+    .on("tick", () => { this._tick(); });
 }
 
 SpiderGraph.prototype = {
   _init: function() {
-    this.svg = d3.select("#spiderGraph svg");
-    this.width  = this.svg.attr("width");
-    this.height = this.svg.attr("height");
+    this.svg = d3.select("#spiderGraph svg")
+    this.width  = $(window).width();
+    this.height = $(window).height() - 50;
     this.svg.append("rect")
       .attr("width", this.width)
       .attr("height", this.height);
@@ -34,8 +44,6 @@ SpiderGraph.prototype = {
         .attr("y2", (d) => { return (Math.max(d.target.radius, Math.min(this.height - d.target.radius, d.target.y))); });
 
     node.attr("transform", (d) => {
-      let thing = (Math.max(d.radius, Math.min(this.width - d.radius, d.x))) + "," + (Math.max(d.radius, Math.min(this.height - d.radius, d.y)));
-      console.log("WE WILL TRANSLATE TO THIS " + thing);
       return "translate(" + (Math.max(d.radius, Math.min(this.width - d.radius, d.x))) + "," + (Math.max(d.radius, Math.min(this.height - d.radius, d.y))) + ")";
     });
   },
@@ -98,15 +106,12 @@ SpiderGraph.prototype = {
   },
 
   graph: function(data, table, $scope) {
-    console.log("DATA " +  JSON.stringify(data));
-    try {
     if (data) {
       d3.select("#spiderGraph svg").selectAll("*").remove();
       this._init();
 
-      console.log("SETTING X AND Y, width is " + this.width);
-      data.nodes[0].x = this.width / 2 - this.MAIN_RADIUS / 2;
-      data.nodes[0].y = this.height / 2 - this.MAIN_RADIUS / 2;
+      data.nodes[0].x = this.width / 2;
+      data.nodes[0].y = this.height / 2;
 
       this._originalNodes = data.nodes;
       this._links = data.links;
@@ -114,7 +119,6 @@ SpiderGraph.prototype = {
       this._hideSecondLevelChildren();
       this._recomputeNodes();
     }
-    console.log("NODES " + JSON.stringify(this._nodes));
     this.force
       .nodes(this._nodes)
       .links(this._links)
@@ -130,8 +134,7 @@ SpiderGraph.prototype = {
     node.exit().remove();
     node.enter().append("g")
       .attr("class", "node")
-      .on("click", (d) => { return this._click(d); })
-      .call(this.force.drag);
+      .on("click", (d) => { return this._click(d); });
 
     node.append("circle")
       .attr("class", "node")
@@ -143,18 +146,12 @@ SpiderGraph.prototype = {
 
     node.append("text")
       .text(function(d) { return d.name; })
-      .style("font-size", "50px");
+      .style("font-size", "12px");
 
     this.force.start();
-    console.log("how do we not get here???");
     if (data) {
       // Wait for graph to settle down before displaying on first draw.
-      console.log("about to call tick");
       for (var i = 0; i < 100; ++i) this.force.tick();
-      //this.force.stop();
-    }
-    } catch(ex) {
-      console.log("WTF  " + ex);
     }
   }
 }
