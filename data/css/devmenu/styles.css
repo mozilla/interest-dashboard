@@ -5,6 +5,10 @@
 .alerts { margin-top: 10px; }
 
 /* General */
+html, body, .tab-content, #recommendations, #spiderGraph {
+  height: 100%;
+}
+
 .navbar, #main-row-background, .navbar-background, #test tr {
   background-color: #f5f5f5; /* Light grey for top navbar */
 }
