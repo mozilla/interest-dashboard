@@ -5,6 +5,7 @@ before_script:
     - cd addon-sdk
     - . bin/activate
     - cd ../
+    - /usr/local/bin/firefox -v
 env:
     - DISPLAY=':99.0'
 script: cfx test     
