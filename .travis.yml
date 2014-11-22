@@ -2,7 +2,8 @@ language: node_js
 before_script:
     - sh -e /etc/init.d/xvfb start
     - git submodule update --init
-    - . addon-sdk/bin/activate
+    - cd addon-sdk
+    - . bin/activate
     - cd ../
 env:
     - DISPLAY=':99.0'
