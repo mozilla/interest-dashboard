@@ -7,5 +7,5 @@ before_script:
     - cd ../
     - /usr/local/bin/firefox -v
 env:
-    - DISPLAY=':99.0'
+    - DISPLAY=':99.0' HOME=/tmp LD_LIBRARY_PATH=.:/usr/lib:$LD_LIBRARY_PATH
 script: cfx test     
