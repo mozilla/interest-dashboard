@@ -9,13 +9,13 @@ function SpiderGraph($scope) {
     .linkDistance(function(node, index) {
       let charge = 0;
       if (index <= 5) {
-        charge = 0;
+        charge = 100;
       }
       else if (index <= 10) {
-        charge =  250;
+        charge =  300;
       }
       else if (index <= 16) {
-        charge = 1000;
+        charge = 500;
       }
       console.log("NODE " + index + " has charge " + charge);
       return charge;
