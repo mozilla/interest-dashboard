@@ -7,18 +7,8 @@ function SpiderGraph($scope) {
   this.force = d3.layout.force()
     .size([this.width, this.height])
     .linkDistance(function(node, index) {
-      let charge = 0;
-      if (index <= 5) {
-        charge = 100;
-      }
-      else if (index <= 10) {
-        charge =  300;
-      }
-      else if (index <= 16) {
-        charge = 500;
-      }
-      console.log("NODE " + index + " has charge " + charge);
-      return charge;
+      let distance = 100 + node.target.layer * 200;
+      return distance;
     })
     .charge(-8000)
     .on("tick", () => { this._tick(); });
