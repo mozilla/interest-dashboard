@@ -7,7 +7,7 @@ function SpiderGraph($scope) {
   this.force = d3.layout.force()
     .size([this.width, this.height])
     .linkDistance(function(node, index) {
-      let distance = 100 + node.target.layer * 200;
+      let distance = 150 + node.target.layer * 100;
       return distance;
     })
     .charge(-8000)
@@ -16,25 +16,56 @@ function SpiderGraph($scope) {
 
 SpiderGraph.prototype = {
   _init: function() {
-    this.svg = d3.select("#spiderGraph svg")
+    let self = this;
     this.width  = $(window).width();
     this.height = $(window).height() - 50;
+
+    let x = d3.scale.linear()
+        .domain([-this.width / 2, this.width / 2])
+        .range([0, this.width]);
+
+    let y = d3.scale.linear()
+        .domain([-this.height / 2, this.height / 2])
+        .range([this.height, 0]);
+
+    let xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .tickSize(-this.height);
+
+    let yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .ticks(5)
+        .tickSize(-this.width);
+
+    function zoomed() {
+      self._graphContainer.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    }
+    let zoom = d3.behavior.zoom()
+      .x(x)
+      .y(y)
+      .scaleExtent([1, 10])
+      .on("zoom", zoomed);
+
+    this.svg = d3.select("#spiderGraph svg").append("g").call(zoom);
     this.svg.append("rect")
       .attr("width", this.width)
       .attr("height", this.height);
 
-    this.svg.append("g").attr("class", "links");
-    this.svg.append("g").attr("class", "nodes");
+    this._graphContainer = this.svg.append("g");
+    this._graphContainer.append("g").attr("class", "links");
+    this._graphContainer.append("g").attr("class", "nodes");
   },
 
   _tick: function() {
-    link.attr("x1", (d) => { return (Math.max(d.source.radius, Math.min(this.width - d.source.radius, d.source.x))); })
-        .attr("y1", (d) => { return (Math.max(d.source.radius, Math.min(this.height - d.source.radius, d.source.y))); })
-        .attr("x2", (d) => { return (Math.max(d.target.radius, Math.min(this.width - d.target.radius, d.target.x))); })
-        .attr("y2", (d) => { return (Math.max(d.target.radius, Math.min(this.height - d.target.radius, d.target.y))); });
+    link.attr("x1", (d) => { return d.source.x; })
+        .attr("y1", (d) => { return d.source.y; })
+        .attr("x2", (d) => { return d.target.x; })
+        .attr("y2", (d) => { return d.target.y; });
 
     node.attr("transform", (d) => {
-      return "translate(" + (Math.max(d.radius, Math.min(this.width - d.radius, d.x))) + "," + (Math.max(d.radius, Math.min(this.height - d.radius, d.y))) + ")";
+      return "translate(" + d.x + "," + d.y + ")";
     });
   },
 
