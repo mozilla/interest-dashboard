@@ -45,8 +45,13 @@
             <div ng-repeat="cat in tops">
                <input type="checkbox" ng-change="changeCheckedStatus(cat)" ng-model="checkedCats[cat]">{{cat}}
                <img class="iab-settings-toggle-image"
+                    ng-show="!expended[cat]"
                     ng-click="toggelSubPrefs(cat)"
                     ng-src="{{dataUrl + 'images/arrow-right.png'}}"/>
+               <img class="iab-settings-toggle-image"
+                    ng-show="expended[cat]"
+                    ng-click="toggelSubPrefs(cat)"
+                    ng-src="{{dataUrl + 'images/arrow-down.png'}}"/>
                <div ng-show="expended[cat]" ng-repeat="sub in seconds[cat]">
                  <input style="margin-left: 10px" type="checkbox" ng-change="changeCheckedStatus(sub)" ng-model="checkedCats[sub]">{{sub}}<br/>
                </div>
