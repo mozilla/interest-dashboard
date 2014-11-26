@@ -22,6 +22,12 @@
       "title": "seconds between feed update",
       "type": "integer",
       "value": 30
+    },
+    {
+      "name": "maxCatDocs",
+      "title": "max feed documents per category",
+      "type": "integer",
+      "value": 100
     }
   ]
 }
