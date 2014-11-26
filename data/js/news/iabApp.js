@@ -110,6 +110,7 @@ iabNewsApp.controller("iabNewsCtrl", function($scope) {
   };
 
   $scope.resetPrefs = function() {
+    $scope.checkAll = false;
     self.port.emit("reset");
   };
 
