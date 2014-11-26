@@ -1,5 +1,7 @@
 function SpiderGraph($scope) {
   this.MAIN_RADIUS = 100;
+  this.GENERIC_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDYwIDYwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgCTxyYWRpYWxHcmFkaWVudCBpZD0iZ3JhZDAiIHI9IjEwMCUiIGN5PSIwIiBjeD0iMCIgZ3JhZGllbnR1bml0cz0idXNlclNwYWNlT25Vc2UiPgogIAkJPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6ICM0QkIwRkU7IiBvZmZzZXQ9IjAlIi8+CiAgCQk8c3RvcCBzdHlsZT0ic3RvcC1jb2xvcjogIzE3OTNFNTsiIG9mZnNldD0iMTAwJSIvPgogIAk8L3JhZGlhbEdyYWRpZW50PgogIAk8ZmlsdGVyIGlkPSJmMSIgeD0iLTQwJSIgeT0iLTQwJSIgaGVpZ2h0PSIyMDAlIiB3aWR0aD0iMjAwJSI+CiAgICAgIDxmZU9mZnNldCByZXN1bHQ9Im9mZk91dCIgaW49IlNvdXJjZUFscGhhIiBkeD0iMCIgZHk9IjAiIC8+CiAgICAgIDxmZUdhdXNzaWFuQmx1ciByZXN1bHQ9ImJsdXJPdXQiIGluPSJvZmZPdXQiIHN0ZERldmlhdGlvbj0iMC41IiAvPgogICAgICA8ZmVCbGVuZCBpbj0iU291cmNlR3JhcGhpYyIgaW4yPSJibHVyT3V0IiBtb2RlPSJub3JtYWwiIC8+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CiAgPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjciIGZpbGw9InVybCgjZ3JhZDApIiBmaWx0ZXI9InVybCgjZjEpIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMiIvPgogIDwhLS08Zm9yZWlnbk9iamVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjYwIiByZXF1aXJlZEV4dGVuc2lvbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiPgogICAgPGJvZHkgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiPgogICAgICA8cD5UZWNobm9sb2d5IGFuZCBDb21wdXRpbmc8L3A+CiAgICA8L2JvZHk+CiAgPC9mb3JlaWduT2JqZWN0PiAtLT4KPC9zdmc+";
+  this.YOU_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDYwIDYwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgCTxmaWx0ZXIgaWQ9ImYxIiB4PSItNDAlIiB5PSItNDAlIiBoZWlnaHQ9IjIwMCUiIHdpZHRoPSIyMDAlIj4KICAgICAgPGZlT2Zmc2V0IHJlc3VsdD0ib2ZmT3V0IiBpbj0iU291cmNlQWxwaGEiIGR4PSIwIiBkeT0iMCIgLz4KICAgICAgPGZlR2F1c3NpYW5CbHVyIHJlc3VsdD0iYmx1ck91dCIgaW49Im9mZk91dCIgc3RkRGV2aWF0aW9uPSIwLjUiIC8+CiAgICAgIDxmZUJsZW5kIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9ImJsdXJPdXQiIG1vZGU9Im5vcm1hbCIgLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyNyIgZmlsbD0iI0YyRjJGMiIgZmlsdGVyPSJ1cmwoI2YxKSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+";
   this.colors = d3.scale.category20();
   this._nodeList = {};
 
@@ -126,6 +128,37 @@ SpiderGraph.prototype = {
     this._addChild(0, 0);
   },
 
+  _getHTMLForNode: function(node) {
+    if (node.name == "YOU") {
+      function daysPostEpochToDate(dayCount) {
+        return parseInt(dayCount) * 24 * 60 * 60 * 1000;
+      }
+
+      let minDate = d3.time.format('%m/%d/%Y')(new Date(daysPostEpochToDate(node.minDay)));
+      return '<div class="centerNode">' +
+          '<p id="totalInterests">' + node.numInterests + '</p>' +
+          '<p id="activeInterestsLabel">Active Interests</p>' +
+          '<p id="startDate">since ' + minDate + '</p>' +
+        '</div>';
+    }
+    return '<p class="nodeText">' + node.name + '</p>';
+  },
+
+  _getFontSizeByRadius: function(radius) {
+    switch(radius) {
+      case 50:
+        return "12px";
+      case 60:
+        return "16px";
+      case 70:
+        return "18px";
+      case 95:
+        return "22px"
+      case 110:
+        return "28px";
+    }
+  },
+
   graph: function(data, table, $scope) {
     if (data) {
       d3.select("#spiderGraph svg").selectAll("*").remove();
@@ -157,17 +190,28 @@ SpiderGraph.prototype = {
       .attr("class", "node")
       .on("click", (d) => { return this._click(d); });
 
-    node.append("circle")
-      .attr("class", "node")
-      .attr("r", function(d) { return d.radius; } )
-      .style('fill', (d) => { return this.colors(d.id); })
+    node.append("svg:image")
+      .attr("xlink:href", (d) => { return d.name == "YOU" ? this.YOU_CIRCLE : this.GENERIC_CIRCLE; })
+      .attr("width", function(d) { return d.radius * 2; })
+      .attr("height", function(d) { return d.radius * 2; })
+      .attr("x", function(d) { return -d.radius; })
+      .attr("y", function(d) { return -d.radius; });
 
     this.force.start();
     this.force.tick();
 
-    node.append("text")
-      .text(function(d) { return d.name; })
-      .style("font-size", "12px");
+    node.append("foreignObject")
+      .attr("width", function(d) { return d.radius * 2 - 40; })
+      .attr("height", function(d) { return d.radius * 2 - 40; })
+      .attr("x", function(d) { return -d.radius + 20; })
+      .attr("y", function(d) { return -d.radius + 20; })
+      .append("xhtml:body")
+        .style("font-size", (d) => {
+          this._getFontSizeByRadius(d.radius);
+        })
+        .style("background-color", "transparent")
+        .attr("width", 30)
+        .html((d) => { return this._getHTMLForNode(d); });
 
     this.force.start();
     if (data) {

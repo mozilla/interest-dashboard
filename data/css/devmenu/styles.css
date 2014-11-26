@@ -1004,8 +1004,7 @@ ol li {
 
 /* Recommendations */
 #spiderGraph .link {
-  stroke: #000000;
-  stroke-width: 1.5px;
+  stroke: #FFFFFF;
 }
 
 #spiderGraph .node {
@@ -1027,5 +1026,37 @@ ol li {
 
 #spiderGraph rect {
   fill: #FFFFFF;
-  stroke: #000000;
+}
+
+#spiderGraph .centerNode {
+  background-color: transparent;
+  position: relative;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#spiderGraph .nodeText {
+  position: relative;
+  text-align: center;
+  color: white;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#spiderGraph .centerNode #totalInterests {
+  color: rgb(106, 123, 134);
+  font-size: 80px;
+  text-shadow: 1px 1px rgb(74, 74, 74), 1px -1px;
+  line-height: 60px;"
+}
+#spiderGraph .centerNode #activeInterestsLabel {
+  text-align: center;
+  color: rgb(106, 123, 134);
+  text-transform: uppercase;
+}
+#spiderGraph .centerNode #startDate {
+  text-align: center;
+  color: rgb(106, 123, 134);
+  font-size: 11px;
 }
