@@ -1,0 +1,83 @@
+<script type="text/ng-template" id="docPagingView.html">
+ <div id="docPage" class="doc-page" ng-controller="docPagingCtr">
+
+    <div ng-show="rankedDocs" class="page-walk">
+      Order by
+      <input type="radio" ng-model="docOrder" value="score" ng-change="orderDocs()"> Score
+      <input type="radio" ng-model="docOrder" value="date" ng-change="orderDocs()"> Date
+      <div class="page-walk-pnum">
+        Page <input type="number" ng-model="page" size=3/>
+      </div>
+      <img class="page-walk-img"
+           ng-click="pageWalk('first')"
+           ng-src="{{dataUrl + 'images/rewind.png'}}"/>
+      <img class="page-walk-img"
+           ng-click="pageWalk('prev')"
+           ng-src="{{dataUrl + 'images/arrow-left.png'}}"/>
+      <img class="page-walk-img"
+           ng-click="pageWalk('next')"
+           ng-src="{{dataUrl + 'images/arrow-right.png'}}"/>
+      <img class="page-walk-img"
+           ng-click="pageWalk('last')"
+           ng-src="{{dataUrl + 'images/forward.png'}}"/>
+    </div>
+ <div ng-show="rankedDocs">
+   <div ng-repeat="doc in rankedDocs | docPage:page" class="doc-item">
+      <div class="doc-header">
+      <img class="doc-site-image" ng-src="{{'http://' + doc.site + '/favicon.ico'}}"/>
+      <span class="doc-score">{{doc.rank}}</span>
+      <a class="doc-ref" href="{{doc.url}}">{{doc.title}}</a>
+      <span class="doc-date">{{doc.publishedDate}}</span>
+      </div>
+      <div class="doc-body">
+        <img class="doc-image" ng-show="doc.image" src="{{doc.image}}"/>
+        <div class="doc-summary">{{doc.summary}}</div>
+      </div>
+      <div ng-show="doc.topics.length || doc.tags.length || doc.entities.length">
+        <img class="doc-extra-img"
+           ng-show="!shown[doc.url]"
+           ng-click="toggleDocExtras(doc.url)"
+           ng-src="{{dataUrl + 'images/arrow-right.png'}}"/>
+       <img class="doc-extra-img"
+           ng-show="shown[doc.url]"
+           ng-click="toggleDocExtras(doc.url)"
+           ng-src="{{dataUrl + 'images/arrow-down.png'}}"/>
+        <div ng-show="shown[doc.url]">
+            <div ng-show="doc.iab.length">
+              <span class="doc-extra-term">
+                IAB Categories:
+              </span>
+              <span>
+                {{doc.iab.join(", ")}}
+              </span>
+            </div>
+            <div ng-show="doc.topics.length">
+              <span class="doc-extra-term">
+                Topics:
+              </span>
+              <span>
+                {{doc.topics.join(", ")}}
+              </span>
+            </div>
+            <div ng-show="doc.tags.length">
+              <span class="doc-extra-term">
+                Tags:
+              </span>
+              <span>
+                {{doc.tags.join(", ")}}
+              </span>
+            </div>
+            <div ng-show="doc.entities.length">
+              <span class="doc-extra-term">
+                Entities:
+              </span>
+              <span>
+                {{doc.entities.join(", ")}}
+              </span>
+            </div>
+        </div>
+      </div> <!-- show tags -->
+    </div> <!-- ng-repeat -->
+ </div> <!-- rankedDocs -->
+</div> <!-- main content -->
+</script>

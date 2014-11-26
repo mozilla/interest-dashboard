@@ -1,0 +1,62 @@
+<!doctype html>
+<html ng-app="newsDebugApp">
+    <head>
+        <meta charset="utf-8">
+        <title>About News Debug</title>
+    </head>
+    <body ng-cloak>
+        <div class="container" ng-controller="newsDebugCtrl">
+        <!--
+         <div class="btn-group">
+             <button id="sitesTab" class="btn" ng-click="toggleConfigureSites()">Configure Data Sites</button>
+             <button id="scoreTab" class="btn" ng-click="toggleScoreSites()">Score Data Sites</button>
+         </div>
+         -->
+         <div ng-show="doConfigureSites" class="mainContent">
+            <span>
+            <form ng-submit="submitSite()" style="display: inline">
+              Add new site:
+              <input type="string"
+                     size="40"
+                     ng-model="site"/>
+              <input type="submit"
+                     value="Submit"
+                     />
+            </form>
+            <button ng-click="refreshSiteInfo()">Refresh Sites Info</button>
+            </span>
+            <br/>
+            <div class="error-message" ng-show="error">
+              {{error}}
+            </div>
+            <div class="sitesTable">
+              <table border="yes" class="site-table">
+              <tr>
+                <th class="site-cell"><span>Site</span></th>
+                <th class="site-cell"><span>Updated</span></th>
+                <th class="site-cell"><span>sequenceID</span></th>
+                <th class="site-cell"><span>DocCount</span></th>
+                <th class="site-cell" colspan='3'><span>Commands</span></th>
+              </tr>
+              <tr ng-repeat="site in sites" class="site-item">
+                <td class="site-cell"><span><a href="{{'http://' + site.site}}">{{site.site}}</a></span></td>
+                <td class="site-cell" align="right"><span>{{site.lastUpdated}}</span></td>
+                <td class="site-cell" align="right"><span>{{site.sequenceID}}</span></td>
+                <td class="site-cell" align="right"><span>{{site.docCount}}</span></td>
+                <td class="site-cell"><button ng-click="removeSite(site.site)">Remove</button></td>
+                <td class="site-cell"><button ng-click="clearSite(site.site)">Clear</button></td>
+                <!-- <td class="site-cell"><button ng-click="showRanked(site.site)">Show Ranked</button></td> -->
+                <td class="site-cell"><button ng-click="getResentDocs(site.site)">Recent Docs</button></td>
+              </tr>
+              </table>
+            </div>
+         </div>
+         <div ng-show="rankedDocs">
+          <button ng-click="clearRanked()">clear view</button>
+          <pre>
+            {{rankedDocs}}
+          </pre>
+         </div>
+        </div>
+    </body>
+</html>
