@@ -228,6 +228,10 @@
   width: 10px;
 }
 
+.iab-settings-count {
+  font-size: smaller;
+}
+
 .doc-page {
   min-width: 800px;
   margin-left: 20px;
