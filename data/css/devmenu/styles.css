@@ -1054,6 +1054,7 @@ ol li {
   text-align: center;
   color: rgb(106, 123, 134);
   text-transform: uppercase;
+  font-size: 18px;
 }
 #spiderGraph .centerNode #startDate {
   text-align: center;
