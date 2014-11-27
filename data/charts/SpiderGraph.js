@@ -1,7 +1,7 @@
 function SpiderGraph($scope) {
   this.MAIN_RADIUS = 100;
-  this.GENERIC_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDYwIDYwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgCTxyYWRpYWxHcmFkaWVudCBpZD0iZ3JhZDAiIHI9IjEwMCUiIGN5PSIwIiBjeD0iMCIgZ3JhZGllbnR1bml0cz0idXNlclNwYWNlT25Vc2UiPgogIAkJPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6ICM0QkIwRkU7IiBvZmZzZXQ9IjAlIi8+CiAgCQk8c3RvcCBzdHlsZT0ic3RvcC1jb2xvcjogIzE3OTNFNTsiIG9mZnNldD0iMTAwJSIvPgogIAk8L3JhZGlhbEdyYWRpZW50PgogIAk8ZmlsdGVyIGlkPSJmMSIgeD0iLTQwJSIgeT0iLTQwJSIgaGVpZ2h0PSIyMDAlIiB3aWR0aD0iMjAwJSI+CiAgICAgIDxmZU9mZnNldCByZXN1bHQ9Im9mZk91dCIgaW49IlNvdXJjZUFscGhhIiBkeD0iMCIgZHk9IjAiIC8+CiAgICAgIDxmZUdhdXNzaWFuQmx1ciByZXN1bHQ9ImJsdXJPdXQiIGluPSJvZmZPdXQiIHN0ZERldmlhdGlvbj0iMC41IiAvPgogICAgICA8ZmVCbGVuZCBpbj0iU291cmNlR3JhcGhpYyIgaW4yPSJibHVyT3V0IiBtb2RlPSJub3JtYWwiIC8+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CiAgPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjciIGZpbGw9InVybCgjZ3JhZDApIiBmaWx0ZXI9InVybCgjZjEpIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMiIvPgogIDwhLS08Zm9yZWlnbk9iamVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjYwIiByZXF1aXJlZEV4dGVuc2lvbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiPgogICAgPGJvZHkgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiPgogICAgICA8cD5UZWNobm9sb2d5IGFuZCBDb21wdXRpbmc8L3A+CiAgICA8L2JvZHk+CiAgPC9mb3JlaWduT2JqZWN0PiAtLT4KPC9zdmc+";
-  this.YOU_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDYwIDYwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgCTxmaWx0ZXIgaWQ9ImYxIiB4PSItNDAlIiB5PSItNDAlIiBoZWlnaHQ9IjIwMCUiIHdpZHRoPSIyMDAlIj4KICAgICAgPGZlT2Zmc2V0IHJlc3VsdD0ib2ZmT3V0IiBpbj0iU291cmNlQWxwaGEiIGR4PSIwIiBkeT0iMCIgLz4KICAgICAgPGZlR2F1c3NpYW5CbHVyIHJlc3VsdD0iYmx1ck91dCIgaW49Im9mZk91dCIgc3RkRGV2aWF0aW9uPSIwLjUiIC8+CiAgICAgIDxmZUJsZW5kIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9ImJsdXJPdXQiIG1vZGU9Im5vcm1hbCIgLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyNyIgZmlsbD0iI0YyRjJGMiIgZmlsdGVyPSJ1cmwoI2YxKSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+";
+  this.GENERIC_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAJPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkMCIgcj0iMTAwJSIgY3k9IjAiIGN4PSIwIiBncmFkaWVudHVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgCQk8c3RvcCBzdHlsZT0ic3RvcC1jb2xvcjogIzRCQjBGRTsiIG9mZnNldD0iMCUiLz4KICAJCTxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiAjMTc5M0U1OyIgb2Zmc2V0PSIxMDAlIi8+CiAgCTwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMjQwIiBmaWxsPSJ1cmwoI2dyYWQwKSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjgiLz4KPC9zdmc+Cgo=";
+  this.YOU_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0MCIgZmlsbD0iI0YyRjJGMiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+";
   this.colors = d3.scale.category20();
   this._nodeList = {};
 
@@ -30,27 +30,22 @@ SpiderGraph.prototype = {
         .domain([-this.height / 2, this.height / 2])
         .range([this.height, 0]);
 
-    let xAxis = d3.svg.axis()
-        .scale(x)
-        .orient("bottom")
-        .tickSize(-this.height);
-
-    let yAxis = d3.svg.axis()
-        .scale(y)
-        .orient("left")
-        .ticks(5)
-        .tickSize(-this.width);
-
     function zoomed() {
       self._graphContainer.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
     }
-    let zoom = d3.behavior.zoom()
+    function stopped() {
+      if (d3.event.defaultPrevented) d3.event.stopPropagation();
+    }
+    this.zoom = d3.behavior.zoom()
       .x(x)
       .y(y)
       .scaleExtent([1, 10])
       .on("zoom", zoomed);
 
-    this.svg = d3.select("#spiderGraph svg").append("g").call(zoom);
+    this.svg = d3.select("#spiderGraph svg")
+      .append("g")
+      .on("click", stopped, true)
+      .call(this.zoom);
     this.svg.append("rect")
       .attr("width", this.width)
       .attr("height", this.height);
@@ -83,20 +78,12 @@ SpiderGraph.prototype = {
   },
 
   _click: function(d) {
-    if (d3.event.defaultPrevented) return; // click suppressed
+    let scale = .9 / Math.max(d.radius*2 / this.width, d.radius*2 / this.height);
+    let translate = [this.width / 2 - scale * d.x, this.height / 2 - scale * d.y];
 
-    if (!this._nodeList[d.id]) {
-      return; // leaf nodes.
-    }
-    if (this._nodeList[d.id].children) {
-      this._nodeList[d.id]._children = this._nodeList[d.id].children;
-      this._nodeList[d.id].children = null;
-    } else {
-      this._nodeList[d.id].children = this._nodeList[d.id]._children;
-      this._nodeList[d.id]._children = null;
-    }
-    this._recomputeNodes();
-    this.graph();
+    this.svg.transition()
+      .duration(750)
+      .call(this.zoom.translate(translate).scale(scale).event);
   },
 
   _addChild: function(nodeID, parentID) {
@@ -201,13 +188,13 @@ SpiderGraph.prototype = {
     this.force.tick();
 
     node.append("foreignObject")
-      .attr("width", function(d) { return d.radius * 2 - 40; })
-      .attr("height", function(d) { return d.radius * 2 - 40; })
-      .attr("x", function(d) { return -d.radius + 20; })
-      .attr("y", function(d) { return -d.radius + 20; })
+      .attr("width", function(d) { return d.radius * 2 - 35; })
+      .attr("height", function(d) { return d.radius * 2 - 35; })
+      .attr("x", function(d) { return -d.radius + 17.5; })
+      .attr("y", function(d) { return -d.radius + 17.5; })
       .append("xhtml:body")
         .style("font-size", (d) => {
-          this._getFontSizeByRadius(d.radius);
+          return this._getFontSizeByRadius(d.radius);
         })
         .style("background-color", "transparent")
         .attr("width", 30)
