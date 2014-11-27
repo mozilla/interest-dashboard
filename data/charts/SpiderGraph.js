@@ -3,13 +3,16 @@ function SpiderGraph($scope) {
   this.GENERIC_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAJPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkMCIgcj0iMTAwJSIgY3k9IjAiIGN4PSIwIiBncmFkaWVudHVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgCQk8c3RvcCBzdHlsZT0ic3RvcC1jb2xvcjogIzRCQjBGRTsiIG9mZnNldD0iMCUiLz4KICAJCTxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiAjMTc5M0U1OyIgb2Zmc2V0PSIxMDAlIi8+CiAgCTwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMjQwIiBmaWxsPSJ1cmwoI2dyYWQwKSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjgiLz4KPC9zdmc+Cgo=";
   this.YOU_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0MCIgZmlsbD0iI0YyRjJGMiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+";
   this.colors = d3.scale.category20();
-  this._nodeList = {};
 
   this._init();
   this.force = d3.layout.force()
     .size([this.width, this.height])
     .linkDistance(function(node, index) {
-      let distance = 150 + node.target.layer * 100;
+      let distance = 150 + node.target.layer * 130;
+      if (node.source.id != 0) {
+        // This is a subcat so give it a small distance from its parent.
+        distance = -10;
+      }
       return distance;
     })
     .charge(-8000)
@@ -64,55 +67,103 @@ SpiderGraph.prototype = {
     node.attr("transform", (d) => {
       return "translate(" + d.x + "," + d.y + ")";
     });
-  },
 
-  _createNodeList: function() {
-    this._nodeList = {};
-    for (let i in this._links) {
-      let link = this._links[i];
-      if (!this._nodeList[link.source]) {
-        this._nodeList[link.source] = {"children": []};
-      }
-      this._nodeList[link.source].children.push(link.target);
+    if (typeof link2 !== 'undefined') {
+      link2.attr("x1", (d) => { return d.source.x; })
+        .attr("y1", (d) => { return d.source.y; })
+        .attr("x2", (d) => { return d.target.x; })
+        .attr("y2", (d) => { return d.target.y; });
+
+      node2.attr("transform", (d) => {
+        return "translate(" + d.x + "," + d.y + ")";
+      });
     }
   },
 
+  _nod2Click: function(d) {
+    this.svg.select(".nodes2").remove();
+    this.svg.select(".links2").remove();
+    this.svg.select(".nodes").attr("opacity", "1");
+    this.svg.transition()
+      .duration(750)
+      .call(this.zoom.translate([0, 0]).scale(1).event);
+  },
+
   _click: function(d) {
-    let scale = .9 / Math.max(d.radius*2 / this.width, d.radius*2 / this.height);
+    this.svg.select(".nodes2").remove();
+    this.svg.select(".links2").remove();
+
+    this.svg.select(".nodes").attr("opacity", "0.2");
+    let links = this._categoricalLinks[d.name];
+    let nodes = this._categoricalNodes[d.name];
+    let numSubnodes = nodes.length - 1;
+
+    this._subcat = d3.layout.force()
+      .size([d.x * 2, d.y * 2])
+      .linkDistance(function(node, index) {
+        return node.source.radius + 20;
+      })
+      .charge(function(node, index) {
+        let charge = -4000;
+        charge += numSubnodes * 500;
+        return charge;
+      })
+      .on("tick", () => { this._tick(); });
+
+    nodes[0].x = d.x;
+    nodes[0].y = d.y;
+
+
+
+    this._graphContainer.append("g").attr("class", "links2");
+    this._graphContainer.append("g").attr("class", "nodes2");
+
+    this._subcat
+      .nodes(nodes)
+      .links(links)
+    this._subcat.start();
+    for (var i = 0; i < 100; ++i) this._subcat.tick();
+
+    link2 = this.svg.select(".links2").selectAll(".link2")
+    link2 = link2.data(links);
+    link2.exit().remove();
+    link2.enter().append("line")
+      .attr("class", "link2");
+
+    node2 = this.svg.select(".nodes2").selectAll(".node2");
+    node2 = node2.data(nodes,
+      function(d) { return  d.id; });
+    node2.exit().remove();
+    node2.enter().append("g")
+      .attr("class", "node2")
+      .on("click", (d) => { return this._nod2Click(d); });
+
+    node2.append("svg:image")
+      .attr("xlink:href", (d) => { return d.name == "YOU" ? this.YOU_CIRCLE : this.GENERIC_CIRCLE; })
+      .attr("width", function(d) { return d.radius * 2; })
+      .attr("height", function(d) { return d.radius * 2; })
+      .attr("x", function(d) { return -d.radius; })
+      .attr("y", function(d) { return -d.radius; });
+
+    node2.append("foreignObject")
+      .attr("width", function(d) { return d.radius * 2 - (d.radius * 0.45); })
+      .attr("height", function(d) { return d.radius * 2 - (d.radius * 0.45); })
+      .attr("x", function(d) { return -d.radius + (d.radius * 0.45 / 2); })
+      .attr("y", function(d) { return -d.radius + (d.radius * 0.45 / 2); })
+      .append("xhtml:body")
+        .style("font-size", (d) => {
+          return this._getFontSizeByRadius(d.radius);
+        })
+        .style("background-color", "transparent")
+        .attr("width", 30)
+        .html((d) => { return this._getHTMLForNode(d); });
+
+    let scale = .9 / Math.max((d.radius*2 + 105) / this.width, (d.radius*2 + 105) / this.height);
     let translate = [this.width / 2 - scale * d.x, this.height / 2 - scale * d.y];
 
     this.svg.transition()
       .duration(750)
       .call(this.zoom.translate(translate).scale(scale).event);
-  },
-
-  _addChild: function(nodeID, parentID) {
-    this._nodes.push(this._originalNodes[nodeID]);
-
-    let parent = this._nodes.length - 1;
-    this._links.push({"source": parentID, "target": parent});
-
-    if (this._nodeList[nodeID] && this._nodeList[nodeID].children) {
-      for (let childIndex in this._nodeList[nodeID].children) {
-        let childID = this._originalNodes[this._nodeList[nodeID].children[childIndex]].id;
-        this._addChild(childID, parent);
-      }
-    }
-  },
-
-  _hideSecondLevelChildren: function() {
-    if (this._nodeList && this._nodeList["0"]) {
-      for (let childID of this._nodeList["0"]["children"]) {
-        this._nodeList[childID]._children = this._nodeList[childID].children;
-        this._nodeList[childID].children = null;
-      }
-    }
-  },
-
-  _recomputeNodes: function() {
-    this._links = [];
-    this._nodes = [];
-    this._addChild(0, 0);
   },
 
   _getHTMLForNode: function(node) {
@@ -143,6 +194,8 @@ SpiderGraph.prototype = {
         return "22px"
       case 110:
         return "28px";
+      default:
+        return "5px";
     }
   },
 
@@ -154,12 +207,13 @@ SpiderGraph.prototype = {
       data.nodes[0].x = this.width / 2;
       data.nodes[0].y = this.height / 2;
 
-      this._originalNodes = data.nodes;
+      this._nodes = data.nodes;
       this._links = data.links;
-      this._createNodeList();
-      this._hideSecondLevelChildren();
-      this._recomputeNodes();
+
+      this._categoricalNodes = data.categoricalNodes;
+      this._categoricalLinks = data.categoricalLinks;
     }
+
     this.force
       .nodes(this._nodes)
       .links(this._links)
@@ -184,14 +238,11 @@ SpiderGraph.prototype = {
       .attr("x", function(d) { return -d.radius; })
       .attr("y", function(d) { return -d.radius; });
 
-    this.force.start();
-    this.force.tick();
-
     node.append("foreignObject")
-      .attr("width", function(d) { return d.radius * 2 - 35; })
-      .attr("height", function(d) { return d.radius * 2 - 35; })
-      .attr("x", function(d) { return -d.radius + 17.5; })
-      .attr("y", function(d) { return -d.radius + 17.5; })
+      .attr("width", function(d) { return d.radius * 2 - (d.radius * 0.45); })
+      .attr("height", function(d) { return d.radius * 2 - (d.radius * 0.45); })
+      .attr("x", function(d) { return -d.radius + (d.radius * 0.45 / 2); })
+      .attr("y", function(d) { return -d.radius + (d.radius * 0.45 / 2); })
       .append("xhtml:body")
         .style("font-size", (d) => {
           return this._getFontSizeByRadius(d.radius);
@@ -204,6 +255,9 @@ SpiderGraph.prototype = {
     if (data) {
       // Wait for graph to settle down before displaying on first draw.
       for (var i = 0; i < 100; ++i) this.force.tick();
+      for (let i in this._nodes) {
+        this._nodes[i].fixed = true;
+      }
     }
   }
 }
