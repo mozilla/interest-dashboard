@@ -28,6 +28,10 @@ newsDebugApp.controller("newsDebugCtrl", function($scope) {
     self.port.emit("clearSite", site);
   }
 
+  $scope.clearAllSites = function() {
+    self.port.emit("clearSites");
+  }
+
   $scope.submitSite = function() {
     delete $scope.error;
     self.port.emit("addSite", $scope.site);
