@@ -103,6 +103,7 @@ iabNewsApp.controller("iabNewsCtrl", function($scope) {
 
   $scope.changeAll = function() {
     Object.keys($scope.iab).forEach(cat => {$scope.checkedCats[cat] = $scope.checkAll;});
+    self.port.emit("change-checked-all", Object.keys($scope.iab), $scope.checkAll);
   };
 
   $scope.toggelSettings = function() {
