@@ -76,8 +76,7 @@ iabNewsApp.controller("iabNewsCtrl", function($scope) {
   $scope.doShowSeconds = function(cat) {
     return $scope.isTopSelected(cat)
            && $scope.seconds[cat]
-           && $scope.seconds[cat].length > 0
-           && $scope.iab[$scope.seconds[cat][0]].count > 0;
+           && $scope.seconds[cat].length > 0;
   };
 
   $scope.subCatSelect = function(cat) {
