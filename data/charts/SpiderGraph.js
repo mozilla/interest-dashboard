@@ -113,16 +113,15 @@ SpiderGraph.prototype = {
     nodes[0].x = d.x;
     nodes[0].y = d.y;
 
-
-
-    this._graphContainer.append("g").attr("class", "links2");
-    this._graphContainer.append("g").attr("class", "nodes2");
-
     this._subcat
       .nodes(nodes)
       .links(links)
+
     this._subcat.start();
     for (var i = 0; i < 100; ++i) this._subcat.tick();
+
+    this._graphContainer.append("g").attr("class", "links2");
+    this._graphContainer.append("g").attr("class", "nodes2");
 
     link2 = this.svg.select(".links2").selectAll(".link2")
     link2 = link2.data(links);
@@ -237,6 +236,9 @@ SpiderGraph.prototype = {
       .attr("height", function(d) { return d.radius * 2; })
       .attr("x", function(d) { return -d.radius; })
       .attr("y", function(d) { return -d.radius; });
+
+    this.force.start();
+    this.force.tick();
 
     node.append("foreignObject")
       .attr("width", function(d) { return d.radius * 2 - (d.radius * 0.45); })
