@@ -1,4 +1,5 @@
 function SpiderGraph($scope) {
+  this._scope = $scope;
   this.MAIN_RADIUS = 100;
   this.GENERIC_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAJPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkMCIgcj0iMTAwJSIgY3k9IjAiIGN4PSIwIiBncmFkaWVudHVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgCQk8c3RvcCBzdHlsZT0ic3RvcC1jb2xvcjogIzRCQjBGRTsiIG9mZnNldD0iMCUiLz4KICAJCTxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiAjMTc5M0U1OyIgb2Zmc2V0PSIxMDAlIi8+CiAgCTwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMjQ4IiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNGMkYyRjIiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMjQwIiBmaWxsPSJ1cmwoI2dyYWQwKSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjgiLz4KPC9zdmc+Cgo=";
   this.GENERIC_SOLID = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0OCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRjJGMkYyIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0MCIgZmlsbD0iIzJDNzJFMiIvPgo8L3N2Zz4=";
@@ -93,6 +94,7 @@ SpiderGraph.prototype = {
   },
 
   _nod2Click: function(d) {
+    $('.recommendationPanel').css("visibility", "hidden");
     this._semanticallyZoomed = false;
     this.svg.select(".nodes2").remove();
     this.svg.select(".links2").remove();
@@ -102,7 +104,7 @@ SpiderGraph.prototype = {
       .call(this.zoom.translate([0, 0]).scale(1).event);
   },
 
-  _hover: function(d) {
+  _hover: function(d, $scope) {
     if (this._semanticallyZoomed || d.name == "YOU") {
       return;
     }
@@ -147,7 +149,7 @@ SpiderGraph.prototype = {
     node3.exit().remove();
     node3.enter().append("g")
       .attr("class", "node3")
-      .on("click", (d) => { return this._click(d); })
+      .on("click", (d) => { return this._click(d, $scope); })
       .on('mouseout', (d) => {
         this.svg.select(".nodes3").remove();
         this.svg.select(".links3").remove();
@@ -184,7 +186,13 @@ SpiderGraph.prototype = {
     }
   },
 
-  _click: function(d) {
+  _click: function(d, $scope) {
+    // Setting up the recommendation panel
+    $('.recommendationPanel').css("visibility", "visible");
+    $scope.$apply(function() {
+      $scope.recommendationCategory = d.name;
+    });
+
     this._semanticallyZoomed = true;
     this.svg.select(".nodes2").remove();
     this.svg.select(".links2").remove();
@@ -339,8 +347,8 @@ SpiderGraph.prototype = {
     node.exit().remove();
     node.enter().append("g")
       .attr("class", "node")
-      .on("click", (d) => { return this._click(d); })
-      .on('mouseover', (d) => { return this._hover(d); })
+      .on("click", (d) => { return this._click(d, $scope); })
+      .on('mouseover', (d) => { return this._hover(d, $scope); })
 
     node.append("svg:image")
       .attr("xlink:href", (d) => { return d.name == "YOU" ? this.YOU_CIRCLE : this.GENERIC_CIRCLE; })
