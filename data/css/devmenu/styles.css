@@ -1023,7 +1023,8 @@ ol li {
 }
 
 #spiderGraph .node3,
-#spiderGraph .node2 {
+#spiderGraph .node2,
+#spiderGraph .node1 {
   cursor: pointer;
   stroke: #000;
   stroke-width: 1.5px;
@@ -1065,4 +1066,41 @@ ol li {
   text-align: center;
   color: rgb(106, 123, 134);
   font-size: 11px;
+}
+
+.recommendationPanel {
+  width: 310px !important;
+  background-color: #424F5A;
+  position: absolute;
+  margin: 20px;
+  height: 85%;
+  bottom: 5px;
+  visibility: hidden;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.recommendationPanel .titlebar {
+  background-color: rgb(52, 63, 72);
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent transparent #000;
+}
+
+.todaysContent {
+  color: rgb(245, 166, 35);
+  font-size: 12px;
+  line-height: 12px;
+  padding: 12px;
+}
+
+.contentCategory {
+  color: rgb(230, 230, 230);
+  font-weight: 100;
+  font-size: 18px;
+  line-height: 18px;
+  padding-bottom: 12px;
 }
