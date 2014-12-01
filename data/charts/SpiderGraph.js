@@ -1,7 +1,8 @@
 function SpiderGraph($scope) {
   this.MAIN_RADIUS = 100;
-  this.GENERIC_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAJPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkMCIgcj0iMTAwJSIgY3k9IjAiIGN4PSIwIiBncmFkaWVudHVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgCQk8c3RvcCBzdHlsZT0ic3RvcC1jb2xvcjogIzRCQjBGRTsiIG9mZnNldD0iMCUiLz4KICAJCTxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiAjMTc5M0U1OyIgb2Zmc2V0PSIxMDAlIi8+CiAgCTwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMjQwIiBmaWxsPSJ1cmwoI2dyYWQwKSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjgiLz4KPC9zdmc+Cgo=";
-  this.YOU_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0MCIgZmlsbD0iI0YyRjJGMiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+";
+  this.GENERIC_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAJPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkMCIgcj0iMTAwJSIgY3k9IjAiIGN4PSIwIiBncmFkaWVudHVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgCQk8c3RvcCBzdHlsZT0ic3RvcC1jb2xvcjogIzRCQjBGRTsiIG9mZnNldD0iMCUiLz4KICAJCTxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiAjMTc5M0U1OyIgb2Zmc2V0PSIxMDAlIi8+CiAgCTwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMjQ4IiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNGMkYyRjIiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMjQwIiBmaWxsPSJ1cmwoI2dyYWQwKSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjgiLz4KPC9zdmc+Cgo=";
+  this.GENERIC_SOLID = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0OCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRjJGMkYyIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0MCIgZmlsbD0iIzJDNzJFMiIvPgo8L3N2Zz4=";
+  this.YOU_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0OCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRjJGMkYyIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0MCIgZmlsbD0iI0YyRjJGMiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+";
   this.colors = d3.scale.category20();
 
   this._init();
@@ -78,9 +79,21 @@ SpiderGraph.prototype = {
         return "translate(" + d.x + "," + d.y + ")";
       });
     }
+
+    if (typeof link3 !== 'undefined') {
+      link3.attr("x1", (d) => { return d.source.x; })
+        .attr("y1", (d) => { return d.source.y; })
+        .attr("x2", (d) => { return d.target.x; })
+        .attr("y2", (d) => { return d.target.y; });
+
+      node3.attr("transform", (d) => {
+        return "translate(" + d.x + "," + d.y + ")";
+      });
+    }
   },
 
   _nod2Click: function(d) {
+    this._semanticallyZoomed = false;
     this.svg.select(".nodes2").remove();
     this.svg.select(".links2").remove();
     this.svg.select(".nodes").attr("opacity", "1");
@@ -89,7 +102,84 @@ SpiderGraph.prototype = {
       .call(this.zoom.translate([0, 0]).scale(1).event);
   },
 
+  _hover: function(d) {
+    if (this._semanticallyZoomed || d.name == "YOU") {
+      return;
+    }
+    this.svg.select(".nodes3").remove();
+    this.svg.select(".links3").remove();
+
+    let links = this._hoverLinks[d.name];
+    let nodes = this._hoverNodes[d.name];
+    let numSubnodes = nodes.length - 1;
+
+    this._subcat = d3.layout.force()
+      .size([d.x * 2, d.y * 2])
+      .linkDistance(function(node, index) {
+        return node.source.radius + 20;
+      })
+      .charge(function(node, index) {
+        let charge = -4000;
+        charge += numSubnodes * 500;
+        return charge;
+      })
+      .on("tick", () => { this._tick(); });
+
+    nodes[0].x = d.x;
+    nodes[0].y = d.y;
+
+    this._subcat
+      .nodes(nodes)
+      .links(links)
+
+    this._subcat.start();
+    for (var i = 0; i < 100; ++i) this._subcat.tick();
+
+    this._graphContainer.append("g").attr("class", "links3");
+    this._graphContainer.append("g").attr("class", "nodes3");
+
+    link3 = this.svg.select(".links3").selectAll(".link3")
+    link3 = link3.data(links);
+    link3.exit().remove();
+    link3.enter().append("line")
+      .attr("class", "link3");
+
+    node3 = this.svg.select(".nodes3").selectAll(".node3");
+    node3 = node3.data(nodes,
+      function(d) { return  d.id; });
+    node3.exit().remove();
+    node3.enter().append("g")
+      .attr("class", "node3")
+      .on("click", (d) => { return this._click(d); })
+      .on('mouseout', (d) => {
+        this.svg.select(".nodes3").remove();
+        this.svg.select(".links3").remove();
+      });
+
+    node3.append("svg:image")
+      .attr("xlink:href", (d) => { return d.id == 0 ? this.GENERIC_SOLID : this.YOU_CIRCLE; })
+      .attr("width", function(d) { return d.radius * 2; })
+      .attr("height", function(d) { return d.radius * 2; })
+      .attr("x", function(d) { return -d.radius; })
+      .attr("y", function(d) { return -d.radius; });
+
+    node3.append("foreignObject")
+      .attr("width", function(d) { return d.radius * 2 - (d.radius * 0.40); })
+      .attr("height", function(d) { return d.radius * 2 - (d.radius * 0.40); })
+      .attr("x", function(d) { return -d.radius + (d.radius * 0.40 / 2); })
+      .attr("y", function(d) { return -d.radius + (d.radius * 0.40 / 2); })
+      .attr("pointer-events", "none")
+      .append("xhtml:body")
+        .style("font-size", (d) => {
+          return this._getFontSizeByRadius(d.radius);
+        })
+        .style("background-color", "transparent")
+        .attr("width", 30)
+        .html((d) => { return this._getHTMLForNode(d); });
+  },
+
   _click: function(d) {
+    this._semanticallyZoomed = true;
     this.svg.select(".nodes2").remove();
     this.svg.select(".links2").remove();
 
@@ -135,20 +225,20 @@ SpiderGraph.prototype = {
     node2.exit().remove();
     node2.enter().append("g")
       .attr("class", "node2")
-      .on("click", (d) => { return this._nod2Click(d); });
+      .on("click", (d) => { return this._nod2Click(d); })
 
     node2.append("svg:image")
-      .attr("xlink:href", (d) => { return d.name == "YOU" ? this.YOU_CIRCLE : this.GENERIC_CIRCLE; })
+      .attr("xlink:href", (d) => { return d.id == 0 ? this.GENERIC_SOLID : this.GENERIC_CIRCLE; })
       .attr("width", function(d) { return d.radius * 2; })
       .attr("height", function(d) { return d.radius * 2; })
       .attr("x", function(d) { return -d.radius; })
       .attr("y", function(d) { return -d.radius; });
 
     node2.append("foreignObject")
-      .attr("width", function(d) { return d.radius * 2 - (d.radius * 0.45); })
-      .attr("height", function(d) { return d.radius * 2 - (d.radius * 0.45); })
-      .attr("x", function(d) { return -d.radius + (d.radius * 0.45 / 2); })
-      .attr("y", function(d) { return -d.radius + (d.radius * 0.45 / 2); })
+      .attr("width", function(d) { return d.radius * 2 - (d.radius * 0.40); })
+      .attr("height", function(d) { return d.radius * 2 - (d.radius * 0.40); })
+      .attr("x", function(d) { return -d.radius + (d.radius * 0.40 / 2); })
+      .attr("y", function(d) { return -d.radius + (d.radius * 0.40 / 2); })
       .append("xhtml:body")
         .style("font-size", (d) => {
           return this._getFontSizeByRadius(d.radius);
@@ -213,6 +303,18 @@ SpiderGraph.prototype = {
       this._categoricalLinks = data.categoricalLinks;
     }
 
+    this._hoverNodes = JSON.parse(JSON.stringify(data.categoricalNodes));
+    this._hoverLinks = JSON.parse(JSON.stringify(data.categoricalLinks));
+    for (let category in this._hoverNodes) {
+      for (let node of this._hoverNodes[category]) {
+        if (node.id == 0) {
+          continue;
+        }
+        node.radius = 10;
+        node.name = "";
+      }
+    }
+
     this.force
       .nodes(this._nodes)
       .links(this._links)
@@ -228,7 +330,8 @@ SpiderGraph.prototype = {
     node.exit().remove();
     node.enter().append("g")
       .attr("class", "node")
-      .on("click", (d) => { return this._click(d); });
+      .on("click", (d) => { return this._click(d); })
+      .on('mouseover', (d) => { return this._hover(d); })
 
     node.append("svg:image")
       .attr("xlink:href", (d) => { return d.name == "YOU" ? this.YOU_CIRCLE : this.GENERIC_CIRCLE; })
@@ -241,10 +344,10 @@ SpiderGraph.prototype = {
     this.force.tick();
 
     node.append("foreignObject")
-      .attr("width", function(d) { return d.radius * 2 - (d.radius * 0.45); })
-      .attr("height", function(d) { return d.radius * 2 - (d.radius * 0.45); })
-      .attr("x", function(d) { return -d.radius + (d.radius * 0.45 / 2); })
-      .attr("y", function(d) { return -d.radius + (d.radius * 0.45 / 2); })
+      .attr("width", function(d) { return d.radius * 2 - (d.radius * 0.40); })
+      .attr("height", function(d) { return d.radius * 2 - (d.radius * 0.40); })
+      .attr("x", function(d) { return -d.radius + (d.radius * 0.40 / 2); })
+      .attr("y", function(d) { return -d.radius + (d.radius * 0.40 / 2); })
       .append("xhtml:body")
         .style("font-size", (d) => {
           return this._getFontSizeByRadius(d.radius);

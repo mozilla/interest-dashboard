@@ -1096,21 +1096,26 @@ ol li {
   stroke: #FFFFFF;
 }
 
-#spiderGraph .node {
-  cursor: move;
-  stroke: #000;
-  stroke-width: 1.5px;
+#spiderGraph .hover {
+  stroke: #DCDCDC;
+  stroke-width: 4px;
 }
 
-#spiderGraph text {
-  cursor: move;
-  -moz-user-select: none;
-  pointer-events: none;
-  text-anchor: middle;
-  dominant-baseline: central;
-  user-select: central;
-  stroke: none;
-  fill: #000000;
+#spiderGraph .link2 {
+  stroke: #2C72E2;
+  stroke-width: 4px;
+}
+
+#spiderGraph .link3 {
+  stroke: #DCDCDC;
+  stroke-width: 2px;
+}
+
+#spiderGraph .node3,
+#spiderGraph .node2 {
+  cursor: pointer;
+  stroke: #000;
+  stroke-width: 1.5px;
 }
 
 #spiderGraph rect {
