@@ -132,9 +132,6 @@ SpiderGraph.prototype = {
       .nodes(nodes)
       .links(links)
 
-    this._subcat.start();
-    for (var i = 0; i < 100; ++i) this._subcat.tick();
-
     this._graphContainer.append("g").attr("class", "links3");
     this._graphContainer.append("g").attr("class", "nodes3");
 
@@ -163,6 +160,9 @@ SpiderGraph.prototype = {
       .attr("x", function(d) { return -d.radius; })
       .attr("y", function(d) { return -d.radius; });
 
+    this._subcat.start();
+    this._subcat.tick();
+
     node3.append("foreignObject")
       .attr("width", function(d) { return d.radius * 2 - (d.radius * 0.40); })
       .attr("height", function(d) { return d.radius * 2 - (d.radius * 0.40); })
@@ -175,7 +175,13 @@ SpiderGraph.prototype = {
         })
         .style("background-color", "transparent")
         .attr("width", 30)
-        .html((d) => { return this._getHTMLForNode(d); });
+        .html((d) => { return this._getHTMLForNode(d, "hover"); });
+
+    this._subcat.start();
+    for (var i = 0; i < 100; ++i) this._subcat.tick();
+    for (let i in this._hoverNodes) {
+      this._hoverNodes[i].fixed = true;
+    }
   },
 
   _click: function(d) {
@@ -255,7 +261,7 @@ SpiderGraph.prototype = {
       .call(this.zoom.translate(translate).scale(scale).event);
   },
 
-  _getHTMLForNode: function(node) {
+  _getHTMLForNode: function(node, type) {
     if (node.name == "YOU") {
       function daysPostEpochToDate(dayCount) {
         return parseInt(dayCount) * 24 * 60 * 60 * 1000;
@@ -267,6 +273,9 @@ SpiderGraph.prototype = {
           '<p id="activeInterestsLabel">Active Interests</p>' +
           '<p id="startDate">since ' + minDate + '</p>' +
         '</div>';
+    }
+    if (type == "hover") {
+      return '<p class="nodeText">(' + node.recommendationCount + ')<br>' + node.name + '</p>';
     }
     return '<p class="nodeText">' + node.name + '</p>';
   },
