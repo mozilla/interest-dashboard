@@ -282,10 +282,16 @@ SpiderGraph.prototype = {
           '<p id="startDate">since ' + minDate + '</p>' +
         '</div>';
     }
-    if (type == "hover") {
-      return '<p class="nodeText">(' + node.recommendationCount + ')<br>' + node.name + '</p>';
+
+    if (type != "hover") {
+      return '<p class="nodeText">' + node.name + '</p>';
     }
-    return '<p class="nodeText">' + node.name + '</p>';
+
+    // Type is hover
+    if (!node.name) {
+      return "";
+    }
+    return '<p class="nodeText">(' + node.recommendationCount + ')<br>' + node.name + '</p>';
   },
 
   _getFontSizeByRadius: function(radius) {
