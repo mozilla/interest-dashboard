@@ -4,6 +4,7 @@ function SpiderGraph($scope) {
   this.GENERIC_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAJPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkMCIgcj0iMTAwJSIgY3k9IjAiIGN4PSIwIiBncmFkaWVudHVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgCQk8c3RvcCBzdHlsZT0ic3RvcC1jb2xvcjogIzRCQjBGRTsiIG9mZnNldD0iMCUiLz4KICAJCTxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiAjMTc5M0U1OyIgb2Zmc2V0PSIxMDAlIi8+CiAgCTwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMjQ4IiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNGMkYyRjIiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMjQwIiBmaWxsPSJ1cmwoI2dyYWQwKSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjgiLz4KPC9zdmc+Cgo=";
   this.GENERIC_SOLID = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0OCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRjJGMkYyIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0MCIgZmlsbD0iIzJDNzJFMiIvPgo8L3N2Zz4=";
   this.YOU_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0OCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRjJGMkYyIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjI0MCIgZmlsbD0iI0YyRjJGMiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+";
+  this.LITTLE_GREY_CIRCLE = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgdmlld0JveD0iMCAwIDUwMCA1MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAJPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkMCIgcj0iMTAwJSIgY3k9IjAiIGN4PSIwIiBncmFkaWVudHVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgCQk8c3RvcCBzdHlsZT0ic3RvcC1jb2xvcjogI0ZGRkZGRjsiIG9mZnNldD0iMCUiLz4KICAJCTxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiAjQzFDMUMxOyIgb2Zmc2V0PSIxMDAlIi8+CiAgCTwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMjQwIiBmaWxsPSJ1cmwoI2dyYWQwKSIgc3Ryb2tlPSIjRENEQ0RDIiBzdHJva2Utd2lkdGg9IjgiLz4KPC9zdmc+Cgo=";
   this.colors = d3.scale.category20();
 
   this._init();
@@ -156,7 +157,7 @@ SpiderGraph.prototype = {
       });
 
     node3.append("svg:image")
-      .attr("xlink:href", (d) => { return d.id == 0 ? this.GENERIC_SOLID : this.YOU_CIRCLE; })
+      .attr("xlink:href", (d) => { return d.id == 0 ? this.GENERIC_SOLID : this.LITTLE_GREY_CIRCLE; })
       .attr("width", function(d) { return d.radius * 2; })
       .attr("height", function(d) { return d.radius * 2; })
       .attr("x", function(d) { return -d.radius; })
