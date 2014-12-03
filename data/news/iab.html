@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>IAB News</title>
+    </head>
+    <body ng-cloak>
+        <div class="iabContent" ng-controller="iabNewsCtrl">
+
+          <!-- IAB CATS -->
+          <div class="iab-tops">
+            <div ng-repeat="cat in tops | noZeroCat:iab | SelectedCats:checkedCats">
+              <div class="iab-top-cat" ng-class="getTopCatClass(cat)" ng-click="topCatSelect(cat)">
+                <span class="iab-top-name">{{cat}}</span>
+                <span class="iab-top-count">{{iab[cat].count}}</span>
+              </div>
+              <div class="iab-seconds" ng-show="doShowSeconds(cat)">
+                <div ng-repeat="sub in seconds[cat] | noZeroCat:iab | SelectedCats:checkedCats">
+                  <div class="iab-sub-cat" ng-class="getSubCatClass(sub)" ng-click="subCatSelect(sub)">
+                    <span class="iab-sub-name">{{sub}}</span>
+                    <span class="iab-sub-count">{{iab[sub].count}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Docs View -->
+          <div ng-show="currentCat">
+            <div ng-include="'docPagingView.html'"></div>
+          </div>
+
+          <div class="iab-settings-ctl">
+            <img class="iab-settings-image"
+              ng-click="toggelSettings()"
+              ng-src="{{dataUrl + 'images/preferences-icon.png'}}"/>
+          </div>
+          <div ng-show="showConfig" class="iab-settings">
+            <div>
+            </div>
+              <button ng-click="clearAll()">Clear</button>
+              <button ng-click="resetPrefs()">Reset</button>
+            <div>
+              <input type="checkbox" ng-model="checkAll" ng-change="changeAll()">Change All<br/>
+            </div>
+            <div ng-repeat="cat in tops">
+               <input type="checkbox" ng-change="changeCheckedStatus(cat)" ng-model="checkedCats[cat]">{{cat}}
+               <span class="iab-settings-count">[{{iab[cat].count}}]</span>
+               <img class="iab-settings-toggle-image"
+                    ng-show="!expended[cat]"
+                    ng-click="toggelSubPrefs(cat)"
+                    ng-src="{{dataUrl + 'images/arrow-right.png'}}"/>
+               <img class="iab-settings-toggle-image"
+                    ng-show="expended[cat]"
+                    ng-click="toggelSubPrefs(cat)"
+                    ng-src="{{dataUrl + 'images/arrow-down.png'}}"/>
+               <div ng-show="expended[cat]" ng-repeat="sub in seconds[cat]">
+                 <input style="margin-left: 10px" type="checkbox" ng-change="changeCheckedStatus(sub)" ng-model="checkedCats[sub]">{{sub}}
+                 <span class="iab-settings-count">[{{iab[sub].count}}]</span></br>
+               </div>
+            </div>
+          </div>
+        </div>
+    </body>
+</html>

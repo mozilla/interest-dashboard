@@ -9,5 +9,25 @@
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-angular-gettext": "~0.2.6"
-  }
+  },
+  "preferences": [
+    {
+      "name": "docServer",
+      "title": "document server",
+      "type": "string",
+      "value": "http://localhost:3000"
+    },
+    {
+      "name": "updateSeconds",
+      "title": "seconds between feed update",
+      "type": "integer",
+      "value": 30
+    },
+    {
+      "name": "maxCatDocs",
+      "title": "max feed documents per category",
+      "type": "integer",
+      "value": 100
+    }
+  ]
 }

@@ -1,0 +1,238 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {display: none;}
+.container {margin-top: 50px;}
+.quote-btn {margin-bottom: 30px}
+.quoteContainer {width: 960px;}
+.quote-card {padding: 20px;}
+.quote {font-family: "Open Sans", Helvetica, Arial; font-weight: 200; font-size: 24pt;}
+.feed-table {border: 1px solid; padding: 4px; margin-top: 10px; margin-bottom: 10px;}
+.feed-cell:first-child {padding: 4px;}
+.feed-cell span {padding: 4px;}
+.error-message {font-size: large; color: red;}
+.inactive-tab {color: red; border-bottom: 1px solid black;}
+.active-tab {color: blue; border: 1px solid black; border-bottom: 1px solid white;}
+.tab-label {position: relative; margin-bottom: -1px;}
+.tab-label:hoover {border: 1px solid black; border-bottom: 1px solid white;}
+.tab-spacer {
+  min-width: 500px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid black;
+  display: -moz-inline-box;
+  position: relative;
+  margin-left: -1px;
+}
+
+.mainContent {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.scored-results {
+  max-height: 350px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow-y: scroll;
+}
+
+.doc-score {
+  color: red;
+  margin-right: 10px;
+}
+
+.doc-summary {
+  padding-left: 20px;
+}
+
+.doc-terms {
+  padding-left: 20px;
+}
+
+.doc-keyword {
+  padding: 6px;
+}
+
+.doc-published {
+  color: green;
+  margin-left: 10px;
+}
+
+.doc-toggle {
+  border: 1px solid black;
+}
+
+.favicon {
+  width: 16px;
+  height: 16px;
+}
+
+.sitesTable {
+  margin-top: 20px;
+}
+
+.doc-item {
+  margin-top: 20px;
+}
+
+.doc-body {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.doc-header {
+  position: relative;
+  max-width: 600px;
+}
+
+.doc-site-image {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  top: -5px;
+}
+
+.doc-score {
+ position: relative;
+ top: -5px;
+}
+
+.doc-ref {
+  display: inline-block;
+  max-width: 500px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doc-date {
+  position: absolute;
+  font-size: smaller;
+  right: -100px;
+  top: 2px;
+}
+
+.doc-image {
+  width: 50px;
+  height: 50px;
+}
+
+
+.doc-summary {
+  max-width: 600px;
+  float: right;
+  margin-left: 20px;
+  max-height: 60px;
+  overflow: hidden;
+}
+
+.doc-extra-img {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  margin-top: -8px;
+  margin-left: -8px;
+}
+
+.doc-extra-term {
+  font-style: italic;
+  margin-right: 20px;
+}
+
+.rankedDocs {
+  padding-bottom: 20px;
+}
+
+.page-walk {
+  margin-left: 20px;
+}
+
+.page-walk-img {
+  width: 15px;
+  height: 15px;
+}
+
+.page-walk-pnum {
+  display: inline;
+  margin-left: 20px;
+}
+
+.navigate {
+  position: relative;
+  margin-bottom: 10px;
+  border-bottom: 1px solid;
+  font-size: larger;
+}
+
+.iabContent {
+ margin-top: 20px;
+ margin-left: 20px;
+ display: flex;
+}
+
+.iab-tops {
+ max-width: 180px;
+}
+
+.iab-top-cat {
+  background-color: transparent;
+}
+
+.iab-top-cat-selected {
+  background-color: #878;
+}
+
+.iab-top-name {
+}
+
+.iab-top-count {
+}
+
+.iab-seconds {
+  margin-left: 10px;
+}
+
+.iab-sub-cat {
+}
+
+.iab-sub-cat-selected {
+ background-color: #BAC;
+}
+
+.iab-sub-name {
+}
+
+.iab-sub-count {
+}
+
+.iab-settings-ctl {
+  position: absolute;
+  right: 120px;
+  top: 0px;
+  z-index: 400;
+}
+
+.iab-settings-image {
+  width: 40px;
+  height: 40px;
+}
+
+.iab-settings {
+ position: absolute;
+ right: 140px;
+ background: #BAC;
+ z-index: 200;
+ padding: 5px;
+}
+
+.iab-settings-toggle-image {
+  width: 10px;
+}
+
+.iab-settings-count {
+  font-size: smaller;
+}
+
+.doc-page {
+  min-width: 800px;
+  margin-left: 20px;
+}
