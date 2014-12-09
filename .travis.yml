@@ -8,10 +8,15 @@ before_install:
     - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 -extension RANDR"
 
 before_script:
+    - npm install mozilla-download -g
+    - cd ..
+    - mozilla-download --branch latest -c release firefox
+    - cd $TRAVIS_BUILD_DIR
+    - export FIREFOX_BIN==$TRAVIS_BUILD_DIR/../firefox/firefox
     - git submodule update --init
     - cd addon-sdk
     - . bin/activate
     - cd ../
-    - /usr/local/bin/firefox -v
+    - $FIREFOX_BIN -v
 
-script: cfx test     
+script: cfx test -b $FIREFOX_BIN
