@@ -6,6 +6,7 @@
 
 importScripts("tokenizerFactory.js");
 importScripts("naiveBayesClassifier.js");
+importScripts("lwca_refined.js");
 
 function InterestsWorkerError(message) {
     this.name = "InterestsWorkerError";
@@ -23,6 +24,7 @@ let gNamespace = null;
 let gRegionCode = null;
 let gTokenizer = null;
 let gClassifier = null;
+let gLWCAClassifier = null;
 let gInterestsData = null;
 
 // XXX The original splitter doesn't apply to chinese:
@@ -31,6 +33,8 @@ const kSplitter = /[\s-]+/;
 
 // bootstrap the worker with data and models
 function bootstrap(aMessageData) {
+  gLWCAClassifier = new LWCAClassifier(aMessageData);
+
   // expects : {interestsData, interestsDataType, interestsClassifierModel, interestsUrlStopwords, workerRegionCode}
   gRegionCode = aMessageData.workerRegionCode;
 
@@ -162,6 +166,19 @@ function textClassify({url, title}) {
   return [];
 }
 
+function lwcaClassify({url, title}) {
+  try {
+    if (url && title && gNamespace == "58-cat") {
+      let classification = gLWCAClassifier.classify(url, title);
+      let subcat = classification[1].split("/")[0];
+      return {"category": [classification[0]], "subcat": subcat};
+    }
+  } catch (ex) {
+    console.log(ex);
+  }
+  return [];
+}
+
 // Figure out which interests are associated to the document
 function getInterestsForDocument(aMessageData) {
 
@@ -191,6 +208,11 @@ function getInterestsForDocument(aMessageData) {
   let results = [];
   let combinedInterests = [];
   try {
+    interests = lwcaClassify(aMessageData);
+    if (Object.keys(interests).length > 0) {
+      results.push({type: "lwca", interests: interests.category, subcat: interests.subcat});
+    }
+
     interests = ruleClassify(aMessageData);
     results.push({type: "rules", interests: dedupeInterests(interests)});
 
