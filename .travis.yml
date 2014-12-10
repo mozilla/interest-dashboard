@@ -19,4 +19,4 @@ before_script:
     - cd ../
     - $FIREFOX_BIN -v
 
-script: cfx test -b $FIREFOX_BIN
+script: cfx test -vb $FIREFOX_BIN
