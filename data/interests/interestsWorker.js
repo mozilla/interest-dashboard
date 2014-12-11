@@ -126,7 +126,7 @@ function parseVisit(host, baseDomain, path, title, url, options) {
 }
 
 // classify a page using rules
-function ruleClassify({host, language, baseDomain, path, title, url}) {
+function ruleClassify({host, baseDomain, path, title, url}) {
   let interests = [];
 
   if (!gInterestsData || (!gInterestsData[baseDomain] && !gInterestsData["__ANY"])) {
