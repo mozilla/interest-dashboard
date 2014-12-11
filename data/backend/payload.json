@@ -1,0 +1,20 @@
+{
+	"blacklist": {
+		"__ANY": {
+			"login": 0,
+		},
+		"linkedin.com": {
+			"in": 0,
+		}
+	},
+	"domainKeywordRules": {
+		'__ANY': {
+			"real_estate": ["Real Estate", 1],
+		},
+		'mozilla.org': {
+			'__ANY': [
+				['Technology & Computing', 1]
+			],
+		},
+	},
+}
