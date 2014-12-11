@@ -92,6 +92,39 @@ function interestFinalizer(interests) {
   return Object.keys(finalInterests);
 }
 
+function parseVisit(host, baseDomain, path, title, url, options) {
+  let words = {};
+
+  function addToWords(chunks, options = {}) {
+    let prev;
+    let prefix = options.prefix || "";
+    let suffix = options.suffix || "";
+
+    for (let i in chunks) {
+      if (chunks[i]) {
+        words[prefix + chunks[i] + suffix] = true;
+        if (prev) {
+          // add bigram
+          words[prefix + prev + chunks[i] + suffix] = true;
+        }
+        prev = chunks[i];
+      }
+    }
+  };
+
+
+  addToWords(gTokenizer.tokenize(url, title));
+  // deal with hosts
+  addToWords(host.substring(0, host.length - baseDomain.length).split("."), {suffix: "."});
+  // deal with path
+  let pathChunks = path.split("/");
+  for (let i in pathChunks) {
+    addToWords(gTokenizer.tokenize(pathChunks[i], ""), {prefix: "/"});
+  }
+
+  return words;
+}
+
 // classify a page using rules
 function ruleClassify({host, language, baseDomain, path, title, url}) {
   let interests = [];
@@ -100,19 +133,11 @@ function ruleClassify({host, language, baseDomain, path, title, url}) {
     return interests;
   }
 
-  let words = gTokenizer.tokenize(url, title);
-
-  // subdomain tokens, for example:
-  //   host="foo.bar.rootdomain.com", we got ["foo.", "bar."]
-  let hostChunks = host.substring(0, host.length - baseDomain.length).match(/[^.\/]+\./gi);
-  words = words.concat(hostChunks);
-  // path tokens, for example:
-  //   path="/foo/bar/blabla.html", we got ["/foo", "/bar", "/blabla.html"]
-  words = words.concat(path.match(/\/[^\/#?]+/gi));
+  let words = parseVisit(host, baseDomain, path, title, url);
 
   function matchedAllTokens(tokens) {
     return tokens.every(function(word) {
-      return words.indexOf(word) != -1;
+      return words[word];
     });
   }
 
