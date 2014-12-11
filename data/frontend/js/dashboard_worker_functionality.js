@@ -5,7 +5,6 @@
 "use strict";
 
 
-
 self.port.on("insert_stylesheet", function(file) {
 	//Inserts a stylesheet into the page.
 	//Called by code in Frontend.js
