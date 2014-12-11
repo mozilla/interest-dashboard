@@ -13,12 +13,13 @@ __/lib__
 * /streams - currently unclear exactly what this does but it is essential for the frontend to load. Hoping to refactor this
 
 __/data__
-* about-you.html - the HTML file for the dashboard page. Built using AngularJS
-* /img
-* /js
- * InterestDashboard.js - I think this generates charts. Needs to be cleaned up. 
- * dashboard_worker_functionality.js - performs some of the functionality on the dashboard that requires workers. 
-* /css
+* /frontend
+ * about-you.html - the HTML file for the dashboard page. Built using AngularJS
+ * /img
+ * /js
+  * InterestDashboard.js - I think this generates charts. Needs to be cleaned up. 
+  * dashboard_worker_functionality.js - performs some of the functionality on the dashboard that requires workers. 
+ * /css
 
 
 Add-on Page: https://addons.mozilla.org/firefox/addon/firefox-interest-dashboard/
