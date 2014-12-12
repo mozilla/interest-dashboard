@@ -22,7 +22,6 @@ const {DayCountRankerBolt} = require("streams/dayCountRankerBolt");
 const {DailyInterestsSpout} = require("streams/dailyInterestsSpout");
 const {ChartDataProcessorBolt} = require("streams/chartDataProcessorBolt");
 const {getPlacesHostForURI, getBaseDomain} = require("Utils");
-const {LWCAClassifier} = require("lwca_refined");
 const test = require("sdk/test");
 const {data} = require("sdk/self");
 
@@ -63,11 +62,7 @@ exports["test read all"] = function test_readAll(assert, done) {
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
 
-    let worker = new ChromeWorker(data.url("interests/lwcaWorker.js"));
-    let lwcaClassifier = new LWCAClassifier(worker);
-    yield lwcaClassifier.init();
-
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, lwcaClassifier, storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
     let assertDeferred = oldPromise.defer();
@@ -100,12 +95,8 @@ exports["test read from given timestamp"] = function test_readFromGivenTimestamp
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
 
-    let worker = new ChromeWorker(data.url("interests/lwcaWorker.js"));
-    let lwcaClassifier = new LWCAClassifier(worker);
-    yield lwcaClassifier.init();
-
     // only read starting from id == 10
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, (today-10)*MICROS_PER_DAY, lwcaClassifier, storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, (today-10)*MICROS_PER_DAY, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
     let assertDeferred = oldPromise.defer();
@@ -143,12 +134,8 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
 
-    let worker = new ChromeWorker(data.url("interests/lwcaWorker.js"));
-    let lwcaClassifier = new LWCAClassifier(worker);
-    yield lwcaClassifier.init();
-
     // only read starting from id == 10
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects, 10, lwcaClassifier, storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects, 10, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
     let assertDeferred = oldPromise.defer();
@@ -167,7 +154,7 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
     // now set chunksize to 1 and read from same id
     storageBackend = {};
     streamObjects = initStream(storageBackend);
-    historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects, 10, lwcaClassifier, storageBackend);
+    historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects, 10, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20, chunkSize: 1});
 
     assertDeferred = oldPromise.defer();
@@ -200,11 +187,7 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
 
-    let worker = new ChromeWorker(data.url("interests/lwcaWorker.js"));
-    let lwcaClassifier = new LWCAClassifier(worker);
-    yield lwcaClassifier.init();
-
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, lwcaClassifier, storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(), streamObjects, 0, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20});
 
     let assertDeferred = oldPromise.defer();
@@ -244,11 +227,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       let storageBackend = {};
       let streamObjects = initStream(storageBackend);
 
-      let worker = new ChromeWorker(data.url("interests/lwcaWorker.js"));
-      let lwcaClassifier = new LWCAClassifier(worker);
-      yield lwcaClassifier.init();
-
-      let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects, 0, lwcaClassifier, storageBackend);
+      let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects, 0, storageBackend);
 
       let processDeferred;
 
@@ -298,7 +277,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
         }
       });
 
-      historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects, 0, lwcaClassifier, storageBackend);
+      historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects, 0, storageBackend);
       let promise = historyReader.resubmitHistory({startDay: today-61});
       let cycles = 0;
       while (true) {
@@ -309,7 +288,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
         if (lastTimeStamp == theVeryLastTimeStamp) {
           break;
         }
-        historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,lastTimeStamp, lwcaClassifier, storageBackend);
+        historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,lastTimeStamp, storageBackend);
         promise = historyReader.resubmitHistory({startDay: today-61});
         cycles ++;
       }
@@ -362,11 +341,7 @@ exports["test tldCounter"] = function test_TldCounter(assert, done) {
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
 
-    let worker = new ChromeWorker(data.url("interests/lwcaWorker.js"));
-    let lwcaClassifier = new LWCAClassifier(worker);
-    yield lwcaClassifier.init();
-
-    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, lwcaClassifier, storageBackend);
+    let historyReader = new HistoryReader(gWorkerFactory.getCurrentWorkers(),streamObjects,0, storageBackend);
     yield historyReader.resubmitHistory({startDay: today-20},1);
     assert.deepEqual(storageBackend.tldCounter,
       {"au":{"mysql.au":1,"facebook.au":1},
