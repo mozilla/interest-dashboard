@@ -54,12 +54,24 @@ exports["test edrules text"] = function test_edrules_text(assert, done) {
     } // end of handleEvent
   };
 
+  let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
+  scriptLoader.loadSubScript(data.url("words.js"));
+  scriptLoader.loadSubScript(data.url("rules.js"));
+
   let worker = testUtils.getWorker({
       namespace: "test-edrules-text",
       listener: workerTester,
       domainRules: null,
       textModel: interestsClassifierModel,
       urlStopWords: interestsUrlStopwords,
+      domain_rules: domain_rules,
+      host_rules: host_rules,
+      path_rules: path_rules,
+      words_tree: words_tree,
+      ignore_words: ignore_words,
+      ignore_domains: ignore_domains,
+      ignore_exts: ignore_exts,
+      bad_domain_specific: bad_domain_specific
   });
 
   Task.spawn(function() {
@@ -166,12 +178,24 @@ exports["test text classifier"] = function test_text_classification(assert, done
     } // end of handleEvent
   };
 
+  let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
+  scriptLoader.loadSubScript(data.url("words.js"));
+  scriptLoader.loadSubScript(data.url("rules.js"));
+
   let worker = testUtils.getWorker({
       namespace: "test-text-classifier",
       listener: workerTester,
       domainRules: null,
       textModel: riggedMatchTests.interestsClassifierModel,
       urlStopWords: interestsUrlStopwords,
+      domain_rules: domain_rules,
+      host_rules: host_rules,
+      path_rules: path_rules,
+      words_tree: words_tree,
+      ignore_words: ignore_words,
+      ignore_domains: ignore_domains,
+      ignore_exts: ignore_exts,
+      bad_domain_specific: bad_domain_specific
   });
 
   Task.spawn(function() {

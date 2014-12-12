@@ -24,7 +24,8 @@ exports["test interest classifier"] = function test_UrlClassifier(assert, done) 
     let results = yield urlClassifier.classifyPage("http://www.autoblog.com/","Drive honda");
     assert.equal(Object.keys(results).length, workers.length);
     assert.deepEqual(results["58-cat"].results,
-          [{"type":"rules","interests":["cars"]},
+          [{"type": "lwca", interests: ["uncategorized"], subcat: "dummy"},
+           {"type":"rules","interests":["cars"]},
            {"type":"keywords","interests":[]},
            {"type":"combined","interests":["cars"]}
           ]);

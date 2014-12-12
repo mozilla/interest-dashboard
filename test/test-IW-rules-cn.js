@@ -8,6 +8,7 @@
 
 const {testUtils} = require("./helpers");
 const {Cc, Ci, Cu, ChromeWorker} = require("chrome");
+const {data} = require("sdk/self");
 const oldPromise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
@@ -64,13 +65,26 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
     } // end of handleEvent
   };
 
+
+  let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
+  scriptLoader.loadSubScript(data.url("words.js"));
+  scriptLoader.loadSubScript(data.url("rules.js"));
+
   let worker = testUtils.getWorker({
       namespace: "test-Matching",
       regionCode: 'zh-CN',
       listener: workerTester,
       domainRules: testDomainRules,
       textModel: null,
-      urlStopWords: ['php', 'html']
+      urlStopWords: ['php', 'html'],
+      domain_rules: domain_rules,
+      host_rules: host_rules,
+      path_rules: path_rules,
+      words_tree: words_tree,
+      ignore_words: ignore_words,
+      ignore_domains: ignore_domains,
+      ignore_exts: ignore_exts,
+      bad_domain_specific: bad_domain_specific
   });
 
   Task.spawn(function() {
