@@ -17,8 +17,8 @@ Cu.import("resource://gre/modules/NetUtil.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 
 let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
-scriptLoader.loadSubScript(data.url("models/urlStopwords.json"));
-scriptLoader.loadSubScript(data.url("models/en-US/edrules/textModel.json"));
+scriptLoader.loadSubScript(data.url("models/urlStopwords.js"));
+scriptLoader.loadSubScript(data.url("models/en-US/edrules/textModel.js"));
 
 let defaultMatchTests = [
   {
