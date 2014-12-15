@@ -53,7 +53,7 @@ let testDomainRules = {
     "app.": [
       "app"
     ],
-    "/real_estate": [
+    "/realestate": [
       "real estate"
     ],
   },
@@ -64,7 +64,10 @@ let testDomainRules = {
     "golf.": [
       ["tiger", 0.7],
       ["foo", 0.5],
-    ]
+    ],
+    "frontline": [
+      "test"
+    ],
   },
 }
 
@@ -108,7 +111,7 @@ let matchTests = [
 },
 {
   info: "Match Test 7 (Rules): www.testpathdomain.com query url",
-  url:  "https://www.testpathdomain.com/code?qw=aa",
+  url:  "https://www.testpathdomain.com/CODE?qw=aa",
   title: "CPlusPlus programming",
   expectedInterests: [{"type":"rules","interests":["programming","oop"]},{"type":"combined","interests":["programming","oop"]},{"type":"keywords","interests":[]}],
 },
@@ -141,6 +144,12 @@ let matchTests = [
   url:  "https://golf.google.com/golf",
   title: "tornament",
   expectedInterests: [{"type":"rules","interests":["golf","tiger"]},{"type":"combined","interests":["golf","tiger"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 13 (Rules): frontline bigram",
+  url:  "https://google.com",
+  title: "front line",
+  expectedInterests: [{"type":"rules","interests":["test"]},{"type":"combined","interests":["test"]},{"type":"keywords","interests":[]}],
 },
 ];
 
