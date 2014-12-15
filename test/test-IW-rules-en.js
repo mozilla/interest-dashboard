@@ -111,7 +111,7 @@ let matchTests = [
 },
 {
   info: "Match Test 7 (Rules): www.testpathdomain.com query url",
-  url:  "https://www.testpathdomain.com/code?qw=aa",
+  url:  "https://www.testpathdomain.com/CODE?qw=aa",
   title: "CPlusPlus programming",
   expectedInterests: [{"type":"rules","interests":["programming","oop"]},{"type":"combined","interests":["programming","oop"]},{"type":"keywords","interests":[]}],
 },
