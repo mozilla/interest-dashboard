@@ -93,8 +93,12 @@ function interestFinalizer(interests) {
 }
 
 function parseVisit(host, baseDomain, path, title, url, options) {
+  // words object will contain terms and bigrams found in url and title
   let words = {};
 
+  // this function populates words object with terms
+  // it adds apropriate suffix (it case of host chunks)
+  // or prefix (in case of paths) to the chunks supplied
   function addToWords(chunks, options = {}) {
     let prev;
     let prefix = options.prefix || "";
@@ -112,11 +116,11 @@ function parseVisit(host, baseDomain, path, title, url, options) {
     }
   };
 
-
+  // tokenize and add url and title text to words object
   addToWords(gTokenizer.tokenize(url, title));
-  // deal with hosts
+  // parse and add hosts chunks
   addToWords(host.substring(0, host.length - baseDomain.length).split("."), {suffix: "."});
-  // deal with path
+  // parse and add path chunks
   let pathChunks = path.split("/");
   for (let i in pathChunks) {
     addToWords(gTokenizer.tokenize(pathChunks[i], ""), {prefix: "/"});
@@ -129,18 +133,23 @@ function parseVisit(host, baseDomain, path, title, url, options) {
 function ruleClassify({host, baseDomain, path, title, url}) {
   let interests = [];
 
+  // check if rules are applicable at all
   if (!gInterestsData || (!gInterestsData[baseDomain] && !gInterestsData["__ANY"])) {
     return interests;
   }
 
+  // populate words object with visit data
   let words = parseVisit(host, baseDomain, path, title, url);
 
+  // this funcation tests for exitence of rule terms in the words object
+  // if all rule tokens are found in the wrods object return true
   function matchedAllTokens(tokens) {
-    return tokens.every(function(word) {
-      return words[word];
+    return tokens.every(function(token) {
+      return words[token];
     });
   }
 
+  // match a rule and collect matched interests
   function matchRuleInterests(rule) {
     Object.keys(rule).forEach(function(key) {
       if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
