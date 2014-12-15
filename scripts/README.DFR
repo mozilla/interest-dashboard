@@ -1,0 +1,5 @@
+Steps to generate DFR from rules and LICA words files located in:
+refData/rules.json and refData/words.json
+
+1. Modify files as needed in refData
+2. run generateDFR.sh > outfile.dfr

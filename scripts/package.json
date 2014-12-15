@@ -1,0 +1,9 @@
+{
+  "name": "DFR_Generator",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "tldjs": "*",
+    "node-getopt": "*"
+  }
+}
