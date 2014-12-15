@@ -736,6 +736,10 @@ InterestDashboard.prototype = {
 
   graph: function(data, table, $scope) {
     try {
+      // We got some data so make the Dashboard view active and the 'no history' view inactive
+      $('#yourInterests').addClass("active");
+      $('#noHistory').removeClass("active");
+
       this._data = data;
       this._table = table;
       this._scope = $scope;
