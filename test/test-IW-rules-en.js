@@ -68,6 +68,9 @@ let testDomainRules = {
     "frontline": [
       "test"
     ],
+    "travel_u": [
+      "travel"
+    ],
   },
 }
 
@@ -150,6 +153,30 @@ let matchTests = [
   url:  "https://google.com",
   title: "front line",
   expectedInterests: [{"type":"rules","interests":["test"]},{"type":"combined","interests":["test"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 14 (Rules): travel in subdomain",
+  url:  "https://travel.google.com",
+  title: "travel",
+  expectedInterests: [{"type":"rules","interests":["travel"]},{"type":"combined","interests":["travel"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 14 (Rules): travel in path",
+  url:  "https://google.com/travel",
+  title: "travel",
+  expectedInterests: [{"type":"rules","interests":["travel"]},{"type":"combined","interests":["travel"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 14 (Rules): travel in query",
+  url:  "https://google.com/search?q=travel",
+  title: "travel",
+  expectedInterests: [{"type":"rules","interests":["travel"]},{"type":"combined","interests":["travel"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 14 (Rules): travel in title",
+  url:  "https://google.com/search?q=foo",
+  title: "travel",
+  expectedInterests: [{"type":"rules","interests":[]},{"type":"combined","interests":[]},{"type":"keywords","interests":[]}],
 },
 ];
 

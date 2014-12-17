@@ -49,12 +49,14 @@ function processHostRules(rules) {
 // generate a key from a string of terms
 // for example: "foo bar baz" with prefix '/' will result in
 // "/foobar /baz" - the first to terms are always form a bigram
-function makeKey(str, prefix) {
+function makeKey(str, prefix, suffix) {
+  prefix = prefix || "";
+  suffix = suffix || "";
   var terms = str.split(/[^a-zA-Z0-9]+/);
   if (terms.length > 1) {
     terms.unshift(terms.shift() + terms.shift());
   }
-  return terms.map(function(term) { return prefix + term;}).join(" ");
+  return terms.map(function(term) { return prefix + term + suffix;}).join(" ");
 }
 
 // process path rules of the form domain/path
@@ -70,7 +72,7 @@ function processPathRules(rules) {
 // process free terms matching inside URLs
 function processUrlWordsRules(rules) {
   Object.keys(rules).forEach(function(term) {
-    var key = makeKey(term, "/");
+    var key = makeKey(term, null, "_u");
     addCats("__ANY", key, RevMap[rules[term]]);
   });
 }
