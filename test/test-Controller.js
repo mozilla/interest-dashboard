@@ -154,12 +154,12 @@ exports["test clear storage"] = function test_ClearStorage(assert, done) {
       yield testController.stopAndClearStorage();
 
       // make sure we are all clean
-      assert.equal(storageBackend.lastTimeStamp, undefined);
-      assert.equal(storageBackend.downloadSource, undefined);
-      assert.equal(storageBackend.dayBufferInterests, undefined);
-      assert.equal(storageBackend.interests, undefined);
-      assert.equal(storageBackend.ranking, undefined);
-      assert.equal(storageBackend.hasOwnProperty("interests"), false);
+      assert.equal(storageBackend.lastTimeStamp, undefined, "Test timestamp cleared");
+      assert.equal(storageBackend.downloadSource, undefined, "Test downloadSource cleared");
+      assert.equal(storageBackend.dayBufferInterests, undefined, "Test dayBufferInterests cleared");
+      assert.equal(storageBackend.interests, undefined, "Test interests cleared");
+      assert.equal(storageBackend.ranking, undefined, "Test ranking cleared");
+      assert.equal(storageBackend.hasOwnProperty("interests"), false, "Test no interests property");
     } catch(ex) {
       console.error(ex);
     }
