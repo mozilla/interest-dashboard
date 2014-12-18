@@ -687,7 +687,9 @@ tr:not(.shown) .subtitleCircle {
 .subtable-row {
   height: 40px !important;
 }
-
+.subtable-row:hover:not(.date-header) {
+  background-color: #EAF1FA !important;
+}
 
 
 /* Sidebar */
