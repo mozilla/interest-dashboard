@@ -37,6 +37,10 @@ body {
   display: inline-block;
 }
 
+img.favicon[ng-src=""] {
+   border:1px dashed #AFAFAF;
+}
+
 .charms div {
   width: 16px;
   height: 16px;
