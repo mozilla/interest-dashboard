@@ -118,6 +118,8 @@ function parseVisit(host, baseDomain, path, title, url, options) {
 
   // tokenize and add url and title text to words object
   addToWords(gTokenizer.tokenize(url, title));
+  // tokenize and add url only chunks
+  addToWords(gTokenizer.tokenize(url), {suffix: "_u"});
   // parse and add hosts chunks
   addToWords(host.substring(0, host.length - baseDomain.length).split("."), {suffix: "."});
   // parse and add path chunks
