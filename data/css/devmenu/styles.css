@@ -38,7 +38,7 @@ body {
 }
 
 img.favicon[ng-src=""] {
-   border:1px dashed #AFAFAF;
+   border: 1px dashed #AFAFAF;
 }
 
 .charms div {
