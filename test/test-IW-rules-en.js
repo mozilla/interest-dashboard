@@ -8,6 +8,7 @@
 
 const {testUtils} = require("./helpers");
 const {Cc, Ci, Cu, ChromeWorker} = require("chrome");
+const {data} = require("sdk/self");
 const oldPromise = require("sdk/core/promise");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
@@ -52,7 +53,7 @@ let testDomainRules = {
     "app.": [
       "app"
     ],
-    "/real_estate": [
+    "/realestate": [
       "real estate"
     ],
   },
@@ -63,7 +64,13 @@ let testDomainRules = {
     "golf.": [
       ["tiger", 0.7],
       ["foo", 0.5],
-    ]
+    ],
+    "frontline": [
+      "test"
+    ],
+    "travel_u": [
+      "travel"
+    ],
   },
 }
 
@@ -107,7 +114,7 @@ let matchTests = [
 },
 {
   info: "Match Test 7 (Rules): www.testpathdomain.com query url",
-  url:  "https://www.testpathdomain.com/code?qw=aa",
+  url:  "https://www.testpathdomain.com/CODE?qw=aa",
   title: "CPlusPlus programming",
   expectedInterests: [{"type":"rules","interests":["programming","oop"]},{"type":"combined","interests":["programming","oop"]},{"type":"keywords","interests":[]}],
 },
@@ -141,6 +148,36 @@ let matchTests = [
   title: "tornament",
   expectedInterests: [{"type":"rules","interests":["golf","tiger"]},{"type":"combined","interests":["golf","tiger"]},{"type":"keywords","interests":[]}],
 },
+{
+  info: "Match Test 13 (Rules): frontline bigram",
+  url:  "https://google.com",
+  title: "front line",
+  expectedInterests: [{"type":"rules","interests":["test"]},{"type":"combined","interests":["test"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 14 (Rules): travel in subdomain",
+  url:  "https://travel.google.com",
+  title: "travel",
+  expectedInterests: [{"type":"rules","interests":["travel"]},{"type":"combined","interests":["travel"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 14 (Rules): travel in path",
+  url:  "https://google.com/travel",
+  title: "travel",
+  expectedInterests: [{"type":"rules","interests":["travel"]},{"type":"combined","interests":["travel"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 14 (Rules): travel in query",
+  url:  "https://google.com/search?q=travel",
+  title: "travel",
+  expectedInterests: [{"type":"rules","interests":["travel"]},{"type":"combined","interests":["travel"]},{"type":"keywords","interests":[]}],
+},
+{
+  info: "Match Test 14 (Rules): travel in title",
+  url:  "https://google.com/search?q=foo",
+  title: "travel",
+  expectedInterests: [{"type":"rules","interests":[]},{"type":"combined","interests":[]},{"type":"keywords","interests":[]}],
+},
 ];
 
 exports["test default matcher"] = function test_default_matcher(assert, done) {
@@ -170,12 +207,24 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
     } // end of handleEvent
   };
 
+  let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
+  scriptLoader.loadSubScript(data.url("words.js"));
+  scriptLoader.loadSubScript(data.url("rules.js"));
+
   let worker = testUtils.getWorker({
       namespace: "test-Matching",
       listener: workerTester,
       domainRules: testDomainRules,
       textModel: null,
-      urlStopWords: ['php', 'html']
+      urlStopWords: ['php', 'html'],
+      domain_rules: domain_rules,
+      host_rules: host_rules,
+      path_rules: path_rules,
+      words_tree: words_tree,
+      ignore_words: ignore_words,
+      ignore_domains: ignore_domains,
+      ignore_exts: ignore_exts,
+      bad_domain_specific: bad_domain_specific
   });
 
   Task.spawn(function() {

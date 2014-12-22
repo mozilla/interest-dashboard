@@ -261,7 +261,7 @@ InterestDashboard.prototype = {
       $(".headerCircle").addClass("alwaysVisible");
 
       if (this._isNewDay(currentDay, visit.timestamp)) {
-        rows += '<tr class="subtable-row">' +
+        rows += '<tr class="subtable-row date-header">' +
           '<td></td>' +
           '<td></td>' +
           '<td style="width: 23px"><div class="subtitleCircle alwaysVisible"></div></td>' +
@@ -736,6 +736,10 @@ InterestDashboard.prototype = {
 
   graph: function(data, table, $scope) {
     try {
+      // We got some data so make the Dashboard view active and the 'no history' view inactive
+      $('#yourInterests').addClass("active");
+      $('#noHistory').removeClass("active");
+
       this._data = data;
       this._table = table;
       this._scope = $scope;

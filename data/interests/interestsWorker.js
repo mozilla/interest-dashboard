@@ -6,6 +6,7 @@
 
 importScripts("tokenizerFactory.js");
 importScripts("naiveBayesClassifier.js");
+importScripts("lwca_refined.js");
 
 function InterestsWorkerError(message) {
     this.name = "InterestsWorkerError";
@@ -23,6 +24,7 @@ let gNamespace = null;
 let gRegionCode = null;
 let gTokenizer = null;
 let gClassifier = null;
+let gLWCAClassifier = null;
 let gInterestsData = null;
 
 // XXX The original splitter doesn't apply to chinese:
@@ -31,6 +33,8 @@ const kSplitter = /[\s-]+/;
 
 // bootstrap the worker with data and models
 function bootstrap(aMessageData) {
+  gLWCAClassifier = new LWCAClassifier(aMessageData);
+
   // expects : {interestsData, interestsDataType, interestsClassifierModel, interestsUrlStopwords, workerRegionCode}
   gRegionCode = aMessageData.workerRegionCode;
 
@@ -88,30 +92,66 @@ function interestFinalizer(interests) {
   return Object.keys(finalInterests);
 }
 
+function parseVisit(host, baseDomain, path, title, url, options) {
+  // words object will contain terms and bigrams found in url and title
+  let words = {};
+
+  // this function populates words object with terms
+  // it adds apropriate suffix (it case of host chunks)
+  // or prefix (in case of paths) to the chunks supplied
+  function addToWords(chunks, options = {}) {
+    let prev;
+    let prefix = options.prefix || "";
+    let suffix = options.suffix || "";
+
+    for (let i in chunks) {
+      if (chunks[i]) {
+        words[prefix + chunks[i] + suffix] = true;
+        if (prev) {
+          // add bigram
+          words[prefix + prev + chunks[i] + suffix] = true;
+        }
+        prev = chunks[i];
+      }
+    }
+  };
+
+  // tokenize and add url and title text to words object
+  addToWords(gTokenizer.tokenize(url, title));
+  // tokenize and add url only chunks
+  addToWords(gTokenizer.tokenize(url), {suffix: "_u"});
+  // parse and add hosts chunks
+  addToWords(host.substring(0, host.length - baseDomain.length).split("."), {suffix: "."});
+  // parse and add path chunks
+  let pathChunks = path.split("/");
+  for (let i in pathChunks) {
+    addToWords(gTokenizer.tokenize(pathChunks[i], ""), {prefix: "/"});
+  }
+
+  return words;
+}
+
 // classify a page using rules
-function ruleClassify({host, language, baseDomain, path, title, url}) {
+function ruleClassify({host, baseDomain, path, title, url}) {
   let interests = [];
 
+  // check if rules are applicable at all
   if (!gInterestsData || (!gInterestsData[baseDomain] && !gInterestsData["__ANY"])) {
     return interests;
   }
 
-  let words = gTokenizer.tokenize(url, title);
+  // populate words object with visit data
+  let words = parseVisit(host, baseDomain, path, title, url);
 
-  // subdomain tokens, for example:
-  //   host="foo.bar.rootdomain.com", we got ["foo.", "bar."]
-  let hostChunks = host.substring(0, host.length - baseDomain.length).match(/[^.\/]+\./gi);
-  words = words.concat(hostChunks);
-  // path tokens, for example:
-  //   path="/foo/bar/blabla.html", we got ["/foo", "/bar", "/blabla.html"]
-  words = words.concat(path.match(/\/[^\/#?]+/gi));
-
+  // this funcation tests for exitence of rule terms in the words object
+  // if all rule tokens are found in the wrods object return true
   function matchedAllTokens(tokens) {
-    return tokens.every(function(word) {
-      return words.indexOf(word) != -1;
+    return tokens.every(function(token) {
+      return words[token];
     });
   }
 
+  // match a rule and collect matched interests
   function matchRuleInterests(rule) {
     Object.keys(rule).forEach(function(key) {
       if (key == "__HOME" && (path == null || path == "" || path == "/" || path.indexOf("/?") == 0)) {
@@ -162,6 +202,19 @@ function textClassify({url, title}) {
   return [];
 }
 
+function lwcaClassify({url, title}) {
+  try {
+    if (url && title && gNamespace == "58-cat") {
+      let classification = gLWCAClassifier.classify(url, title);
+      let subcat = classification[1].split("/")[0];
+      return {"category": [classification[0]], "subcat": subcat};
+    }
+  } catch (ex) {
+    console.log(ex);
+  }
+  return [];
+}
+
 // Figure out which interests are associated to the document
 function getInterestsForDocument(aMessageData) {
 
@@ -191,6 +244,11 @@ function getInterestsForDocument(aMessageData) {
   let results = [];
   let combinedInterests = [];
   try {
+    interests = lwcaClassify(aMessageData);
+    if (Object.keys(interests).length > 0) {
+      results.push({type: "lwca", interests: interests.category, subcat: interests.subcat});
+    }
+
     interests = ruleClassify(aMessageData);
     results.push({type: "rules", interests: dedupeInterests(interests)});
 

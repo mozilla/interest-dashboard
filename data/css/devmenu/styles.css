@@ -687,7 +687,9 @@ tr:not(.shown) .subtitleCircle {
 .subtable-row {
   height: 40px !important;
 }
-
+.subtable-row:hover:not(.date-header) {
+  background-color: #EAF1FA !important;
+}
 
 
 /* Sidebar */
@@ -988,4 +990,84 @@ ol li {
   border-left: 2px dotted #6A7B86;
   left: 70px;
   top: 70px;
+}
+
+/* Empty profile */
+#noHistory {
+  background: #F5F5F5;
+  position: absolute;
+  top: 56px;
+  bottom: 0;
+  width: 100%;
+  min-width: 1230px;
+}
+
+#emptyVisuals {
+  height: 460px;
+  border-bottom: 3px solid #E6E6E6;
+  background: #FFFFFF;
+}
+
+#emptyProfileFox {
+  background: url('resources/Fox-696x426.png') no-repeat center center;
+  width: 696px;
+  height: 426px;
+  top: 15px;
+  position: absolute;
+}
+
+#emptyProfileContent {
+  position: absolute;
+  left: 731px;
+  top: 65px;
+}
+
+#emptyProfileContent #header {
+  color: #6A7B86;
+  font-size: 52px;
+  font-weight: 300;
+  line-height: 52px;
+}
+
+#emptyProfileContent .text {
+  display: inline-block;
+  font-size: 18px;
+  color: #6A7B86;
+  line-height: 64px;
+  vertical-align: top;
+  padding-left: 15px;
+}
+
+#emptyProfileContent #blurb {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 0;
+  vertical-align: middle;
+  line-height: 24px;
+}
+
+#emptyProfileContent #topIcon {
+  background: url('resources/Top_Interest-65x65.svg') no-repeat center center;
+  width: 65px;
+  height: 65px;
+  display: inline-block;
+}
+
+#emptyProfileContent #analysisIcon {
+  background: url('resources/Analyze_Data-65x65.svg') no-repeat center center;
+  width: 65px;
+  height: 65px;
+  display: inline-block;
+}
+
+#emptyProfileContent #betterIcon {
+  background: url('resources/Better_Target-65x65.svg') no-repeat center center;
+  width: 65px;
+  height: 65px;
+  display: inline-block;
+}
+
+#emptyProfileContent .point {
+  height: 64px;
+  margin-bottom: 15px;
 }

@@ -1,0 +1,4204 @@
+var interestsData = {
+    "qq.com": {
+        "digi. tech. /mobile": [
+            "mobile"
+        ],
+        "digi. tech.": [
+            "digital"
+        ],
+        "digi. tech. /yx.htm": [
+            "photography-dc"
+        ],
+        "auto.": [
+            "auto"
+        ],
+        "house.": [
+            "realestate"
+        ],
+        "digi. tech. /hea": [
+            "home-applicance"
+        ],
+        "henan. /jiaju": [
+            "home-decoration"
+        ],
+        "fashion. /vogue": [
+            "fashion-women"
+        ],
+        "fashion. /gentlemen": [
+            "fashion-men"
+        ],
+        "fashion. /beauty": [
+            "beauty"
+        ],
+        "health.": [
+            "health"
+        ],
+        "cul.": [
+            "book"
+        ],
+        "dushu.": [
+            "book"
+        ],
+        "chuangshi.": [
+            "online-novel"
+        ],
+        "baby.": [
+            "parenting"
+        ],
+        "edu.": [
+            "education"
+        ],
+        "go.": [
+            "travel"
+        ],
+        "travel. go.": [
+            "travel"
+        ],
+        "tech.": [
+            "technology"
+        ],
+        "v. /news": [
+            "news"
+        ],
+        "news.": [
+            "news"
+        ],
+        "mil.": [
+            "military"
+        ],
+        "finance.": [
+            "finance"
+        ],
+        "v. /variety": [
+            "entertainment-gossip"
+        ],
+        "v. /ent": [
+            "entertainment-gossip"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "v. /hotshare": [
+            "humor"
+        ],
+        "joke.": [
+            "humor"
+        ],
+        "fm.": [
+            "music"
+        ],
+        "v. /movie": [
+            "movie"
+        ],
+        "v. /cinema": [
+            "movie"
+        ],
+        "film.": [
+            "movie"
+        ],
+        "v. /tv": [
+            "TV-series"
+        ],
+        "v. /games": [
+            "game"
+        ],
+        "games.": [
+            "game"
+        ],
+        "lol.": [
+            "game"
+        ],
+        "v. /cartoon": [
+            "anime-manga"
+        ],
+        "comic.": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "v. /sports": [
+            "sports"
+        ],
+        "sports. /nba": [
+            "basketball"
+        ],
+        "sports. /cba": [
+            "basketball"
+        ],
+        "sports. /nbavideo": [
+            "basketball"
+        ],
+        "v. /l /sports /basketball": [
+            "basketball"
+        ],
+        "sports. /ucl": [
+            "soccer"
+        ],
+        "sports. /premierleague": [
+            "soccer"
+        ],
+        "sports. /laliga": [
+            "soccer"
+        ],
+        "sports. /seriea": [
+            "soccer"
+        ],
+        "sports. /csocce": [
+            "soccer"
+        ],
+        "sports. /isocce": [
+            "soccer"
+        ],
+        "v. /l /sports /isocce": [
+            "soccer"
+        ],
+        "v. /sports /isocce": [
+            "soccer"
+        ]
+    },
+    "ifeng.com": {
+        "digi. /mobile": [
+            "mobile"
+        ],
+        "digi.": [
+            "digital"
+        ],
+        "tech. /digi": [
+            "digital"
+        ],
+        "digi. /dc": [
+            "photography-dc"
+        ],
+        "tech. /digi /dc": [
+            "photography-dc"
+        ],
+        "auto.": [
+            "auto"
+        ],
+        "house.": [
+            "realestate"
+        ],
+        "app. house.": [
+            "realestate"
+        ],
+        "digi. /ehome": [
+            "home-applicance"
+        ],
+        "tech. /digi /ehome": [
+            "home-applicance"
+        ],
+        "home.": [
+            "home-decoration"
+        ],
+        "fashion. /trends": [
+            "fashion-women"
+        ],
+        "fashion. /luxury": [
+            "luxury"
+        ],
+        "cosmetics.": [
+            "beauty"
+        ],
+        "fashion. /body": [
+            "beauty",
+            "fitness"
+        ],
+        "fashion. /health": [
+            "health"
+        ],
+        "book.": [
+            "book"
+        ],
+        "fashion. /baby": [
+            "parenting"
+        ],
+        "bbs. baby.": [
+            "parenting"
+        ],
+        "edu.": [
+            "education"
+        ],
+        "v. /gongkaike": [
+            "mooc"
+        ],
+        "fashion. /travel": [
+            "travel"
+        ],
+        "tech.": [
+            "technology"
+        ],
+        "v. /news": [
+            "news"
+        ],
+        "news.": [
+            "news"
+        ],
+        "v. /mil": [
+            "military"
+        ],
+        "news. /mil": [
+            "military"
+        ],
+        "phtv. /program /jqgcs": [
+            "military"
+        ],
+        "finance.": [
+            "finance"
+        ],
+        "v. /ent": [
+            "entertainment-gossip"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "v. /movie": [
+            "movie"
+        ],
+        "v. /teleplay": [
+            "TV-series"
+        ],
+        "v. /game": [
+            "game"
+        ],
+        "games.": [
+            "game"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "live. sports.": [
+            "sports"
+        ]
+    },
+    "163.com": {
+        "mobile.": [
+            "mobile"
+        ],
+        "product. mobile.": [
+            "mobile"
+        ],
+        "digi.": [
+            "digital"
+        ],
+        "digi. /dc": [
+            "photography-dc"
+        ],
+        "auto.": [
+            "auto"
+        ],
+        "product. auto.": [
+            "auto"
+        ],
+        "house.": [
+            "realestate"
+        ],
+        "hea.": [
+            "home-applicance"
+        ],
+        "digi. /television": [
+            "home-applicance"
+        ],
+        "digi. /icebox": [
+            "home-applicance"
+        ],
+        "digi. /ac": [
+            "home-applicance"
+        ],
+        "digi. /washer": [
+            "home-applicance"
+        ],
+        "digi. /waterheater": [
+            "home-applicance"
+        ],
+        "home.": [
+            "home-decoration"
+        ],
+        "bbs. home.": [
+            "home-decoration"
+        ],
+        "fushi.": [
+            "fashion-women"
+        ],
+        "lady. /beauty": [
+            "beauty"
+        ],
+        "yuedu.": [
+            "book"
+        ],
+        "baby.": [
+            "parenting"
+        ],
+        "bbs. baby.": [
+            "parenting"
+        ],
+        "edu.": [
+            "education"
+        ],
+        "open.": [
+            "mooc"
+        ],
+        "travel.": [
+            "travel"
+        ],
+        "tech.": [
+            "technology"
+        ],
+        "discovery.": [
+            "science"
+        ],
+        "news.": [
+            "news"
+        ],
+        "war.": [
+            "military"
+        ],
+        "money.": [
+            "finance"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "game.": [
+            "game"
+        ],
+        "product. game.": [
+            "game"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "sports. /nba": [
+            "basketball"
+        ],
+        "nba. sports.": [
+            "basketball"
+        ],
+        "sports. /cba": [
+            "basketball"
+        ],
+        "cba. sports.": [
+            "basketball"
+        ],
+        "cbachina.": [
+            "basketball"
+        ],
+        "sports. /world": [
+            "soccer"
+        ],
+        "sports. /yc": [
+            "soccer"
+        ],
+        "sports. /xj": [
+            "soccer"
+        ],
+        "sports. /yj": [
+            "soccer"
+        ],
+        "sports. /dj": [
+            "soccer"
+        ],
+        "sports. /gjb": [
+            "soccer"
+        ],
+        "sports. /china": [
+            "soccer"
+        ],
+        "sports. /zc": [
+            "soccer"
+        ],
+        "sports. /gjd": [
+            "soccer"
+        ],
+        "sports. /nz": [
+            "soccer"
+        ]
+    },
+    "sina.com.cn": {
+        "mobile.": [
+            "mobile"
+        ],
+        "tech. /mobile": [
+            "mobile"
+        ],
+        "digi.": [
+            "digital"
+        ],
+        "digi. /notebook": [
+            "digital"
+        ],
+        "tech. /n": [
+            "digital"
+        ],
+        "tech. /digital": [
+            "photography-dc"
+        ],
+        "tech. /digi": [
+            "photography-dc"
+        ],
+        "auto.": [
+            "auto"
+        ],
+        "house.": [
+            "realestate"
+        ],
+        "esf.": [
+            "realestate"
+        ],
+        "tech. /elec": [
+            "home-applicance"
+        ],
+        "tech. /e": [
+            "home-applicance"
+        ],
+        "jiaju.": [
+            "home-decoration"
+        ],
+        "bbs. jiaju.": [
+            "home-decoration"
+        ],
+        "slide. fashion. /s": [
+            "fashion-women"
+        ],
+        "fashion. /s": [
+            "fashion-women"
+        ],
+        "fashion. /style": [
+            "fashion-women"
+        ],
+        "fashion. /b": [
+            "beauty"
+        ],
+        "fashion. /body": [
+            "beauty"
+        ],
+        "fashion. /cosmetics": [
+            "beauty"
+        ],
+        "fashion. /beauty": [
+            "beauty"
+        ],
+        "fashion. /d /ft": [
+            "fitness"
+        ],
+        "health.": [
+            "health"
+        ],
+        "book.": [
+            "online-novel"
+        ],
+        "vip. book.": [
+            "online-novel"
+        ],
+        "fashion. /w": [
+            "wedding"
+        ],
+        "fashion. /wedding": [
+            "wedding"
+        ],
+        "baby.": [
+            "parenting"
+        ],
+        "edu.": [
+            "education"
+        ],
+        "open.": [
+            "mooc"
+        ],
+        "travel.": [
+            "travel"
+        ],
+        "tech.": [
+            "technology"
+        ],
+        "video. /news": [
+            "news"
+        ],
+        "video. /p /news": [
+            "news"
+        ],
+        "news.": [
+            "news"
+        ],
+        "slide. news.": [
+            "news"
+        ],
+        "video. /mil": [
+            "military"
+        ],
+        "video. /p /news /mil": [
+            "military"
+        ],
+        "mil. news.": [
+            "military"
+        ],
+        "finance.": [
+            "finance"
+        ],
+        "video. /movie /zongyi": [
+            "entertainment-gossip"
+        ],
+        "video. /ent": [
+            "entertainment-gossip"
+        ],
+        "video. /p /ent": [
+            "entertainment-gossip"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "ent. /gossip": [
+            "entertainment-gossip"
+        ],
+        "ent. /s": [
+            "entertainment-gossip"
+        ],
+        "video. /gaoxiao": [
+            "humor"
+        ],
+        "video. /p /news /gaoxiao": [
+            "humor"
+        ],
+        "yue.": [
+            "music"
+        ],
+        "ent. /y": [
+            "music"
+        ],
+        "video. /movie /movie": [
+            "movie"
+        ],
+        "ent. /film": [
+            "movie"
+        ],
+        "ent. /m": [
+            "movie"
+        ],
+        "video. /movie /teleplay": [
+            "TV-series"
+        ],
+        "ent. /tv": [
+            "TV-series"
+        ],
+        "ent. /v": [
+            "TV-series"
+        ],
+        "games.": [
+            "game"
+        ],
+        "video. /movie /comic": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "video. /sports": [
+            "sports"
+        ],
+        "video. /p /sports": [
+            "sports"
+        ],
+        "sports. /nba": [
+            "basketball"
+        ],
+        "sports. /cba": [
+            "basketball"
+        ],
+        "sports. /global": [
+            "soccer"
+        ],
+        "sports. /g": [
+            "soccer"
+        ],
+        "sports. /csl": [
+            "soccer"
+        ],
+        "sports. /j": [
+            "soccer"
+        ]
+    },
+    "zol.com.cn": {
+        "detail. /cell_phone": [
+            "mobile"
+        ],
+        "detail. /cell_phone_index": [
+            "mobile"
+        ],
+        "mobile.": [
+            "mobile"
+        ],
+        "__ANY": [
+            "digital"
+        ],
+        "power.": [
+            "digital"
+        ],
+        "nb.": [
+            "digital"
+        ],
+        "detail. /notebook_index": [
+            "digital"
+        ],
+        "detail. /notebook": [
+            "digital"
+        ],
+        "pad.": [
+            "digital"
+        ],
+        "detail. /tablepc": [
+            "digital"
+        ],
+        "diy.": [
+            "digital"
+        ],
+        "detail. /digital_camera_index": [
+            "photography-dc"
+        ],
+        "detail. /digital_camera": [
+            "photography-dc"
+        ],
+        "dcdv.": [
+            "photography-dc"
+        ],
+        "jd.": [
+            "home-applicance"
+        ],
+        "tv.": [
+            "home-applicance"
+        ],
+        "detail. /digital_tv": [
+            "home-applicance"
+        ],
+        "icebox.": [
+            "home-applicance"
+        ],
+        "detail. /icebox": [
+            "home-applicance"
+        ],
+        "ac.": [
+            "home-applicance"
+        ],
+        "detail. /air-condition": [
+            "home-applicance"
+        ],
+        "washer.": [
+            "home-applicance"
+        ],
+        "detail. /washer": [
+            "home-applicance"
+        ],
+        "xjd.": [
+            "home-applicance"
+        ],
+        "news. /tech": [
+            "technology"
+        ],
+        "jishu.": [
+            "programming"
+        ]
+    },
+    "amazon.cn": {
+        "\u624b\u673a": [
+            "mobile"
+        ],
+        "\u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "\u53f0\u5f0f": [
+            "digital"
+        ],
+        "\u5e73\u677f": [
+            "digital"
+        ],
+        "\u9f20\u6807": [
+            "digital"
+        ],
+        "\u952e\u76d8": [
+            "digital"
+        ],
+        "\u786c\u76d8": [
+            "digital"
+        ],
+        "U\u76d8": [
+            "digital"
+        ],
+        "\u4e3b\u677f": [
+            "digital"
+        ],
+        "\u663e\u5361": [
+            "digital"
+        ],
+        "CPU": [
+            "digital"
+        ],
+        "\u5185\u5b58": [
+            "digital"
+        ],
+        "\u51e0\u9879": [
+            "digital"
+        ],
+        "\u5e97\u5458": [
+            "digital"
+        ],
+        "\u663e\u793a\u5668": [
+            "digital"
+        ],
+        "\u88c5\u673a": [
+            "digital"
+        ],
+        "\u76f8\u673a": [
+            "photography-dc"
+        ],
+        "\u7535\u89c6": [
+            "home-applicance"
+        ],
+        "\u6d17\u8863\u673a": [
+            "home-applicance"
+        ],
+        "\u51b0\u7bb1": [
+            "home-applicance"
+        ],
+        "\u7a7a\u8c03": [
+            "home-applicance"
+        ],
+        "\u70ed\u6c34\u5668": [
+            "home-applicance"
+        ],
+        "\u98ce\u6247": [
+            "home-applicance"
+        ],
+        "\u5438\u5c18\u5668": [
+            "home-applicance"
+        ],
+        "\u51c0\u5316\u5668": [
+            "home-applicance"
+        ],
+        "\u70df\u673a": [
+            "home-applicance"
+        ],
+        "\u7535\u78c1\u7089": [
+            "home-applicance"
+        ],
+        "\u69a8\u6c41\u673a": [
+            "home-applicance"
+        ],
+        "\u8c46\u6d46\u673a": [
+            "home-applicance"
+        ],
+        "\u5fae\u6ce2\u7089": [
+            "home-applicance"
+        ],
+        "\u7535\u538b\u529b\u9505": [
+            "home-applicance"
+        ],
+        "\u7535\u996d\u7172": [
+            "home-applicance"
+        ],
+        "\u56fe\u4e66": [
+            "book"
+        ]
+    },
+    "taobao.com": {
+        "item. \u624b\u673a": [
+            "mobile"
+        ],
+        "item. \u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "item. \u53f0\u5f0f": [
+            "digital"
+        ],
+        "item. \u5e73\u677f": [
+            "digital"
+        ],
+        "item. \u9f20\u6807": [
+            "digital"
+        ],
+        "item. \u952e\u76d8": [
+            "digital"
+        ],
+        "item. \u786c\u76d8": [
+            "digital"
+        ],
+        "item. U\u76d8": [
+            "digital"
+        ],
+        "item. \u4e3b\u677f": [
+            "digital"
+        ],
+        "item. \u663e\u5361": [
+            "digital"
+        ],
+        "item. CPU": [
+            "digital"
+        ],
+        "item. \u5185\u5b58": [
+            "digital"
+        ],
+        "item. \u51e0\u9879": [
+            "digital"
+        ],
+        "item. \u5e97\u5458": [
+            "digital"
+        ],
+        "item. \u663e\u793a\u5668": [
+            "digital"
+        ],
+        "item. \u88c5\u673a": [
+            "digital"
+        ],
+        "item. \u76f8\u673a": [
+            "photography-dc"
+        ],
+        "item. \u7535\u89c6": [
+            "home-applicance"
+        ],
+        "item. \u6d17\u8863\u673a": [
+            "home-applicance"
+        ],
+        "item. \u51b0\u7bb1": [
+            "home-applicance"
+        ],
+        "item. \u7a7a\u8c03": [
+            "home-applicance"
+        ],
+        "item. \u70ed\u6c34\u5668": [
+            "home-applicance"
+        ],
+        "item. \u98ce\u6247": [
+            "home-applicance"
+        ],
+        "item. \u5438\u5c18\u5668": [
+            "home-applicance"
+        ],
+        "item. \u51c0\u5316\u5668": [
+            "home-applicance"
+        ],
+        "item. \u70df\u673a": [
+            "home-applicance"
+        ],
+        "item. \u7535\u78c1\u7089": [
+            "home-applicance"
+        ],
+        "item. \u69a8\u6c41\u673a": [
+            "home-applicance"
+        ],
+        "item. \u8c46\u6d46\u673a": [
+            "home-applicance"
+        ],
+        "item. \u5fae\u6ce2\u7089": [
+            "home-applicance"
+        ],
+        "item. \u7535\u538b\u529b\u9505": [
+            "home-applicance"
+        ],
+        "item. \u7535\u996d\u7172": [
+            "home-applicance"
+        ],
+        "item. \u5973\u88c5": [
+            "fashion-women"
+        ],
+        "item. \u5973\u978b": [
+            "fashion-women"
+        ],
+        "item. \u8fde\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "item. \u6253\u5e95\u886b": [
+            "fashion-women"
+        ],
+        "item. \u534a\u8eab\u88d9": [
+            "fashion-women"
+        ],
+        "item. \u96ea\u7eba": [
+            "fashion-women"
+        ],
+        "item. \u857e\u4e1d": [
+            "fashion-women"
+        ],
+        "item. \u9ad8\u8ddf": [
+            "fashion-women"
+        ],
+        "item. \u9632\u6c34\u53f0": [
+            "fashion-women"
+        ],
+        "item. \u5988\u5988\u88c5": [
+            "fashion-women"
+        ],
+        "item. \u5a03\u5a03\u9886": [
+            "fashion-women"
+        ],
+        "item. \u6c11\u65cf\u98ce\u5973\u88c5": [
+            "fashion-women"
+        ],
+        "item. \u6bdb\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "item. \u88d9": [
+            "fashion-women"
+        ],
+        "item. \u5973": [
+            "fashion-women"
+        ],
+        "item. \u7537\u58eb": [
+            "fashion-men"
+        ],
+        "item. \u6f6e\u7537": [
+            "fashion-men"
+        ],
+        "item. \u7537": [
+            "fashion-men"
+        ],
+        "trip.": [
+            "travel"
+        ],
+        "go.": [
+            "travel"
+        ]
+    },
+    "tmall.com": {
+        "detail. \u624b\u673a": [
+            "mobile"
+        ],
+        "3c.": [
+            "digital"
+        ],
+        "detail. \u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "detail. \u53f0\u5f0f": [
+            "digital"
+        ],
+        "detail. \u5e73\u677f": [
+            "digital"
+        ],
+        "detail. \u9f20\u6807": [
+            "digital"
+        ],
+        "detail. \u952e\u76d8": [
+            "digital"
+        ],
+        "detail. \u786c\u76d8": [
+            "digital"
+        ],
+        "detail. U\u76d8": [
+            "digital"
+        ],
+        "detail. \u4e3b\u677f": [
+            "digital"
+        ],
+        "detail. \u663e\u5361": [
+            "digital"
+        ],
+        "detail. CPU": [
+            "digital"
+        ],
+        "detail. \u5185\u5b58": [
+            "digital"
+        ],
+        "detail. \u51e0\u9879": [
+            "digital"
+        ],
+        "detail. \u5e97\u5458": [
+            "digital"
+        ],
+        "detail. \u663e\u793a\u5668": [
+            "digital"
+        ],
+        "detail. \u88c5\u673a": [
+            "digital"
+        ],
+        "detail. \u76f8\u673a": [
+            "photography-dc"
+        ],
+        "detail. \u7535\u89c6": [
+            "home-applicance"
+        ],
+        "detail. \u6d17\u8863\u673a": [
+            "home-applicance"
+        ],
+        "detail. \u51b0\u7bb1": [
+            "home-applicance"
+        ],
+        "detail. \u7a7a\u8c03": [
+            "home-applicance"
+        ],
+        "detail. \u70ed\u6c34\u5668": [
+            "home-applicance"
+        ],
+        "detail. \u98ce\u6247": [
+            "home-applicance"
+        ],
+        "detail. \u5438\u5c18\u5668": [
+            "home-applicance"
+        ],
+        "detail. \u51c0\u5316\u5668": [
+            "home-applicance"
+        ],
+        "detail. \u70df\u673a": [
+            "home-applicance"
+        ],
+        "detail. \u7535\u78c1\u7089": [
+            "home-applicance"
+        ],
+        "detail. \u69a8\u6c41\u673a": [
+            "home-applicance"
+        ],
+        "detail. \u8c46\u6d46\u673a": [
+            "home-applicance"
+        ],
+        "detail. \u5fae\u6ce2\u7089": [
+            "home-applicance"
+        ],
+        "detail. \u7535\u538b\u529b\u9505": [
+            "home-applicance"
+        ],
+        "detail. \u7535\u996d\u7172": [
+            "home-applicance"
+        ],
+        "detail. \u5973\u88c5": [
+            "fashion-women"
+        ],
+        "detail. \u5973\u978b": [
+            "fashion-women"
+        ],
+        "detail. \u8fde\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "detail. \u6253\u5e95\u886b": [
+            "fashion-women"
+        ],
+        "detail. \u534a\u8eab\u88d9": [
+            "fashion-women"
+        ],
+        "detail. \u96ea\u7eba": [
+            "fashion-women"
+        ],
+        "detail. \u857e\u4e1d": [
+            "fashion-women"
+        ],
+        "detail. \u9ad8\u8ddf": [
+            "fashion-women"
+        ],
+        "detail. \u9632\u6c34\u53f0": [
+            "fashion-women"
+        ],
+        "detail. \u5988\u5988\u88c5": [
+            "fashion-women"
+        ],
+        "detail. \u5a03\u5a03\u9886": [
+            "fashion-women"
+        ],
+        "detail. \u6c11\u65cf\u98ce\u5973\u88c5": [
+            "fashion-women"
+        ],
+        "detail. \u6bdb\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "detail. \u88d9": [
+            "fashion-women"
+        ],
+        "detail. \u5973": [
+            "fashion-women"
+        ],
+        "detail. \u7537\u58eb": [
+            "fashion-men"
+        ],
+        "detail. \u6f6e\u7537": [
+            "fashion-men"
+        ],
+        "detail. \u7537": [
+            "fashion-men"
+        ]
+    },
+    "jd.com": {
+        "item. \u624b\u673a": [
+            "mobile"
+        ],
+        "item. \u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "item. \u53f0\u5f0f": [
+            "digital"
+        ],
+        "item. \u5e73\u677f": [
+            "digital"
+        ],
+        "item. \u9f20\u6807": [
+            "digital"
+        ],
+        "item. \u952e\u76d8": [
+            "digital"
+        ],
+        "item. \u786c\u76d8": [
+            "digital"
+        ],
+        "item. U\u76d8": [
+            "digital"
+        ],
+        "item. \u4e3b\u677f": [
+            "digital"
+        ],
+        "item. \u663e\u5361": [
+            "digital"
+        ],
+        "item. CPU": [
+            "digital"
+        ],
+        "item. \u5185\u5b58": [
+            "digital"
+        ],
+        "item. \u51e0\u9879": [
+            "digital"
+        ],
+        "item. \u5e97\u5458": [
+            "digital"
+        ],
+        "item. \u663e\u793a\u5668": [
+            "digital"
+        ],
+        "item. \u88c5\u673a": [
+            "digital"
+        ],
+        "item. \u76f8\u673a": [
+            "photography-dc"
+        ],
+        "item. \u7535\u89c6": [
+            "home-applicance"
+        ],
+        "item. \u6d17\u8863\u673a": [
+            "home-applicance"
+        ],
+        "item. \u51b0\u7bb1": [
+            "home-applicance"
+        ],
+        "item. \u7a7a\u8c03": [
+            "home-applicance"
+        ],
+        "item. \u70ed\u6c34\u5668": [
+            "home-applicance"
+        ],
+        "item. \u98ce\u6247": [
+            "home-applicance"
+        ],
+        "item. \u5438\u5c18\u5668": [
+            "home-applicance"
+        ],
+        "item. \u51c0\u5316\u5668": [
+            "home-applicance"
+        ],
+        "item. \u70df\u673a": [
+            "home-applicance"
+        ],
+        "item. \u7535\u78c1\u7089": [
+            "home-applicance"
+        ],
+        "item. \u69a8\u6c41\u673a": [
+            "home-applicance"
+        ],
+        "item. \u8c46\u6d46\u673a": [
+            "home-applicance"
+        ],
+        "item. \u5fae\u6ce2\u7089": [
+            "home-applicance"
+        ],
+        "item. \u7535\u538b\u529b\u9505": [
+            "home-applicance"
+        ],
+        "item. \u7535\u996d\u7172": [
+            "home-applicance"
+        ],
+        "item. \u5973\u88c5": [
+            "fashion-women"
+        ],
+        "item. \u5973\u978b": [
+            "fashion-women"
+        ],
+        "item. \u8fde\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "item. \u6253\u5e95\u886b": [
+            "fashion-women"
+        ],
+        "item. \u534a\u8eab\u88d9": [
+            "fashion-women"
+        ],
+        "item. \u96ea\u7eba": [
+            "fashion-women"
+        ],
+        "item. \u857e\u4e1d": [
+            "fashion-women"
+        ],
+        "item. \u9ad8\u8ddf": [
+            "fashion-women"
+        ],
+        "item. \u9632\u6c34\u53f0": [
+            "fashion-women"
+        ],
+        "item. \u5988\u5988\u88c5": [
+            "fashion-women"
+        ],
+        "item. \u5a03\u5a03\u9886": [
+            "fashion-women"
+        ],
+        "item. \u6c11\u65cf\u98ce\u5973\u88c5": [
+            "fashion-women"
+        ],
+        "item. \u6bdb\u8863\u88d9": [
+            "fashion-women"
+        ],
+        "item. \u88d9": [
+            "fashion-women"
+        ],
+        "item. \u5973": [
+            "fashion-women"
+        ],
+        "item. \u7537\u58eb": [
+            "fashion-men"
+        ],
+        "item. \u6f6e\u7537": [
+            "fashion-men"
+        ],
+        "item. \u7537": [
+            "fashion-men"
+        ],
+        "book.": [
+            "book"
+        ],
+        "item. \u56fe\u4e66": [
+            "book"
+        ]
+    },
+    "yhd.com": {
+        "item. \u624b\u673a": [
+            "mobile"
+        ],
+        "item. \u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "item. \u53f0\u5f0f": [
+            "digital"
+        ],
+        "item. \u5e73\u677f": [
+            "digital"
+        ],
+        "item. \u9f20\u6807": [
+            "digital"
+        ],
+        "item. \u952e\u76d8": [
+            "digital"
+        ],
+        "item. \u786c\u76d8": [
+            "digital"
+        ],
+        "item. U\u76d8": [
+            "digital"
+        ],
+        "item. \u4e3b\u677f": [
+            "digital"
+        ],
+        "item. \u663e\u5361": [
+            "digital"
+        ],
+        "item. CPU": [
+            "digital"
+        ],
+        "item. \u5185\u5b58": [
+            "digital"
+        ],
+        "item. \u51e0\u9879": [
+            "digital"
+        ],
+        "item. \u5e97\u5458": [
+            "digital"
+        ],
+        "item. \u663e\u793a\u5668": [
+            "digital"
+        ],
+        "item. \u88c5\u673a": [
+            "digital"
+        ],
+        "item. \u76f8\u673a": [
+            "photography-dc"
+        ]
+    },
+    "suning.com": {
+        "product. \u624b\u673a": [
+            "mobile"
+        ],
+        "product. \u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "product. \u53f0\u5f0f": [
+            "digital"
+        ],
+        "product. \u5e73\u677f": [
+            "digital"
+        ],
+        "product. \u9f20\u6807": [
+            "digital"
+        ],
+        "product. \u952e\u76d8": [
+            "digital"
+        ],
+        "product. \u786c\u76d8": [
+            "digital"
+        ],
+        "product. U\u76d8": [
+            "digital"
+        ],
+        "product. \u4e3b\u677f": [
+            "digital"
+        ],
+        "product. \u663e\u5361": [
+            "digital"
+        ],
+        "product. CPU": [
+            "digital"
+        ],
+        "product. \u5185\u5b58": [
+            "digital"
+        ],
+        "product. \u51e0\u9879": [
+            "digital"
+        ],
+        "product. \u5e97\u5458": [
+            "digital"
+        ],
+        "product. \u663e\u793a\u5668": [
+            "digital"
+        ],
+        "product. \u88c5\u673a": [
+            "digital"
+        ],
+        "product. \u76f8\u673a": [
+            "photography-dc"
+        ],
+        "book.": [
+            "book"
+        ],
+        "product. \u56fe\u4e66": [
+            "book"
+        ]
+    },
+    "newegg.cn": {
+        "\u624b\u673a": [
+            "mobile"
+        ],
+        "\u7b14\u8bb0\u672c": [
+            "digital"
+        ],
+        "\u53f0\u5f0f": [
+            "digital"
+        ],
+        "\u5e73\u677f": [
+            "digital"
+        ],
+        "\u9f20\u6807": [
+            "digital"
+        ],
+        "\u952e\u76d8": [
+            "digital"
+        ],
+        "\u786c\u76d8": [
+            "digital"
+        ],
+        "U\u76d8": [
+            "digital"
+        ],
+        "\u4e3b\u677f": [
+            "digital"
+        ],
+        "\u663e\u5361": [
+            "digital"
+        ],
+        "CPU": [
+            "digital"
+        ],
+        "\u5185\u5b58": [
+            "digital"
+        ],
+        "\u51e0\u9879": [
+            "digital"
+        ],
+        "\u5e97\u5458": [
+            "digital"
+        ],
+        "\u663e\u793a\u5668": [
+            "digital"
+        ],
+        "\u88c5\u673a": [
+            "digital"
+        ],
+        "\u76f8\u673a": [
+            "photography-dc"
+        ]
+    },
+    "pconline.com.cn": {
+        "mobile.": [
+            "mobile"
+        ],
+        "product. /mobile": [
+            "mobile"
+        ],
+        "itbbs. /mobile": [
+            "mobile"
+        ],
+        "notebook.": [
+            "digital"
+        ],
+        "pad.": [
+            "digital"
+        ],
+        "dc.": [
+            "photography-dc"
+        ]
+    },
+    "3533.com": {
+        "__ANY": [
+            "mobile"
+        ]
+    },
+    "pcpop.com": {
+        "mobile.": [
+            "mobile"
+        ]
+    },
+    "imobile.com.cn": {
+        "__ANY": [
+            "mobile"
+        ]
+    },
+    "cnmo.com": {
+        "__ANY": [
+            "mobile"
+        ],
+        "product.": [
+            "mobile"
+        ],
+        "bbs.": [
+            "mobile"
+        ]
+    },
+    "younet.com": {
+        "__ANY": [
+            "mobile"
+        ]
+    },
+    "it168.com": {
+        "mobile.": [
+            "mobile"
+        ],
+        "notebook.": [
+            "digital"
+        ],
+        "pad.": [
+            "digital"
+        ],
+        "dc.": [
+            "photography-dc"
+        ]
+    },
+    "gfan.com": {
+        "bbs.": [
+            "mobile"
+        ],
+        "apk.": [
+            "app"
+        ]
+    },
+    "hiapk.com": {
+        "__ANY": [
+            "mobile"
+        ],
+        "apk.": [
+            "app"
+        ]
+    },
+    "anzhi.com": {
+        "bbs.": [
+            "mobile"
+        ],
+        "__ANY": [
+            "app"
+        ]
+    },
+    "dospy.com": {
+        "__ANY": [
+            "mobile"
+        ]
+    },
+    "miui.com": {
+        "__ANY": [
+            "mobile"
+        ]
+    },
+    "weiphone.com": {
+        "__ANY": [
+            "mobile"
+        ],
+        "/appstore": [
+            "app"
+        ]
+    },
+    "fengbao.com": {
+        "bbs.": [
+            "mobile"
+        ]
+    },
+    "91.com": {
+        "iphone.": [
+            "mobile"
+        ]
+    },
+    "wandoujia.com": {
+        "/apps": [
+            "app"
+        ]
+    },
+    "xapcn.com": {
+        "__ANY": [
+            "app"
+        ]
+    },
+    "mumayi.com": {
+        "__ANY": [
+            "app"
+        ]
+    },
+    "baidu.com": {
+        "shouji.": [
+            "app"
+        ],
+        "top. /buzz /book.html": [
+            "online-novel"
+        ],
+        "lvyou.": [
+            "travel"
+        ],
+        "news.": [
+            "news"
+        ],
+        "read. news.": [
+            "news"
+        ],
+        "v. /show": [
+            "entertainment-gossip"
+        ],
+        "music.": [
+            "music"
+        ],
+        "play.": [
+            "music"
+        ],
+        "fm.": [
+            "music"
+        ],
+        "v. /movie": [
+            "movie"
+        ],
+        "v. /tv": [
+            "TV-series"
+        ],
+        "v. /live": [
+            "TV-series"
+        ],
+        "v. /gameindex": [
+            "game"
+        ],
+        "youxi.": [
+            "game"
+        ],
+        "hao123qipai.": [
+            "game"
+        ],
+        "v. /comic": [
+            "anime-manga"
+        ],
+        "v. /kan /comic": [
+            "anime-manga"
+        ]
+    },
+    "windowsphone.com": {
+        "/zh-cn /store": [
+            "app"
+        ]
+    },
+    "moxiu.com": {
+        "__ANY": [
+            "app"
+        ]
+    },
+    "3g37.com": {
+        "__ANY": [
+            "app"
+        ]
+    },
+    "xiaomi.com": {
+        "app.": [
+            "app"
+        ]
+    },
+    "wpwan.com": {
+        "__ANY": [
+            "app"
+        ]
+    },
+    "vmall.com": {
+        "app.": [
+            "app"
+        ]
+    },
+    "appchina.com": {
+        "__ANY": [
+            "app"
+        ]
+    },
+    "165.cc": {
+        "__ANY": [
+            "app"
+        ]
+    },
+    "anzhuostore.com": {
+        "__ANY": [
+            "app"
+        ]
+    },
+    "159.com": {
+        "android.": [
+            "app"
+        ]
+    },
+    "app111.com": {
+        "__ANY": [
+            "app"
+        ]
+    },
+    "apple.com": {
+        "itunes.": [
+            "app"
+        ]
+    },
+    "huanqiu.com": {
+        "tech. /digi": [
+            "digital"
+        ],
+        "auto.": [
+            "auto"
+        ],
+        "tech. /elec": [
+            "home-applicance"
+        ],
+        "health.": [
+            "health"
+        ],
+        "go.": [
+            "travel"
+        ],
+        "tech.": [
+            "technology"
+        ],
+        "world.": [
+            "news"
+        ],
+        "china.": [
+            "news"
+        ],
+        "mil.": [
+            "military"
+        ],
+        "finance.": [
+            "finance"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "sports. /basketball": [
+            "basketball"
+        ],
+        "sports. /soccer": [
+            "soccer"
+        ]
+    },
+    "pchome.net": {
+        "notebook.": [
+            "digital"
+        ],
+        "pad.": [
+            "digital"
+        ],
+        "dc.": [
+            "photography-dc"
+        ]
+    },
+    "yesky.com": {
+        "notebook.": [
+            "digital"
+        ],
+        "pad.": [
+            "digital"
+        ],
+        "dc.": [
+            "photography-dc"
+        ],
+        "digital.": [
+            "photography-dc"
+        ]
+    },
+    "mydigit.cn": {
+        "bbs.": [
+            "digital"
+        ]
+    },
+    "fengniao.com": {
+        "__ANY": [
+            "photography-dc"
+        ]
+    },
+    "xitek.com": {
+        "__ANY": [
+            "photography-dc"
+        ]
+    },
+    "wujiyou.com": {
+        "__ANY": [
+            "photography-dc"
+        ]
+    },
+    "youku.com": {
+        "auto.": [
+            "auto"
+        ],
+        "tech.": [
+            "technology"
+        ],
+        "news.": [
+            "news"
+        ],
+        "finance.": [
+            "finance"
+        ],
+        "zy.": [
+            "entertainment-gossip"
+        ],
+        "v. \u7efc\u827a": [
+            "entertainment-gossip"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "fun.": [
+            "humor"
+        ],
+        "music.": [
+            "music"
+        ],
+        "v. \u97f3\u4e50": [
+            "music"
+        ],
+        "movie.": [
+            "movie"
+        ],
+        "v. \u7535\u5f71": [
+            "movie"
+        ],
+        "tv.": [
+            "TV-series"
+        ],
+        "v. \u7535\u89c6\u5267": [
+            "TV-series"
+        ],
+        "game.": [
+            "game"
+        ],
+        "comic.": [
+            "anime-manga"
+        ],
+        "v. \u52a8\u6f2b": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
+        ]
+    },
+    "tudou.com": {
+        "auto.": [
+            "auto"
+        ],
+        "it.": [
+            "technology"
+        ],
+        "news.": [
+            "news"
+        ],
+        "zy.": [
+            "entertainment-gossip"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "fun.": [
+            "humor"
+        ],
+        "music.": [
+            "music"
+        ],
+        "movie.": [
+            "movie"
+        ],
+        "tv.": [
+            "TV-series"
+        ],
+        "game.": [
+            "game"
+        ],
+        "cartoon.": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
+        ]
+    },
+    "ku6.com": {
+        "auto.": [
+            "auto"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "zongyi.": [
+            "entertainment-gossip"
+        ],
+        "mv.": [
+            "music"
+        ],
+        "cinema.": [
+            "movie"
+        ],
+        "games.": [
+            "game"
+        ],
+        "sports.": [
+            "sports"
+        ]
+    },
+    "xinhuanet.com": {
+        "news. /auto": [
+            "auto"
+        ],
+        "news.": [
+            "news"
+        ],
+        "news. /mil": [
+            "military"
+        ],
+        "news. /fortune": [
+            "finance"
+        ]
+    },
+    "sohu.com": {
+        "auto.": [
+            "auto"
+        ],
+        "men.": [
+            "fashion-men"
+        ],
+        "women.": [
+            "beauty"
+        ],
+        "health.": [
+            "health"
+        ],
+        "zhongyi.": [
+            "health"
+        ],
+        "book.": [
+            "book"
+        ],
+        "baobao.": [
+            "parenting"
+        ],
+        "bbs. baobao.": [
+            "parenting"
+        ],
+        "tv. /edu": [
+            "education"
+        ],
+        "learning.": [
+            "education"
+        ],
+        "goabroad.": [
+            "education"
+        ],
+        "bschool.": [
+            "mooc"
+        ],
+        "tv. /open": [
+            "mooc"
+        ],
+        "travel.": [
+            "travel"
+        ],
+        "it.": [
+            "technology"
+        ],
+        "tv. /news": [
+            "news"
+        ],
+        "news.": [
+            "news"
+        ],
+        "mil.": [
+            "military"
+        ],
+        "club. mil. news.": [
+            "military"
+        ],
+        "business.": [
+            "finance"
+        ],
+        "tv. /show": [
+            "entertainment-gossip"
+        ],
+        "tv. \u7efc\u827a": [
+            "entertainment-gossip"
+        ],
+        "yule.": [
+            "entertainment-gossip"
+        ],
+        "tv. /movie": [
+            "movie"
+        ],
+        "so. tv. \u7535\u5f71": [
+            "movie"
+        ],
+        "tv.": [
+            "TV-series"
+        ],
+        "so. tv. \u7535\u89c6\u5267": [
+            "TV-series"
+        ],
+        "tv. /comic": [
+            "anime-manga"
+        ],
+        "so. tv. \u52a8\u6f2b": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "pic. sports.": [
+            "sports"
+        ],
+        "cbachina. sports.": [
+            "basketball"
+        ]
+    },
+    "hao123.com": {
+        "/auto": [
+            "auto"
+        ],
+        "lady. /hunjia": [
+            "wedding"
+        ],
+        "lvyou.": [
+            "travel"
+        ],
+        "/gaoxiao": [
+            "humor"
+        ],
+        "tv.": [
+            "TV-series"
+        ],
+        "xyx.": [
+            "game"
+        ],
+        "qipai.": [
+            "game"
+        ]
+    },
+    "autohome.com.cn": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "xcar.com.cn": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "cheshi.com": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "bitauto.com": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "chinacars.com": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "autofan.com.cn": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "xgo.com.cn": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "webcars.com.cn": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "chexun.com": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "chetx.com": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "xincheping.com": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "pcauto.com.cn": {
+        "__ANY": [
+            "auto"
+        ]
+    },
+    "centanet.com": {
+        "__ANY": [
+            "realestate"
+        ]
+    },
+    "people.com.cn": {
+        "house.": [
+            "realestate"
+        ],
+        "health.": [
+            "health"
+        ],
+        "edu.": [
+            "education"
+        ],
+        "travel.": [
+            "travel"
+        ],
+        "politics.": [
+            "news"
+        ],
+        "society.": [
+            "news"
+        ],
+        "world.": [
+            "news"
+        ],
+        "finance.": [
+            "finance"
+        ]
+    },
+    "focus.cn": {
+        "house.": [
+            "realestate"
+        ],
+        "esf.": [
+            "realestate"
+        ]
+    },
+    "soufun.com": {
+        "__ANY": [
+            "realestate"
+        ]
+    },
+    "anjuke.com": {
+        "__ANY": [
+            "realestate"
+        ]
+    },
+    "homelink.com.cn": {
+        "__ANY": [
+            "realestate"
+        ]
+    },
+    "5i5j.com": {
+        "__ANY": [
+            "realestate"
+        ]
+    },
+    "loupan.com": {
+        "__ANY": [
+            "realestate"
+        ]
+    },
+    "taofw.cn": {
+        "__ANY": [
+            "realestate"
+        ]
+    },
+    "house365.com": {
+        "__ANY": [
+            "realestate"
+        ]
+    },
+    "taofang.com": {
+        "__ANY": [
+            "realestate"
+        ]
+    },
+    "jia360.com": {
+        "__ANY": [
+            "home-decoration"
+        ]
+    },
+    "jiaju.com": {
+        "16.": [
+            "home-decoration"
+        ]
+    },
+    "focus.com": {
+        "home.": [
+            "home-decoration"
+        ]
+    },
+    "ljlj.cc": {
+        "__ANY": [
+            "home-decoration"
+        ]
+    },
+    "juran.cn": {
+        "__ANY": [
+            "home-decoration"
+        ]
+    },
+    "17house.com": {
+        "__ANY": [
+            "home-decoration"
+        ]
+    },
+    "pchouse.com.cn": {
+        "zhuangxiu.": [
+            "home-decoration"
+        ]
+    },
+    "rayli.com.cn": {
+        "fashion.": [
+            "fashion-women"
+        ],
+        "inleon.": [
+            "fashion-men"
+        ],
+        "luxury.": [
+            "luxury"
+        ],
+        "beauty.": [
+            "beauty"
+        ]
+    },
+    "pclady.com.cn": {
+        "dress.": [
+            "fashion-women"
+        ],
+        "man.": [
+            "fashion-men"
+        ],
+        "luxury.": [
+            "luxury"
+        ],
+        "plastic.": [
+            "beauty"
+        ],
+        "beauty.": [
+            "beauty"
+        ],
+        "cosme.": [
+            "beauty"
+        ],
+        "fitness.": [
+            "fitness"
+        ],
+        "health.": [
+            "health"
+        ]
+    },
+    "haibao.com": {
+        "fashion.": [
+            "fashion-women"
+        ],
+        "accessory.": [
+            "fashion-women"
+        ],
+        "jewelrywatch.": [
+            "luxury"
+        ],
+        "beauty.": [
+            "beauty"
+        ]
+    },
+    "ellechina.com": {
+        "/fashion": [
+            "fashion-women"
+        ],
+        "/men": [
+            "fashion-men"
+        ],
+        "/beauty": [
+            "beauty"
+        ],
+        "/hair": [
+            "beauty"
+        ]
+    },
+    "vogue.com.cn": {
+        "/fashion": [
+            "fashion-women"
+        ],
+        "shows.": [
+            "luxury"
+        ],
+        "/beauty": [
+            "beauty"
+        ],
+        "/wedding": [
+            "wedding"
+        ]
+    },
+    "yoka.com": {
+        "/fashion": [
+            "fashion-women"
+        ],
+        "/luxury": [
+            "luxury"
+        ],
+        "/beauty": [
+            "beauty"
+        ],
+        "hzp.": [
+            "beauty"
+        ],
+        "/marry": [
+            "wedding"
+        ]
+    },
+    "mogujie.com": {
+        "__ANY": [
+            "fashion-women"
+        ]
+    },
+    "meilishuo.com": {
+        "__ANY": [
+            "fashion-women"
+        ]
+    },
+    "vip.com": {
+        "\u5973": [
+            "fashion-women"
+        ],
+        "\u7537": [
+            "fashion-men"
+        ],
+        "lux.": [
+            "luxury"
+        ],
+        "/beauty.php": [
+            "beauty"
+        ]
+    },
+    "moonbasa.com": {
+        "\u5973": [
+            "fashion-women"
+        ],
+        "\u7537": [
+            "fashion-men"
+        ]
+    },
+    "vancl.com": {
+        "item. \u5973": [
+            "fashion-women"
+        ],
+        "item. \u7537": [
+            "fashion-men"
+        ]
+    },
+    "yintai.com": {
+        "item. \u5973": [
+            "fashion-women"
+        ],
+        "item. \u7537": [
+            "fashion-men"
+        ]
+    },
+    "shopin.net": {
+        "\u5973": [
+            "fashion-women"
+        ],
+        "\u7537": [
+            "fashion-men"
+        ]
+    },
+    "xiu.com": {
+        "item. \u5973": [
+            "fashion-women"
+        ],
+        "item. \u7537": [
+            "fashion-men"
+        ],
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "fclub.cn": {
+        "\u5973": [
+            "fashion-women"
+        ],
+        "\u7537": [
+            "fashion-men"
+        ]
+    },
+    "mbaobao.com": {
+        "\u5973": [
+            "fashion-women"
+        ],
+        "\u7537": [
+            "fashion-men"
+        ]
+    },
+    "okbuy.com": {
+        "\u5973": [
+            "fashion-women"
+        ],
+        "\u7537": [
+            "fashion-men"
+        ]
+    },
+    "yokamen.cn": {
+        "__ANY": [
+            "fashion-men"
+        ]
+    },
+    "esquire.com.cn": {
+        "__ANY": [
+            "fashion-men"
+        ]
+    },
+    "gq.com.cn": {
+        "__ANY": [
+            "fashion-men"
+        ]
+    },
+    "yksuit.com": {
+        "__ANY": [
+            "fashion-men"
+        ]
+    },
+    "trends.com.cn": {
+        "men. /fashion": [
+            "fashion-men"
+        ],
+        "/man /fashion": [
+            "fashion-men"
+        ],
+        "/marriage": [
+            "wedding"
+        ]
+    },
+    "mangangs.com": {
+        "/trends": [
+            "fashion-men"
+        ]
+    },
+    "shangpin.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "5lux.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "aolai.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "zhenpin.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "meici.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "wbiao.cn": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "uemall.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "chinese-luxury.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "prada.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "chanel.com": {
+        "www-cn.": [
+            "luxury"
+        ]
+    },
+    "dior.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "gucci.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "hermes.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "armani.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "ctf.com.cn": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "louisvuitton.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "rolex.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "coach.com": {
+        "china.": [
+            "luxury"
+        ],
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "tiffany.cn": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "tiffany.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "cartier.cn": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "cartier.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "longines.cn": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "longines.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "ctfeshop.com.cn": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "omegawatches.cn": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "omegawatches.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "burberry.com": {
+        "cn.": [
+            "luxury"
+        ],
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "versace.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "ferragamo.cn": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "miumiu.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "celine.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "marcjacobs.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "balenciaga.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "chloe.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "fendi.cn": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "fendi.com": {
+        "__ANY": [
+            "luxury"
+        ]
+    },
+    "hugoboss.cn": {
+        "store.": [
+            "luxury"
+        ]
+    },
+    "faxingw.cn": {
+        "__ANY": [
+            "beauty"
+        ]
+    },
+    "boohee.com": {
+        "__ANY": [
+            "fitness"
+        ]
+    },
+    "ssnn.net": {
+        "__ANY": [
+            "fitness"
+        ]
+    },
+    "39.net": {
+        "fitness.": [
+            "fitness"
+        ],
+        "jianfei.": [
+            "fitness"
+        ],
+        "care.": [
+            "health"
+        ],
+        "news.": [
+            "health"
+        ],
+        "zl.": [
+            "medicine"
+        ]
+    },
+    "zyjyyy.com": {
+        "__ANY": [
+            "fitness"
+        ]
+    },
+    "lady8844.com": {
+        "/shoushen": [
+            "fitness"
+        ]
+    },
+    "jianfei.com": {
+        "__ANY": [
+            "fitness"
+        ]
+    },
+    "39yst.com": {
+        "__ANY": [
+            "health"
+        ]
+    },
+    "fx120.net": {
+        "__ANY": [
+            "health"
+        ]
+    },
+    "dxy.cn": {
+        "__ANY": [
+            "medicine"
+        ]
+    },
+    "familydoctor.com.cn": {
+        "__ANY": [
+            "medicine"
+        ]
+    },
+    "999120.net": {
+        "__ANY": [
+            "medicine"
+        ]
+    },
+    "haodf.com": {
+        "__ANY": [
+            "medicine"
+        ]
+    },
+    "120ask.com": {
+        "__ANY": [
+            "medicine"
+        ]
+    },
+    "guahao.com": {
+        "__ANY": [
+            "medicine"
+        ]
+    },
+    "bjguahao.gov.cn": {
+        "__ANY": [
+            "medicine"
+        ]
+    },
+    "douban.com": {
+        "book.": [
+            "book"
+        ],
+        "read.": [
+            "book"
+        ],
+        "music.": [
+            "music"
+        ],
+        "movie.": [
+            "movie"
+        ]
+    },
+    "dangdang.com": {
+        "product. \u56fe\u4e66": [
+            "book"
+        ]
+    },
+    "wfjsd.com": {
+        "__ANY": [
+            "book"
+        ]
+    },
+    "bookschina.com": {
+        "__ANY": [
+            "book"
+        ]
+    },
+    "sciencep.com": {
+        "__ANY": [
+            "book"
+        ]
+    },
+    "china-pub.com": {
+        "__ANY": [
+            "book"
+        ]
+    },
+    "qidian.com": {
+        "__ANY": [
+            "online-novel"
+        ],
+        "read.": [
+            "online-novel"
+        ]
+    },
+    "readnovel.com": {
+        "__ANY": [
+            "online-novel"
+        ]
+    },
+    "hongxiu.com": {
+        "__ANY": [
+            "online-novel"
+        ],
+        "novel.": [
+            "online-novel"
+        ]
+    },
+    "xxsy.net": {
+        "__ANY": [
+            "online-novel"
+        ]
+    },
+    "yanqing888.net": {
+        "__ANY": [
+            "online-novel"
+        ]
+    },
+    "xs8.cn": {
+        "__ANY": [
+            "online-novel"
+        ]
+    },
+    "jjwxc.net": {
+        "__ANY": [
+            "online-novel"
+        ]
+    },
+    "tom.com": {
+        "book. hjsm.": [
+            "online-novel"
+        ]
+    },
+    "huanxia.com": {
+        "__ANY": [
+            "online-novel"
+        ]
+    },
+    "zongheng.com": {
+        "book.": [
+            "online-novel"
+        ]
+    },
+    "fmx.cn": {
+        "__ANY": [
+            "online-novel"
+        ]
+    },
+    "17k.com": {
+        "__ANY": [
+            "online-novel"
+        ]
+    },
+    "meishichina.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "xiachufang.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "meishij.net": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "beitaichufang.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "zhms.cn": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "ttmeishi.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "xinshipu.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "haodou.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "douguo.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "tfysw.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "koovoo.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "chinacaipu.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "caipucaipu.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "bjxdf.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "yiqin92.com": {
+        "__ANY": [
+            "cooking"
+        ]
+    },
+    "dianping.com": {
+        "__ANY": [
+            "gourmet"
+        ],
+        "t. /movie": [
+            "show"
+        ],
+        "t. \u5f71\u57ce": [
+            "show"
+        ],
+        "t. \u7535\u5f71": [
+            "show"
+        ]
+    },
+    "doodii.com": {
+        "__ANY": [
+            "gourmet"
+        ]
+    },
+    "ele.me": {
+        "__ANY": [
+            "gourmet"
+        ]
+    },
+    "fantong.com": {
+        "__ANY": [
+            "gourmet"
+        ]
+    },
+    "lingshi.com": {
+        "item.": [
+            "gourmet"
+        ]
+    },
+    "lingshishe.com": {
+        "__ANY": [
+            "gourmet"
+        ]
+    },
+    "lingshikong.com": {
+        "__ANY": [
+            "gourmet"
+        ]
+    },
+    "52yxs.com": {
+        "__ANY": [
+            "gourmet"
+        ]
+    },
+    "didamall.com": {
+        "__ANY": [
+            "gourmet"
+        ]
+    },
+    "hclsw.com": {
+        "__ANY": [
+            "gourmet"
+        ]
+    },
+    "99114.com": {
+        "lingshi.": [
+            "gourmet"
+        ]
+    },
+    "ju04.com": {
+        "__ANY": [
+            "gourmet"
+        ]
+    },
+    "010duoduo.com": {
+        "__ANY": [
+            "gourmet"
+        ]
+    },
+    "haxiu.com": {
+        "wed.": [
+            "wedding"
+        ]
+    },
+    "xfwed.com": {
+        "__ANY": [
+            "wedding"
+        ],
+        "bbs.": [
+            "wedding"
+        ]
+    },
+    "marry52.com": {
+        "__ANY": [
+            "wedding"
+        ]
+    },
+    "77hunjia.com": {
+        "__ANY": [
+            "wedding"
+        ]
+    },
+    "99wed.com": {
+        "__ANY": [
+            "wedding"
+        ]
+    },
+    "babytree.com": {
+        "__ANY": [
+            "parenting"
+        ]
+    },
+    "mmbang.com": {
+        "__ANY": [
+            "parenting"
+        ]
+    },
+    "ci123.com": {
+        "__ANY": [
+            "parenting"
+        ]
+    },
+    "mama.cn": {
+        "__ANY": [
+            "parenting"
+        ]
+    },
+    "iyaya.com": {
+        "__ANY": [
+            "parenting"
+        ]
+    },
+    "seedit.com": {
+        "__ANY": [
+            "parenting"
+        ]
+    },
+    "yaolan.com": {
+        "__ANY": [
+            "parenting"
+        ]
+    },
+    "babycenter.com": {
+        "cn.": [
+            "parenting"
+        ]
+    },
+    "pcbaby.com.cn": {
+        "__ANY": [
+            "parenting"
+        ]
+    },
+    "babyschool.com.cn": {
+        "__ANY": [
+            "parenting"
+        ],
+        "bbs.": [
+            "parenting"
+        ]
+    },
+    "zaojiao.com": {
+        "__ANY": [
+            "parenting"
+        ]
+    },
+    "goodbaby.com": {
+        "__ANY": [
+            "parenting"
+        ]
+    },
+    "51edu.com": {
+        "__ANY": [
+            "education"
+        ]
+    },
+    "jd100.com": {
+        "__ANY": [
+            "education"
+        ]
+    },
+    "kaoshi110.net": {
+        "__ANY": [
+            "education"
+        ]
+    },
+    "eduol.cn": {
+        "__ANY": [
+            "education"
+        ]
+    },
+    "exam8.com": {
+        "__ANY": [
+            "education"
+        ]
+    },
+    "dearedu.com": {
+        "__ANY": [
+            "education"
+        ]
+    },
+    "xuexila.com": {
+        "__ANY": [
+            "mooc"
+        ]
+    },
+    "guokr.com": {
+        "mooc.": [
+            "mooc"
+        ],
+        "__ANY": [
+            "science"
+        ]
+    },
+    "oer.edu.cn": {
+        "__ANY": [
+            "mooc"
+        ]
+    },
+    "cntv.cn": {
+        "opencla.": [
+            "mooc"
+        ],
+        "news.": [
+            "news"
+        ],
+        "military.": [
+            "military"
+        ],
+        "sports.": [
+            "sports"
+        ],
+        "sports. /nba": [
+            "basketball"
+        ],
+        "sports. /football": [
+            "soccer"
+        ]
+    },
+    "coursera.org": {
+        "__ANY": [
+            "mooc"
+        ]
+    },
+    "edx.org": {
+        "__ANY": [
+            "mooc"
+        ]
+    },
+    "khanacademy.org": {
+        "__ANY": [
+            "mooc"
+        ]
+    },
+    "elong.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "ctrip.com": {
+        "__ANY": [
+            "travel"
+        ],
+        "you.": [
+            "travel"
+        ]
+    },
+    "mangocity.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "mafengwo.cn": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "qunar.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "tuniu.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "17u.cn": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "lvping.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "qyer.com": {
+        "__ANY": [
+            "travel"
+        ],
+        "bbs.": [
+            "travel"
+        ],
+        "guide.": [
+            "travel"
+        ]
+    },
+    "lotour.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "sozhen.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "cncn.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "dili360.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "daodao.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "aoyou.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "cits.com.cn": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "ctsho.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "cct.cn": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "homeinns.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "jinjianginns.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "7daysinn.cn": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "yhachina.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "agoda.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "booking.com": {
+        "__ANY": [
+            "travel"
+        ]
+    },
+    "soku.com": {
+        "piao. /* /movie": [
+            "show"
+        ]
+    },
+    "228.com.cn": {
+        "__ANY": [
+            "show"
+        ]
+    },
+    "piao.com.cn": {
+        "__ANY": [
+            "show"
+        ]
+    },
+    "damai.cn": {
+        "__ANY": [
+            "show"
+        ]
+    },
+    "piao88.com": {
+        "__ANY": [
+            "show"
+        ]
+    },
+    "58.com": {
+        "/yanchanghui": [
+            "show"
+        ],
+        "/piao": [
+            "show"
+        ]
+    },
+    "gewara.com": {
+        "/movie": [
+            "show"
+        ]
+    },
+    "mtime.com": {
+        "theater.": [
+            "show"
+        ]
+    },
+    "hipiao.com": {
+        "__ANY": [
+            "show"
+        ]
+    },
+    "meituan.com": {
+        "/dianying": [
+            "show"
+        ],
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
+            "show"
+        ]
+    },
+    "gaopeng.com": {
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
+            "show"
+        ]
+    },
+    "nuomi.com": {
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
+            "show"
+        ]
+    },
+    "55tuan.com": {
+        "/cate /dianying": [
+            "show"
+        ],
+        "beijing. \u5f71\u57ce": [
+            "show"
+        ],
+        "beijing. \u7535\u5f71": [
+            "show"
+        ]
+    },
+    "lashou.com": {
+        "/cate /dianying": [
+            "show"
+        ],
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
+            "show"
+        ]
+    },
+    "manzuo.com": {
+        "/dy": [
+            "show"
+        ],
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
+            "show"
+        ]
+    },
+    "didatuan.com": {
+        "/c-dianying": [
+            "show"
+        ],
+        "\u5f71\u57ce": [
+            "show"
+        ],
+        "\u7535\u5f71": [
+            "show"
+        ]
+    },
+    "yanchupiao.com": {
+        "__ANY": [
+            "show"
+        ]
+    },
+    "chncpa.org": {
+        "__ANY": [
+            "show"
+        ]
+    },
+    "piaobuy.com": {
+        "__ANY": [
+            "show"
+        ]
+    },
+    "chinapiao.com.cn": {
+        "__ANY": [
+            "show"
+        ]
+    },
+    "zzzgg.com": {
+        "__ANY": [
+            "show"
+        ]
+    },
+    "chnmuseum.cn": {
+        "__ANY": [
+            "show"
+        ]
+    },
+    "engadget.com": {
+        "cn.": [
+            "technology"
+        ]
+    },
+    "ifanr.com": {
+        "__ANY": [
+            "technology"
+        ]
+    },
+    "cfan.com.cn": {
+        "__ANY": [
+            "technology"
+        ]
+    },
+    "mydrivers.com": {
+        "__ANY": [
+            "technology"
+        ]
+    },
+    "csdn.net": {
+        "__ANY": [
+            "programming"
+        ]
+    },
+    "cnblogs.com": {
+        "__ANY": [
+            "programming"
+        ]
+    },
+    "microsoft.com": {
+        "msdn.": [
+            "programming"
+        ]
+    },
+    "github.com": {
+        "__ANY": [
+            "programming"
+        ]
+    },
+    "mozilla.org": {
+        "developer.": [
+            "programming"
+        ]
+    },
+    "w3schools.com": {
+        "__ANY": [
+            "programming"
+        ]
+    },
+    "bccn.net": {
+        "bbs.": [
+            "programming"
+        ]
+    },
+    "kuqin.com": {
+        "__ANY": [
+            "programming"
+        ]
+    },
+    "cxy.me": {
+        "__ANY": [
+            "programming"
+        ]
+    },
+    "zzzj.com": {
+        "__ANY": [
+            "programming"
+        ]
+    },
+    "webjx.com": {
+        "__ANY": [
+            "programming"
+        ]
+    },
+    "bcwhy.com": {
+        "__ANY": [
+            "programming"
+        ]
+    },
+    "qqview.com": {
+        "__ANY": [
+            "programming"
+        ]
+    },
+    "songshuhui.net": {
+        "__ANY": [
+            "science"
+        ]
+    },
+    "sciencetimes.com.cn": {
+        "__ANY": [
+            "science"
+        ]
+    },
+    "huanqiukexue.com": {
+        "__ANY": [
+            "science"
+        ]
+    },
+    "bjkp.gov.cn": {
+        "__ANY": [
+            "science"
+        ]
+    },
+    "astron.ac.cn": {
+        "__ANY": [
+            "science"
+        ]
+    },
+    "plantphoto.cn": {
+        "__ANY": [
+            "science"
+        ]
+    },
+    "math.org.cn": {
+        "__ANY": [
+            "science"
+        ]
+    },
+    "cosmoscape.com": {
+        "__ANY": [
+            "science"
+        ]
+    },
+    "cnphys.com": {
+        "__ANY": [
+            "science"
+        ]
+    },
+    "iqiyi.com": {
+        "/news": [
+            "news"
+        ],
+        "\u8d44\u8baf": [
+            "news"
+        ],
+        "business.": [
+            "finance"
+        ],
+        "/zongyi": [
+            "entertainment-gossip"
+        ],
+        "\u7efc\u827a": [
+            "entertainment-gossip"
+        ],
+        "yule.": [
+            "entertainment-gossip"
+        ],
+        "music.": [
+            "music"
+        ],
+        "\u97f3\u4e50": [
+            "music"
+        ],
+        "/dianying": [
+            "movie"
+        ],
+        "\u7535\u5f71": [
+            "movie"
+        ],
+        "/dianshiju": [
+            "TV-series"
+        ],
+        "\u7535\u89c6\u5267": [
+            "TV-series"
+        ],
+        "games.": [
+            "game"
+        ],
+        "/dongman": [
+            "anime-manga"
+        ],
+        "\u52a8\u6f2b": [
+            "anime-manga"
+        ],
+        "/sports": [
+            "sports"
+        ],
+        "\u4f53\u80b2": [
+            "sports"
+        ],
+        "sports.": [
+            "sports"
+        ]
+    },
+    "cnr.cn": {
+        "news.": [
+            "news"
+        ]
+    },
+    "chinanews.com": {
+        "/gj": [
+            "news"
+        ],
+        "/gn": [
+            "news"
+        ],
+        "/mil": [
+            "military"
+        ]
+    },
+    "haiwainet.cn": {
+        "__ANY": [
+            "news"
+        ]
+    },
+    "zaobao.com": {
+        "/news": [
+            "news"
+        ]
+    },
+    "cankaoxiaoxi.com": {
+        "__ANY": [
+            "news"
+        ]
+    },
+    "chinaiiss.com": {
+        "mil.": [
+            "military"
+        ],
+        "__ANY": [
+            "military"
+        ],
+        "club.": [
+            "military"
+        ]
+    },
+    "milnews2.com": {
+        "__ANY": [
+            "military"
+        ]
+    },
+    "tiexue.net": {
+        "__ANY": [
+            "military"
+        ]
+    },
+    "xilu.com": {
+        "junshi.": [
+            "military"
+        ]
+    },
+    "qianyan001.com": {
+        "__ANY": [
+            "military"
+        ]
+    },
+    "cankaoa.com": {
+        "__ANY": [
+            "military"
+        ]
+    },
+    "shijiemil.com": {
+        "__ANY": [
+            "military"
+        ]
+    },
+    "chn2007.com": {
+        "__ANY": [
+            "military"
+        ]
+    },
+    "51junshi.com": {
+        "__ANY": [
+            "military"
+        ]
+    },
+    "top81.com.cn": {
+        "__ANY": [
+            "military"
+        ]
+    },
+    "miercn.com": {
+        "__ANY": [
+            "military"
+        ],
+        "bbs.": [
+            "military"
+        ]
+    },
+    "eastday.com": {
+        "mil.": [
+            "military"
+        ]
+    },
+    "leiting001.com": {
+        "__ANY": [
+            "military"
+        ]
+    },
+    "liangjian.com": {
+        "__ANY": [
+            "military"
+        ]
+    },
+    "xinjunshi.com": {
+        "__ANY": [
+            "military"
+        ],
+        "bbs.": [
+            "military"
+        ]
+    },
+    "letv.com": {
+        "finance.": [
+            "finance"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "zongyi.": [
+            "entertainment-gossip"
+        ],
+        "music.": [
+            "music"
+        ],
+        "movie.": [
+            "movie"
+        ],
+        "tv.": [
+            "TV-series"
+        ],
+        "baidu. /comic": [
+            "anime-manga"
+        ],
+        "comic.": [
+            "anime-manga"
+        ],
+        "sports.": [
+            "sports"
+        ]
+    },
+    "ftchinese.com": {
+        "__ANY": [
+            "finance"
+        ]
+    },
+    "eastmoney.com": {
+        "__ANY": [
+            "finance"
+        ]
+    },
+    "hexun.com": {
+        "__ANY": [
+            "finance"
+        ]
+    },
+    "jrj.com.cn": {
+        "__ANY": [
+            "finance"
+        ]
+    },
+    "ce.cn": {
+        "__ANY": [
+            "finance"
+        ]
+    },
+    "cnfol.com": {
+        "__ANY": [
+            "finance"
+        ]
+    },
+    "56.com": {
+        "zy.": [
+            "entertainment-gossip"
+        ],
+        "ent.": [
+            "entertainment-gossip"
+        ],
+        "fun.": [
+            "humor"
+        ],
+        "music.": [
+            "music"
+        ],
+        "movielist.": [
+            "movie"
+        ],
+        "tv.": [
+            "TV-series"
+        ],
+        "games.": [
+            "game"
+        ],
+        "dm.": [
+            "anime-manga"
+        ]
+    },
+    "qiushibaike.com": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "mahua.com": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "pengfu.com": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "baozoumanhua.com": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "haha.mx": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "budejie.com": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "fanjian.net": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "haha365.com": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "gaoxiao8.com": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "youmogu.com": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "gaoxiaovod.com": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "yikexun.cn": {
+        "__ANY": [
+            "humor"
+        ]
+    },
+    "xiami.com": {
+        "__ANY": [
+            "music"
+        ]
+    },
+    "1ting.com": {
+        "__ANY": [
+            "music"
+        ]
+    },
+    "kuwo.cn": {
+        "__ANY": [
+            "music"
+        ]
+    },
+    "kugou.com": {
+        "__ANY": [
+            "music"
+        ]
+    },
+    "9ku.com": {
+        "__ANY": [
+            "music"
+        ]
+    },
+    "vvvdj.com": {
+        "__ANY": [
+            "music"
+        ]
+    },
+    "douban.fm": {
+        "__ANY": [
+            "music"
+        ]
+    },
+    "jing.fm": {
+        "__ANY": [
+            "music"
+        ]
+    },
+    "musicool.cn": {
+        "bbs.": [
+            "music"
+        ]
+    },
+    "xialala.com": {
+        "club.": [
+            "music"
+        ]
+    },
+    "m1905.com": {
+        "__ANY": [
+            "movie"
+        ]
+    },
+    "yyets.com": {
+        "/resource \u7535\u5f71": [
+            "movie"
+        ],
+        "/resource \u7f8e\u5267": [
+            "TV-series"
+        ],
+        "/resource \u82f1\u5267": [
+            "TV-series"
+        ],
+        "/resource \u65e5\u5267": [
+            "TV-series"
+        ],
+        "/resource \u97e9\u5267": [
+            "TV-series"
+        ]
+    },
+    "piaohua.com": {
+        "__ANY": [
+            "movie"
+        ]
+    },
+    "dygod.net": {
+        "__ANY": [
+            "movie"
+        ]
+    },
+    "2345.com": {
+        "tv.": [
+            "TV-series"
+        ]
+    },
+    "a67.com": {
+        "/tv": [
+            "TV-series"
+        ]
+    },
+    "77vcd.com": {
+        "__ANY": [
+            "TV-series"
+        ]
+    },
+    "pps.tv": {
+        "g.": [
+            "game"
+        ]
+    },
+    "duowan.com": {
+        "__ANY": [
+            "game"
+        ],
+        "lol.": [
+            "game"
+        ],
+        "bbs.": [
+            "game"
+        ]
+    },
+    "gamersky.com": {
+        "__ANY": [
+            "game"
+        ],
+        "ol.": [
+            "game"
+        ]
+    },
+    "7k7k.com": {
+        "__ANY": [
+            "game"
+        ],
+        "donghua.": [
+            "anime-manga"
+        ]
+    },
+    "17173.com": {
+        "__ANY": [
+            "game"
+        ],
+        "acg.": [
+            "anime-manga"
+        ]
+    },
+    "4399.com": {
+        "__ANY": [
+            "game"
+        ]
+    },
+    "07073.com": {
+        "__ANY": [
+            "game"
+        ]
+    },
+    "ali213.net": {
+        "__ANY": [
+            "game"
+        ]
+    },
+    "5173.com": {
+        "__ANY": [
+            "game"
+        ]
+    },
+    "ptbus.com": {
+        "__ANY": [
+            "game"
+        ]
+    },
+    "bilibili.tv": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "acfun.tv": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "bityx.com": {
+        "dh.": [
+            "anime-manga"
+        ]
+    },
+    "narutom.com": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "52pk.com": {
+        "op.": [
+            "anime-manga"
+        ],
+        "sishen.": [
+            "anime-manga"
+        ]
+    },
+    "4399dmw.com": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "52tian.net": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "u17.com": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "zymk.cn": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "mkzhan.com": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "178.com": {
+        "acg.": [
+            "anime-manga"
+        ]
+    },
+    "emland.net": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "dm123.cn": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "61.com": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "100bt.com": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "dmzj.com": {
+        "donghua.": [
+            "anime-manga"
+        ]
+    },
+    "ktxp.com": {
+        "bt.": [
+            "anime-manga"
+        ]
+    },
+    "hltm.cc": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "dmhy.org": {
+        "share.": [
+            "anime-manga"
+        ]
+    },
+    "dm456.com": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "bukade.com": {
+        "__ANY": [
+            "anime-manga"
+        ]
+    },
+    "hupu.com": {
+        "__ANY": [
+            "sports"
+        ],
+        "voice. /nba": [
+            "basketball"
+        ],
+        "nba.": [
+            "basketball"
+        ],
+        "voice. /soccer": [
+            "soccer"
+        ],
+        "soccer.": [
+            "soccer"
+        ]
+    },
+    "weibo.com": {
+        "nba.": [
+            "basketball"
+        ]
+    },
+    "zhibo8.cc": {
+        "/nba": [
+            "basketball"
+        ],
+        "/zuqiu": [
+            "soccer"
+        ]
+    },
+    "nba.com": {
+        "china.": [
+            "basketball"
+        ]
+    },
+    "bbboo.com": {
+        "__ANY": [
+            "basketball"
+        ],
+        "v.": [
+            "basketball"
+        ]
+    },
+    "cba.gov.cn": {
+        "__ANY": [
+            "basketball"
+        ]
+    },
+    "espnstar.com.cn": {
+        "__ANY": [
+            "basketball"
+        ]
+    },
+    "1soccer.com": {
+        "__ANY": [
+            "soccer"
+        ]
+    },
+    "soccerbar.cn": {
+        "__ANY": [
+            "soccer"
+        ]
+    },
+    "wenqiu.com": {
+        "__ANY": [
+            "soccer"
+        ]
+    }
+};

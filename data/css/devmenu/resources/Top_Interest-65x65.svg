@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 65 65" enable-background="new 0 0 65 65" xml:space="preserve">
+<g id="Layer_1" display="none">
+</g>
+<g id="Top_Interests">
+	<g>
+		<circle fill="#424F5A" cx="32.5" cy="32.5" r="32.5"/>
+		<polygon fill="#0095DD" points="21,42 21,55.8 32.1,49.8 43,55.8 43,42 		"/>
+		<path opacity="0.3" d="M21,42v3.6c0,0,10,8.6,22,0V42H21z"/>
+		<circle fill="#EBEBEB" cx="32.5" cy="28.1" r="18.2"/>
+		<circle fill="#FFFFFF" cx="32.5" cy="28.1" r="16"/>
+		<polygon fill="#FF9500" points="29.4,24.2 32.4,18 35.5,24.2 42.3,25.2 37.3,30 38.5,36.9 32.4,33.6 26.3,36.8 27.4,30 22.5,25.2 
+					"/>
+	</g>
+</g>
+<g id="Recent_Browsing">
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="-907" y="-20.6" width="696" height="426"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_2_)">
+			<defs>
+				<rect id="SVGID_3_" x="-907" y="-182.6" width="1280" height="1244"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  overflow="visible"/>
+			</clipPath>
+		</g>
+	</g>
+</g>
+</svg>
