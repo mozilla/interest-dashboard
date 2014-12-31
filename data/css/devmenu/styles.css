@@ -442,6 +442,14 @@ body > .nvtooltip .count {
   position: absolute;
 }
 
+.area-graph-ring {
+  position: absolute;
+  border: 2px solid rgb(230, 230, 230);
+  top: 24px;
+  padding: 144px;
+  left: -11px;
+  border-radius: 390px;
+}
 
 /* Table */
 table.dataTable tbody td {
