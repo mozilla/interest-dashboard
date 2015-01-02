@@ -37,7 +37,7 @@ body {
   display: inline-block;
 }
 
-img.favicon[ng-src=""] {
+img.favicon[src=""] {
    border: 1px dashed #AFAFAF;
 }
 

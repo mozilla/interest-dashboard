@@ -276,7 +276,7 @@ InterestDashboard.prototype = {
         '<td class="subcat">' + html_sanitize(visit.subcat) + '</td>' +
         '<td class="time historyVisit">' + html_sanitize(time) + '</td>' +
         '<td style="width: 23px"><div class="timelineCircle ' + this._escapeHTML(lastOrFirstVisitString) + '"></div></td>' +
-        '<td><img class="favicon" src="' + this._escapeHTML(visit.favicon) + '"></img></td>' +
+        '<td><img class="favicon" src="' + this._escapeHTML(visit.favicon) + '" alt=""></img></td>' +
         '<td style="width: 380px"><div class="domain" data-toggle="tooltip" title="' + this._escapeHTML(visit.url) + '">' +
           '<a href="' + this._escapeHTML(visit.url) + '">' + html_sanitize(visit.domain) + '</a>' +
         '</div>' +
