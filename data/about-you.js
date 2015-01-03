@@ -75,6 +75,10 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     $("#progressBar").css("width", $scope.percentProcessed);
   };
 
+  $scope.uninstall = function(){
+      dataService.send("uninstall_addon");
+  };
+
   $scope.processHistory = function() {
     if ($scope.daysLeft) {
       return;
