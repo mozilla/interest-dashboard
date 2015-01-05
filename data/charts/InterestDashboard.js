@@ -514,6 +514,21 @@ InterestDashboard.prototype = {
 
   _renderPieGraph: function(data) {
     d3.select('#interestPie').selectAll("*").remove();
+
+    d3.select("#interestPie")
+        .append("circle")
+        .attr("cx", 195)
+        .attr("cy", 200)
+        .attr("r", 148)
+        .style({'fill': '#E6E6E6', 'border': '2px solid rgb(230, 230, 230)', 'border-radius': '390px'})
+
+    d3.select("#interestPie")
+        .append("circle")
+        .attr("cx", 195)
+        .attr("cy", 200)
+        .attr("r", 145)
+        .style({'fill': '#FFFFFF'})
+
     d3.select("#interestPie")
       .attr("class", "pie-graph-margin-fix")
       .datum(data.pieData)
@@ -541,6 +556,7 @@ InterestDashboard.prototype = {
       .attr("x", 145)
       .attr("y", 223)
       .text( function (d) { return "Interests"; });
+
   },
 
   _setTooltip: function($scope) {
