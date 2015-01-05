@@ -57,6 +57,7 @@ Tokenizer_ZH_CN.prototype = {
   },
 
   _tokenizeCNText: function(sen) {
+    if (!sen) return [];
     let max = Math.min(sen.length, this._hash.length - 1);
     for (let n = max; n > 0; n--) {
       if (!this._hash[n]) {
