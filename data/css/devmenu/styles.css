@@ -1092,6 +1092,10 @@ ol li {
 
 
 /* Recommendations */
+#recommend_tab {
+  display: none;
+}
+
 #spiderGraph .link {
   stroke: #FFFFFF;
 }
