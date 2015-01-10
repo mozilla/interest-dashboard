@@ -463,12 +463,12 @@ td.details-control {
   color: #FFFFFF;
   font-size: 12px;
   text-align: center;
-  padding-top: 2px;
+  padding-top: 5px;
   padding-bottom: 2px;
 }
 
 .fire {
-  width: 18px;
+  width: 30px;
   height: 28px;
   background: url('resources/Icon_Flame.svg') no-repeat center center;
 }
