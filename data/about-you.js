@@ -27,6 +27,7 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     $scope.daysLeft = null;
     $scope.daysLeftStart = null;
     $scope.percentProcessed = null;
+    $scope.recommenderTabToggle = "Show Recommendations Tab";
     dataService.send("chart_data_request");
   }
   $scope.safeApply = function(fn) {
@@ -77,6 +78,24 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
 
   $scope.uninstall = function(){
       dataService.send("uninstall_addon");
+  };
+
+  $scope.setRecommendationTabVisibility = function() {
+    let displayVal = "initial";
+    $scope.recommenderTabToggle = "Hide Recommendations Tab";
+    if ($('#recommend_tab').css("display") == "block") {
+      displayVal = "none";
+      $scope.recommenderTabToggle = "Show Recommendations Tab";
+
+      // Switching focus to recommendations bubble content
+      $('#yourInterests').addClass("active");
+      $('#recommendations').removeClass("active");
+
+      // Adjusting highligted tab
+      $('#interests_tab').addClass("active");
+      $('#recommend_tab').removeClass("active");
+    }
+    $('#recommend_tab').css("display", displayVal);
   };
 
   $scope.processHistory = function() {
