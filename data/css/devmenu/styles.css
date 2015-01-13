@@ -210,28 +210,70 @@ li.active {
 }
 
 .dropdown-menu {
-  background-color: #2F3943;
+  min-width: 268px;
+  max-width: 268px;
   padding: 0px;
+  border: none;
 }
 
 .dropdown-menu > li > a {
-  padding: 0;
-  padding-right: 30px;
-  padding-left: 30px;
-  height: 40px;
-  line-height: 40px;
-  font-weight: 100;
-  color: white;
+  padding: 0px 18px;
+  height: 55px;
+  line-height: 55px;
+  color: #171F26;
 }
 
 .dropdown-menu > li > a:hover {
-  background-color: #576872;
-  color: white;
+  background-color: #F2F2F2;
+  color: #171F26;
 }
 
 .dropdown-menu .divider {
-  background-color: #576872;
+  background-color: #E6E6E6;
   margin: 0px;
+}
+
+.dropdown-menu .title-divider {
+  background-color: #E6E6E6;
+  height: 2px;
+}
+
+.dropdown-menu .cog-title {
+  font-weight: 500;
+  text-transform: uppercase;
+  height: 45px;
+  line-height: 45px;
+}
+
+.dropdown-menu .cog-title:hover {
+  background-color: white;
+  cursor: auto;
+}
+
+.dropdown-menu .report-bugs {
+  display: none;
+  background-color: #F2F2F2;
+  padding-bottom: 15px;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.report-bugs > .blurb {
+  white-space: normal;
+  line-height: 20px;
+  padding: 14px;
+  padding-top: 20px;
+  cursor: auto;
+}
+
+.report-bugs button {
+  background-color: rgb(0, 150, 221);
+  border: 1px solid rgb(0, 149, 221);
+  width: 240px;
+  height: 26px;
+  border-radius: 4px;
+  color: white;
 }
 
 

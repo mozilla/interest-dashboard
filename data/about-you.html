@@ -33,6 +33,8 @@
                 <div class="cog-img"></div>
               </button>
               <ul class="dropdown-menu-right dropdown-menu" role="menu">
+                <li><a class="cog-title" href="#">Options</a></li>
+                <li class="divider title-divider"></li>
                 <li><a href="https://www.mozilla.org/en-US/firefox/interest-dashboard/">About this page</a></li>
                 <li class="divider"></li>
                 <li ng-click="processHistory()" ><a href="#">Recompute history</a></li>
@@ -42,6 +44,11 @@
                 <li><a data-toggle="modal" data-target="#uninstallModal" href="#">Uninstall</a></li>
                 <li class="divider"></li>
                 <li ng-click="setRecommendationTabVisibility()"><a href="#">{{recommenderTabToggle}}</a></li>
+                <li class="divider"></li>
+                <li class="report-bugs">
+                  <div class="blurb">This is a work in progress. See something that isn't right? Help us fix it.</div>
+                  <button onClick="window.open('https://bugzilla.mozilla.org/enter_bug.cgi?product=Content%20Services&component=Interest%20Dashboard')">Report a bug</button>
+                </li>
               </ul>
             </div>
             <div class="tabWrapper" role="tabpanel">
