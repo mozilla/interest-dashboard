@@ -40,11 +40,13 @@
                 <li ng-click="generateDebugReport()"><a href="#">Generate debug report</a></li>
                 <li class="divider"></li>
                 <li><a data-toggle="modal" data-target="#uninstallModal" href="#">Uninstall</a></li>
+                <li class="divider"></li>
+                <li ng-click="setRecommendationTabVisibility()"><a href="#">{{recommenderTabToggle}}</a></li>
               </ul>
             </div>
             <div class="tabWrapper" role="tabpanel">
               <ul class="nav navbar-nav navbar-right" role="tablist">
-                <li role="presentation" class="active"><a href="#yourInterests" aria-controls"yourInterests" role="tab" data-toggle="tab" >Your Interests</a></li>
+                <li id="interests_tab" role="presentation" class="active"><a href="#yourInterests" aria-controls"yourInterests" role="tab" data-toggle="tab" >Your Interests</a></li>
                 <li id="recommend_tab" role="presentation"><a href="#recommendations" aria-controls"recommendations" role="tab" data-toggle="tab" >Your Recommendations</a></li>
               </ul>
             </div>

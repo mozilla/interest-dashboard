@@ -1,5 +1,10 @@
 "use strict";
 
+const SHOW_RECOMMENDATIONS_TAB = "Show Recommendations Tab";
+const HIDE_RECOMMENDATIONS_TAB = "Hide Recommendations Tab";
+const PROCESSING_BLURB = "Analyzing your history...";
+const ID_LINK = "https://www.mozilla.org/en-US/firefox/interest-dashboard/";
+
 let table, tour;
 
 let DataService = function($rootScope) {
@@ -27,6 +32,7 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     $scope.daysLeft = null;
     $scope.daysLeftStart = null;
     $scope.percentProcessed = null;
+    $scope.recommenderTabToggle = SHOW_RECOMMENDATIONS_TAB;
     dataService.send("chart_data_request");
   }
   $scope.safeApply = function(fn) {
@@ -68,7 +74,7 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
   };
 
   $scope.updateProgressBar = function(value) {
-    $scope.processingBlurb = "Analyzing your history...";
+    $scope.processingBlurb = PROCESSING_BLURB;
 
     let val = value ? value : (100 - Math.round($scope.daysLeft / $scope.daysLeftStart * 100));
     $scope.percentProcessed = val + "%"
@@ -77,6 +83,24 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
 
   $scope.uninstall = function(){
       dataService.send("uninstall_addon");
+  };
+
+  $scope.setRecommendationTabVisibility = function() {
+    let displayVal = "initial";
+    $scope.recommenderTabToggle = HIDE_RECOMMENDATIONS_TAB;
+    if ($('#recommend_tab').css("display") == "block") {
+      displayVal = "none";
+      $scope.recommenderTabToggle = SHOW_RECOMMENDATIONS_TAB;
+
+      // Switching focus to recommendations bubble content
+      $('#yourInterests').addClass("active");
+      $('#recommendations').removeClass("active");
+
+      // Adjusting highligted tab
+      $('#interests_tab').addClass("active");
+      $('#recommend_tab').removeClass("active");
+    }
+    $('#recommend_tab').css("display", displayVal);
   };
 
   $scope.processHistory = function() {
@@ -197,7 +221,7 @@ BrowserTour.prototype.bindEvents = function () {
   this.$closeButton.on('click', this.closeTour.bind(this));
   $('.cta button').on('click', () => {
     this.closeTour();
-    window.open("https://www.mozilla.org/en-US/firefox/interest-dashboard/", '_blank');
+    window.open(ID_LINK, '_blank');
   });
   $('button.step').on('click', this.onStepClick.bind(this));
   this.$tourControls.on('mouseenter focus', 'button.step', this.onStepHover.bind(this));
