@@ -99,6 +99,9 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
       // Adjusting highligted tab
       $('#interests_tab').addClass("active");
       $('#recommend_tab').removeClass("active");
+
+      // Remove experimental messaging since we're now removing the recommend tab.
+      $('.dropdown-menu .report-bugs').css("display", 'none');
     }
     $('#recommend_tab').css("display", displayVal);
   };

@@ -736,6 +736,14 @@ InterestDashboard.prototype = {
 
   graph: function(data, table, $scope) {
     try {
+      // Show the recommend tab messaging in the cog only when viewing the recommend tab.
+      $('#interests_tab').on('click', () => {
+        $('.dropdown-menu .report-bugs').css("display", 'none');
+      });
+      $('#recommend_tab').on('click', () => {
+        $('.dropdown-menu .report-bugs').css("display", 'inherit');
+      });
+
       // We got some data so make the Dashboard view active and the 'no history' view inactive
       $('#yourInterests').addClass("active");
       $('#noHistory').removeClass("active");
