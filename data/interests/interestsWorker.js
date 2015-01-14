@@ -5,7 +5,6 @@
 "use strict";
 
 importScripts("tokenizerFactory.js");
-importScripts("naiveBayesClassifier.js");
 importScripts("lwca_refined.js");
 
 function InterestsWorkerError(message) {
@@ -23,7 +22,6 @@ InterestsWorkerError.prototype.constructor = InterestsWorkerError;
 let gNamespace = null;
 let gRegionCode = null;
 let gTokenizer = null;
-let gClassifier = null;
 let gLWCAClassifier = null;
 let gInterestsData = null;
 
@@ -35,7 +33,7 @@ const kSplitter = /[\s-]+/;
 function bootstrap(aMessageData) {
   gLWCAClassifier = new LWCAClassifier(aMessageData);
 
-  // expects : {interestsData, interestsDataType, interestsClassifierModel, interestsUrlStopwords, workerRegionCode}
+  // expects : {interestsData, interestsDataType, interestsUrlStopwords, workerRegionCode}
   gRegionCode = aMessageData.workerRegionCode;
 
   gNamespace = aMessageData.workerNamespace;
@@ -44,14 +42,9 @@ function bootstrap(aMessageData) {
   if (aMessageData.interestsUrlStopwords) {
     gTokenizer = tokenizerFactory.getTokenizer({
       urlStopwordSet: aMessageData.interestsUrlStopwords,
-      model: aMessageData.interestsClassifierModel,
       regionCode: gRegionCode,
       rules: gInterestsData
     });
-  }
-
-  if (aMessageData.interestsClassifierModel) {
-    gClassifier = new NaiveBayesClassifier(aMessageData.interestsClassifierModel);
   }
 
   self.postMessage({
@@ -187,21 +180,6 @@ function ruleClassify({host, baseDomain, path, title, url}) {
   return interestFinalizer(interests);
 }
 
-// classify a page using text
-function textClassify({url, title}) {
-  if (gTokenizer == null || gClassifier == null) {
-    return [];
-  }
-
-  let tokens = gTokenizer.tokenize(url, title);
-  let interest = gClassifier.classify(tokens);
-
-  if (interest != null) {
-    return interest;
-  }
-  return [];
-}
-
 function lwcaClassify({url, title}) {
   try {
     if (url && title && gNamespace == "58-cat") {
@@ -242,7 +220,6 @@ function getInterestsForDocument(aMessageData) {
   // - for combined classification
   let interests = [];
   let results = [];
-  let combinedInterests = [];
   try {
     interests = lwcaClassify(aMessageData);
     if (Object.keys(interests).length > 0) {
@@ -253,12 +230,6 @@ function getInterestsForDocument(aMessageData) {
     results.push({type: "rules", interests: dedupeInterests(interests)});
 
     let rulesWorked = interests.length > 0;
-    combinedInterests = interests;
-
-    interests = textClassify(aMessageData);
-    results.push({type: "keywords", interests: dedupeInterests(interests)});
-    combinedInterests = dedupeInterests(combinedInterests.concat(interests));
-    results.push({type: "combined", interests: combinedInterests});
 
     aMessageData.results = results;
     self.postMessage(aMessageData);

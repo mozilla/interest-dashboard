@@ -25,15 +25,10 @@ exports["test interest classifier"] = function test_UrlClassifier(assert, done) 
     assert.equal(Object.keys(results).length, workers.length);
     assert.deepEqual(results["58-cat"].results,
           [{"type": "lwca", interests: ["uncategorized"], subcat: "dummy"},
-           {"type":"rules","interests":["cars"]},
-           {"type":"keywords","interests":[]},
-           {"type":"combined","interests":["cars"]}
+           {"type":"rules","interests":["cars"]}
           ]);
     assert.deepEqual(results["edrules"].results,
-          [{"type":"rules","interests":["Autos"]},
-           {"type":"keywords","interests":[]},
-           {"type":"combined","interests":["Autos"]},
-          ]);
+          [{"type":"rules","interests":["Autos"]}]);
     // test for an error
     yield urlClassifier.classifyPage("not a url").then(result => {
       assert.ok(false);
@@ -45,10 +40,7 @@ exports["test interest classifier"] = function test_UrlClassifier(assert, done) 
     // classify only the text
     results = yield urlClassifier.classifyPage(null, "iphone, ipad, apple, product, phone");
     assert.deepEqual(results["edrules"].results,
-        [{"type":"rules","interests":[]},
-         {"type":"keywords","interests":["Apple"]},
-         {"type":"combined","interests":["Apple"]}
-        ]);
+        [{"type":"rules","interests":[]}]);
 
   }).then(done);
 }

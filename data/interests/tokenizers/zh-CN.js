@@ -10,22 +10,16 @@ const kNotWordPattern = /[^a-z0-9 ]+/g;
 
 /**
  * A very simple Reverse Maximum Match tokenizer, the dictionary is
- * generated from the text classifier model and rule keywords.
+ * generated from the rule keywords.
  */
-function Tokenizer_ZH_CN({urlStopwordSet, model, rules}) {
+function Tokenizer_ZH_CN({urlStopwordSet, rules}) {
   this._urlStopwordSet = urlStopwordSet;
   this._hash = [];
-  this.initialize(model, rules);
+  this.initialize(rules);
 }
 
 Tokenizer_ZH_CN.prototype = {
-  initialize: function(aModel, aRules) {
-    if (aModel) {
-      Object.keys(aModel.logLikelihoods).forEach(key => {
-        this._addDict(key);
-      });
-    }
-
+  initialize: function(aRules) {
     if (aRules) {
       this._addRuleKeywords(aRules);
     }

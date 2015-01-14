@@ -37,7 +37,7 @@ let matchTests = [
   info: "Match Test 1 (Rules): sina.com.cn",
   url:  "http://foo.bar.sina.com.cn/video?kw=aa",
   title: "电视剧影视频道",
-  expectedInterests:  [{"type":"rules","interests":["News","Video","TV Series"]},{"type":"combined","interests":["News","Video","TV Series"]},{"type":"keywords","interests":[]}],
+  expectedInterests:  [{"type":"rules","interests":["News","Video","TV Series"]}],
 }];
 
 exports["test default matcher"] = function test_default_matcher(assert, done) {
@@ -75,7 +75,6 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
       regionCode: 'zh-CN',
       listener: workerTester,
       domainRules: testDomainRules,
-      textModel: null,
       urlStopWords: ['php', 'html'],
       domain_rules: domain_rules,
       host_rules: host_rules,

@@ -7,7 +7,7 @@
 "use strict";
 
 var tokenizerFactory = {
-  getTokenizer: function({regionCode, urlStopwordSet, model, rules}) {
+  getTokenizer: function({regionCode, urlStopwordSet, rules}) {
     let Tokenizer = null;
     if (regionCode == 'zh-CN') {
       importScripts("tokenizers/zh-CN.js");
@@ -19,7 +19,6 @@ var tokenizerFactory = {
 
     return new Tokenizer({
       urlStopwordSet: urlStopwordSet,
-      model: model,
       rules: rules
     });
   }
