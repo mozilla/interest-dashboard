@@ -71,6 +71,12 @@ let testDomainRules = {
     "travel_u": [
       "travel"
     ],
+    "foo_u": [
+       "foo"
+    ],
+    "bar_t": [
+       "bar"
+    ],
   },
 }
 
@@ -161,22 +167,34 @@ let matchTests = [
   expectedInterests: [{"type":"rules","interests":[{"category":"travel","subcat":"general"}]}],
 },
 {
-  info: "Match Test 14 (Rules): travel in path",
+  info: "Match Test 15 (Rules): travel in path",
   url:  "https://google.com/travel",
   title: "travel",
   expectedInterests: [{"type":"rules","interests":[{"category":"travel","subcat":"general"}]}],
 },
 {
-  info: "Match Test 14 (Rules): travel in query",
+  info: "Match Test 16 (Rules): travel in query",
   url:  "https://google.com/search?q=travel",
   title: "travel",
   expectedInterests: [{"type":"rules","interests":[{"category":"travel","subcat":"general"}]}],
 },
 {
-  info: "Match Test 14 (Rules): travel in title",
-  url:  "https://google.com/search?q=foo",
+  info: "Match Test 17 (Rules): travel in title",
+  url:  "https://google.com/search?q=zumbaHoo",
   title: "travel",
   expectedInterests: [{"type":"rules","interests":[{"category":"uncategorized","subcat":"dummy"}]}],
+},
+{
+  info: "Match Test 18 (Rules): foo in URL",
+  url:  "http://us.cnn.com/2014/11/16/foo/xyz",
+  title: "G20 summit",
+  expectedInterests: [{"type":"rules","interests":[{"category":"foo","subcat":"general"}]}],
+},
+{
+  info: "Match Test 19 (Rules): bar in title",
+  url:  "http://us.cnn.com/xxx",
+  title: "G20 bar summit",
+  expectedInterests: [{"type":"rules","interests":[{"category":"bar","subcat":"general"}]}],
 },
 ];
 
@@ -191,9 +209,11 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
         if (msgData.message == "InterestsForDocument") {
           // make sure that categorization is correct
           let host = msgData.host;
-          //console.log("msgData=> " + JSON.stringify(msgData.results))
-          //console.log("expectedInterests=> " + JSON.stringify(expectedInterests))
-          assert.ok(testUtils.compareArrayOrderIrrelevant(msgData.results, expectedInterests), "interests match");
+          if (!testUtils.compareArrayOrderIrrelevant(msgData.results, expectedInterests)) {
+            console.log("msgData=> " + JSON.stringify(msgData.results))
+            console.log("expectedInterests=> " + JSON.stringify(expectedInterests))
+          }
+          assert.ok(testUtils.compareArrayOrderIrrelevant(msgData.results, expectedInterests), msgData.info);
           deferred.resolve();
         }
         else if (!(msgData.message in testUtils.kValidMessages)) {
@@ -244,7 +264,8 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
           path: path,
           title: title,
           url: test.url,
-          baseDomain: baseDomain
+          baseDomain: baseDomain,
+          info: test.info
         }
       });
       yield deferred.promise;

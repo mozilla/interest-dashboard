@@ -92,23 +92,30 @@ function parseVisit(host, baseDomain, path, title, url, options) {
     let prev;
     let prefix = options.prefix || "";
     let suffix = options.suffix || "";
+    let clearText = !(options.prefix == null && options.suffix == null) && options.clearText;
 
     for (let i in chunks) {
       if (chunks[i]) {
         words[prefix + chunks[i] + suffix] = true;
+        if (clearText) {
+          words[chunks[i]] = true;
+        }
         if (prev) {
           // add bigram
           words[prefix + prev + chunks[i] + suffix] = true;
+          if (clearText) {
+            words[prev + chunks[i]] = true;
+          }
         }
         prev = chunks[i];
       }
     }
   };
 
-  // tokenize and add url and title text to words object
-  addToWords(gTokenizer.tokenize(url, title));
-  // tokenize and add url only chunks
-  addToWords(gTokenizer.tokenize(url), {suffix: "_u"});
+  // tokenize and add title chunks
+  addToWords(gTokenizer.tokenize(title), {suffix: "_t", clearText: true});
+  // tokenize and add url chunks
+  addToWords(gTokenizer.tokenize(url), {suffix: "_u", clearText: true});
   // parse and add hosts chunks
   addToWords(host.substring(0, host.length - baseDomain.length).split("."), {suffix: "."});
   // parse and add path chunks
@@ -192,9 +199,21 @@ function ruleClassify({host, baseDomain, path, title, url}) {
     });
   }
 
+  // __ANY rule does not support multiple keys in the rule
+  // __ANY rule matches any single term rule - but not the term combination
+  // as in "/foo bar_u baz_t"
+  function matchANYRuleInterests(rule) {
+    for (var key in words) {
+      var ruleInts = rule[key];
+      if (ruleInts) {
+        interests = interests.concat(ruleInts);
+      }
+    }
+  }
+
   // process __ANY rule first
   if (gInterestsData["__ANY"]) {
-    matchRuleInterests(gInterestsData["__ANY"]);
+    matchANYRuleInterests(gInterestsData["__ANY"]);
   }
 
   let domainRule = gInterestsData[baseDomain];
