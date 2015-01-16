@@ -8,7 +8,7 @@
 
 const kNotWordPattern = /[^a-z0-9 ]+/g;
 
-function Tokenizer_EN_US({urlStopwordSet, model, rules}) {
+function Tokenizer_EN_US({urlStopwordSet, rules}) {
   this._urlStopwordSet = urlStopwordSet;
 }
 

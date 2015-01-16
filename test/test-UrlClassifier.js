@@ -23,17 +23,10 @@ exports["test interest classifier"] = function test_UrlClassifier(assert, done) 
     let urlClassifier = new UrlClassifier(workers);
     let results = yield urlClassifier.classifyPage("http://www.autoblog.com/","Drive honda");
     assert.equal(Object.keys(results).length, workers.length);
-    assert.deepEqual(results["58-cat"].results,
-          [{"type": "lwca", interests: ["uncategorized"], subcat: "dummy"},
-           {"type":"rules","interests":["cars"]},
-           {"type":"keywords","interests":[]},
-           {"type":"combined","interests":["cars"]}
-          ]);
-    assert.deepEqual(results["edrules"].results,
-          [{"type":"rules","interests":["Autos"]},
-           {"type":"keywords","interests":[]},
-           {"type":"combined","interests":["Autos"]},
-          ]);
+    assert.deepEqual(results.edrules.results,
+          [{"type": "rules", interests: [{category: "Autos", subcat: "general"}]}]);
+    assert.deepEqual(results.dfr_rules.results,
+          [{"type": "rules", interests: [{category: "uncategorized", subcat: "dummy"}]}]);
     // test for an error
     yield urlClassifier.classifyPage("not a url").then(result => {
       assert.ok(false);
@@ -44,11 +37,10 @@ exports["test interest classifier"] = function test_UrlClassifier(assert, done) 
 
     // classify only the text
     results = yield urlClassifier.classifyPage(null, "iphone, ipad, apple, product, phone");
-    assert.deepEqual(results["edrules"].results,
-        [{"type":"rules","interests":[]},
-         {"type":"keywords","interests":["Apple"]},
-         {"type":"combined","interests":["Apple"]}
-        ]);
+    assert.deepEqual(results.edrules.results,
+        [{"type": "rules", interests: [{category: "uncategorized", subcat: "dummy"}]}]);
+    assert.deepEqual(results.dfr_rules.results,
+        [{"type": "rules", interests: [{category: "uncategorized", subcat: "dummy"}]}]);
 
   }).then(done);
 }

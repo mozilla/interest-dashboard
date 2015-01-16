@@ -15,7 +15,6 @@ const {Cc, Ci} = require("chrome");
 let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
 scriptLoader.loadSubScript(data.url("models/urlStopwords.js"));
 scriptLoader.loadSubScript(data.url("models/zh-CN/41-cat/domainRules.js"));
-scriptLoader.loadSubScript(data.url("models/zh-CN/41-cat/textModel.js"));
 scriptLoader.loadSubScript(data.url("interests/tokenizers/zh-CN.js"));
 
 exports["test ChineseTokeinzer"] = function test_ChineseTokenizer(assert) {
@@ -23,20 +22,6 @@ exports["test ChineseTokeinzer"] = function test_ChineseTokenizer(assert) {
 
   let tokenizer = new Tokenizer_ZH_CN({
     urlStopwordSet: interestsUrlStopwords,
-    model: {
-      classes: {
-        '0': 'sports',
-        '1': 'soccer'
-      },
-      logLikelihoods: {
-        // 曼联
-        '\u66FC\u8054': [-11, -12],
-        // 鲁尼
-        '\u9C81\u5C3C': [-11, -12],
-        // 范佩西
-        '\u8303\u4F69\u897F': [-11, -12],
-      }
-    },
     rules: {
       'sports.sina.com.cn': {
         '__ANY': ['sports'],
@@ -49,7 +34,7 @@ exports["test ChineseTokeinzer"] = function test_ChineseTokenizer(assert) {
   let tests = [{
     url: 'http://sports.sina.com.cn/g/pl/2013-11-11/01036878834.shtml',
     title: '英超-鲁尼助攻范佩西绝杀 曼联胜阿森纳差前四1分',
-    must_have: ['sports', 'sina', '英超', '曼联', '鲁尼', '范佩西'],
+    must_have: ['sports', 'sina', '英超'],
     must_not_have: ['助攻', '绝杀']
   }];
 
