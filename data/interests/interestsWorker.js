@@ -5,7 +5,6 @@
 "use strict";
 
 importScripts("tokenizerFactory.js");
-importScripts("lwca_refined.js");
 
 function InterestsWorkerError(message) {
     this.name = "InterestsWorkerError";
@@ -22,7 +21,6 @@ InterestsWorkerError.prototype.constructor = InterestsWorkerError;
 let gNamespace = null;
 let gRegionCode = null;
 let gTokenizer = null;
-let gLWCAClassifier = null;
 let gInterestsData = null;
 
 // XXX The original splitter doesn't apply to chinese:
@@ -31,8 +29,6 @@ const kSplitter = /[\s-]+/;
 
 // bootstrap the worker with data and models
 function bootstrap(aMessageData) {
-  gLWCAClassifier = new LWCAClassifier(aMessageData);
-
   // expects : {interestsData, interestsDataType, interestsUrlStopwords, workerRegionCode}
   gRegionCode = aMessageData.workerRegionCode;
 
@@ -124,6 +120,46 @@ function parseVisit(host, baseDomain, path, title, url, options) {
   return words;
 }
 
+function formatClassificationResults(cats) {
+  let formattedClassification = {};
+  if (cats.length == 0) {
+    return [{"category": "uncategorized", "subcat": "dummy"}];
+  }
+
+  // populate formattedClassification object with top and sub categories
+  for (let i = 0; i < cats.length; i++) {
+    let cat = cats[i];
+    if (cat.indexOf("/") == -1) {
+      // This is a top category
+      if (!formattedClassification[cat]) {
+        formattedClassification[cat] = "general_" + i;
+      }
+    }
+    else {
+      // this is a subcategory
+      let chunks = cat.split("/");
+      let topCat = chunks[0];
+      let subCat = chunks[1];
+      if (!formattedClassification[topCat] ||
+          formattedClassification[topCat].indexOf("general") != -1) {
+        formattedClassification[topCat] = subCat + "_" + i;
+      }
+    }
+  }
+
+  // The final result is an ordered list of {category: <>, subcat: <>}.
+  let finalResult = new Array(Object.keys(formattedClassification).length);
+  for (let category in formattedClassification) {
+    let split = formattedClassification[category].split("_");
+    let subcat = split[0];
+    let index = split[1];
+    finalResult[index] = {"category": category, "subcat": subcat};
+  }
+
+
+  return finalResult;
+}
+
 // classify a page using rules
 function ruleClassify({host, baseDomain, path, title, url}) {
   let interests = [];
@@ -180,19 +216,6 @@ function ruleClassify({host, baseDomain, path, title, url}) {
   return interestFinalizer(interests);
 }
 
-function lwcaClassify({url, title}) {
-  try {
-    if (url && title && gNamespace == "58-cat") {
-      let classification = gLWCAClassifier.classify(url, title);
-      let subcat = classification[1].split("/")[0];
-      return {"category": [classification[0]], "subcat": subcat};
-    }
-  } catch (ex) {
-    console.log(ex);
-  }
-  return [];
-}
-
 // Figure out which interests are associated to the document
 function getInterestsForDocument(aMessageData) {
 
@@ -214,22 +237,11 @@ function getInterestsForDocument(aMessageData) {
   aMessageData.message = "InterestsForDocument";
   aMessageData.namespace = gNamespace;
 
-  // we need to submit 3 messages
-  // - for rule classification
-  // - for keyword classification
-  // - for combined classification
-  let interests = [];
-  let results = [];
+  // Submitting a msg for rule classification
   try {
-    interests = lwcaClassify(aMessageData);
-    if (Object.keys(interests).length > 0) {
-      results.push({type: "lwca", interests: interests.category, subcat: interests.subcat});
-    }
-
-    interests = ruleClassify(aMessageData);
-    results.push({type: "rules", interests: dedupeInterests(interests)});
-
-    let rulesWorked = interests.length > 0;
+    let interests = ruleClassify(aMessageData);
+    let formatted = formatClassificationResults(interests);
+    let results = [{type: "rules", interests: formatted}];
 
     aMessageData.results = results;
     self.postMessage(aMessageData);
