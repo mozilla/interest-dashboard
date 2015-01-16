@@ -27,9 +27,9 @@ let interestMessage = {
   "metaData": {},
   "language": "en",
   "messageId": "resubmit",
-  "namespace": "58-cat",
+  "namespace": "edrules",
   "results": [
-    {"type":"lwca","interests":["Education"]},
+    {"type":"rules","interests": [{category: "Education", subcat: "general"}]},
   ],
   "visitIDs": {},
 };
@@ -123,7 +123,7 @@ exports["test ignore latest day visit unless flush"] = function test_TodayVisits
       doAssert = function(message) {
         assertDeferred.resolve();
         assert.ok(message.hasOwnProperty(today), "today's count should be present");
-        assert.equal(message[today]["lwca"]["58-cat"]["Education"]["hosts"]["w3schools.com"], 3, "today's visit count should have accumulated");
+        assert.equal(message[today].rules.edrules["Education"]["hosts"]["w3schools.com"], 3, "today's visit count should have accumulated");
       }
       dateVisits = {};
       dateVisits[today] = 2; // assertion checks if 2 is added to the 1 count set before

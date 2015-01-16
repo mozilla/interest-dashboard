@@ -57,7 +57,7 @@ function daysPostEpochToDate(dayCount) {
 exports["test read all"] = function test_readAll(assert, done) {
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
-    yield testUtils.addVisits("www.w3schools.com",20);
+    yield testUtils.addVisits("www.autoblog.com",20);
 
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
@@ -72,16 +72,16 @@ exports["test read all"] = function test_readAll(assert, done) {
     streamObjects.stream.flush(); // flush out the last day
     yield assertDeferred.promise;
 
-    let datum = storageBackend.chartData.genericChartData.lwca["58-cat"].categories.education.days;
+    let datum = storageBackend.chartData.genericChartData.rules.edrules.categories.Autos.days;
     let dates = Object.keys(datum);
     assert.equal(dates.length, 21, "There are 21 days processed");
 
     assert.deepEqual(datum[today + ""],
-      {"x":daysPostEpochToDate(today),"size":1,"domainList":{"w3schools.com":1}},
+      {"x":daysPostEpochToDate(today),"size":1,"domainList":{"autoblog.com":1}},
       "Test expected data for today");
 
     assert.deepEqual(datum[(today-19) + ""],
-      {"x":daysPostEpochToDate(today-19),"size":1,"domainList":{"w3schools.com":1}},
+      {"x":daysPostEpochToDate(today-19),"size":1,"domainList":{"autoblog.com":1}},
       "Test expected data for today - 19");
     assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
   }).then(done);
@@ -90,7 +90,7 @@ exports["test read all"] = function test_readAll(assert, done) {
 exports["test read from given timestamp"] = function test_readFromGivenTimestamp(assert, done) {
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
-    yield testUtils.addVisits("www.w3schools.com",20);
+    yield testUtils.addVisits("www.autoblog.com",20);
 
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
@@ -101,22 +101,22 @@ exports["test read from given timestamp"] = function test_readFromGivenTimestamp
 
     let assertDeferred = oldPromise.defer();
     streamObjects.chartDataProcessorBolt.setEmitCallback(bolt => {
-      if (bolt.storage.chartData.genericChartData.lwca["58-cat"].categories.education.days[today]) {
+      if (bolt.storage.chartData.genericChartData.rules.edrules.categories.Autos.days[today]) {
         assertDeferred.resolve();
       }
     });
     streamObjects.stream.flush(); // flush out the last day
     yield assertDeferred.promise;
 
-    let datum = storageBackend.chartData.genericChartData.lwca["58-cat"].categories.education.days;
+    let datum = storageBackend.chartData.genericChartData.rules.edrules.categories.Autos.days;
     let dates = Object.keys(datum);
     assert.equal(dates.length,11);
     assert.deepEqual(datum[today + ""],
-      {"x":daysPostEpochToDate(today),"size":1,"domainList":{"w3schools.com":1}},
+      {"x":daysPostEpochToDate(today),"size":1,"domainList":{"autoblog.com":1}},
       "Test expected data for today");
 
     assert.deepEqual(datum[(today-9) + ""],
-      {"x":daysPostEpochToDate(today-9),"size":1,"domainList":{"w3schools.com":1}},
+      {"x":daysPostEpochToDate(today-9),"size":1,"domainList":{"autoblog.com":1}},
       "Test expected data for today - 9");
 
     assert.deepEqual(datum[(today-10) + ""], undefined,
@@ -129,7 +129,7 @@ exports["test read from given timestamp"] = function test_readFromGivenTimestamp
 exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
   Task.spawn(function() {
     yield testUtils.promiseClearHistory();
-    yield testUtils.addVisits("www.w3schools.com",20);
+    yield testUtils.addVisits("www.autoblog.com",20);
 
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
@@ -140,7 +140,7 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
 
     let assertDeferred = oldPromise.defer();
     streamObjects.chartDataProcessorBolt.setEmitCallback(bolt => {
-      if (bolt.storage.chartData.genericChartData.lwca["58-cat"].categories.education.days[today]) {
+      if (bolt.storage.chartData.genericChartData.rules.edrules.categories.Autos.days[today]) {
         assertDeferred.resolve();
       }
     });
@@ -148,7 +148,7 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
     yield assertDeferred.promise;
     streamObjects.chartDataProcessorBolt.setEmitCallback(undefined);
 
-    let datum = storageBackend.chartData.genericChartData.lwca["58-cat"].categories.education.days;;
+    let datum = storageBackend.chartData.genericChartData.rules.edrules.categories.Autos.days;;
     assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
 
     // now set chunksize to 1 and read from same id
@@ -159,7 +159,7 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
 
     assertDeferred = oldPromise.defer();
     streamObjects.chartDataProcessorBolt.setEmitCallback(bolt => {
-      if (bolt.storage.chartData.genericChartData.lwca["58-cat"].categories.education.days[today]) {
+      if (bolt.storage.chartData.genericChartData.rules.edrules.categories.Autos.days[today]) {
         assertDeferred.resolve();
       }
     });
@@ -167,7 +167,7 @@ exports["test chunk size 1"] = function test_ChunkSize1(assert, done) {
     yield assertDeferred.promise;
     streamObjects.chartDataProcessorBolt.setEmitCallback(undefined);
 
-    let newDatum = storageBackend.chartData.genericChartData.lwca["58-cat"].categories.education.days;
+    let newDatum = storageBackend.chartData.genericChartData.rules.edrules.categories.Autos.days;
     assert.deepEqual(datum, newDatum);
     assert.equal(testUtils.tsToDay(historyReader.getLastTimeStamp()), today);
   }).then(done);
@@ -177,12 +177,12 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
   Task.spawn(function() {
     let microNow = Date.now() * 1000;
     yield testUtils.promiseClearHistory();
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.w3schools.com/"), visitDate: microNow - 4*MICROS_PER_DAY});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.w3schools.com/"), visitDate: microNow - 3*MICROS_PER_DAY});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.w3schools.com/"), visitDate: microNow - 3*MICROS_PER_DAY});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.w3schools.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.w3schools.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
-    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.w3schools.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://autoblog.com"), visitDate: microNow - 4*MICROS_PER_DAY});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://autoblog.com"), visitDate: microNow - 3*MICROS_PER_DAY});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://autoblog.com"), visitDate: microNow - 3*MICROS_PER_DAY});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://autoblog.com"), visitDate: microNow - 2*MICROS_PER_DAY});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://autoblog.com"), visitDate: microNow - 2*MICROS_PER_DAY});
+    yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://autoblog.com"), visitDate: microNow - 2*MICROS_PER_DAY});
 
     let storageBackend = {};
     let streamObjects = initStream(storageBackend);
@@ -192,22 +192,22 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
 
     let assertDeferred = oldPromise.defer();
     streamObjects.chartDataProcessorBolt.setEmitCallback(bolt => {
-      if (bolt.storage.chartData.genericChartData.lwca["58-cat"].categories.education.days[today-2]) {
+      if (bolt.storage.chartData.genericChartData.rules.edrules.categories.Autos.days[today-2]) {
         assertDeferred.resolve();
       }
     });
     streamObjects.stream.flush(); // flush out the last day
     yield assertDeferred.promise;
 
-    let datum = storageBackend.chartData.genericChartData.lwca["58-cat"].categories.education.days;
+    let datum = storageBackend.chartData.genericChartData.rules.edrules.categories.Autos.days;
     let dates = Object.keys(datum);
     assert.equal(dates.length,3);
     assert.deepEqual(datum[(today-3) + ""],
-      {"x":daysPostEpochToDate(today-3),"size":1,"domainList":{"w3schools.com":1}});
+      {"x":daysPostEpochToDate(today-3),"size":1,"domainList":{"autoblog.com":1}});
     assert.deepEqual(datum[(today-2) + ""],
-      {"x":daysPostEpochToDate(today-2),"size":2,"domainList":{"w3schools.com":2}});
+      {"x":daysPostEpochToDate(today-2),"size":2,"domainList":{"autoblog.com":2}});
     assert.deepEqual(datum[(today-1) + ""],
-      {"x":daysPostEpochToDate(today-1),"size":3,"domainList":{"w3schools.com":3}});
+      {"x":daysPostEpochToDate(today-1),"size":3,"domainList":{"autoblog.com":3}});
     done();
   }).then(done);
 }
@@ -215,7 +215,7 @@ exports["test accumulation"] = function test_Accumulation(assert, done) {
 exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
   Task.spawn(function() {
     try {
-      let hostArray = ["www.w3schools.com",
+      let hostArray = ["www.autoblog.com",
                        "www.amazon.com",
                        "www.doordash.com",
                        "www.api.jquery.com",
@@ -245,8 +245,8 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       // block until today's data has been flushed
       processDeferred = oldPromise.defer();
       streamObjects.chartDataProcessorBolt.setEmitCallback(bolt => {
-        let minDay = bolt.storage.chartData.genericChartData.lwca["58-cat"].minDay;
-        let maxDay = bolt.storage.chartData.genericChartData.lwca["58-cat"].maxDay;
+        let minDay = bolt.storage.chartData.genericChartData.rules.edrules.minDay;
+        let maxDay = bolt.storage.chartData.genericChartData.rules.edrules.maxDay;
         let numDays = maxDay - minDay + 1;
         if (numDays == 61) {
           processDeferred.resolve();
@@ -257,7 +257,7 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       streamObjects.chartDataProcessorBolt.setEmitCallback(undefined);
 
       let allTheData = storageBackend;
-      let categories = storageBackend.chartData.genericChartData.lwca["58-cat"].categories;
+      let categories = storageBackend.chartData.genericChartData.rules.edrules.categories;
       assert.deepEqual(Object.keys(categories).length, 2);
 
       for (let category in categories) {
@@ -301,8 +301,8 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       // wait until data is flushed
       processDeferred = oldPromise.defer();
       streamObjects.chartDataProcessorBolt.setEmitCallback(bolt => {
-        let minDay = bolt.storage.chartData.genericChartData.lwca["58-cat"].minDay;
-        let maxDay = bolt.storage.chartData.genericChartData.lwca["58-cat"].maxDay;
+        let minDay = bolt.storage.chartData.genericChartData.rules.edrules.minDay;
+        let maxDay = bolt.storage.chartData.genericChartData.rules.edrules.maxDay;
         let numDays = maxDay - minDay + 1;
         if (numDays == 61) {
           processDeferred.resolve();
@@ -314,8 +314,8 @@ exports["test stop and restart"] = function test_StopAndRestart(assert, done) {
       streamObjects.chartDataProcessorBolt.setEmitCallback(undefined);
 
       // the content from the torture test and the single run is the same
-      assert.deepEqual(storageBackend.chartData.genericChartData.lwca["58-cat"].categories,
-        allTheData.chartData.genericChartData.lwca["58-cat"].categories);
+      assert.deepEqual(storageBackend.chartData.genericChartData.rules.edrules.categories,
+        allTheData.chartData.genericChartData.rules.edrules.categories);
     } catch(ex) {
       console.error(ex);
     }

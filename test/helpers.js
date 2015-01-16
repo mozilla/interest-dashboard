@@ -46,7 +46,7 @@ exports.testUtils = {
     return false;
   },
 
-  getWorker : function getWorker({namespace, domainRules, textModel, urlStopWords,
+  getWorker : function getWorker({namespace, domainRules, urlStopWords,
                                   listener, regionCode, domain_rules, host_rules, path_rules,
                                   words_tree, ignore_words, ignore_domains, ignore_exts, bad_domain_specific}) {
     let worker = new ChromeWorker(data.url("interests/interestsWorker.js"));
@@ -59,7 +59,6 @@ exports.testUtils = {
         workerRegionCode: regionCode || 'en-US',
         interestsDataType: "dfr",
         interestsData: domainRules,
-        interestsClassifierModel: textModel,
         interestsUrlStopwords: urlStopWords,
         domain_rules: domain_rules,
         host_rules: host_rules,

@@ -7,24 +7,8 @@
 
 exports.dayAnnotatedOne = {
   "15914": {
-    "combined": {
-      "58-cat": {
-        "computers": [1, 1, 1, 1],
-      },
-      "edrules": {
-        "Android": [1, 1],
-      },
-    },
-    "keywords": {
-      "58-cat": {
-        "computers": [1, 1],
-      },
-      "edrules": {
-        "Android": [1],
-      },
-    },
     "rules": {
-      "58-cat": {
+      "dfr_rules": {
         "uncategorized": [1, 1],
       },
       "edrules": {
@@ -36,500 +20,23 @@ exports.dayAnnotatedOne = {
 
 exports.dayAnnotatedTwo = {
   "15915": {
-    "combined": {
-      "58-cat": {
-        "banking": [
-          1,
-        1,
-        1
-          ],
-        "blogging": [
-          1,
-        1
-          ],
-        "business": [
-          1,
-        1
-          ],
-        "computers": [
-          1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        1
-          ],
-        "consumer-electronics": [
-          1,
-        1
-          ],
-        "dance": [
-          1
-          ],
-        "discounts": [
-          1
-          ],
-        "education": [
-          1
-          ],
-        "entertainment": [
-          1
-          ],
-        "family": [
-          1,
-        1
-          ],
-        "food": [
-          1
-          ],
-        "government": [
-          1,
-        1,
-        1
-          ],
-        "image-sharing": [
-          2
-          ],
-        "maps": [
-          1
-          ],
-        "marketing": [
-          1
-          ],
-        "music": [
-          1,
-        1
-          ],
-        "news": [
-          1,
-        1
-          ],
-        "politics": [
-          1
-          ],
-        "reference": [
-          1,
-        1,
-        1,
-        1
-          ],
-        "science": [
-          1
-          ],
-        "shopping": [
-          1
-          ],
-        "society": [
-          1,
-        1
-          ],
-        "sports": [
-          1
-          ],
-        "technology": [
-          2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-          ],
-        "uncategorized": [
-          1,
-        3
-          ],
-        "video-games": [
-          1,
-        1,
-        1,
-        1,
-        1
-          ],
-        "weather": [
-          1
-          ]
-      },
-      "edrules": {
-        "Android": [
-          1,
-        1,
-        1,
-        1
-          ],
-        "Apple": [
-          1
-          ],
-        "Business": [
-          1,
-        1,
-        1,
-        1,
-        1
-          ],
-        "Do-It-Yourself": [
-          1,
-        3,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2
-          ],
-        "Entrepreneur": [
-          1,
-        1,
-        3
-          ],
-        "Fashion-Men": [
-          1,
-        1
-          ],
-        "Golf": [
-          1
-          ],
-        "Home-Design": [
-          2,
-        1
-          ],
-        "Humor": [
-          1
-          ],
-        "Music": [
-          1,
-        1,
-        1
-          ],
-        "Photography": [
-          1
-          ],
-        "Politics": [
-          1,
-        1,
-        1
-          ],
-        "Programming": [
-          1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1
-          ],
-        "Science": [
-          1,
-        1
-          ],
-        "Sports": [
-          1
-          ],
-        "Technology": [
-          2,
-        2,
-        4,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1
-          ],
-        "Television": [
-          1,
-        1
-          ],
-        "Video-Games": [
-          1,
-        1,
-        1
-          ]
-      }
-    },
-    "keywords": {
-      "58-cat": {
-        "banking": [
-          1,
-        1,
-        1
-          ],
-        "blogging": [
-          1
-          ],
-        "business": [
-          1,
-        1
-          ],
-        "career": [
-          1,
-        1
-          ],
-        "computers": [
-          2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        1
-          ],
-        "consumer-electronics": [
-          3,
-        1
-          ],
-        "discounts": [
-          1
-          ],
-        "education": [
-          1
-          ],
-        "entertainment": [
-          1
-          ],
-        "family": [
-          1,
-        1
-          ],
-        "food": [
-          1
-          ],
-        "games": [
-          1,
-        1
-          ],
-        "government": [
-          1,
-        1,
-        1
-          ],
-        "home": [
-          1
-          ],
-        "maps": [
-          1
-          ],
-        "marketing": [
-          1,
-        1
-          ],
-        "music": [
-          1,
-        1,
-        1
-          ],
-        "news": [
-          1,
-        1
-          ],
-        "photography": [
-          1
-          ],
-        "politics": [
-          2,
-        1
-          ],
-        "reference": [
-          1,
-        1
-          ],
-        "reviews": [
-          1
-          ],
-        "science": [
-          1
-          ],
-        "shopping": [
-          1
-          ],
-        "society": [
-          1
-          ],
-        "technology": [
-          2,
-        4,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-          ],
-        "video-games": [
-          1,
-        1,
-        1,
-        1
-          ],
-        "weather": [
-          1
-          ]
-      },
-      "edrules": {
-        "Android": [
-          1,
-        1,
-        1,
-        1
-          ],
-        "Apple": [
-          1
-          ],
-        "Business": [
-          1,
-        1,
-        1,
-        1,
-        1
-          ],
-        "Do-It-Yourself": [
-          1,
-        3,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2
-          ],
-        "Entrepreneur": [
-          1,
-        1,
-        3
-          ],
-        "Fashion-Men": [
-          1,
-        1
-          ],
-        "Golf": [
-          1
-          ],
-        "Home-Design": [
-          2,
-        1
-          ],
-        "Humor": [
-          1
-          ],
-        "Music": [
-          1,
-        1,
-        1
-          ],
-        "Photography": [
-          1
-          ],
-        "Politics": [
-          1,
-        1,
-        1
-          ],
-        "Programming": [
-          1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1
-          ],
-        "Science": [
-          1,
-        1
-          ],
-        "Sports": [
-          1
-          ],
-        "Technology": [
-          2,
-        2,
-        4,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1
-          ],
-        "Television": [
-          1,
-        1
-          ],
-        "Video-Games": [
-          1,
-        1,
-        1
-          ]
-      }
-    },
     "rules": {
-      "58-cat": {
+      "dfr_rules": {
         "blogging": [
           1,
-        1
-          ],
+          1
+        ],
         "computers": [
           1,
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        1,
-        1
-          ],
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1
+        ],
         "consumer-electronics": [
           1
           ],
@@ -561,25 +68,25 @@ exports.dayAnnotatedTwo = {
           ],
         "technology": [
           1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-          ],
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
         "uncategorized": [
           1,
-        3
-          ],
+          3
+        ],
         "video-games": [
           1,
-        1,
-        1
-          ],
+          1,
+          1
+        ],
         "weather": [
           1
-          ]
+        ]
       },
       "edrules": {
         "Programming": [
@@ -587,9 +94,9 @@ exports.dayAnnotatedTwo = {
           ],
         "Technology": [
           1,
-        1,
-        1
-          ]
+          1,
+          1
+        ]
       }
     }
   }
@@ -597,8 +104,8 @@ exports.dayAnnotatedTwo = {
 
 exports.dayAnnotatedThree = {
     "16361": {
-        "lwca": {
-            "58-cat": {
+        "rules": {
+            "dfr_rules": {
                 "technology & computing": {
                     "hosts": {
                         "mozilla.org": 1,
@@ -623,8 +130,8 @@ exports.dayAnnotatedThree = {
         }
     },
     "16358": {
-        "lwca": {
-            "58-cat": {
+        "rules": {
+            "dfr_rules": {
                 "technology & computing": {
                     "hosts": {
                         "dxr.mozilla.org": 1,
