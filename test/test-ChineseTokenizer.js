@@ -13,8 +13,7 @@ const {testUtils} = require("./helpers");
 const {Cc, Ci} = require("chrome");
 
 let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
-scriptLoader.loadSubScript(data.url("models/urlStopwords.js"));
-scriptLoader.loadSubScript(data.url("models/zh-CN/41-cat/domainRules.js"));
+let interestsUrlStopwords = JSON.parse(data.load("models/urlStopwords.json"));
 scriptLoader.loadSubScript(data.url("interests/tokenizers/zh-CN.js"));
 
 exports["test ChineseTokeinzer"] = function test_ChineseTokenizer(assert) {
