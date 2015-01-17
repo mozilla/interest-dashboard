@@ -16,8 +16,6 @@ Cu.import("resource://gre/modules/Task.jsm");
 const {MICROS_PER_DAY} = require("DateUtils");
 const {Controller} = require("Controller");
 
-let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
-
 exports.testUtils = {
   do_check_eq : function do_check_eq(assert, actual, expected, text) {
     assert.equal(actual, expected, text);
