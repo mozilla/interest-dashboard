@@ -512,20 +512,31 @@ InterestDashboard.prototype = {
     });
   },
 
-  _renderPieGraph: function(data) {
+  _renderPieCircles: function(cx, cy, r, style) {
+    d3.select("#interestPie")
+      .append("circle")
+      .attr("cx", cx)
+      .attr("cy", cy)
+      .attr("r", r)
+      .style(style)
+  },
+
+
+_renderPieGraph: function(data) {
     d3.select('#interestPie').selectAll("*").remove();
+
+    this._renderPieCircles(195, 200, 148, {'fill': '#E6E6E6', 'border': '2px solid rgb(230, 230, 230)',
+      'border-radius': '390px'});
+
+    this._renderPieCircles(195, 200, 145, {'fill': '#FFFFFF'});
+
     d3.select("#interestPie")
       .attr("class", "pie-graph-margin-fix")
       .datum(data.pieData)
       .transition().duration(350)
       .call(this._pieChart);
 
-    d3.select("#interestPie")
-      .append("circle")
-      .attr("cx", 195)
-      .attr("cy", 200)
-      .attr("r", 77)
-      .style("fill", "white")
+    this._renderPieCircles(195, 200, 77, {'fill': 'white'})
 
     let tableLength = data.tableData.length;
     d3.select("#interestPie")
