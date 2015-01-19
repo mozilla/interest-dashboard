@@ -278,10 +278,10 @@ InterestDashboard.prototype = {
         '<td style="width: 23px"><div class="timelineCircle ' + this._escapeHTML(lastOrFirstVisitString) + '"></div></td>' +
         '<td><img class="favicon" src="' + this._escapeHTML(visit.favicon) + '" alt=""></img></td>' +
         '<td style="width: 380px"><div class="domain" data-toggle="tooltip" title="' + this._escapeHTML(visit.url) + '">' +
-          '<a href="' + this._escapeHTML(visit.url) + '">' + html_sanitize(visit.domain) + '</a>' +
+          '<a href="' + this._escapeHTML(visit.url) + '">' + this._escapeHTML(visit.domain) + '</a>' +
         '</div>' +
         '<div class="visitTitle historyVisit" data-toggle="tooltip" title="' + this._escapeHTML(visit.url) + '">' +
-          '<a href="' + this._escapeHTML(visit.url) + '">- ' + html_sanitize(visit.title) + '</a>' +
+          '<a href="' + this._escapeHTML(visit.url) + '">- ' + this._escapeHTML(visit.title) + '</a>' +
         '</div></td>' +
         '<td class="charms"><div class="' + this._escapeHTML(bookmarked) + '"></div>' +
             '<div class="flag" title="Flag for feedback"></div></td>' +
