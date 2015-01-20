@@ -203,10 +203,12 @@ function ruleClassify({host, baseDomain, path, title, url}) {
   // __ANY rule matches any single term rule - but not the term combination
   // as in "/foo bar_u baz_t"
   function matchANYRuleInterests(rule) {
-    for (var key in words) {
-      var ruleInts = rule[key];
-      if (ruleInts) {
-        interests = interests.concat(ruleInts);
+    for (let key in words) {
+      if (rule.hasOwnProperty(key)) {
+        let ruleInts = rule[key];
+        if (ruleInts) {
+          interests = interests.concat(ruleInts);
+        }
       }
     }
   }
