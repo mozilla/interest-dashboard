@@ -116,15 +116,27 @@ function parseVisit(host, baseDomain, path, title, url, options) {
   addToWords(gTokenizer.tokenize(title), {suffix: "_t", clearText: true});
   // tokenize and add url chunks
   addToWords(gTokenizer.tokenize(url), {suffix: "_u", clearText: true});
-  // parse and add hosts chunks
-  addToWords(host.substring(0, host.length - baseDomain.length).split("."), {suffix: "."});
+  // parse, filter and reorder hosts chunks
+  let hostChunks = host.substring(0, host.length - baseDomain.length)
+                   .split(".")
+                   .filter(function(item) {return item && item.length > 0;})
+                   .reverse();
+  // add hostChunks to words
+  addToWords(hostChunks, {suffix: "."});
+  // add subdomains to scopedHosts, to be able to check whitelisted hosts
+  let scopedHosts = [baseDomain];
+  let hostString = baseDomain;
+  for (let i in hostChunks) {
+    hostString = hostChunks[i].concat(".", hostString);
+    scopedHosts.push(hostString);
+  }
   // parse and add path chunks
   let pathChunks = path.split("/");
   for (let i in pathChunks) {
     addToWords(gTokenizer.tokenize(pathChunks[i], ""), {prefix: "/"});
   }
 
-  return words;
+  return [words, scopedHosts];
 }
 
 function formatClassificationResults(cats) {
@@ -176,8 +188,13 @@ function ruleClassify({host, baseDomain, path, title, url}) {
     return interests;
   }
 
-  // populate words object with visit data
-  let words = parseVisit(host, baseDomain, path, title, url);
+  // populate words and scopedHosts objects with visit data
+  // parseVisit returns an array of [words, scopedHosts]
+  let retVals = parseVisit(host, baseDomain, path, title, url);
+  // get the list of tokens to match
+  let words = retVals[0];
+  // get the list of domain and subdomains to check in whitelist
+  let scopedHosts = retVals[1];
 
   // this funcation tests for exitence of rule terms in the words object
   // if all rule tokens are found in the wrods object return true
@@ -199,6 +216,14 @@ function ruleClassify({host, baseDomain, path, title, url}) {
     });
   }
 
+  // checks if any of the provided hosts is white listed
+  function isWhiteListed(hosts, whiteList) {
+    for (let i in hosts) {
+      if (whiteList.hasOwnProperty(hosts[i])) return true;
+    }
+    return false;
+  }
+
   // __ANY rule does not support multiple keys in the rule
   // __ANY rule matches any single term rule - but not the term combination
   // as in "/foo bar_u baz_t"
@@ -218,6 +243,23 @@ function ruleClassify({host, baseDomain, path, title, url}) {
     matchANYRuleInterests(gInterestsData["__ANY"]);
   }
 
+  // process scoped rules next
+  if (gInterestsData["__SCOPES"]) {
+    // check if scopedHosts are white-listed in any of the __SCOPES rule
+    for (let i in gInterestsData["__SCOPES"]) {
+      // the scopedRule is of the form {"__HOSTS": {"foo.com", "bar.org"}, "__ANY": {... the rule...}}
+      let scopedRule = gInterestsData["__SCOPES"][i];
+      if (isWhiteListed(scopedHosts, scopedRule["__HOSTS"])) {
+        // found a match in the whitelist, apply the rules
+        matchANYRuleInterests(scopedRule["__ANY"]);
+        // we do not exect same page belong to two different genre
+        // hence break if the white list is matched
+        break;
+      }
+    }
+  }
+
+  // process domain bound rules
   let domainRule = gInterestsData[baseDomain];
 
   let keyLength = domainRule ? Object.keys(domainRule).length : 0;

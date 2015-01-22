@@ -78,6 +78,26 @@ let testDomainRules = {
        "bar"
     ],
   },
+  "__SCOPES": [
+    {
+      "__HOSTS": {
+        "blast.com": true,
+        "heavy.blast2.com": true,
+        "super.heavy.blast3.com": true,
+      },
+      "__ANY": {
+          "ebola_t": [ "science"],
+      },
+    },
+    {
+      "__HOSTS": {
+        "blast4.com": true,
+      },
+      "__ANY": {
+          "bank_t": [ "banking"],
+      },
+    },
+  ],
 }
 
 // the test array
@@ -195,6 +215,36 @@ let matchTests = [
   url:  "http://us.cnn.com/xxx",
   title: "G20 bar summit",
   expectedInterests: [{"type":"rules","interests":[{"category":"bar","subcat":"general"}]}],
+},
+{
+  info: "Match Test 20 (Rules): scoped rule application",
+  url:  "http://little.blast.com",
+  title: "ebola rules",
+  expectedInterests: [{"type":"rules","interests":[{"category":"science","subcat":"general"}]}],
+},
+{
+  info: "Match Test 21 (Rules): scoped rule application",
+  url:  "http://little.blast3.com",
+  title: "ebola rules",
+  expectedInterests: [{"type":"rules","interests":[{"category":"uncategorized","subcat":"dummy"}]}],
+},
+{
+  info: "Match Test 22 (Rules): scoped rule application",
+  url:  "http://heavy.blast2.com",
+  title: "ebola rules",
+  expectedInterests: [{"type":"rules","interests":[{"category":"science","subcat":"general"}]}],
+},
+{
+  info: "Match Test 23 (Rules): scoped rule application",
+  url:  "http://super.heavy.blast3.com",
+  title: "ebola rules",
+  expectedInterests: [{"type":"rules","interests":[{"category":"science","subcat":"general"}]}],
+},
+{
+  info: "Match Test 24 (Rules): scoped rule application",
+  url:  "http://super.heavy.blast4.com",
+  title: "bank rules",
+  expectedInterests: [{"type":"rules","interests":[{"category":"banking","subcat":"general"}]}],
 },
 ];
 
