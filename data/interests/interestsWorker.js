@@ -229,9 +229,11 @@ function ruleClassify({host, baseDomain, path, title, url}) {
   // as in "/foo bar_u baz_t"
   function matchANYRuleInterests(rule) {
     for (let key in words) {
-      let ruleInts = rule[key];
-      if (ruleInts) {
-        interests = interests.concat(ruleInts);
+      if (rule.hasOwnProperty(key)) {
+        let ruleInts = rule[key];
+        if (ruleInts) {
+          interests = interests.concat(ruleInts);
+        }
       }
     }
   }
