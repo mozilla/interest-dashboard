@@ -1,0 +1,11595 @@
+{
+ "businessweek.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "business-standard.com": {
+  "__ANY": [
+   "business"
+  ],
+  "/opinion": [
+   "society",
+   "business"
+  ],
+  "/politics": [
+   "politics",
+   "society",
+   "business"
+  ],
+  "/finance": [
+   "personal finance",
+   "business"
+  ]
+ },
+ "digitaljournal.com": {
+  "__ANY": [
+   "business"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/a-and-e": [
+   "arts & entertainment"
+  ]
+ },
+ "benzinga.com": {
+  "__ANY": [
+   "personal finance"
+  ],
+  "/news": [
+   "personal finance"
+  ],
+  "/analyst-ratings": [
+   "personal finance"
+  ],
+  "/analyst-color": [
+   "personal finance"
+  ],
+  "/earnings": [
+   "personal finance"
+  ],
+  "/trading-ideas": [
+   "personal finance"
+  ],
+  "/media": [
+   "personal finance"
+  ],
+  "/cnbc": [
+   "personal finance"
+  ],
+  "/upgrades": [
+   "personal finance",
+   "personal finance/stocks"
+  ]
+ },
+ "ajc.com": {
+  "__ANY": [
+   "business"
+  ],
+  "/personal-finance": [
+   "personal finance",
+   "business"
+  ]
+ },
+ "nasdaq.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "yardbarker.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/nba": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/mlb": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/nhl": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/wwe": [
+   "sports",
+   "sports/wrestling"
+  ],
+  "/soccer": [
+   "sports",
+   "sports/american football"
+  ],
+  "/mma": [
+   "sports/boxing",
+   "sports"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ]
+ },
+ "thestreet.com": {
+  "/1": [
+   "personal finance"
+  ],
+  "/litchfield-county-times": [
+   "personal finance",
+   "business"
+  ],
+  "/shoreline-times": [
+   "business"
+  ],
+  "/west-hartford-news": [
+   "business"
+  ],
+  "/source-newspapers": [
+   "personal finance",
+   "business"
+  ],
+  "/video": [
+   "personal finance"
+  ],
+  "/press-and-guide": [
+   "personal finance",
+   "business"
+  ],
+  "/phoenixville-news": [
+   "business"
+  ],
+  "/ncnewspress": [
+   "business"
+  ],
+  "/ridgecrestca": [
+   "personal finance"
+  ],
+  "/denver-post-economy": [
+   "personal finance"
+  ]
+ },
+ "businesswire.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "yahoo.com": {
+  "finance.": [
+   "personal finance"
+  ],
+  "uk. finance.": [
+   "personal finance"
+  ],
+  "/business": [
+   "business"
+  ],
+  "sports.": [
+   "sports"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "nz. sports.": [
+   "sports"
+  ],
+  "nz. finance.": [
+   "personal finance"
+  ],
+  "sg. sports.": [
+   "sports"
+  ],
+  "/blogs": [
+   "sports"
+  ],
+  "ca. rd.": [
+   "sports"
+  ],
+  "/*http%3a": [
+   "sports"
+  ],
+  "/ca.sports.yahoo.com": [
+   "sports"
+  ],
+  "au. rd.": [
+   "sports"
+  ],
+  "/au.sports.yahoo.com": [
+   "sports"
+  ],
+  "eurosport.": [
+   "sports"
+  ],
+  "uk. eurosport.": [
+   "sports"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "movies.": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "au. movies.": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "au. finance.": [
+   "personal finance"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "entertainment.": [
+   "arts & entertainment"
+  ],
+  "en-maktoob. entertainment.": [
+   "arts & entertainment"
+  ],
+  "tv.": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/story": [
+   "sports"
+  ],
+  "my. sports.": [
+   "sports"
+  ],
+  "/view": [
+   "personal finance"
+  ],
+  "/tech": [
+   "technology & computing"
+  ],
+  "au. tv.": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/nhl": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/*https%3a": [
+   "sports"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/nfl-shutdown-corner": [
+   "sports",
+   "sports/american football"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/yeurosport": [
+   "sports"
+  ],
+  "/finance": [
+   "personal finance"
+  ],
+  "/legobpengine": [
+   "personal finance"
+  ],
+  "/nhl-puck-daddy": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/gossip": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/main": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/eusport": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "omg.": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/omg": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/plus7": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "uk. omg.": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/golf": [
+   "sports",
+   "sports/golf"
+  ]
+ },
+ "stockhouse.com": {
+  "__ANY": [
+   "personal finance"
+  ],
+  "/c.sl": [
+   "personal finance",
+   "business",
+   "business/biomedical"
+  ],
+  "/supreme-pharmaceuticals-inc": [
+   "personal finance",
+   "business",
+   "business/biomedical"
+  ],
+  "/opinion": [
+   "personal finance",
+   "society"
+  ],
+  "/independent-reports": [
+   "personal finance",
+   "society"
+  ],
+  "/t.tkm": [
+   "personal finance",
+   "business",
+   "business/biomedical"
+  ],
+  "/tekmira-pharmaceuticals-corp": [
+   "personal finance",
+   "business",
+   "business/biomedical"
+  ]
+ },
+ "sec.gov": {
+  "__ANY": [
+   "personal finance",
+   "personal finance/stocks"
+  ]
+ },
+ "seekingalpha.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "scout.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "recruiting.": [
+   "sports",
+   "sports/american football"
+  ],
+  "/2": [
+   "sports",
+   "sports/american football"
+  ],
+  "ucla.": [
+   "sports",
+   "sports/american football"
+  ],
+  "fantasy.": [
+   "sports",
+   "sports/american football"
+  ],
+  "utah.": [
+   "sports",
+   "sports/american football"
+  ],
+  "min.": [
+   "sports",
+   "sports/american football"
+  ],
+  "southflorida.": [
+   "sports",
+   "sports/american football"
+  ],
+  "washingtonstate.": [
+   "sports",
+   "sports/american football"
+  ],
+  "ohiostate.": [
+   "sports",
+   "sports/american football"
+  ],
+  "auburn.": [
+   "sports",
+   "sports/american football"
+  ],
+  "georgia.": [
+   "sports",
+   "sports/american football"
+  ],
+  "alabama.": [
+   "sports",
+   "sports/american football"
+  ],
+  "den.": [
+   "sports",
+   "sports/american football"
+  ],
+  "nebraska.": [
+   "sports",
+   "sports/american football"
+  ],
+  "rutgers.": [
+   "sports",
+   "sports/american football"
+  ],
+  "missouri.": [
+   "sports",
+   "sports/american football"
+  ],
+  "phi.": [
+   "sports",
+   "sports/american football"
+  ],
+  "pennstate.": [
+   "sports",
+   "sports/american football"
+  ],
+  "notredame.": [
+   "sports",
+   "sports/american football"
+  ],
+  "utahstate.": [
+   "sports",
+   "sports/american football"
+  ],
+  "gnb.": [
+   "sports",
+   "sports/american football"
+  ],
+  "usc.": [
+   "sports",
+   "sports/american football"
+  ],
+  "nevada.": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "broadwayworld.com": {
+  "__ANY": [
+   "arts & entertainment/theatre",
+   "arts & entertainment"
+  ],
+  "/bwwtv": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ]
+ },
+ "cnet.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "londonstockexchange.com": {
+  "__ANY": [
+   "personal finance",
+   "personal finance/stocks"
+  ]
+ },
+ "morningstar.com": {
+  "/business-wire": [
+   "business"
+  ],
+  "/san.aspx": [
+   "personal finance"
+  ],
+  "/stocknet": [
+   "personal finance"
+  ],
+  "quicktake.": [
+   "personal finance"
+  ]
+ },
+ "go.com": {
+  "espn.": [
+   "sports"
+  ],
+  "/id": [
+   "sports"
+  ],
+  "/blog": [
+   "sports"
+  ],
+  "/post": [
+   "sports"
+  ],
+  "/story": [
+   "sports"
+  ],
+  "/nflnation": [
+   "sports",
+   "sports/american football"
+  ],
+  "/clip": [
+   "sports"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/boston": [
+   "sports"
+  ],
+  "/new-york": [
+   "sports"
+  ],
+  "/ncfnation": [
+   "sports",
+   "sports/american football"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/nba": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/mlb": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/chicago": [
+   "sports"
+  ],
+  "/college-football": [
+   "sports",
+   "sports/american football"
+  ],
+  "insider. espn.": [
+   "sports"
+  ],
+  "/nhl": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/dallas": [
+   "sports"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/los-angeles": [
+   "sports"
+  ],
+  "/espnradio": [
+   "sports"
+  ],
+  "sports. espn.": [
+   "sports"
+  ],
+  "/recap": [
+   "sports"
+  ],
+  "/page": [
+   "sports"
+  ],
+  "scores. espn.": [
+   "sports"
+  ],
+  "/sec": [
+   "sports",
+   "sports/american football"
+  ],
+  "/play": [
+   "sports"
+  ],
+  "/golf": [
+   "sports",
+   "sports/golf"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/cowboys": [
+   "sports",
+   "sports/american football"
+  ],
+  "/blackhawks": [
+   "sports",
+   "sports/hockey"
+  ]
+ },
+ "kansascity.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/national-international": [
+   "business"
+  ],
+  "/college": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/government-politics": [
+   "society"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/nhl": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/nba": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/mlb": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/technology": [
+   "business",
+   "technology & computing"
+  ],
+  "/movies-news-reviews": [
+   "arts & entertainment"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/big-12": [
+   "sports"
+  ],
+  "/kansas-city-royals": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/kansas-city-chiefs": [
+   "sports",
+   "sports/american football"
+  ],
+  "/spt-columns-blogs": [
+   "sports"
+  ],
+  "/opn-columns-blogs": [
+   "society"
+  ]
+ },
+ "lse.co.uk": {
+  "__ANY": [
+   "personal finance"
+  ],
+  "/regulatory-news-article.asp": [
+   "personal finance",
+   "personal finance/stocks"
+  ]
+ },
+ "advfn.com": {
+  "in.": [
+   "business"
+  ],
+  "/p.php": [
+   "business"
+  ],
+  "/ukreg": [
+   "personal finance",
+   "personal finance/stocks"
+  ],
+  "/forex": [
+   "business"
+  ],
+  "au.": [
+   "personal finance"
+  ]
+ },
+ "investors.com": {
+  "__ANY": [
+   "personal finance"
+  ],
+  "/newsfeed-business-wire": [
+   "business",
+   "personal finance"
+  ],
+  "/newsfeed-ap": [
+   "personal finance"
+  ],
+  "/business": [
+   "personal finance",
+   "business"
+  ],
+  "/technology": [
+   "personal finance",
+   "technology & computing"
+  ]
+ },
+ "tmcnet.com": {
+  "/news": [
+   "technology & computing"
+  ],
+  "technews.": [
+   "technology & computing"
+  ],
+  "financial.": [
+   "personal finance"
+  ],
+  "green.": [
+   "business"
+  ],
+  "asia.": [
+   "technology & computing"
+  ],
+  "middleeast.": [
+   "technology & computing"
+  ]
+ },
+ "bleacherreport.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "bizjournals.com": {
+  "/news": [
+   "business"
+  ],
+  "/09": [
+   "business"
+  ],
+  "/techflash": [
+   "technology & computing"
+  ],
+  "/philadelphia": [
+   "business"
+  ],
+  "/24": [
+   "business"
+  ],
+  "/atlanta": [
+   "business"
+  ],
+  "/southflorida": [
+   "business"
+  ],
+  "/birmingham": [
+   "business"
+  ],
+  "/wichita": [
+   "business"
+  ],
+  "upstart.": [
+   "business"
+  ],
+  "/orlando": [
+   "business"
+  ],
+  "/sanjose": [
+   "business"
+  ],
+  "/charlotte": [
+   "business"
+  ],
+  "/portland": [
+   "business"
+  ],
+  "/21": [
+   "business"
+  ],
+  "/buffalo": [
+   "business"
+  ],
+  "/milwaukee": [
+   "business"
+  ],
+  "/washington": [
+   "business"
+  ],
+  "/07": [
+   "business"
+  ],
+  "/nashville": [
+   "business"
+  ],
+  "/13": [
+   "business"
+  ],
+  "/sacramento": [
+   "business"
+  ],
+  "/houston": [
+   "business"
+  ],
+  "/29": [
+   "business"
+  ],
+  "/23": [
+   "business"
+  ],
+  "/22": [
+   "business"
+  ],
+  "/06": [
+   "business"
+  ],
+  "/25": [
+   "business"
+  ],
+  "/memphis": [
+   "business"
+  ],
+  "/twincities": [
+   "business"
+  ],
+  "/cincinnati": [
+   "business"
+  ],
+  "/denver": [
+   "business"
+  ],
+  "/real-estate": [
+   "business"
+  ],
+  "/tampabay": [
+   "business"
+  ],
+  "/columbus": [
+   "business"
+  ],
+  "/01": [
+   "business"
+  ],
+  "/05": [
+   "business"
+  ],
+  "/02": [
+   "business"
+  ],
+  "/chicago": [
+   "business"
+  ],
+  "/startups": [
+   "business"
+  ],
+  "/04": [
+   "business"
+  ],
+  "/12": [
+   "business"
+  ],
+  "/dayton": [
+   "business"
+  ],
+  "/18": [
+   "business"
+  ],
+  "/companies": [
+   "business"
+  ]
+ },
+ "foxbusiness.com": {
+  "__ANY": [
+   "business"
+  ],
+  "/v": [
+   "personal finance",
+   "business"
+  ],
+  "video.": [
+   "personal finance",
+   "business"
+  ],
+  "/technology": [
+   "business",
+   "technology & computing"
+  ],
+  "/personal-finance": [
+   "personal finance",
+   "business"
+  ]
+ },
+ "insurancenewsnet.com": {
+  "__ANY": [
+   "personal finance/insurance",
+   "personal finance"
+  ]
+ },
+ "thescore.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "sportsmole.co.uk": {
+  "__ANY": [
+   "sports"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/transfer-talk": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/man-utd": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/champions-league": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/liverpool": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/arsenal": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/american-football": [
+   "sports",
+   "sports/american football"
+  ],
+  "/chelsea": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/euro-2016": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/team-news": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/rugby-union": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/preview": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/spurs": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/man-city": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/real-madrid": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/newcastle-united": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/barcelona": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/basketball": [
+   "sports",
+   "sports/basketball"
+  ]
+ },
+ "espnfc.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "businessinsider.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "forbes.com": {
+  "__ANY": [
+   "business"
+  ],
+  "/stockoptionschannel": [
+   "personal finance"
+  ],
+  "/marketnewsvideo": [
+   "personal finance"
+  ],
+  "/31": [
+   "business"
+  ],
+  "/18": [
+   "business"
+  ]
+ },
+ "stuff.co.nz": {
+  "/sport": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/national-business": [
+   "business"
+  ],
+  "/national-sport": [
+   "sports"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/latest-business": [
+   "business"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/rugby": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/rugby-league": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/latest-sport": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/comment": [
+   "society"
+  ],
+  "/crime": [
+   "society"
+  ],
+  "/industries": [
+   "business"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/travel": [
+   "travel"
+  ],
+  "/golf": [
+   "sports",
+   "sports/golf"
+  ],
+  "/celebrities": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/motorsport": [
+   "sports",
+   "sports/racing"
+  ],
+  "/basketball": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/digital-living": [
+   "technology & computing"
+  ],
+  "/education": [
+   "education",
+   "society"
+  ],
+  "/film": [
+   "arts & entertainment"
+  ]
+ },
+ "investing.com": {
+  "__ANY": [
+   "personal finance"
+  ],
+  "/forex-news": [
+   "personal finance",
+   "personal finance/stocks"
+  ],
+  "/technology-news": [
+   "personal finance",
+   "technology & computing"
+  ],
+  "/politics-news": [
+   "politics",
+   "personal finance",
+   "society"
+  ]
+ },
+ "skysports.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/11095": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/live": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/match": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/12426": [
+   "sports",
+   "hobbies & interests/horse racing",
+   "hobbies & interests"
+  ],
+  "/horse-racing": [
+   "sports",
+   "hobbies & interests/horse racing",
+   "hobbies & interests"
+  ],
+  "/rugby-union": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/report": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/12321": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/racing": [
+   "sports",
+   "hobbies & interests/horse racing",
+   "hobbies & interests"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/golf": [
+   "sports",
+   "sports/golf"
+  ],
+  "/26060": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/12110": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/12176": [
+   "sports",
+   "sports/golf"
+  ],
+  "/12196": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/rugby-league": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/boxing": [
+   "sports/boxing",
+   "sports"
+  ],
+  "/12123": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/12183": [
+   "sports/boxing",
+   "sports"
+  ]
+ },
+ "townhall.com": {
+  "__ANY": [
+   "society"
+  ],
+  "/politics-elections": [
+   "politics",
+   "society"
+  ],
+  "/sports": [
+   "sports",
+   "society"
+  ],
+  "finance.": [
+   "personal finance"
+  ]
+ },
+ "rivals.com": {
+  "__ANY": [
+   "sports",
+   "sports/american football"
+  ],
+  "michigan.": [
+   "sports",
+   "sports/american football"
+  ],
+  "southcarolina.": [
+   "sports",
+   "sports/american football"
+  ],
+  "tennessee.": [
+   "sports",
+   "sports/american football"
+  ],
+  "alabama.": [
+   "sports",
+   "sports/american football"
+  ],
+  "usc.": [
+   "sports",
+   "sports/american football"
+  ],
+  "notredame.": [
+   "sports",
+   "sports/american football"
+  ],
+  "nebraska.": [
+   "sports",
+   "sports/american football"
+  ],
+  "miami.": [
+   "sports",
+   "sports/american football"
+  ],
+  "uga.": [
+   "sports",
+   "sports/american football"
+  ],
+  "westvirginia.": [
+   "sports",
+   "sports/american football"
+  ],
+  "olemiss.": [
+   "sports",
+   "sports/american football"
+  ],
+  "auburn.": [
+   "sports",
+   "sports/american football"
+  ],
+  "pittsburgh.": [
+   "sports",
+   "sports/american football"
+  ],
+  "wisconsin.": [
+   "sports",
+   "sports/american football"
+  ],
+  "missouri.": [
+   "sports",
+   "sports/american football"
+  ],
+  "bwi.": [
+   "sports",
+   "sports/american football"
+  ],
+  "indiana.": [
+   "sports",
+   "sports/basketball"
+  ],
+  "ucla.": [
+   "sports",
+   "sports/american football"
+  ],
+  "rutgers.": [
+   "sports",
+   "sports/american football"
+  ],
+  "florida.": [
+   "sports",
+   "sports/american football"
+  ],
+  "oregon.": [
+   "sports",
+   "sports/american football"
+  ],
+  "clemson.": [
+   "sports",
+   "sports/american football"
+  ],
+  "lsu.": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "indiatimes.com": {
+  "/politics-and-nation": [
+   "politics",
+   "society"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/markets": [
+   "personal finance"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/stocks": [
+   "personal finance"
+  ],
+  "/top-stories": [
+   "sports"
+  ],
+  "/hindi": [
+   "arts & entertainment"
+  ],
+  "/tech": [
+   "technology & computing"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/bollywood": [
+   "arts & entertainment"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/india-business": [
+   "business"
+  ],
+  "/tv": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/recos": [
+   "personal finance"
+  ],
+  "/economy": [
+   "personal finance"
+  ],
+  "/tech-news": [
+   "technology & computing"
+  ],
+  "/english": [
+   "arts & entertainment"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/hollywood": [
+   "arts & entertainment"
+  ],
+  "/commodities": [
+   "personal finance"
+  ],
+  "/interviews": [
+   "society"
+  ],
+  "/policy": [
+   "personal finance"
+  ],
+  "/finance": [
+   "personal finance"
+  ],
+  "/telugu": [
+   "arts & entertainment"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/malayalam": [
+   "arts & entertainment"
+  ],
+  "/energy": [
+   "business/energy",
+   "business"
+  ],
+  "/epl": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/more-sports": [
+   "sports"
+  ],
+  "/corporate-news": [
+   "business"
+  ],
+  "/golf": [
+   "sports",
+   "sports/golf"
+  ],
+  "/education": [
+   "education",
+   "society"
+  ],
+  "/banking": [
+   "personal finance"
+  ],
+  "/kannada": [
+   "arts & entertainment"
+  ],
+  "/earnings": [
+   "personal finance",
+   "personal finance/stocks"
+  ],
+  "/photostory": [
+   "arts & entertainment"
+  ],
+  "/environment": [
+   "society"
+  ],
+  "/telecom": [
+   "technology & computing"
+  ],
+  "/emerging-businesses": [
+   "business"
+  ],
+  "/passenger-vehicle": [
+   "automotive"
+  ],
+  "/tamil": [
+   "arts & entertainment"
+  ],
+  "/forex": [
+   "personal finance"
+  ],
+  "/foreign-trade": [
+   "personal finance"
+  ],
+  "/cars": [
+   "automotive"
+  ],
+  "/internet": [
+   "technology & computing"
+  ],
+  "/power": [
+   "business/energy",
+   "business"
+  ],
+  "/biotech": [
+   "business/biotech",
+   "business"
+  ],
+  "/healthcare": [
+   "business/biotech",
+   "business"
+  ],
+  "/startups": [
+   "business"
+  ],
+  "/retail": [
+   "business"
+  ],
+  "/metals-mining": [
+   "business"
+  ],
+  "/oil-gas": [
+   "business/energy",
+   "business"
+  ],
+  "/marathi": [
+   "arts & entertainment"
+  ],
+  "/comments-analysis": [
+   "society"
+  ],
+  "/others": [
+   "sports"
+  ],
+  "/indicators": [
+   "personal finance"
+  ],
+  "/daily": [
+   "business"
+  ]
+ },
+ "foxsports.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/soccer": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/nhl": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/nba": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/north": [
+   "sports",
+   "sports/american football"
+  ],
+  "/mlb": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/motor": [
+   "sports",
+   "sports/racing"
+  ]
+ },
+ "zdnet.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "n4g.com": {
+  "__ANY": [
+   "arts & entertainment",
+   "arts & entertainment/video games"
+  ]
+ },
+ "hereisthecity.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "mysanantonio.com": {
+  "m.": [
+   "business"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/press-releases": [
+   "business"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "heraldsun.com.au": {
+  "/business": [
+   "business"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/afl": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/cricket": [
+   "sports"
+  ],
+  "/football": [
+   "sports"
+  ],
+  "/superracing": [
+   "sports"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/celebrity": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/rugby": [
+   "sports"
+  ],
+  "/television": [
+   "arts & entertainment"
+  ],
+  "/nrl": [
+   "sports"
+  ],
+  "/travel": [
+   "travel"
+  ],
+  "/confidential": [
+   "arts & entertainment"
+  ],
+  "/more-sports": [
+   "sports"
+  ],
+  "/basketball": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ]
+ },
+ "afr.com": {
+  "__ANY": [
+   "business"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/companies": [
+   "business"
+  ],
+  "/world": [
+   "business"
+  ],
+  "/opinion": [
+   "society",
+   "business"
+  ],
+  "/property": [
+   "business"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/lifestyle": [
+   "business"
+  ]
+ },
+ "football365.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "financialexpress.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "bbc.co.uk": {
+  "/sport": [
+   "sports"
+  ],
+  "/0": [
+   "sports"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/rugby-union": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/democracylive": [
+   "politics",
+   "society"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/rugby-league": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ]
+ },
+ "thehindubusinessline.com": {
+  "__ANY": [
+   "business"
+  ],
+  "/tech-news": [
+   "business",
+   "technology & computing"
+  ],
+  "/opinion": [
+   "society",
+   "business"
+  ],
+  "/politics": [
+   "politics",
+   "society",
+   "business"
+  ]
+ },
+ "sportinglife.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/live": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/165": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/racing": [
+   "sports",
+   "hobbies & interests/horse racing",
+   "hobbies & interests"
+  ],
+  "/465": [
+   "sports",
+   "hobbies & interests/horse racing",
+   "hobbies & interests"
+  ],
+  "/match-preview": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/match-report": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/rugby-union": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/419": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/league-one": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/league-two": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/422": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/rugby-league": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/504": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/553": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/480": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ]
+ },
+ "couriermail.com.au": {
+  "/sport": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/afl": [
+   "sports"
+  ],
+  "/nrl": [
+   "sports"
+  ],
+  "/superracing": [
+   "sports"
+  ],
+  "/football": [
+   "sports"
+  ],
+  "/cricket": [
+   "sports"
+  ],
+  "/celebrity": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/television": [
+   "arts & entertainment"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/rugby": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/motor-sport": [
+   "sports"
+  ],
+  "/more-sports": [
+   "sports"
+  ],
+  "/confidential": [
+   "arts & entertainment"
+  ],
+  "/companies": [
+   "business"
+  ]
+ },
+ "movieweb.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/tv": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ]
+ },
+ "teamtalk.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "cnn.com": {
+  "/video": [
+   "arts & entertainment"
+  ],
+  "/news": [
+   "personal finance"
+  ],
+  "/articles": [
+   "personal finance"
+  ],
+  "/newsfeeds": [
+   "personal finance"
+  ],
+  "/globenewswire": [
+   "personal finance"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "fortune.": [
+   "personal finance",
+   "business"
+  ],
+  "finance. fortune.": [
+   "personal finance",
+   "business"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/showbiz": [
+   "arts & entertainment"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/meast": [
+   "society"
+  ],
+  "/health": [
+   "science",
+   "health & fitness"
+  ],
+  "/tech": [
+   "technology & computing"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "foxnews.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/us": [
+   "society"
+  ],
+  "/v": [
+   "society"
+  ],
+  "video.": [
+   "society"
+  ],
+  "/health": [
+   "health & fitness"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/tech": [
+   "technology & computing"
+  ]
+ },
+ "imdb.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "ign.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/videos": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ],
+  "me.": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ],
+  "/en": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ],
+  "/blogs": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "zacks.com": {
+  "__ANY": [
+   "personal finance"
+  ],
+  "/commentary": [
+   "personal finance",
+   "society"
+  ]
+ },
+ "tribalfootball.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "mlb.com": {
+  "__ANY": [
+   "sports",
+   "sports/baseball"
+  ]
+ },
+ "goal.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "wnyc.org": {
+  "__ANY": [
+   "politics",
+   "society"
+  ]
+ },
+ "rantsports.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/nba": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/ncaa-football": [
+   "sports",
+   "sports/american football"
+  ],
+  "/mlb": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/nhl": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/soccer": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "palmbeachpost.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "personal finance",
+   "business"
+  ],
+  "/personal-finance": [
+   "personal finance",
+   "business"
+  ],
+  "/football": [
+   "sports",
+   "sports/american football"
+  ],
+  "/college-football": [
+   "sports",
+   "sports/american football"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "bostonherald.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/college": [
+   "sports",
+   "education",
+   "society"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/soccer": [
+   "sports"
+  ],
+  "/other": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/television": [
+   "arts & entertainment"
+  ]
+ },
+ "theaustralian.com.au": {
+  "/business": [
+   "business"
+  ],
+  "/latest": [
+   "business"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/national-affairs": [
+   "society"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/wall-street-journal": [
+   "business"
+  ],
+  "/property": [
+   "business"
+  ],
+  "/higher-education": [
+   "education",
+   "society"
+  ],
+  "/state-politics": [
+   "society"
+  ],
+  "/markets": [
+   "personal finance"
+  ],
+  "/columnists": [
+   "society"
+  ],
+  "/mining-energy": [
+   "business"
+  ],
+  "/cricket": [
+   "sports"
+  ],
+  "/technology": [
+   "technology & computing"
+  ]
+ },
+ "givemesport.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "nbcsports.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "prohockeytalk.": [
+   "sports",
+   "sports/hockey"
+  ],
+  "probasketballtalk.": [
+   "sports",
+   "sports/basketball"
+  ],
+  "collegefootballtalk.": [
+   "sports",
+   "sports/american football"
+  ],
+  "collegebasketballtalk.": [
+   "sports",
+   "sports/basketball"
+  ],
+  "profootballtalk.": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "dailytelegraph.com.au": {
+  "/sport": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/superracing": [
+   "sports",
+   "hobbies & interests/horse racing",
+   "hobbies & interests"
+  ],
+  "/afl": [
+   "sports"
+  ],
+  "/football": [
+   "sports"
+  ],
+  "/nrl": [
+   "sports"
+  ],
+  "/cricket": [
+   "sports"
+  ],
+  "/television": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/celebrity": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/travel": [
+   "travel"
+  ],
+  "/rugby": [
+   "sports"
+  ],
+  "/sydney-confidential": [
+   "arts & entertainment"
+  ],
+  "/more-sports": [
+   "sports"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ]
+ },
+ "bloomberg.com": {
+  "/video": [
+   "personal finance"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/articles": [
+   "politics",
+   "society"
+  ]
+ },
+ "perthnow.com.au": {
+  "/business": [
+   "business"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/afl": [
+   "sports"
+  ],
+  "/television": [
+   "arts & entertainment"
+  ],
+  "/cricket": [
+   "sports"
+  ],
+  "/football": [
+   "sports"
+  ],
+  "/celebrity": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/nrl": [
+   "sports"
+  ],
+  "/realestate": [
+   "real estate"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/rugby": [
+   "sports"
+  ],
+  "/companies": [
+   "business"
+  ],
+  "/basketball": [
+   "sports"
+  ],
+  "/motor-sport": [
+   "sports"
+  ],
+  "/superracing": [
+   "sports"
+  ]
+ },
+ "caughtoffside.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "nfl.com": {
+  "__ANY": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "iii.co.uk": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "sbnation.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/college-football": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "ibtimes.com": {
+  "au.": [
+   "business"
+  ],
+  "/articles": [
+   "business"
+  ]
+ },
+ "techbargains.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "nba.com": {
+  "__ANY": [
+   "sports",
+   "sports/basketball"
+  ]
+ },
+ "adelaidenow.com.au": {
+  "/business": [
+   "business"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/afl": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/football": [
+   "sports"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/celebrity": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/television": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/nrl": [
+   "sports"
+  ],
+  "/basketball": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/travel": [
+   "travel"
+  ],
+  "/more-sports": [
+   "sports"
+  ],
+  "/companies": [
+   "business"
+  ],
+  "/realestate": [
+   "real estate"
+  ]
+ },
+ "aastocks.com": {
+  "__ANY": [
+   "personal finance"
+  ],
+  "/result-announcement": [
+   "personal finance",
+   "personal finance/stocks"
+  ]
+ },
+ "tdameritrade.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "business2community.com": {
+  "__ANY": [
+   "business"
+  ],
+  "/entertainment": [
+   "business",
+   "arts & entertainment"
+  ],
+  "/social-media": [
+   "society",
+   "society/social networking",
+   "business"
+  ],
+  "/marketing": [
+   "business/marketing",
+   "business"
+  ],
+  "/sports": [
+   "sports",
+   "business"
+  ],
+  "/tech-gadgets": [
+   "business",
+   "technology & computing"
+  ]
+ },
+ "thisismoney.co.uk": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "india.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/world": [
+   "society"
+  ],
+  "/entertainment": [
+   "politics",
+   "society",
+   "arts & entertainment"
+  ],
+  "/cricket": [
+   "sports"
+  ],
+  "/football": [
+   "sports"
+  ],
+  "/companies": [
+   "business"
+  ],
+  "/videos": [
+   "politics",
+   "society"
+  ],
+  "/international": [
+   "business"
+  ],
+  "/finance": [
+   "personal finance",
+   "business"
+  ],
+  "/celebrity": [
+   "politics",
+   "society",
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/economy": [
+   "personal finance",
+   "business"
+  ],
+  "/movies": [
+   "politics",
+   "society",
+   "arts & entertainment"
+  ],
+  "/health": [
+   "politics",
+   "society"
+  ],
+  "/delhi": [
+   "society"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/technology": [
+   "business",
+   "technology & computing"
+  ],
+  "/top-stories": [
+   "politics",
+   "society"
+  ],
+  "/maharashtra": [
+   "society"
+  ],
+  "/and-more": [
+   "politics",
+   "society",
+   "arts & entertainment"
+  ],
+  "/jammu-and-kashmir": [
+   "society"
+  ],
+  "/others": [
+   "sports"
+  ],
+  "/health-news": [
+   "politics",
+   "society"
+  ],
+  "/2014-asian-games": [
+   "sports"
+  ],
+  "/south-asia": [
+   "society"
+  ],
+  "/west-bengal": [
+   "society"
+  ],
+  "/uttar-pradesh": [
+   "society"
+  ],
+  "/idiotbox": [
+   "politics",
+   "society",
+   "arts & entertainment"
+  ],
+  "/epl-2014": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/haryana": [
+   "society"
+  ],
+  "/motorsports": [
+   "sports"
+  ]
+ },
+ "aol.co.uk": {
+  "sportinglife.": [
+   "sports"
+  ],
+  "/article": [
+   "sports"
+  ],
+  "/news": [
+   "sports"
+  ],
+  "/video": [
+   "personal finance"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/horse-racing": [
+   "sports",
+   "hobbies & interests/horse racing",
+   "hobbies & interests"
+  ],
+  "/22882": [
+   "sports",
+   "sports/soccer"
+  ],
+  "on.": [
+   "personal finance"
+  ],
+  "/22888": [
+   "sports",
+   "hobbies & interests/horse racing",
+   "hobbies & interests"
+  ],
+  "/rugby-union": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/22884": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/report": [
+   "sports"
+  ],
+  "/race": [
+   "sports",
+   "hobbies & interests/horse racing",
+   "hobbies & interests"
+  ],
+  "/match": [
+   "sports"
+  ],
+  "/preview": [
+   "sports"
+  ],
+  "/rugby-league": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/22883": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/22887": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/22885": [
+   "sports",
+   "sports/cricket"
+  ]
+ },
+ "einnews.com": {
+  "it.": [
+   "technology & computing"
+  ],
+  "insurance.": [
+   "personal finance/insurance",
+   "personal finance"
+  ],
+  "religion.": [
+   "religion",
+   "society"
+  ],
+  "movies.": [
+   "arts & entertainment"
+  ],
+  "gold.": [
+   "business"
+  ],
+  "education.": [
+   "education",
+   "society"
+  ],
+  "banking.": [
+   "personal finance/investing",
+   "personal finance"
+  ],
+  "nfl.": [
+   "sports",
+   "sports/american football"
+  ],
+  "uspolitics.": [
+   "politics",
+   "society"
+  ],
+  "energy.": [
+   "business/energy",
+   "business"
+  ],
+  "socialmedia.": [
+   "society"
+  ],
+  "nhl.": [
+   "sports",
+   "sports/hockey"
+  ],
+  "investing.": [
+   "personal finance"
+  ],
+  "pharmaceuticals.": [
+   "business",
+   "business/biomedical",
+   "health & fitness"
+  ],
+  "tech.": [
+   "technology & computing"
+  ],
+  "books.": [
+   "arts & entertainment/literature",
+   "arts & entertainment"
+  ],
+  "military.": [
+   "military",
+   "society"
+  ],
+  "finance.": [
+   "personal finance"
+  ],
+  "marketing.": [
+   "business/marketing",
+   "business",
+   "business/advertising"
+  ],
+  "eupolitics.": [
+   "politics",
+   "society"
+  ],
+  "employment.": [
+   "personal finance"
+  ],
+  "environment.": [
+   "society"
+  ],
+  "ipo.": [
+   "personal finance",
+   "business"
+  ],
+  "androidiphone.": [
+   "technology & computing"
+  ],
+  "teaparty.": [
+   "politics",
+   "society"
+  ],
+  "health.": [
+   "health & fitness"
+  ],
+  "realestate.": [
+   "real estate"
+  ],
+  "tennis.": [
+   "sports",
+   "sports/tennis"
+  ],
+  "conferences.": [
+   "business"
+  ],
+  "hollande.": [
+   "politics",
+   "society"
+  ],
+  "africanamericans.": [
+   "society"
+  ],
+  "airlines.": [
+   "travel",
+   "travel/air travel"
+  ],
+  "floods.": [
+   "society"
+  ],
+  "democracy.": [
+   "politics",
+   "society"
+  ],
+  "eurozone.": [
+   "personal finance"
+  ],
+  "wastemanagement.": [
+   "society"
+  ],
+  "faa.": [
+   "politics",
+   "society"
+  ],
+  "forex.": [
+   "personal finance"
+  ],
+  "humanrights.": [
+   "society"
+  ],
+  "fcc.": [
+   "politics",
+   "society"
+  ],
+  "brazilbusiness.": [
+   "business"
+  ],
+  "fbi.": [
+   "politics",
+   "society"
+  ],
+  "prisons.": [
+   "law/crime",
+   "law",
+   "society"
+  ],
+  "earthquakes.": [
+   "society"
+  ],
+  "creditrating.": [
+   "personal finance"
+  ],
+  "mining.": [
+   "business"
+  ],
+  "nsa.": [
+   "politics",
+   "society"
+  ],
+  "duediligence.": [
+   "personal finance"
+  ],
+  "worldbank.": [
+   "personal finance"
+  ],
+  "bankruptcy.": [
+   "personal finance",
+   "business"
+  ],
+  "globalization.": [
+   "personal finance"
+  ],
+  "who.": [
+   "science",
+   "health & fitness"
+  ],
+  "cellphones.": [
+   "technology & computing"
+  ],
+  "nasdaq.": [
+   "personal finance",
+   "personal finance/stocks"
+  ],
+  "guncontrol.": [
+   "politics",
+   "society"
+  ],
+  "baseball.": [
+   "sports",
+   "sports/baseball"
+  ],
+  "alqaeda.": [
+   "society"
+  ],
+  "hurricanes.": [
+   "society"
+  ],
+  "mergersacquisitions.": [
+   "personal finance"
+  ],
+  "formulaone.": [
+   "sports",
+   "sports/racing"
+  ],
+  "architecture.": [
+   "architecture",
+   "business/construction",
+   "society",
+   "business"
+  ],
+  "lawschools.": [
+   "education",
+   "society"
+  ],
+  "manufacturing.": [
+   "business/manufacturing",
+   "business"
+  ],
+  "engineering.": [
+   "science/mechanics",
+   "science",
+   "business/construction",
+   "business"
+  ],
+  "nativeamericans.": [
+   "society"
+  ],
+  "corporategovernance.": [
+   "business"
+  ],
+  "shipping.": [
+   "business"
+  ],
+  "census.": [
+   "society"
+  ],
+  "superpacs.": [
+   "politics",
+   "society"
+  ],
+  "superbowl.": [
+   "sports",
+   "sports/american football"
+  ],
+  "lse.": [
+   "personal finance"
+  ],
+  "noaa.": [
+   "politics",
+   "society"
+  ],
+  "csr.": [
+   "business"
+  ],
+  "trade.": [
+   "personal finance"
+  ],
+  "nato.": [
+   "politics",
+   "society"
+  ],
+  "occupy.": [
+   "politics",
+   "society"
+  ],
+  "nascar.": [
+   "sports",
+   "sports/racing"
+  ],
+  "nra.": [
+   "politics",
+   "society"
+  ],
+  "tsx.": [
+   "personal finance"
+  ],
+  "ice.": [
+   "politics",
+   "society"
+  ],
+  "construction.": [
+   "business/construction",
+   "business"
+  ],
+  "iea.": [
+   "business/energy",
+   "business"
+  ],
+  "cia.": [
+   "politics",
+   "society"
+  ],
+  "volcanoes.": [
+   "society"
+  ],
+  "tornado.": [
+   "society"
+  ],
+  "automotive.": [
+   "automotive"
+  ],
+  "hispanics.": [
+   "society"
+  ],
+  "chemicals.": [
+   "science",
+   "science/chemistry"
+  ],
+  "microfinance.": [
+   "personal finance"
+  ],
+  "nasa.": [
+   "science",
+   "science/astronomy"
+  ],
+  "music.": [
+   "arts & entertainment"
+  ],
+  "cftc.": [
+   "politics",
+   "society"
+  ],
+  "fdic.": [
+   "politics",
+   "society"
+  ],
+  "tobacco.": [
+   "hobbies & interests/smoking",
+   "hobbies & interests"
+  ],
+  "blm.": [
+   "politics",
+   "society"
+  ],
+  "roadconstruction.": [
+   "business/construction",
+   "business"
+  ],
+  "wildfires.": [
+   "society"
+  ],
+  "crowdsourcing.": [
+   "personal finance"
+  ],
+  "ioc.": [
+   "sports"
+  ],
+  "iaea.": [
+   "society"
+  ],
+  "crowdfunding.": [
+   "personal finance"
+  ],
+  "tse.": [
+   "personal finance"
+  ],
+  "cbot.": [
+   "personal finance"
+  ],
+  "fema.": [
+   "politics",
+   "society"
+  ],
+  "telecomindustry.": [
+   "technology & computing"
+  ],
+  "beverages.": [
+   "food & drink/cocktails",
+   "food & drink"
+  ],
+  "nrc.": [
+   "politics",
+   "society"
+  ],
+  "osce.": [
+   "society"
+  ],
+  "asx.": [
+   "personal finance"
+  ],
+  "fhwa.": [
+   "politics",
+   "society"
+  ],
+  "asianamericans.": [
+   "society"
+  ],
+  "cpsc.": [
+   "politics",
+   "society"
+  ],
+  "ott.": [
+   "technology & computing"
+  ],
+  "hkex.": [
+   "personal finance"
+  ],
+  "medvedev.": [
+   "politics",
+   "society"
+  ],
+  "mobileworldcongress.": [
+   "technology & computing"
+  ],
+  "offshoretaxhavens.": [
+   "personal finance"
+  ],
+  "fwb.": [
+   "personal finance"
+  ]
+ },
+ "theage.com.au": {
+  "/sport": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/federal-politics": [
+   "society"
+  ],
+  "/political-news": [
+   "politics",
+   "society"
+  ],
+  "/comment": [
+   "society"
+  ],
+  "/soccer": [
+   "sports"
+  ],
+  "/breaking-news-business": [
+   "business"
+  ],
+  "/horseracing": [
+   "sports"
+  ],
+  "/afl": [
+   "sports"
+  ],
+  "/cricket": [
+   "sports"
+  ],
+  "/rugby-league": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/breaking-news-sport": [
+   "sports"
+  ],
+  "/afl-news": [
+   "sports"
+  ],
+  "/rugby-union": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/tv-and-radio": [
+   "arts & entertainment"
+  ],
+  "/music": [
+   "arts & entertainment"
+  ],
+  "/league-news": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/mining-and-resources": [
+   "business"
+  ],
+  "/basketball": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/books": [
+   "arts & entertainment/literature",
+   "arts & entertainment"
+  ],
+  "/union-news": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/company-reports": [
+   "business"
+  ],
+  "/banking-and-finance": [
+   "personal finance",
+   "business"
+  ],
+  "/education": [
+   "education",
+   "society"
+  ],
+  "/the-economy": [
+   "business"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ]
+ },
+ "news.com.au": {
+  "/sport": [
+   "sports"
+  ],
+  "/finance": [
+   "personal finance"
+  ],
+  "/business": [
+   "personal finance",
+   "business"
+  ],
+  "blogs.": [
+   "society"
+  ],
+  "/comments": [
+   "society"
+  ],
+  "/index.php": [
+   "society"
+  ],
+  "/andrewbolt": [
+   "society"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/football": [
+   "sports"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/heraldsun": [
+   "society"
+  ],
+  "/afl": [
+   "sports"
+  ],
+  "/tv": [
+   "arts & entertainment"
+  ],
+  "/couriermail": [
+   "society"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/superracing": [
+   "sports"
+  ],
+  "/real-estate": [
+   "personal finance"
+  ],
+  "/nrl": [
+   "sports"
+  ],
+  "/rugby": [
+   "sports"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/more-sports": [
+   "sports"
+  ]
+ },
+ "startribune.com": {
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/national": [
+   "politics",
+   "society"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/vikings": [
+   "sports",
+   "sports/american football"
+  ],
+  "/wild": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/twins": [
+   "sports"
+  ],
+  "/wolves": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/gophers": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/statelocal": [
+   "politics",
+   "society"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ]
+ },
+ "optimum.net": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "news24.com": {
+  "/sport24": [
+   "sports"
+  ],
+  "/soccer": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/englishpremiership": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/economy": [
+   "personal finance"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/psl": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/companies": [
+   "business"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/international": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/sport": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/bafanabafana": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/rugby": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/golf": [
+   "sports",
+   "sports/golf"
+  ],
+  "/channel24": [
+   "arts & entertainment"
+  ],
+  "/international-markets": [
+   "personal finance"
+  ],
+  "/tv": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/atptour": [
+   "sports",
+   "sports/tennis"
+  ]
+ },
+ "dailykos.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "smh.com.au": {
+  "/business": [
+   "business"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/federal-politics": [
+   "politics",
+   "society"
+  ],
+  "/political-news": [
+   "politics",
+   "society"
+  ],
+  "/comment": [
+   "society"
+  ],
+  "/breaking-news-business": [
+   "business"
+  ],
+  "/rugby-union": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/rugby-league": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/cricket": [
+   "sports"
+  ],
+  "/soccer": [
+   "sports"
+  ],
+  "/music": [
+   "arts & entertainment"
+  ],
+  "/tv-and-radio": [
+   "arts & entertainment"
+  ],
+  "/horseracing": [
+   "sports"
+  ],
+  "/afl": [
+   "sports"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/afl-news": [
+   "sports"
+  ],
+  "/league-news": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/union-news": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/mining-and-resources": [
+   "business"
+  ],
+  "/books": [
+   "arts & entertainment/literature",
+   "arts & entertainment"
+  ],
+  "/australia-rugby": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/banking-and-finance": [
+   "personal finance",
+   "business"
+  ],
+  "/basketball": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/art-and-design": [
+   "arts & entertainment"
+  ],
+  "/property": [
+   "business"
+  ],
+  "/the-economy": [
+   "business"
+  ],
+  "/celebrity": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ]
+ },
+ "mubasher.info": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "thehindu.com": {
+  "/sport": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/industry": [
+   "business"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/football": [
+   "sports"
+  ],
+  "/markets": [
+   "personal finance",
+   "business"
+  ],
+  "/other-sports": [
+   "sports"
+  ],
+  "/races": [
+   "sports"
+  ],
+  "/economy": [
+   "business"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/letters": [
+   "society"
+  ],
+  "/editorial": [
+   "society"
+  ],
+  "/chen-society": [
+   "society"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/lead": [
+   "society"
+  ]
+ },
+ "nhl.com": {
+  "__ANY": [
+   "sports",
+   "sports/hockey"
+  ]
+ },
+ "sfgate.com": {
+  "/business": [
+   "business"
+  ],
+  "/press-releases": [
+   "business"
+  ],
+  "/technology": [
+   "business",
+   "technology & computing"
+  ],
+  "/businessinsider": [
+   "business",
+   "technology & computing"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "m.": [
+   "business/energy",
+   "business"
+  ]
+ },
+ "si.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/nba": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/nhl": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/mlb": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/soccer": [
+   "sports",
+   "sports/american football"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ]
+ },
+ "indiainfoline.com": {
+  "__ANY": [
+   "personal finance"
+  ],
+  "/news-top-story": [
+   "personal finance"
+  ],
+  "/news-business": [
+   "business"
+  ]
+ },
+ "bidnessetc.com": {
+  "__ANY": [
+   "personal finance",
+   "business"
+  ]
+ },
+ "mtv.com": {
+  "__ANY": [
+   "business/commerce",
+   "business",
+   "arts & entertainment"
+  ]
+ },
+ "ndtv.com": {
+  "profit.": [
+   "personal finance"
+  ],
+  "sports.": [
+   "sports"
+  ],
+  "/corporates": [
+   "personal finance"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/market": [
+   "personal finance"
+  ],
+  "/mobiles": [
+   "technology & computing"
+  ],
+  "movies.": [
+   "arts & entertainment"
+  ],
+  "/economy": [
+   "personal finance"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/bollywood": [
+   "arts & entertainment"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/apps": [
+   "technology & computing"
+  ]
+ },
+ "rr.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/fb": [
+   "sports",
+   "sports/american football"
+  ],
+  "/cfb": [
+   "sports",
+   "sports/american football"
+  ],
+  "/mlb": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/nhl": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/nba": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/cbk": [
+   "sports",
+   "sports/basketball"
+  ]
+ },
+ "jpost.com": {
+  "__ANY": [
+   "society"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/politics-and-diplomacy": [
+   "politics",
+   "society"
+  ]
+ },
+ "bisnis.com": {
+  "__ANY": [
+   "business"
+  ],
+  "business.": [
+   "business"
+  ],
+  "/110": [
+   "business"
+  ],
+  "/78": [
+   "business"
+  ],
+  "/168": [
+   "business"
+  ],
+  "/93": [
+   "business"
+  ],
+  "/112": [
+   "business"
+  ],
+  "/114": [
+   "business"
+  ]
+ },
+ "engadget.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "techcrunch.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "otcmarkets.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "sportingnews.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/ncaa-football": [
+   "sports",
+   "sports/american football"
+  ],
+  "/mlb": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/nba": [
+   "sports",
+   "sports/basketball"
+  ]
+ },
+ "brisbanetimes.com.au": {
+  "/sport": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/comment": [
+   "society"
+  ],
+  "/breaking-news-business": [
+   "business"
+  ],
+  "/federal-politics": [
+   "politics",
+   "society"
+  ],
+  "/political-news": [
+   "politics",
+   "society"
+  ],
+  "/soccer": [
+   "sports"
+  ],
+  "/rugby-league": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/cricket": [
+   "sports"
+  ],
+  "/breaking-news-sport": [
+   "sports"
+  ],
+  "/lifestyle": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/music": [
+   "arts & entertainment"
+  ],
+  "/afl": [
+   "sports"
+  ],
+  "/rugby-union": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/afl-news": [
+   "sports"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/horseracing": [
+   "sports"
+  ],
+  "/tv-and-radio": [
+   "arts & entertainment"
+  ],
+  "/league-news": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/books": [
+   "arts & entertainment/literature",
+   "arts & entertainment"
+  ],
+  "/celebrity": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/mining-and-resources": [
+   "business"
+  ],
+  "/basketball": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/union-news": [
+   "sports",
+   "sports/rugby"
+  ]
+ },
+ "valuewalk.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "indiewire.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "supersport.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/international": [
+   "sports",
+   "sports/cricket"
+  ]
+ },
+ "israelnationalnews.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "ninemsn.com.au": {
+  "/article.aspx": [
+   "sports"
+  ],
+  "wwos.": [
+   "sports"
+  ],
+  "finance.": [
+   "personal finance"
+  ],
+  "/aap": [
+   "personal finance",
+   "business"
+  ],
+  "/newsbusiness": [
+   "personal finance",
+   "business"
+  ],
+  "/newsmarket": [
+   "personal finance"
+  ],
+  "/articles": [
+   "sports",
+   "sports/wrestling"
+  ],
+  "mmakanvas.": [
+   "sports",
+   "sports/wrestling"
+  ],
+  "/newscurrency": [
+   "personal finance"
+  ],
+  "/news": [
+   "sports",
+   "sports/wrestling"
+  ]
+ },
+ "variety.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/film": [
+   "arts & entertainment"
+  ],
+  "/tv": [
+   "arts & entertainment"
+  ],
+  "/reviews": [
+   "arts & entertainment"
+  ]
+ },
+ "washingtonpost.com": {
+  "/1": [
+   "society"
+  ],
+  "/13": [
+   "sports"
+  ],
+  "/636679": [
+   "sports"
+  ],
+  "/local": [
+   "society"
+  ],
+  "/7": [
+   "society"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/636655": [
+   "politics",
+   "society"
+  ],
+  "/636647": [
+   "society"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/the-fix": [
+   "politics",
+   "society"
+  ],
+  "/posttv": [
+   "society"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/early-lead": [
+   "sports"
+  ],
+  "/669525": [
+   "business"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/highschools": [
+   "sports",
+   "education",
+   "society"
+  ],
+  "/crime": [
+   "society"
+  ],
+  "/35": [
+   "sports"
+  ],
+  "/education": [
+   "education",
+   "society"
+  ],
+  "/post-politics": [
+   "politics",
+   "society"
+  ],
+  "/636586": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "foxsports.com.au": {
+  "__ANY": [
+   "sports"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/australia": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/nrl": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/premier-league": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/nrl-premiership": [
+   "sports",
+   "sports/rugby"
+  ]
+ },
+ "medscape.com": {
+  "__ANY": [
+   "science",
+   "health & fitness"
+  ]
+ },
+ "sify.com": {
+  "/finance": [
+   "personal finance"
+  ],
+  "/sports": [
+   "sports"
+  ]
+ },
+ "football-italia.net": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "squawka.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "indiatvnews.com": {
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/national": [
+   "politics",
+   "society"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/india": [
+   "business"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/bollywood": [
+   "arts & entertainment"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/hollywood": [
+   "arts & entertainment"
+  ],
+  "/other": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/soccer": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/crime": [
+   "business"
+  ]
+ },
+ "cbssports.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/collegefootball": [
+   "sports",
+   "sports/american football"
+  ],
+  "/eye-on-football": [
+   "sports",
+   "sports/american football"
+  ],
+  "/mlb": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/fantasyfootball": [
+   "sports",
+   "sports/american football"
+  ],
+  "/eye-on-baseball": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/nba": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/eye-on-basketball": [
+   "sports",
+   "sports/basketball"
+  ]
+ },
+ "fansided.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "nowrunning.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "usmagazine.com": {
+  "__ANY": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ]
+ },
+ "politico.com": {
+  "__ANY": [
+   "politics",
+   "society"
+  ],
+  "/1014": [
+   "politics",
+   "society"
+  ],
+  "/1114": [
+   "politics",
+   "society"
+  ]
+ },
+ "talksport.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "mlssoccer.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "fin24.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "hollywoodlife.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "people.com": {
+  "__ANY": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/2014": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/gallery": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ]
+ },
+ "flickr.com": {
+  "__ANY": [
+   "hobbies & interests/photography",
+   "hobbies & interests"
+  ]
+ },
+ "irishtimes.com": {
+  "/business": [
+   "business"
+  ],
+  "/sectors": [
+   "business"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/soccer": [
+   "sports"
+  ],
+  "/technology": [
+   "business",
+   "technology & computing"
+  ],
+  "/economy": [
+   "business"
+  ],
+  "/international": [
+   "sports"
+  ],
+  "/financial-services": [
+   "personal finance",
+   "business"
+  ],
+  "/culture": [
+   "arts & entertainment"
+  ],
+  "/rugby": [
+   "sports"
+  ],
+  "/books": [
+   "arts & entertainment/literature",
+   "arts & entertainment"
+  ],
+  "/oireachtas": [
+   "politics",
+   "society"
+  ],
+  "/english-soccer": [
+   "sports"
+  ],
+  "/commercial-property": [
+   "business"
+  ]
+ },
+ "boxingscene.com": {
+  "__ANY": [
+   "sports/boxing",
+   "sports"
+  ]
+ },
+ "hdfcsec.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "rotoworld.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/nba": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/mlb": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/cfb": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "inc.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "espn.co.uk": {
+  "__ANY": [
+   "sports"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ]
+ },
+ "theglobeandmail.com": {
+  "/report-on-business": [
+   "business"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/hockey": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/international-business": [
+   "business"
+  ],
+  "/video": [
+   "business"
+  ],
+  "/industry-news": [
+   "business"
+  ],
+  "/football": [
+   "sports",
+   "sports/american football"
+  ],
+  "/energy-and-resources": [
+   "business"
+  ],
+  "/soccer": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/rob-commentary": [
+   "business"
+  ],
+  "/arts": [
+   "arts & entertainment"
+  ]
+ },
+ "alternet.org": {
+  "__ANY": [
+   "society"
+  ],
+  "/progressive-wire": [
+   "society"
+  ]
+ },
+ "feedsportal.com": {
+  "/399": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/5930": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/13": [
+   "sports"
+  ],
+  "/28": [
+   "technology & computing"
+  ],
+  "/35293": [
+   "technology & computing"
+  ],
+  "/658062": [
+   "technology & computing"
+  ],
+  "technobuffalo. com.": [
+   "technology & computing"
+  ],
+  "/12": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/32545": [
+   "arts & entertainment"
+  ],
+  "/492401": [
+   "arts & entertainment"
+  ],
+  "/534034": [
+   "business"
+  ],
+  "/401": [
+   "business"
+  ],
+  "/7513": [
+   "business"
+  ],
+  "/5": [
+   "technology & computing"
+  ],
+  "/534022": [
+   "personal finance"
+  ],
+  "/15": [
+   "technology & computing"
+  ],
+  "/35289": [
+   "technology & computing"
+  ],
+  "/657747": [
+   "technology & computing"
+  ],
+  "androidauthority. com.": [
+   "technology & computing"
+  ],
+  "/34792": [
+   "business",
+   "business/advertising"
+  ],
+  "adweek.": [
+   "business",
+   "business/advertising"
+  ],
+  "/34894": [
+   "personal finance"
+  ],
+  "/645423": [
+   "personal finance"
+  ],
+  "zerohedge.": [
+   "personal finance"
+  ],
+  "/33946": [
+   "automotive"
+  ],
+  "/615779": [
+   "automotive"
+  ],
+  "noticiasautomotivas.": [
+   "automotive"
+  ],
+  "/34206": [
+   "business"
+  ],
+  "businesstimes.": [
+   "business"
+  ],
+  "sg. businesstimes.": [
+   "business"
+  ],
+  "/606686": [
+   "business"
+  ],
+  "/350": [
+   "sports",
+   "sports/racing"
+  ],
+  "/34938": [
+   "technology & computing"
+  ],
+  "/645093": [
+   "technology & computing"
+  ],
+  "cnet. com.": [
+   "technology & computing"
+  ],
+  "/654232": [
+   "health & fitness"
+  ],
+  "/640962": [
+   "personal finance"
+  ],
+  "/654228": [
+   "personal finance"
+  ],
+  "/35": [
+   "sports"
+  ],
+  "/4269": [
+   "technology & computing"
+  ],
+  "/654222": [
+   "business/energy",
+   "business"
+  ],
+  "/34342": [
+   "technology & computing"
+  ],
+  "electronista.": [
+   "technology & computing"
+  ],
+  "/33681": [
+   "business"
+  ],
+  "businesstoday.": [
+   "business"
+  ],
+  "/631166": [
+   "business"
+  ],
+  "/641570": [
+   "business",
+   "business/advertising"
+  ],
+  "/27": [
+   "technology & computing"
+  ],
+  "/593013": [
+   "business"
+  ],
+  "/33995": [
+   "technology & computing"
+  ],
+  "/616884": [
+   "technology & computing"
+  ],
+  "/537784": [
+   "sports",
+   "sports/racing"
+  ],
+  "androidcentral. com.": [
+   "technology & computing"
+  ],
+  "/343": [
+   "personal finance",
+   "business"
+  ],
+  "/625515": [
+   "technology & computing"
+  ],
+  "/654202": [
+   "sports"
+  ]
+ },
+ "talkingpointsmemo.com": {
+  "__ANY": [
+   "politics",
+   "society"
+  ]
+ },
+ "pcworld.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "digitalspy.co.uk": {
+  "/news": [
+   "arts & entertainment"
+  ],
+  "/tv": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/showbiz": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/tech": [
+   "technology & computing"
+  ],
+  "/s103": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/the-x-factor": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/music": [
+   "arts & entertainment"
+  ]
+ },
+ "onlineprnews.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "christianpost.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "businessdayonline.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "washingtonexaminer.com": {
+  "__ANY": [
+   "politics",
+   "society"
+  ]
+ },
+ "entrepreneur.com": {
+  "__ANY": [
+   "business/marketing",
+   "business"
+  ]
+ },
+ "livemint.com": {
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/money": [
+   "personal finance"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "medicalnewstoday.com": {
+  "__ANY": [
+   "health & fitness"
+  ]
+ },
+ "arabianbusiness.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "techradar.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "bgr.com": {
+  "__ANY": [
+   "technology & computing"
+  ],
+  "/09": [
+   "technology & computing"
+  ]
+ },
+ "todayonline.com": {
+  "/business": [
+   "business"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/football": [
+   "sports"
+  ]
+ },
+ "click2houston.com": {
+  "/news": [
+   "society"
+  ],
+  "/sports": [
+   "sports",
+   "society"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/lifestyle": [
+   "society"
+  ]
+ },
+ "emirates247.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/cricket": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/technology": [
+   "business",
+   "technology & computing"
+  ],
+  "/corporate": [
+   "business"
+  ]
+ },
+ "investorplace.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "cinemablend.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/television": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ]
+ },
+ "breitbart.com": {
+  "/11": [
+   "society"
+  ],
+  "/big-government": [
+   "society"
+  ],
+  "/breitbart-tv": [
+   "society"
+  ],
+  "/breitbart-london": [
+   "society"
+  ],
+  "/instablog": [
+   "society"
+  ],
+  "/20": [
+   "society"
+  ],
+  "/24": [
+   "society"
+  ]
+ },
+ "usatoday.com": {
+  "/sports": [
+   "sports"
+  ],
+  "ftw.": [
+   "sports"
+  ],
+  "/money": [
+   "personal finance"
+  ],
+  "/life": [
+   "arts & entertainment"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/tech": [
+   "technology & computing"
+  ],
+  "/business": [
+   "personal finance",
+   "business"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "entertainthis.": [
+   "arts & entertainment"
+  ],
+  "/tv": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/cars": [
+   "personal finance"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/columnist": [
+   "society"
+  ],
+  "onpolitics.": [
+   "politics",
+   "society"
+  ],
+  "americasmarkets.": [
+   "personal finance"
+  ],
+  "/nba": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/nhl": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/markets": [
+   "personal finance"
+  ],
+  "/theoval": [
+   "politics",
+   "society"
+  ]
+ },
+ "eonline.com": {
+  "__ANY": [
+   "business/commerce",
+   "business",
+   "arts & entertainment"
+  ]
+ },
+ "bangkokpost.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/finance": [
+   "personal finance"
+  ],
+  "/tech": [
+   "technology & computing"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/world-updates": [
+   "technology & computing"
+  ]
+ },
+ "phonearena.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "newsday.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/football": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/spin-cycle-1.812042": [
+   "politics",
+   "society"
+  ],
+  "/baseball": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/high-school": [
+   "sports"
+  ],
+  "/basketball": [
+   "sports",
+   "sports/basketball"
+  ]
+ },
+ "techmeme.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "gamespress.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ]
+ },
+ "androidheadlines.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "hl.co.uk": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "medindia.net": {
+  "__ANY": [
+   "health & fitness"
+  ]
+ },
+ "baltimoresun.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/readersrespond": [
+   "society"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/college": [
+   "sports"
+  ],
+  "/ravens": [
+   "sports",
+   "sports/american football"
+  ],
+  "/business": [
+   "business"
+  ]
+ },
+ "wrestlezone.com": {
+  "__ANY": [
+   "sports",
+   "sports/wrestling"
+  ]
+ },
+ "dallasnews.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/dallas-cowboys": [
+   "sports",
+   "sports/american football"
+  ],
+  "/college-sports": [
+   "sports"
+  ],
+  "cowboysblog.": [
+   "sports",
+   "sports/american football"
+  ],
+  "bizbeatblog.": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ]
+ },
+ "dnaindia.com": {
+  "/sport": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ]
+ },
+ "caclubindia.com": {
+  "__ANY": [
+   "personal finance"
+  ],
+  "/forum": [
+   "personal finance"
+  ]
+ },
+ "modernghana.com": {
+  "/2": [
+   "sports"
+  ],
+  "/sports": [
+   "sports"
+  ]
+ },
+ "timesofisrael.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "chron.com": {
+  "/technology": [
+   "business",
+   "technology & computing"
+  ],
+  "/businessinsider": [
+   "business",
+   "technology & computing"
+  ],
+  "m.": [
+   "society"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "computerandvideogames.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ],
+  "/f": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ],
+  "/s": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ],
+  "/c": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ],
+  "/l": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ],
+  "/674": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ],
+  "/8604": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ],
+  "/story01.htm": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ],
+  "/sc": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ]
+ },
+ "autoblog.com": {
+  "__ANY": [
+   "automotive"
+  ],
+  "ca.": [
+   "automotive"
+  ]
+ },
+ "theguardian.com": {
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/politics": [
+   "society"
+  ]
+ },
+ "stltoday.com": {
+  "/news": [
+   "society"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/professional": [
+   "sports"
+  ],
+  "/high-school": [
+   "sports",
+   "education",
+   "society"
+  ],
+  "/crime-and-courts": [
+   "society"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/football": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/govt-and-politics": [
+   "society"
+  ],
+  "/college": [
+   "sports"
+  ],
+  "/pr": [
+   "business"
+  ],
+  "interact.": [
+   "business"
+  ],
+  "/baseball": [
+   "sports"
+  ],
+  "/mizzou": [
+   "sports",
+   "education",
+   "society"
+  ],
+  "/mailbag": [
+   "society"
+  ]
+ },
+ "money.co.uk": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "kitco.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "cio.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "dailyfx.com": {
+  "__ANY": [
+   "personal finance"
+  ],
+  "/technical": [
+   "personal finance",
+   "technology & computing"
+  ],
+  "/home": [
+   "personal finance",
+   "technology & computing"
+  ],
+  "/analysis": [
+   "personal finance",
+   "technology & computing"
+  ],
+  "/candlesticks": [
+   "personal finance",
+   "technology & computing"
+  ]
+ },
+ "espncricinfo.com": {
+  "__ANY": [
+   "sports",
+   "sports/cricket"
+  ]
+ },
+ "fidelity.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "gurufocus.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "vibe.com": {
+  "__ANY": [
+   "arts & entertainment/music",
+   "arts & entertainment"
+  ]
+ },
+ "psychologytoday.com": {
+  "__ANY": [
+   "science",
+   "society"
+  ]
+ },
+ "themalaymailonline.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/showbiz": [
+   "arts & entertainment"
+  ],
+  "/tech-gadgets": [
+   "technology & computing"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/author": [
+   "society"
+  ]
+ },
+ "sun-sentinel.com": {
+  "/business": [
+   "business"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/technology": [
+   "business",
+   "technology & computing"
+  ],
+  "/local": [
+   "society"
+  ],
+  "/miami-heat": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/miami-dolphins": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "rediff.com": {
+  "/business": [
+   "business"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/column": [
+   "society"
+  ]
+ },
+ "foxsportsasia.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/premier-league": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "contactmusic.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "joblo.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "nydailynews.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/new-york": [
+   "society"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/football": [
+   "sports"
+  ],
+  "/gossip": [
+   "arts & entertainment"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/baseball": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/nyc-crime": [
+   "society"
+  ],
+  "/tv": [
+   "arts & entertainment"
+  ],
+  "/basketball": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/dailypolitics": [
+   "society"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/crime": [
+   "society"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ]
+ },
+ "gamasutra.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "nytimes.com": {
+  "/13": [
+   "sports"
+  ],
+  "/642562": [
+   "society"
+  ],
+  "/640316": [
+   "business"
+  ],
+  "/640308": [
+   "arts & entertainment"
+  ],
+  "/640382": [
+   "sports"
+  ],
+  "/640370": [
+   "society"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/640389": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/640374": [
+   "sports",
+   "sports/american football"
+  ],
+  "/640346": [
+   "health & fitness"
+  ],
+  "/640313": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/640330": [
+   "education",
+   "society"
+  ],
+  "/640344": [
+   "sports",
+   "sports/golf"
+  ],
+  "/640314": [
+   "arts & entertainment/literature",
+   "arts & entertainment"
+  ]
+ },
+ "dailyfinance.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "racingpost.com": {
+  "__ANY": [
+   "sports",
+   "hobbies & interests/horse racing",
+   "hobbies & interests"
+  ]
+ },
+ "csnphilly.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/basketball-philadelphia-76ers": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/football-philadelphia-eagles": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "timesofindia.com": {
+  "/tech": [
+   "technology & computing"
+  ],
+  "/tech-news": [
+   "technology & computing"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/india-business": [
+   "business"
+  ]
+ },
+ "firstpost.com": {
+  "tech.": [
+   "technology & computing"
+  ],
+  "/news-analysis": [
+   "technology & computing"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/sports": [
+   "sports"
+  ]
+ },
+ "nzherald.co.nz": {
+  "/business": [
+   "business"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/video.cfm": [
+   "sports"
+  ],
+  "/video": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/travel": [
+   "travel"
+  ]
+ },
+ "punchng.com": {
+  "/business": [
+   "business"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/business-economy": [
+   "personal finance",
+   "business"
+  ],
+  "/international-business": [
+   "business"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/letters": [
+   "society"
+  ],
+  "/money": [
+   "personal finance",
+   "business"
+  ]
+ },
+ "msn.com": {
+  "/sport": [
+   "sports"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/celebrity": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "sports. xin.": [
+   "sports"
+  ],
+  "/en-sg": [
+   "sports"
+  ],
+  "money.": [
+   "personal finance",
+   "business"
+  ],
+  "sports. ca.": [
+   "sports"
+  ],
+  "/business-news": [
+   "personal finance",
+   "business"
+  ],
+  "/markets": [
+   "personal finance"
+  ],
+  "msnbc.": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "video. msnbc.": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/tv": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/techandscience": [
+   "technology & computing"
+  ],
+  "entertainment. xin.": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "sport. malaysia.": [
+   "sports"
+  ],
+  "/buzz": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/rugby-union": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/story": [
+   "arts & entertainment"
+  ],
+  "/hollywood": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/celebs": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/business": [
+   "business"
+  ],
+  "entertainment. ca.": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/tennis": [
+   "sports",
+   "sports/tennis"
+  ],
+  "/investing": [
+   "personal finance"
+  ],
+  "/golf": [
+   "sports",
+   "sports/golf"
+  ],
+  "money. ca.": [
+   "personal finance"
+  ],
+  "/rachel-maddow": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "entertainment.": [
+   "arts & entertainment"
+  ]
+ },
+ "itv.com": {
+  "/central": [
+   "society"
+  ],
+  "/granada": [
+   "society"
+  ],
+  "/sport": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/tyne-tees": [
+   "society"
+  ],
+  "/article": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/thismorning": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ]
+ },
+ "newsmax.com": {
+  "/newsfront": [
+   "society"
+  ],
+  "/newsmax-tv": [
+   "society"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ]
+ },
+ "ubergizmo.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "gulfnews.com": {
+  "/sport": [
+   "sports"
+  ],
+  "/arts-entertainment": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/celebrity": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/opinions": [
+   "society"
+  ],
+  "/hollywood": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/columnists": [
+   "society"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/india": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/bollywood": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ]
+ },
+ "military.com": {
+  "__ANY": [
+   "society",
+   "military"
+  ]
+ },
+ "wmpoweruser.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "fifa.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "rigzone.com": {
+  "__ANY": [
+   "business/energy",
+   "business"
+  ]
+ },
+ "channelnewsasia.com": {
+  "/business": [
+   "business"
+  ],
+  "/international": [
+   "business"
+  ],
+  "/sport": [
+   "sports"
+  ]
+ },
+ "seattlepi.com": {
+  "m.": [
+   "arts & entertainment"
+  ],
+  "/entertainment": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/tv": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/tvguide": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/football": [
+   "sports",
+   "sports/american football"
+  ],
+  "/lifestyle": [
+   "arts & entertainment"
+  ],
+  "/blogcritics": [
+   "arts & entertainment"
+  ]
+ },
+ "businessinsider.com.au": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "orlandosentinel.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/miami-dolphins": [
+   "sports",
+   "sports/american football"
+  ],
+  "/orlando-magic": [
+   "sports",
+   "sports/basketball"
+  ]
+ },
+ "al.com": {
+  "highschoolsports.": [
+   "sports"
+  ],
+  "/article": [
+   "sports"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/mobile": [
+   "technology & computing"
+  ],
+  "/birmingham": [
+   "society"
+  ],
+  "/huntsville": [
+   "society"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/auburnfootball": [
+   "sports",
+   "sports/american football"
+  ],
+  "/alabamafootball": [
+   "sports",
+   "sports/american football"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ]
+ },
+ "webindia123.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "ynetnews.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "ittoolbox.com": {
+  "__ANY": [
+   "technology & computing"
+  ],
+  "businessintelligence.": [
+   "business",
+   "technology & computing"
+  ]
+ },
+ "afl.com.au": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "suntimes.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/news": [
+   "society"
+  ],
+  "/article": [
+   "politics",
+   "society"
+  ],
+  "politics.": [
+   "politics",
+   "society"
+  ],
+  "/chicago": [
+   "society"
+  ],
+  "lakeforest.": [
+   "business"
+  ],
+  "/opinions": [
+   "society"
+  ]
+ },
+ "vr-zone.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "reason.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "azcentral.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/college": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/money": [
+   "business"
+  ],
+  "/asu": [
+   "sports"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/cardinals": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "comicbookresources.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "uefa.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "abs-cbnnews.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ]
+ },
+ "hindustantimes.com": {
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/sports-news": [
+   "sports"
+  ],
+  "/business-news": [
+   "business"
+  ],
+  "/tabloid": [
+   "arts & entertainment"
+  ],
+  "/bollywood": [
+   "arts & entertainment"
+  ],
+  "/cricketnews": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/technology": [
+   "technology & computing"
+  ]
+ },
+ "101greatgoals.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "arstechnica.com": {
+  "__ANY": [
+   "technology & computing"
+  ],
+  "/2014": [
+   "technology & computing"
+  ],
+  "/11": [
+   "technology & computing"
+  ],
+  "/tech-policy": [
+   "technology & computing"
+  ]
+ },
+ "computerworld.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "scmp.com": {
+  "/business": [
+   "business"
+  ],
+  "/comment": [
+   "society"
+  ],
+  "/insight-opinion": [
+   "society"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/companies": [
+   "business"
+  ],
+  "/economy": [
+   "business"
+  ]
+ },
+ "itworld.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "pcmag.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "adage.com": {
+  "__ANY": [
+   "business"
+  ],
+  "/article": [
+   "business",
+   "business/advertising"
+  ],
+  "/media": [
+   "business",
+   "business/advertising"
+  ]
+ },
+ "sundayworld.com": {
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/tv": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/soccer": [
+   "sports"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/showbiz": [
+   "arts & entertainment"
+  ]
+ },
+ "indystar.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/college": [
+   "sports"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/colts": [
+   "sports",
+   "sports/american football"
+  ],
+  "/readers": [
+   "society"
+  ],
+  "/videos": [
+   "sports"
+  ],
+  "/indiana": [
+   "sports"
+  ]
+ },
+ "legacy.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "chicagotribune.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/20": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/19": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/baseball": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/cubs": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/letters": [
+   "society"
+  ]
+ },
+ "billboard.com": {
+  "/news": [
+   "arts & entertainment"
+  ]
+ },
+ "pagesix.com": {
+  "__ANY": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ]
+ },
+ "typepad.com": {
+  "crofsblogs.": [
+   "science",
+   "health & fitness"
+  ],
+  "/h5n1": [
+   "science",
+   "health & fitness"
+  ],
+  "failedmessiah.": [
+   "society"
+  ]
+ },
+ "apunkachoice.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "latimes.com": {
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "herocomplex.": [
+   "arts & entertainment"
+  ],
+  "/tv": [
+   "arts & entertainment"
+  ],
+  "/arts": [
+   "arts & entertainment"
+  ]
+ },
+ "cincinnati.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/money": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/bengals": [
+   "sports",
+   "sports/american football"
+  ],
+  "/high-school": [
+   "sports"
+  ],
+  "/college": [
+   "sports"
+  ]
+ },
+ "philstar.com": {
+  "/business": [
+   "business"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/cebu-business": [
+   "business"
+  ]
+ },
+ "liverpoolfc.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "reuters.com": {
+  "/stocks": [
+   "personal finance"
+  ],
+  "/finance": [
+   "personal finance"
+  ],
+  "/quotes": [
+   "business"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/sportsnews": [
+   "sports"
+  ],
+  "/businessnews": [
+   "business"
+  ],
+  "/energyoilnews": [
+   "personal finance"
+  ],
+  "/~3": [
+   "health & fitness"
+  ],
+  "/~r": [
+   "health & fitness"
+  ],
+  "/reuters": [
+   "health & fitness"
+  ],
+  "/healthnews": [
+   "health & fitness"
+  ]
+ },
+ "247wallst.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "cleveland.com": {
+  "/news": [
+   "sports"
+  ],
+  "/article": [
+   "sports"
+  ],
+  "highschoolsports.": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/prnewswire": [
+   "business"
+  ],
+  "/browns": [
+   "sports",
+   "sports/american football"
+  ],
+  "/cavs": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/open": [
+   "society"
+  ],
+  "/letters": [
+   "society"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "technobuffalo.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "abc13.com": {
+  "/sports": [
+   "sports"
+  ]
+ },
+ "thedailystar.net": {
+  "/city": [
+   "arts & entertainment/literature",
+   "arts & entertainment"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/letters": [
+   "society"
+  ]
+ },
+ "nationalreview.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "7online.com": {
+  "/sports": [
+   "sports"
+  ]
+ },
+ "inflexwetrust.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "haaretz.com": {
+  "/news": [
+   "society"
+  ],
+  "/jewish-world": [
+   "society"
+  ],
+  "/diplomacy-defense": [
+   "society"
+  ],
+  "/middle-east": [
+   "society"
+  ],
+  "/jewish-world-news": [
+   "society"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/business": [
+   "business"
+  ]
+ },
+ "catholic.org": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "bostonglobe.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/news": [
+   "society"
+  ],
+  "/arts": [
+   "arts & entertainment"
+  ],
+  "/editorials": [
+   "society"
+  ]
+ },
+ "bmj.com": {
+  "__ANY": [
+   "health & fitness"
+  ]
+ },
+ "fastcompany.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "tvguide.co.uk": {
+  "/detail": [
+   "sports"
+  ],
+  "/story": [
+   "arts & entertainment"
+  ]
+ },
+ "asiaone.com": {
+  "business.": [
+   "business"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/showbiz": [
+   "arts & entertainment"
+  ],
+  "/crime": [
+   "society"
+  ]
+ },
+ "abc7.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ]
+ },
+ "geeky-gadgets.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "chicagobusiness.com": {
+  "__ANY": [
+   "business",
+   "real estate"
+  ],
+  "/article": [
+   "business",
+   "real estate"
+  ],
+  "/realestate": [
+   "business",
+   "real estate"
+  ]
+ },
+ "betfair.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "cricbuzz.com": {
+  "__ANY": [
+   "sports",
+   "sports/cricket"
+  ]
+ },
+ "giants.com": {
+  "__ANY": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "nola.com": {
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/saints": [
+   "sports",
+   "sports/american football"
+  ],
+  "/crime": [
+   "society"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/lsu": [
+   "sports"
+  ],
+  "/pelicans": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/education": [
+   "education",
+   "society"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ]
+ },
+ "foreignpolicy.com": {
+  "__ANY": [
+   "politics",
+   "society"
+  ]
+ },
+ "tvguide.com": {
+  "__ANY": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ]
+ },
+ "tennessean.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/college": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/nfl": [
+   "sports",
+   "sports/american football"
+  ],
+  "/titans": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "adweek.com": {
+  "__ANY": [
+   "business",
+   "business/advertising"
+  ],
+  "/advertising-branding": [
+   "business",
+   "business/advertising"
+  ],
+  "/technology": [
+   "technology & computing"
+  ]
+ },
+ "virginmedia.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "videogames.": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "calameo.com": {
+  "__ANY": [
+   "arts & entertainment/literature",
+   "arts & entertainment"
+  ]
+ },
+ "newsok.com": {
+  "/news": [
+   "personal finance"
+  ],
+  "/read": [
+   "personal finance"
+  ],
+  "stocks.": [
+   "personal finance"
+  ],
+  "/newsok": [
+   "personal finance"
+  ]
+ },
+ "sltrib.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ]
+ },
+ "seahawks.com": {
+  "__ANY": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "iphonehacks.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "oregonlive.com": {
+  "/news": [
+   "sports"
+  ],
+  "highschoolsports.": [
+   "sports"
+  ],
+  "/article": [
+   "sports"
+  ],
+  "/nhl": [
+   "sports",
+   "sports/hockey"
+  ],
+  "stats.": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/recap.asp": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/story.asp": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/collegefootball": [
+   "sports",
+   "sports/american football"
+  ],
+  "/timbers": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "daniweb.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "theweek.co.uk": {
+  "__ANY": [
+   "society"
+  ],
+  "/football": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "escapistmagazine.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/articles": [
+   "arts & entertainment"
+  ],
+  "/video-games": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ],
+  "/moviesandtv": [
+   "arts & entertainment"
+  ],
+  "/reviews": [
+   "arts & entertainment"
+  ]
+ },
+ "imore.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "nikkei.com": {
+  "/politics-economy": [
+   "politics",
+   "society"
+  ],
+  "/business": [
+   "personal finance"
+  ],
+  "/companies": [
+   "personal finance"
+  ],
+  "/policy-politics": [
+   "politics",
+   "society"
+  ],
+  "/economy": [
+   "politics",
+   "society"
+  ],
+  "/international-relations": [
+   "politics",
+   "society"
+  ],
+  "/trends": [
+   "personal finance"
+  ]
+ },
+ "gottabemobile.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "drugs.com": {
+  "__ANY": [
+   "business",
+   "health & fitness",
+   "business/biomedical"
+  ]
+ },
+ "pcadvisor.co.uk": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "xinhuanet.com": {
+  "/sports": [
+   "sports"
+  ]
+ },
+ "techinasia.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "techspot.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "ftbpro.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "newindianexpress.com": {
+  "/business": [
+   "business"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/education": [
+   "education",
+   "society"
+  ]
+ },
+ "oracle.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "americanthinker.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "abc7chicago.com": {
+  "/sports": [
+   "sports"
+  ]
+ },
+ "straitstimes.com": {
+  "/business": [
+   "personal finance"
+  ],
+  "/lifestyle": [
+   "arts & entertainment"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/companies": [
+   "personal finance",
+   "business"
+  ],
+  "/movies": [
+   "arts & entertainment"
+  ],
+  "/markets": [
+   "personal finance"
+  ],
+  "/digital-life": [
+   "technology & computing"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "golfchannel.com": {
+  "__ANY": [
+   "sports",
+   "sports/golf"
+  ]
+ },
+ "gameinformer.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "inquirer.net": {
+  "business.": [
+   "business"
+  ],
+  "sports.": [
+   "sports"
+  ],
+  "entertainment.": [
+   "arts & entertainment"
+  ],
+  "pba.": [
+   "sports",
+   "sports/basketball"
+  ]
+ },
+ "denofgeek.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/tv": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ]
+ },
+ "csnbayarea.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/49ers": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "appadvice.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "linux.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "realclearpolitics.com": {
+  "__ANY": [
+   "society"
+  ],
+  "/11": [
+   "society"
+  ]
+ },
+ "mediaite.com": {
+  "/tv": [
+   "arts & entertainment"
+  ]
+ },
+ "jsonline.com": {
+  "/news": [
+   "society"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/packers": [
+   "sports",
+   "sports/american football"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "androidcentral.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "sbs.com.au": {
+  "/ondemand": [
+   "arts & entertainment"
+  ],
+  "/video": [
+   "arts & entertainment"
+  ]
+ },
+ "indianexpress.com": {
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/columns": [
+   "society"
+  ],
+  "/television": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ]
+ },
+ "rightwingnews.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "jrn.com": {
+  "/wi-sports": [
+   "sports"
+  ],
+  "/green-bay-packers": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "techgig.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "northjersey.com": {
+  "/sports": [
+   "sports",
+   "education",
+   "society"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/high-school-sports": [
+   "sports",
+   "education",
+   "society"
+  ],
+  "/education": [
+   "education",
+   "society"
+  ],
+  "/football": [
+   "sports",
+   "education",
+   "sports/soccer",
+   "society"
+  ],
+  "/community-news": [
+   "society"
+  ]
+ },
+ "westernjournalism.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "mercurynews.com": {
+  "/business": [
+   "business"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/giants": [
+   "sports",
+   "sports/baseball"
+  ]
+ },
+ "courant.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "cosmopolitan.com": {
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/celebs": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ]
+ },
+ "denverpost.com": {
+  "/news": [
+   "society"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/broncos": [
+   "sports",
+   "sports/american football"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "zap2it.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/blogs": [
+   "arts & entertainment"
+  ]
+ },
+ "gmanetwork.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/basketball": [
+   "sports",
+   "sports/basketball"
+  ],
+  "/technology": [
+   "technology & computing"
+  ],
+  "/showbiz": [
+   "arts & entertainment"
+  ],
+  "/finance": [
+   "personal finance"
+  ]
+ },
+ "dailycaller.com": {
+  "/11": [
+   "society"
+  ]
+ },
+ "wnd.com": {
+  "/11": [
+   "society"
+  ]
+ },
+ "wwd.com": {
+  "/business-news": [
+   "business"
+  ],
+  "/financial": [
+   "personal finance"
+  ],
+  "/retail-news": [
+   "business/commerce",
+   "business"
+  ]
+ },
+ "beritasatu.com": {
+  "/business": [
+   "business"
+  ]
+ },
+ "smartcompany.com.au": {
+  "__ANY": [
+   "business"
+  ],
+  "/technology": [
+   "business",
+   "technology & computing"
+  ]
+ },
+ "wallstcheatsheet.com": {
+  "__ANY": [
+   "personal finance"
+  ],
+  "/technology": [
+   "personal finance",
+   "technology & computing"
+  ]
+ },
+ "bt.com": {
+  "sport.": [
+   "sports"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/tv": [
+   "arts & entertainment"
+  ],
+  "/rugbyunion": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/rugbyunionhub": [
+   "sports",
+   "sports/rugby"
+  ],
+  "/moresporthub": [
+   "sports"
+  ],
+  "/moresport": [
+   "sports"
+  ]
+ },
+ "mlive.com": {
+  "/article": [
+   "sports"
+  ],
+  "highschoolsports.": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/grandrapids": [
+   "sports"
+  ],
+  "/smallcolleges": [
+   "sports"
+  ],
+  "/lions": [
+   "sports",
+   "sports/american football"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/muskegon": [
+   "society"
+  ],
+  "/redwings": [
+   "sports",
+   "sports/hockey"
+  ],
+  "/tigers": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/west-michigan": [
+   "business"
+  ],
+  "/pistons": [
+   "sports",
+   "sports/basketball"
+  ]
+ },
+ "9to5mac.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "vccircle.com": {
+  "/news": [
+   "personal finance"
+  ],
+  "techcircle.": [
+   "technology & computing"
+  ],
+  "/technology": [
+   "personal finance",
+   "technology & computing"
+  ]
+ },
+ "talktalk.co.uk": {
+  "/sport": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ]
+ },
+ "kotaku.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "seattletimes.com": {
+  "/businesstechnology": [
+   "business"
+  ],
+  "/rss": [
+   "automotive"
+  ],
+  "/autos": [
+   "automotive"
+  ],
+  "nwautos.": [
+   "automotive"
+  ],
+  "/detail.php": [
+   "automotive"
+  ],
+  "/highschoolsports": [
+   "sports",
+   "education",
+   "society"
+  ],
+  "/seahawks": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "loudwire.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "neowin.net": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "carscoops.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "glamsham.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "ultimateclassicrock.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "lifehacker.com.au": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "un.org": {
+  "__ANY": [
+   "technology & computing"
+  ],
+  "/news": [
+   "technology & computing"
+  ],
+  "/apps": [
+   "technology & computing"
+  ],
+  "/story.asp": [
+   "technology & computing"
+  ]
+ },
+ "androidauthority.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "empireonline.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "theblaze.com": {
+  "/11": [
+   "society"
+  ],
+  "/blog": [
+   "society"
+  ]
+ },
+ "tuaw.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "worldcarfans.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "cnsnews.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "gsmarena.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "eweek.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "gizmodo.com.au": {
+  "/10": [
+   "technology & computing"
+  ],
+  "/09": [
+   "technology & computing"
+  ]
+ },
+ "androidpolice.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "thefa.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "nesn.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "orange.co.uk": {
+  "/sports": [
+   "sports"
+  ]
+ },
+ "nationaljournal.com": {
+  "__ANY": [
+   "society"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ]
+ },
+ "moneycontrol.com": {
+  "/business": [
+   "business"
+  ],
+  "/local-markets": [
+   "personal finance",
+   "business"
+  ],
+  "/results": [
+   "personal finance",
+   "personal finance/stocks"
+  ],
+  "/international-markets": [
+   "personal finance"
+  ]
+ },
+ "medicinenet.com": {
+  "__ANY": [
+   "health & fitness"
+  ],
+  "/guide.asp": [
+   "health & fitness"
+  ]
+ },
+ "macworld.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "app.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/college": [
+   "sports"
+  ],
+  "/readers": [
+   "society"
+  ],
+  "/columnists": [
+   "society"
+  ]
+ },
+ "gamespot.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "videogamer.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ],
+  "/pc": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ]
+ },
+ "techrepublic.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "informationweek.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "avclub.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "tv.com": {
+  "__ANY": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ]
+ },
+ "theinquirer.net": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "etonline.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/tv": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ]
+ },
+ "idownloadblog.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "theadvocate.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "nbcnews.com": {
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/ebola-virus-outbreak": [
+   "science",
+   "health & fitness"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/tech": [
+   "technology & computing"
+  ],
+  "/first-read": [
+   "politics",
+   "society"
+  ],
+  "/elections": [
+   "politics",
+   "society"
+  ]
+ },
+ "reviewjournal.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/football": [
+   "sports"
+  ]
+ },
+ "irishexaminer.com": {
+  "/sport": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/examviral": [
+   "arts & entertainment"
+  ],
+  "/soccer": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/celeb-life": [
+   "arts & entertainment"
+  ]
+ },
+ "dispatch.com": {
+  "/business": [
+   "business"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "buckeyextra.": [
+   "sports"
+  ],
+  "bluejacketsxtra.": [
+   "sports",
+   "sports/hockey"
+  ]
+ },
+ "skift.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "kpmg.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "joystiq.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "vavel.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/premier-league": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "aceshowbiz.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/movie": [
+   "arts & entertainment"
+  ]
+ },
+ "hankyung.com": {
+  "__ANY": [
+   "personal finance",
+   "technology & computing"
+  ]
+ },
+ "thestar.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/life": [
+   "society"
+  ]
+ },
+ "vg247.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "iclarified.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "appleinsider.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "fonearena.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "sys-con.com": {
+  "php.": [
+   "technology & computing"
+  ],
+  "linux.": [
+   "technology & computing"
+  ],
+  "cloudcomputing.": [
+   "technology & computing"
+  ],
+  "java.": [
+   "technology & computing"
+  ],
+  "xml.": [
+   "technology & computing"
+  ],
+  "virtualization.": [
+   "technology & computing"
+  ]
+ },
+ "foxnewsinsider.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "khaleejtimes.com": {
+  "/biz": [
+   "business"
+  ],
+  "/nation": [
+   "society"
+  ],
+  "/kt-letter-display.asp": [
+   "society"
+  ]
+ },
+ "techdirt.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "softonic.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "redmondpie.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "post-gazette.com": {
+  "/sports": [
+   "sports"
+  ]
+ },
+ "hexus.net": {
+  "__ANY": [
+   "technology & computing"
+  ],
+  "/tech": [
+   "technology & computing"
+  ]
+ },
+ "gtspirit.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "therakyatpost.com": {
+  "/business": [
+   "business"
+  ],
+  "/sports": [
+   "sports"
+  ]
+ },
+ "nj.com": {
+  "/article": [
+   "sports"
+  ],
+  "highschoolsports.": [
+   "sports"
+  ],
+  "/eagles": [
+   "sports",
+   "sports/american football"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/yankees": [
+   "sports",
+   "sports/baseball"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/giants": [
+   "sports",
+   "sports/american football"
+  ],
+  "/suburbannews": [
+   "society"
+  ],
+  "/jets": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "gamedev.net": {
+  "/page": [
+   "technology & computing"
+  ],
+  "/news": [
+   "technology & computing"
+  ],
+  "/index.html": [
+   "technology & computing"
+  ],
+  "/streamingnews": [
+   "technology & computing"
+  ]
+ },
+ "edmunds.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "internetretailer.com": {
+  "__ANY": [
+   "business",
+   "technology & computing"
+  ]
+ },
+ "motorsport.com": {
+  "__ANY": [
+   "sports",
+   "sports/racing"
+  ]
+ },
+ "consequenceofsound.net": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "weeklystandard.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "whitehouse.gov": {
+  "__ANY": [
+   "society"
+  ],
+  "/the-press-office": [
+   "society"
+  ]
+ },
+ "kyivpost.com": {
+  "/opinion": [
+   "society"
+  ],
+  "/op-ed": [
+   "society"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ]
+ },
+ "timeshighereducation.co.uk": {
+  "__ANY": [
+   "education",
+   "society"
+  ]
+ },
+ "boston.com": {
+  "/646905": [
+   "business"
+  ],
+  "/13": [
+   "sports"
+  ],
+  "/646880": [
+   "arts & entertainment/television",
+   "arts & entertainment"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/647001": [
+   "sports",
+   "sports/soccer"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ]
+ },
+ "gulf-times.com": {
+  "/192": [
+   "sports"
+  ],
+  "/sport": [
+   "sports"
+  ]
+ },
+ "rappler.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/by-sport": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/industries": [
+   "business"
+  ],
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/basketball": [
+   "sports",
+   "sports/basketball"
+  ]
+ },
+ "gizmag.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "inhabitat.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "denverbroncos.com": {
+  "__ANY": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "msdn.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "cultofmac.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "lifehacker.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "maannews.net": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "tamu.edu": {
+  "__ANY": [
+   "real estate"
+  ],
+  "recenter.": [
+   "real estate"
+  ],
+  "/newstalk": [
+   "real estate"
+  ],
+  "/newstalksearch.asp": [
+   "real estate"
+  ]
+ },
+ "sneakernews.com": {
+  "__ANY": [
+   "sports"
+  ],
+  "/11": [
+   "sports",
+   "fashion"
+  ]
+ },
+ "technet.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "livescience.com": {
+  "__ANY": [
+   "science"
+  ]
+ },
+ "b92.net": {
+  "__ANY": [
+   "society"
+  ],
+  "/politics.php": [
+   "politics",
+   "society"
+  ]
+ },
+ "pennlive.com": {
+  "highschoolsports.": [
+   "sports"
+  ],
+  "/news": [
+   "sports"
+  ],
+  "/article": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/sports": [
+   "sports"
+  ]
+ },
+ "vegasinsider.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "indianautosblog.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "infoworld.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "carbuzz.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "chronicle.com": {
+  "__ANY": [
+   "education",
+   "society"
+  ],
+  "/article": [
+   "education",
+   "society"
+  ]
+ },
+ "screencrush.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "bankrate.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "betanews.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "sciencemag.org": {
+  "__ANY": [
+   "science"
+  ]
+ },
+ "crash.net": {
+  "__ANY": [
+   "sports",
+   "sports/racing"
+  ]
+ },
+ "filmlinks4u.net": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "newstatesman.com": {
+  "__ANY": [
+   "society"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ]
+ },
+ "wpcentral.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "timesofmalta.com": {
+  "/football": [
+   "sports"
+  ],
+  "/business-news": [
+   "business"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "phandroid.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "thecarconnection.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "pinkvilla.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "barrons.com": {
+  "/techtraderdaily": [
+   "technology & computing"
+  ]
+ },
+ "msn.co.nz": {
+  "sport.": [
+   "sports"
+  ],
+  "/sportnews": [
+   "sports"
+  ],
+  "money.": [
+   "business"
+  ],
+  "/businessnews": [
+   "business"
+  ]
+ },
+ "pocketnow.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "crosswalk.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "comingsoon.net": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "wired.com": {
+  "/c": [
+   "technology & computing"
+  ],
+  "/f": [
+   "technology & computing"
+  ],
+  "/l": [
+   "technology & computing"
+  ],
+  "/s": [
+   "technology & computing"
+  ],
+  "feeds.": [
+   "technology & computing"
+  ],
+  "/35185": [
+   "technology & computing"
+  ],
+  "/story01.htm": [
+   "technology & computing"
+  ],
+  "/sc": [
+   "technology & computing"
+  ]
+ },
+ "dzone.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "comicbook.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "wtatennis.com": {
+  "__ANY": [
+   "sports",
+   "sports/tennis"
+  ]
+ },
+ "domain.com.au": {
+  "/news": [
+   "society"
+  ],
+  "/domain": [
+   "real estate"
+  ],
+  "/federal-politics": [
+   "politics",
+   "society"
+  ],
+  "news.": [
+   "real estate"
+  ],
+  "/real-estate-news": [
+   "real estate"
+  ],
+  "/business": [
+   "business"
+  ]
+ },
+ "cisco.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "sheknows.com": {
+  "/entertainment": [
+   "arts & entertainment"
+  ]
+ },
+ "spin.com": {
+  "__ANY": [
+   "arts & entertainment/music",
+   "arts & entertainment"
+  ]
+ },
+ "autoguide.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "destructoid.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "advocate.com": {
+  "__ANY": [
+   "society"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ]
+ },
+ "usnews.com": {
+  "/blogs": [
+   "society"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "ibtimes.co.uk": {
+  "/tv": [
+   "arts & entertainment"
+  ]
+ },
+ "tmz.com": {
+  "/11": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ],
+  "/09": [
+   "arts & entertainment"
+  ]
+ },
+ "forexmagnates.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "motherjones.com": {
+  "__ANY": [
+   "society"
+  ],
+  "/11": [
+   "society"
+  ]
+ },
+ "49ers.com": {
+  "__ANY": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "clickondetroit.com": {
+  "/consumer": [
+   "personal finance"
+  ]
+ },
+ "moviefone.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "wccftech.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "tradeindia.com": {
+  "/indian-economy-news": [
+   "personal finance"
+  ],
+  "/oct": [
+   "personal finance"
+  ],
+  "/industry": [
+   "personal finance"
+  ]
+ },
+ "tech.co": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "digitaltrends.com": {
+  "/mobile": [
+   "technology & computing"
+  ],
+  "/cars": [
+   "automotive"
+  ]
+ },
+ "rlsbb.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "kitguru.net": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "motortrend.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "techhive.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "uproxx.com": {
+  "/tv": [
+   "arts & entertainment"
+  ]
+ },
+ "deccanchronicle.com": {
+  "/sports-cricket": [
+   "sports",
+   "sports/cricket"
+  ],
+  "/nation-politics": [
+   "society"
+  ]
+ },
+ "craveonline.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "rollingstone.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "nationalinterest.org": {
+  "__ANY": [
+   "politics",
+   "society"
+  ]
+ },
+ "popcrush.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "upi.com": {
+  "/energy-resources": [
+   "business"
+  ]
+ },
+ "weatherzone.com.au": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "siliconindia.com": {
+  "/technology": [
+   "technology & computing"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/finance": [
+   "personal finance"
+  ]
+ },
+ "imf.org": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "southernsavers.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "beliefnet.com": {
+  "/columnists": [
+   "society"
+  ],
+  "/11": [
+   "society"
+  ]
+ },
+ "livingrichwithcoupons.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "whatculture.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/film": [
+   "arts & entertainment"
+  ]
+ },
+ "lowyat.net": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "tes.co.uk": {
+  "__ANY": [
+   "education",
+   "society"
+  ]
+ },
+ "popmatters.com": {
+  "/review": [
+   "arts & entertainment"
+  ]
+ },
+ "philly.com": {
+  "/inquirer": [
+   "society"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "timesunion.com": {
+  "/sports": [
+   "sports"
+  ],
+  "/business": [
+   "business"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "arsenal.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "atpworldtour.com": {
+  "__ANY": [
+   "sports",
+   "sports/tennis"
+  ]
+ },
+ "siliconera.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "newrepublic.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "thedirty.com": {
+  "__ANY": [
+   "society",
+   "military"
+  ]
+ },
+ "ephotozine.com": {
+  "__ANY": [
+   "hobbies & interests/photography",
+   "hobbies & interests",
+   "arts & entertainment"
+  ]
+ },
+ "timeout.com": {
+  "/music": [
+   "arts & entertainment"
+  ],
+  "/restaurants": [
+   "food & drink",
+   "food & drink/dining out"
+  ]
+ },
+ "ngrguardiannews.com": {
+  "/business": [
+   "business"
+  ],
+  "/opinion": [
+   "society"
+  ],
+  "/policy-a-politics": [
+   "politics",
+   "society"
+  ],
+  "/columnist": [
+   "society"
+  ]
+ },
+ "complex.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/style": [
+   "fashion",
+   "arts & entertainment"
+  ]
+ },
+ "mnn.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "lifenews.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "google.com": {
+  "/theboygeniusreport": [
+   "technology & computing"
+  ]
+ },
+ "autoexpress.co.uk": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "grantland.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "intel.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "nintendolife.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "totalprosports.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "myjoyonline.com": {
+  "/business": [
+   "business"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/sports": [
+   "sports"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "macworld.co.uk": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "accenture.com": {
+  "/us-en": [
+   "business"
+  ],
+  "/pages": [
+   "business"
+  ]
+ },
+ "usc.edu": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "telegraphindia.com": {
+  "/business": [
+   "business"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "themoscowtimes.com": {
+  "/business": [
+   "business"
+  ]
+ },
+ "msnbc.com": {
+  "/politicsnation": [
+   "politics",
+   "society"
+  ],
+  "/rachel-maddow-show": [
+   "politics",
+   "society"
+  ]
+ },
+ "globalbankingandfinance.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "facebook.com": {
+  "__ANY": [
+   "society",
+   "society/social networking"
+  ]
+ },
+ "msu.edu": {
+  "anr.": [
+   "education",
+   "society"
+  ],
+  "msue. anr.": [
+   "education",
+   "society"
+  ]
+ },
+ "cardekho.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "uswitch.com": {
+  "/news": [
+   "technology & computing"
+  ]
+ },
+ "warwick.ac.uk": {
+  "__ANY": [
+   "education",
+   "society"
+  ]
+ },
+ "paultan.org": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "cartrade.com": {
+  "/car-bike-news": [
+   "automotive"
+  ]
+ },
+ "tigerdirect.com": {
+  "__ANY": [
+   "technology & computing"
+  ],
+  "/searchtools": [
+   "technology & computing"
+  ],
+  "/applications": [
+   "technology & computing"
+  ],
+  "/item-details.asp": [
+   "technology & computing"
+  ]
+ },
+ "allfacebook.com": {
+  "__ANY": [
+   "society",
+   "society/social networking"
+  ]
+ },
+ "premierleague.com": {
+  "__ANY": [
+   "sports",
+   "sports/soccer"
+  ]
+ },
+ "mmamania.com": {
+  "__ANY": [
+   "sports",
+   "sports/martial arts"
+  ]
+ },
+ "webmd.com": {
+  "__ANY": [
+   "health & fitness"
+  ]
+ },
+ "ino.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "yugatech.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "covers.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "arabnews.com": {
+  "/sports": [
+   "sports"
+  ]
+ },
+ "moneymorning.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "hollywoodreporter.com": {
+  "/review": [
+   "arts & entertainment"
+  ],
+  "/heat-vision": [
+   "arts & entertainment"
+  ]
+ },
+ "peoplestylewatch.com": {
+  "__ANY": [
+   "arts & entertainment/celebrities",
+   "arts & entertainment"
+  ]
+ },
+ "tampabay.com": {
+  "/business": [
+   "business"
+  ],
+  "/politics": [
+   "politics",
+   "society"
+  ]
+ },
+ "caranddriver.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "popsugar.com": {
+  "/entertainment": [
+   "arts & entertainment"
+  ],
+  "/tech": [
+   "technology & computing"
+  ]
+ },
+ "steelers.com": {
+  "__ANY": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "newsarama.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "filehippo.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "weightwatchers.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "i24news.tv": {
+  "/international": [
+   "society"
+  ]
+ },
+ "nature.com": {
+  "/aop": [
+   "science",
+   "health & fitness"
+  ]
+ },
+ "golfdigest.com": {
+  "__ANY": [
+   "sports",
+   "sports/golf"
+  ]
+ },
+ "vgchartz.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "geeksaresexy.net": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "usgs.gov": {
+  "__ANY": [
+   "science",
+   "travel",
+   "travel/air travel"
+  ]
+ },
+ "hiphopdx.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ],
+  "/news": [
+   "arts & entertainment"
+  ]
+ },
+ "starpulse.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "realmadrid.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "dunyanews.tv": {
+  "/sports": [
+   "sports"
+  ]
+ },
+ "gamesindustry.biz": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "technology & computing",
+   "arts & entertainment"
+  ]
+ },
+ "gq.com": {
+  "/style": [
+   "fashion"
+  ],
+  "/2014": [
+   "fashion"
+  ],
+  "/blogs": [
+   "fashion"
+  ]
+ },
+ "9news.com.au": {
+  "/health": [
+   "health & fitness"
+  ]
+ },
+ "ghanaweb.com": {
+  "/business": [
+   "business"
+  ]
+ },
+ "antiwar.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "brobible.com": {
+  "/entertainment": [
+   "arts & entertainment"
+  ]
+ },
+ "topix.com": {
+  "/tech": [
+   "technology & computing"
+  ]
+ },
+ "aljazeera.com": {
+  "/indepth": [
+   "society"
+  ],
+  "/sport": [
+   "sports"
+  ],
+  "/middleeast": [
+   "society"
+  ],
+  "/opinion": [
+   "society"
+  ]
+ },
+ "samaa.tv": {
+  "/sports": [
+   "sports"
+  ]
+ },
+ "xboxachievements.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "geek.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "eurogamer.net": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "rt.com": {
+  "/business": [
+   "business"
+  ]
+ },
+ "bleedingcool.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "topgear.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "pwc.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "sky.com": {
+  "skymovies.": [
+   "arts & entertainment"
+  ]
+ },
+ "pjmedia.com": {
+  "/tatler": [
+   "society"
+  ]
+ },
+ "vh1.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "golf.com": {
+  "__ANY": [
+   "sports",
+   "sports/golf"
+  ]
+ },
+ "collider.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "sciencedirect.com": {
+  "/pii": [
+   "health & fitness"
+  ],
+  "/science": [
+   "health & fitness"
+  ],
+  "/article": [
+   "health & fitness"
+  ]
+ },
+ "christianitytoday.com": {
+  "__ANY": [
+   "religion",
+   "society"
+  ]
+ },
+ "babypips.com": {
+  "__ANY": [
+   "personal finance",
+   "personal finance/stocks"
+  ]
+ },
+ "knowyourmobile.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "relevantmagazine.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "ecommercebytes.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "phoronix.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "atlantafalcons.com": {
+  "__ANY": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "europeantour.com": {
+  "__ANY": [
+   "sports",
+   "sports/golf"
+  ]
+ },
+ "afterdawn.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "pastemagazine.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "fivb.org": {
+  "__ANY": [
+   "sports/volleyball",
+   "sports"
+  ]
+ },
+ "dailytech.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "drive.com.au": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "investopedia.com": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "pcpro.co.uk": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "liliputing.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "rushlimbaugh.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "asu.edu": {
+  "__ANY": [
+   "education",
+   "society"
+  ],
+  "asunews.": [
+   "education",
+   "society"
+  ]
+ },
+ "dell.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "packers.com": {
+  "__ANY": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "thepostgame.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "israelvideonetwork.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "dslreports.com": {
+  "/shownews": [
+   "technology & computing"
+  ]
+ },
+ "psu.edu": {
+  "/sports": [
+   "sports"
+  ],
+  "/news": [
+   "society"
+  ]
+ },
+ "rogerebert.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "chargers.com": {
+  "__ANY": [
+   "sports",
+   "sports/american football"
+  ]
+ },
+ "carwale.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "villagevoice.com": {
+  "/film": [
+   "arts & entertainment"
+  ]
+ },
+ "clickz.com": {
+  "/column": [
+   "society",
+   "business"
+  ]
+ },
+ "bdnews24.com": {
+  "/politics": [
+   "politics",
+   "society"
+  ],
+  "/sport": [
+   "sports"
+  ]
+ },
+ "zimbio.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "incgamers.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "soundcloud.com": {
+  "__ANY": [
+   "society"
+  ],
+  "/afternoonshiftwbez": [
+   "society"
+  ]
+ },
+ "japantoday.com": {
+  "/sports": [
+   "sports"
+  ]
+ },
+ "macrumors.com": {
+  "/10": [
+   "technology & computing"
+  ]
+ },
+ "dualshockers.com": {
+  "/11": [
+   "technology & computing"
+  ]
+ },
+ "csmonitor.com": {
+  "/dc-decoder": [
+   "politics",
+   "society"
+  ]
+ },
+ "allrecipes.com": {
+  "__ANY": [
+   "food & drink/cooking",
+   "food & drink"
+  ]
+ },
+ "businessnewsdaily.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "tnooz.com": {
+  "__ANY": [
+   "travel"
+  ]
+ },
+ "softpedia.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "seroundtable.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "mayoclinic.org": {
+  "__ANY": [
+   "health & fitness"
+  ]
+ },
+ "3news.co.nz": {
+  "/sport": [
+   "sports"
+  ]
+ },
+ "motorbeam.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "baynews9.com": {
+  "/bhsn": [
+   "sports"
+  ]
+ },
+ "temptalia.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "slashfilm.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "nrl.com": {
+  "__ANY": [
+   "sports",
+   "sports/rugby"
+  ]
+ },
+ "milb.com": {
+  "__ANY": [
+   "sports",
+   "sports/baseball"
+  ]
+ },
+ "extremetech.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "gawker.com": {
+  "/lifehacker": [
+   "technology & computing"
+  ]
+ },
+ "freeforums.org": {
+  "joelstrumpet.": [
+   "society"
+  ]
+ },
+ "playstation.com": {
+  "__ANY": [
+   "arts & entertainment/video games",
+   "arts & entertainment"
+  ]
+ },
+ "theatlantic.com": {
+  "/politics": [
+   "politics",
+   "society"
+  ]
+ },
+ "popularmechanics.com": {
+  "/technology": [
+   "technology & computing"
+  ]
+ },
+ "angloinfo.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "carthrottle.com": {
+  "__ANY": [
+   "automotive"
+  ]
+ },
+ "tecnoblog.net": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "maclife.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "patheos.com": {
+  "/11": [
+   "society"
+  ]
+ },
+ "deadspin.com": {
+  "__ANY": [
+   "sports"
+  ]
+ },
+ "feedburner.com": {
+  "/~": [
+   "personal finance",
+   "society"
+  ],
+  "/~3": [
+   "hobbies & interests/writing",
+   "business/marketing",
+   "business",
+   "hobbies & interests"
+  ],
+  "/~r": [
+   "hobbies & interests/writing",
+   "business/marketing",
+   "business",
+   "hobbies & interests"
+  ],
+  "/get": [
+   "personal finance",
+   "society"
+  ],
+  "/blogger": [
+   "hobbies & interests/writing",
+   "business/marketing",
+   "business",
+   "hobbies & interests"
+  ],
+  "/commentary": [
+   "personal finance",
+   "society"
+  ]
+ },
+ "hockeysfuture.com": {
+  "__ANY": [
+   "sports",
+   "sports/hockey"
+  ]
+ },
+ "coindesk.com": {
+  "__ANY": [
+   "business"
+  ]
+ },
+ "crackberry.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "radaronline.com": {
+  "__ANY": [
+   "arts & entertainment"
+  ]
+ },
+ "parents.com": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "maximumpc.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "illinois.gov": {
+  "__ANY": [
+   "politics",
+   "society"
+  ]
+ },
+ "malaysiakini.com": {
+  "/letters": [
+   "society"
+  ]
+ },
+ "tribuneindia.com": {
+  "/biz.htm": [
+   "business"
+  ]
+ },
+ "rfa.org": {
+  "__ANY": [
+   "society"
+  ]
+ },
+ "backstage.com": {
+  "__ANY": [
+   "arts & entertainment/theatre",
+   "arts & entertainment"
+  ]
+ },
+ "tomshardware.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "vt.edu": {
+  "__ANY": [
+   "personal finance"
+  ]
+ },
+ "techreport.com": {
+  "__ANY": [
+   "technology & computing"
+  ]
+ },
+ "__ANY": {
+  "420_u": [
+   "drugs",
+   "drugs/cannabis"
+  ],
+  "fashion_u": [
+   "fashion"
+  ],
+  "fashions_u": [
+   "fashion"
+  ],
+  "bodyart_u": [
+   "fashion",
+   "fashion/body art"
+  ],
+  "clothing_u": [
+   "fashion",
+   "fashion/clothing"
+  ],
+  "jewelry_u": [
+   "fashion",
+   "fashion/jewelry"
+  ],
+  "jewellery_u": [
+   "fashion",
+   "fashion/jewelry"
+  ],
+  "beauty_u": [
+   "fashion",
+   "fashion/beauty"
+  ],
+  "cellphones_u": [
+   "cell phones"
+  ],
+  "cellphone_u": [
+   "cell phones"
+  ],
+  "family_u": [
+   "family & parenting"
+  ],
+  "families_u": [
+   "family & parenting"
+  ],
+  "pregnancy_u": [
+   "family & parenting",
+   "family & parenting/pregnancy"
+  ],
+  "pregnancies_u": [
+   "family & parenting",
+   "family & parenting/pregnancy"
+  ],
+  "parenting_u": [
+   "family & parenting",
+   "family & parenting/parenting"
+  ],
+  "parents_u": [
+   "family & parenting",
+   "family & parenting/parenting"
+  ],
+  "eat_u": [
+   "food & drink"
+  ],
+  "dine_u": [
+   "food & drink"
+  ],
+  "drinks_u": [
+   "food & drink"
+  ],
+  "drink_u": [
+   "food & drink"
+  ],
+  "food_u": [
+   "food & drink"
+  ],
+  "foods_u": [
+   "food & drink"
+  ],
+  "cuisine_u": [
+   "food & drink"
+  ],
+  "cuisines_u": [
+   "food & drink"
+  ],
+  "cheese_u": [
+   "food & drink",
+   "food & drink/cheese"
+  ],
+  "cheeses_u": [
+   "food & drink",
+   "food & drink/cheese"
+  ],
+  "baking_u": [
+   "food & drink",
+   "food & drink/baking"
+  ],
+  "pastry_u": [
+   "food & drink",
+   "food & drink/baking"
+  ],
+  "cocktail_u": [
+   "food & drink",
+   "food & drink/cocktails"
+  ],
+  "cocktails_u": [
+   "food & drink",
+   "food & drink/cocktails"
+  ],
+  "dining_u": [
+   "food & drink",
+   "food & drink/dining out"
+  ],
+  "restaurant_u": [
+   "food & drink",
+   "food & drink/dining out"
+  ],
+  "chef_u": [
+   "food & drink",
+   "food & drink/dining out"
+  ],
+  "tea_u": [
+   "food & drink",
+   "food & drink/tea"
+  ],
+  "vegetarian_u": [
+   "food & drink",
+   "food & drink/vegetarian"
+  ],
+  "cooking_u": [
+   "food & drink",
+   "food & drink/cooking"
+  ],
+  "cider_u": [
+   "food & drink",
+   "food & drink/cider"
+  ],
+  "barbecue_u": [
+   "food & drink",
+   "food & drink/barbecues & grilling"
+  ],
+  "barbecues_u": [
+   "food & drink",
+   "food & drink/barbecues & grilling"
+  ],
+  "bbq_u": [
+   "food & drink",
+   "food & drink/barbecues & grilling"
+  ],
+  "grilling_u": [
+   "food & drink",
+   "food & drink/barbecues & grilling"
+  ],
+  "vegan_u": [
+   "food & drink",
+   "food & drink/vegan"
+  ],
+  "healthy_u": [
+   "food & drink",
+   "food & drink/healthy eating"
+  ],
+  "beer_u": [
+   "food & drink",
+   "food & drink/beer"
+  ],
+  "beers_u": [
+   "food & drink",
+   "food & drink/beer"
+  ],
+  "ale_u": [
+   "food & drink",
+   "food & drink/beer"
+  ],
+  "stout_u": [
+   "food & drink",
+   "food & drink/beer"
+  ],
+  "coffee_u": [
+   "food & drink",
+   "food & drink/coffee"
+  ],
+  "coffees_u": [
+   "food & drink",
+   "food & drink/coffee"
+  ],
+  "pasta_u": [
+   "food & drink",
+   "food & drink/pasta"
+  ],
+  "fruit_u": [
+   "food & drink",
+   "food & drink/fruit"
+  ],
+  "wine_u": [
+   "food & drink",
+   "food & drink/wine"
+  ],
+  "vineyard_u": [
+   "food & drink",
+   "food & drink/wine"
+  ],
+  "society_u": [
+   "society"
+  ],
+  "sociology_u": [
+   "society",
+   "society/sociology"
+  ],
+  "gay_u": [
+   "society",
+   "society/gay life"
+  ],
+  "lesbian_u": [
+   "society",
+   "society/gay life"
+  ],
+  "lgbt_u": [
+   "society",
+   "society/gay life"
+  ],
+  "lgbtq_u": [
+   "society",
+   "society/gay life"
+  ],
+  "anthropology_u": [
+   "society",
+   "society/anthropology"
+  ],
+  "marriage_u": [
+   "society",
+   "society/marriage"
+  ],
+  "weddings_u": [
+   "society",
+   "society/marriage"
+  ],
+  "wedding_u": [
+   "society",
+   "society/marriage"
+  ],
+  "dating_u": [
+   "society",
+   "society/dating"
+  ],
+  "socialnetworking_u": [
+   "society",
+   "society/social networking"
+  ],
+  "socialnetworks_u": [
+   "society",
+   "society/social networking"
+  ],
+  "finance_u": [
+   "personal finance"
+  ],
+  "finances_u": [
+   "personal finance"
+  ],
+  "financial_u": [
+   "personal finance"
+  ],
+  "retirement_u": [
+   "personal finance",
+   "personal finance/retirement planning"
+  ],
+  "invest_u": [
+   "personal finance",
+   "personal finance/investing"
+  ],
+  "investing_u": [
+   "personal finance",
+   "personal finance/investing"
+  ],
+  "bank_u": [
+   "personal finance",
+   "personal finance/banking"
+  ],
+  "banking_u": [
+   "personal finance",
+   "personal finance/banking"
+  ],
+  "banks_u": [
+   "personal finance",
+   "personal finance/banking"
+  ],
+  "credit_u": [
+   "personal finance",
+   "personal finance/credit, debt & loans"
+  ],
+  "debt_u": [
+   "personal finance",
+   "personal finance/credit, debt & loans"
+  ],
+  "debts_u": [
+   "personal finance",
+   "personal finance/credit, debt & loans"
+  ],
+  "loan_u": [
+   "personal finance",
+   "personal finance/credit, debt & loans"
+  ],
+  "loans_u": [
+   "personal finance",
+   "personal finance/credit, debt & loans"
+  ],
+  "stocks_u": [
+   "personal finance",
+   "personal finance/stocks"
+  ],
+  "ipo_u": [
+   "personal finance",
+   "personal finance/stocks"
+  ],
+  "insure_u": [
+   "personal finance",
+   "personal finance/insurance"
+  ],
+  "insurance_u": [
+   "personal finance",
+   "personal finance/insurance"
+  ],
+  "taxes_u": [
+   "personal finance",
+   "personal finance/tax"
+  ],
+  "taxation_u": [
+   "personal finance",
+   "personal finance/tax"
+  ],
+  "tax_u": [
+   "personal finance",
+   "personal finance/tax"
+  ],
+  "accounting_u": [
+   "personal finance",
+   "personal finance/tax"
+  ],
+  "accountant_u": [
+   "personal finance",
+   "personal finance/tax"
+  ],
+  "appliances_u": [
+   "home",
+   "home/appliances"
+  ],
+  "landscaping_u": [
+   "home",
+   "home/garden"
+  ],
+  "gardening_u": [
+   "home",
+   "home/garden"
+  ],
+  "gardens_u": [
+   "home",
+   "home/garden"
+  ],
+  "garden_u": [
+   "home",
+   "home/garden"
+  ],
+  "interiors_u": [
+   "home",
+   "home/interior design"
+  ],
+  "politics_u": [
+   "politics"
+  ],
+  "political_u": [
+   "politics"
+  ],
+  "democrat_u": [
+   "politics"
+  ],
+  "republican_u": [
+   "politics"
+  ],
+  "conservative_u": [
+   "politics"
+  ],
+  "liberal_u": [
+   "politics"
+  ],
+  "democratic_u": [
+   "politics"
+  ],
+  "democrats_u": [
+   "politics"
+  ],
+  "republicans_u": [
+   "politics"
+  ],
+  "liberals_u": [
+   "politics"
+  ],
+  "conservatives_u": [
+   "politics"
+  ],
+  "parliament_u": [
+   "politics"
+  ],
+  "senate_u": [
+   "politics"
+  ],
+  "government_u": [
+   "politics",
+   "politics/government"
+  ],
+  "govt_u": [
+   "politics",
+   "politics/government"
+  ],
+  "education_u": [
+   "education"
+  ],
+  "school_u": [
+   "education"
+  ],
+  "grad_u": [
+   "education"
+  ],
+  "grads_u": [
+   "education"
+  ],
+  "graduate_u": [
+   "education"
+  ],
+  "graduates_u": [
+   "education"
+  ],
+  "schools_u": [
+   "education"
+  ],
+  "college_u": [
+   "education",
+   "education/university"
+  ],
+  "colleges_u": [
+   "education",
+   "education/university"
+  ],
+  "universities_u": [
+   "education",
+   "education/university"
+  ],
+  "university_u": [
+   "education",
+   "education/university"
+  ],
+  "languages_u": [
+   "education",
+   "education/languages"
+  ],
+  "linguistics_u": [
+   "education",
+   "education/languages"
+  ],
+  "academic_u": [
+   "education",
+   "education/academia"
+  ],
+  "academia_u": [
+   "education",
+   "education/academia"
+  ],
+  "homeschooling_u": [
+   "education",
+   "education/homeschooling"
+  ],
+  "agriculture_u": [
+   "agriculture"
+  ],
+  "drugs_u": [
+   "drugs"
+  ],
+  "marijuana_u": [
+   "drugs",
+   "drugs/cannabis"
+  ],
+  "cannabis_u": [
+   "drugs",
+   "drugs/cannabis"
+  ],
+  "hobby_u": [
+   "hobbies & interests"
+  ],
+  "hobbies_u": [
+   "hobbies & interests"
+  ],
+  "dance_u": [
+   "hobbies & interests",
+   "hobbies & interests/dance"
+  ],
+  "dancing_u": [
+   "hobbies & interests",
+   "hobbies & interests/dance"
+  ],
+  "woodworking_u": [
+   "hobbies & interests",
+   "hobbies & interests/woodworking"
+  ],
+  "birdwatching_u": [
+   "hobbies & interests",
+   "hobbies & interests/birdwatching"
+  ],
+  "boardgames_u": [
+   "hobbies & interests",
+   "hobbies & interests/board games"
+  ],
+  "chess_u": [
+   "hobbies & interests",
+   "hobbies & interests/board games"
+  ],
+  "coins_u": [
+   "hobbies & interests",
+   "hobbies & interests/coins"
+  ],
+  "coin_u": [
+   "hobbies & interests",
+   "hobbies & interests/coins"
+  ],
+  "bullion_u": [
+   "hobbies & interests",
+   "hobbies & interests/coins"
+  ],
+  "numismatics_u": [
+   "hobbies & interests",
+   "hobbies & interests/coins"
+  ],
+  "numismatic_u": [
+   "hobbies & interests",
+   "hobbies & interests/coins"
+  ],
+  "numismatist_u": [
+   "hobbies & interests",
+   "hobbies & interests/coins"
+  ],
+  "crafts_u": [
+   "hobbies & interests",
+   "hobbies & interests/arts & crafts"
+  ],
+  "antique_u": [
+   "hobbies & interests",
+   "hobbies & interests/antiques"
+  ],
+  "antiques_u": [
+   "hobbies & interests",
+   "hobbies & interests/antiques"
+  ],
+  "writing_u": [
+   "hobbies & interests",
+   "hobbies & interests/writing"
+  ],
+  "stamps_u": [
+   "hobbies & interests",
+   "hobbies & interests/stamps"
+  ],
+  "gambling_u": [
+   "hobbies & interests",
+   "hobbies & interests/gambling"
+  ],
+  "poker_u": [
+   "hobbies & interests",
+   "hobbies & interests/gambling"
+  ],
+  "blackjack_u": [
+   "hobbies & interests",
+   "hobbies & interests/gambling"
+  ],
+  "casino_u": [
+   "hobbies & interests",
+   "hobbies & interests/gambling"
+  ],
+  "betting_u": [
+   "hobbies & interests",
+   "hobbies & interests/gambling"
+  ],
+  "scifi_u": [
+   "hobbies & interests",
+   "hobbies & interests/sci-fi"
+  ],
+  "photography_u": [
+   "hobbies & interests",
+   "hobbies & interests/photography"
+  ],
+  "dslr_u": [
+   "hobbies & interests",
+   "hobbies & interests/photography"
+  ],
+  "slr_u": [
+   "hobbies & interests",
+   "hobbies & interests/photography"
+  ],
+  "canon_u": [
+   "hobbies & interests",
+   "hobbies & interests/photography"
+  ],
+  "nikon_u": [
+   "hobbies & interests",
+   "hobbies & interests/photography"
+  ],
+  "smoking_u": [
+   "hobbies & interests",
+   "hobbies & interests/smoking"
+  ],
+  "cigar_u": [
+   "hobbies & interests",
+   "hobbies & interests/smoking"
+  ],
+  "cigars_u": [
+   "hobbies & interests",
+   "hobbies & interests/smoking"
+  ],
+  "tobacco_u": [
+   "hobbies & interests",
+   "hobbies & interests/smoking"
+  ],
+  "pottery_u": [
+   "hobbies & interests",
+   "hobbies & interests/pottery"
+  ],
+  "scouting_u": [
+   "hobbies & interests",
+   "hobbies & interests/scouting"
+  ],
+  "scouts_u": [
+   "hobbies & interests",
+   "hobbies & interests/scouting"
+  ],
+  "genealogy_u": [
+   "hobbies & interests",
+   "hobbies & interests/genealogy"
+  ],
+  "familytree_u": [
+   "hobbies & interests",
+   "hobbies & interests/genealogy"
+  ],
+  "ancestry_u": [
+   "hobbies & interests",
+   "hobbies & interests/genealogy"
+  ],
+  "horseracing_u": [
+   "hobbies & interests",
+   "hobbies & interests/horse racing"
+  ],
+  "needlework_u": [
+   "hobbies & interests",
+   "hobbies & interests/needlework"
+  ],
+  "metalworking_u": [
+   "hobbies & interests",
+   "hobbies & interests/metalworking"
+  ],
+  "travel_u": [
+   "travel"
+  ],
+  "vacations_u": [
+   "travel"
+  ],
+  "vacation_u": [
+   "travel"
+  ],
+  "trip_u": [
+   "travel"
+  ],
+  "cruise_u": [
+   "travel",
+   "travel/cruise vacations"
+  ],
+  "cruises_u": [
+   "travel",
+   "travel/cruise vacations"
+  ],
+  "adventure_u": [
+   "travel",
+   "travel/adventure travel"
+  ],
+  "backpacking_u": [
+   "travel",
+   "travel/budget travel"
+  ],
+  "hotel_u": [
+   "travel",
+   "travel/hotels"
+  ],
+  "hotels_u": [
+   "travel",
+   "travel/hotels"
+  ],
+  "airline_u": [
+   "travel",
+   "travel/air travel"
+  ],
+  "flight_u": [
+   "travel",
+   "travel/air travel"
+  ],
+  "flights_u": [
+   "travel",
+   "travel/air travel"
+  ],
+  "airlines_u": [
+   "travel",
+   "travel/air travel"
+  ],
+  "airways_u": [
+   "travel",
+   "travel/air travel"
+  ],
+  "trains_u": [
+   "travel",
+   "travel/trains"
+  ],
+  "rail_u": [
+   "travel",
+   "travel/trains"
+  ],
+  "railway_u": [
+   "travel",
+   "travel/trains"
+  ],
+  "railways_u": [
+   "travel",
+   "travel/trains"
+  ],
+  "sport_u": [
+   "sports"
+  ],
+  "sports_u": [
+   "sports"
+  ],
+  "athlete_u": [
+   "sports"
+  ],
+  "football_u": [
+   "sports"
+  ],
+  "nfl_u": [
+   "sports",
+   "sports/american football"
+  ],
+  "skate_u": [
+   "sports",
+   "sports/skating"
+  ],
+  "skating_u": [
+   "sports",
+   "sports/skating"
+  ],
+  "skater_u": [
+   "sports",
+   "sports/skating"
+  ],
+  "walking_u": [
+   "sports",
+   "sports/walking"
+  ],
+  "tennis_u": [
+   "sports",
+   "sports/tennis"
+  ],
+  "golf_u": [
+   "sports",
+   "sports/golf"
+  ],
+  "golfer_u": [
+   "sports",
+   "sports/golf"
+  ],
+  "skateboards_u": [
+   "sports",
+   "sports/skateboarding"
+  ],
+  "skateboarding_u": [
+   "sports",
+   "sports/skateboarding"
+  ],
+  "skateboarder_u": [
+   "sports",
+   "sports/skateboarding"
+  ],
+  "wrestling_u": [
+   "sports",
+   "sports/wrestling"
+  ],
+  "wrestler_u": [
+   "sports",
+   "sports/wrestling"
+  ],
+  "gymnastics_u": [
+   "sports",
+   "sports/gymnastics"
+  ],
+  "gymnast_u": [
+   "sports",
+   "sports/gymnastics"
+  ],
+  "athletics_u": [
+   "sports",
+   "sports/athletics"
+  ],
+  "volleyball_u": [
+   "sports",
+   "sports/volleyball"
+  ],
+  "ski_u": [
+   "sports",
+   "sports/skiing"
+  ],
+  "skiing_u": [
+   "sports",
+   "sports/skiing"
+  ],
+  "skiier_u": [
+   "sports",
+   "sports/skiing"
+  ],
+  "bodybuilding_u": [
+   "sports",
+   "sports/bodybuilding"
+  ],
+  "basketball_u": [
+   "sports",
+   "sports/basketball"
+  ],
+  "nba_u": [
+   "sports",
+   "sports/basketball"
+  ],
+  "yoga_u": [
+   "sports",
+   "sports/yoga"
+  ],
+  "fencing_u": [
+   "sports",
+   "sports/fencing"
+  ],
+  "boxing_u": [
+   "sports",
+   "sports/boxing"
+  ],
+  "olympic_u": [
+   "sports",
+   "sports/olympics"
+  ],
+  "olympics_u": [
+   "sports",
+   "sports/olympics"
+  ],
+  "hockey_u": [
+   "sports",
+   "sports/hockey"
+  ],
+  "nhl_u": [
+   "sports",
+   "sports/hockey"
+  ],
+  "soccer_u": [
+   "sports",
+   "sports/soccer"
+  ],
+  "afc_u": [
+   "sports",
+   "sports/soccer"
+  ],
+  "martial_u": [
+   "sports",
+   "sports/martial arts"
+  ],
+  "karate_u": [
+   "sports",
+   "sports/martial arts"
+  ],
+  "judo_u": [
+   "sports",
+   "sports/martial arts"
+  ],
+  "taekwondo_u": [
+   "sports",
+   "sports/martial arts"
+  ],
+  "muay_u": [
+   "sports",
+   "sports/martial arts"
+  ],
+  "kung_u": [
+   "sports",
+   "sports/martial arts"
+  ],
+  "krav_u": [
+   "sports",
+   "sports/martial arts"
+  ],
+  "jeet_u": [
+   "sports",
+   "sports/martial arts"
+  ],
+  "cricket_u": [
+   "sports",
+   "sports/cricket"
+  ],
+  "cheerleading_u": [
+   "sports",
+   "sports/cheerleading"
+  ],
+  "jogging_u": [
+   "sports",
+   "sports/jogging"
+  ],
+  "marathon_u": [
+   "sports",
+   "sports/jogging"
+  ],
+  "surfing_u": [
+   "sports",
+   "sports/surfing"
+  ],
+  "surfer_u": [
+   "sports",
+   "sports/surfing"
+  ],
+  "baseball_u": [
+   "sports",
+   "sports/baseball"
+  ],
+  "mlb_u": [
+   "sports",
+   "sports/baseball"
+  ],
+  "darts_u": [
+   "sports",
+   "sports/darts"
+  ],
+  "cycle_u": [
+   "sports",
+   "sports/cycling"
+  ],
+  "cycling_u": [
+   "sports",
+   "sports/cycling"
+  ],
+  "cyclist_u": [
+   "sports",
+   "sports/cycling"
+  ],
+  "archery_u": [
+   "sports",
+   "sports/archery"
+  ],
+  "climbing_u": [
+   "sports",
+   "sports/climbing"
+  ],
+  "bouldering_u": [
+   "sports",
+   "sports/climbing"
+  ],
+  "rugby_u": [
+   "sports",
+   "sports/rugby"
+  ],
+  "sailing_u": [
+   "sports",
+   "sports/sailing"
+  ],
+  "racing_u": [
+   "sports",
+   "sports/racing"
+  ],
+  "motorsport_u": [
+   "sports",
+   "sports/racing"
+  ],
+  "nascar_u": [
+   "sports",
+   "sports/racing"
+  ],
+  "formula1_u": [
+   "sports",
+   "sports/racing"
+  ],
+  "formulaone_u": [
+   "sports",
+   "sports/racing"
+  ],
+  "rowing_u": [
+   "sports",
+   "sports/rowing"
+  ],
+  "sculls_u": [
+   "sports",
+   "sports/rowing"
+  ],
+  "sculling_u": [
+   "sports",
+   "sports/rowing"
+  ],
+  "kayaking_u": [
+   "sports",
+   "sports/kayaking"
+  ],
+  "canoeing_u": [
+   "sports",
+   "sports/kayaking"
+  ],
+  "bowling_u": [
+   "sports",
+   "sports/bowling"
+  ],
+  "snowboarding_u": [
+   "sports",
+   "sports/snowboarding"
+  ],
+  "snowboard_u": [
+   "sports",
+   "sports/snowboarding"
+  ],
+  "scuba_u": [
+   "sports",
+   "sports/diving"
+  ],
+  "hunting_u": [
+   "sports",
+   "sports/hunting"
+  ],
+  "fishing_u": [
+   "sports",
+   "sports/fishing"
+  ],
+  "swimming_u": [
+   "sports",
+   "sports/swimming"
+  ],
+  "swimmer_u": [
+   "sports",
+   "sports/swimming"
+  ],
+  "religion_u": [
+   "religion"
+  ],
+  "religions_u": [
+   "religion"
+  ],
+  "religious_u": [
+   "religion"
+  ],
+  "jewish_u": [
+   "religion",
+   "religion/judaism"
+  ],
+  "judaism_u": [
+   "religion",
+   "religion/judaism"
+  ],
+  "wiccan_u": [
+   "religion",
+   "religion/wicca"
+  ],
+  "wicca_u": [
+   "religion",
+   "religion/wicca"
+  ],
+  "pagan_u": [
+   "religion",
+   "religion/wicca"
+  ],
+  "christian_u": [
+   "religion",
+   "religion/christianity"
+  ],
+  "church_u": [
+   "religion",
+   "religion/christianity"
+  ],
+  "bible_u": [
+   "religion",
+   "religion/christianity"
+  ],
+  "christianity_u": [
+   "religion",
+   "religion/christianity"
+  ],
+  "buddhism_u": [
+   "religion",
+   "religion/buddhism"
+  ],
+  "shinto_u": [
+   "religion",
+   "religion/shinto"
+  ],
+  "hindu_u": [
+   "religion",
+   "religion/hinduism"
+  ],
+  "hinduism_u": [
+   "religion",
+   "religion/hinduism"
+  ],
+  "muslim_u": [
+   "religion",
+   "religion/islam"
+  ],
+  "islam_u": [
+   "religion",
+   "religion/islam"
+  ],
+  "pet_u": [
+   "pets"
+  ],
+  "pets_u": [
+   "pets"
+  ],
+  "aquarium_u": [
+   "pets",
+   "pets/aquariums"
+  ],
+  "aquariums_u": [
+   "pets",
+   "pets/aquariums"
+  ],
+  "cats_u": [
+   "pets",
+   "pets/cats"
+  ],
+  "kitten_u": [
+   "pets",
+   "pets/cats"
+  ],
+  "kittens_u": [
+   "pets",
+   "pets/cats"
+  ],
+  "reptile_u": [
+   "pets",
+   "pets/reptiles"
+  ],
+  "reptiles_u": [
+   "pets",
+   "pets/reptiles"
+  ],
+  "dog_u": [
+   "pets",
+   "pets/dogs"
+  ],
+  "dogs_u": [
+   "pets",
+   "pets/dogs"
+  ],
+  "puppy_u": [
+   "pets",
+   "pets/dogs"
+  ],
+  "puppies_u": [
+   "pets",
+   "pets/dogs"
+  ],
+  "bird_u": [
+   "pets",
+   "pets/birds"
+  ],
+  "birds_u": [
+   "pets",
+   "pets/birds"
+  ],
+  "tech_u": [
+   "technology & computing"
+  ],
+  "technology_u": [
+   "technology & computing"
+  ],
+  "hacking_u": [
+   "technology & computing"
+  ],
+  "hacker_u": [
+   "technology & computing"
+  ],
+  "hack_u": [
+   "technology & computing"
+  ],
+  "computer_u": [
+   "technology & computing"
+  ],
+  "computers_u": [
+   "technology & computing"
+  ],
+  "computing_u": [
+   "technology & computing"
+  ],
+  "unix_u": [
+   "technology & computing",
+   "technology & computing/unix"
+  ],
+  "linux_u": [
+   "technology & computing",
+   "technology & computing/unix"
+  ],
+  "freeware_u": [
+   "technology & computing",
+   "technology & computing/freeware"
+  ],
+  "graphics_u": [
+   "technology & computing",
+   "technology & computing/graphics"
+  ],
+  "3d_u": [
+   "technology & computing",
+   "technology & computing/graphics"
+  ],
+  "software_u": [
+   "technology & computing",
+   "technology & computing/software"
+  ],
+  "app_u": [
+   "technology & computing",
+   "technology & computing/software"
+  ],
+  "hardware_u": [
+   "technology & computing",
+   "technology & computing/hardware"
+  ],
+  "gaming_u": [
+   "arts & entertainment",
+   "arts & entertainment/video games"
+  ],
+  "windows_u": [
+   "technology & computing",
+   "technology & computing/windows"
+  ],
+  "programming_u": [
+   "technology & computing",
+   "technology & computing/programming"
+  ],
+  "programmer_u": [
+   "technology & computing",
+   "technology & computing/programming"
+  ],
+  "javascript_u": [
+   "technology & computing",
+   "technology & computing/programming"
+  ],
+  "perl_u": [
+   "technology & computing",
+   "technology & computing/programming"
+  ],
+  "api_u": [
+   "technology & computing",
+   "technology & computing/programming"
+  ],
+  "database_u": [
+   "technology & computing",
+   "technology & computing/database"
+  ],
+  "databases_u": [
+   "technology & computing",
+   "technology & computing/database"
+  ],
+  "apple_u": [
+   "technology & computing",
+   "technology & computing/apple"
+  ],
+  "mac_u": [
+   "technology & computing",
+   "technology & computing/apple"
+  ],
+  "career_u": [
+   "careers"
+  ],
+  "careers_u": [
+   "careers"
+  ],
+  "jobs_u": [
+   "careers"
+  ],
+  "job_u": [
+   "careers"
+  ],
+  "business_u": [
+   "business"
+  ],
+  "businesses_u": [
+   "business"
+  ],
+  "profit_u": [
+   "business"
+  ],
+  "logistic_u": [
+   "business",
+   "business/logistics"
+  ],
+  "logistics_u": [
+   "business",
+   "business/logistics"
+  ],
+  "retail_u": [
+   "business",
+   "business/commerce"
+  ],
+  "commerce_u": [
+   "business",
+   "business/commerce"
+  ],
+  "mining_u": [
+   "business",
+   "business/mining"
+  ],
+  "nonprofit_u": [
+   "business",
+   "business/non proft"
+  ],
+  "publishing_u": [
+   "business",
+   "business/publishing"
+  ],
+  "biotech_u": [
+   "business",
+   "business/biotech"
+  ],
+  "marketing_u": [
+   "business",
+   "business/marketing"
+  ],
+  "energy_u": [
+   "business",
+   "business/energy"
+  ],
+  "humanresources_u": [
+   "business",
+   "business/human resources"
+  ],
+  "metals_u": [
+   "business",
+   "business/metals"
+  ],
+  "forestry_u": [
+   "business",
+   "business/forestry"
+  ],
+  "construction_u": [
+   "business",
+   "business/construction"
+  ],
+  "advertising_u": [
+   "business",
+   "business/advertising"
+  ],
+  "adtech_u": [
+   "business",
+   "business/advertising"
+  ],
+  "shipping_u": [
+   "business",
+   "business/shipping"
+  ],
+  "manufacture_u": [
+   "business",
+   "business/manufacturing"
+  ],
+  "manufacturing_u": [
+   "business",
+   "business/manufacturing"
+  ],
+  "ecommerce_u": [
+   "business",
+   "business/ecommerce"
+  ],
+  "biomedical_u": [
+   "business",
+   "business/biomedical"
+  ],
+  "pharma_u": [
+   "business",
+   "business/biomedical"
+  ],
+  "pharmaceutical_u": [
+   "business",
+   "business/biomedical"
+  ],
+  "pharmaceuticals_u": [
+   "business",
+   "business/biomedical"
+  ],
+  "autos_u": [
+   "automotive"
+  ],
+  "car_u": [
+   "automotive"
+  ],
+  "automotive_u": [
+   "automotive"
+  ],
+  "cars_u": [
+   "automotive"
+  ],
+  "vehicles_u": [
+   "automotive"
+  ],
+  "vehicle_u": [
+   "automotive"
+  ],
+  "bmw_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "benz_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "mercedes_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "chevvy_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "chevy_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "chevrolet_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "lexus_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "bentley_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "mazda_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "honda_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "audi_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "buick_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "cadillac_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "chrysler_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "ferrari_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "hyundai_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "jeep_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "kia_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "maserati_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "nissan_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "renault_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "opel_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "peugeot_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "porsche_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "subaru_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "skoda_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "suzuki_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "tesla_u": [
+   "automotive",
+   "automotive/car brands"
+  ],
+  "pickup_u": [
+   "automotive",
+   "automotive/pickup trucks"
+  ],
+  "pickups_u": [
+   "automotive",
+   "automotive/pickup trucks"
+  ],
+  "truck_u": [
+   "automotive",
+   "automotive/pickup trucks"
+  ],
+  "trucks_u": [
+   "automotive",
+   "automotive/pickup trucks"
+  ],
+  "motorcycle_u": [
+   "automotive",
+   "automotive/motorcycles"
+  ],
+  "motorcycling_u": [
+   "automotive",
+   "automotive/motorcycles"
+  ],
+  "motorcycles_u": [
+   "automotive",
+   "automotive/motorcycles"
+  ],
+  "convertible_u": [
+   "automotive",
+   "automotive/convertibles"
+  ],
+  "convertibles_u": [
+   "automotive",
+   "automotive/convertibles"
+  ],
+  "minivan_u": [
+   "automotive",
+   "automotive/minivans"
+  ],
+  "minivans_u": [
+   "automotive",
+   "automotive/minivans"
+  ],
+  "sedan_u": [
+   "automotive",
+   "automotive/sedans"
+  ],
+  "sedans_u": [
+   "automotive",
+   "automotive/sedans"
+  ],
+  "wagon_u": [
+   "automotive",
+   "automotive/wagons"
+  ],
+  "wagons_u": [
+   "automotive",
+   "automotive/wagons"
+  ],
+  "hatchback_u": [
+   "automotive",
+   "automotive/hatchbacks"
+  ],
+  "hatchbacks_u": [
+   "automotive",
+   "automotive/hatchbacks"
+  ],
+  "coupe_u": [
+   "automotive",
+   "automotive/coupe"
+  ],
+  "philosophy_u": [
+   "philosophy"
+  ],
+  "arts_u": [
+   "arts & entertainment"
+  ],
+  "art_u": [
+   "arts & entertainment"
+  ],
+  "entertainment_u": [
+   "arts & entertainment"
+  ],
+  "celebrity_u": [
+   "arts & entertainment",
+   "arts & entertainment/celebrities"
+  ],
+  "celebrities_u": [
+   "arts & entertainment",
+   "arts & entertainment/celebrities"
+  ],
+  "tv_u": [
+   "arts & entertainment",
+   "arts & entertainment/television"
+  ],
+  "television_u": [
+   "arts & entertainment",
+   "arts & entertainment/television"
+  ],
+  "books_u": [
+   "arts & entertainment",
+   "arts & entertainment/literature"
+  ],
+  "literature_u": [
+   "arts & entertainment",
+   "arts & entertainment/literature"
+  ],
+  "author_u": [
+   "arts & entertainment",
+   "arts & entertainment/literature"
+  ],
+  "humor_u": [
+   "arts & entertainment",
+   "arts & entertainment/humor"
+  ],
+  "comedian_u": [
+   "arts & entertainment",
+   "arts & entertainment/humor"
+  ],
+  "comedy_u": [
+   "arts & entertainment",
+   "arts & entertainment/humor"
+  ],
+  "theatres_u": [
+   "arts & entertainment",
+   "arts & entertainment/theatre"
+  ],
+  "theaters_u": [
+   "arts & entertainment",
+   "arts & entertainment/theatre"
+  ],
+  "theater_u": [
+   "arts & entertainment",
+   "arts & entertainment/theatre"
+  ],
+  "theatre_u": [
+   "arts & entertainment",
+   "arts & entertainment/theatre"
+  ],
+  "opera_u": [
+   "arts & entertainment",
+   "arts & entertainment/opera"
+  ],
+  "operas_u": [
+   "arts & entertainment",
+   "arts & entertainment/opera"
+  ],
+  "poetry_u": [
+   "arts & entertainment",
+   "arts & entertainment/poetry"
+  ],
+  "poem_u": [
+   "arts & entertainment",
+   "arts & entertainment/poetry"
+  ],
+  "poet_u": [
+   "arts & entertainment",
+   "arts & entertainment/poetry"
+  ],
+  "movies_u": [
+   "arts & entertainment",
+   "arts & entertainment/film"
+  ],
+  "movie_u": [
+   "arts & entertainment",
+   "arts & entertainment/film"
+  ],
+  "film_u": [
+   "arts & entertainment",
+   "arts & entertainment/film"
+  ],
+  "films_u": [
+   "arts & entertainment",
+   "arts & entertainment/film"
+  ],
+  "actor_u": [
+   "arts & entertainment",
+   "arts & entertainment/film"
+  ],
+  "actress_u": [
+   "arts & entertainment",
+   "arts & entertainment/film"
+  ],
+  "dvds_u": [
+   "arts & entertainment",
+   "arts & entertainment/film"
+  ],
+  "dvd_u": [
+   "arts & entertainment",
+   "arts & entertainment/film"
+  ],
+  "bluray_u": [
+   "arts & entertainment",
+   "arts & entertainment/film"
+  ],
+  "blueray_u": [
+   "arts & entertainment",
+   "arts & entertainment/film"
+  ],
+  "bollywood_u": [
+   "arts & entertainment",
+   "arts & entertainment/film"
+  ],
+  "anime_u": [
+   "arts & entertainment",
+   "arts & entertainment/anime"
+  ],
+  "manga_u": [
+   "arts & entertainment",
+   "arts & entertainment/comics"
+  ],
+  "comics_u": [
+   "arts & entertainment",
+   "arts & entertainment/comics"
+  ],
+  "animation_u": [
+   "arts & entertainment",
+   "arts & entertainment/animation"
+  ],
+  "design_u": [
+   "arts & entertainment",
+   "arts & entertainment/design"
+  ],
+  "music_u": [
+   "arts & entertainment",
+   "arts & entertainment/music"
+  ],
+  "song_u": [
+   "arts & entertainment",
+   "arts & entertainment/music"
+  ],
+  "singer_u": [
+   "arts & entertainment",
+   "arts & entertainment/music"
+  ],
+  "radio_u": [
+   "arts & entertainment",
+   "arts & entertainment/radio"
+  ],
+  "pornography_u": [
+   "adult"
+  ],
+  "porn_u": [
+   "adult"
+  ],
+  "folklore_u": [
+   "folklore"
+  ],
+  "paranormal_u": [
+   "folklore",
+   "folklore/paranormal phenomena"
+  ],
+  "ufo_u": [
+   "folklore",
+   "folklore/paranormal phenomena"
+  ],
+  "astrology_u": [
+   "folklore",
+   "folklore/astrology"
+  ],
+  "weather_u": [
+   "weather"
+  ],
+  "forecast_u": [
+   "weather"
+  ],
+  "justice_u": [
+   "law"
+  ],
+  "law_u": [
+   "law"
+  ],
+  "laws_u": [
+   "law"
+  ],
+  "arrested_u": [
+   "law",
+   "law/crime"
+  ],
+  "charged_u": [
+   "law",
+   "law/crime"
+  ],
+  "crimes_u": [
+   "law",
+   "law/crime"
+  ],
+  "sentenced_u": [
+   "law",
+   "law/crime"
+  ],
+  "crime_u": [
+   "law",
+   "law/crime"
+  ],
+  "immigrant_u": [
+   "law",
+   "law/immigration"
+  ],
+  "immigrants_u": [
+   "law",
+   "law/immigration"
+  ],
+  "immigration_u": [
+   "law",
+   "law/immigration"
+  ],
+  "science_u": [
+   "science"
+  ],
+  "sciences_u": [
+   "science"
+  ],
+  "scientific_u": [
+   "science"
+  ],
+  "scientist_u": [
+   "science"
+  ],
+  "mechanical_u": [
+   "science",
+   "science/mechanics"
+  ],
+  "mechanics_u": [
+   "science",
+   "science/mechanics"
+  ],
+  "botany_u": [
+   "science",
+   "science/botany"
+  ],
+  "biological_u": [
+   "science",
+   "science/biology"
+  ],
+  "biology_u": [
+   "science",
+   "science/biology"
+  ],
+  "chemistry_u": [
+   "science",
+   "science/chemistry"
+  ],
+  "chemical_u": [
+   "science",
+   "science/chemistry"
+  ],
+  "geology_u": [
+   "science",
+   "science/geology"
+  ],
+  "virology_u": [
+   "science",
+   "science/virology"
+  ],
+  "pathogen_u": [
+   "science",
+   "science/virology"
+  ],
+  "palaeontology_u": [
+   "science",
+   "science/palaeontology"
+  ],
+  "mathematics_u": [
+   "science",
+   "science/mathematics"
+  ],
+  "math_u": [
+   "science",
+   "science/mathematics"
+  ],
+  "statistics_u": [
+   "science",
+   "science/mathematics"
+  ],
+  "astronomy_u": [
+   "science",
+   "science/astronomy"
+  ],
+  "nasa_u": [
+   "science",
+   "science/astronomy"
+  ],
+  "astronaut_u": [
+   "science",
+   "science/astronomy"
+  ],
+  "planet_u": [
+   "science",
+   "science/astronomy"
+  ],
+  "astronomer_u": [
+   "science",
+   "science/astronomy"
+  ],
+  "astronomers_u": [
+   "science",
+   "science/astronomy"
+  ],
+  "astronauts_u": [
+   "science",
+   "science/astronomy"
+  ],
+  "robotics_u": [
+   "science",
+   "science/physics"
+  ],
+  "physics_u": [
+   "science",
+   "science/physics"
+  ],
+  "geography_u": [
+   "science",
+   "science/geography"
+  ],
+  "economic_u": [
+   "science",
+   "science/economics"
+  ],
+  "economics_u": [
+   "science",
+   "science/economics"
+  ],
+  "health_u": [
+   "health & fitness"
+  ],
+  "fitness_u": [
+   "health & fitness"
+  ],
+  "surgery_u": [
+   "health & fitness"
+  ],
+  "surgeon_u": [
+   "health & fitness"
+  ],
+  "hospital_u": [
+   "health & fitness"
+  ],
+  "medicine_u": [
+   "health & fitness"
+  ],
+  "prescription_u": [
+   "health & fitness"
+  ],
+  "medical_u": [
+   "health & fitness"
+  ],
+  "prescriptions_u": [
+   "health & fitness"
+  ],
+  "symptom_u": [
+   "health & fitness"
+  ],
+  "symptoms_u": [
+   "health & fitness"
+  ],
+  "diseases_u": [
+   "health & fitness"
+  ],
+  "disease_u": [
+   "health & fitness"
+  ],
+  "deafness_u": [
+   "health & fitness",
+   "health & fitness/deafness"
+  ],
+  "deaf_u": [
+   "health & fitness",
+   "health & fitness/deafness"
+  ],
+  "bowel_u": [
+   "health & fitness",
+   "health & fitness/bowel incontinence"
+  ],
+  "bowels_u": [
+   "health & fitness",
+   "health & fitness/bowel incontinence"
+  ],
+  "incontinence_u": [
+   "health & fitness",
+   "health & fitness/bowel incontinence"
+  ],
+  "epilepsy_u": [
+   "health & fitness",
+   "health & fitness/epilepsy"
+  ],
+  "epileptic_u": [
+   "health & fitness",
+   "health & fitness/epilepsy"
+  ],
+  "dental_u": [
+   "health & fitness",
+   "health & fitness/dental care"
+  ],
+  "dentist_u": [
+   "health & fitness",
+   "health & fitness/dental care"
+  ],
+  "dentistry_u": [
+   "health & fitness",
+   "health & fitness/dental care"
+  ],
+  "diet_u": [
+   "health & fitness",
+   "health & fitness/dieting"
+  ],
+  "dieting_u": [
+   "health & fitness",
+   "health & fitness/dieting"
+  ],
+  "homeopathy_u": [
+   "health & fitness",
+   "health & fitness/alternative medicine"
+  ],
+  "derma_u": [
+   "health & fitness",
+   "health & fitness/dermatology"
+  ],
+  "dermatology_u": [
+   "health & fitness",
+   "health & fitness/dermatology"
+  ],
+  "autism_u": [
+   "health & fitness",
+   "health & fitness/autism"
+  ],
+  "psychology_u": [
+   "health & fitness",
+   "health & fitness/psychology & psychiatry"
+  ],
+  "psychological_u": [
+   "health & fitness",
+   "health & fitness/psychology & psychiatry"
+  ],
+  "psychiatry_u": [
+   "health & fitness",
+   "health & fitness/psychology & psychiatry"
+  ],
+  "psychiatrist_u": [
+   "health & fitness",
+   "health & fitness/psychology & psychiatry"
+  ],
+  "asthma_u": [
+   "health & fitness",
+   "health & fitness/asthma"
+  ],
+  "vitamin_u": [
+   "health & fitness",
+   "health & fitness/vitamins"
+  ],
+  "vitamins_u": [
+   "health & fitness",
+   "health & fitness/vitamins"
+  ],
+  "influenza_u": [
+   "health & fitness",
+   "health & fitness/cold & flu"
+  ],
+  "flu_u": [
+   "health & fitness",
+   "health & fitness/cold & flu"
+  ],
+  "cancer_u": [
+   "health & fitness",
+   "health & fitness/cancer"
+  ],
+  "tumor_u": [
+   "health & fitness",
+   "health & fitness/cancer"
+  ],
+  "cancers_u": [
+   "health & fitness",
+   "health & fitness/cancer"
+  ],
+  "tumors_u": [
+   "health & fitness",
+   "health & fitness/cancer"
+  ],
+  "orthopedic_u": [
+   "health & fitness",
+   "health & fitness/orthopedic"
+  ],
+  "orthopedics_u": [
+   "health & fitness",
+   "health & fitness/orthopedic"
+  ],
+  "orthopaedic_u": [
+   "health & fitness",
+   "health & fitness/orthopedic"
+  ],
+  "orthopaedics_u": [
+   "health & fitness",
+   "health & fitness/orthopedic"
+  ],
+  "exercise_u": [
+   "health & fitness",
+   "health & fitness/exercise"
+  ],
+  "nutrition_u": [
+   "health & fitness",
+   "health & fitness/nutrition"
+  ],
+  "pediatric_u": [
+   "health & fitness",
+   "health & fitness/pediatrics"
+  ],
+  "pediatrics_u": [
+   "health & fitness",
+   "health & fitness/pediatrics"
+  ],
+  "chronic_u": [
+   "health & fitness",
+   "health & fitness/chronic pain"
+  ],
+  "pain_u": [
+   "health & fitness",
+   "health & fitness/chronic pain"
+  ],
+  "anatomy_u": [
+   "health & fitness",
+   "health & fitness/anatomy"
+  ],
+  "aids_u": [
+   "health & fitness",
+   "health & fitness/aids hiv"
+  ],
+  "hiv_u": [
+   "health & fitness",
+   "health & fitness/aids hiv"
+  ],
+  "diabetic_u": [
+   "health & fitness",
+   "health & fitness/diabetes"
+  ],
+  "diabetes_u": [
+   "health & fitness",
+   "health & fitness/diabetes"
+  ],
+  "stress_u": [
+   "health & fitness",
+   "health & fitness/stress"
+  ],
+  "thyroid_u": [
+   "health & fitness",
+   "health & fitness/thyroid"
+  ],
+  "depression_u": [
+   "health & fitness",
+   "health & fitness/depression"
+  ],
+  "sexuality_u": [
+   "health & fitness",
+   "health & fitness/sex"
+  ],
+  "cardiac_u": [
+   "health & fitness",
+   "health & fitness/cardiac"
+  ],
+  "architect_u": [
+   "architecture"
+  ],
+  "architecture_u": [
+   "architecture"
+  ],
+  "realestate_u": [
+   "real estate"
+  ],
+  "mortgage_u": [
+   "real estate",
+   "real estate/mortgages"
+  ],
+  "mortgages_u": [
+   "real estate",
+   "real estate/mortgages"
+  ],
+  "military_u": [
+   "military"
+  ],
+  "army_u": [
+   "military"
+  ],
+  "navy_u": [
+   "military"
+  ],
+  "terrorist_u": [
+   "military",
+   "military/terrorism"
+  ],
+  "terrorism_u": [
+   "military",
+   "military/terrorism"
+  ],
+  "historical_u": [
+   "history"
+  ],
+  "historian_u": [
+   "history"
+  ],
+  "ancient_u": [
+   "history"
+  ],
+  "archaeology_u": [
+   "history",
+   "history/archaeology"
+  ],
+  "archaeologist_u": [
+   "history",
+   "history/archaeology"
+  ],
+  "archaeologists_u": [
+   "history",
+   "history/archaeology"
+  ]
+ }
+}
