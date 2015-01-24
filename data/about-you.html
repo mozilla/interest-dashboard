@@ -33,16 +33,28 @@
                 <div class="cog-img"></div>
               </button>
               <ul class="dropdown-menu-right dropdown-menu" role="menu">
+                <li><a class="cog-title" href="#">Options</a></li>
+                <li class="divider title-divider"></li>
                 <li><a href="https://www.mozilla.org/en-US/firefox/interest-dashboard/">About this page</a></li>
                 <li class="divider"></li>
                 <li ng-click="processHistory()" ><a href="#">Recompute history</a></li>
                 <li class="divider"></li>
                 <li ng-click="generateDebugReport()"><a href="#">Generate debug report</a></li>
+                <li class="divider"></li>
+                <li><a data-toggle="modal" data-target="#uninstallModal" href="#">Uninstall</a></li>
+                <li class="divider"></li>
+                <li ng-click="setRecommendationTabVisibility()"><a href="#">{{recommenderTabToggle}}</a></li>
+                <li class="divider"></li>
+                <li class="report-bugs">
+                  <div class="blurb">This is a work in progress. See something that isn't right? Help us fix it.</div>
+                  <button onClick="window.open('https://bugzilla.mozilla.org/enter_bug.cgi?product=Content%20Services&component=Interest%20Dashboard')">Report a bug</button>
+                </li>
               </ul>
             </div>
-            <div class="tabWrapper">
-              <ul class="nav navbar-nav navbar-right">
-                <li class="selected"><a href="#">Your Interests</a></li>
+            <div class="tabWrapper" role="tabpanel">
+              <ul class="nav navbar-nav navbar-right" role="tablist">
+                <li id="interests_tab" role="presentation" class="active"><a href="#yourInterests" aria-controls"yourInterests" role="tab" data-toggle="tab" >Your Interests</a></li>
+                <li id="recommend_tab" role="presentation"><a href="#recommendations" aria-controls"recommendations" role="tab" data-toggle="tab" >Your Recommendations</a></li>
               </ul>
             </div>
           </div>
@@ -176,7 +188,7 @@
             <ol class="nav nav-sidebar">
               <li ng-repeat="item in list">
                 <div class="most-visited-site-rank">{{$index + 1}}</div>
-                <img class="favicon" ng-src="{{item[2]}}"></img>
+                <img class="favicon" src="{{item[2]}}" alt=""></img>
                 <a ng-href="http://{{item[0]}}">{{item[0]}}</a> <div class="nav-sidebar-info">({{item[1]}}x)</div>
               </li>
             </ol>
@@ -201,98 +213,128 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Modal dialog for debug log display. -->
-  <div id="debug-modal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title">Debug Log</h4>
-        </div>
-        <div class="modal-body">
-          <textarea id="debug-textarea">{{debugLog}}</textarea>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+      <!-- Modal dialog for uninstall button -->
+      <div class="modal fade" id="uninstallModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Uninstall?</h4>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to uninstall Firefox Interest Dashboard?&hellip;</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" ng-click="uninstall()">Uninstall</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
 
-  <!-- Interest Dashboard tutorial/tour. -->
-  <div id="ui-tour-mask" tabindex="-1" style="display: none;"></div>
-  <div style="display: none;" id="ui-tour" tabindex="-1" aria-expanded="true">
-    <div class="cta">
-      <button type="button" aria-controls="ui-tour">Learn more</button>
-    </div>
-    <div class="tour-tip"><span>Next:</span> Customize</div>
-    <div class="ui-tour-controls">
-      <button style="display: inline-block;" disabled="disabled" class="step prev faded" aria-controls="tour-steps tour-progress">Previous</button>
-      <button class="step next" aria-controls="tour-steps tour-progress">Next</button>
-      <button style="display: inline-block;" class="close" aria-controls="tour-steps tour-progress">Close</button>
-    </div>
-    <div class="tour-background">
-      <div class="tour-inner">
-        <div style="display: block;" id="tour-progress" class="progress-step">
-          <div class="logo"></div>
-          <span class="step">1/4</span>
-          <div class="progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
-            <span class="indicator"></span>
+      <!-- Modal dialog for debug log display. -->
+      <div id="debug-modal" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title">Debug Log</h4>
+            </div>
+            <div class="modal-body">
+              <textarea id="debug-textarea">{{debugLog}}</textarea>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+      <!-- Interest Dashboard tutorial/tour. -->
+      <div id="ui-tour-mask" tabindex="-1" style="display: none;"></div>
+      <div style="display: none;" id="ui-tour" tabindex="-1" aria-expanded="true">
+        <div class="cta">
+          <button type="button" aria-controls="ui-tour">Learn more</button>
+        </div>
+        <div class="tour-tip"><span>Next:</span> Customize</div>
+        <div class="ui-tour-controls">
+          <button style="display: inline-block;" disabled="disabled" class="step prev faded" aria-controls="tour-steps tour-progress">Previous</button>
+          <button class="step next" aria-controls="tour-steps tour-progress">Next</button>
+          <button style="display: inline-block;" class="close" aria-controls="tour-steps tour-progress">Close</button>
+        </div>
+        <div class="tour-background">
+          <div class="tour-inner">
+            <div style="display: block;" id="tour-progress" class="progress-step">
+              <div class="logo"></div>
+              <span class="step">1/4</span>
+              <div class="progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
+                <span class="indicator"></span>
+              </div>
+            </div>
+            <ul style="display: block;" id="tour-steps" class="ui-tour-list">
+              <li class="tour-step current app-menu visible" data-step="1" data-tip-next="<span>Next:</span> Area Graph">
+                <div class="tour-item">
+                  <h2 class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
+                    It all starts with your<br> interest wheel
+                  </h2>
+                  <ul class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
+                    <li>Click on the different categories to start exploring your history</li>
+                  </ul>
+                </div>
+                <div id="image1" class="image"></div>
+              </li>
+              <li class="tour-step app-menu" data-step="2" data-tip-prev="<span>Previous:</span> Interest Wheel" data-tip-next="<span>Next:</span> Top Sites">
+                <div class="tour-item">
+                  <h2 class="tour-highlight step-target" data-target="customize" data-effect="wobble">
+                    See stats about your activity<br> with the area graph
+                  </h2>
+                  <ul>
+                    <li>The area graph will display the intensity of an interest topic in the last 30 days</li>
+                    <li>Summarized stats reflect the total or selected category</li>
+                  </ul>
+                </div>
+                <div id="image2" class="image"></div>
+              </li>
+              <li class="tour-step app-menu" data-step="3" data-tip-prev="<span>Previous:</span> Area Graph" data-tip-next="<span>Next:</span> Interest History">
+                <div class="tour-item">
+                  <h2 class="tour-highlight step-target" data-target="addons" data-effect="wobble">
+                    See where you spend your<br> time on the web
+                  </h2>
+                  <ul>
+                    <li>The sites you visit most often are ranked by page views</li>
+                  </ul>
+                </div>
+                <div id="image3" class="image"></div>
+              </li>
+              <li class="tour-step" data-step="4" data-tip-prev="<span>Previous:</span> Top Sites">
+                <div class="tour-item">
+                  <h2 class="tour-highlight step-target" data-target="bookmarks" data-effect="wobble">
+                    Review your interest history<br> by category
+                  </h2>
+                  <ul>
+                    <li>Sort interests by rank, category, or activity</li>
+                    <li>Expand category rows to reveal browsing history</li>
+                    <li>Icons indicate new or popular interest categories</li>
+                  </ul>
+                </div>
+                <div id="image4" class="image"></div>
+              </li>
+            </ul>
+            <div style="display: none;" class="compact-title"><h2>
+              It starts with the new, intuitive menu
+            </h2></div>
+            <div class="tour-init" data-target="appMenu" data-icon="//mozorg.cdn.mozilla.net/media/img/firefox/australis/logo.png?2014-03" data-icon-high-res="//mozorg.cdn.mozilla.net/media/img/firefox/australis/logo-high-res.png?2014-03"></div>
           </div>
         </div>
-        <ul style="display: block;" id="tour-steps" class="ui-tour-list">
-          <li class="tour-step current app-menu visible" data-step="1" data-tip-next="<span>Next:</span> Area Graph">
-            <div class="tour-item">
-              <h2 class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
-                It all starts with your<br> interest wheel
-              </h2>
-              <ul class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">
-                <li>Click on the different categories to start exploring your history</li>
-              </ul>
-            </div>
-            <div id="image1" class="image"></div>
-          </li>
-          <li class="tour-step app-menu" data-step="2" data-tip-prev="<span>Previous:</span> Interest Wheel" data-tip-next="<span>Next:</span> Top Sites">
-            <div class="tour-item">
-              <h2 class="tour-highlight step-target" data-target="customize" data-effect="wobble">
-                See stats about your activity<br> with the area graph
-              </h2>
-              <ul>
-                <li>The area graph will display the intensity of an interest topic in the last 30 days</li>
-                <li>Summarized stats reflect the total or selected category</li>
-              </ul>
-            </div>
-            <div id="image2" class="image"></div>
-          </li>
-          <li class="tour-step app-menu" data-step="3" data-tip-prev="<span>Previous:</span> Area Graph" data-tip-next="<span>Next:</span> Interest History">
-            <div class="tour-item">
-              <h2 class="tour-highlight step-target" data-target="addons" data-effect="wobble">
-                See where you spend your<br> time on the web
-              </h2>
-              <ul>
-                <li>The sites you visit most often are ranked by page views</li>
-              </ul>
-            </div>
-            <div id="image3" class="image"></div>
-          </li>
-          <li class="tour-step" data-step="4" data-tip-prev="<span>Previous:</span> Top Sites">
-            <div class="tour-item">
-              <h2 class="tour-highlight step-target" data-target="bookmarks" data-effect="wobble">
-                Review your interest history<br> by category
-              </h2>
-              <ul>
-                <li>Sort interests by rank, category, or activity</li>
-                <li>Expand category rows to reveal browsing history</li>
-                <li>Icons indicate new or popular interest categories</li>
-              </ul>
-            </div>
-            <div id="image4" class="image"></div>
-          </li>
-        </ul>
-        <div style="display: none;" class="compact-title"><h2>
-          It starts with the new, intuitive menu
-        </h2></div>
-        <div class="tour-init" data-target="appMenu" data-icon="//mozorg.cdn.mozilla.net/media/img/firefox/australis/logo.png?2014-03" data-icon-high-res="//mozorg.cdn.mozilla.net/media/img/firefox/australis/logo-high-res.png?2014-03"></div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="recommendations">
+      <div id="spiderGraph">
+        <div class="recommendationPanel">
+          <div class="titlebar">
+            <div class="todaysContent">Today's content in</div>
+            <div class="contentCategory">{{recommendationCategory}}</div>
+          </div>
+        </div>
+        <svg width="100%" height="100%"></svg>
       </div>
     </div>
   </div>

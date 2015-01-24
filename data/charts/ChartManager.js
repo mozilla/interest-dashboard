@@ -15,6 +15,9 @@ let ChartManager = {
     if (!this._charts["interestDashboard"]) {
       this._charts["interestDashboard"] = new InterestDashboard($scope);
     }
+    if (!this._charts["spider"]) {
+      this._charts["spider"] = new SpiderGraph($scope);
+    }
     for (let chart in this._charts) {
       this._charts[chart].graph(data[chart + "Data"], table, $scope);
     }
@@ -23,6 +26,9 @@ let ChartManager = {
   appendToGraph: function(chartType, data, table, $scope) {
     if (!this._charts["interestDashboard"]) {
       this._charts["interestDashboard"] = new InterestDashboard($scope);
+    }
+    if (!this._charts["spider"]) {
+      this._charts["spider"] = new SpiderGraph($scope);
     }
     this._charts[chartType].graph(data, table, $scope);
   },

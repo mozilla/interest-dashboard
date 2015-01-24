@@ -44,10 +44,10 @@ let categoryComputingNoRank = JSON.parse(JSON.stringify(categoryComputing)); // 
 delete categoryComputingNoRank['rank'];
 
 exports.dayAnnotatedThreeChartProcessorConsumeResults = {
-    "lwca": {
-        "58-cat": {
-            "_type": "lwca",
-            "_namespace": "58-cat",
+    "rules": {
+        "dfr_rules": {
+            "_type": "rules",
+            "_namespace": "dfr_rules",
             "maxDay": "16361",
             "minDay": "16358",
             "categories": {

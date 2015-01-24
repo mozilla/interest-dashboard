@@ -71,6 +71,12 @@ let testDomainRules = {
     "travel_u": [
       "travel"
     ],
+    "foo_u": [
+       "foo"
+    ],
+    "bar_t": [
+       "bar"
+    ],
   },
 }
 
@@ -80,103 +86,115 @@ let matchTests = [
   info: "Match Test 1 (Rules): mozilla.org",
   url:  "http://www.mozilla.org",
   title: "Hello World",
-  expectedInterests:  [{"type":"rules","interests":["computers"]},{"type":"combined","interests":["computers"]},{"type":"keywords","interests":[]},],
+  expectedInterests:  [{"type":"rules","interests":[{"category":"computers","subcat":"general"}]}],
 },
 {
   info: "Match Test 2 (Rules): weather gov",
   url:  "http://nws.noaa.gov",
   title: "Hello World",
-  expectedInterests:  [{"type":"rules","interests":["government","weather","science"]},{"type":"combined","interests":["government","weather","science"]},{"type":"keywords","interests":[]}],
+  expectedInterests:  [{"type":"rules","interests":[{"category":"government","subcat":"general"},{"category":"weather","subcat":"general"},{"category":"science","subcat":"general"}]}],
 },
 {
   info: "Match Test 3 (Rules): mail.google.com example",
   url:  "https://mail.google.com/mail/u/0/?ui=2&shva=1#inbox?compose=13e0005db4a0d0d4",
   title: "",
-  expectedInterests: [{"type":"rules","interests":[]},{"type":"keywords","interests":[]},{"type":"combined","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"uncategorized","subcat":"dummy"}]}],
 },
 {
   info: "Match Test 4 (Rules): www.news.com home url",
   url:  "https://www.news.com",
   title: "",
-  expectedInterests: [{"type":"rules","interests":["news","news_home"]},{"type":"combined","interests":["news","news_home"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"news","subcat":"general"},{"category":"news_home","subcat":"general"}]}],
 },
 {
   info: "Match Test 5 (Rules): www.news.com page url",
   url:  "https://www.news.com/page_url",
   title: "",
-  expectedInterests: [{"type":"rules","interests":["news"]},{"type":"combined","interests":["news"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"news","subcat":"general"}]}],
 },
 {
   info: "Match Test 6 (Rules): www.news.com query url",
   url:  "https://www.news.com?page=1",
   title: "",
-  expectedInterests: [{"type":"rules","interests":["news","news_home"]},{"type":"combined","interests":["news","news_home"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"news","subcat":"general"},{"category":"news_home","subcat":"general"}]}],
 },
 {
   info: "Match Test 7 (Rules): www.testpathdomain.com query url",
   url:  "https://www.testpathdomain.com/CODE?qw=aa",
   title: "CPlusPlus programming",
-  expectedInterests: [{"type":"rules","interests":["programming","oop"]},{"type":"combined","interests":["programming","oop"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"programming","subcat":"general"},{"category":"oop","subcat":"general"}]}],
 },
 {
   info: "Match Test 8 (Rules): www.stack.com query url",
   url:  "https://www.stack.com/code/js?qw=aa",
   title: "js programming",
-  expectedInterests: [{"type":"rules","interests":["js"]},{"type":"combined","interests":["js"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"js","subcat":"general"}]}],
 },
 {
   info: "Match Test 9 (Rules): __ANY golf",
   url:  "https://www.stack.com/golf/js?qw=aa",
   title: "js programming",
-  expectedInterests: [{"type":"rules","interests":["golf"]},{"type":"combined","interests":["golf"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"golf","subcat":"general"}]}],
 },
 {
   info: "Match Test 10 (Rules): .app",
   url:  "https://app.dev.google.com/",
   title: "js programming",
-  expectedInterests: [{"type":"rules","interests":["app"]},{"type":"combined","interests":["app"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"app","subcat":"general"}]}],
 },
 {
   info: "Match Test 11 (Rules): real_estate",
   url:  "https://dev.google.com/real_estate/",
   title: "js programming",
-  expectedInterests: [{"type":"rules","interests":["real estate"]},{"type":"combined","interests":["real estate"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"real estate","subcat":"general"}]}],
 },
 {
   info: "Match Test 12 (Rules): golf subdomain",
   url:  "https://golf.google.com/golf",
   title: "tornament",
-  expectedInterests: [{"type":"rules","interests":["golf","tiger"]},{"type":"combined","interests":["golf","tiger"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"golf","subcat":"general"},{"category":"tiger","subcat":"general"}]}],
 },
 {
   info: "Match Test 13 (Rules): frontline bigram",
   url:  "https://google.com",
   title: "front line",
-  expectedInterests: [{"type":"rules","interests":["test"]},{"type":"combined","interests":["test"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"test","subcat":"general"}]}],
 },
 {
   info: "Match Test 14 (Rules): travel in subdomain",
   url:  "https://travel.google.com",
   title: "travel",
-  expectedInterests: [{"type":"rules","interests":["travel"]},{"type":"combined","interests":["travel"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"travel","subcat":"general"}]}],
 },
 {
-  info: "Match Test 14 (Rules): travel in path",
+  info: "Match Test 15 (Rules): travel in path",
   url:  "https://google.com/travel",
   title: "travel",
-  expectedInterests: [{"type":"rules","interests":["travel"]},{"type":"combined","interests":["travel"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"travel","subcat":"general"}]}],
 },
 {
-  info: "Match Test 14 (Rules): travel in query",
+  info: "Match Test 16 (Rules): travel in query",
   url:  "https://google.com/search?q=travel",
   title: "travel",
-  expectedInterests: [{"type":"rules","interests":["travel"]},{"type":"combined","interests":["travel"]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"travel","subcat":"general"}]}],
 },
 {
-  info: "Match Test 14 (Rules): travel in title",
-  url:  "https://google.com/search?q=foo",
+  info: "Match Test 17 (Rules): travel in title",
+  url:  "https://google.com/search?q=zumbaHoo",
   title: "travel",
-  expectedInterests: [{"type":"rules","interests":[]},{"type":"combined","interests":[]},{"type":"keywords","interests":[]}],
+  expectedInterests: [{"type":"rules","interests":[{"category":"uncategorized","subcat":"dummy"}]}],
+},
+{
+  info: "Match Test 18 (Rules): foo in URL",
+  url:  "http://us.cnn.com/2014/11/16/foo/xyz",
+  title: "G20 summit",
+  expectedInterests: [{"type":"rules","interests":[{"category":"foo","subcat":"general"}]}],
+},
+{
+  info: "Match Test 19 (Rules): bar in title",
+  url:  "http://us.cnn.com/xxx",
+  title: "G20 bar summit",
+  expectedInterests: [{"type":"rules","interests":[{"category":"bar","subcat":"general"}]}],
 },
 ];
 
@@ -191,9 +209,11 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
         if (msgData.message == "InterestsForDocument") {
           // make sure that categorization is correct
           let host = msgData.host;
-          //console.log("msgData=> " + JSON.stringify(msgData.results))
-          //console.log("expectedInterests=> " + JSON.stringify(expectedInterests))
-          assert.ok(testUtils.compareArrayOrderIrrelevant(msgData.results, expectedInterests), "interests match");
+          if (!testUtils.compareArrayOrderIrrelevant(msgData.results, expectedInterests)) {
+            console.log("msgData=> " + JSON.stringify(msgData.results))
+            console.log("expectedInterests=> " + JSON.stringify(expectedInterests))
+          }
+          assert.ok(testUtils.compareArrayOrderIrrelevant(msgData.results, expectedInterests), msgData.info);
           deferred.resolve();
         }
         else if (!(msgData.message in testUtils.kValidMessages)) {
@@ -215,7 +235,6 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
       namespace: "test-Matching",
       listener: workerTester,
       domainRules: testDomainRules,
-      textModel: null,
       urlStopWords: ['php', 'html'],
       domain_rules: domain_rules,
       host_rules: host_rules,
@@ -245,7 +264,8 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
           path: path,
           title: title,
           url: test.url,
-          baseDomain: baseDomain
+          baseDomain: baseDomain,
+          info: test.info
         }
       });
       yield deferred.promise;

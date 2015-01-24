@@ -32,10 +32,10 @@ exports["test controller history submission completes"] = function test_Controll
       let today = DateUtils.today();
 
       let microNow = Date.now() * 1000;
-      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 4*MICROS_PER_DAY});
-      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 3*MICROS_PER_DAY});
-      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow - 2*MICROS_PER_DAY});
-      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.autoblog.com/"), visitDate: microNow});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.theweathernetwork.com/weather"), visitDate: microNow - 4*MICROS_PER_DAY});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.theweathernetwork.com/weather"), visitDate: microNow - 3*MICROS_PER_DAY});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.theweathernetwork.com/weather"), visitDate: microNow - 2*MICROS_PER_DAY});
+      yield testUtils.promiseAddVisits({uri: NetUtil.newURI("http://www.theweathernetwork.com/weather"), visitDate: microNow});
 
       // step one day into future to flush the DayBuffer
       let testController = setupTestController();
@@ -76,7 +76,7 @@ exports["test controller history submission completes"] = function test_Controll
 exports["test stop and start"] = function test_StopAndStart(assert, done) {
   Task.spawn(function() {
     try {
-      let hostArray = ["www.autoblog.com",
+      let hostArray = ["www.theweathernetwork.com/weather",
                        "www.thehill.com",
                        "www.rivals.com",
                        "www.mysql.com",
@@ -95,8 +95,8 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
       let processDeferred;
       processDeferred = oldPromise.defer();
       testController._streamObjects.chartDataProcessorBolt.setEmitCallback(bolt => {
-        let minDay = bolt.storage.chartData.genericChartData.lwca["58-cat"].minDay;
-        let maxDay = bolt.storage.chartData.genericChartData.lwca["58-cat"].maxDay;
+        let minDay = bolt.storage.chartData.genericChartData.rules.edrules.minDay;
+        let maxDay = bolt.storage.chartData.genericChartData.rules.edrules.maxDay;
         let numDays = maxDay - minDay + 1;
         if (numDays == 60) {
           processDeferred.resolve();
@@ -136,7 +136,7 @@ exports["test stop and start"] = function test_StopAndStart(assert, done) {
 exports["test clear storage"] = function test_ClearStorage(assert, done) {
   Task.spawn(function() {
     try {
-      let hostArray = ["www.autoblog.com",
+      let hostArray = ["www.theweathernetwork.com/weather",
                        "www.thehill.com",
                        "www.rivals.com",
                        "www.mysql.com",
@@ -154,12 +154,12 @@ exports["test clear storage"] = function test_ClearStorage(assert, done) {
       yield testController.stopAndClearStorage();
 
       // make sure we are all clean
-      assert.equal(storageBackend.lastTimeStamp, undefined);
-      assert.equal(storageBackend.downloadSource, undefined);
-      assert.equal(storageBackend.dayBufferInterests, undefined);
-      assert.equal(storageBackend.interests, undefined);
-      assert.equal(storageBackend.ranking, undefined);
-      assert.equal(storageBackend.hasOwnProperty("interests"), false);
+      assert.equal(storageBackend.lastTimeStamp, undefined, "Test timestamp cleared");
+      assert.equal(storageBackend.downloadSource, undefined, "Test downloadSource cleared");
+      assert.equal(storageBackend.dayBufferInterests, undefined, "Test dayBufferInterests cleared");
+      assert.equal(storageBackend.interests, undefined, "Test interests cleared");
+      assert.equal(storageBackend.ranking, undefined, "Test ranking cleared");
+      assert.equal(storageBackend.hasOwnProperty("interests"), false, "Test no interests property");
     } catch(ex) {
       console.error(ex);
     }
