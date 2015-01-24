@@ -45,9 +45,9 @@ delete categoryComputingNoRank['rank'];
 
 exports.dayAnnotatedThreeChartProcessorConsumeResults = {
     "rules": {
-        "dfr_rules": {
+        "HTL": {
             "_type": "rules",
-            "_namespace": "dfr_rules",
+            "_namespace": "HTL",
             "maxDay": "16361",
             "minDay": "16358",
             "categories": {

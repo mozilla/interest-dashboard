@@ -25,8 +25,8 @@ exports["test interest classifier"] = function test_UrlClassifier(assert, done) 
     assert.equal(Object.keys(results).length, workers.length);
     assert.deepEqual(results.edrules.results,
           [{"type": "rules", interests: [{category: "Autos", subcat: "general"}]}]);
-    assert.deepEqual(results.dfr_rules.results,
-          [{"type": "rules", interests: [{category: "uncategorized", subcat: "dummy"}]}]);
+    assert.deepEqual(results.HTL.results,
+          [{"type": "rules", interests: [{category: "automotive", subcat: "general"}]}]);
     // test for an error
     yield urlClassifier.classifyPage("not a url").then(result => {
       assert.ok(false);
@@ -39,7 +39,7 @@ exports["test interest classifier"] = function test_UrlClassifier(assert, done) 
     results = yield urlClassifier.classifyPage(null, "iphone, ipad, apple, product, phone");
     assert.deepEqual(results.edrules.results,
         [{"type": "rules", interests: [{category: "uncategorized", subcat: "dummy"}]}]);
-    assert.deepEqual(results.dfr_rules.results,
+    assert.deepEqual(results.HTL.results,
         [{"type": "rules", interests: [{category: "uncategorized", subcat: "dummy"}]}]);
 
   }).then(done);

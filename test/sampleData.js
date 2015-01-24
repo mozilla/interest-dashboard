@@ -8,7 +8,7 @@
 exports.dayAnnotatedOne = {
   "15914": {
     "rules": {
-      "dfr_rules": {
+      "HTL": {
         "uncategorized": [1, 1],
       },
       "edrules": {
@@ -21,7 +21,7 @@ exports.dayAnnotatedOne = {
 exports.dayAnnotatedTwo = {
   "15915": {
     "rules": {
-      "dfr_rules": {
+      "HTL": {
         "blogging": [
           1,
           1
@@ -105,7 +105,7 @@ exports.dayAnnotatedTwo = {
 exports.dayAnnotatedThree = {
     "16361": {
         "rules": {
-            "dfr_rules": {
+            "HTL": {
                 "technology & computing": {
                     "hosts": {
                         "mozilla.org": 1,
@@ -131,7 +131,7 @@ exports.dayAnnotatedThree = {
     },
     "16358": {
         "rules": {
-            "dfr_rules": {
+            "HTL": {
                 "technology & computing": {
                     "hosts": {
                         "dxr.mozilla.org": 1,
