@@ -114,6 +114,11 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     $("#main-overlay").removeClass("fade-out");
     dataService.send("history_process");
   };
+
+  $scope.processCurrentHistory = function() {
+    dataService.send("history_submit");
+  };
+
   $scope._initialize();
 
   $scope.$on("json_update", function(event, data) {
