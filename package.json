@@ -5,7 +5,11 @@
   "id": "firefox.interest.dashboard@up.mozilla",
   "license": "MPL 2.0",
   "name": "firefox-interest-dashboard",
-  "version": "0.9",
+  "version": "0.9.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mozilla/interest-dashboard"
+  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-angular-gettext": "~0.2.6"
