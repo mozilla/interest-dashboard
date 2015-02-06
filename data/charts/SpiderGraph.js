@@ -278,21 +278,21 @@ SpiderGraph.prototype = {
 
       let minDate = d3.time.format('%m/%d/%Y')(new Date(daysPostEpochToDate(node.minDay)));
       return '<div class="centerNode">' +
-          '<p id="totalInterests">' + node.numInterests + '</p>' +
+          '<p id="totalInterests">' + html_sanitize(node.numInterests) + '</p>' +
           '<p id="activeInterestsLabel">Active Interests</p>' +
-          '<p id="startDate">since ' + minDate + '</p>' +
+          '<p id="startDate">since ' + html_sanitize(minDate) + '</p>' +
         '</div>';
     }
 
     if (type != "hover") {
-      return '<p class="nodeText">' + node.name + '</p>';
+      return '<p class="nodeText">' + html_sanitize(node.name) + '</p>';
     }
 
     // Type is hover
     if (!node.name) {
       return "";
     }
-    return '<p class="nodeText">(' + node.recommendationCount + ')<br>' + node.name + '</p>';
+    return '<p class="nodeText">(' + html_sanitize(node.recommendationCount) + ')<br>' + html_sanitize(node.name) + '</p>';
   },
 
   _getFontSizeByRadius: function(radius) {
