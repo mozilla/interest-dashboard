@@ -3,3 +3,5 @@
 *.sw*
 *.mo
 node_modules
+.idea
+new-session2

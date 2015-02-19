@@ -116,6 +116,7 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
   };
 
   $scope.processCurrentHistory = function() {
+    $scope.lastUpdate = "Updated " + d3.time.format('%m/%d/%Y at %I:%M%p')(new Date());
     dataService.send("history_submit");
   };
 
