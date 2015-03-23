@@ -147,6 +147,12 @@ aboutYou.controller("vizCtrl", function($scope, dataService) {
     $scope.daysLeft = data;
     $scope.updateProgressBar();
   });
+    
+  $scope.gotoTop = function() {
+      console.log("working..");
+      console.log(window.scrollTo);
+      window.scrollTo(0, 0);
+  };
 });
 
 self.port.on("style", function(file) {
@@ -431,4 +437,3 @@ BrowserTour.prototype.onCloseTour = function () {
   this.$tour.off('.ui-tour');
   this.goToStep(1);
 };
-
