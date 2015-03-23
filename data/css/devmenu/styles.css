@@ -1239,3 +1239,24 @@ ol li {
   line-height: 18px;
   padding-bottom: 12px;
 }
+
+.button-bottom {
+    position: absolute;
+    z-index: 1000;
+    bottom: 20px;
+    border: 1px;
+    border-color: #DCDCDC;
+    border-radius: 3px;
+    padding: 7px 0 0 0;
+    color: #4A90E2;
+    font-size: 13x;
+    font-weight: bold;
+    text-align: center;
+    background-color: white;
+}
+
+#goto-top-button {
+    width: 60px;
+    height: 36px;
+    right: -5px;
+}
