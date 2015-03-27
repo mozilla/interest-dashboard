@@ -17,9 +17,6 @@
 		<p>
 			Your top interest is: <span id='top_interest'></span>
 		</p>
-		<p>
-			<input type='button' value='Request Interests' id='btn'>
-		</p>
 		<script>
 			
 			//similar functionality to navigator.geolocation
@@ -33,18 +30,7 @@
 				document.getElementById("top_interest").innerHTML = "User denied request"
 			};
 			
-			//When the button is clicked, request permissions
-			document.getElementById('btn').onclick = function(){navigator.interests.getInterests(success, error);}
-			
-			//How can we get this to work on page load?
-			//this doesn't work:
-			//window.addEventListener("DOMContentLoaded", function(){navigator.interests.getInterests(success, error);})
-			// - The extension is fired on contentScriptWhen ready which appears to be after DOMContentLoaded. The only
-			//    other option is contentScriptWhen:start, which doesn't work
-			//    because the DOM hasn't loaded at all and the function can't be attached.
-			// - Is the page forced to use hacky Timeouts to check if it has been added to the DOM? Or is there a way of
-			//    inserting it in time?
-			
+			window.addEventListener("DOMContentLoaded", function(){navigator.interests.getInterests(success, error);})
 		</script>
 	</body>
 </html>
