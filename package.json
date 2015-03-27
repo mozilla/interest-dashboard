@@ -9,5 +9,8 @@
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-angular-gettext": "~0.2.6"
+  },
+  "permissions": {
+    "unsafe-content-script": true
   }
 }
