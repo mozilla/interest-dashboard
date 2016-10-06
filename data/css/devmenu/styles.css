@@ -308,6 +308,15 @@ li.active {
   float: right;
   color: #6A7B86;
 }
+
+.refresh {
+  float: right;
+  display: inline-block;
+  cursor: pointer;
+  color: #4A90E2;
+  padding-left: 10px;
+}
+
 .visibleBack {
   visibility: visible;
 }
