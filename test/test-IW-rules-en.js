@@ -78,6 +78,26 @@ let testDomainRules = {
        "bar"
     ],
   },
+  "__SCOPES": [
+    {
+      "__HOSTS": {
+        "blast.com": true,
+        "heavy.blast2.com": true,
+        "super.heavy.blast3.com": true,
+      },
+      "__ANY": {
+          "ebola_t": [ "science"],
+      },
+    },
+    {
+      "__HOSTS": {
+        "blast4.com": true,
+      },
+      "__ANY": {
+          "bank_t": [ "banking"],
+      },
+    },
+  ],
 }
 
 // the test array
@@ -196,6 +216,36 @@ let matchTests = [
   title: "G20 bar summit",
   expectedInterests: [{"type":"rules","interests":[{"category":"bar","subcat":"general"}]}],
 },
+{
+  info: "Match Test 20 (Rules): scoped rule application",
+  url:  "http://little.blast.com",
+  title: "ebola rules",
+  expectedInterests: [{"type":"rules","interests":[{"category":"science","subcat":"general"}]}],
+},
+{
+  info: "Match Test 21 (Rules): scoped rule application",
+  url:  "http://little.blast3.com",
+  title: "ebola rules",
+  expectedInterests: [{"type":"rules","interests":[{"category":"uncategorized","subcat":"dummy"}]}],
+},
+{
+  info: "Match Test 22 (Rules): scoped rule application",
+  url:  "http://heavy.blast2.com",
+  title: "ebola rules",
+  expectedInterests: [{"type":"rules","interests":[{"category":"science","subcat":"general"}]}],
+},
+{
+  info: "Match Test 23 (Rules): scoped rule application",
+  url:  "http://super.heavy.blast3.com",
+  title: "ebola rules",
+  expectedInterests: [{"type":"rules","interests":[{"category":"science","subcat":"general"}]}],
+},
+{
+  info: "Match Test 24 (Rules): scoped rule application",
+  url:  "http://super.heavy.blast4.com",
+  title: "bank rules",
+  expectedInterests: [{"type":"rules","interests":[{"category":"banking","subcat":"general"}]}],
+},
 ];
 
 exports["test default matcher"] = function test_default_matcher(assert, done) {
@@ -227,23 +277,11 @@ exports["test default matcher"] = function test_default_matcher(assert, done) {
     } // end of handleEvent
   };
 
-  let scriptLoader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
-  scriptLoader.loadSubScript(data.url("words.js"));
-  scriptLoader.loadSubScript(data.url("rules.js"));
-
   let worker = testUtils.getWorker({
       namespace: "test-Matching",
       listener: workerTester,
       domainRules: testDomainRules,
-      urlStopWords: ['php', 'html'],
-      domain_rules: domain_rules,
-      host_rules: host_rules,
-      path_rules: path_rules,
-      words_tree: words_tree,
-      ignore_words: ignore_words,
-      ignore_domains: ignore_domains,
-      ignore_exts: ignore_exts,
-      bad_domain_specific: bad_domain_specific
+      urlStopWords: ['php', 'html']
   });
 
   Task.spawn(function() {

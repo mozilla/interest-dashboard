@@ -1,4 +1,4 @@
-var interestsData = {
+{
    "salon.com" : {
       "__ANY" : [
          "Politics"
@@ -1992,4 +1992,3 @@ var interestsData = {
       ]
    }
 }
-;
